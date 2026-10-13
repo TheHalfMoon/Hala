@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+*.parquet
+checkpoints/
+artifacts/
+graft/
+.pytest_cache/
+.ruff_cache/
