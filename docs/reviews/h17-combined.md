@@ -1,0 +1,17 @@
+# H17 independent combined review
+
+Reviewed all new H17 files at HEAD `bd539bc012e9a2ec04af92136599890bf2a3bc42`, against PRODUCT.md, CLAUDE.md and the H17 spec. No source edits, model runs, weight downloads or commits performed.
+
+Exact reviewed source-freeze SHA256: `da58ff694beb8cb8b7da6adbbf08029a96f1890cc3cfe6d7a136d526c42fe5a3`. Every listed H17 file verified. H14 manifest SHA256 `0d81cc61ecaafb79b52b6a0368f76d550c92f5e4c5ccb05ef468e92a83c5b8d6` and all ten frozen dependencies verified unchanged. Baseline SHA256 `6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32` verified; independently rescoring its 64 raw outputs gives 64 schema-valid, 30 hits, 19 wrong targets and 15 misses.
+
+- **Must-fix (product, before remote execution):** `specs/H17-paired-quantization.md:22` prohibits all model runs in this phase while line 20 requires actual int8/NF4 GPU outcomes. Explicitly restrict the no-run hardstop to source preparation/builder work and distinguish later gated root execution; preserve pending actual results and all no-tuning/no-paid/no-local-weight restrictions. Freeze the corrected prospective spec before inference. This is a documentation contradiction, not evidence that a run occurred.
+- **Worth-considering (correctness):** Add a small CPU fake-tensor test for `evaluation/quantization.py:residency` covering shared storage, vision attribution, quantization-state storage and non-CUDA rejection. The current six new tests cover scoring pairs and guards meaningfully, but do not exercise this newly added accounting helper. CPU tests cannot qualify actual bitsandbytes residency.
+- **Skip-it (parsimony):** No extra framework, serving change, trainer change, abstraction layer or quantizer tuning is warranted. The small experimental helper/runner split is proportionate.
+
+Correctness: paired IDs, duplicate/missing-case rejection, media hashes, unchanged scoring, language/family summaries and partial-run exclusion are sound for this descriptive experiment. Framework imports and weight access follow remote/cache/source/media guards. Fixed model/processor revision, SDPA, seed, generation limits and exact package versions preserve the stated comparison. CUDA synchronization brackets latency; separate-session confounding is disclosed. Model and quant-state storage are distinguished from actual allocator/device metrics; int8/NF4 runtime compatibility remains unmeasured, and failure evidence is persisted after runtime preparation begins.
+
+Product: the 30/64 baseline is explicitly insufficient for production. No equality, adoption, native-task or release qualification is claimed. The exact vision conversion set is recorded rather than inferred from a nominal bit width. No actual quantized GPU evidence exists in this reviewed artifact; accepting source preparation must leave remote-run acceptance incomplete.
+
+Independent validation: bundled Python 3.12 ran `python -m unittest discover -s tests -q`: **136 tests passed in 8.217 seconds**. Freeze verification and baseline rescoring were separately executed. Local CPU results do not qualify torch/Transformers/bitsandbytes/accelerate on T4. Mechanical.json remains builder evidence; this report does not substitute for Jev, Graft, the separate security judge, founder merge authorization or actual remote execution.
+
+panel: light combined correctness/parsimony/product (inherited session model); security handled by the caller's separate independent judge.

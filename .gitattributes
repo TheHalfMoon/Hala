@@ -23,3 +23,11 @@ hala/inference/vision_candidate.py -text
 hala/inference/remote_qwen.py -text
 hala/serving/__init__.py -text
 tests/test_serving_v2.py -text
+
+# Preserve the prospective paired quantization freeze.
+evaluation/quantization*.py -text
+experiments/quantization/** -text
+tools/*quantization*.py -text
+tests/test_quantization.py -text
+docs/H17_QUANTIZATION.md -text
+specs/H17-paired-quantization.md -text

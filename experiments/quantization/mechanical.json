@@ -1,0 +1,43 @@
+{
+  "all_changes_new_files": true,
+  "baseline_counts": {
+    "ar_hit": 14,
+    "en_hit": 16,
+    "hit": 30,
+    "miss": 15,
+    "valid": 64,
+    "wrong": 19
+  },
+  "commits_created": 0,
+  "full_cpu_suite": {
+    "count": 136,
+    "runs": 1,
+    "seconds": 8.709,
+    "status": "passed"
+  },
+  "gpu_qualified": false,
+  "h14_frozen_dependency_files_verified": 10,
+  "local_packages": {
+    "Pillow": "12.3.0",
+    "accelerate": "not installed locally",
+    "bitsandbytes": "not installed locally",
+    "torch": "not installed locally",
+    "transformers": "not installed locally"
+  },
+  "model_runs": 0,
+  "new_phase_tests": {
+    "count": 6,
+    "status": "passed"
+  },
+  "py_compile": "passed",
+  "python": "3.12.14",
+  "remote_exact_pins": {
+    "Pillow": "11.3.0",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.50.2",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "schema": "hala.h17.mechanical.v1",
+  "source_freeze_sha256": "da58ff694beb8cb8b7da6adbbf08029a96f1890cc3cfe6d7a136d526c42fe5a3"
+}
