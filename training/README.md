@@ -1,0 +1,11 @@
+# Candidate remote training inputs
+
+`python -m training.scripts.convert_sft --source data/frozen/tasks.json --output training/generated-candidate` converts the importer-validated original train split into PNG/prompt/action JSONL. The included candidate export contains 58 English initial-state fixtures. It is training input preparation, not a measured model result. Each completion is only the independent fixture oracle's first logical action; no provider metadata, authority or execution receipt is a label. All dev/test workflow families remain held out.
+
+The bundled Pillow currently has no RAQM shaping. Arabic image rows are excluded in the machine manifest. Enabling `--raqm-qualified` requires actual RAQM plus separately reviewed shaping qualification; feature availability alone does not establish qualification.
+
+The trainer verifies the JSONL digest and each normalized local media path, image digest, family and original rights before a runtime probe or weights. It checks PNG dimensions before RGB conversion and audits the expanded processor prompt/vision prefix against a declared token budget before model loading. Completion labels mask that entire prefix. Only candidate batch-size-one FP16/BF16 LoRA is implemented; vision and base parameters remain frozen. QLoRA is unimplemented.
+
+Every checkpoint places the adapter, optimizer/scaler/RNG state, complete metrics and update evidence in a new staging directory, hashes every artifact and publishes one atomic `latest.json` pointer to a complete immutable version. Resume verifies the pointer metadata hash, exact file set, all file hashes and config/data/media-manifest identities. An interrupted write leaves the previous complete version usable. A completed resume finalizes its saved metrics without a new optimizer step or weight allocation.
+
+No training step, actual processor mask, adapter quality, memory fit or continuous/resumed numerical equivalence has been measured. CPU tests exercise helpers and interrupted-write/finalization paths with synthetic file bytes only. Remote Linux opt-in, a pinned real baseline deficit and inspected platform eligibility are still required. Kaggle commercial model work remains blocked. This pipeline creates no remote job or paid resource.
