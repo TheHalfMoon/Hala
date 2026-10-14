@@ -18,6 +18,8 @@ Status dated 2026-10-14. All qualification requires authentic evidence; IMPLEMEN
 | H11 inference | TESTED mock | Authenticated bounded mock server plus gated real backend |
 | H12 integration | TESTED fixture; native UNQUALIFIED | Versioned compatibility adapter and independent mock integration |
 | H13 release | BLOCKED | Real model and mandatory independent release evidence |
+| H14 frozen protocol / held-out evaluation | IN PROGRESS | Prospective 64-case bilingual fixture set and protocol frozen before actual shared-model evaluation; separate full-task/native limits |
+| H15 real LoRA engineering smoke | IN PROGRESS, isolated branch | Actual forward/backward/update/paired save/model reload/resumed-step comparison; two English microbatches, no large training or quality claim |
 
 Engineering order: H2 -> H3/H7 -> H9 deterministic -> H11/H12. Research and platform investigation can proceed independently. H8/H10 require scoped base evidence and actual engineering/paired precision qualification; a geometric calibration is not full-task evidence. The founder controls merge and production launch.
 

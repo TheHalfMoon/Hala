@@ -14,6 +14,6 @@ Use signed DCO commits; no shared-history rewriting. Feature branches and review
 - canvas: absent; founder's detailed autonomous directive supplies planning choices.
 - subagents: available for fresh-context PStack builders and judges, as required by installed skills.
 - model-tiers: use inherited session model and reasoning effort.
-- GPU: no qualified remote runtime or account quota evidence yet. Local d1 CPU runtime is online, but is not a qualified Hala foundation.
+- GPU: existing free Colab T4 has actual FP16 tensor and unchanged-model diagnostic evidence; held-out task, training and quantization qualification remain pending. Local d1 CPU runtime is online, but is not a qualified Hala foundation.
 
 Graft telemetry is disabled. Its installed build/check/blast commands qualify source graph freshness and impact; it is not an isolated execution sandbox or correctness verifier. Jev makes typed judgments and cannot produce prose review findings; pair it with independent PStack review.
