@@ -36,6 +36,13 @@ def interrupt_after_checkpoint(stop_after_step, step, version):
         raise QualificationInterrupted(step, version)
 
 
+def create_training_scaler(torch, precision):
+    # The bounded FP16 smoke must validate its first gradients, not skip an
+    # overflowing update while the default 65536 scale backs off. Resume below
+    # restores the saved scaler state instead of restarting this initial scale.
+    return torch.amp.GradScaler('cuda', init_scale=1.0, enabled=precision == 'fp16')
+
+
 def load_json(path):
     path = Path(path)
     if path.stat().st_size > 4 * 1024 * 1024:
@@ -161,7 +168,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     for parameter in parameters:
         parameter.data = parameter.data.float()
     optimizer = torch.optim.AdamW(parameters, lr=config.learning_rate)
-    scaler = torch.amp.GradScaler('cuda', enabled=config.precision == 'fp16')
+    scaler = create_training_scaler(torch, config.precision)
     start_step = previous['step'] if previous else 0
     metrics = list(previous['metrics']) if previous else []
     changed = previous['changed_parameter_tensors'] if previous else 0
@@ -219,6 +226,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             raise ValueError('Finite nonzero adapter gradient norm required')
         scaler.step(optimizer)
         scaler.update()
+        if not all(torch.isfinite(parameter).all() for parameter in parameters):
+            raise ValueError('Nonfinite updated adapter parameter')
         torch.cuda.synchronize(0)
         current_changed = sum(not torch.equal(before, after.detach().cpu())
                               for before, after in zip(initial_parameters, parameters))

@@ -1,0 +1,506 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/CURRENT_STATUS.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 11,
+          "end": 11
+        },
+        {
+          "start": 13,
+          "end": 13
+        },
+        {
+          "start": 17,
+          "end": 17
+        },
+        {
+          "start": 22,
+          "end": 22
+        },
+        {
+          "start": 27,
+          "end": 32
+        }
+      ],
+      "hunks": [
+        {
+          "start": 11,
+          "end": 11,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| Evaluation | TESTED synthetic 60 bilingual intent/120 GUI instances in 12 dependent families; oracle 180/180 and four negative controls 0/180. Actual strict model diagnostic 0/8; normalized calibration 7/8, not held-out or complete-task performance |\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Evaluation | TESTED synthetic 60 bilingual intent/120 GUI instances in 12 dependent families; oracle 180/180 and four negative controls 0/180. Actual strict diagnostic 0/8 and calibration 7/8 preserved. Frozen H14 real GPU evaluation: schema64/64, hit/completion30/64; English16/32, Arabic14/32. Narrow dependent synthetic fixtures; native/general tasks unqualified |\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 13,
+          "end": 13,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| Training | IMPLEMENTED candidate LoRA/media masks/paired snapshots; no actual model training or learned adapter yet. Two-step English engineering smoke inputs PROPOSED: audits 58 rows but consumes two microbatches, not claimed remediation of Arabic deficit |\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| Training | IMPLEMENTED candidate LoRA/media masks/paired snapshots; Actual smoke reached backward but rejected nonfinite gradients before optimizer update; adapter and reload remain unqualified. Two-step English engineering smoke inputs PROPOSED: audits 58 rows but consumes two microbatches, not claimed remediation of Arabic deficit |\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 17,
+          "end": 17,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| Inference | TESTED authenticated bounded CPU mock and 20 Linux container checks; real serving backend fails closed |\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "| Inference | TESTED authenticated bounded CPU mock and explicit v2 image/provenance candidate; 130 integrated CPU tests pass. Real Colab loader and loopback GPU serving remain unqualified; default backend fails closed |\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 22,
+          "end": 22,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "91 CPU tests pass on Python 3.12.14 after provider/protocol regressions. Source/helper tests do not prove actual numerical training/resume equivalence. See `REVIEW_EVIDENCE.md` and `experiments/runtime/COLAB_RUNS.md` for run provenance and limitations. The original real 0/8 strict result remains preserved; the 7/8 result reused the same eight fixtures for calibration after observing the first run.\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "130 CPU tests pass on Python 3.12.14 after provider/protocol regressions. Source/helper tests do not prove actual numerical training/resume equivalence. See `REVIEW_EVIDENCE.md` and `experiments/runtime/COLAB_RUNS.md` for run provenance and limitations. The original real 0/8 strict result remains preserved; the 7/8 result reused the same eight fixtures for calibration after observing the first run.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 27,
+          "end": 32,
+          "lines": [
+            {
+              "n": 27,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "## Continuation evidence on 2026-10-14\r"
+            },
+            {
+              "n": 29,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "H14 executed once at frozen source `ae0a9977edb2ec51825a8d5be5c2a3bdf9eb61ae`; see `../experiments/heldout/README.md` and independent `reviews/h14-result-verification.md`. Warm median/P95 1.384/1.897s; peak allocator4.587GB, maximum device-used4.793GB. H16 source passed independent correctness/product/parsimony/security reviews, genuine Jev and Graft (535 nodes; deep context unavailable), and 130 integrated CPU tests. Signed DCO feature merge `bd539bc` published; CI for that exact head is pending verification. Prior ae0a head had four passed CI jobs. The earlier signed H15 merge `3c19b472...` omitted its message signoff; signed DCO attestation `ae0a997...` preserves that procedural fact without rewriting history.\r"
+            },
+            {
+              "n": 31,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 32,
+              "sign": "+",
+              "text": "LoRA attempts: incompatible preinstalled torchao0.10 versus PEFT0.20 failed before adapter injection; remote optional package removed. The unchanged retry reached backward but failed closed on nonfinite gradients before optimizer update/save. Repair and actual resume qualification are pending. No trained adapter or quantized result is claimed.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_training.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 4
+        },
+        {
+          "start": 11,
+          "end": 25
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 4,
+          "lines": [
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from unittest.mock import Mock"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 25,
+          "lines": [
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    def test_fp16_scaler_starts_conservatively_before_first_backward(self):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        from training.scripts.train_adapter import create_training_scaler"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "        constructor = Mock(return_value=object())"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        torch = SimpleNamespace(amp=SimpleNamespace(GradScaler=constructor))"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        scaler = create_training_scaler(torch, 'fp16')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        constructor.assert_called_once_with('cuda', init_scale=1.0, enabled=True)"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        self.assertIs(scaler, constructor.return_value)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    def test_bf16_scaler_remains_disabled(self):"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        from training.scripts.train_adapter import create_training_scaler"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        constructor = Mock(return_value=object())"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        torch = SimpleNamespace(amp=SimpleNamespace(GradScaler=constructor))"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        create_training_scaler(torch, 'bf16')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        constructor.assert_called_once_with('cuda', init_scale=1.0, enabled=False)"
+            },
+            {
+              "n": 25,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "training/scripts/train_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 39,
+          "end": 45
+        },
+        {
+          "start": 171,
+          "end": 171
+        },
+        {
+          "start": 229,
+          "end": 230
+        }
+      ],
+      "hunks": [
+        {
+          "start": 39,
+          "end": 45,
+          "lines": [
+            {
+              "n": 39,
+              "sign": "+",
+              "text": "def create_training_scaler(torch, precision):"
+            },
+            {
+              "n": 40,
+              "sign": "+",
+              "text": "    # The bounded FP16 smoke must validate its first gradients, not skip an"
+            },
+            {
+              "n": 41,
+              "sign": "+",
+              "text": "    # overflowing update while the default 65536 scale backs off. Resume below"
+            },
+            {
+              "n": 42,
+              "sign": "+",
+              "text": "    # restores the saved scaler state instead of restarting this initial scale."
+            },
+            {
+              "n": 43,
+              "sign": "+",
+              "text": "    return torch.amp.GradScaler('cuda', init_scale=1.0, enabled=precision == 'fp16')"
+            },
+            {
+              "n": 44,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 45,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 171,
+          "end": 171,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    scaler = torch.amp.GradScaler('cuda', enabled=config.precision == 'fp16')"
+            },
+            {
+              "n": 171,
+              "sign": "+",
+              "text": "    scaler = create_training_scaler(torch, config.precision)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 229,
+          "end": 230,
+          "lines": [
+            {
+              "n": 229,
+              "sign": "+",
+              "text": "        if not all(torch.isfinite(parameter).all() for parameter in parameters):"
+            },
+            {
+              "n": 230,
+              "sign": "+",
+              "text": "            raise ValueError('Nonfinite updated adapter parameter')"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/CURRENT_STATUS.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_training.py#TrainingPreflightTests.test_bf16_scaler_remains_disabled",
+      "name": "test_bf16_scaler_remains_disabled",
+      "kind": "method",
+      "path": "tests/test_training.py",
+      "span": "L19-L24",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_training.py#TrainingPreflightTests.test_fp16_scaler_starts_conservatively_before_first_backward",
+      "name": "test_fp16_scaler_starts_conservatively_before_first_backward",
+      "kind": "method",
+      "path": "tests/test_training.py",
+      "span": "L11-L17",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_adapter.py#create_training_scaler",
+      "name": "create_training_scaler",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L39-L43",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_adapter.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L83-L271",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tests/test_training.py#TrainingPreflightTests.test_bf16_scaler_remains_disabled",
+      "name": "test_bf16_scaler_remains_disabled",
+      "kind": "method",
+      "path": "tests/test_training.py",
+      "span": "L19-L24",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training.py#TrainingPreflightTests.test_fp16_scaler_starts_conservatively_before_first_backward",
+      "name": "test_fp16_scaler_starts_conservatively_before_first_backward",
+      "kind": "method",
+      "path": "tests/test_training.py",
+      "span": "L11-L17",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L197-L214",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L184-L195",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L274-L280",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py",
+      "name": "train_adapter.py",
+      "kind": "file",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L1-L285",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [],
+  "testModules": [
+    {
+      "label": "test_runner_completed_resume_f…",
+      "labelSource": "symbol",
+      "key": "tests/",
+      "files": [
+        "tests/test_training_integrity.py"
+      ],
+      "symbols": [
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L197-L214",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L184-L195",
+          "relation": "calls",
+          "depth": 1
+        }
+      ],
+      "from": [
+        "training/scripts/train_adapter.py"
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "label": "create_training_scaler",
+      "labelSource": "symbol",
+      "key": "training/scripts/",
+      "files": [
+        "training/scripts/train_adapter.py"
+      ],
+      "seeds": 2,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_training.py",
+        "tests/test_training_integrity.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_training.py"
+      ],
+      "reached": 2,
+      "behavioural": 2,
+      "unreached": [],
+      "seedNames": [
+        "create_training_scaler",
+        "train"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

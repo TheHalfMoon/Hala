@@ -18,9 +18,12 @@ Status dated 2026-10-14. All qualification requires authentic evidence; IMPLEMEN
 | H11 inference | TESTED mock | Authenticated bounded mock server plus gated real backend |
 | H12 integration | TESTED fixture; native UNQUALIFIED | Versioned compatibility adapter and independent mock integration |
 | H13 release | BLOCKED | Real model and mandatory independent release evidence |
-| H14 frozen protocol / held-out evaluation | IN PROGRESS | Prospective 64-case bilingual fixture set and protocol frozen before actual shared-model evaluation; separate full-task/native limits |
-| H15 real LoRA engineering smoke | IN PROGRESS, isolated branch | Actual forward/backward/update/paired save/model reload/resumed-step comparison; two English microbatches, no large training or quality claim |
+| H14 frozen protocol / held-out evaluation | TESTED; quality insufficient | Frozen actual run: schema64/64, hit/completion30/64; en16/32 ar14/32. Independent score/hash recomputation passed; native/general qualification absent |
+| H15 real LoRA engineering smoke | IN PROGRESS; actual backward failure under repair | Actual forward/backward/update/paired save/model reload/resumed-step comparison; two English microbatches, no large training or quality claim |
 
 Engineering order: H2 -> H3/H7 -> H9 deterministic -> H11/H12. Research and platform investigation can proceed independently. H8/H10 require scoped base evidence and actual engineering/paired precision qualification; a geometric calibration is not full-task evidence. The founder controls merge and production launch.
 
-Actual CPU scope: 91 tests;180 task instances across12 dependent workflow families;58 English-only SFT PNGs;20 Linux container transport checks. The unchanged Qwen3-VL-2B runtime is diagnostic-tested; full model/task and release qualification remain pending. See CURRENT_STATUS.md and REVIEW_EVIDENCE.md for exact limits and gates.
+Actual CPU scope: 132 tests after bounded training repair;180 task instances across12 dependent workflow families;58 English-only SFT PNGs;20 Linux container transport checks. The unchanged Qwen3-VL-2B runtime is diagnostic-tested; full model/task and release qualification remain pending. See CURRENT_STATUS.md and REVIEW_EVIDENCE.md for exact limits and gates.
+
+| H16 real image serving candidate | SOURCE TESTED; GPU unqualified | Explicit v2 bounded authenticated untrusted proposal API; independent reviews, Jev/Graft and 130 pre-repair integrated CPU tests passed |
+| H17 paired experimental quantization | IN PROGRESS; no measurements | Separate prospective remote runner; frozen H14 tasks/protocol never retuned. FP16 baseline is insufficient for production |

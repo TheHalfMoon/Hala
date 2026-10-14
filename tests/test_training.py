@@ -1,11 +1,28 @@
 import unittest
 import re
+from types import SimpleNamespace
+from unittest.mock import Mock
 
 from training.preflight import TrainingConfig, qualify_environment, validate_experiment
 from training.scripts.train_adapter import LORA_TARGET_PATTERN
 
 
 class TrainingPreflightTests(unittest.TestCase):
+    def test_fp16_scaler_starts_conservatively_before_first_backward(self):
+        from training.scripts.train_adapter import create_training_scaler
+        constructor = Mock(return_value=object())
+        torch = SimpleNamespace(amp=SimpleNamespace(GradScaler=constructor))
+        scaler = create_training_scaler(torch, 'fp16')
+        constructor.assert_called_once_with('cuda', init_scale=1.0, enabled=True)
+        self.assertIs(scaler, constructor.return_value)
+
+    def test_bf16_scaler_remains_disabled(self):
+        from training.scripts.train_adapter import create_training_scaler
+        constructor = Mock(return_value=object())
+        torch = SimpleNamespace(amp=SimpleNamespace(GradScaler=constructor))
+        create_training_scaler(torch, 'bf16')
+        constructor.assert_called_once_with('cuda', init_scale=1.0, enabled=False)
+
     def test_lora_regex_matches_language_projections_and_excludes_vision(self):
         for name in ('model.language_model.layers.0.self_attn.q_proj',
                      'model.language_model.layers.1.self_attn.v_proj'):
