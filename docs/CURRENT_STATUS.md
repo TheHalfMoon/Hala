@@ -1,6 +1,6 @@
 # Hala current status
 
-Updated 2026-10-14. Canonical main is signed bootstrap `00f6692383ca9e9cc147380b062676dd74932e83`. [Draft PR #1](https://github.com/TheHalfMoon/Hala/pull/1) contains engineering features; none merged. Aladdin was read only. CPU GitHub CI passed on Python 3.11.14 and 3.12.14 at `dbce84e4e066cde8acbf610102b1b8e5e1492a48`; subsequent experiment changes require new CI.
+Updated 2026-10-14. Canonical main is signed bootstrap `00f6692383ca9e9cc147380b062676dd74932e83`. [Draft PR #1](https://github.com/TheHalfMoon/Hala/pull/1) contains engineering features; none merged. Aladdin was read only. CPU GitHub CI passed on Python 3.11.14 and 3.12.14 at `b85e46e36cdabcb09863603304752d9dd5218310`, covering all current source changes. Latest documentation-only checks are visible on the PR.
 
 | Area | Evidence and status |
 |---|---|
@@ -23,4 +23,4 @@ Updated 2026-10-14. Canonical main is signed bootstrap `00f6692383ca9e9cc147380b
 
 No paid GPU, plan, subscription, top-up, billing change or billable Colab CLI session was activated. Jev billing is not independently verified. No multi-GB model weights reached the personal PC; Colab downloaded them to its remote cache. The existing 407 MB local d1 artifact was inspected, not downloaded.
 
-Next executable work: verify new CI, held-out model task evaluation with a frozen explicit protocol, actual processor/LoRA/checkpoint engineering smoke, then justified adaptation and paired quantization. Merge and production remain founder decisions.
+Next executable work: held-out model task evaluation with a frozen explicit protocol, actual processor/LoRA/checkpoint engineering smoke, then justified adaptation and paired quantization. Merge and production remain founder decisions.
