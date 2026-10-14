@@ -1,0 +1,1272 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "tests/test_lora_qualification.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 131
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 131,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from training.scripts.qualify_lora import compare_values, compare_checkpoints, qualify, validate_smoke_config"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from training.scripts.train_adapter import QualificationInterrupted, interrupt_after_checkpoint"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "class QualificationTests(unittest.TestCase):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    def test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not(self):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        state = {'step': 2, 'max_steps': 2, 'config_sha256': 'a' * 64,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "                 'dataset_sha256': 'b' * 64, 'manifest_sha256': 'c' * 64,"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "                 'metrics': [{'step': 1, 'loss': 1.5, 'seconds': 2.0},"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "                             {'step': 2, 'loss': 1.4, 'seconds': 2.0}]}"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        fake_torch = SimpleNamespace(load=lambda path, **kwargs: {'optimizer': [1], 'torch_rng': [2]})"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        fake_safe = SimpleNamespace(load_file=lambda path: {'adapter': [0.25]})"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        for loss, expected in ((1.4, True), (2.4, False)):"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            other = {**state, 'metrics': [state['metrics'][0], {'step': 2, 'loss': loss, 'seconds': 9.0}]}"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            with patch.dict('sys.modules', {'torch': fake_torch, 'safetensors.torch': fake_safe}), \\"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "                    patch('training.scripts.qualify_lora.snapshot_state', side_effect="
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "                          [(Path('continuous'), state), (Path('resumed'), other)]):"
+            }
+          ],
+          "dropped": 107
+        }
+      ]
+    },
+    {
+      "path": "training/LORA_QUALIFICATION.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 50,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# Two-step remote LoRA engineering qualification"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "This bounded English smoke measures actual forward/backward, finite nonzero"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "adapter gradients, per-step optimizer updates and paired snapshot reload. It is"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "not adapter-quality evaluation or Arabic grounding remediation. CPU control tests"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "are explicitly unqualified for the model runtime."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "Use only the founder-approved free Colab T4 runtime with imported Torch 2.11.0,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Transformers 5.16.1 and PEFT 0.20.0. The existing trainer checks the observed"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "provider, Linux opt-in, dependency versions, immutable revision, baseline deficit,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "rights-cleared training artifact and every image digest before allocating weights."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "No local weights or paid jobs are authorized by this entrypoint."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "From the repository root on that remote runtime, with the pinned dependencies"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "already installed and source plus the 58-row artifact present:"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "```sh"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "HALA_REMOTE_TRAINING_ALLOWED=1 python -m training.scripts.qualify_lora \\"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  --config experiments/runtime/colab-lora-smoke-config.json \\"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  --examples training/generated-candidate/examples.jsonl \\"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  --manifest training/generated-candidate/manifest.json \\"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  --baseline experiments/runtime/colab-lora-smoke-baseline.json \\"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  --output /tmp/hala-lora-qualification"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "```"
+            }
+          ],
+          "dropped": 26
+        }
+      ]
+    },
+    {
+      "path": "training/scripts/qualify_lora.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 200
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 200,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Bounded remote engineering smoke: continuous two steps versus real partial resume.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import gc"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from training.artifacts import sha256_file"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from training.checkpoints import atomic_json, load_checkpoint, validate_version"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from training.scripts.train_adapter import load_json, train, QualificationInterrupted"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "EXPECTED = {'model_id': 'Qwen/Qwen3-VL-2B-Instruct',"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "            'revision': '89644892e4d85e24eaac8bacfd4f463576704203',"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "            'precision': 'fp16', 'max_steps': 2, 'batch_size': 1,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "            'gradient_accumulation': 1, 'lora_rank': 4, 'learning_rate': 0.00005,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "            'platform': 'colab', 'download_remote_weights': True}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "def validate_smoke_config(config):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    if config != EXPECTED:"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        raise ValueError('Exact pinned two-step rank4 FP16 smoke configuration required')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 176
+        }
+      ]
+    },
+    {
+      "path": "training/scripts/train_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 27,
+          "end": 38
+        },
+        {
+          "start": 76,
+          "end": 77
+        },
+        {
+          "start": 82,
+          "end": 84
+        },
+        {
+          "start": 121,
+          "end": 123
+        },
+        {
+          "start": 127,
+          "end": 134
+        },
+        {
+          "start": 143,
+          "end": 143
+        },
+        {
+          "start": 181,
+          "end": 190
+        },
+        {
+          "start": 193,
+          "end": 193
+        },
+        {
+          "start": 197,
+          "end": 197
+        },
+        {
+          "start": 202,
+          "end": 206
+        },
+        {
+          "start": 217,
+          "end": 219
+        },
+        {
+          "start": 228,
+          "end": 243
+        },
+        {
+          "start": 259,
+          "end": 259
+        }
+      ],
+      "hunks": [
+        {
+          "start": 27,
+          "end": 38,
+          "lines": [
+            {
+              "n": 27,
+              "sign": "+",
+              "text": "class QualificationInterrupted(RuntimeError):"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "    \"\"\"Deliberate stop after the atomic paired snapshot, before finalization.\"\"\""
+            },
+            {
+              "n": 29,
+              "sign": "+",
+              "text": "    def __init__(self, step, version):"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "        super().__init__(f'Qualification stopped after published step {step}')"
+            },
+            {
+              "n": 31,
+              "sign": "+",
+              "text": "        self.step, self.version = step, Path(version)"
+            },
+            {
+              "n": 32,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 33,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 34,
+              "sign": "+",
+              "text": "def interrupt_after_checkpoint(stop_after_step, step, version):"
+            },
+            {
+              "n": 35,
+              "sign": "+",
+              "text": "    if stop_after_step == step:"
+            },
+            {
+              "n": 36,
+              "sign": "+",
+              "text": "        raise QualificationInterrupted(step, version)"
+            },
+            {
+              "n": 37,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 38,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 76,
+          "end": 77,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False):"
+            },
+            {
+              "n": 76,
+              "sign": "+",
+              "text": "def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,"
+            },
+            {
+              "n": 77,
+              "sign": "+",
+              "text": "          stop_after_step=None):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 82,
+          "end": 84,
+          "lines": [
+            {
+              "n": 82,
+              "sign": "+",
+              "text": "    if stop_after_step is not None and (type(stop_after_step) is not int or"
+            },
+            {
+              "n": 83,
+              "sign": "+",
+              "text": "                                       not 1 <= stop_after_step < config.max_steps):"
+            },
+            {
+              "n": 84,
+              "sign": "+",
+              "text": "        raise ValueError('Interruption must leave a remaining optimizer step')"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 121,
+          "end": 123,
+          "lines": [
+            {
+              "n": 121,
+              "sign": "+",
+              "text": "    import peft"
+            },
+            {
+              "n": 122,
+              "sign": "+",
+              "text": "    import transformers"
+            },
+            {
+              "n": 123,
+              "sign": "+",
+              "text": "    import PIL"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 127,
+          "end": 134,
+          "lines": [
+            {
+              "n": 127,
+              "sign": "+",
+              "text": "    runtime['imported_packages'] = {'torch': torch.__version__,"
+            },
+            {
+              "n": 128,
+              "sign": "+",
+              "text": "                                    'transformers': transformers.__version__,"
+            },
+            {
+              "n": 129,
+              "sign": "+",
+              "text": "                                    'peft': peft.__version__, 'pillow': PIL.__version__}"
+            },
+            {
+              "n": 130,
+              "sign": "+",
+              "text": "    for package, expected in (('torch', '2.11.0'), ('transformers', '5.16.1'),"
+            },
+            {
+              "n": 131,
+              "sign": "+",
+              "text": "                              ('peft', '0.20.0')):"
+            },
+            {
+              "n": 132,
+              "sign": "+",
+              "text": "        if runtime['imported_packages'][package].split('+')[0] != expected:"
+            },
+            {
+              "n": 133,
+              "sign": "+",
+              "text": "            raise ValueError(f'Imported dependency version mismatch: {package}')"
+            },
+            {
+              "n": 134,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 143,
+          "end": 143,
+          "lines": [
+            {
+              "n": 143,
+              "sign": "+",
+              "text": "    runtime['audited_records'] = len(records)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 181,
+          "end": 190,
+          "lines": [
+            {
+              "n": 181,
+              "sign": "+",
+              "text": "    runtime['parameter_residency'] = {}"
+            },
+            {
+              "n": 182,
+              "sign": "+",
+              "text": "    for name, parameter in model.named_parameters():"
+            },
+            {
+              "n": 183,
+              "sign": "+",
+              "text": "        group = 'adapter' if parameter.requires_grad else 'frozen_base'"
+            },
+            {
+              "n": 184,
+              "sign": "+",
+              "text": "        key = f'{group}:{parameter.device}:{parameter.dtype}'"
+            },
+            {
+              "n": 185,
+              "sign": "+",
+              "text": "        runtime['parameter_residency'][key] = runtime['parameter_residency'].get(key, 0) + parameter.numel()"
+            },
+            {
+              "n": 186,
+              "sign": "+",
+              "text": "    runtime['trainable_parameter_tensors'] = len(parameters)"
+            },
+            {
+              "n": 187,
+              "sign": "+",
+              "text": "    runtime['trainable_parameter_elements'] = sum(p.numel() for p in parameters)"
+            },
+            {
+              "n": 188,
+              "sign": "+",
+              "text": "    runtime['qualification_steps'] = list(previous['runtime'].get('qualification_steps', [])) if previous else []"
+            },
+            {
+              "n": 189,
+              "sign": "+",
+              "text": "    runtime['actual_reload'] = bool(resume)"
+            },
+            {
+              "n": 190,
+              "sign": "+",
+              "text": "    runtime['resumed_from_step'] = start_step"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 193,
+          "end": 193,
+          "lines": [
+            {
+              "n": 193,
+              "sign": "+",
+              "text": "        step_before = [parameter.detach().cpu().clone() for parameter in parameters]"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 197,
+          "end": 197,
+          "lines": [
+            {
+              "n": 197,
+              "sign": "+",
+              "text": "        microbatches = []"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 202,
+          "end": 206,
+          "lines": [
+            {
+              "n": 202,
+              "sign": "+",
+              "text": "            microbatches.append({'record_id': records[index]['id'],"
+            },
+            {
+              "n": 203,
+              "sign": "+",
+              "text": "                                 'input_tokens': int(inputs.input_ids.numel()),"
+            },
+            {
+              "n": 204,
+              "sign": "+",
+              "text": "                                 'completion_tokens': int((labels != -100).sum().item()),"
+            },
+            {
+              "n": 205,
+              "sign": "+",
+              "text": "                                 'input_devices': {key: str(value.device) for key, value in inputs.items()"
+            },
+            {
+              "n": 206,
+              "sign": "+",
+              "text": "                                                   if hasattr(value, 'device')}})"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 217,
+          "end": 219,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        torch.nn.utils.clip_grad_norm_(parameters, 1)"
+            },
+            {
+              "n": 217,
+              "sign": "+",
+              "text": "        gradient_norm = torch.nn.utils.clip_grad_norm_(parameters, 1).item()"
+            },
+            {
+              "n": 218,
+              "sign": "+",
+              "text": "        if not __import__('math').isfinite(gradient_norm) or gradient_norm <= 0:"
+            },
+            {
+              "n": 219,
+              "sign": "+",
+              "text": "            raise ValueError('Finite nonzero adapter gradient norm required')"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 228,
+          "end": 243,
+          "lines": [
+            {
+              "n": 228,
+              "sign": "+",
+              "text": "        step_changed = sum(not torch.equal(before, after.detach().cpu())"
+            },
+            {
+              "n": 229,
+              "sign": "+",
+              "text": "                           for before, after in zip(step_before, parameters))"
+            },
+            {
+              "n": 230,
+              "sign": "+",
+              "text": "        if not step_changed:"
+            },
+            {
+              "n": 231,
+              "sign": "+",
+              "text": "            raise ValueError('No adapter update at this optimizer step')"
+            },
+            {
+              "n": 232,
+              "sign": "+",
+              "text": "        free, total = torch.cuda.mem_get_info(0)"
+            },
+            {
+              "n": 233,
+              "sign": "+",
+              "text": "        runtime['qualification_steps'].append({"
+            },
+            {
+              "n": 234,
+              "sign": "+",
+              "text": "            'step': step + 1, 'gradient_norm_before_clip': gradient_norm,"
+            },
+            {
+              "n": 235,
+              "sign": "+",
+              "text": "            'microbatches': microbatches,"
+            },
+            {
+              "n": 236,
+              "sign": "+",
+              "text": "            'changed_parameter_tensors_this_step': step_changed,"
+            },
+            {
+              "n": 237,
+              "sign": "+",
+              "text": "            'max_parameter_update': max((after.detach().cpu() - before).abs().max().item()"
+            },
+            {
+              "n": 238,
+              "sign": "+",
+              "text": "                                        for before, after in zip(step_before, parameters)),"
+            },
+            {
+              "n": 239,
+              "sign": "+",
+              "text": "            'allocated_bytes': torch.cuda.memory_allocated(0),"
+            },
+            {
+              "n": 240,
+              "sign": "+",
+              "text": "            'reserved_bytes': torch.cuda.memory_reserved(0),"
+            },
+            {
+              "n": 241,
+              "sign": "+",
+              "text": "            'peak_allocated_bytes': torch.cuda.max_memory_allocated(0),"
+            },
+            {
+              "n": 242,
+              "sign": "+",
+              "text": "            'peak_reserved_bytes': torch.cuda.max_memory_reserved(0),"
+            },
+            {
+              "n": 243,
+              "sign": "+",
+              "text": "            'device_free_bytes': free, 'device_total_bytes': total})"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 259,
+          "end": 259,
+          "lines": [
+            {
+              "n": 259,
+              "sign": "+",
+              "text": "        interrupt_after_checkpoint(stop_after_step, step + 1, version)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "training/LORA_QUALIFICATION.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_comparison_checks_structure_values_and_nonfinite",
+      "name": "test_comparison_checks_structure_values_and_nonfinite",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L27-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_interruption_only_after_published_step_one.publish",
+      "name": "publish",
+      "kind": "function",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L35-L37",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_local_runtime_and_input_mutation_reject_before_resume.mutate",
+      "name": "mutate",
+      "kind": "function",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L90-L92",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "name": "test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L13-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_orchestrator_requires_partial_snapshot_then_resume.trainer",
+      "name": "trainer",
+      "kind": "function",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L106-L110",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "name": "test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L59-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_smoke_bound_rejects_large_or_changed_run",
+      "name": "test_smoke_bound_rejects_large_or_changed_run",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L46-L57",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#checkpoint_evidence",
+      "name": "checkpoint_evidence",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L81-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#compare_checkpoints",
+      "name": "compare_checkpoints",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L89-L114",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#compare_values.visit",
+      "name": "visit",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L29-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L191-L196",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#qualify.guard_inputs",
+      "name": "guard_inputs",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L135-L137",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#release_runtime",
+      "name": "release_runtime",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L117-L125",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#snapshot_state",
+      "name": "snapshot_state",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L74-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#validate_smoke_config",
+      "name": "validate_smoke_config",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L21-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_adapter.py#interrupt_after_checkpoint",
+      "name": "interrupt_after_checkpoint",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L34-L36",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_adapter.py#QualificationInterrupted.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L29-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_adapter.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L76-L262",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_interruption_only_after_published_step_one",
+      "name": "test_interruption_only_after_published_step_one",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L33-L44",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#qualify",
+      "name": "qualify",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L128-L188",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "name": "test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L13-L26",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "name": "test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L59-L78",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#compare_values",
+      "name": "compare_values",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L26-L71",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/qualify_lora.py",
+      "name": "qualify_lora.py",
+      "kind": "file",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L1-L201",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_smoke_bound_rejects_large_or_changed_run",
+      "name": "test_smoke_bound_rejects_large_or_changed_run",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L46-L57",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_local_runtime_and_input_mutation_reject_before_resume",
+      "name": "test_local_runtime_and_input_mutation_reject_before_resume",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L80-L97",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_orchestrator_requires_partial_snapshot_then_resume",
+      "name": "test_orchestrator_requires_partial_snapshot_then_resume",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L99-L127",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_comparison_checks_structure_values_and_nonfinite",
+      "name": "test_comparison_checks_structure_values_and_nonfinite",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L27-L31",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L197-L214",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L184-L195",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L265-L271",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py",
+      "name": "train_adapter.py",
+      "kind": "file",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L1-L276",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [],
+  "testModules": [
+    {
+      "label": "test_runner_completed_resume_f…",
+      "labelSource": "symbol",
+      "key": "tests/",
+      "files": [
+        "tests/test_training_integrity.py"
+      ],
+      "symbols": [
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L197-L214",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L184-L195",
+          "relation": "calls",
+          "depth": 1
+        }
+      ],
+      "from": [
+        "training/scripts/train_adapter.py"
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "label": "compare_checkpoints",
+      "labelSource": "symbol",
+      "key": "training/scripts/",
+      "files": [
+        "training/scripts/qualify_lora.py",
+        "training/scripts/train_adapter.py"
+      ],
+      "seeds": 11,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_lora_qualification.py",
+        "tests/test_training_integrity.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_lora_qualification.py"
+      ],
+      "reached": 4,
+      "behavioural": 11,
+      "unreached": [
+        "checkpoint_evidence",
+        "visit",
+        "main",
+        "guard_inputs",
+        "release_runtime",
+        "snapshot_state",
+        "__init__"
+      ],
+      "seedNames": [
+        "compare_checkpoints",
+        "snapshot_state",
+        "train",
+        "interrupt_after_checkpoint",
+        "validate_smoke_config",
+        "visit",
+        "checkpoint_evidence",
+        "guard_inputs",
+        "main",
+        "release_runtime",
+        "__init__"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
