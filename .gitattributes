@@ -16,3 +16,10 @@ docs/H14_*.md -text
 specs/H14-heldout-frontier.md -text
 training/scripts/train_adapter.py -text
 training/scripts/qualify_lora.py -text
+
+# Preserve reviewed H16 source bytes.
+hala/inference/__init__.py -text
+hala/inference/vision_candidate.py -text
+hala/inference/remote_qwen.py -text
+hala/serving/__init__.py -text
+tests/test_serving_v2.py -text
