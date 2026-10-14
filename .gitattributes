@@ -31,3 +31,6 @@ tools/*quantization*.py -text
 tests/test_quantization.py -text
 docs/H17_QUANTIZATION.md -text
 specs/H17-paired-quantization.md -text
+experiments/heldout/** -text
+experiments/runtime/h15-*.json -text
+experiments/runtime/h16-*.json -text

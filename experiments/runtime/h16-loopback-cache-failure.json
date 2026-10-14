@@ -1,0 +1,27 @@
+{
+  "schema": "hala.h16.remote_loopback_smoke.v1",
+  "run_completed": false,
+  "qualified": false,
+  "diagnostic_cases": 2,
+  "execution_performed": false,
+  "scope": "Two original synthetic bilingual grounding proposals, not task/native/release qualification.",
+  "script_sha256": "6e26edcd43874763b3c621840ef69d15defb5654f175b87eec20bf8ea38a93fd",
+  "started_utc": "2026-10-14T20:47:32Z",
+  "stage": "reuse_existing_remote_cache",
+  "source": {
+    "files_sha256": {
+      "hala/inference/remote_qwen.py": "9e70afbc23c4d5730ed980b960b804d2f4e6320587116cb85f525f8a06084484",
+      "hala/inference/vision_candidate.py": "89e363aa8dd4e62be21509fd371226d1d509cbc8ffca7ac3a9516e77ef8f0465",
+      "hala/inference/__init__.py": "e3746f97556157329fdad9d3471d52ff728d35480c67be243a6abfe36918aa4c",
+      "hala/serving/__init__.py": "37370ba25119268e47b4da5e554f8e12ebb4ad5608997510575fe2df00f1634f",
+      "hala/contracts/proposal.py": "f20fc5d2800d5e3ad33c11d1386666314912ca1a32bbbf89171970e1ac5b829d",
+      "hala/contracts/request.py": "a9435a471e29ff2c7be67bcd0330c1967ffaeb5d1c02ab63226b191f9dc7b9e5",
+      "hala/contracts/validation.py": "3621871f99827ca9a6fd75dae8183f5bc9f5145a9b1a8127c63c064584e0956b"
+    },
+    "observed_git_head": "5f2db976c07989f8dceb60e1c06b221eb3f23c7e"
+  },
+  "failure": {
+    "class": "ValueError",
+    "message": "Remote smoke failed; inspect notebook locally."
+  }
+}

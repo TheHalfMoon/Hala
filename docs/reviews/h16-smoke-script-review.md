@@ -1,0 +1,17 @@
+# H16 operational smoke helper review
+
+Verdict: no must-fix security issue found for the authorized private Colab diagnostic retry using the verified existing cache. This is an operational helper review, not production, model or release qualification.
+
+Reviewed `h16_remote_smoke.py` SHA256: `79f3ffb22e7499a4708131532f9666b3ec50265cf992c7caa5099e11d9a56d97`. Independent bundled-Python AST parsing passed. No helper execution, model loading, download or GPU inference was performed by this reviewer. The parent's reported CPU seams were not independently rerun.
+
+- Must-fix: none.
+- Worth-considering: `reuse_cache` — reject symlinks in an existing destination tree and assert each target resolves beneath the destination before linking. The source boundary is now restricted to the selected model tree or its sibling `blobs` directory, and every existing file is verified with `samefile`; however, an existing destination directory/file symlink can currently be followed. This is hardening for a prepopulated or externally altered cache, not a demonstrated flaw in the verified private cache used for this retry.
+- Skip-it: treating `run_completed=True` as passing inference or qualification. The artifact separately retains observed proposal checks, expected negative-status booleans and `qualified=False`; consumers must inspect those fields.
+
+The cache loop no longer accepts a partially populated destination early. Every source entry is revisited; escaping references and mismatched existing files fail closed. Official snapshot links into the verified shared `hub/blobs` root are allowed, and materialization uses same-device hardlinks without copying weight bytes or invoking a downloader. Offline Hugging Face/Transformers environment flags are set before optional model imports. The loader retains the pinned revision and remote-code-disabled configuration. Hardlinks share source bytes and rely on the original cache remaining trusted and unchanged during the run; the helper does not write through the linked files.
+
+The server's verified factory defaults to `127.0.0.1` and port zero supplies an ephemeral port. A random bearer token is kept in memory and omitted from the evidence, printed output and fixed failure message. HTTP responses are bounded to 65536 bytes. The auth, media-hash, unsupported-plan and cancellation requests contain synthetic media and exercise separate rejection paths. The revised deadline probe deliberately declares a body but omits it, so the configured 0.05-second boundary targets pre-inference body handling; it makes no claim about interrupting an in-flight GPU kernel.
+
+Evidence is diagnostic only: synthetic bilingual images, untrusted non-authoritative proposals, actual observed statuses, worker-idle observations and device metrics. The helper supplies no tunnel, public listener, paid action, deployment or native action execution. Output is constrained to remote `/content`; failure evidence does not serialize arbitrary exception messages. Source hashes and the optional Git HEAD describe the observed checkout rather than proving a trusted release artifact. Free-session verification and external control of model-load/run duration remain the parent's operational responsibility.
+
+panel: independent security review ✓ fresh-context Codex judge (session model); static helper and loader/server-boundary inspection plus AST check; no d1 approval or GPU claim.

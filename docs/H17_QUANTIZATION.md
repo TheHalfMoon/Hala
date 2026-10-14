@@ -25,13 +25,15 @@ still constrains transformers<5: that extra is not installed and does not prove
 runtime incompatibility. The compatibility of this exact multimodal path remains
 GPU-unqualified until actual execution. Do not downgrade to obtain a result.
 
-Only a fresh Linux Colab free T4 session with CUDA13.0 and explicit opt-in is allowed.
+Only a fresh model subprocess in a verified free Linux Colab T4 runtime with
+CUDA13.0 and explicit opt-in is allowed. The existing free GPU allocation may be
+reused after preceding model processes exit; this reuse must be disclosed.
 Clear inherited cache variables or point them inside /tmp/hala-h17-cache before run.
 All optional framework imports and weight access occur after remote/cache/source/media
 validation. Do not mount Drive or use a persistent model cache. Model/cache cleanup
 is the notebook owner's responsibility after exporting results. The runner retains
 blocked/partial evidence and never produces a complete paired score for a partial run.
-Run one mode in each fresh session, using the same frozen checkout and media:
+Run each mode in its own fresh subprocess, using the same frozen checkout and media:
 
 ```
 export HALA_REMOTE_QUANT_ALLOWED=1

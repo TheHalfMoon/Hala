@@ -17,7 +17,8 @@ Acceptance criteria:
   full-model and vision residency, quant-state tensor storage and allocator/device metrics.
 - [x] Meaningful offline tests for mapping, corruption, config, pairs and pre-import guards.
 - [ ] Independent root review and mechanical evidence accepted.
-- [ ] Actual fresh-session int8 and NF4 GPU results, including blocked outcomes.
+- [ ] Actual separate-process int8 and NF4 GPU results, including blocked outcomes;
+  disclose reuse of the same verified free Colab GPU allocation and timing confounding.
 
 Builder preparation hardstop: no model download or run before source gates.
 After independent review and publication of the prospective freeze, the root

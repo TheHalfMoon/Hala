@@ -1,0 +1,473 @@
+{
+  "adapter_quality_qualified": false,
+  "arabic_remediation_claimed": false,
+  "artifact_availability": "Ephemeral remote notebook storage only; no durable adapter retention promised.",
+  "comparison": {
+    "components": {
+      "adapter": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "config_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "cuda_rng": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "dataset_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "loss_trajectory": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "manifest_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "optimizer": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "scaler": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "step": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "torch_rng": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      }
+    },
+    "exact": true,
+    "within_tolerance": true
+  },
+  "consumed_microbatches_per_trajectory": 2,
+  "continuous": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "455da4e0ebf87266382eb235421d06e3ac5b8d10086b136a11288a878cd4f483",
+      "adapter/adapter_model.safetensors": "bdb261526a92f81bec2ede04cd57a4b6c7cbe4ef958db04442373782c768e751",
+      "resume.pt": "6ab163ac8c36914c641124942281ff333869a4f1d4c93fa74ed4ecf919e8997a"
+    },
+    "checkpoint_sha256": "c95a177961bcdfda133147bfb1b86dc65520dad9996b39a447b45ec23ac10368",
+    "metrics": [
+      {
+        "loss": 4.0608930587768555,
+        "seconds": 3.685655280999754,
+        "step": 1
+      },
+      {
+        "loss": 4.068728446960449,
+        "seconds": 1.9116493589999664,
+        "step": 2
+      }
+    ],
+    "runtime": {
+      "actual_reload": false,
+      "audited_records": 58,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.29449130600005446,
+          "index": 0,
+          "max_memory_allocated_bytes": 17146880,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 802816,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4305403904,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 9537650688,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 8.484012603759766,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 16,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 668,
+              "record_id": "intent-save-00-862846"
+            }
+          ],
+          "peak_allocated_bytes": 5596007424,
+          "peak_reserved_bytes": 5947523072,
+          "reserved_bytes": 5947523072,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4323952640,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 7209811968,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 8.280086517333984,
+          "max_parameter_update": 5.006784340366721e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 16,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1274,
+              "record_id": "intent-save-02-112562"
+            }
+          ],
+          "peak_allocated_bytes": 6795972096,
+          "peak_reserved_bytes": 8275361792,
+          "reserved_bytes": 8275361792,
+          "step": 2
+        }
+      ],
+      "resumed_from_step": 0,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792010319.9801075,
+      "trainable_parameter_elements": 802816,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 2,
+    "version": "step-00000002-1976b00b9e4848e8b4212009d7a32753"
+  },
+  "elapsed_seconds": 95.88094380499979,
+  "evidence": "real_gpu_engineering_smoke",
+  "first_partial_snapshot": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "455da4e0ebf87266382eb235421d06e3ac5b8d10086b136a11288a878cd4f483",
+      "adapter/adapter_model.safetensors": "5a8e5af95724e5ae91cf2cc9d47be5f91a46a6cc5ebf8614a68ac6958af860f1",
+      "resume.pt": "9d0c4dda7d476a2cb176aef66fdfb2cd0a6f3ae990b907e225abe023521867b5"
+    },
+    "checkpoint_sha256": "90d92beee3326de21e2db73b413eb655b0f2bf4783cdb9a3c916880719bcf522",
+    "metrics": [
+      {
+        "loss": 4.0608930587768555,
+        "seconds": 0.9802372029998878,
+        "step": 1
+      }
+    ],
+    "runtime": {
+      "actual_reload": false,
+      "audited_records": 58,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.004948254999817436,
+          "index": 0,
+          "max_memory_allocated_bytes": 18195456,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 802816,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4305403904,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 9537650688,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 8.484012603759766,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 16,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 668,
+              "record_id": "intent-save-00-862846"
+            }
+          ],
+          "peak_allocated_bytes": 5596007424,
+          "peak_reserved_bytes": 5947523072,
+          "reserved_bytes": 5947523072,
+          "step": 1
+        }
+      ],
+      "resumed_from_step": 0,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792010361.5277731,
+      "trainable_parameter_elements": 802816,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 1,
+    "version": "step-00000001-44cc0c9058824ba1a266caddbdc3358f"
+  },
+  "inputs": {
+    "baseline": "384305bf0994f7ad3bc5b87f6afbdd65ede576510b611814e6b2c10f489c7bc9",
+    "config": "43a47a204212dcec79b8e9167c7afb3205d9378d20f46ae8fc4700fa56bf8911",
+    "examples": "60c79bf7d06f6fc436e92bbfd35a86cb3bbf3b751df9fb13246cc74410a30c91",
+    "manifest": "95dfe1614bcc4a2dcd9942431350958005f6d07abbf14efa10a38d3d13ee3aa6"
+  },
+  "resumed": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "455da4e0ebf87266382eb235421d06e3ac5b8d10086b136a11288a878cd4f483",
+      "adapter/adapter_model.safetensors": "bdb261526a92f81bec2ede04cd57a4b6c7cbe4ef958db04442373782c768e751",
+      "resume.pt": "fd9293f00c519b78e30921b23b20e24290445da2ead98d5c21c132adde4b9332"
+    },
+    "checkpoint_sha256": "36df8893ff35c257a8f8b98853bda46195dd844edcccabc3fea04de37ad0dfdc",
+    "metrics": [
+      {
+        "loss": 4.0608930587768555,
+        "seconds": 0.9802372029998878,
+        "step": 1
+      },
+      {
+        "loss": 4.068728446960449,
+        "seconds": 2.007063748999826,
+        "step": 2
+      }
+    ],
+    "runtime": {
+      "actual_reload": true,
+      "audited_records": 58,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.004145350000271719,
+          "index": 0,
+          "max_memory_allocated_bytes": 18195456,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 802816,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4305403904,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 9537650688,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 8.484012603759766,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 16,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 668,
+              "record_id": "intent-save-00-862846"
+            }
+          ],
+          "peak_allocated_bytes": 5596007424,
+          "peak_reserved_bytes": 5947523072,
+          "reserved_bytes": 5947523072,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4323952640,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 7899774976,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 8.280086517333984,
+          "max_parameter_update": 5.006784340366721e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 16,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1274,
+              "record_id": "intent-save-02-112562"
+            }
+          ],
+          "peak_allocated_bytes": 6795726336,
+          "peak_reserved_bytes": 7585398784,
+          "reserved_bytes": 7585398784,
+          "step": 2
+        }
+      ],
+      "resumed_from_step": 1,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792010387.7845469,
+      "trainable_parameter_elements": 802816,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 2,
+    "version": "step-00000002-a7f1e04d993c423c9a2c76292488a5fb"
+  },
+  "runtime_qualified": true,
+  "schema": "hala.lora.runtime-qualification.v1",
+  "source": {
+    "training/artifacts.py": "80742d1ea6bdafc2d16db27d57aec4e653ca53b8ca54776908bd07869d97e2c1",
+    "training/checkpoints.py": "93e34ea8e20e77e7424a400656e15c814457d608382c8b4db75597a65a891826",
+    "training/masking.py": "30406582bba4521eede1c2494a7026c9fcfa34567478e3ef9a110781215da708",
+    "training/scripts/qualify_lora.py": "8fee099a627fdafd05d737d188288ae05aa37f69e9b273447de0318bef812523",
+    "training/scripts/train_adapter.py": "dfb73c9a1e84151357ffc55fbd2bfb47315f00568e57cbd052cddbb13dbf6b9e"
+  },
+  "trajectories": 2
+}
