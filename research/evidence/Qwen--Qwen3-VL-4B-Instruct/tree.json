@@ -1,0 +1,98 @@
+[
+  {
+    "type": "file",
+    "oid": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+    "size": 1519,
+    "path": ".gitattributes"
+  },
+  {
+    "type": "file",
+    "oid": "542417095b66d3fc13be22bbf6722928787b8ef4",
+    "size": 7133,
+    "path": "README.md"
+  },
+  {
+    "type": "file",
+    "oid": "e49e75bdda104c8de941eb20e0b3765184fb27bc",
+    "size": 5502,
+    "path": "chat_template.json"
+  },
+  {
+    "type": "file",
+    "oid": "22be8bb79043d39840ca5e70d7a2dab80311602c",
+    "size": 1505,
+    "path": "config.json"
+  },
+  {
+    "type": "file",
+    "oid": "e116347d7ef42621c7a5957f82c015c38d939c1f",
+    "size": 269,
+    "path": "generation_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "20024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0",
+    "size": 1671839,
+    "path": "merges.txt"
+  },
+  {
+    "type": "file",
+    "oid": "c76bab650cbb4864c0f85f6d3af26ba3fe857165",
+    "size": 4967229296,
+    "lfs": {
+      "oid": "30a01a0556622645a3cce87b655bbbbbc1f170c196099f1b666c93202c3339a9",
+      "size": 4967229296,
+      "pointerSize": 135
+    },
+    "xetHash": "e7f4c02d10be7611b607d8c6d53cfb6f16581341e711d3caa9cef56c88c1b8dc",
+    "path": "model-00001-of-00002.safetensors"
+  },
+  {
+    "type": "file",
+    "oid": "e2792feb019e73e6f15d89bc62295fd424807583",
+    "size": 3908490048,
+    "lfs": {
+      "oid": "046296a2a387efb43b0c997d5833c789604d168834f6e0d3064bf7bb13d002a6",
+      "size": 3908490048,
+      "pointerSize": 135
+    },
+    "xetHash": "e530db6da487045339c71adbc0fc93c26d67f63064fc525713217547ac7fce2d",
+    "path": "model-00002-of-00002.safetensors"
+  },
+  {
+    "type": "file",
+    "oid": "3b52de97496e2f4501dfa92a87642f60db3e22a1",
+    "size": 64742,
+    "path": "model.safetensors.index.json"
+  },
+  {
+    "type": "file",
+    "oid": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+    "size": 390,
+    "path": "preprocessor_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "c6cc1014128b19d1fc46b1d30a23e3b1d35db421",
+    "size": 7032403,
+    "path": "tokenizer.json"
+  },
+  {
+    "type": "file",
+    "oid": "d3d3763207692c78780f4bf42d4dadf49a5c8012",
+    "size": 10868,
+    "path": "tokenizer_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+    "size": 385,
+    "path": "video_preprocessor_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "4783fe10ac3adce15ac8f358ef5462739852c569",
+    "size": 2776833,
+    "path": "vocab.json"
+  }
+]

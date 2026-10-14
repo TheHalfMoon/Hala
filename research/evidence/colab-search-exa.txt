@@ -1,0 +1,144 @@
+Title: Google Colab Additional Terms of Service
+URL: https://research.google.com/colaboratory/tos_v5.html
+Published: N/A
+Author: N/A
+Highlights:
+# Google Colab Additional Terms of Service
+
+ Last Modified: May 14, 2024 (view previous version of these terms) 
+
+ To use Google Colab (“ Colab”) and any Colab subscription or pay-as-you-go offerings (“ Paid Services”), you must accept (1) the Google Terms of Service, and (2) these Google Colab Additional Terms of Service (the “ Additional Terms”). Terms that are not defined in these Additional Terms have the meanings given to them in the Google Terms of Service. 
+
+ Please read these documents carefully. Together, these documents are known as the “ Terms”. They establish what you can expect from us as you use our services, and what we expect from you. 
+
+ We also encourage you to read our Privacy Policy (and, in connection with any Paid Services purchased directly through Colab, the Google Payments Privacy Notice) to better understand how you can update, manage, export, and delete your information.
+...
+FAQ contains general ... about Colab, ... restricted activities, resource limits and supported browsers. ... to those policies and usage limitations.
+...
+you may not:
+
+- share access to your account or use someone else’s account to access Colab;
+- access Colab other than as authorized by Google; or
+- sell, rent, or otherwise provide direct or indirect access to Colab to any third party. 
+
+ Colab’s generative code features are still experimental and you’re responsible for your use of suggested code or coding explanations. Use discretion and carefully test and review all code for errors, bugs, and vulnerabilities before relying on it. You’re responsible for complying with any license requirements, including citations to open source code repositories.
+...
+Colab lets you access and interact with other services, software libraries, APIs, and content, including some provided by third parties. These offerings are subject to applicable terms and licenses, as described in the “Other content” section of the Google Terms of Service. 
+
+ You’re solely responsible for ensuring you have the necessary rights to connect to and use third-party offerings and for complying with any applicable terms. 
+
+ Google does not operate, support, endorse, monitor, control, or assume any responsibility or liability for third-party offerings. Google is not responsible for the conduct of those third parties, including their security or privacy practices, and you should use discretion before using third-party offerings.
+...
+When you purchase Paid Services through Google Workspace, the preamble, Section 2 (Payment Terms), and Section 15 (Miscellaneous) of the Google Workspace Terms of Service govern payments, invoicing, billing, payment disputes, and related issues, while these Additional Terms and the Google Terms of Service govern your use of Colab and the Paid Services. 
+
+ When you purchase Paid Services directly through Colab, the following terms apply:
+
+---
+
+Title: Google Colab
+URL: https://colab.research.google.com/terms
+Published: N/A
+Author: N/A
+Highlights:
+# Google Colab Additional Terms of Service
+...
+To use Google Colab(“Colab”) and any Colab subscription or pay-as-you-go offerings (“Paid Services”), you must accept (1) the Google Terms of Service, and (2) these Google Colab Additional Terms of Service (the “Additional Terms”). Terms that are not defined in these Additional Terms have the meanings given to them in the Google Terms of Service.
+
+Please read these documents carefully. Together, these documents are known as the “Terms”. They establish what you can expect from us as you use our services, and what we expect from you.
+...
+Colab’s generative code features are still experimental and you’re responsible for your use of suggested code or coding explanations. Use discretion and carefully test and review all code for errors, bugs, and vulnerabilities before relying on it. You’re responsible for complying with any license requirements, including citations to open source code repositories.
+...
+Colab lets you access and interact with other services, software libraries, APIs, and content, including some provided by third parties. These offerings are subject to applicable terms and licenses, as described in the “Other content” section of the Google Terms of Service.
+...
+to connect to ... use third-party offerings ... with any applicable
+...
+When you purchase Paid Services through Google Workspace, the preamble, Section 2 (Payment Terms), and Section 15 (Miscellaneous) of the Google Workspace Terms of Service govern payments, invoicing, billing, payment disputes, and related issues, while these Additional Terms and the Google Terms of Service govern your use of Colab and the Paid Services.
+
+When you purchase Paid Services directly through Colab, the following terms apply:
+...
+The Paid Services include premium subscriptions or pay-as-you-go offerings as detailed on the Colab Pricing page.
+
+---
+
+Title: Colab Paid Services Additional Terms of Service
+URL: https://research.google.com/colaboratory/tos_v3.html
+Published: N/A
+Author: N/A
+Highlights:
+# Colab Paid Services Additional Terms of Service
+...
+To use the paid Colab Services (the “Colab Paid Services”), you must accept (1) the Google Terms of Service, and (2) these Colab Paid Services Additional Terms of Service (the “Colab Paid Services Additional Terms” or “Contract”).
+...
+Colab Paid Services. The Colab Paid Services allows anybody to write and execute arbitrary python code through the browser, and is especially well-suited to machine learning, data analysis and education. Google allows you to access certain premium features or content as part of the Colab Paid Services in exchange for a one-time or recurring fee, as applicable to the relevant features or content (each a “Paid Service” and collectively the "Paid Services"). The Paid Services include feature-based subscriptions as described on the Colab signup page. Your Paid Service transactions and any other use of the Paid Services are subject to these Terms. To purchase a Paid Service, you must have a Google Payments account and agree to the Google Payments Terms of Service. You are responsible for all charges associated with purchases made on your Google Payments account.
+...
+. Restrictions.
+...
+When you use the Paid Service, you will not:
+
+- share your Google account password with someone else to allow them to access any Paid Service that the person did not order;
+- access the Paid Service other than by means authorized by Google;
+- copy, sell, rent, or sublicense the Paid Services to any third party;
+- use the Paid Service for file hosting, media serving, or other web service offering not related to interactive compute with the Paid Service;
+- edownload torrents or engage in peer-to-peer file-sharing; or
+- mine cryptocurrency;
+- Perform any of the ... set forth in ... Colab FAQs
+
+---
+
+Title: Service Specific Terms  |  Google Cloud
+URL: https://cloud.google.com/terms/service-terms/index-20240514
+Published: 2024-05-14T00:00:00.000Z
+Author: N/A
+Highlights:
+9. User Experience Research. If Customer enrolls in the Google Cloud User Experience Research Program for Google Cloud Platform, Customer’s participation will be subject to the Google Cloud User Experience Research Panel Addendum available at https://cloud.google.com/terms/user-experience-research or a successor URL.
+...
+a. Non-Commercial Use. Use of the free, non-commercial / research activities edition of Google Earth Engine is subject to the terms at https://earthengine.google.com/noncommercial/ or a successor URL, which may be updated by Google periodically.
+...
+Customer Model” ... (i) a ... without using a Google Pre-Trained ... or (ii) a ... owned by Customer or ... third party that Customer uploads, fine tunes, or deploys in AI/ML Services. Customer Models do not include Customer Adapter Models.
+
+“Fine-Tuned Google Model” means an uptrained model that Customer creates by using an AI/ML Service to retrain or fine-tune a Google Pre-Trained Model using Customer Data.
+
+“Google Customer-Trained Model” means a model trained or retrained by Customer that leverages Google’s pre-existing intellectual property using an AI/ML Service and not released as an open model under an open source or other license.
+
+“Google Pre-Trained Model” means a model trained by Google and not released as an open model under an open source or other license.
+...
+between Customer and Google and in connection with use of an ... ML Service (as described at https://cloud.google.com/ ... /services), Google does not assert any ownership ... (ii) Customer Adapter Models, ... (iii) Separate Offerings, each to the extent they do not contain any pre-existing Google intellectual property.
+
+b. Google Models. Customer will have sole access to use Fine-Tuned Google Models and Google Customer-Trained Models. Neither Google nor any third party not authorized by Customer may access or use Fine-Tuned Google Models and Google Customer-Trained Models, including after expiration or termination of the Agreement. Google owns all Intellectual Property Rights in Google Pre-Trained Models, Fine-Tuned Google Models, and Google Customer-Trained Models. Where permitted by the AI/ML Service, any exported Fine-Tuned Google Model is licensed as Software.
+...
+b. Model Restrictions. Customer will not, and will not allow End Users to, use output from an AI/ML Service (including Generated Output) to: (i) substitute, replace, or circumvent the use of a Google Pre-Trained Model, a Google Customer-Trained Model, or a Fine-Tuned Google Model (“Google Models”), directly or indirectly, or (ii) create or improve models similar to a Google Model.
+...
+17. Training Restriction. Google will not use Customer Data to train or fine-tune any AI/ML models without Customer's prior permission or instruction.
+...
+Generated Output) does
+...
+(ii) Training Data. Google’s indemnification obligations under the Agreement also apply to allegations that Google’s use of training data to create any Google Pre-Trained Model utilized by a Generative AI Service infringes a third party’s Intellectual Property Rights. This indemnity does not cover allegations related to a specific Generated Output, which may be covered by subsection (i) (Generated Output) above.
+...
+42. AlloyDB Omni. Users of the free AlloyDB Omni Developer Edition and their Software Users (as defined in the General Service Terms) may use the Alloy DB Omni Software only for the purposes of developing, testing, prototyping, and demonstrating software programs (in any environment). Such users and Software Users may not use the AlloyDB Omni Software for any data processing, business, commercial, or production purposes.
+
+---
+
+Title: Service Specific Terms | Google Cloud
+URL: https://cloud.google.com/terms/service-terms
+Published: N/A
+Author: N/A
+Highlights:
+8. Trials. Certain Services may be made available to Customer on a trial basis ("Free Trial") subject to parameters and any Scope of Use, as presented in a Fees URL, Admin Console, Documentation, or otherwise. Use of a Free Trial indicates Customer’s acceptance of any such parameters. If Customer is a government entity and is offered a Free Trial: (a) Customer represents and warrants that: (i) it is permitted to accept the Free Trial, (ii) its use of the Free Trial is not prohibited by applicable law or regulation, including any applicable anti-bribery, ethics, or conflict of interest rules and laws, and (iii) its use of the Free Trial will not prevent Google from bidding on, or otherwise participating in, other potential contracts issued by the government entity or its related bodies; (b) Customer may only use the Free Trial for official government purposes; and (c) Google has no expectation of payment or favorable treatment by offering the Free Trial.
+
+9. User Experience Research. If Customer enrolls in the Google Cloud User Experience Research Program for Google Cloud Platform, Customer’s participation will be subject to the Google Cloud User Experience Research Panel Addendum available at https://cloud.google.com/terms/user-experience-research or a successor URL.
+...
+a. Non-Commercial Use. Use of the free, non-commercial / research activities edition of Google Earth Engine is subject to the terms at https://earthengine.google.com/terms/ or a successor URL, which may be updated by Google periodically.
+...
+“Google Customer-Trained Model” means a model trained or retrained by Customer that leverages Google’s pre ... existing intellectual property using an AI/ML Service and not released as an open model under an open source or other license.
+...
+“Modified Google Model” means a Google Pre-Trained Model that ... modifies by using Customer Data and an AI/ML Service (such as training, distilling, or fine-tuning
+...
+Google Models. ... have sole access to ... Modified Google Models and Google Customer-Trained Models. Neither Google nor any third ... not authorized by ... access or use Modified Google Models and Google Customer-T ... Models, including after expiration or termination ... . Google owns all ... in Google Models. Where permitted ... Service, any
+...
+b. Model Restrictions. Customer will not, and will not allow End Users to, use output from an AI/ML Service (including Generated Output) to: (i) substitute, replace, or circumvent the use of a Google Model, directly or indirectly, or (ii) create or improve models similar to a Google Model. However, if an AI/ML Service offers the feature of fine-tuning or model distillation, Customer may use output from that AI/ML Service (including Generated Output) to modify and use Modified Google Models instead of Google Pre-Trained Models.
+...
+18. Training Restriction (formerly Section 17 (Training Restriction)). Google will not use Customer Data to train or fine-tune any AI/ML models without Customer's prior permission or instruction.
+...
+(i) Generated Output. Google’s indemnification obligations under the Agreement also apply to allegations that an unmodified Generated Output from a Generative AI Indemnified Service using only Google Pre-Trained Model(s), a Modified Google Model, or a Customer Adapter Model used with a Google Pre-Trained Model infringes a third party’s Intellectual Property Rights. This subsection (i) (Generated Output) does not apply if the allegation relates to a Generated Output where: (1) Customer creates or uses such Generated Output that it knew or should have known was likely infringing, (2) Customer (or Google at Customer’s instruction) disregards, disables, modifies, or circumvents source citations, filters, instructions, or other tools Google makes available to help Customer create or use Generated Output responsibly, (3) Customer uses such Generated Output after receiving notice of an infringement claim from the rightsholder ... its authorized agent, (4) the allegation is based on a ... -related right as a result ... of such Generated Output ... Generative AI Service. ... Generative AI Indemnified Service” means a Service or feature listed at https://cloud.google.com/terms/generative-ai-indemnified-services, where the use of such Service or feature is not ... Customer free of charge.
+
+(ii) Training Data. Google’s indemnification obligations under the Agreement also apply to allegations that Google’s use of training data to create any Google Pre-Trained Model utilized by a Generative AI Service infringes a third party’s Intellectual Property Rights. This indemnity does not cover allegations related to a specific Generated Output, which may be covered by subsection (i) (Generated Output) above.

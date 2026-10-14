@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/Hcompany/Holo4-35B-A3B",
+    "type": "hub_api",
+    "revision": "508458727831368da85d53a8055c2b0f923ed4f3"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo4-35B-A3B/resolve/508458727831368da85d53a8055c2b0f923ed4f3/LICENSE",
+    "file": "LICENSE",
+    "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo4-35B-A3B/resolve/508458727831368da85d53a8055c2b0f923ed4f3/README.md",
+    "file": "README.md",
+    "sha256": "4f1aa5006aa9adaeb5ac549e5a5f8ea164352714a00528b1afb8602812d45b44"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo4-35B-A3B/resolve/508458727831368da85d53a8055c2b0f923ed4f3/config.json",
+    "file": "config.json",
+    "sha256": "6fa9fe6c73d79a30dfd40809d43ac8cd96ad74966d2329716c8399c785876677"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo4-35B-A3B/resolve/508458727831368da85d53a8055c2b0f923ed4f3/model.safetensors.index.json",
+    "file": "model.safetensors.index.json",
+    "sha256": "f011e20fec67da1c980230961f8af26555aa2fb11159d5f651bee90552ef605c"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo4-35B-A3B/resolve/508458727831368da85d53a8055c2b0f923ed4f3/preprocessor_config.json",
+    "file": "preprocessor_config.json",
+    "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+  }
+]

@@ -1,0 +1,618 @@
+# Google Colab
+URL: https://research.google.com/colaboratory/tos_v5.html
+
+Google Colab
+
+# Google Colab Additional Terms of Service
+
+ Last Modified: May 14, 2024 (view previous version of these terms) 
+
+ To use Google Colab (“ Colab”) and any Colab subscription or pay-as-you-go offerings (“ Paid Services”), you must accept (1) the Google Terms of Service, and (2) these Google Colab Additional Terms of Service (the “ Additional Terms”). Terms that are not defined in these Additional Terms have the meanings given to them in the Google Terms of Service. 
+
+ Please read these documents carefully. Together, these documents are known as the “ Terms”. They establish what you can expect from us as you use our services, and what we expect from you. 
+
+ We also encourage you to read our Privacy Policy (and, in connection with any Paid Services purchased directly through Colab, the Google Payments Privacy Notice) to better understand how you can update, manage, export, and delete your information. 
+
+## Using Colab
+
+ Our FAQ contains general information about Colab, including restricted activities, resource limits and supported browsers. You agree to those policies and usage limitations. 
+
+In addition, you may not:
+
+- share access to your account or use someone else’s account to access Colab;
+- access Colab other than as authorized by Google; or
+- sell, rent, or otherwise provide direct or indirect access to Colab to any third party. 
+
+ Colab’s generative code features are still experimental and you’re responsible for your use of suggested code or coding explanations. Use discretion and carefully test and review all code for errors, bugs, and vulnerabilities before relying on it. You’re responsible for complying with any license requirements, including citations to open source code repositories. 
+
+## Connected Services and Content
+
+ Colab lets you access and interact with other services, software libraries, APIs, and content, including some provided by third parties. These offerings are subject to applicable terms and licenses, as described in the “Other content” section of the Google Terms of Service. 
+
+ You’re solely responsible for ensuring you have the necessary rights to connect to and use third-party offerings and for complying with any applicable terms. 
+
+ Google does not operate, support, endorse, monitor, control, or assume any responsibility or liability for third-party offerings. Google is not responsible for the conduct of those third parties, including their security or privacy practices, and you should use discretion before using third-party offerings. 
+
+## Paid Services
+
+ When you purchase Paid Services through Google Workspace, the preamble, Section 2 (Payment Terms), and Section 15 (Miscellaneous) of the Google Workspace Terms of Service govern payments, invoicing, billing, payment disputes, and related issues, while these Additional Terms and the Google Terms of Service govern your use of Colab and the Paid Services. 
+
+ When you purchase Paid Services directly through Colab, the following terms apply: 
+
+### Direct Purchases
+
+ The Paid Services include premium subscriptions or pay-as-you-go offerings as detailed on the Colab Pricing page. 
+
+ To purchase a Paid Service, you must have a Google Payments account and agree to the Google Payments Terms of Service. You’re responsible for all charges associated with purchases made on your Google Payments account. 
+
+### Managing Subscriptions
+
+ You can manage your subscriptions as part of Paid Services in a number of different places, including in the Google payments center. Please see this Help Center article for more information. 
+
+### Price Changes
+
+ When you purchase a subscription, you’ll be charged at the price listed at the time of purchase. If the price later increases, we’ll notify you in advance by email. If you’re given at least 30 days’ notice, the increase will apply to the next payment due from you after the notice. If you’re given less than 30 days’ notice, the price increase will not apply until the following renewal. 
+
+ If you don’t want to pay the increased price for a subscription, you may cancel the subscription before the increase takes effect as described in the “Managing Subscriptions” section above. 
+
+### Taxes
+
+ “Taxes” means any duties, customs fees, levies, or taxes (other than income tax) associated with the sale of the Paid Services, including any related penalties or interest. You’re responsible for the payment of all Taxes, and must pay for the Paid Services without any reduction for Taxes. The price of Paid Services includes value added tax, as applicable. You must comply with all applicable tax laws, including those related to the reporting and payment of any Taxes, arising in connection with your use of the Paid Services. 
+
+Right of Withdrawal
+
+ If you’re purchasing Paid Services as a consumer based in the EEA, Brazil, Israel, South Korea, or Türkiye, then applicable law gives you the right to withdraw from this contract within 14 days (for South Korea, 7 days) without giving any reason. The withdrawal period will expire after 14 days from the day of the conclusion of the contract (for South Korea, 7 days from the conclusion of the contract). 
+
+ To exercise the right of withdrawal, you must inform us (Google Commerce Limited, c/o Customer Support, Gordon House, Barrow Street, Dublin 4, Ireland, or via phone or email) of your decision to withdraw from this contract by an unequivocal statement (e.g., a letter sent by post or e-mail). You may use the attached model withdrawal form, but it is not obligatory. 
+
+ To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired. 
+
+ If you are a consumer based in Brazil, you may also exercise the right of withdrawal using our support channels. If you are a consumer based in Israel, in addition to your right of withdrawal, you may also terminate your recurring subscription for Paid Services on 3 days’ prior notice to us via registered post or e-mail. 
+
+Effects of Withdrawal 
+
+ If you withdraw from this contract, we shall reimburse to you all payments received from you, including the costs of delivery (with the exception of the supplementary costs resulting from your choice of a type of delivery other than the least expensive type of standard delivery offered by us), without undue delay and in any event not later than 14 days from the day on which we are informed about your decision to withdraw from this contract. We will carry out such reimbursement using the same means of payment as you used for the initial transaction, unless you have expressly agreed otherwise; in any event, you will not incur any fees as a result of such reimbursement. 
+
+ If you requested to begin the performance of Paid Services during the withdrawal period, you shall pay us an amount which is in proportion to what has been provided until you have communicated to us your withdrawal from this contract, in comparison with the full coverage of the contract. 
+
+ If you are a consumer based in Israel, your withdrawal may be subject to a fee equal to the lower of (1) 5% of the transaction fee, or (2) NIS 100. In addition, if you terminate your recurring subscription on 3 days’ prior notice as a consumer based in Israel, we’ll reimburse you for the proportionate amount collected for the Paid Services following the termination date. 
+
+Model Withdrawal Form(complete and return this form only if you wish to withdraw from the contract)
+
+```
+      — To Google Commerce Limited, c/o Customer Support, Gordon House, Barrow Street, Dublin 4, Ireland (or email at the applicable address):
+      — I hereby give notice that I withdraw from my contract of sale for the provision of the following service, 
+      — Ordered on, 
+      — Name of consumer, 
+      — Address of consumer, 
+      — Signature of consumer (only if this form is notified on paper), 
+      — Date
+    
+```
+
+# Academics | Modal
+URL: https://modal.com/academics
+
+Academics | Modal
+
+# Modal for Academics
+
+Modal is the fastest way for researchers to develop tomorrow's cutting-edge AI models and machine learning methods. Instantly deploy experiments on the most powerful GPUs with just a few lines of code. Iterate faster with Modal.
+
+> “Verifying an LLM-based approach that relies on test-time compute can be challenging to scale. Through collaboration with ARC Prize, the MIT + Cornell team partnered with Modal to provide both credits and infrastructure to make this possible. Huge thanks to Modal for working with us to spin up an environment that efficiently ran our model for verification.”
+
+Kevin Ellis & Zenna Tavares, Researchers
+
+> “Check out Tokasaurus on Modal to make Llama-1B brrr! This repeated sampling example shows off two engine features that are important for serving small models: very low CPU overhead and automatic shared prefix exploitation with Hydragen.”
+
+Jordan Juravsky, Researcher
+
+> “We wouldn't have been able to publish Four Over Six on such a tight deadline if it weren't for Modal! We needed to run hundreds of experiments on B200s to fill out our evaluation tables, and Modal made it super easy to run them all in parallel.”
+
+Jack Cook, Researcher
+
+# Pricing: Pay per second for GPUs and CPUs | Modal
+URL: https://modal.com/pricing
+
+Pricing: Pay per second for GPUs and CPUs | Modal
+
+# Pricing as magical as our product
+
+With Modal, you always pay for what you use and nothing more. You never pay for idle resources — just actual compute time, by the CPU cycle.
+
+## Resource costs
+
+Per hour Per second
+
+ GPU Tasks
+
+- Nvidia B300$ 0.001972 0. 0 0 1 9 7 2 / sec
+- Nvidia B200$ 0.001736 0. 0 0 1 7 3 6 / sec
+- Nvidia H200 SXM$ 0.001261 0. 0 0 1 2 6 1 / sec
+- Nvidia H100 SXM5$ 0.001097 0. 0 0 1 0 9 7 / sec
+- Nvidia RTX PRO 6000$ 0.000842 0. 0 0 0 8 4 2 / sec
+- Nvidia A100, 80 GB$ 0.000694 0. 0 0 0 6 9 4 / sec
+- Nvidia A100, 40 GB$ 0.000583 0. 0 0 0 5 8 3 / sec
+- Nvidia L40S$ 0.000542 0. 0 0 0 5 4 2 / sec
+- Nvidia A10$ 0.000306 0. 0 0 0 3 0 6 / sec
+- Nvidia L4$ 0.000222 0. 0 0 0 2 2 2 / sec
+- Nvidia T4$ 0.000164 0. 0 0 0 1 6 4 / sec
+
+ CPU $ 0.0000131 0. 0 0 0 0 1 3 1 / core / sec
+
+Physical core (2 vCPU equivalent)
+
+*minimum of 0.125 cores per container
+
+ Memory $ 0.00000222 0. 0 0 0 0 0 2 2 2 / GiB / sec
+
+ Volumes $ 0.09 0. 0 9 / GiB / mo
+
+*includes 1 TiB / mo free
+
+### Starter
+
+Built for small teams and independent developers looking to level up.
+
+### Team
+
+Built for startups and larger organizations looking to scale quickly.
+
+### Enterprise
+
+For organizations prioritizing security, support, and everlasting confidence.
+
+### Credit grants for startups
+
+Early-stage startups can get free compute credits on Modal.
+
+### Credit grants for academics
+
+Graduate students, labs, and researchers can get up to $10k free compute credits on Modal
+
+### Use committed spend on Modal
+
+Transact through the AWS and GCP marketplace to use committed spend on Modal.
+
+## Modal Sandbox + Notebooks pricing
+
+Only pay for what you use. Burst up to what you need without over-allocating CPU or memory in advance.
+
+### Compute costs
+
+CPU
+
+Physical core (2 vCPU equivalent)
+
+$ 0.00003942 0. 0 0 0 0 3 9 4 2 / core / sec
+
+*minimum of 0.125 cores per container
+
+Memory
+
+$ 0.00000667 0. 0 0 0 0 0 6 6 7 / GiB / sec
+
+## Why serverless?
+
+Modal is serverless, which means that we instantly autoscale up and down for you based on request volume. For spiky or unpredictable workloads, we are more cost-effective than fixed on-demand/reserved compute.
+
+### Traditional cloud
+
+You’re billed for reserved GPUs, even when usage drops.
+
+100 75 50 25 0 3 AM 6 AM 9 AM 12 PM 3 PM
+
+$5,400
+
+75 GPUs * 24 hrs * $3 / GPU-hr
+
+Degraded service at peak demand
+
+### Modal serverless cloud
+
+Only pay for what you use, when you use it.
+
+100 75 50 25 0 3 AM 6 AM 9 AM 12 PM 3 PM
+
+$4,740
+
+Avg 50 GPUs * 24 hrs * $3.95 / GPU-hr
+
+## Compare features
+
+| Plans | Starter $0 + compute / month | Team $250 + compute / month | Enterprise Custom compute |
+| --- | --- | --- | --- |
+
+Compare Starter, Team, and Enterprise plans
+
+| Plans | Starter: $0 + compute / month | Team: $250 + compute / month | Enterprise: Custom compute |
+| --- | --- | --- | --- |
+| Workspace | | | |
+| Number of seats | Up to 3 | Unlimited | Unlimited |
+| Credits and variable costs | | | |
+| Included compute | $30 / month | $100 / month | Custom |
+| Included network egress | 1 TiB / month | 10 TiB / month | 100 TiB / month |
+| Features | | | |
+| Containers | 100 | 5000 | Custom |
+| GPU concurrency | 10 | 50 | Custom |
+| Deployed apps | 200 | 1000 | 1000 |
+| Log retention | 1 day | 30 days | Custom |
+| Custom domains | Not included | Included | Included |
+| Real-time metrics | Included | Included | Included |
+| Sharing and collaboration | Included | Included | Included |
+| Secrets | Unlimited | Unlimited | Unlimited |
+| Custom images | Unlimited | Unlimited | Unlimited |
+| Instant deploys | Unlimited | Unlimited | Unlimited |
+| Cron jobs | 5 deployed crons | Unlimited | Unlimited |
+| Deployment rollbacks | Not included | 3 versions | Custom |
+| Environment-level budgets | Not included | Included | Included |
+| Distributed queue | Unlimited | Unlimited | Unlimited |
+| Distributed dict | Unlimited | Unlimited | Unlimited |
+| Region selection | 1.15 - 1.75x base prices | 1.15 - 1.75x base prices | 1.15 - 1.75x base prices |
+| Non-preemptible execution | 3x base prices | 3x base prices | 3x base prices |
+| Cloud Marketplaces | Not included | Not included | Use committed spend on AWS and GCP |
+| Support | Access to Modal Community Slack | Access to Modal Community Slack | + Support via private Slack + Embedded ML engineering services |
+| Security | | | |
+| SOC 2 compliance | Included | Included | Included |
+| HIPAA compatibility | Not included | Not included | Included |
+| Audit logs | Not included | Not included | Included |
+| Static IP proxy | Not included | Included | Included |
+| RBAC | Not included | Included | Included |
+| SSO | Not included | Not included | Included |
+
+## Frequently asked questions
+
+- ### What counts as billable time? 
+
+Modal bills you during application load time and during the time your container is processing inputs. By default, we keep containers alive for 60 seconds after the last inputs before we shut them down, which we also bill for. However, this timeout length is configurable. Once your application has scaled down to zero containers you no longer get charged.
+- ### How are CPU and memory usage metered? 
+
+Modal continuously records CPU and memory consumption. CPU usage is tracked in terms of fractional physical cores, allowing for higher utilization compared to providers that set minimum thresholds for core charges. Note that each physical core is equivalent to 2 vCPUs as offered by AWS or GCP.
+
+You'll be charged based on whichever is higher: the amount you request or the amount you actually use. Each container has a minimum request of 128 MiB of memory and 0.125 CPU cores, which you can increase if you need more resources.
+- ### How does serverless pricing differ from traditional on-demand pricing? 
+
+Modal's serverless pricing can't be directly compared to traditional on-demand or spot instance pricing.
+
+Traditional cloud compute doesn't have instant spin-up times. You might spend 10+ minutes provisioning an instance and another 5 terminating it. You also have to commit to a minimum usage time per instance, usually between 1 minute and 1 hour. All this time is billable. In contrast, Modal spins containers up and down in 1-2 seconds. You don't commit to any minimum usage time per instance.
+
+Even though our per-hour prices may sometimes appear higher, your overall costs are lower if your request volumes are spiky or unpredictable. Modal autoscales fast, so you pay for significantly less non-execution time versus traditional compute. You also save on cost by not having to over-provision compute to handle peak loads.
+- ### What's an example of real-world CPU billing? 
+
+You schedule a job to run once a day for an hour. The job uses 50% of one CPU core and 256 MiB of memory.
+
+This job will cost $0.02365/day for the CPU, and $0.00200/day for the memory, adding up to $0.02565/day, or $0.77 over 30 days.
+- ### What's an example of real-world GPU billing? 
+
+You run stable diffusion on an A10G GPU. This will run for about 1.5 seconds to generate each image, while using 4 GiB RAM and 1 CPU.
+
+This will cost approximately $0.000458/image in GPU charges, $0.000020/image in CPU charges, and $0.000013/image in memory charges, adding up to $0.000491/image in total charges, i.e., $0.491 per 1,000 images.
+- ### Do I need to purchase credits? 
+
+Workspaces receive a free allotment of compute per month, but usage on the Starter and Team plans is pay-as-you-go and does not require pre-purchasing compute or tokens. If you want to limit your monthly spend, you can set a Workspace budget.
+- ### Can I add more than three team members on the starter plan? 
+
+The starter plan allows up to three users in a workspace. Upgrading to the team plan unlocks an unlimited number of seats.
+- ### What kinds of applications can I deploy using Modal? 
+
+You can deploy any application that can be containerized, using Python. Modal is especially well-suited for compute-intensive workloads that benefit from horizontal scaling. This includes ML inference at scale, model training & fine-tuning, data pipelines, numerical & scientific computing, compute-heavy job queues, and much more.
+- ### Can I use my AWS, GCP, or Azure credits on Modal? 
+
+At the moment, credits from AWS, GCP, or Azure cannot be applied towards your Modal usage. However, we have a special partnership with AWS that allows eligible startups to unlock additional Modal credits if they are part of AWS Activate. To find out if your company is eligible, please apply to our startup credits program.
+- ### What does my included usage cover? 
+
+Included usage applies to compute: Functions, Sandboxes, and Notebooks, billed by the second for CPU, memory, and GPU time. Volumes include up to 1 TiB free.
+
+It does not apply to Shared Endpoints, which are billed per token rather than per second. Token usage is always billed, starting from your first request. To cap out-of-pocket charges, see spend limits.
+- ### I'm on the Starter plan. Why am I being charged? 
+
+Starter has no monthly fee and includes $30 of compute (GPUs, CPUs, Memory) per month. You're billed when you exceed that, or when you use something the included compute doesn't cover.
+
+Free usage of Shared Endpoints is not part of the Starter plan. Tokens are billed from your first request, so they will appear on your invoice even if you haven't used your full $30 of included compute. This took effect September 1, 2026.
+
+# Holo3: Breaking the Computer Use Frontier | H
+URL: https://hcompany.ai/newsroom/holo3
+Published: 2026-03-31
+
+Holo3: Breaking the Computer Use Frontier | H
+
+Today we're releasing Holo3, the next model in our work on autonomous enterprise agents. Holo3-122B-A10B scores 78.85% on OSWorld-Verified, a new state of the art on the main desktop computer-use benchmark.
+
+Holo3 isn't just a benchmark leader; we built it for production. Using our agentic flywheel, we trained it to run real workflows inside synthetic enterprise environments. That makes it good at today's business tasks and sets it up to handle a much wider range of software over time.
+
+Best of all, Holo3 achieves this with only 10B active parameters (122B total), so at a fraction of the cost of large-scale proprietary models, such as GPT 5.4 or Opus 4.6. All models are available through our Inference API. Holo3-35B-A3B weights are openly accessible on Hugging Face under the Apache2 license and freely accessible through our inference API under a free tier.
+
+(opens full size in a new tab)
+
+OSWorld-Verified score versus cost per million output tokens for Holo3, Holo2, Qwen3.5, Kimi-K2.5, GPT-5.4, and Claude 4.6 models.
+
+### The Agentic Learning Flywheel
+
+Holo3's edge comes from its training pipeline, a feedback loop that sharpens the two things an agent needs most: perception and decision-making.
+
+The flywheel teaches the model to carry out specific tasks from annotated examples while building general skills across a huge range of interfaces. Here's how we build these computer-use models:
+
+- Synthetic Navigation Data: using human and generated instructions, we generate scenario-specific navigation examples.
+- Out-of-Domain Augmentation: we programmatically extend the scenarios and augment the data to ensure Holo3 can handle the unexpected.
+- Curated reinforcement learning: every sample is filtered and run through a reinforcement-learning pipeline tuned for performance.
+
+Beyond the scores, the OSWorld results are proof that the flywheel works. To check that it transfers to real business applications, we built the Synthetic Environment Factory.
+
+### The Synthetic Environment Factory & H Corporate Benchmarks
+
+This factory reproduces the reality of enterprise systems and is one of the environments we trained Holo3 in. Coding agents build the environments automatically, programming websites from scratch based on scenario specifications, and produce verifiable tasks of varying difficulty that are validated end-to-end with verification scripts.
+
+To measure real-world readiness, we also designed H Corporate Benchmarks, a dedicated evaluation suite of 486 multi-step realistic tasks spanning 4 categories: E-commerce, Business software, Collaboration, and various Multi-App setups.
+
+The benchmark spans the full complexity spectrum: from focused, single-application tasks to long-horizon, multi-application workflows that mirror how work actually gets done. At the harder end of the scale (Multi-Apps), tasks require the agent to coordinate information across multiple systems simultaneously. For example, retrieving equipment prices from a PDF, cross-referencing them against each employee's remaining budget, and autonomously sending personalised approval or rejection emails to every individual. This kind of task demands not only accurate calculation and document parsing, but sustained multi-step reasoning across applications without losing state or intent.
+
+(opens full size in a new tab)
+
+Examples of synthetic environments created for training Holo3.
+
+The results below show Holo3 ahead of its competitors on single-application benchmarks. The gap between Holo3 and the base Qwen3.5 models is what the flywheel buys us: higher success rates than models with far more parameters, at the same localization and grounding quality.
+
+(opens full size in a new tab)
+
+Holo3 leads most computer use, H Corporate, and UI grounding benchmarks. Baseline numbers are evaluated by H; starred numbers are reported from original source material.
+
+### Towards Universal Agency
+
+Holo3 is a milestone, not the finish line. By building a system that can see, reason, and act inside our clients' software, we're making the autonomous enterprise real.
+
+As the Synthetic Environment Factory keeps growing, our agents take on harder tasks. Holo3 handles known interfaces well; we're now working on the next step, adaptive agency, where a model can learn to operate new, custom enterprise software on its own, in real time.
+
+# Holo4: powering generalist computer-use agents | H
+URL: https://hcompany.ai/newsroom/holo4
+Published: 2026-09-28
+
+Holo4: powering generalist computer-use agents | H
+
+# Holo4: powering generalist computer-use agents
+
+Click, code and call tools across desktop, web and mobile. Holo4 27B scores 85.2% on OSWorld at $0.08 per task.
+
+Research · September 28, 2026 · 5 min read
+
+Holo4 is our new series of agentic models. It comes in two sizes: 27B dense and 35B-A3B Mixture of Experts. Both are available on the H Models API. We are also releasing an updated version of Holotron 3: Holotron4 Nano.
+
+Holo4 builds on our previous model and interacts with software through any available interface: GUIs, code, MCP and APIs. It scores well on academic benchmarks, but we built it for real business workflows. It was trained through supervised and reinforcement learning on a large set of environments and tasks, including those generated by our Agentic Task Factory.
+
+## Models built for every interface
+
+Holo4 clicks and types on a screen, writes and runs its own code, and calls MCP or API tools. It uses whichever fits the task. Most agentic models are trained for one interface only: GUI-focused models are blind without a screen, while models that prefer tool calling are stuck in front of an application that has no API. Real work is not siloed that way, and a single business task can require combining these different approaches.
+
+Holo4 runs on desktops, on the web, on Android, in a code sandbox and against business APIs. It is the same model in each case and it is called the same way. You do not need to select a different model for each platform.
+
+| Benchmark | Holo4 1 27B | Holo4 1 35B-A3B | Qwen3.8 27B | Frontier 2 |
+| --- | --- | --- | --- | --- |
+| OSWorld Computer tasks | 85.2%$0.08 | 80.8%$0.05 | 84.3%$0.22 | Fable 5 86.0% GPT-5.5 78.7% Qwen3.8 Max 86.1% |
+| OSWorld 2.0 Long computer workflows Score, success, cost | 61.7% 41.5%$1.22 | 30.9% 12.3%$0.61 | 48.0% 19.4%$3.49 | Opus 5.5 81.8% 48.7%$8.48 GPT-6 Astra 73.5%–$9.07 Muse Spark 1.3 66.9% 32.0%– |
+| ALE-CLI 3 Expert workflows Score, success, cost | 44.1% 19.4%$0.82 | 30.9% 13.5%$0.29 | 43.5% 19.0%– | Opus 5.5 63.7% 34.3%$8.22 GPT-6 Astra 61.4% 33.3%$5.31 Muse Spark 1.3 57.5% 33.3%$2.44 |
+| AutomationBench 4 Business automation | 45.4%$0.05 | 34.5%$0.02 | 40.3%*$0.09 | Opus 5 50.3%$3.05 GPT-5.6 Sol 45.8%$0.67 Kimi K3 46.7%$0.43 |
+| AndroidWorld Phone apps | 85.1%$0.08 | 77.6%$0.07 | 81.9%$0.13 | Fable 5 88.8% GPT-5.6 Sol 77.6% Qwen3.8 Max 85.3% |
+| Agentic Task Factory 5 | | | | |
+| Web 47 web apps | 80.2% | 70.8% | 77.6%* | – |
+| MCP 14 tool servers | 89.4% | 85.4% | 74.2%* | – |
+| Desktop 17 desktop apps | 72.0% | 64.8% | 68.9%* | – |
+
+1. 1 Holo4 in our harness: mean over 2 to 4 runs, single run on OSWorld 2.0 and ALE-CLI.
+2. 2 Public scores, not run by us, across different harnesses and effort levels. OSWorld: Fable 5 from the official leaderboard, GPT-5.5 and Qwen3.8 Max as reported by OpenAI and Qwen.
+3. OSWorld 2.0: Opus 5.5 at max effort in Anthropic's harness, GPT-6 Astra at max effort on the 82-task offline subset, Muse Spark 1.3 as reported by Meta. Costs read off the providers' charts.
+4. AndroidWorld: all three as measured by Qwen for the Qwen3.8 release. AutomationBench: public-set scores from the AutomationBench README, costs from the official leaderboard, which runs on the private set.
+5. 3 ALE-CLI: the 105-task Linux split of Agents' Last Exam, average score and pass rate. Qwen3.8 27B and frontier scores and costs from the official leaderboard, at each model's best effort setting. Holo4 excludes attempts that reached reference answers left on the test machine: 2 of 105 for 27B, 1 for 35B-A3B.
+6. 4 AutomationBench: score on the 600 public v1.0.6 tasks; 480 of them fall in the split we collected training data from, the other 120 are held out.
+7. Score on the 120 held-out tasks: 49.3% for Holo4 27B and 31.7% for Holo4 35B-A3B, against 40.3% for Qwen3.8 27B and 13.1% for Qwen3.6 35B-A3B. We report the public-set score until Holo4 is evaluated on the official private set.
+8. 5 Generated by our Agentic Task Factory and not used in training, pooling in-domain and out-of-domain test sets.
+9. * Qwen3.8 27B in our harness, where no public score exists.
+10. Under each score: cost per task in USD, at H Models API rates for Holo4 and Alibaba Cloud list prices for Qwen3.8 27B, from the tokens of our runs.
+
+Holo4 models improve significantly over their Qwen base. Holo4 trails only the strongest closed models on long workflows: on OSWorld 2.0, Holo4 27B scores 61.7% against 81.8% for Opus 5.5, and Holo4 35B-A3B reaches 30.9%. However, it does so with orders of magnitude fewer parameters and at a much lower cost. We open-source every trajectory behind our scores on public benchmarks: replay each step at trajectories.hcompany.ai or download them from Hugging Face.
+
+## Competitive with the frontier, at a fraction of the cost
+
+On the hardest academic benchmarks for desktop control (OSWorld 2.0) and API use (AutomationBench), Holo4 competes with frontier models at a much lower cost per task.
+
+OSWorld 2.0 AutomationBench
+
+OSWorld 2.0 Average partial score (%) · higher is better
+
+- Holo
+- Base model
+- Reported
+- Closed frontier
+
+GPT-5.6 Luna · low, 12%, $0.019 per task, reported GPT-6 Luna · low, 8.3%, $0.03 per task, reported GPT-5.6 Luna · medium, 22.7%, $0.052 per task, reported GPT-6 Luna · medium, 31.5%, $0.062 per task, reported GPT-6 Luna · high, 41.4%, $0.12 per task, reported GPT-5.6 Luna · high, 35.9%, $0.16 per task, reported GPT-6 Luna · xhigh, 46.7%, $0.16 per task, reported GPT-6 Luna · max, 52.7%, $0.27 per task, reported GPT-5.6 Luna · xhigh, 48%, $0.36 per task, reported GPT-5.6 Luna · max, 52.7%, $0.49 per task, reported Holo4 35B-A3B, 30.9%, $0.6117 per task MiniMax M3 · 150 steps, 8.2%, $0.8039 per task, reported GPT-5.6 Sol · low, 29.8%, $0.91 per task, reported GPT-6 Sol · low, 43.9%, $0.97 per task, reported Holo4 27B, 61.7%, $1.2213 per task GPT-6 Sol · medium, 54%, $1.32 per task, reported Qwen3.6 35B-A3B, 24.56%, $1.6178 per task GPT-6 Sol · high, 58.3%, $1.64 per task, reported MiniMax M3 · 300 steps, 16.6%, $1.6855 per task, reported GPT-6 Sol · xhigh, 60.5%, $2.21 per task, reported MiniMax M3 · 500 steps, 22.3%, $2.3961 per task, reported GPT-6 Astra · low, 62.2%, $2.55 per task, reported Qwen3.8 Max, 46.7%, $2.639844 per task, reported GPT-5.6 Sol · medium, 49.7%, $2.73 per task, reported Kimi K2.6 · 150 steps, 7.1%, $3.1111 per task, reported GPT-6 Sol · max, 64.4%, $3.25 per task, reported Qwen3.8 27B, 48%, $3.4855 per task, reported Qwen3.7-Plus · thinking, 21.5%, $3.8107 per task, reported GPT-5.6 Sol · high, 56.5%, $4.46 per task, reported GPT-6 Astra · medium, 69.3%, $5.1 per task, reported Kimi K2.6 · 300 steps, 14.4%, $5.5926 per task, reported GPT-5.6 Sol · xhigh, 60.9%, $5.93 per task, reported Kimi K2.6 · 500 steps, 22.1%, $6.5556 per task, reported GPT-6 Astra · high, 70%, $6.6 per task, reported GPT-6 Astra · xhigh, 71.3%, $7.17 per task, reported GPT-5.6 Sol · max, 66.2%, $7.71 per task, reported GPT-6 Astra · max, 73.5%, $9.07 per task, reported Opus 5 · low, 55.2%, $9.88 per task, reported Opus 5 · medium, 60.3%, $12.67 per task, reported Opus 5 · high, 65.9%, $15.95 per task, reported Sonnet 4.6 · max, 41.5%, $22.3148 per task, reported Opus 5 · xhigh, 70.1%, $23.91 per task, reported Opus 5 · max, 70.2%, $24.11 per task, reported GPT-5.5 · xhigh, 49.5%, $25.463 per task, reported Opus 4.7 · max, 49.1%, $35.8333 per task, reported
+
+## AI that does work
+
+Trained on environments and tasks from our Agentic Task Factory, Holo4 models excel on professional software. The examples below show Holo4 27B alongside Qwen3.8 27B, its base model.
+
+3D modeling · Eiffel Tower 3D modeling · H logo Game design · Pac-Man
+
+3D modeling · Eiffel Tower 3D modeling · H logo Game design · Pac-Man
+
+Holo4 27B Qwen3.8 27B
+
+84 calls · 1.3M tokens
+
+Same prompt and harness for both models.
+
+### Prompt
+
+Build a 3D model of the Eiffel Tower in FreeCAD, at a scale of 1 mm to 1 metre, centred on the origin and aligned to the X and Y axes. Work to this design. The tower is square in plan at every height, never round. Its half-width, measured from the central axis out to the corner, is 62.5 mm at ground level, 32.5 mm at height 57, 17.5 mm at height 115, and 9.35 mm at height 276. Between those heights the half-width follows a smooth curve that falls steeply near the ground and gently higher up, never a straight line. Four identical legs, one per quadrant, each a square column whose outer corner follows that profile. Each leg is 14 mm across at the ground and tapers to 4 mm at height 276. The legs stand apart from the ground up to the first platform, and converge as they rise. Nothing fills the space between them: the tower is open, and you can see straight through it from every side. Three platforms, each a solid square slab centred on the axis: 72 mm across and 4 mm thick at height 57; 40 mm across and 3 mm thick at height 115; 22 mm across and 3 mm thick at height 276. A mast from height 276 to 324, square, 8 mm across at its base tapering to 2 mm at the tip. Every part must be a closed solid with non-zero volume, and no part may fill the space between the legs.
+
+### Agentic Task Factory
+
+Our internal set of agentic pipelines builds interactive environments and verifiable tasks from documentation alone, such as screenshots of real websites or open-source software. So far it has produced about 10,000 tasks across web apps, MCP servers and desktop environments, including hybrid environments that expose the same state through a GUI and MCP.
+
+Flow diagram of the Agentic Task Factory, listed in order from sources to output.
+
+Only documentation goes in: product docs, screenshots of real websites or open-source software. Coding agents take it from there and build the environment, the tasks and their verifiers. GUI agents attempt every task and their failures feed audit and harden loops. Only tasks that pass every gate are kept. One image for humans and agents alike. A run is penalized for touching anything it shouldn't. About 4,000 web app tasks, 40% of everything built so far. About 3,000 MCP server tasks, 30% of everything built so far. About 3,000 desktop and OS tasks, 30% of everything built so far.
+
+Sources
+
+Sources
+
+- Product docs manuals · help centers
+- Screenshots of real websites
+- Real software self-hosted · desktop · OS
+
+Agentic Task Factory
+
+Build
+
+Build
+
+- environment
+- tasks
+- verifiers
+
+Gates
+
+Gates
+
+A task is kept only if its verifier
+
+- fails on the untouched seed
+- passes on the golden state
+- rejects every near miss
+
+and an agent solved it through the real interface.
+
+Failed attempts loop back to Build: attempt, audit, harden. attempt → audit → harden
+
+Runtime
+
+Runtime
+
+1 Docker image
+
+human
+
+noVNC
+
+agent
+
+CDP / MCP
+
+score
+
+state delta or tool trace
+
+Output
+
+10,000 tasks
+
+Output 4k web apps Output 3k MCP servers Output 3k desktop · OS
+
+Input: screenshots
+
+Pause animation
+
+### Training
+
+1. 01
+
+#### Supervised fine-tuning
+
+127B tokens. About three quarters are successful agentic trajectories from our Agentic Task Factory: desktop (45%), web (14%), MCP and API (12%) and mobile (3%). The rest covers multimodal reasoning, GUI grounding, and text-only tool use and coding.
+2. 02
+
+#### Two RL experts
+
+Asynchronous online reinforcement learning with prime-rl on long-horizon tasks trains two specialized LoRA experts on the fine-tuned model: one for desktop and web, one for terminal, MCP and API.
+3. 03
+
+#### One merged model
+
+Both experts merge back into the fine-tuned model with equal weight and no further training. The result combines the general skills from supervised fine-tuning with each expert's specialized skills.
+
+### Harness
+
+Alongside training, we rebuilt our harness, the loop that executes the model's actions and manages its context over hundreds of steps, using feedback from agentic performance on OSWorld 2.0. Agents tagged why each task failed and engineers reviewed their fixes. The largest changes were giving the agent a reliable memory that can keep track of hundreds of steps, and a shell on the desktop machine itself.
+
+Automatic harness engineering OSWorld 2.0 average partial score (%)
+
+Aug 10, 2026, 6.1%, milestone Aug 12, 2026, 10.3%, milestone Aug 18, 2026, 12.8%, milestone Aug 19, 2026, 24.8%, milestone Aug 20, 2026, 45.9%, milestone Aug 21, 2026, 51.1%, milestone Aug 26, 2026, 50.9%, milestone Aug 28, 2026, 57.6%, milestone Sep 7, 2026, 58.3%, milestone Sep 8, 2026, 59.8%, milestone
+
+1. 1 Run the shell on the desktop machine itself
+2. 2 Context passthrough during memory compaction
+3. 3 Scale model serving; fix grading setup and adapter crashes
+4. 4 New system prompt; tool and environment fixes (200 → 300 steps · 2 → 4 h)
+5. 5 Fix a vision bug in serving; trim the prompt (300 → 500 steps · 4 → 6 h)
+6. 6 Drive the desktop from the shell: one tool for code and clicks
+7. Holo4 27B release 61.7%
+8. Reported scores, top to bottom: Opus 5.5 81.8% · Opus 5 70.2% · GPT-5.6 Sol 66.2% · Opus 4.8 54.8% · Qwen3.8 27B 48.0% · Sonnet 4.6 41.5%
+
+Opus 5 (70.2%) and GPT-5.6 Sol (66.2%) use max-effort partial rewards on the v2026.08.08 offline set from OpenAI's launch chart, as in the cost-performance plot. Other reference scores come from model cards and the official leaderboard. Task releases, subsets and harnesses vary.
+
+## Holotron4 Nano
+
+Our post-training stack is designed to adapt to new foundation models and produce agents that generalize across interfaces and environments. As a member of the NVIDIA Nemotron Coalition, we applied our latest stack to the Nemotron 3 Nano Omni model as a follow-up to Holotron 3.
+
+The same recipe turns Nemotron 3 Nano Omni into Holotron4 Nano, a generalist agentic model that significantly improves over the base model on GUI workflows and in environments exposing MCP, APIs or coding sandboxes.
+
+### Holotron benchmarks
+
+Nemotron 3 Nano Omni Holotron4 Nano
+
+OSWorld CUA GUI
+
+21.0 → 76.3+55.3
+
+OSWorld 2.0 CUA + Code
+
+0.2 → 7.9+7.7
+
+AutomationBench MCP
+
+19.4 → 35.6+16.2
+
+PinchBench Terminal
+
+84.7 → 88.6+3.9
+
+ALE (Linux, Code) Terminal
+
+0.6 → 8.5+7.9
+
+Gains are absolute percentage-point improvements over Nemotron 3 Nano Omni.
+
+These gains show that our recipe transfers well and can turn a generalist model into an agentic expert. Nothing in it is size-specific.
+
+## Run it yourself
+
+Both sizes are available today on the H Models API. Weights are on Hugging Face in BF16, FP8, NVFP4 and 4-bit GGUF, next to our small model, Holotron4 Nano.
+
+We will release optimized DSpark drafter checkpoints in the coming days to further accelerate inference.
+
+New
+
+Flagship
+
+### Holo4 27B
+
+Dense, 27B
+
+Best accuracy on long, multi-step tasks across web, desktop, and mobile.
+
+85.2% on OSWorld
+
+Context
+
+256K
+
+Input / 1M · $0.04 cached
+
+$0.40
+
+Output / 1M
+
+$3.00
+
+### Holo4 35B-A3B
+
+256K
+
+Input / 1M · $0.03 cached

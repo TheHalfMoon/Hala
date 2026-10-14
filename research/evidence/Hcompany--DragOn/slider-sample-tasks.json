@@ -1,0 +1,36 @@
+[
+  {
+    "intent": "Set it to 1 of a possible 10",
+    "start_bbox": [
+      666,
+      232,
+      688,
+      254
+    ],
+    "end_bbox": [
+      527,
+      238,
+      537,
+      248
+    ],
+    "domain": "slider",
+    "subtype": null,
+    "ordered": true,
+    "image_id": "00f6cad5-a737-56a5-9533-4f13aac3f3d5",
+    "metadata": {
+      "variant": "ios_group",
+      "thumb_size": "l",
+      "context": "settings_panel",
+      "anchor_kind": "AT_NUMERIC",
+      "affordance": {
+        "has_endpoints": false,
+        "has_tick_labels": false,
+        "has_tooltip": false,
+        "has_cross_reference": true,
+        "icon_is_conventional": false,
+        "range_is_conventional": false
+      },
+      "url": "ctx_settings_panel.html?color=lime&track_size=thick&thumb=square&thumb_size=l&theme=dark&icon=temperature&min=0&max=10&initial=3&step=1&show_endpoints=0&show_scale_badge=1&variant=ios_group"
+    }
+  }
+]

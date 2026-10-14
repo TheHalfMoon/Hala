@@ -1,0 +1,1170 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-14",
+  "evidence_kind": "official metadata only; no local weights, no performance qualification",
+  "provisional_foundation": "Qwen/Qwen3.5-4B",
+  "first_runtime_baseline": "Qwen/Qwen3-VL-2B-Instruct",
+  "decision_scope": "Provisional experiment ordering, not adoption or commercial release approval. Deterministic routing baseline remains default.",
+  "candidates": [
+    {
+      "id": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "source": "https://huggingface.co/Qwen/Qwen3.5-4B/tree/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "status": "unqualified",
+      "roles": [
+        "HalaMind",
+        "HalaType"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [
+        "LICENSE"
+      ],
+      "base_models": [
+        {
+          "id": "Qwen/Qwen3.5-4B-Base",
+          "revision": "1001bb4d826a52d1f399e183466143f4da7b741b",
+          "license": "apache-2.0",
+          "provenance": "research/evidence/Qwen--Qwen3.5-4B-Base/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": [
+        "Qwen/Qwen3.5-4B-Base"
+      ],
+      "architecture": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5",
+      "parameters": {
+        "advertised_name": "Qwen3.5-4B",
+        "hub_tensor_count": 4659865088,
+        "stored_dtypes": {
+          "BF16": 4659861248,
+          "F32": 3840
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model.safetensors-00001-of-00002.safetensors",
+          "size": 5329398688,
+          "lfs": {
+            "oid": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+            "size": 5329398688,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model.safetensors-00002-of-00002.safetensors",
+          "size": 3990429408,
+          "lfs": {
+            "oid": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+            "size": 3990429408,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 9319828096,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Prompt/chat-template output requires strict schema adapter; model text is untrusted.",
+      "runtime_requirement": "Qwen3_5 architecture support; card/config version strings are not an independently validated minimum. Must qualify pinned Transformers/vLLM/SGLang build.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 9319730176,
+        "int8": 4659865088,
+        "int4": 2329932544.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Vendor claims 201 languages/dialects; Arabic and RTL task quality unmeasured.",
+      "gui_evidence": "General visual-agent claim; Hala tasks unmeasured.",
+      "quantization_evidence": "Candidate for 8/4-bit experiments; no quantized variant evaluated.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Qwen/Qwen3.5-4B",
+        "pinned_files_manifest": "research/evidence/Qwen--Qwen3.5-4B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Qwen/Qwen3.5-4B/tree/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+      }
+    },
+    {
+      "id": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "source": "https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct/tree/89644892e4d85e24eaac8bacfd4f463576704203",
+      "status": "unqualified",
+      "roles": [
+        "HalaMind",
+        "HalaType"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [],
+      "base_models": [],
+      "base_model_card_declaration": null,
+      "architecture": [
+        "Qwen3VLForConditionalGeneration"
+      ],
+      "model_type": "qwen3_vl",
+      "parameters": {
+        "advertised_name": "Qwen3-VL-2B-Instruct",
+        "hub_tensor_count": 2127532032,
+        "stored_dtypes": {
+          "BF16": 2127532032
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model.safetensors",
+          "size": 4255140312,
+          "lfs": {
+            "oid": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0",
+            "size": 4255140312,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 4255140312,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Prompt/chat-template output requires strict schema adapter; model text is untrusted.",
+      "runtime_requirement": "Card originally recommends Transformers 4.57.0; PyPI 4.57.6 exists as a bounded baseline candidate, not a tested runtime.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 4255064064,
+        "int8": 2127532032,
+        "int4": 1063766016.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Vendor claims multilingual OCR in 32 languages; Arabic-specific performance unmeasured.",
+      "gui_evidence": "Vendor visual-agent and grounding claim; Hala tasks unmeasured.",
+      "quantization_evidence": "Candidate for quantization after FP16 baseline.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Qwen/Qwen3-VL-2B-Instruct",
+        "pinned_files_manifest": "research/evidence/Qwen--Qwen3-VL-2B-Instruct/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Qwen/Qwen3-VL-2B-Instruct/tree/89644892e4d85e24eaac8bacfd4f463576704203"
+      }
+    },
+    {
+      "id": "Hcompany/Holo-3.1-4B",
+      "revision": "8c88265a5a159bfd1492db9243733dd2e6e04a6e",
+      "source": "https://huggingface.co/Hcompany/Holo-3.1-4B/tree/8c88265a5a159bfd1492db9243733dd2e6e04a6e",
+      "status": "unqualified",
+      "roles": [
+        "HalaMind",
+        "HalaType"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [],
+      "base_models": [
+        {
+          "id": "Qwen/Qwen3.5-4B",
+          "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+          "license": "apache-2.0",
+          "provenance": "research/evidence/Qwen--Qwen3.5-4B/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": [
+        "Qwen/Qwen3.6-35B-A3B",
+        "Qwen/Qwen3.5-9B",
+        "Qwen/Qwen3.5-4B",
+        "Qwen/Qwen3.5-0.8B"
+      ],
+      "architecture": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5",
+      "parameters": {
+        "advertised_name": "Holo-3.1-4B",
+        "hub_tensor_count": 5174964736,
+        "stored_dtypes": {
+          "BF16": 5174964736
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model-00001-of-00002.safetensors",
+          "size": 6459246344,
+          "lfs": {
+            "oid": "f7f12ccce5c518a4039dbcd132077e9822639d580843c9cfa0610bf8812485bc",
+            "size": 6459246344,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00002-of-00002.safetensors",
+          "size": 3890831224,
+          "lfs": {
+            "oid": "0490ba7c9b4f6b16b9de8cc2fe50e44657af031c27fec49cb0b87571c0a7cab4",
+            "size": 3890831224,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 10350077568,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Native function calls plus structured JSON per Hcompany docs; schema adapter must restrict to Aladdin vocabulary.",
+      "runtime_requirement": "Config authored with Transformers 5.6.2; Qwen3_5ForConditionalGeneration. Config float32 conflicts with BF16 stored weights; load dtype must be explicit.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 10349929472,
+        "int8": 5174964736,
+        "int4": 2587482368.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Card language en; Arabic retention after post-training unknown.",
+      "gui_evidence": "Computer-use specialized; vendor benchmarks depend on harness.",
+      "quantization_evidence": "Family announces quantization for 35B first; exact compact quantized artifact not investigated.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Hcompany/Holo-3.1-4B",
+        "pinned_files_manifest": "research/evidence/Hcompany--Holo-3.1-4B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Hcompany/Holo-3.1-4B/tree/8c88265a5a159bfd1492db9243733dd2e6e04a6e"
+      },
+      "ancestry_warning": "Card lists four family base models; API collapsed base_model to 0.8B. 4B specific ancestry inferred from family naming/config, not independently proven."
+    },
+    {
+      "id": "Hcompany/Holo-3.1-0.8B",
+      "revision": "72da4c53b351eb60e10a7022279019633c479292",
+      "source": "https://huggingface.co/Hcompany/Holo-3.1-0.8B/tree/72da4c53b351eb60e10a7022279019633c479292",
+      "status": "unqualified",
+      "roles": [
+        "HalaType"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [],
+      "base_models": [
+        {
+          "id": "Qwen/Qwen3.5-0.8B",
+          "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+          "license": "apache-2.0",
+          "provenance": "research/evidence/Qwen--Qwen3.5-0.8B/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": [
+        "Qwen/Qwen3.6-35B-A3B",
+        "Qwen/Qwen3.5-9B",
+        "Qwen/Qwen3.5-4B",
+        "Qwen/Qwen3.5-0.8B"
+      ],
+      "architecture": [
+        "Qwen3_5ForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5",
+      "parameters": {
+        "advertised_name": "Holo-3.1-0.8B",
+        "hub_tensor_count": 1107265600,
+        "stored_dtypes": {
+          "BF16": 1107265600
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model-00001-of-00001.safetensors",
+          "size": 2214629376,
+          "lfs": {
+            "oid": "f972d122ce65df42f9de54a54c847eb08369cc2512eb2a19d0f0ade867c45395",
+            "size": 2214629376,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 2214629376,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Native function calls plus structured JSON per Hcompany docs; schema adapter must restrict to Aladdin vocabulary.",
+      "runtime_requirement": "Config authored with Transformers 5.6.2; Qwen3_5ForConditionalGeneration. Explicit dtype required: config float32, stored weights BF16.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 2214531200,
+        "int8": 1107265600,
+        "int4": 553632800.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Card language en; Arabic-specific performance unknown.",
+      "gui_evidence": "Computer-use specialized; first candidate for a small separate Type baseline.",
+      "quantization_evidence": "Compact artifact conversion unqualified.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Hcompany/Holo-3.1-0.8B",
+        "pinned_files_manifest": "research/evidence/Hcompany--Holo-3.1-0.8B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Hcompany/Holo-3.1-0.8B/tree/72da4c53b351eb60e10a7022279019633c479292"
+      }
+    },
+    {
+      "id": "showlab/ShowUI-2B",
+      "revision": "cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60",
+      "source": "https://huggingface.co/showlab/ShowUI-2B/tree/cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60",
+      "status": "unqualified",
+      "roles": [
+        "HalaType"
+      ],
+      "license": "mit",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "MIT declaration for derived checkpoint; Qwen2-VL base Apache-2.0 declaration must also be retained. No standalone MIT license file in checkpoint root.",
+      "standalone_license_files": [],
+      "base_models": [
+        {
+          "id": "Qwen/Qwen2-VL-2B-Instruct",
+          "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+          "license": "apache-2.0",
+          "provenance": "research/evidence/Qwen--Qwen2-VL-2B-Instruct/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": [
+        "Qwen/Qwen2-VL-2B-Instruct"
+      ],
+      "architecture": [
+        "Qwen2VLForConditionalGeneration"
+      ],
+      "model_type": "qwen2_vl",
+      "parameters": {
+        "advertised_name": "ShowUI-2B",
+        "hub_tensor_count": null,
+        "stored_dtypes": null,
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "pytorch_model.bin",
+          "size": 4418202778,
+          "lfs": {
+            "oid": "68080df785764e98976eb9cc93a07c6c69cf8a6933738496e02aef55b53d2aa3",
+            "size": 4418202778,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 4418202778,
+      "processor": {
+        "preprocessor_config.json": {
+          "do_convert_rgb": true,
+          "do_normalize": true,
+          "do_rescale": true,
+          "do_resize": true,
+          "image_mean": [
+            0.48145466,
+            0.4578275,
+            0.40821073
+          ],
+          "image_processor_type": "Qwen2VLImageProcessor",
+          "image_std": [
+            0.26862954,
+            0.26130258,
+            0.27577711
+          ],
+          "max_pixels": 12845056,
+          "merge_size": 2,
+          "min_pixels": 3136,
+          "patch_size": 14,
+          "processor_class": "Qwen2VLProcessor",
+          "resample": 3,
+          "rescale_factor": 0.00392156862745098,
+          "size": {
+            "max_pixels": 12845056,
+            "min_pixels": 3136
+          },
+          "temporal_patch_size": 2
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Prompt/chat-template output requires strict schema adapter; model text is untrusted.",
+      "runtime_requirement": "Qwen2VLForConditionalGeneration, Qwen2VLProcessor, qwen-vl-utils. Config authored with 4.45.0.dev0; exact compatible build needs qualification.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": null,
+        "int8": null,
+        "int4": null
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Arabic-specific capability unknown.",
+      "gui_evidence": "Grounding outputs relative [0,1] points; navigation action/value/position dict. Never eval generated text.",
+      "quantization_evidence": "No evaluated artifact.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/showlab/ShowUI-2B",
+        "pinned_files_manifest": "research/evidence/showlab--ShowUI-2B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/showlab/ShowUI-2B/tree/cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60"
+      },
+      "warning": "Official checkpoint stores pytorch_model.bin; no safetensors artifact in root tree. Review safe weight loading and exact dependency versions before loading. Weight card declares MIT while source LICENSE at 21ed7cb24be0cc877bb8352ee34d58a9aea2c876 is Apache-2.0; these are different artifact scopes, not one interchangeable license."
+    },
+    {
+      "id": "Qwen/Qwen3-VL-4B-Instruct",
+      "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "source": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct/tree/ebb281ec70b05090aa6165b016eac8ec08e71b17",
+      "status": "unqualified",
+      "roles": [
+        "HalaMind",
+        "HalaType"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [],
+      "base_models": [],
+      "base_model_card_declaration": null,
+      "architecture": [
+        "Qwen3VLForConditionalGeneration"
+      ],
+      "model_type": "qwen3_vl",
+      "parameters": {
+        "advertised_name": "Qwen3-VL-4B-Instruct",
+        "hub_tensor_count": 4437815808,
+        "stored_dtypes": {
+          "BF16": 4437815808
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model-00001-of-00002.safetensors",
+          "size": 4967229296,
+          "lfs": {
+            "oid": "30a01a0556622645a3cce87b655bbbbbc1f170c196099f1b666c93202c3339a9",
+            "size": 4967229296,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00002-of-00002.safetensors",
+          "size": 3908490048,
+          "lfs": {
+            "oid": "046296a2a387efb43b0c997d5833c789604d168834f6e0d3064bf7bb13d002a6",
+            "size": 3908490048,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 8875719344,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Prompt/chat-template output requires strict schema adapter; model text is untrusted.",
+      "runtime_requirement": "Same Qwen3VL processor/model family as 2B; larger residency.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 8875631616,
+        "int8": 4437815808,
+        "int4": 2218907904.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Multilingual OCR claim; Arabic-specific performance unmeasured.",
+      "gui_evidence": "General visual-agent and grounding claim.",
+      "quantization_evidence": "Candidate after FP16 baseline.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Qwen/Qwen3-VL-4B-Instruct",
+        "pinned_files_manifest": "research/evidence/Qwen--Qwen3-VL-4B-Instruct/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Qwen/Qwen3-VL-4B-Instruct/tree/ebb281ec70b05090aa6165b016eac8ec08e71b17"
+      }
+    },
+    {
+      "id": "Hcompany/Holo4-35B-A3B",
+      "revision": "508458727831368da85d53a8055c2b0f923ed4f3",
+      "source": "https://huggingface.co/Hcompany/Holo4-35B-A3B/tree/508458727831368da85d53a8055c2b0f923ed4f3",
+      "status": "unqualified",
+      "roles": [
+        "research_baseline"
+      ],
+      "license": "apache-2.0",
+      "license_status": "declared-permissive-commercial",
+      "license_notes": "Apache-2.0 declaration: commercial use, modification and redistribution permitted subject to license copy, change notices, applicable attribution/NOTICE and patent conditions; no trademark permission. Some checkpoint roots omit full LICENSE; preserve pinned declaration plus standard text.",
+      "standalone_license_files": [
+        "LICENSE"
+      ],
+      "base_models": [
+        {
+          "id": "Qwen/Qwen3.6-35B-A3B",
+          "revision": "995ad96eacd98c81ed38be0c5b274b04031597b0",
+          "license": "apache-2.0",
+          "provenance": "research/evidence/Qwen--Qwen3.6-35B-A3B/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": "Qwen/Qwen3.6-35B-A3B",
+      "architecture": [
+        "Qwen3_5MoeForConditionalGeneration"
+      ],
+      "model_type": "qwen3_5_moe",
+      "parameters": {
+        "advertised_name": "Holo4-35B-A3B",
+        "hub_tensor_count": 35107181936,
+        "stored_dtypes": {
+          "BF16": 35107181936
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model-00001-of-00026.safetensors",
+          "size": 3996199712,
+          "lfs": {
+            "oid": "3b391b0877531f542dddd3ed5dc01657f205884ccdb2d6629617d12fb0f35c13",
+            "size": 3996199712,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00002-of-00026.safetensors",
+          "size": 1284907696,
+          "lfs": {
+            "oid": "64da597fb5181c1c5ee2a884d8477eb887d98f01c9d7e67568b70f6aa7bc8214",
+            "size": 1284907696,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00003-of-00026.safetensors",
+          "size": 3357898360,
+          "lfs": {
+            "oid": "077681a9e3ebc9056fa8dad078b1e81f4b4256a555eea061b19e1d3fdf71e304",
+            "size": 3357898360,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00004-of-00026.safetensors",
+          "size": 3370808712,
+          "lfs": {
+            "oid": "93573262673c3890a11f7bdc9f2918ba4b02fe1a9a730e61b39db6d579054fc0",
+            "size": 3370808712,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00005-of-00026.safetensors",
+          "size": 3357898360,
+          "lfs": {
+            "oid": "eb877d57a4b5d7bc235d597faccb5ee77c8a212dcddc9a660183fb4676c30001",
+            "size": 3357898360,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00006-of-00026.safetensors",
+          "size": 3959424904,
+          "lfs": {
+            "oid": "412382c3e5002a1b420a1fc238a659b0576318f8d652f4ccc8b6fc3a1140427e",
+            "size": 3959424904,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00007-of-00026.safetensors",
+          "size": 1096788232,
+          "lfs": {
+            "oid": "9464346998f119de75252c2330af2a6c3d560e26f7c4e5d73d4b9466da95e333",
+            "size": 1096788232,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00008-of-00026.safetensors",
+          "size": 3946842008,
+          "lfs": {
+            "oid": "fc077a6535849393fd02e4f8740c1ed7778ad8fcb57e9cf4fe284f3185ca9903",
+            "size": 3946842008,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00009-of-00026.safetensors",
+          "size": 1096460848,
+          "lfs": {
+            "oid": "f7b2610c96827978aae2a48fe527562ba4d9797b4eb32fe1a222659a21d4a2b4",
+            "size": 1096460848,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00010-of-00026.safetensors",
+          "size": 3946841992,
+          "lfs": {
+            "oid": "5da556950e1d7d9f3fc482e1bddfa182ae1aece916bfaf96ec2653255863c2d3",
+            "size": 3946841992,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00011-of-00026.safetensors",
+          "size": 1096460752,
+          "lfs": {
+            "oid": "d0d41d7c8804e247db07fcd8735084034de48d2158480b23396ce0cebd01968c",
+            "size": 1096460752,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00012-of-00026.safetensors",
+          "size": 3409971080,
+          "lfs": {
+            "oid": "d9a75c85a68156b00a25f62ebef5a6d188009caf4588a2f980af3227ff65b249",
+            "size": 3409971080,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00013-of-00026.safetensors",
+          "size": 1633331664,
+          "lfs": {
+            "oid": "b293a501475ab68ae315a5fc2ad91d18a587b8b85cca65cdc22fbd8d3db36c4a",
+            "size": 1633331664,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00014-of-00026.safetensors",
+          "size": 3422553872,
+          "lfs": {
+            "oid": "75dd03dadbe20dd92be3fa586139c1184f12c7c3e498b95522229cc14ed3f433",
+            "size": 3422553872,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00015-of-00026.safetensors",
+          "size": 1633659224,
+          "lfs": {
+            "oid": "8443d8d6dc42a6dfe773d18a387b5ed5fcba91f8b8f7b29be7072e0c80b8a254",
+            "size": 1633659224,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00016-of-00026.safetensors",
+          "size": 3946842136,
+          "lfs": {
+            "oid": "88ee83c76b89c8971564605d3a7762a25d5d20be9d3cafef9fd185359d5f25b3",
+            "size": 3946842136,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00017-of-00026.safetensors",
+          "size": 1096460608,
+          "lfs": {
+            "oid": "0165a48a2de0680c9c79275de0a166add00a9dd58c5d61f0374597477441db2b",
+            "size": 1096460608,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00018-of-00026.safetensors",
+          "size": 3946841992,
+          "lfs": {
+            "oid": "15b882af9483db2ec3c5c45beb57d907e3d923b3f7cfef3fd838cc5e536baf9e",
+            "size": 3946841992,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00019-of-00026.safetensors",
+          "size": 1096460808,
+          "lfs": {
+            "oid": "466ce53766c07af0c81a4dbd1ceebbc03d1c7d724c55602ad68bdbfc5bfafb13",
+            "size": 1096460808,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00020-of-00026.safetensors",
+          "size": 3409971072,
+          "lfs": {
+            "oid": "9787aaa36640979c4512096be07c8bdd747ecd5a800b7d2170ea112c30ae663a",
+            "size": 3409971072,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00021-of-00026.safetensors",
+          "size": 1633331744,
+          "lfs": {
+            "oid": "16f6f945357a30a4ff0e9ccbf12924159cc237ccf1206ec3f8d59c67c59ce14f",
+            "size": 1633331744,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00022-of-00026.safetensors",
+          "size": 3370808752,
+          "lfs": {
+            "oid": "4c680ec96644810500236e9ec03988b8a979531c1d15af3f954eb0abec4e7421",
+            "size": 3370808752,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00023-of-00026.safetensors",
+          "size": 3357898392,
+          "lfs": {
+            "oid": "6ea2f065a4aeafe4c14fcdaf6356297d00dee34782a3a43e19f2e5cae077c1b1",
+            "size": 3357898392,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00024-of-00026.safetensors",
+          "size": 3370808752,
+          "lfs": {
+            "oid": "b3123fe991897aa9aa1b8e94154f80d885834d72302e69c2f25de756b9345322",
+            "size": 3370808752,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00025-of-00026.safetensors",
+          "size": 2759146312,
+          "lfs": {
+            "oid": "d5240d120d9aa501f14b7a889fb6032545d983314b9eef636907b772c32247ef",
+            "size": 2759146312,
+            "pointerSize": 135
+          }
+        },
+        {
+          "path": "model-00026-of-00026.safetensors",
+          "size": 1615875128,
+          "lfs": {
+            "oid": "1bd86d77b6847bb29d13249fc30d066a3753e36b2d8056e2bfe97edc89476357",
+            "size": 1615875128,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 70214493112,
+      "processor": {
+        "preprocessor_config.json": {
+          "size": {
+            "longest_edge": 16777216,
+            "shortest_edge": 65536
+          },
+          "patch_size": 16,
+          "temporal_patch_size": 2,
+          "merge_size": 2,
+          "image_mean": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "image_std": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "processor_class": "Qwen3VLProcessor",
+          "image_processor_type": "Qwen2VLImageProcessorFast"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "Native function calls plus structured JSON per Hcompany docs; schema adapter must restrict to Aladdin vocabulary.",
+      "runtime_requirement": "Qwen3_5MoeForConditionalGeneration; config authored with Transformers 5.6.2. ~35.1B resident parameters despite ~3B active.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "LoRA/SFT is a proposed bounded remote experiment; not trained. Exact target modules, optimizer memory, image budget and runtime support must be checked.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 70214363872,
+        "int8": 35107181936,
+        "int4": 17553590968.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Arabic-specific benchmark evidence not found.",
+      "gui_evidence": "Vendor OSWorld 80.8%, OSWorld2 12.3% full success in their harness; neither is Hala qualification.",
+      "quantization_evidence": "Official BF16, FP8, NVFP4 and Q4 GGUF variants announced; this pin is BF16 only.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/Hcompany/Holo4-35B-A3B",
+        "pinned_files_manifest": "research/evidence/Hcompany--Holo4-35B-A3B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/Hcompany/Holo4-35B-A3B/tree/508458727831368da85d53a8055c2b0f923ed4f3"
+      }
+    },
+    {
+      "id": "LiquidAI/d1-omni-600M",
+      "revision": "02b55d7076f15129e59ab3f94783f32c4b088674",
+      "source": "https://huggingface.co/LiquidAI/d1-omni-600M/tree/02b55d7076f15129e59ab3f94783f32c4b088674",
+      "status": "unqualified",
+      "roles": [
+        "HalaReliance"
+      ],
+      "license": "other",
+      "license_status": "conditional-commercial",
+      "license_notes": "LFM Open License v1.0: commercial grant subject to $10M annual-revenue threshold; entities exceeding threshold not licensed. Threshold defined as $10M or more while operative clause says exceeds: do not assume eligibility at boundary. Aggregate Legal Entity/control definition applies. Redistribution sections 4(a-d): copy license, mark changes, retain notices and NOTICE. Nonprofit exception only non-commercial/research. No trademark grant.",
+      "standalone_license_files": [
+        "LICENSE"
+      ],
+      "base_models": [
+        {
+          "id": "LiquidAI/LFM2.5-Encoder-350M",
+          "revision": "b886781f7c6f10ca9b7096e21b83e30a073c2f39",
+          "license": "other",
+          "provenance": "research/evidence/LiquidAI--LFM2.5-Encoder-350M/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": "LiquidAI/LFM2.5-Encoder-350M",
+      "architecture": [
+        "D1OmniModel"
+      ],
+      "model_type": "d1_omni",
+      "parameters": {
+        "advertised_name": "d1-omni-600M",
+        "hub_tensor_count": 587161089,
+        "stored_dtypes": {
+          "F32": 587161089
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model.safetensors",
+          "size": 2348774500,
+          "lfs": {
+            "oid": "0713bb05270c2685ad106522f4092bceeeb3a93cf79b401f399a712296c911e1",
+            "size": 2348774500,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 2348774500,
+      "processor": {},
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "d1 named noul/choice/score Decision Index questions and probability answers, zero output tokens.",
+      "runtime_requirement": "Card requires transformers>=5.15, torch, torchvision, pillow, soundfile. AutoModel trust_remote_code=True; vendor CPU float32/GPU float16, avoid BF16. Exact remote code review required.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "Specialist decision adaptation research only; no reproduced training pipeline. Compare deterministic routing and independently trained sub-600M classifier.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 1174322178,
+        "int8": 587161089,
+        "int4": 293580544.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Card lists ar for text; audio trained on English requests, <=30s clips.",
+      "gui_evidence": "Single-pass decisions, not action generation; advisory routing only.",
+      "quantization_evidence": "Quantization requires calibration; no qualified low-bit runtime.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/LiquidAI/d1-omni-600M",
+        "pinned_files_manifest": "research/evidence/LiquidAI--d1-omni-600M/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/LiquidAI/d1-omni-600M/tree/02b55d7076f15129e59ab3f94783f32c4b088674"
+      }
+    },
+    {
+      "id": "LiquidAI/d1-3B",
+      "revision": "051bcc464b01b9f92942b364d9586b0ef5912432",
+      "source": "https://huggingface.co/LiquidAI/d1-3B/tree/051bcc464b01b9f92942b364d9586b0ef5912432",
+      "status": "unqualified",
+      "roles": [
+        "HalaReliance_comparison"
+      ],
+      "license": "other",
+      "license_status": "conditional-commercial",
+      "license_notes": "LFM Open License v1.0: commercial grant subject to $10M annual-revenue threshold; entities exceeding threshold not licensed. Threshold defined as $10M or more while operative clause says exceeds: do not assume eligibility at boundary. Aggregate Legal Entity/control definition applies. Redistribution sections 4(a-d): copy license, mark changes, retain notices and NOTICE. Nonprofit exception only non-commercial/research. No trademark grant.",
+      "standalone_license_files": [
+        "LICENSE"
+      ],
+      "base_models": [
+        {
+          "id": "LiquidAI/LFM2.5-VL-3B",
+          "revision": "35a118d938ce6d123ac2d371649f24a8efb69058",
+          "license": "other",
+          "provenance": "research/evidence/LiquidAI--LFM2.5-VL-3B/provenance.json"
+        }
+      ],
+      "base_model_card_declaration": "LiquidAI/LFM2.5-VL-3B",
+      "architecture": [
+        "Lfm2VlForConditionalGeneration"
+      ],
+      "model_type": "lfm2_vl",
+      "parameters": {
+        "advertised_name": "d1-3B",
+        "hub_tensor_count": 3123483888,
+        "stored_dtypes": {
+          "BF16": 3123483888
+        },
+        "note": "Total tensor count includes vision/auxiliary modules; product size label is not exact residency."
+      },
+      "weight_artifacts": [
+        {
+          "path": "model.safetensors",
+          "size": 6247065504,
+          "lfs": {
+            "oid": "50e03317847caf6df9a9aee27ed40f20554a86a21e60d1d47ba41a422b546c0c",
+            "size": 6247065504,
+            "pointerSize": 135
+          }
+        }
+      ],
+      "weights_disk_bytes": 6247065504,
+      "processor": {
+        "processor_config.json": {
+          "image_processor": {
+            "data_format": "channels_first",
+            "do_image_splitting": true,
+            "do_normalize": true,
+            "do_pad": true,
+            "do_rescale": true,
+            "do_resize": true,
+            "downsample_factor": 2,
+            "encoder_patch_size": 16,
+            "image_mean": [
+              0.5,
+              0.5,
+              0.5
+            ],
+            "image_processor_type": "Lfm2VlImageProcessor",
+            "image_std": [
+              0.5,
+              0.5,
+              0.5
+            ],
+            "max_image_tokens": 256,
+            "max_num_patches": 1024,
+            "max_pixels_tolerance": 2.0,
+            "max_tiles": 10,
+            "min_image_tokens": 64,
+            "min_tiles": 2,
+            "resample": 3,
+            "rescale_factor": 0.00392156862745098,
+            "return_row_col_info": true,
+            "size": {
+              "height": 512,
+              "width": 512
+            },
+            "tile_size": 512,
+            "use_thumbnail": true
+          },
+          "processor_class": "Lfm2VlProcessor"
+        }
+      },
+      "image_inputs": "Processor supports RGB/PIL-decoded screenshots; JPEG/PNG container acceptance and resize coordinate mapping require runtime tests. No universal fixed screenshot size.",
+      "tool_format": "d1 named noul/choice/score Decision Index questions and probability answers, zero output tokens.",
+      "runtime_requirement": "Card requires transformers>=5.14. AutoModel with custom decision code; CPU float32/GPU BF16 recommended by vendor, hardware dependent.",
+      "runtime_compatibility_tested": false,
+      "training_feasibility": "Specialist decision adaptation research only; no reproduced training pipeline. Compare deterministic routing and independently trained sub-600M classifier.",
+      "weight_memory_lower_bounds_bytes": {
+        "fp16": 6246967776,
+        "int8": 3123483888,
+        "int4": 1561741944.0
+      },
+      "memory_estimate_scope": "Storage-only ideal bit-width arithmetic on TOTAL tensor count. Excludes quantization scales, non-quantized towers, activations, KV/state caches, runtime allocation and allocator fragmentation. Not GPU requirements.",
+      "gpu_requirements_measured": null,
+      "arabic_evidence": "Card lists ar; Hala Arabic routing quality unmeasured.",
+      "gui_evidence": "Typed decisions over text/images, not general chat or completion authority.",
+      "quantization_evidence": "No qualified low-bit runtime.",
+      "measurements": {
+        "arabic_task_success": null,
+        "gui_grounding_accuracy": null,
+        "complete_task_success": null,
+        "warm_latency_ms": null,
+        "cold_latency_ms": null,
+        "runtime_residency_bytes": null,
+        "gpu_seconds_per_verified_task": null,
+        "cost_per_verified_task_usd": null
+      },
+      "provenance": {
+        "hub_api": "https://huggingface.co/api/models/LiquidAI/d1-3B",
+        "pinned_files_manifest": "research/evidence/LiquidAI--d1-3B/provenance.json",
+        "tree_api": "https://huggingface.co/api/models/LiquidAI/d1-3B/tree/051bcc464b01b9f92942b364d9586b0ef5912432"
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "_id": "6738310a5bfecf1be6e6cad0",
+  "id": "showlab/ShowUI-2B",
+  "private": false,
+  "tags": [
+    "pytorch",
+    "qwen2_vl",
+    "GUI agents",
+    "vision-language-action model",
+    "computer use",
+    "arxiv:2411.17465",
+    "base_model:Qwen/Qwen2-VL-2B-Instruct",
+    "base_model:finetune:Qwen/Qwen2-VL-2B-Instruct",
+    "license:mit",
+    "eval-results",
+    "region:us"
+  ],
+  "downloads": 2061,
+  "likes": 280,
+  "modelId": "showlab/ShowUI-2B",
+  "author": "showlab",
+  "sha": "cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60",
+  "lastModified": "2025-03-11T06:15:08.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "Qwen2VLForConditionalGeneration"
+    ],
+    "model_type": "qwen2_vl",
+    "processor_config": {
+      "chat_template": "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}"
+    },
+    "tokenizer_config": {
+      "bos_token": null,
+      "chat_template": "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}{% if loop.first and message['role'] != 'system' %}<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n{% endif %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}",
+      "eos_token": "<|im_end|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": null
+    }
+  },
+  "cardData": {
+    "tags": [
+      "GUI agents",
+      "vision-language-action model",
+      "computer use"
+    ],
+    "base_model": [
+      "Qwen/Qwen2-VL-2B-Instruct"
+    ],
+    "license": "mit"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "added_tokens.json"
+    },
+    {
+      "rfilename": "chat_template.json"
+    },
+    {
+      "rfilename": "config.json"
+    },
+    {
+      "rfilename": "examples/0730d43001da36204b8cb9495b61308.png"
+    },
+    {
+      "rfilename": "examples/chrome.png"
+    },
+    {
+      "rfilename": "examples/showui.jpg"
+    },
+    {
+      "rfilename": "generation_config.json"
+    },
+    {
+      "rfilename": "merges.txt"
+    },
+    {
+      "rfilename": "preprocessor_config.json"
+    },
+    {
+      "rfilename": "pytorch_model.bin"
+    },
+    {
+      "rfilename": "special_tokens_map.json"
+    },
+    {
+      "rfilename": "tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer_config.json"
+    },
+    {
+      "rfilename": "vocab.json"
+    }
+  ],
+  "spaces": [
+    "tardellirs/model-pulse",
+    "emanforhelp/model-pulse",
+    "showlab/ShowUI",
+    "orby-osu/UGround-V1-2B",
+    "SuperCS/ShowUI",
+    "kp-forks/ShowUI",
+    "myratmyradov1997/show_ui_test",
+    "truebit/ShowUI",
+    "jahanbaev/howUI",
+    "jahanbaev/ShowUI",
+    "Ed3scomb3s/ShowUI",
+    "sheshkar/modelo",
+    "techdrizzdev/ui_model_eval",
+    "baqr/computer_use_ootb",
+    "iteedev/ShowUI",
+    "johnisafridge/ShowUI",
+    "AI-DrivenTesting/ShowUI",
+    "falan42/ShowUI",
+    "Akashchikkam/ShowUI",
+    "yuchenm1303/ShowUI",
+    "Cristobal299/fenix-grounding",
+    "hackerhx/ShowUI",
+    "sacruise/gui-grounding"
+  ],
+  "createdAt": "2024-11-16T05:43:38.000Z",
+  "usedStorage": 13254304538
+}

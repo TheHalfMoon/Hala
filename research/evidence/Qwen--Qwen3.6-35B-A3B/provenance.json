@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/Qwen/Qwen3.6-35B-A3B",
+    "type": "hub_api",
+    "revision": "995ad96eacd98c81ed38be0c5b274b04031597b0"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/LICENSE",
+    "file": "LICENSE",
+    "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/README.md",
+    "file": "README.md",
+    "sha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/config.json",
+    "file": "config.json",
+    "sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/model.safetensors.index.json",
+    "file": "model.safetensors.index.json",
+    "sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/preprocessor_config.json",
+    "file": "preprocessor_config.json",
+    "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+  }
+]

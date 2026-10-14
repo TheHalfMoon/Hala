@@ -1,0 +1,237 @@
+{
+  "_id": "66cee7970454d6467b65060e",
+  "id": "Qwen/Qwen2-VL-2B-Instruct",
+  "private": false,
+  "pipeline_tag": "image-text-to-text",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "qwen2_vl",
+    "image-text-to-text",
+    "multimodal",
+    "conversational",
+    "en",
+    "arxiv:2409.12191",
+    "arxiv:2308.12966",
+    "base_model:Qwen/Qwen2-VL-2B",
+    "base_model:finetune:Qwen/Qwen2-VL-2B",
+    "license:apache-2.0",
+    "text-generation-inference",
+    "endpoints_compatible",
+    "deploy:azure",
+    "region:us"
+  ],
+  "downloads": 1201033,
+  "likes": 525,
+  "modelId": "Qwen/Qwen2-VL-2B-Instruct",
+  "author": "Qwen",
+  "sha": "895c3a49bc3fa70a340399125c650a463535e71c",
+  "lastModified": "2025-01-12T01:59:29.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "Qwen2VLForConditionalGeneration"
+    ],
+    "model_type": "qwen2_vl",
+    "processor_config": {
+      "chat_template": "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}{% if loop.first and message['role'] != 'system' %}<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n{% endif %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}"
+    },
+    "tokenizer_config": {
+      "bos_token": null,
+      "chat_template": "{% set image_count = namespace(value=0) %}{% set video_count = namespace(value=0) %}{% for message in messages %}{% if loop.first and message['role'] != 'system' %}<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n{% endif %}<|im_start|>{{ message['role'] }}\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\n{% else %}{% for content in message['content'] %}{% if content['type'] == 'image' or 'image' in content or 'image_url' in content %}{% set image_count.value = image_count.value + 1 %}{% if add_vision_id %}Picture {{ image_count.value }}: {% endif %}<|vision_start|><|image_pad|><|vision_end|>{% elif content['type'] == 'video' or 'video' in content %}{% set video_count.value = video_count.value + 1 %}{% if add_vision_id %}Video {{ video_count.value }}: {% endif %}<|vision_start|><|video_pad|><|vision_end|>{% elif 'text' in content %}{{ content['text'] }}{% endif %}{% endfor %}<|im_end|>\n{% endif %}{% endfor %}{% if add_generation_prompt %}<|im_start|>assistant\n{% endif %}",
+      "eos_token": "<|im_end|>",
+      "pad_token": "<|endoftext|>",
+      "unk_token": null
+    }
+  },
+  "cardData": {
+    "license": "apache-2.0",
+    "language": [
+      "en"
+    ],
+    "pipeline_tag": "image-text-to-text",
+    "tags": [
+      "multimodal"
+    ],
+    "library_name": "transformers",
+    "base_model": [
+      "Qwen/Qwen2-VL-2B"
+    ]
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModelForMultimodalLM",
+    "pipeline_tag": "image-text-to-text",
+    "processor": "AutoProcessor"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "LICENSE"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "chat_template.json"
+    },
+    {
+      "rfilename": "config.json"
+    },
+    {
+      "rfilename": "generation_config.json"
+    },
+    {
+      "rfilename": "merges.txt"
+    },
+    {
+      "rfilename": "model-00001-of-00002.safetensors"
+    },
+    {
+      "rfilename": "model-00002-of-00002.safetensors"
+    },
+    {
+      "rfilename": "model.safetensors.index.json"
+    },
+    {
+      "rfilename": "preprocessor_config.json"
+    },
+    {
+      "rfilename": "tokenizer.json"
+    },
+    {
+      "rfilename": "tokenizer_config.json"
+    },
+    {
+      "rfilename": "vocab.json"
+    }
+  ],
+  "spaces": [
+    "tardellirs/model-pulse",
+    "embedl/hfviewer",
+    "fastgpu/vram-and-gpu-cost-calculator",
+    "emanforhelp/model-pulse",
+    "gokaygokay/FLUX-Prompt-Generator",
+    "aquanode/gpu-vram-calculator",
+    "Expanded-Repetition/Expanded-Repetition",
+    "showlab/ShowUI",
+    "artificialguybr/qwen-vl",
+    "maxiw/Qwen2-VL-Detection",
+    "MaziyarPanahi/Qwen2-VL-2B",
+    "build-small-hackathon/KnowledgeMesh",
+    "TIGER-Lab/MEGA-Bench",
+    "yeliudev/VideoMind-2B",
+    "AdrienB134/rag_ColPali_Qwen2VL",
+    "dmorawiec/Qwen-VL-Object-Detection",
+    "lightonai/vision_pipeline",
+    "arad1367/Multimodal_RAG_Pejman",
+    "DeF0017/OCR-using-Qwen2-VL",
+    "ponytail/humanLLaVa",
+    "Swekerr/Qwen2VL-OCR",
+    "zongzhuofan/EasyRef",
+    "awacke1/Leaderboard-Deepseek-Gemini-Grok-GPT-Qwen",
+    "Solo448/OCR_MULTILINGUAL-GOT",
+    "clayton07/qwen2-colpali-ocr",
+    "orby-osu/UGround-V1-2B",
+    "Steven10429/apply_lora_and_quantize",
+    "weihongliang/Personalized-VQA",
+    "marstin/VLM-Lens",
+    "AceXRoux/GeoVLM",
+    "Speedofmastery/orynxml-backend",
+    "Kqp1227/AttrLLM",
+    "Kqp1227/AttrLLM_Studio",
+    "Um34ER/bazaar-bridge-ocr",
+    "build-small-hackathon/GAHAKU-EXAM",
+    "zestdapoet/Pattern_detection_in_technical_drawings",
+    "harshit1775/kirana-saathi",
+    "nhatipoglu/demo-vit-v2",
+    "VinitT/StoryGeneraterFromImages",
+    "profchaos/OCR-APP",
+    "Atulit23/Qwen-OCR",
+    "Adi-yogi/OCR_1",
+    "akhil-vaidya/GOT-OCR",
+    "omkar-surve126/Image-to-Text-Using-General-OCR-Theory",
+    "Ashtuosh0x/OCR-and-Keyword-Search-with-Qwen2-VL",
+    "pranshh/ocr-assignment",
+    "whyumesh/fusion",
+    "gokulrajad/QwenVL-Demo",
+    "Rahatara/rag_ColPali_Qwen2VL",
+    "Arhimest/Funmoments",
+    "SuperCS/ShowUI",
+    "LilyLeeeeeea/test1",
+    "wesleyw28/110app",
+    "jmura84/Multimodal_translator",
+    "jyotiradityachavan/document-ai-qwen-vl_2",
+    "MagnosX/llama-finetuned",
+    "prockot/biomed-paper-extractor",
+    "adsfraz787/blocked-solver",
+    "zahidmiana/DocumentTOMarkdown",
+    "tahir-next/qwen2vl-document-markdown",
+    "lablab-ai-amd-developer-hackathon/dr-rocm",
+    "Xevolvo/xevolvo-ai",
+    "build-small-hackathon/montreal-road-inspector",
+    "build-small-hackathon/Memory-Quilt",
+    "build-small-hackathon/Household-Food-Waste-Forensics",
+    "neha-cz/KALEIDO",
+    "Rurouni-II/dr-rocm",
+    "nhibuilds/voxae",
+    "CODEXSHAN/satquery",
+    "Luvsanjamts/weather_agent_Lab4",
+    "lucianotonet/Qwen2-VL-2B",
+    "Claus228/Qwen2-VL-2B",
+    "tuandunghcmut/Qwen2-VL-2B-clone-2",
+    "akash4552/The_Last_one",
+    "mateoluksenberg/qwenSpace",
+    "JeCabrera/FLUX-Prompt-Generator-2",
+    "apjanco/qwen2-vl-fmb-demo",
+    "Avles7/QwenVL2",
+    "VinitT/Qwen2TalkWithImage",
+    "Neilansh/OCR-QWEN2-VL",
+    "Ayantanu/image-ocr",
+    "RufusRubin777/Qwen2VL-OCR_CPU",
+    "Avles7/DemoVL",
+    "tejas1206/ImageOCR",
+    "ombhojane/eterniq",
+    "Manogari2003/OCR-with-Keyword-Search-from-Image",
+    "mannywho/webocr",
+    "lukiod/streamlit_qwen",
+    "hong1233718/AI-Chatbot",
+    "TusharDK/OCRwithKeywordExtraction",
+    "Yassmen/OCR_App",
+    "tushar2025/OCR",
+    "jahnaviandey/OCR",
+    "AutismoChan/ai-assignment",
+    "Atulit23/ColPali",
+    "SHX09/DEKHO",
+    "Awsam17/OCR-Hindi-English",
+    "DevParapalli/test-space",
+    "ayush2607/_ocr_model",
+    "Mehwish12/Assignment"
+  ],
+  "createdAt": "2024-08-28T09:02:15.000Z",
+  "safetensors": {
+    "parameters": {
+      "BF16": 2208985600
+    },
+    "total": 2208985600
+  },
+  "usedStorage": 8836101536
+}

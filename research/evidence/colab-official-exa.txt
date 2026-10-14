@@ -1,0 +1,587 @@
+# Google Colab
+URL: https://research.google.com/colaboratory/faq.html
+
+Google Colab
+
+Colaboratory
+
+# Frequently Asked Questions
+
+## The Basics
+
+What is Colaboratory?
+
+Colab is a hosted Jupyter Notebook service that requires no setup to use and provides free of charge access to computing resources, including GPUs and TPUs. Colab is especially well suited to machine learning, data science, and education.
+
+Is it really free of charge to use?
+
+Yes. Colab is free of charge to use.
+
+Seems too good to be true. What are the limitations?
+
+In order to provide access to as many students and under-resourced groups around the world as possible, Colab prioritizes users who are actively programming in a notebook. Colab also restricts actions that negatively impact others or are associated with bypassing our anti-abuse policies. See Which activities are restricted in Colab? for a list of actions that are disallowed. Colab resources are not guaranteed and not unlimited, and usage limits sometimes fluctuate. This is necessary for Colab to be able to provide resources free of charge. For more details, see Resource Limits.
+
+Which activities are restricted in Colab?
+
+Colab managed runtimes prohibit abusive actions that negatively impact others and actions associated with bypassing our policies. The following are disallowed from all managed Colab runtimes:
+
+- file hosting, media serving, or other web service offerings not related to interactive compute with Colab
+- downloading torrents or engaging in peer-to-peer file-sharing
+- connecting to remote proxies
+- mining cryptocurrency
+- running denial-of-service attacks
+- password cracking
+- using multiple accounts to work around access or resource usage restrictions
+- creating deepfakes
+- employing techniques such as containerization to circumvent anti-abuse policies
+
+Unfortunately it is not possible to provide more specificity in how our abuse detection system works as bad actors try to take advantage of the compute subsidies Colab offers.
+
+In addition to these restrictions, and in order to provide access to students and under-resourced groups around the world, Colab prioritizes users who are actively programming in a notebook. The following are disallowed from managed Colab runtimes running free of charge, without a positive Colab compute unit balance, and may be terminated at any time without warning:
+
+- remote control such as SSH shells, remote desktops
+- bypassing the notebook UI to interact primarily via a web UI
+- chess training
+- running distributed computing workers
+
+You can remove these types of restrictions by purchasing one of our paid plans here and maintaining a positive compute unit balance. You may find not all runtimes that match the descriptions are terminated; we attempt to support as much as we can within reason to benefit the global community.
+
+You can purchase guaranteed resources without Colab-enforced usage limitations via GCP Marketplace or Colab Enterprise or use your own compute via a local runtime you control. Note that Google Drive mounting on the runtime filesystem will not work with these approaches.
+
+Why does my Colab runtime keep terminating prematurely?
+
+In order to provide access to students and under-resourced groups around the world, Colab prioritizes users who are actively programming in a notebook.
+
+Users in our free of charge tier commonly experience runtime terminations when attempting to bypass the notebook UI and using a web UI on a Colab managed runtime for content generation. These experiences are popular and impressive, but are compute intensive and fall outside our priorities for our free of charge tier users, who we want to help in programming.
+
+You can remove these types of restrictions by purchasing one of our paid plans here.
+
+You can purchase guaranteed resources without Colab-enforced usage limitations via GCP Marketplace or Colab Enterprise or use your own compute via a local runtime you control. Note that Google Drive mounting on the runtime filesystem will not work with these approaches.
+
+What is the difference between Jupyter and Colab?
+
+Jupyter is the open source project on which Colab is based. Colab allows you to use and share Jupyter notebooks with others without having to download, install, or run anything.
+
+## Using Colab
+
+Where are my notebooks stored, and can I share them?
+
+Colab notebooks are stored in Google Drive, or can be loaded from GitHub. Colab notebooks can be shared just as you would with Google Docs or Sheets. Simply click the Share button at the top right of any Colab notebook, or follow these Google Drive file sharing instructions.
+
+If I share my notebook, what will be shared?
+
+If you choose to share a notebook, the full contents of your notebook (text, code, output, and comments) will be shared. You can omit code cell output from being saved or shared by using Edit > Notebook settings > Omit code cell output when saving this notebook. The virtual machine you’re using, including any custom files and libraries that you’ve setup, will not be shared. So it’s a good idea to include cells which install and load any custom libraries or files that your notebook needs.
+
+Can I import an existing Jupyter/IPython notebook into Colab?
+
+Yes. Choose "Upload notebook" from the File menu.
+
+How can I search Colab notebooks?
+
+You can search Colab notebooks in Google Drive usingFile > Search notebooks in Drive. You can also search for notebooks that you have opened recently usingFile > Open notebook.
+
+Where is my code executed? What happens to my execution state if I close the browser window?
+
+Code is executed in a virtual machine private to your account. Virtual machines are deleted when idle for a while, and have a maximum lifetime enforced by the Colab service.
+
+How can I get my data out?
+
+You can download any Colab notebook that you’ve created from Google Drive following these instructions, or from within Colab’s File menu. All Colab notebooks are stored in the open source Jupyter notebook format ( .ipynb).
+
+How can I reset the virtual machine(s) my code runs on, and why is this sometimes unavailable?
+
+Selecting Runtime > Disconnect and delete runtime to return all managed virtual machines assigned to you to their original state. This can be helpful in cases where a virtual machine has become unhealthy e.g. due to accidental overwrite of system files, or installation of incompatible software. Colab limits how often this can be done to prevent undue resource consumption. If an attempt fails, please try again later.
+
+Why does`drive.mount()` saying "timed out", and why do I/O operations reading from folders sometimes fail?
+
+Google Drive operations can time out when the number of files or subfolders in a folder grows too large. Avoid storing thousands of items in the top-level "My Drive" folder: storing more than approximately ten thousand items in the root directory can cause mounting to fail.If you encounter this problem, try moving files and folders directly contained in "My Drive" into sub-folders, though each folder should not contain more than ten thousand items.A similar problem can occur when reading from other folders after a successful`drive.mount()`. Accessing items in any folder containing many items can cause errors like`OSError: [Errno 5] Input/output error`. You can fix this problem by moving directly contained items into sub-folders.Note that "deleting" files or subfolders by moving them to the Trash may not be enough; if that doesn't seem to help, make sure to also Empty your Trash.You can also try using DagsHub Storage, an alternative to Google Drive that is built for working on large datasets and machine learning and tends to be more scalable and reliable for the type of workflows common on Colab. Read more in their docs, or check out the example notebook. DagsHub is a third-party service not affiliated with Google.
+
+Why is`drive.mount()` sometimes slow?
+
+Files stored in Google Drive may be stored in a distant region from your Colab runtime. To maximize performance, reduce read/writes from Drive. Note that operations in folders mounted by`drive.mount()`, rely on the Colab runtime. If you attempt to move files from one folder to another via Colab and your operation is interrupted, you may lose all of the data in transit.
+
+Why does "Mount Drive" sometimes insert code into the notebook?
+
+Mounting Google Drive on Colab allows any code in your notebook to access any files in your Google Drive. We usually require that users manually grant this access every time they connect to a new runtime by adding a code cell to the notebook. This ensures that the user fully understands the permissions being granted to the notebook.In some cases, we only require Google Drive authorization once, and automatically re-mount Google Drive during future sessions. To protect your files, we only allow this when a notebook passes multiple checks. For example, any notebooks which have been edited by another user do not automatically mount Google Drive.
+
+Why do Drive operations sometimes fail due to quota?
+
+Google Drive enforces various limits, including per-user and per-file operation count and bandwidth quotas. Exceeding these limits will trigger`Input/output error` as above, and show a notification in the Colab UI. A typical cause is accessing a popular shared file, or accessing too many distinct files too quickly. Workarounds include:
+
+- Copy the file using drive.google.com and don't share it widely so that other users don't use up its limits.
+- Avoid making many small I/O reads, instead opting to copy data from Drive to the Colab VM in an archive format (e.g.`.zip` or`.tar.gz` files) and unarchive the data locally on the VM instead of in the mounted Drive directory.
+- Wait a day for quota limits to reset.
+
+Why do Drive operations sometimes fail due to storage quota?
+
+Google Drive imposes a limit on how much data can be stored in it by each user. If Drive operations are failing with`Input/output error` and a notification says storage quota has been exceeded, delete some files using drive.google.com and Empty your Trash to reclaim the space. It might take a little while for the reclaimed space to be available in Colab.
+
+If you'd like to purchase more Drive space, visit Google Drive. Note that purchasing more space on Drive will not increase the amount of disk available on Colab VMs. Subscribing to Colab Pro will.
+
+## Resource Limits
+
+Why aren’t resources guaranteed in Colab?
+
+In order to dynamically offer powerful GPUs at scale for a low price, Colab needs to maintain the flexibility to adjust usage limits and hardware availability dynamically.
+
+In the version of Colab that is free of charge, access to expensive resources like GPUs is heavily restricted. For the paid version of Colab, we target giving our users high value per their spend.
+
+You can purchase guaranteed resources without Colab-enforced usage limitations via GCP Marketplace or Colab Enterprise or use your own compute via a local runtime you control. Note that Google Drive mounting on the runtime filesystem will not work with these approaches.
+
+What are the usage limits of Colab?
+
+Colab is able to provide resources free of charge in part by having dynamic usage limits that sometimes fluctuate, and by not providing guaranteed or unlimited resources. This means that overall usage limits as well as idle timeout periods, maximum VM lifetime, GPU types available, and other factors vary over time. Colab does not publish these limits, in part because they can vary over time.
+
+You can access more compute power and longer runtimes by purchasing one of our paid plans here. These plans have similar dynamics in that resource availability may change over time. Paid users whose compute unit balance is exhausted will revert to the free-of-charge tier policies and restrictions until the balance is increased.
+
+You can purchase guaranteed resources without Colab-enforced usage limitations via GCP Marketplace or Colab Enterprise or use your own compute via a local runtime you control. Note that Google Drive mounting on the runtime filesystem will not work with these approaches.
+
+What types of GPU/TPUs are available in Colab?
+
+The types of GPUs and TPUs that are available in Colab vary over time. This is necessary for Colab to be able to provide access to these resources free of charge.
+
+You can access premium GPUs subject to availability by purchasing one of our paid plans here.
+
+If you would like access to specific dedicated hardware, explore using GCP Marketplace Colab.
+
+How long can notebooks run in Colab?
+
+Colab prioritizes interactive compute. Runtimes will time out if you are idle.
+
+In the version of Colab that is free of charge notebooks can run for at most 12 hours, depending on availability and your usage patterns. Colab Pro, Pro+, and Pay As You Go offer you increased compute availability based on your compute unit balance.
+
+In general, notebooks can run for at most 12 hours, depending on availability and your usage patterns. You can expect to experience backend termination if you exhaust your available compute units on a Pro, Pro+, or Pay As You Go plan.
+
+Colab Pro+ supports continuous code execution for up to 24 hours if you have sufficient compute units. Idle timeouts only apply if code execution terminates.
+
+You can fully relax any runtime limits and idle timeouts by purchasing a dedicated VM at GCP Marketplace.
+
+How much memory is available in Colab?
+
+In the version of Colab that is free of charge you are able to access VMs with a standard system memory profile.
+
+In paid versions of Colab you are able to access machines with a high memory system profile subject to availability and your compute unit balance.
+
+Note that memory refers to system memory. All GPU chips have the same memory profile.
+
+How can I get the most out of Colab?
+
+Consider closing your Colab tabs when you are done with your work, and avoid opting for GPUs or extra memory when it is not needed for your work. This will make it less likely that you will run into usage limits within Colab. You can always purchase more compute via Pay As You Go should you hit limits.
+
+For more information on getting the most out of the paid version of Colab, see Making the Most of your Colab Subscription.
+
+I saw a message saying my GPU is not being utilized. What should I do?
+
+Colab offers optional accelerated compute environments, including GPU and TPU. Executing code in a GPU or TPU runtime does not automatically mean that the GPU or TPU is being utilized. To avoid hitting your GPU usage limits, we recommend switching to a standard runtime if you are not utilizing the GPU. Choose Runtime > Change Runtime Type and set Hardware Accelerator to None.
+
+For examples of how to utilize GPU and TPU runtimes in Colab, see the Tensorflow With GPU and TPUs In Colab example notebooks.
+
+## The New AI-First Colab
+
+What is the new AI-First Google Colab?
+
+The new AI-First Colab is a reimagining of the Colab experience, transforming it into an intelligent coding partner. It features a suite of deeply integrated AI capabilities designed to understand your goals and accelerate your entire workflow. This is all accessed through a unified conversational experience, available right in your notebook. Key features include:
+
+- Iterative Querying: A simple conversational interface for generating code, explaining concepts, and fixing errors.
+- Next-Generation Data Science Agent (DSA): An agent that can autonomously analyze data, generate a plan, execute code, and present findings.
+- Effortless Code Transformation: The ability to modify existing code across your notebook using natural language descriptions.
+
+How do I use the new AI features in Colab?
+
+The AI features are enabled by default for all eligible users and are integrated throughout the Colab interface. The easiest way to get started is to click the Gemini spark icon in the notebook footer to open the main chat panel. You will also see AI-enabled autocompletions as you type.
+
+I don't see the new AI features. What's going on?
+
+Access to Colab's AI features requires your Google account's age to be 18+. If you meet the age requirement and still do not see the features (like the Gemini spark icon or AI-autocompletions), please ensure you are in a supported locale.
+
+If you have confirmed your eligibility and still lack access, please report this using the in-product feedback tool (Help > Send feedback). If you'd like a response via email, you must select the box titled 'We may email you for more information or updates'.
+
+What can I do with the AI in Colab?
+
+Colab's AI is designed to be a versatile partner. You can ask it to:
+
+- Generate and transform Code: Ask for short functions, boilerplate, or even refactor code across multiple cells.
+- Chat about python libraries: Discover new tools and ask for sample usage grounded in the context of your work.
+- Fix errors intelligently: When errors arise, Colab will iteratively suggest fixes in a diff view for your review.
+- Execute autonomous agentic flows: Trigger complete analytical workflows with the Data Science Agent. Simply provide a high-level goal, and the agent will generate a plan, execute the necessary code, and present its findings.
+- Analyze your data: Upload files (like CSVs, JSON, or Excel) or point to data in your runtime and ask the AI to perform in-depth analysis, create visualizations, and uncover insights.
+
+Can the AI autonomously execute code in my notebook?
+
+Yes. A key feature of the AI-First Colab is its ability to create and execute plans to accomplish a goal. When you ask for a multi-step task, such as analyzing a dataset, the agent will present a plan for your review. You can then choose to execute it, maintaining control while the agent works. During execution, it can reason about results, self-correct errors, and adjust its plan.
+
+Does Colab AI have access to the internet?
+
+Colab AI itself does not directly browse the internet. However, it can generate and execute code that accesses the internet (e.g., using requests to call an API or wget to download a file into your runtime).
+
+Can Colab AI access my Google Drive files or user secrets?
+
+By default, Colab AI does not have access to your Google Drive files or user secrets. However, it can generate code that accesses them at your explicit request.
+
+What kinds of files can Colab AI work with for data analysis?
+
+Colab AI supports a variety of common file types, including CSV, TSV, JSON, and Excel files (XLS, XLSX, XLSM, XLSB). You can upload files directly in the chat interface for analysis.
+
+How can I provide feedback on Colab's AI features?
+
+Your feedback is crucial for improving the experience. For any AI-generated response, you will see thumbs-up and thumbs-down icons. Please use them to rate the quality of the output. For more detailed feedback, use the overflow menu on the right (...) > Send feedback option from the menu.
+
+How should I use the code generated by Colab AI?
+
+Colab's AI is a powerful collaborator designed to accelerate your workflow and help you prototype ideas faster than ever. As with any coding assistant, you are responsible for your use of the code. We strongly recommend that you carefully test, review, and validate all generated code to ensure it is accurate, secure, and meets your project's requirements before relying on it. To assist with this, Colab will also cite any generated code that directly quotes from a source with an open-source license.
+
+What data is collected? How is it used?
+
+When you use generative AI features in Colab, Google collects prompts, related code, generated output, related feature usage information, and your feedback. Google uses this data to provide, improve, and develop Google products and services and machine learning technologies, including Google's enterprise products such as Google Cloud.
+
+To help with quality and improve our products, human reviewers may read, annotate, and process your prompts, generated output, related feature usage information, and your feedback. Please do not include sensitive (e.g., confidential) or personal information that can be used to identify you or others in your prompts or feedback. Your data will be stored in a way where Google cannot tell who provided it and can no longer fulfill any deletion requests and will be retained for up to 18 months.
+
+## Colab and Google AI plans
+
+What is a Google AI plan, and what does it include for Colab?
+
+Google AI plans are Google's paid subscriptions that bundle premium AI features across Google products. Subscribing to an eligible Google AI plan now also unlocks premium Colab benefits, similar to those offered by Colab's own paid plans: a monthly allotment of Colab compute units, access to more powerful GPUs and TPUs, and, on higher plans, additional capabilities such as background execution. The exact benefits depend on your plan, and they are included only with eligible paid Google AI plans (not with storage-only Google One plans). To see the plans available in your region and what each one includes, visit the Google AI plans page.
+
+How do I sign up for a Google AI plan and get my Colab benefits?
+
+Click the "Colab paid products" link at the bottom of the notebook to go to Colab's subscription offerings, then choose "Upgrade to Google One." Once your subscription is confirmed, your Colab benefits are applied automatically to the same Google Account — there is no separate signup step inside Colab. You can confirm your subscription any time under Settings > Subscription.
+
+Are Colab benefits included with a Google One free trial?
+
+No. Premium Colab benefits are only available to paid Google AI plan subscribers. They are not included during a free trial of a Google One plan (for example, a promotional or extended free trial). Your Colab benefits begin once your paid subscription is active.
+
+Can I have a Colab Pro or Pro+ subscription and a Google AI plan at the same time?
+
+Yes. A Google AI plan and a Colab-native subscription (such as Colab Pro or Pro+) can be active on the same account at the same time, and the compute units from each are added to the same balance. The two grants may arrive on different schedules: your Google One compute units are deposited each month based on when you signed up for that plan, which can differ from when your Colab Pro or Pro+ units are distributed. You manage each subscription wherever you purchased it.
+
+## Colab Pro for Education subscriptions.
+
+What is a Colab Pro for Education subscription?
+
+Colab Pro for Education subscriptions were free, 1 year, Colab Pro subscriptions for students and faculty members of US-based universities. They are no longer available for new signups at this time.
+
+How do I sign up for a Colab Pro for Education subscription?
+
+Colab Pro for Education subscriptions were free, 1 year, Colab Pro subscriptions for students and faculty members of US-based universities. They are no longer available for new signups at this time.
+
+Can I have a Colab Pro for Education subscription and personal subscription at the same time?
+
+You cannot hav
+
+# Google Terms of Service – Privacy & Terms – Google
+URL: https://policies.google.com/terms
+
+Google Terms of Service – Privacy & Terms – Google
+
+# Google Terms of Service
+
+Effective May 22, 2024 | Archived versions | Download PDF
+
+Country version: United States
+
+### We know it’s tempting to skip these Terms of Service, but it’s important to establish what you can expect from us as you use Google services, and what we expect from you.
+
+These Terms of Service reflect the way Google’s business works, the laws that apply to our company, and certain things we’ve always believed to be true. As a result, these Terms of Service help define Google’s relationship with you as you interact with our services. For example, these terms include the following topic headings:
+
+- What you can expect from us, which describes how we provide and develop our services
+- What we expect from you, which establishes certain rules for using our services
+- Content in Google services, which describes the intellectual property rights to the content you find in our services — whether that content belongs to you, Google, or others
+- In case of problems or disagreements, which describes other legal rights you have, and what to expect in case someone violates these terms
+
+Understanding these terms is important because, by accessing or using our services (whether you’re signed in to a Google account or not), you’re agreeing to these terms.
+
+Besides these terms, we also publish a Privacy Policy. We encourage you to read it to better understand how you can update, manage, export, and delete your information.
+
+## Service provider
+
+Google services are provided by, and you’re contracting with:
+
+Google LLC organized under the laws of the State of Delaware, USA, and operating under the laws of the USA 1600 Amphitheatre Parkway Mountain View, California 94043 USA
+
+## Age requirements
+
+If you’re under the age required to manage your own Google Account, you must have your parent or legal guardian’s permission to use a Google Account. Please have your parent or legal guardian read these terms with you.
+
+If you’re a parent or legal guardian, and you allow your child to use the services, then these terms apply to you and you’re responsible for your child’s activity on the services.
+
+Some Google services have additional age requirements as described in their service-specific additional terms and policies.
+
+## Contents
+
+Introduction
+
+Your relationship with Google
+
+Using Google services
+
+Content in Google services
+
+Software in Google services
+
+In case of problems or disagreements
+
+# Your relationship with Google
+
+These terms help define the relationship between you and Google. When we speak of “Google,” “we,” “us,” and “our,” we mean Google LLC and its affiliates. Broadly speaking, we give you permission to access and use our services if you agree to follow these terms, which reflect how Google’s business works and how we earn money.
+
+### Provide a broad range of useful services
+
+We provide a broad range of services that are subject to these terms, including:
+
+- apps and sites (like Search and Maps)
+- platforms (like Google Shopping)
+- integrated services (like Maps embedded in other companies’ apps or sites)
+- devices (like Google Nest and Pixel)
+
+Many of these services also include content that you can stream or interact with.
+
+Our services are designed to work together, making it easier for you to move from one activity to the next. For example, if your Calendar event includes an address, you can click on that address and Maps can show you how to get there.
+
+### Develop, improve, and update Google services
+
+We’re constantly developing new technologies and features to improve our services. For example, we use artificial intelligence and machine learning to provide you with simultaneous translations, and to better detect and block spam and malware. As part of this continual improvement, we sometimes add or remove features and functionalities, increase or decrease limits to our services, and start offering new services or stop offering old ones. When a service requires or includes downloadable or preloaded software, that software sometimes updates automatically on your device once a new version or feature is available. Some services let you adjust your automatic update settings.
+
+If we make material changes that negatively impact your use of our services or if we stop offering a service, we’ll provide you with reasonable advance notice, except in urgent situations such as preventing abuse, responding to legal requirements, or addressing security and operability issues. We’ll also provide you with an opportunity to export your content from your Google Account using Google Takeout, subject to applicable law and policies.
+
+### Follow these terms and service-specific additional terms
+
+The permission we give you to access and use our services continues as long as you comply with:
+
+- these terms
+- service-specific additional terms, which could, for example, include things like additional age requirements
+
+You also agree that our Privacy Policy applies to your use of our services. We also provide resources like the Copyright Help Center, Safety Center, Transparency Center, and descriptions of our technologies from our policies site to answer common questions and to set expectations about using our services. Finally, we may provide specific instructions and warnings within our services – such as dialog boxes that alert you to important information.
+
+Although we give you permission to use our services, we retain any intellectual property rights we have in the services.
+
+### Respect others
+
+We want to maintain a respectful environment for everyone, which means you must follow these basic rules of conduct:
+
+- comply with applicable laws, including export control, sanctions, and human trafficking laws
+- respect the rights of others, including privacy and intellectual property rights
+- don’t abuse or harm others or yourself (or threaten or encourage such abuse or harm) — for example, by misleading, defrauding, illegally impersonating, defaming, bullying, harassing, or stalking others
+
+Our service-specific additional terms and policies, such as our Generative AI Prohibited Use Policy, provide additional details about appropriate conduct that everyone using those services must follow. If you find that others aren’t following these rules, many of our services allow you to report abuse. If we act on a report of abuse, we also provide the process described in the Taking action in case of problems section.
+
+### Don’t abuse our services
+
+Most people who access or use our services understand the general rules that keep the internet safe and open. Unfortunately, a small number of people don’t respect those rules, so we’re describing them here to protect our services and users from abuse. In that spirit:
+
+You must not abuse, harm, interfere with, or disrupt our services or systems — for example, by:
+
+introducing malware
+
+spamming, hacking, or bypassing our systems or protective measures
+
+jailbreaking, adversarial prompting, or prompt injection, except as part of our safety and bug testing programs
+
+accessing or using our services or content in fraudulent or deceptive ways, such as:
+
+- phishing
+- creating fake accounts or content, including fake reviews
+- misleading others into thinking that generative AI content was created by a human
+- providing services that appear to originate from you (or someone else) when they actually originate from us
+
+providing services that appear to originate from us when they do not
+
+using our services (including the content they provide) to violate anyone’s legal rights, such as intellectual property or privacy rights
+
+reverse engineering our services or underlying technology, such as our machine learning models, to extract trade secrets or other proprietary information, except as allowed by applicable law
+
+using automated means to access content from any of our services in violation of the machine-readable instructions on our web pages (for example, robots.txt files that disallow crawling, training, or other activities)
+
+using AI-generated content from our services to develop machine learning models or related AI technology
+
+hiding or misrepresenting who you are in order to violate these terms
+
+providing services that encourage others to violate these terms
+
+### Permission to use your content
+
+Some of our services are designed to let you upload, submit, store, send, receive, or share your content. You have no obligation to provide any content to our services and you’re free to choose the content that you want to provide. If you choose to upload or share content, please make sure you have the necessary rights to do so and that the content is lawful.
+
+## License
+
+Your content remains yours, which means that you retain any intellectual property rights that you have in your content. For example, you have intellectual property rights in the creative content you make, such as reviews you write. Or you may have the right to share someone else’s creative content if they’ve given you their permission.
+
+We need your permission if your intellectual property rights restrict our use of your content. You provide Google with that permission through this license.
+
+### What’s covered
+
+This license covers your content if that content is protected by intellectual property rights.
+
+### What’s not covered
+
+- This license doesn’t affect your privacy rights — it’s only about your intellectual property rights
+- This license doesn’t cover these types of content:
+
+- publicly-available factual information that you provide, such as corrections to the address of a local business. That information doesn’t require a license because it’s considered common knowledge that everyone’s free to use.
+- feedback that you offer, such as suggestions to improve our services. Feedback is covered in the Service-related communications section below.
+
+This license is:
+
+- worldwide, which means it’s valid anywhere in the world
+- non-exclusive, which means you can license your content to others
+- royalty-free, which means there are no monetary fees for this license
+
+This license allows Google to:
+
+- host, reproduce, distribute, communicate, and use your content — for example, to save your content on our systems and make it accessible from anywhere you go
+- publish, publicly perform, or publicly display your content, if you’ve made it visible to others
+- modify and create derivative works based on your content, such as reformatting or translating it
+- sublicense these rights to:
+
+- other users to allow the services to work as designed, such as enabling you to share photos with people you choose
+- our contractors who’ve signed agreements with us that are consistent with these terms, only for the limited purposes described in the Purpose section below
+
+This license is for the limited purpose of:
+
+- operating and improving the services, which means allowing the services to work as designed and creating new features and functionalities. This includes using automated systems and algorithms to analyze your content:
+
+- for spam, malware, and illegal content
+- to recognize patterns in data, such as determining when to suggest a new album in Google Photos to keep related photos together
+- to customize our services for you, such as providing recommendations and personalized search results, content, and ads (which you can change or turn off in Ads Settings)
+
+This analysis occurs as the content is sent, received, and when it is stored.
+- using content you’ve shared publicly to promote the services. For example, to promote a Google app, we might quote a review you wrote. Or to promote Google Play, we might show a screenshot of the app you offer in the Play Store.
+- developing new technologies and services for Google consistent with these terms
+
+This license lasts for as long as your content is protected by intellectual property rights.
+
+If you remove from our services any content that’s covered by this license, then our systems will stop making that content publicly available in a reasonable amount of time. There are two exceptions:
+
+- If you already shared your content with others before removing it. For example, if you shared a photo with a friend who then made a copy of it, or shared it again, then that photo may continue to appear in your friend’s Google Account even after you remove it from your Google Account.
+- If you make your content available through other companies’ services, it’s possible that search engines, including Google Search, will continue to find and display your content as part of their search results.
+
+## Your Google Account
+
+If you meet these age requirements you can create a Google Account for your convenience. Some services require that you have a Google Account in order to work — for example, to use Gmail, you need a Google Account so that you have a place to send and receive your email.
+
+You’re responsible for what you do with your Google Account, including taking reasonable steps to keep your Google Account secure, and we encourage you to regularly use the Security Checkup.
+
+## Using Google services on behalf of an organization or business
+
+Many organizations, such as businesses, non-profits, and schools, take advantage of our services. To use our services on behalf of an organization:
+
+- an authorized representative of that organization must agree to these terms
+- your organization’s administrator may assign a Google Account to you. That administrator might require you to follow additional rules and may be able to access or disable your Google Account.
+
+## Service-related communications
+
+To provide you with our services, we sometimes send you service announcements and other information. To learn more about how we communicate with you, see Google’s Privacy Policy.
+
+If you choose to give us feedback, such as suggestions to improve our services, we may act on your feedback without obligation to you.
+
+## Your content
+
+Some of our services allow you to generate original content. Google won’t claim ownership over that content.
+
+Some of our services give you the opportunity to make your content publicly available — for example, you might post a product or restaurant review that you wrote, or you might upload a blog post that you created.
+
+- See the Permission to use your content section for more about your rights in your content, and how your content is used in our services
+- See the Removing your content section to learn why and how we might remove user-generated content from our services
+
+If you think someone is infringing your intellectual property rights, you can send us notice of the infringement and we’ll take appropriate action. For example, we suspend or close the Google Accounts of repeat copyright infringers as described in our Copyright Help Center.
+
+## Google content
+
+Some of our services include content that belongs to Google — for example, many of the visual illustrations you see in Google Maps. You may use Google’s content as allowed by these terms and any service-specific additional terms, but we retain any intellectual property rights that we have in our content. Don’t remove, obscure, or alter any of our branding, logos, or legal notices. If you want to use our branding or logos, please see the Google Brand Permissions page.
+
+## Other content
+
+Finally, some of our services give you access to content that belongs to other people or organizations — for example, a store owner’s description of their own business, or a newspaper article displayed in Google News. You may not use this content without that person or organization’s permission, or as otherwise allowed by law. The views expressed in other people or organizations’ content are theirs, and don’t necessarily reflect Google’s views.
+
+# Software in Google services
+
+Some of our services include downloadable or preloaded software. We give you permission to use that software as part of the services.
+
+The license we give you is:
+
+- worldwide, which means it’s valid anywhere in the world
+- non-exclusive, which means that we can license the software to others
+- royalty-free, which means there are no monetary fees for this license
+- personal, which means it doesn’t extend to anyone else
+- non-assignable, which means you’re not allowed to assign the license to anyone else
+
+Some of our services include software that’s offered under open source license terms that we make available to you. Sometimes there are provisions in the open source license that explicitly override parts of these terms, so please be sure to read those licenses.
+
+You may not copy, modify, distribute, sell, or lease any part of our services or software.
+
+## Warranty disclaimer
+
+We built our reputation on providing useful, reliable services like Google Search and Maps, and we’re continuously improving our services to meet your needs. However, for legal purposes, we offer our services without warranties unless explicitly stated in our service-specific additional terms. The law requires that we explain this using specific legal language and that we use capital letters to help make sure you see it, as follows:
+
+TO THE EXTENT ALLOWED BY APPLICABLE LAW, WE PROVIDE OUR SERVICES “AS IS” WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. FOR EXAMPLE, WE DON’T MAKE ANY WARRANTIES ABOUT THE CONTENT OR FEATURES OF THE SERVICES, INCLUDING THEIR ACCURACY, RELIABILITY, AVAILABILITY, OR ABILITY TO MEET YOUR NEEDS.
+
+DON’T RELY ON THE SERVICES FOR MEDICAL, LEGAL, FINANCIAL, OR OTHER PROFESSIONAL ADVICE. ANY CONTENT REGARDING THOSE TOPICS IS PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND IS NOT A SUBSTITUTE FOR ADVICE FROM A QUALIFIED PROFESSIONAL.
+
+### For all users
+
+Both the law and these terms try to strike a balance as to what you or Google can claim from the other in case of problems. That’s why the law requires everyone to be responsible for certain liabilities — but not others — under these terms.
+
+These terms only limit our responsibilities as allowed by applicable law. These terms don’t limit liability for gross negligence or willful misconduct.
+
+To the extent allowed by applicable law:
+
+- Google is liable only for its breaches of these terms or applicable service-specific additional terms
+- Google isn’t liable for:
+
+- loss of profits, revenues, business opportunities, goodwill, or anticipated savings
+- indirect or consequential losses
+- punitive damages
+- Google’s total liability arising out of or relating to these terms is limited to the greater of (1) $200 or (2) the fees paid to use the relevant services in the 12 months before the dispute
+
+### For business users and organizations only
+
+If you’re a business user or organization:
+
+- To the extent allowed by applicable law, you’ll indemnify Google and its directors, officers, employees, and contractors for any third-party legal proceedings (including actions by government authorities) arising out of or relating to your unlawful use of the services or violation of these terms or service-specific additional terms. This indemnity covers any liability or expense arising from claims, losses, damages, judgments, fines, litigation costs, and legal fees.
+- If you’re legally exempt from certain responsibilities, including indemnification, then those responsibilities don’t apply to you under these terms. For example, the United Nations enjoys certain immunities from legal obligations and these terms don’t override those immunities.
+
+## Taking action in case of problems
+
+Before taking action as described below, we’ll provide you with advance notice when reasonably possible, describe the reason for our action, and give you an opportunity to clarify the issue and address it, unless doing so would:
+
+- cause harm or liability to a user, third party, or Google
+- violate the law or a legal enforcement authority’s order
+- compromise an investigation
+- compromise the operation, integrity, or security of our services
+
+### Removing your content
+
+If any of your content (1) breaches these terms, service-specific additional terms or policies, (2) violates applicable law, or (3) could harm our users, third parties, or Google, then we reserve the right to take down some or all of that content in accordance with applicable law. Examples include child pornography, content that facilitates human trafficking or harassment, terrorist content, and content that infringes someone else’s intellectual property rights.
+
+### Suspending or terminating your access to Google services
+
+Without limiting any of our other rights, Google may suspend or terminate your access to the services or delete your Google Account if any of these things happen:
+
+- you materially or repeatedly breach these terms, service-specific additional terms or policies
+- we’re required to do so to comply with a legal requirement or a court order
+- your conduct causes harm or liability to a user, third party, or Google — for example, by hacking, phishing, harassing, spamming, misleading others, or scraping content that doesn’t belong to you
+
+For more information about why we disable accounts and what happens when we do, see this Help Center page. If you believe your Google Account has been suspended or terminated in error, you can appeal.
+
+Of course, you’re always free to stop using our services at any time. If you do stop using a service, we’d appreciate knowing why so that we can continue improving our services.
+
+## Settling disputes, governing law, and courts
+
+For information about how to contact Google, please visit our contact page.
+
+California law will govern all disputes arising out of or relating to these terms, service-specific additional terms, or any related services, regardless of conflict of laws rules. These disputes will be resolved exclusively in the federal or state courts of Santa Clara County, California, USA, and you and Google consent to personal jurisdiction in those courts.
+
+# About these terms
+
+By law, you have certain rights that can’t be limited by a contract like these terms of service. These terms are in no way intended to restrict those rights.
+
+These terms describe the relationship between you and Google. They don’t create any legal rights for other people or organizations, even if others benefit from that relationship under these terms.
+
+We want to make these terms easy to understand, so we’ve used examples from our services. But not all services mentioned may be available in your country.
+
+If these terms conflict with the service-specific additional terms, the additional terms will govern for that service.
+
+If it turns out that a particular term is not valid or enforceable, this will not affect any other terms.
+
+If you don’t follow these terms or the service-specific additional terms, and we don’t take action right away, that doesn’t mean we’re giving up any rights that we may have, such as taking action in the future.
+
+We may update these terms and service-specific additional terms (1) to reflect ch

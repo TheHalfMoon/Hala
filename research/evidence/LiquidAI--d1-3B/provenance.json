@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/LiquidAI/d1-3B",
+    "type": "hub_api",
+    "revision": "051bcc464b01b9f92942b364d9586b0ef5912432"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/d1-3B/resolve/051bcc464b01b9f92942b364d9586b0ef5912432/LICENSE",
+    "file": "LICENSE",
+    "sha256": "4d28ca14dedc0b3d0fcc2b3339f0e79931faa33874f3d24f522183a8fc70068c"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/d1-3B/resolve/051bcc464b01b9f92942b364d9586b0ef5912432/README.md",
+    "file": "README.md",
+    "sha256": "175b0bd5f0b4272a67723e16d5e1994e7a8c2d162e7797c9f1c24c01fed83f1d"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/d1-3B/resolve/051bcc464b01b9f92942b364d9586b0ef5912432/config.json",
+    "file": "config.json",
+    "sha256": "0cbac0f580bd8036ef94ac83aa632a57a170e66d20f381ef47c3f6486c9a3e8c"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/d1-3B/resolve/051bcc464b01b9f92942b364d9586b0ef5912432/processor_config.json",
+    "file": "processor_config.json",
+    "sha256": "b9b82ad34a69e2f70a9033741e11f82b8a98bb5f8e6c13b3b2d5efdd3935d916"
+  }
+]
