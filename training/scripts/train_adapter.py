@@ -24,6 +24,18 @@ from training.scripts.baseline import reject_kaggle_runtime
 LORA_TARGET_PATTERN = r'.*language_model.*\.(q_proj|v_proj)$'
 
 
+class QualificationInterrupted(RuntimeError):
+    """Deliberate stop after the atomic paired snapshot, before finalization."""
+    def __init__(self, step, version):
+        super().__init__(f'Qualification stopped after published step {step}')
+        self.step, self.version = step, Path(version)
+
+
+def interrupt_after_checkpoint(stop_after_step, step, version):
+    if stop_after_step == step:
+        raise QualificationInterrupted(step, version)
+
+
 def load_json(path):
     path = Path(path)
     if path.stat().st_size > 4 * 1024 * 1024:
@@ -61,11 +73,15 @@ def prepare_inputs(row, processor, root, token_budget):
         image.close()
 
 
-def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False):
+def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
+          stop_after_step=None):
     if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_TRAINING_ALLOWED') != '1':
         raise ValueError('Explicitly approved remote Linux runtime required; local weights forbidden')
     config_data = load_json(config_path)
     config = TrainingConfig.from_dict(config_data)
+    if stop_after_step is not None and (type(stop_after_step) is not int or
+                                       not 1 <= stop_after_step < config.max_steps):
+        raise ValueError('Interruption must leave a remaining optimizer step')
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
     if config.platform == 'kaggle':
@@ -102,8 +118,19 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     os.environ['DO_NOT_TRACK'] = '1'
     os.environ['HF_HOME'] = '/tmp/hala-model-cache'
     import torch
+    import peft
+    import transformers
+    import PIL
     from peft import LoraConfig, PeftModel, get_peft_model
     from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
+
+    runtime['imported_packages'] = {'torch': torch.__version__,
+                                    'transformers': transformers.__version__,
+                                    'peft': peft.__version__, 'pillow': PIL.__version__}
+    for package, expected in (('torch', '2.11.0'), ('transformers', '5.16.1'),
+                              ('peft', '0.20.0')):
+        if runtime['imported_packages'][package].split('+')[0] != expected:
+            raise ValueError(f'Imported dependency version mismatch: {package}')
 
     torch.manual_seed(42)
     dtype = torch.float16 if config.precision == 'fp16' else torch.bfloat16
@@ -113,6 +140,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     for row in records:
         checked_inputs, checked_labels = prepare_inputs(row, processor, root, manifest['token_budget'])
         del checked_inputs, checked_labels
+    runtime['audited_records'] = len(records)
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model_id, revision=config.revision, trust_remote_code=False,
         torch_dtype=dtype, attn_implementation='sdpa').to('cuda:0')
@@ -150,15 +178,32 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         torch.set_rng_state(state['torch_rng'])
         torch.cuda.set_rng_state_all(state['cuda_rng'])
     initial_parameters = [parameter.detach().cpu().clone() for parameter in parameters]
+    runtime['parameter_residency'] = {}
+    for name, parameter in model.named_parameters():
+        group = 'adapter' if parameter.requires_grad else 'frozen_base'
+        key = f'{group}:{parameter.device}:{parameter.dtype}'
+        runtime['parameter_residency'][key] = runtime['parameter_residency'].get(key, 0) + parameter.numel()
+    runtime['trainable_parameter_tensors'] = len(parameters)
+    runtime['trainable_parameter_elements'] = sum(p.numel() for p in parameters)
+    runtime['qualification_steps'] = list(previous['runtime'].get('qualification_steps', [])) if previous else []
+    runtime['actual_reload'] = bool(resume)
+    runtime['resumed_from_step'] = start_step
     torch.cuda.reset_peak_memory_stats(0)
     for step in range(start_step, config.max_steps):
+        step_before = [parameter.detach().cpu().clone() for parameter in parameters]
         optimizer.zero_grad(set_to_none=True)
         start = time.perf_counter()
         losses = []
+        microbatches = []
         for accumulation in range(config.gradient_accumulation):
             index = (step * config.gradient_accumulation + accumulation) % len(records)
             inputs, labels = prepare_inputs(records[index], processor, root, manifest['token_budget'])
             inputs, labels = inputs.to('cuda:0'), labels.to('cuda:0')
+            microbatches.append({'record_id': records[index]['id'],
+                                 'input_tokens': int(inputs.input_ids.numel()),
+                                 'completion_tokens': int((labels != -100).sum().item()),
+                                 'input_devices': {key: str(value.device) for key, value in inputs.items()
+                                                   if hasattr(value, 'device')}})
             with torch.autocast('cuda', dtype=dtype):
                 loss = model(**inputs, labels=labels).loss
             if not torch.isfinite(loss):
@@ -169,7 +214,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         if not all(parameter.grad is None or torch.isfinite(parameter.grad).all()
                    for parameter in parameters):
             raise ValueError('Nonfinite adapter gradient')
-        torch.nn.utils.clip_grad_norm_(parameters, 1)
+        gradient_norm = torch.nn.utils.clip_grad_norm_(parameters, 1).item()
+        if not __import__('math').isfinite(gradient_norm) or gradient_norm <= 0:
+            raise ValueError('Finite nonzero adapter gradient norm required')
         scaler.step(optimizer)
         scaler.update()
         torch.cuda.synchronize(0)
@@ -178,6 +225,22 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         changed = max(changed, current_changed)
         if not changed:
             raise ValueError('No verifiable adapter gradient update')
+        step_changed = sum(not torch.equal(before, after.detach().cpu())
+                           for before, after in zip(step_before, parameters))
+        if not step_changed:
+            raise ValueError('No adapter update at this optimizer step')
+        free, total = torch.cuda.mem_get_info(0)
+        runtime['qualification_steps'].append({
+            'step': step + 1, 'gradient_norm_before_clip': gradient_norm,
+            'microbatches': microbatches,
+            'changed_parameter_tensors_this_step': step_changed,
+            'max_parameter_update': max((after.detach().cpu() - before).abs().max().item()
+                                        for before, after in zip(step_before, parameters)),
+            'allocated_bytes': torch.cuda.memory_allocated(0),
+            'reserved_bytes': torch.cuda.memory_reserved(0),
+            'peak_allocated_bytes': torch.cuda.max_memory_allocated(0),
+            'peak_reserved_bytes': torch.cuda.max_memory_reserved(0),
+            'device_free_bytes': free, 'device_total_bytes': total})
         metrics.append({'step': step + 1, 'loss': sum(losses) / len(losses),
                         'seconds': time.perf_counter() - start})
         peak_vram = max(peak_vram, torch.cuda.max_memory_allocated(0))
@@ -193,6 +256,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                         'cuda_rng': torch.cuda.get_rng_state_all()}, stage / 'resume.pt')
 
         version = publish_checkpoint(output, progress, write_version)
+        interrupt_after_checkpoint(stop_after_step, step + 1, version)
     result = completed_checkpoint_result(version, progress, config_data)
     atomic_json(output / 'training-result.json', result)
     return result
