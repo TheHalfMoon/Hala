@@ -1,0 +1,2038 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": ".gitattributes",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 10,
+          "end": 16
+        }
+      ],
+      "hunks": [
+        {
+          "start": 10,
+          "end": 16,
+          "lines": [
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "# Preserve the prospective protocol/source freeze across Windows/Git transfers."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "evaluation/heldout/** -text"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "evaluation/heldout_*.py -text"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "tools/freeze_heldout.py -text"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "tests/test_heldout.py -text"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "docs/H14_*.md -text"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "specs/H14-heldout-frontier.md -text"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H14_PROTOCOL.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 44
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 44,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H14 experimental normalized point protocol v1"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "This frozen experimental protocol is separate from production contracts. The only"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "accepted model output is a JSON object with exactly `point`, an array of exactly two"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "integers in 0..1000. Whitespace is allowed. Reuse the previously calibrated explicit"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "wrapper contract: either bare JSON or one exact `\\`\\`\\`json` opening followed by"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "a newline and JSON, then a newline and `\\`\\`\\`` closing. This compatibility"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "choice predates all H14 inference. Other fences, commentary, surrounding junk,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "duplicate keys, floats, booleans, null, nonfinite constants and additional keys fail closed."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "Maximum output text is 4096 characters. Invalid output causes no fixture event."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "For an RGB image W by H (integer dimensions 1..4096), each axis maps with"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "`min(size - 1, floor(coordinate * size / 1000))`. Zero maps to the first pixel;"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "1000 maps to the last pixel. Rectangles are `[left, top, right, bottom)` in image"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "pixels. Screen origins, window borders, CSS coordinates and logical DPI units are"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "absent. DPI metadata does not rescale the frame; no screenshot resize/crop is"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "performed by the scorer. The processor may internally resize visual input, but"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "the model's requested output frame remains the original image. Never map these"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "points directly to a native display without a separately qualified adapter."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "The prompt contains only the user's goal and the protocol instruction. The model"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "receives the rendered screenshot, not target IDs, hit boxes or expected state."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "A valid point creates at most one selection event in an original one-click"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "synthetic fixture. The independent scorer checks the selection against private"
+            }
+          ],
+          "dropped": 20
+        }
+      ]
+    },
+    {
+      "path": "docs/H14_RUN.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 58
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 58,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H14 source and remote evaluation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "CPU implementation is experimental. No model result or native qualification is"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "implied by the synthetic oracle/negative controls. The immutable manifest and its"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "externally recorded SHA-256 establish a prospective source/task/prompt freeze."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "Never re-freeze this version or tune prompts after observing heldout inference;"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "repairs after evaluation require a new declared experiment and prospective tasks."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Before inference, author/freeze explicitly from the repository root:"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "python -m tools.freeze_heldout"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "python -m unittest discover -s tests -p test_heldout.py -v"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "python -m unittest discover -s tests -v"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Existing pre-inference freezes require `--replace-pre-inference` and a fresh"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "recorded hash. Review/qualification evidence remains separate and parent-owned."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "The freeze captures source byte hashes, including this runner and protocol, not"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "just a dataset count. Source line ending changes invalidate it."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "On an authorized free remote Linux CUDA allocation only, inspect and install the"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "exact versions in `heldout_runner.VERSIONS`: torch 2.11.0 (CUDA wheel suffix is"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "recorded), transformers 5.16.1, Pillow 11.3.0. Use an actual RAQM-enabled Pillow"
+            }
+          ],
+          "dropped": 34
+        }
+      ]
+    },
+    {
+      "path": "evaluation/heldout/manifest.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 23
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 23,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"families\": 8,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"files\": {"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"docs/H14_PROTOCOL.md\": \"9a3e53a09a66ce6fdeaa17838a5fa08d55e514019fcf601b1cf3c67f8a8d5b9e\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"docs/H14_RUN.md\": \"f01ef9d3b66f6662540a435bd1b8d0b50bde830572440872e5ca1c14b6d85846\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"evaluation/heldout/tasks.json\": \"0efd21686fb1fc6255ffe463256f290c8d1cbb2fbcd61ad8d982ae1c5990e6c5\","
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_fixtures.py\": \"3458d012b8d90582e2528e9b08be928e393b925ff9f513fbef09de8b76ee8aae\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_protocol.py\": \"d040066be79faf5521f2f227484b0a0eeb41810889004755dd1be5a4801d03a9\","
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_runner.py\": \"b7797e938c9ecb74e71a1ecbd834cd12bc41a70b61539e9299ec68eb59c5b014\","
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"specs/H14-heldout-frontier.md\": \"0927eed4183d79b263f2befddd2b7d5b3a5074a26280e7bb1a2c78501ed681b1\","
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"tools/freeze_heldout.py\": \"ae86392c1357011c0a83331d8562f39190c0e1a7367045c504a53aff845351ba\","
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"training/artifacts.py\": \"80742d1ea6bdafc2d16db27d57aec4e653ca53b8ca54776908bd07869d97e2c1\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"training/checkpoints.py\": \"93e34ea8e20e77e7424a400656e15c814457d608382c8b4db75597a65a891826\""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  \"frozen_at_utc\": \"2026-10-14T20:02:23.520459+00:00\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  \"instances\": 64,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  \"languages\": {"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"ar\": 32,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"en\": 32"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  \"phase\": \"P2_before_inference\","
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h14.freeze.v1\""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "evaluation/heldout/tasks.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 6556
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 6556,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"cases\": ["
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "      \"controls\": ["
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "        {"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "          \"box\": ["
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "            59,"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "            159,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "            211,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "            244"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "          ],"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "          \"fill\": \"#ffffff\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "          \"id\": \"item-5\","
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "          \"label\": \"6\""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        },"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        {"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          \"box\": ["
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "            230,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "            159,"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            382,"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            244"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "          ],"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "          \"fill\": \"#ffffff\","
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "          \"id\": \"item-0\","
+            }
+          ],
+          "dropped": 6532
+        }
+      ]
+    },
+    {
+      "path": "evaluation/heldout_fixtures.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 205
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 205,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Original prospective H14 GUI specifications, rendering and freeze verification.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import random"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "ROOT = Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "FROZEN = ROOT / 'evaluation/heldout/tasks.json'"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "MANIFEST = ROOT / 'evaluation/heldout/manifest.json'"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "FAMILIES = ('calendar_dates', 'transit_arrivals', 'warehouse_stock', 'kanban_priority',"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "            'seat_locations', 'chart_peaks', 'palette_colors', 'document_versions')"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "def digest(path):"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    return hashlib.sha256(Path(path).read_bytes()).hexdigest()"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "def canonical(value):"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    return (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + '\\n').encode('utf-8')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "def author_cases():"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"\"\"Authoring only. Runtime loads frozen specifications and never regenerates them.\"\"\""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    cases = []"
+            }
+          ],
+          "dropped": 181
+        }
+      ]
+    },
+    {
+      "path": "evaluation/heldout_protocol.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 102
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 102,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"H14 experimental coordinate advice; never an execution authority.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "REVISION = 'hala.h14.normalized-point.v1'"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "INSTRUCTION = ('Return only JSON: {\"point\":[x,y]}. Use integer normalized coordinates '"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "               'from 0 to 1000 on each image axis. The supplied image is the entire '"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "               'coordinate frame. Do not execute actions or claim completion.')"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "def dimensions(width, height):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    if any(type(v) is not int or not 1 <= v <= 4096 for v in (width, height)):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "        raise ValueError('Integer image dimensions in 1..4096 required')"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "def parse(raw, width, height):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    dimensions(width, height)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    if type(raw) is not str or not 1 <= len(raw) <= 4096:"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        raise ValueError('Bounded JSON text required')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    raw = raw.strip()"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    # Explicit calibrated wrapper, not protocol guessing or arbitrary JSON extraction."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    if raw.startswith('```json\\n') and raw.endswith('\\n```'):"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        raw = raw[8:-4]"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def pairs(items):"
+            }
+          ],
+          "dropped": 78
+        }
+      ]
+    },
+    {
+      "path": "evaluation/heldout_runner.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 191
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 191,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Remote-only, unchanged Qwen3-VL-2B H14 prospective evaluation entrypoint.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import signal"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import digest, canonical, verify_freeze, render"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from evaluation.heldout_protocol import model_prompt, score, summarize, REVISION"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from training.checkpoints import atomic_json"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "MODEL_ID = 'Qwen/Qwen3-VL-2B-Instruct'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "MODEL_REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "VERSIONS = {'torch': '2.11.0', 'transformers': '5.16.1', 'Pillow': '11.3.0'}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "def remote_guard():"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_HELDOUT_ALLOWED') != '1':"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        raise ValueError('Approved remote Linux required; local weights forbidden')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or ("
+            }
+          ],
+          "dropped": 167
+        }
+      ]
+    },
+    {
+      "path": "specs/H14-heldout-frontier.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 17
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 17,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H14: frozen coordinate protocol and prospective bilingual held-out GUI evaluation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: in progress. Depends on: H5 diagnostic and H3 infrastructure built in this run. Surfaces: new experimental protocol/heldout modules, frozen evaluation specifications, remote runner and dedicated tests/docs. Production contracts remain separate."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Use one shared pinned Qwen3-VL-2B unchanged model first. Freeze an explicit normalized 0..1000 protocol, half-open target rectangles, image-pixel/DPI assumptions, deterministic mapping and failure behavior. Reject malformed/nonfinite/bool/extra/duplicate coordinate outputs. No execution authority or completion receipt from the model."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Generate 64 prospective GUI task instances, balanced English/Arabic, across eight original families unlike the prior four-button diagnostic and the existing training families. Vary layouts/dimensions/targets/distractors and task semantics; disclose family dependence. No training or test-set prompt tuning. Freeze specifications and protocol hashes before evaluating; remote-render Arabic only with actual RAQM and a declared font, freeze resulting images before inference. Keep expected targets/private state out of model inputs. Simulated executable environments may report complete-task success only for their declared fixture scope, never native Windows/browser task qualification."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Acceptance criteria:"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- [ ] Strict protocol specification and deterministic failure/edge/DPI tests."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- [ ] Frozen source manifest with 64 instances, eight independent families, original rights and balanced languages; no old calibration task/image reuse."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- [ ] Remote runner verifies hashes, renders all inputs before loading model, records actual provenance/latency/allocated and device residency measures, schema validity, hit/wrong-target/miss rates and English/Arabic intervals."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- [ ] Negative providers demonstrate scorer rejects wrong targets, invalid outputs and false completion; no model sees expected target/terminal state."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- [ ] Relevant tests and full CPU suite; genuine Jev/Graft and independent PStack delta review."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- [ ] Actual free-GPU evaluation when available, source/dataset frozen before inference; no fabricated score on allocation failure."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Assumptions: eight authored families are a narrow reproducible GUI fixture sample, not a population-representative desktop benchmark. Wilson intervals are descriptive; provide family-level summaries and clearly label correlation. GPU allocation is external; CPU implementation/reviews proceed regardless. No paid activation or local weights."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_heldout.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 187
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 187,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from evaluation import heldout_fixtures as fixtures"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from evaluation import heldout_runner as runner"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from evaluation.heldout_protocol import parse, score, model_prompt, summarize, wilson"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "def center_output(case, control):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    # Find an exactly representable normalized pixel inside each visible control."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    l, t, r, b = control['box']"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    w, h = case['size']"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    return json.dumps({'point': [((l + r) // 2 * 1000 + w - 1) // w,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "                                 ((t + b) // 2 * 1000 + h - 1) // h]})"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "class HeldoutProtocolTests(unittest.TestCase):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    def test_generalized_mapping_edges_and_half_open_rectangles(self):"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        self.assertEqual(parse('{\"point\":[500,500]}', 1024, 768), (512, 384))"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        self.assertEqual(parse('{\"point\":[1000,1000]}', 800, 600), (799, 599))"
+            }
+          ],
+          "dropped": 163
+        }
+      ]
+    },
+    {
+      "path": "tests/test_heldout_persistence.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 19
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 19,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from evaluation import heldout_runner as runner"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "class PersistenceTests(unittest.TestCase):"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    def test_failed_publication_preserves_prior_result_and_image_freeze(self):"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "        with tempfile.TemporaryDirectory() as temp:"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "            for name in ('result.json', 'image-freeze.json'):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "                path = Path(temp) / name"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "                prior = {'status': 'running', 'cases': [{'id': 'first'}]}"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "                runner.atomic_json(path, prior)"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "                with patch('training.checkpoints.os.replace', side_effect=OSError('interrupted')):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "                    with self.assertRaises(OSError):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "                        runner.atomic_json(path, {'status': 'running', 'cases': [{'id': 'first'}, {'id': 'second'}]})"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "                self.assertEqual(json.loads(path.read_text()), prior)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tools/freeze_heldout.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 31
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 31,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Explicit pre-inference H14 source/spec freeze. Never use after heldout inference.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from datetime import datetime, timezone"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import ROOT, FROZEN, MANIFEST, author_cases, canonical, digest, validate"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "FILES = ('evaluation/heldout_protocol.py', 'evaluation/heldout_fixtures.py',"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "         'evaluation/heldout_runner.py', 'evaluation/heldout/tasks.json',"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "         'docs/H14_PROTOCOL.md', 'docs/H14_RUN.md', 'specs/H14-heldout-frontier.md',"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "         'tools/freeze_heldout.py')"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "FILES += ('training/checkpoints.py', 'training/artifacts.py')"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "def freeze(replace=False):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    if MANIFEST.exists() and not replace:"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        raise ValueError('Existing freeze preserved; explicit pre-inference replacement required')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    FROZEN.parent.mkdir(exist_ok=True)"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    FROZEN.write_bytes(canonical(validate(author_cases())))"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    manifest = {'schema': 'hala.h14.freeze.v1', 'phase': 'P2_before_inference',"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "                'frozen_at_utc': datetime.now(timezone.utc).isoformat(),"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "                'instances': 64, 'families': 8, 'languages': {'en': 32, 'ar': 32},"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                'files': {relative: digest(ROOT / relative) for relative in FILES}}"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    MANIFEST.write_bytes(canonical(manifest))"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    print('manifest_sha256=' + digest(MANIFEST))"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    print('dataset_sha256=' + digest(FROZEN))"
+            }
+          ],
+          "dropped": 7
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    ".gitattributes",
+    "docs/H14_PROTOCOL.md",
+    "docs/H14_RUN.md",
+    "evaluation/heldout/manifest.json",
+    "evaluation/heldout/tasks.json",
+    "specs/H14-heldout-frontier.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/heldout_fixtures.py#author_cases",
+      "name": "author_cases",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L22-L143",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_fixtures.py#canonical",
+      "name": "canonical",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L18-L19",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_fixtures.py#digest",
+      "name": "digest",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L14-L15",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_fixtures.py#render",
+      "name": "render",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L183-L205",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_fixtures.py#validate",
+      "name": "validate",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L146-L169",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_fixtures.py#verify_freeze",
+      "name": "verify_freeze",
+      "kind": "function",
+      "path": "evaluation/heldout_fixtures.py",
+      "span": "L172-L180",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#contains",
+      "name": "contains",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L45-L47",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#dimensions",
+      "name": "dimensions",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L11-L13",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#model_prompt",
+      "name": "model_prompt",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L50-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#parse.nonfinite",
+      "name": "nonfinite",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L31-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#parse.pairs",
+      "name": "pairs",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L24-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#score",
+      "name": "score",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L55-L72",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#summarize.group",
+      "name": "group",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L87-L92",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#wilson",
+      "name": "wilson",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L75-L83",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_runner.py#device_memory",
+      "name": "device_memory",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L52-L59",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_runner.py#prepare_images",
+      "name": "prepare_images",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L29-L49",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_runner.py#remote_guard",
+      "name": "remote_guard",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L21-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_runner.py#run.deadline",
+      "name": "deadline",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L75-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/heldout_runner.py#run.persist",
+      "name": "persist",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L73-L74",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#center_output",
+      "name": "center_output",
+      "kind": "function",
+      "path": "tests/test_heldout.py",
+      "span": "L13-L18",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_actual_renderer_border_matches_half_open_scoring",
+      "name": "test_actual_renderer_border_matches_half_open_scoring",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L174-L187",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_all_english_labels_fit_actual_local_renderer",
+      "name": "test_all_english_labels_fit_actual_local_renderer",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L161-L172",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_arabic_without_raqm_fails_closed",
+      "name": "test_arabic_without_raqm_fails_closed",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L156-L159",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_frozen_original_balanced_specs_match_authoring",
+      "name": "test_frozen_original_balanced_specs_match_authoring",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L113-L123",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_invalid_and_overlapping_geometry_rejected",
+      "name": "test_invalid_and_overlapping_geometry_rejected",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L136-L144",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_remote_guard_blocks_before_import_or_download",
+      "name": "test_remote_guard_blocks_before_import_or_download",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L146-L154",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutFreezeTests.test_trusted_freeze_verifies_and_detects_tamper",
+      "name": "test_trusted_freeze_verifies_and_detects_tamper",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L125-L134",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_calibrated_exact_fence_preserves_strict_coordinate_semantics",
+      "name": "test_calibrated_exact_fence_preserves_strict_coordinate_semantics",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L52-L62",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_descriptive_metrics_include_invalid_in_denominator",
+      "name": "test_descriptive_metrics_include_invalid_in_denominator",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L98-L109",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_dpi_metadata_never_changes_image_frame",
+      "name": "test_dpi_metadata_never_changes_image_frame",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L64-L70",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_generalized_mapping_edges_and_half_open_rectangles",
+      "name": "test_generalized_mapping_edges_and_half_open_rectangles",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L22-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_negative_providers_wrong_invalid_and_false_done_all_fail",
+      "name": "test_negative_providers_wrong_invalid_and_false_done_all_fail",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L72-L87",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_private_annotations_cannot_change_model_prompt",
+      "name": "test_private_annotations_cannot_change_model_prompt",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L89-L96",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_strict_schema_rejects_untrusted_and_false_completion",
+      "name": "test_strict_schema_rejects_untrusted_and_false_completion",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L32-L50",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_heldout_persistence.py#PersistenceTests.test_failed_publication_preserves_prior_result_and_image_freeze",
+      "name": "test_failed_publication_preserves_prior_result_and_image_freeze",
+      "kind": "method",
+      "path": "tests/test_heldout_persistence.py",
+      "span": "L10-L19",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/freeze_heldout.py#freeze",
+      "name": "freeze",
+      "kind": "function",
+      "path": "tools/freeze_heldout.py",
+      "span": "L13-L24",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tools/freeze_heldout.py#freeze",
+      "name": "freeze",
+      "kind": "function",
+      "path": "tools/freeze_heldout.py",
+      "span": "L13-L24",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/heldout_runner.py#prepare_images",
+      "name": "prepare_images",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L29-L49",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/heldout_runner.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L62-L182",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tools/freeze_heldout.py",
+      "name": "freeze_heldout.py",
+      "kind": "file",
+      "path": "tools/freeze_heldout.py",
+      "span": "L1-L32",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/heldout_runner.py",
+      "name": "heldout_runner.py",
+      "kind": "file",
+      "path": "evaluation/heldout_runner.py",
+      "span": "L1-L192",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#parse",
+      "name": "parse",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L16-L42",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_private_annotations_cannot_change_model_prompt",
+      "name": "test_private_annotations_cannot_change_model_prompt",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L89-L96",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_calibrated_exact_fence_preserves_strict_coordinate_semantics",
+      "name": "test_calibrated_exact_fence_preserves_strict_coordinate_semantics",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L52-L62",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_descriptive_metrics_include_invalid_in_denominator",
+      "name": "test_descriptive_metrics_include_invalid_in_denominator",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L98-L109",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_dpi_metadata_never_changes_image_frame",
+      "name": "test_dpi_metadata_never_changes_image_frame",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L64-L70",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_generalized_mapping_edges_and_half_open_rectangles",
+      "name": "test_generalized_mapping_edges_and_half_open_rectangles",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L22-L30",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_negative_providers_wrong_invalid_and_false_done_all_fail",
+      "name": "test_negative_providers_wrong_invalid_and_false_done_all_fail",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L72-L87",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/heldout_protocol.py#summarize",
+      "name": "summarize",
+      "kind": "function",
+      "path": "evaluation/heldout_protocol.py",
+      "span": "L86-L102",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_heldout.py#HeldoutProtocolTests.test_strict_schema_rejects_untrusted_and_false_completion",
+      "name": "test_strict_schema_rejects_untrusted_and_false_completion",
+      "kind": "method",
+      "path": "tests/test_heldout.py",
+      "span": "L32-L50",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "score",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/heldout_fixtures.py",
+        "evaluation/heldout_protocol.py",
+        "evaluation/heldout_runner.py"
+      ],
+      "seeds": 19,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_heldout.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_heldout.py"
+      ],
+      "reached": 2,
+      "behavioural": 19,
+      "unreached": [
+        "author_cases",
+        "canonical",
+        "digest",
+        "render",
+        "validate",
+        "verify_freeze",
+        "contains",
+        "dimensions",
+        "nonfinite",
+        "pairs",
+        "group",
+        "wilson",
+        "device_memory",
+        "prepare_images",
+        "remote_guard",
+        "deadline",
+        "persist"
+      ],
+      "seedNames": [
+        "score",
+        "digest",
+        "model_prompt",
+        "validate",
+        "author_cases",
+        "canonical",
+        "contains",
+        "device_memory",
+        "dimensions",
+        "group",
+        "persist",
+        "prepare_images",
+        "remote_guard",
+        "render",
+        "verify_freeze",
+        "wilson",
+        "deadline",
+        "nonfinite",
+        "pairs"
+      ],
+      "owners": []
+    },
+    {
+      "label": "freeze",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/freeze_heldout.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
+      "unreached": [
+        "freeze"
+      ],
+      "seedNames": [
+        "freeze"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

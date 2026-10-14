@@ -7,3 +7,12 @@ training/generated-candidate/** -text
 *.jpg -text
 # Generated notebooks are UTF-8 text; retain platform line endings without conversion.
 *.ipynb -text
+# Preserve the prospective protocol/source freeze across Windows/Git transfers.
+evaluation/heldout/** -text
+evaluation/heldout_*.py -text
+tools/freeze_heldout.py -text
+tests/test_heldout.py -text
+docs/H14_*.md -text
+specs/H14-heldout-frontier.md -text
+training/scripts/train_adapter.py -text
+training/scripts/qualify_lora.py -text
