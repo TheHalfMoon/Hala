@@ -1,0 +1,9 @@
+# Preserve bytes used by scientific manifests and captured source provenance.
+research/evidence/** -text
+data/frozen/** -text
+evaluation/results/** -text
+training/generated-candidate/** -text
+*.png -text
+*.jpg -text
+# Generated notebooks are UTF-8 text; retain platform line endings without conversion.
+*.ipynb -text
