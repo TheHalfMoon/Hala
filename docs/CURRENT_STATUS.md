@@ -1,6 +1,6 @@
 # Hala current status
 
-Updated 2026-10-14. Canonical main: `00f6692383ca9e9cc147380b062676dd74932e83` (signed bootstrap; GitHub verification valid). Work branch: `ps/foundation`; engineering PR publication and CI verification are in progress. No engineering feature has been merged. Aladdin was read only.
+Updated 2026-10-14. Canonical main: `00f6692383ca9e9cc147380b062676dd74932e83` (signed bootstrap; GitHub verification valid). Work branch: `ps/foundation`; draft PR #1 is published; GitHub CI passed on Python 3.11.14 and 3.12.14 at reviewed source head `d5fe4d26d583d9015a57f49c13d17e88b58c1f21`. No engineering feature has been merged. Aladdin was read only.
 
 | Area | Evidence and status |
 |---|---|
@@ -22,4 +22,4 @@ CPU suite currently passes 83 tests on bundled Python 3.12.14. Model inference l
 
 No paid GPU, subscription, top-up, billing change or billable Colab CLI job was activated. Jev API responses disclose token usage, not actual charges; total account billing has not been independently verified. No multi-GB model weights were downloaded to the personal computer. The existing 407 MB local d1 artifact was inspected, not downloaded.
 
-Next executable work: finish exact-head Jev/Graft/CI evidence and publish the draft PR; qualify an actually assigned permitted free GPU; run unchanged-model diagnostics before adaptation or precision comparison. Founder merge and production decisions remain pending.
+Next executable work: qualify an actually assigned permitted free GPU; run unchanged-model diagnostics before adaptation or precision comparison. Founder merge and production decisions remain pending.

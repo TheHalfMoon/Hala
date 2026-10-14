@@ -4,7 +4,7 @@ Status dated 2026-10-14. All qualification requires authentic evidence; IMPLEMEN
 
 | Milestone | Status | Completion evidence required |
 |---|---|---|
-| H0 bootstrap | TESTED; CI pending | Signed main exists; CI and review workflow qualification pending |
+| H0 bootstrap | TESTED; CI passed | Signed main exists; draft PR #1, CPU CI and scoped independent source reviews passed |
 | H1 foundation | TESTED metadata | Official immutable metadata, commercial terms, runtime qualification |
 | H2 contracts | TESTED mock | Strict contracts and negative tests; independent mandatory reviews |
 | H3 evaluation | TESTED infrastructure | 60 intent and 120 GUI tasks, independently checked execution |
