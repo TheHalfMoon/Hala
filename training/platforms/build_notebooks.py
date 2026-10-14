@@ -25,7 +25,7 @@ def build(root=None):
                 'cells': [cell('markdown', '# Hala unchanged-model diagnostic\nUse a free GPU only. No paid infrastructure authorized. Weights remain on the remote notebook, never on the personal computer. Eight geometric checks do not qualify complete-task performance.\n'),
                           cell('code', probe),
                           cell('markdown', 'Continue only after the probe reports a real GPU. Install the pinned official processor runtime; do not activate Colab plans, AI assistants, hosting or customer-facing services.'),
-                          cell('code', '%pip install --quiet transformers==5.16.1\n'),
+                          cell('code', '%pip install --quiet transformers==5.16.1\nimport subprocess\nsubprocess.run(["apt-get", "-qq", "update"], check=True)\nsubprocess.run(["apt-get", "-qq", "install", "-y", "fonts-dejavu-core"], check=True)\n'),
                           cell('code', 'import os\nos.environ["HALA_REMOTE_BASELINE_ALLOWED"] = "1"\n' + baseline)]}
     destination = root / 'training/platforms/colab-baseline.ipynb'
     destination.write_text(json.dumps(notebook, indent=2, ensure_ascii=False), encoding='utf-8')

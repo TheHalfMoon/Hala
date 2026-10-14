@@ -1,25 +1,26 @@
 # Hala current status
 
-Updated 2026-10-14. Canonical main: `00f6692383ca9e9cc147380b062676dd74932e83` (signed bootstrap; GitHub verification valid). Work branch: `ps/foundation`; draft PR #1 is published; GitHub CI passed on Python 3.11.14 and 3.12.14 at reviewed source head `d5fe4d26d583d9015a57f49c13d17e88b58c1f21`. No engineering feature has been merged. Aladdin was read only.
+Updated 2026-10-14. Canonical main is signed bootstrap `00f6692383ca9e9cc147380b062676dd74932e83`. [Draft PR #1](https://github.com/TheHalfMoon/Hala/pull/1) contains engineering features; none merged. Aladdin was read only. CPU GitHub CI passed on Python 3.11.14 and 3.12.14 at `dbce84e4e066cde8acbf610102b1b8e5e1492a48`; subsequent experiment changes require new CI.
 
 | Area | Evidence and status |
 |---|---|
-| HalaMind | TESTED strict bounded plan interface and deterministic fixture backend; no qualified reasoning model |
-| HalaType | TESTED grounded typed proposals, frame/DPI/target/budget checks and mock HTTP; no qualified vision model |
-| HalaReliance | TESTED advisory deterministic fixture router; actual existing local d1 diagnostics performed, learned adoption UNQUALIFIED |
-| Foundation | TESTED integrity of nine official revision pins/35 metadata hashes; provisional Qwen3.5-4B, first runtime candidate Qwen3-VL-2B `89644892e4d85e24eaac8bacfd4f463576704203` |
-| Evaluation | TESTED 60 bilingual intent/120 GUI task instances in 12 dependent families; oracle 180/180 and four negative controls 0/180; no model score |
-| Data | TESTED train/dev/test family isolation and immutable source bindings; 58 actual English PNG/logical-action SFT rows prepared; Arabic shaping/external rights unqualified |
-| Training | IMPLEMENTED candidate LoRA, masks/media hashes and immutable paired resume snapshots; real model step/processor/numerical resume qualification BLOCKED |
-| Quantization | NOT STARTED; no paired 8-bit/4-bit multimodal result or adapter artifact |
-| GPU | TESTED generic Kaggle T4x2 FP16 tensor probe, 15,636,037,632 bytes/device; commercial Hala model work blocked by terms. Colab free T4 browser allocation stalled; authenticated CLI has 0 compute units/no assignments and billable creation is excluded |
-| Inference | TESTED authenticated bounded loopback CPU mock; 20 Linux container transport tests; real backend fails closed |
-| Aladdin | TESTED synthetic protocol adapter against proposed reference `0c3c86c8...`; native integration UNQUALIFIED; main advanced to `00a6dba9...`, planning schemas unchanged in observed diff |
-| Reviews | Genuine Jev judgments, independent PStack security/combined/evaluation review and evaluation delta review executed. Training and final cost delta reviews completed; all reported must-fix findings resolved for source/helpers. Actual model/processor qualification remains blocked |
-| Release | BLOCKED; no qualified multimodal model, trained adapter, measured model latency/full-task success/operating cost, or production deployment |
+| HalaMind | TESTED strict bounded plan interface and deterministic fixtures; reasoning model UNQUALIFIED |
+| HalaType | TESTED grounded proposals and mock HTTP; actual Qwen3-VL diagnostic TESTED, production vision backend UNQUALIFIED |
+| HalaReliance | TESTED deterministic router and limited existing local d1 diagnostics; learned adoption UNQUALIFIED |
+| Foundation | TESTED nine revision pins/35 metadata hashes. Provisional Qwen3.5-4B; first actual runtime Qwen3-VL-2B at `89644892e4d85e24eaac8bacfd4f463576704203` |
+| Evaluation | TESTED synthetic 60 bilingual intent/120 GUI instances in 12 dependent families; oracle 180/180 and four negative controls 0/180. Actual strict model diagnostic 0/8; normalized calibration 7/8, not held-out or complete-task performance |
+| Data | TESTED family isolation/source bindings; 58 original English PNG/SFT rows. Local Arabic image training shaping and external rights unqualified |
+| Training | IMPLEMENTED candidate LoRA/media masks/paired snapshots; no actual model training or learned adapter yet. Two-step English engineering smoke inputs PROPOSED: audits 58 rows but consumes two microbatches, not claimed remediation of Arabic deficit |
+| Quantization | NOT STARTED; no paired 8/4-bit result |
+| GPU | TESTED actual free Colab Tesla T4, 15,637,086,208 bytes, FP16 tensor backward and unchanged-model inference. Kaggle generic T4x2 probe also tested; commercial model work excluded by terms |
+| Model measurements | FP16 strict run allocated 4.273 GB and peaked 4.347 GB in PyTorch allocator; generation first 4.539s, remaining 0.873-1.084s. Normalized calibration 7/8: English 4/4, Arabic 3/4; 0.807-1.043s. Warm-cache load timings are not cold download timings |
+| Inference | TESTED authenticated bounded CPU mock and 20 Linux container checks; real serving backend fails closed |
+| Aladdin | TESTED synthetic adapter against proposed planning reference `0c3c86c8...`; native integration UNQUALIFIED. Main advanced to `00a6dba9...`, planning schemas unchanged in observed diff |
+| Reviews | Genuine Jev/PStack/Graft gates and independent repair reviews completed for implemented source/helpers. Provider/font repair reviewed; coordinate calibration delta independently reviewed with no findings; saved decoded points/hits recompute and original strict failure remains intact |
+| Release | BLOCKED; no native task execution, held-out full-task model evidence, qualified adapter, quantization comparison or production deployment |
 
-CPU suite currently passes 83 tests on bundled Python 3.12.14. Model inference latency and real complete-task success remain unknown. Kaggle tensor timing is not model latency. English/Arabic fixtures and local d1 diagnostics do not establish general language or GUI competence.
+91 CPU tests pass on Python 3.12.14 after provider/protocol regressions. Source/helper tests do not prove actual numerical training/resume equivalence. See `REVIEW_EVIDENCE.md` and `experiments/runtime/COLAB_RUNS.md` for run provenance and limitations. The original real 0/8 strict result remains preserved; the 7/8 result reused the same eight fixtures for calibration after observing the first run.
 
-No paid GPU, subscription, top-up, billing change or billable Colab CLI job was activated. Jev API responses disclose token usage, not actual charges; total account billing has not been independently verified. No multi-GB model weights were downloaded to the personal computer. The existing 407 MB local d1 artifact was inspected, not downloaded.
+No paid GPU, plan, subscription, top-up, billing change or billable Colab CLI session was activated. Jev billing is not independently verified. No multi-GB model weights reached the personal PC; Colab downloaded them to its remote cache. The existing 407 MB local d1 artifact was inspected, not downloaded.
 
-Next executable work: qualify an actually assigned permitted free GPU; run unchanged-model diagnostics before adaptation or precision comparison. Founder merge and production decisions remain pending.
+Next executable work: verify new CI, held-out model task evaluation with a frozen explicit protocol, actual processor/LoRA/checkpoint engineering smoke, then justified adaptation and paired quantization. Merge and production remain founder decisions.

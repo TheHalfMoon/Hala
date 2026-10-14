@@ -46,6 +46,14 @@ test_training_export_has_only_train_families_and_rejects_reports (test_evaluatio
 test_training_export_rejects_heldout_identity_relabel_and_source_drift (test_evaluation.EvaluationTests.test_training_export_rejects_heldout_identity_relabel_and_source_drift) ... ok
 test_wrong_target_stale_schema_controls (test_evaluation.EvaluationTests.test_wrong_target_stale_schema_controls) ... ok
 test_wrong_text_wrong_role_and_multi_action_do_not_fake_success (test_evaluation.EvaluationTests.test_wrong_text_wrong_role_and_multi_action_do_not_fake_success) ... ok
+test_ambiguous_or_malformed_output_rejects (test_normalized_protocol.NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects) ... ok
+test_explicit_protocol_converts_both_axes (test_normalized_protocol.NormalizedProtocolTests.test_explicit_protocol_converts_both_axes) ... ok
+test_pixel_protocol_stays_strict (test_normalized_protocol.NormalizedProtocolTests.test_pixel_protocol_stays_strict) ... ok
+test_unknown_protocol_rejects_before_runtime_import (test_normalized_protocol.NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import) ... ok
+test_generic_linux_without_root_is_allowed (test_provider_identity.ProviderIdentityTests.test_generic_linux_without_root_is_allowed) ... ok
+test_kaggle_marker_wins_over_colab_marker (test_provider_identity.ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker) ... ok
+test_observed_colab_image_has_kaggle_root (test_provider_identity.ProviderIdentityTests.test_observed_colab_image_has_kaggle_root) ... ok
+test_unknown_kaggle_root_stays_blocked (test_provider_identity.ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked) ... ok
 test_invalid_config (test_serving.ConfigTests.test_invalid_config) ... ok
 test_loopback_only (test_serving.ConfigTests.test_loopback_only) ... ok
 test_absolute_read_deadline (test_serving.ServerTests.test_absolute_read_deadline) ... ok
@@ -83,6 +91,6 @@ test_runner_completed_resume_finalizes_without_runtime_or_model_import (test_tra
 test_runner_refuses_changed_media_before_runtime_or_model_import (test_training_integrity.TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import) ... ok
 
 ----------------------------------------------------------------------
-Ran 83 tests in 8.400s
+Ran 91 tests in 7.165s
 
 OK

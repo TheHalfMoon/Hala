@@ -1,0 +1,14 @@
+{
+  "schema": "hala.runtime.probe.v1",
+  "python": "3.13.15",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "timestamp_unix": 1791991782.5758667,
+  "downloads_weights": false,
+  "trains_checkpoint": false,
+  "devices": [{"index": 0, "name": "Tesla T4", "vram_bytes": 15637086208, "capability": [7, 5], "bf16_native_candidate": false, "four_fp16_steps_seconds": 0.40915522899999246, "tensor_gradient_changed": true, "max_memory_allocated_bytes": 17146880, "final_loss": 62.83631896972656, "qualification_scope": "small_tensor_fp16_backward_only"}],
+  "packages": {"torch": "2.11.0+cu130", "transformers": "5.18.0", "peft": "0.21.1", "accelerate": "1.15.0", "bitsandbytes": null},
+  "cuda_build": "13.0",
+  "cuda_available": true,
+  "status": "tested",
+  "model_runtime_qualified": false
+}

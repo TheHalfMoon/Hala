@@ -17,9 +17,15 @@ MODEL_REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'
 PROMPT_REVISION = 'hala-grounding-smoke-v1'
 
 
-def parse_answer(answer):
+def parse_answer(answer, coordinate_mode='pixels'):
     if not isinstance(answer, str) or not 1 <= len(answer) <= 4096:
         raise ValueError('Bounded raw answer required')
+    if coordinate_mode not in ('pixels', 'normalized_1000'):
+        raise ValueError('Explicit coordinate protocol required')
+    if coordinate_mode == 'normalized_1000':
+        answer = answer.strip()
+        if answer.startswith('```json\n') and answer.endswith('\n```'):
+            answer = answer[8:-4]
     def pairs(items):
         value = {}
         for key, item in items:
@@ -33,6 +39,13 @@ def parse_answer(answer):
         value = json.loads(answer, object_pairs_hook=pairs, parse_constant=constant)
     except RecursionError as error:
         raise ValueError('Output nesting exceeds budget') from error
+    if coordinate_mode == 'normalized_1000':
+        if (not isinstance(value, dict) or set(value) != {'point'} or
+                not isinstance(value['point'], list) or len(value['point']) != 2 or
+                any(type(x) is not int or not 0 <= x <= 1000 for x in value['point'])):
+            raise ValueError('Exact normalized point schema required')
+        value = {'point': [min(639, value['point'][0] * 640 // 1000),
+                           min(359, value['point'][1] * 360 // 1000)]}
     if not valid_point(value):
         raise ValueError('Exact point output schema required')
     return value
@@ -57,11 +70,20 @@ def check_point(value, box):
     return left <= point[0] < right and top <= point[1] < bottom
 
 
-def run(output_path='hala-baseline-result.json'):
+def reject_kaggle_runtime():
+    # Colab images can contain /kaggle without being Kaggle notebooks.
+    # Provider markers are deployment diagnostics, not an adversarial boundary.
+    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or (
+            Path('/kaggle').exists() and not os.environ.get('COLAB_RELEASE_TAG')):
+        raise ValueError('Kaggle commercial-use eligibility is blocked')
+
+
+def run(output_path='hala-baseline-result.json', coordinate_mode='pixels'):
+    if coordinate_mode not in ('pixels', 'normalized_1000'):
+        raise ValueError('Explicit coordinate protocol required')
     if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_BASELINE_ALLOWED') != '1':
         raise ValueError('Explicitly approved remote Linux notebook required; no local weights')
-    if Path('/kaggle').exists():
-        raise ValueError('Kaggle commercial-use eligibility is blocked')
+    reject_kaggle_runtime()
     os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
     os.environ['DO_NOT_TRACK'] = '1'
     os.environ['HF_HOME'] = '/tmp/hala-model-cache'
@@ -79,7 +101,10 @@ def run(output_path='hala-baseline-result.json'):
     previous_handler = signal.signal(signal.SIGALRM, timed_out)
     signal.alarm(1200)
     result = {'schema': 'hala.baseline.smoke.v1', 'model_id': MODEL_ID,
-              'revision': MODEL_REVISION, 'prompt_revision': PROMPT_REVISION,
+              'revision': MODEL_REVISION, 'prompt_revision': (PROMPT_REVISION if coordinate_mode == 'pixels'
+                                                            else 'hala-grounding-calibration-v2'),
+              'coordinate_protocol': coordinate_mode,
+              'calibration_only': coordinate_mode != 'pixels',
               'evidence': 'real_inference', 'training_runs': 0, 'precision': 'fp16',
               'attention': 'sdpa', 'python': platform.python_version(),
               'torch': torch.__version__, 'transformers': transformers.__version__,
@@ -125,6 +150,8 @@ def run(output_path='hala-baseline-result.json'):
             target = labels[language][index % 4]
             goal = f'Click the {target} button.' if language == 'en' else f'انقر على زر {target}.'
             prompt = goal + '\nReturn only JSON: {"point":[x,y]}. Coordinates are integer pixels in the 640x360 image. Do not execute anything.'
+            if coordinate_mode == 'normalized_1000':
+                prompt = goal + '\nReturn only JSON: {"point":[x,y]}. Use integer normalized coordinates from 0 to 1000 on each image axis. Do not execute anything.'
             messages = [{'role': 'user', 'content': [{'type': 'image'}, {'type': 'text', 'text': prompt}]}]
             template = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
             inputs = processor(text=[template], images=[image], return_tensors='pt').to('cuda:0')
@@ -135,15 +162,16 @@ def run(output_path='hala-baseline-result.json'):
             elapsed = time.perf_counter() - start
             answer = processor.batch_decode(generated[:, inputs.input_ids.shape[1]:], skip_special_tokens=True)[0]
             try:
-                value = parse_answer(answer)
+                value = parse_answer(answer, coordinate_mode)
                 valid = valid_point(value)
                 passed = check_point(value, boxes[choices.index(target)])
             except (ValueError, TypeError):
-                valid, passed = False, False
+                valid, passed, value = False, False, None
             result['cases'].append({'id': index, 'language': language, 'goal': goal,
                                     'image_sha256': hashlib.sha256(image.tobytes()).hexdigest(),
                                     'expected_box': boxes[choices.index(target)], 'output': answer,
                                     'schema_valid': valid, 'verified_target_hit': passed,
+                                    'decoded_pixel_point': value,
                                     'inference_seconds': elapsed,
                                     'output_tokens': generated.shape[1] - inputs.input_ids.shape[1],
                                     'status': 'tested', 'state_verification_scope': 'geometric_target_only'})

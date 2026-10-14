@@ -1,0 +1,14 @@
+# Actual free Colab runs, 2026-10-14
+
+A real free Tesla T4 was eventually allocated in the browser notebook, after prior allocation failures. The no-weight tensor probe completed on Python 3.13.15, torch 2.11.0+cu130/CUDA 13.0; 15,637,086,208 bytes device memory. FP16 backward changed a small tensor. This does not qualify BF16 or the complete model/training runtime.
+
+The canonical remote baseline initially falsely identified `/kaggle` in the Colab image. Observed nonsecret markers: COLAB_RELEASE_TAG and COLAB_BACKEND_VERSION present, KAGGLE_KERNEL_RUN_TYPE absent; /kaggle exists, /kaggle/working absent, /content present. The independently reviewed provider repair retains Kaggle blocking. The image also lacked the expected font; official apt `fonts-dejavu-core` installation returned zero and was added to notebook setup. Editor autoindent attempts failed before inference; exact canonical source bytes were then executed through a base64 transport wrapper. These failed attempts are not scored model runs.
+
+| Run | Result and limits |
+|---|---|
+| Strict pixel contract | Actual unchanged Qwen/Qwen3-VL-2B-Instruct at `89644892e4d85e24eaac8bacfd4f463576704203`, FP16/SDPA, transformers 5.16.1. 0/8 strict target hits, all eight raw answers fenced and invalid for requested pixel-JSON contract. Source SHA256 `cd18a3b55a978cd760d4b033b80f95e147e90d0e80a30112e8ed2faabe36a8e3`. Model allocated 4,273,430,016 bytes, peak allocator 4,347,139,072 bytes. First generation4.539s; remaining0.873–1.084s. Recorded load19.655s was a warm-cache retry; the earlier failed font run downloaded weights remotely. |
+| Normalized calibration | Same checkpoint, same eight images/targets, explicit prompt/decoder revision v2. 7/8 geometric target hits: English4/4, Arabic3/4. Source SHA256 `a33495c574e0b6bebb9daab693db339c9d5340829605648838ff89b3bb13e02a`. All eight normalized output objects schema-valid; final Arabic Open chose the wrong button. Allocated4,274,478,592 bytes; peak4,347,313,152 bytes. Generation0.807–1.043s; warm-cache load19.231s. This is calibration after observing the first run, not held-out quality or complete-task success. |
+
+Exact JSON was preserved from rendered notebook output in `colab-baseline-fp16-20261014.json` and `colab-calibration-fp16-20261014.json`. A browser download attempt timed out; no download success is claimed. Both records retain raw model answers, expected boxes, image hashes, timings and release_qualified=false. The browser ran all four Arabic cases through the script's RAQM prerequisite; no local Arabic image training qualification follows from that.
+
+No model weights were downloaded to the personal PC. Weights stayed in the remote notebook cache. No billable Colab CLI session, paid plan, top-up, subscription or other billing action was activated. No real adapter or quantized artifact has yet been produced. Do not interpret PyTorch allocated memory as complete process/device resident memory.

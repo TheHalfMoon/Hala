@@ -1,639 +1,3472 @@
 ﻿{
-  "basis": "HEAD~1...HEAD",
+  "basis": "working tree vs HEAD",
   "depth": 2,
   "changed": [
     {
-      "path": "docs/COST_MODEL.md",
-      "status": "added",
+      "path": "docs/reviews/cpu-gates-final.json",
+      "status": "modified",
       "ranges": [
         {
-          "start": 1,
-          "end": 7
+          "start": 17,
+          "end": 17
+        },
+        {
+          "start": 19,
+          "end": 19
+        },
+        {
+          "start": 36,
+          "end": 36
+        },
+        {
+          "start": 47,
+          "end": 47
+        },
+        {
+          "start": 59,
+          "end": 59
+        },
+        {
+          "start": 71,
+          "end": 71
         }
       ],
       "hunks": [
         {
-          "start": 1,
+          "start": 17,
+          "end": 17,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"seconds\": 8.82979570000316,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"seconds\": 7.73635039999499,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 19,
+          "end": 19,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"log_sha256\": \"bd776bdaac018ca1bdba8fd9956da1d6f2a8a0b8c624c0a2399e43d377640e6c\"\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      \"log_sha256\": \"2404f4813eac09e7f8071667498335a35712fc1ac96f365f6c6f881ccbb63766\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 36,
+          "end": 36,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"seconds\": 0.23770380001224112,\r"
+            },
+            {
+              "n": 36,
+              "sign": "+",
+              "text": "      \"seconds\": 0.27026250000926666,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 47,
+          "end": 47,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"seconds\": 0.13807889999588951,\r"
+            },
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "      \"seconds\": 0.14013710001017898,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 59,
+          "end": 59,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"seconds\": 0.1104126999998698,\r"
+            },
+            {
+              "n": 59,
+              "sign": "+",
+              "text": "      \"seconds\": 0.14306839999335352,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 71,
+          "end": 71,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"seconds\": 0.40278059999400284,\r"
+            },
+            {
+              "n": 71,
+              "sign": "+",
+              "text": "      \"seconds\": 0.3866534000117099,\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/cpu_unittest.log",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 49,
+          "end": 56
+        },
+        {
+          "start": 94,
+          "end": 94
+        }
+      ],
+      "hunks": [
+        {
+          "start": 49,
+          "end": 56,
+          "lines": [
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "test_ambiguous_or_malformed_output_rejects (test_normalized_protocol.NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects) ... ok\r"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": "test_explicit_protocol_converts_both_axes (test_normalized_protocol.NormalizedProtocolTests.test_explicit_protocol_converts_both_axes) ... ok\r"
+            },
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "test_pixel_protocol_stays_strict (test_normalized_protocol.NormalizedProtocolTests.test_pixel_protocol_stays_strict) ... ok\r"
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "test_unknown_protocol_rejects_before_runtime_import (test_normalized_protocol.NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import) ... ok\r"
+            },
+            {
+              "n": 53,
+              "sign": "+",
+              "text": "test_generic_linux_without_root_is_allowed (test_provider_identity.ProviderIdentityTests.test_generic_linux_without_root_is_allowed) ... ok\r"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": "test_kaggle_marker_wins_over_colab_marker (test_provider_identity.ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker) ... ok\r"
+            },
+            {
+              "n": 55,
+              "sign": "+",
+              "text": "test_observed_colab_image_has_kaggle_root (test_provider_identity.ProviderIdentityTests.test_observed_colab_image_has_kaggle_root) ... ok\r"
+            },
+            {
+              "n": 56,
+              "sign": "+",
+              "text": "test_unknown_kaggle_root_stays_blocked (test_provider_identity.ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked) ... ok\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 94,
+          "end": 94,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Ran 83 tests in 8.400s\r"
+            },
+            {
+              "n": 94,
+              "sign": "+",
+              "text": "Ran 91 tests in 7.165s\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/graft-build.log",
+      "status": "modified",
+      "ranges": [],
+      "hunks": []
+    },
+    {
+      "path": "docs/reviews/graft-check.json",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 17,
+          "end": 17
+        },
+        {
+          "start": 301,
+          "end": 313
+        },
+        {
+          "start": 417,
+          "end": 417
+        },
+        {
+          "start": 433,
+          "end": 433
+        }
+      ],
+      "hunks": [
+        {
+          "start": 17,
+          "end": 17,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    \"pending\": 399,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"pending\": 413,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 301,
+          "end": 313,
+          "lines": [
+            {
+              "n": 301,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py\",\r"
+            },
+            {
+              "n": 302,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py#NormalizedProtocolTests\",\r"
+            },
+            {
+              "n": 303,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py#NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects\",\r"
+            },
+            {
+              "n": 304,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py#NormalizedProtocolTests.test_explicit_protocol_converts_both_axes\",\r"
+            },
+            {
+              "n": 305,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py#NormalizedProtocolTests.test_pixel_protocol_stays_strict\",\r"
+            },
+            {
+              "n": 306,
+              "sign": "+",
+              "text": "      \"tests/test_normalized_protocol.py#NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import\",\r"
+            },
+            {
+              "n": 307,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py\",\r"
+            },
+            {
+              "n": 308,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests\",\r"
+            },
+            {
+              "n": 309,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests.check_runtime\",\r"
+            },
+            {
+              "n": 310,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests.test_generic_linux_without_root_is_allowed\",\r"
+            },
+            {
+              "n": 311,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker\",\r"
+            },
+            {
+              "n": 312,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests.test_observed_colab_image_has_kaggle_root\",\r"
+            },
+            {
+              "n": 313,
+              "sign": "+",
+              "text": "      \"tests/test_provider_identity.py#ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 417,
+          "end": 417,
+          "lines": [
+            {
+              "n": 417,
+              "sign": "+",
+              "text": "      \"training/scripts/baseline.py#reject_kaggle_runtime\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 433,
+          "end": 433,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    \"nodes\": 399\r"
+            },
+            {
+              "n": 433,
+              "sign": "+",
+              "text": "    \"nodes\": 413\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/graft-impact.json",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 2,
+          "end": 2
+        },
+        {
+          "start": 6,
+          "end": 7
+        },
+        {
+          "start": 10,
+          "end": 31
+        },
+        {
+          "start": 36,
+          "end": 37
+        },
+        {
+          "start": 40,
+          "end": 42
+        },
+        {
+          "start": 45,
+          "end": 45
+        },
+        {
+          "start": 47,
+          "end": 55
+        },
+        {
+          "start": 57,
+          "end": 59
+        },
+        {
+          "start": 62,
+          "end": 62
+        },
+        {
+          "start": 64,
+          "end": 64
+        },
+        {
+          "start": 68,
+          "end": 68
+        },
+        {
+          "start": 70,
+          "end": 71
+        },
+        {
+          "start": 74,
+          "end": 76
+        },
+        {
+          "start": 79,
+          "end": 79
+        },
+        {
+          "start": 81,
+          "end": 89
+        },
+        {
+          "start": 91,
+          "end": 93
+        },
+        {
+          "start": 96,
+          "end": 96
+        },
+        {
+          "start": 98,
+          "end": 106
+        },
+        {
+          "start": 108,
+          "end": 110
+        },
+        {
+          "start": 113,
+          "end": 113
+        },
+        {
+          "start": 115,
+          "end": 123
+        },
+        {
+          "start": 125,
+          "end": 127
+        },
+        {
+          "start": 130,
+          "end": 130
+        },
+        {
+          "start": 132,
+          "end": 132
+        },
+        {
+          "start": 140,
+          "end": 141
+        },
+        {
+          "start": 144,
+          "end": 149
+        },
+        {
+          "start": 154,
+          "end": 155
+        },
+        {
+          "start": 158,
+          "end": 158
+        },
+        {
+          "start": 160,
+          "end": 160
+        },
+        {
+          "start": 163,
+          "end": 163
+        },
+        {
+          "start": 165,
+          "end": 165
+        },
+        {
+          "start": 168,
+          "end": 168
+        },
+        {
+          "start": 170,
+          "end": 170
+        },
+        {
+          "start": 173,
+          "end": 173
+        },
+        {
+          "start": 175,
+          "end": 183
+        },
+        {
+          "start": 185,
+          "end": 187
+        },
+        {
+          "start": 190,
+          "end": 190
+        },
+        {
+          "start": 192,
+          "end": 192
+        },
+        {
+          "start": 200,
+          "end": 207
+        },
+        {
+          "start": 210,
+          "end": 223
+        },
+        {
+          "start": 228,
+          "end": 229
+        },
+        {
+          "start": 232,
+          "end": 234
+        },
+        {
+          "start": 237,
+          "end": 237
+        },
+        {
+          "start": 239,
+          "end": 247
+        },
+        {
+          "start": 249,
+          "end": 249
+        },
+        {
+          "start": 251,
+          "end": 251
+        },
+        {
+          "start": 254,
+          "end": 254
+        },
+        {
+          "start": 256,
+          "end": 256
+        },
+        {
+          "start": 259,
+          "end": 259
+        },
+        {
+          "start": 261,
+          "end": 261
+        },
+        {
+          "start": 264,
+          "end": 264
+        },
+        {
+          "start": 266,
+          "end": 266
+        },
+        {
+          "start": 269,
+          "end": 269
+        },
+        {
+          "start": 271,
+          "end": 271
+        },
+        {
+          "start": 274,
+          "end": 274
+        },
+        {
+          "start": 276,
+          "end": 276
+        },
+        {
+          "start": 279,
+          "end": 279
+        },
+        {
+          "start": 281,
+          "end": 289
+        },
+        {
+          "start": 291,
+          "end": 291
+        },
+        {
+          "start": 293,
+          "end": 301
+        },
+        {
+          "start": 303,
+          "end": 305
+        },
+        {
+          "start": 308,
+          "end": 308
+        },
+        {
+          "start": 310,
+          "end": 310
+        },
+        {
+          "start": 313,
+          "end": 313
+        },
+        {
+          "start": 318,
+          "end": 319
+        },
+        {
+          "start": 322,
+          "end": 331
+        },
+        {
+          "start": 336,
+          "end": 337
+        },
+        {
+          "start": 340,
+          "end": 342
+        },
+        {
+          "start": 347,
+          "end": 355
+        },
+        {
+          "start": 357,
+          "end": 357
+        },
+        {
+          "start": 359,
+          "end": 359
+        },
+        {
+          "start": 362,
+          "end": 362
+        },
+        {
+          "start": 364,
+          "end": 364
+        },
+        {
+          "start": 367,
+          "end": 367
+        },
+        {
+          "start": 369,
+          "end": 369
+        },
+        {
+          "start": 372,
+          "end": 372
+        },
+        {
+          "start": 374,
+          "end": 374
+        },
+        {
+          "start": 377,
+          "end": 377
+        },
+        {
+          "start": 379,
+          "end": 379
+        },
+        {
+          "start": 382,
+          "end": 382
+        },
+        {
+          "start": 384,
+          "end": 384
+        },
+        {
+          "start": 387,
+          "end": 387
+        },
+        {
+          "start": 389,
+          "end": 389
+        },
+        {
+          "start": 392,
+          "end": 392
+        },
+        {
+          "start": 394,
+          "end": 402
+        },
+        {
+          "start": 404,
+          "end": 406
+        },
+        {
+          "start": 409,
+          "end": 411
+        },
+        {
+          "start": 414,
+          "end": 414
+        },
+        {
+          "start": 416,
+          "end": 416
+        },
+        {
+          "start": 419,
+          "end": 419
+        },
+        {
+          "start": 424,
+          "end": 425
+        },
+        {
+          "start": 428,
+          "end": 433
+        },
+        {
+          "start": 438,
+          "end": 439
+        },
+        {
+          "start": 442,
+          "end": 442
+        },
+        {
+          "start": 444,
+          "end": 444
+        },
+        {
+          "start": 447,
+          "end": 447
+        },
+        {
+          "start": 449,
+          "end": 449
+        },
+        {
+          "start": 452,
+          "end": 452
+        },
+        {
+          "start": 454,
+          "end": 454
+        },
+        {
+          "start": 457,
+          "end": 457
+        },
+        {
+          "start": 459,
+          "end": 459
+        },
+        {
+          "start": 462,
+          "end": 462
+        },
+        {
+          "start": 464,
+          "end": 464
+        },
+        {
+          "start": 467,
+          "end": 467
+        },
+        {
+          "start": 469,
+          "end": 469
+        },
+        {
+          "start": 472,
+          "end": 472
+        },
+        {
+          "start": 474,
+          "end": 474
+        },
+        {
+          "start": 477,
+          "end": 477
+        },
+        {
+          "start": 479,
+          "end": 487
+        },
+        {
+          "start": 489,
+          "end": 491
+        },
+        {
+          "start": 494,
+          "end": 496
+        },
+        {
+          "start": 499,
+          "end": 499
+        },
+        {
+          "start": 501,
+          "end": 501
+        },
+        {
+          "start": 504,
+          "end": 504
+        },
+        {
+          "start": 509,
+          "end": 510
+        },
+        {
+          "start": 513,
+          "end": 522
+        },
+        {
+          "start": 527,
+          "end": 528
+        },
+        {
+          "start": 531,
+          "end": 531
+        },
+        {
+          "start": 533,
+          "end": 533
+        },
+        {
+          "start": 537,
+          "end": 537
+        },
+        {
+          "start": 539,
+          "end": 540
+        },
+        {
+          "start": 543,
+          "end": 545
+        },
+        {
+          "start": 548,
+          "end": 548
+        },
+        {
+          "start": 550,
+          "end": 558
+        },
+        {
+          "start": 560,
+          "end": 560
+        },
+        {
+          "start": 562,
+          "end": 562
+        },
+        {
+          "start": 565,
+          "end": 565
+        },
+        {
+          "start": 571,
+          "end": 575
+        },
+        {
+          "start": 580,
+          "end": 584
+        },
+        {
+          "start": 588,
+          "end": 589
+        },
+        {
+          "start": 591,
+          "end": 592
+        },
+        {
+          "start": 596,
+          "end": 597
+        },
+        {
+          "start": 599,
+          "end": 600
+        },
+        {
+          "start": 602,
+          "end": 612
+        },
+        {
+          "start": 615,
+          "end": 616
+        },
+        {
+          "start": 618,
+          "end": 621
+        },
+        {
+          "start": 624,
+          "end": 630
+        },
+        {
+          "start": 633,
+          "end": 634
+        },
+        {
+          "start": 636,
+          "end": 639
+        },
+        {
+          "start": 642,
+          "end": 643
+        },
+        {
+          "start": 645,
+          "end": 648
+        },
+        {
+          "start": 651,
+          "end": 652
+        },
+        {
+          "start": 654,
+          "end": 658
+        },
+        {
+          "start": 660,
+          "end": 661
+        },
+        {
+          "start": 663,
+          "end": 664
+        },
+        {
+          "start": 666,
+          "end": 666
+        },
+        {
+          "start": 669,
+          "end": 670
+        },
+        {
+          "start": 672,
+          "end": 673
+        },
+        {
+          "start": 678,
+          "end": 679
+        },
+        {
+          "start": 681,
+          "end": 682
+        },
+        {
+          "start": 687,
+          "end": 691
+        },
+        {
+          "start": 696,
+          "end": 697
+        },
+        {
+          "start": 699,
+          "end": 700
+        },
+        {
+          "start": 702,
+          "end": 702
+        },
+        {
+          "start": 706,
+          "end": 785
+        },
+        {
+          "start": 788,
+          "end": 788
+        },
+        {
+          "start": 790,
+          "end": 790
+        },
+        {
+          "start": 792,
+          "end": 793
+        },
+        {
+          "start": 795,
+          "end": 796
+        },
+        {
+          "start": 798,
+          "end": 799
+        },
+        {
+          "start": 801,
+          "end": 803
+        },
+        {
+          "start": 805,
+          "end": 805
+        },
+        {
+          "start": 808,
+          "end": 810
+        }
+      ],
+      "hunks": [
+        {
+          "start": 2,
+          "end": 2,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "  \"basis\": \"HEAD~1...HEAD\",\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"basis\": \"working tree vs HEAD\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 6,
           "end": 7,
           "lines": [
             {
-              "n": 1,
-              "sign": "+",
-              "text": "# Executable cost scenarios"
+              "n": null,
+              "sign": "-",
+              "text": "      \"path\": \"docs/COST_MODEL.md\",\r"
             },
             {
-              "n": 2,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": "Run `python -m experiments.cost.calculator --table` for all 25 founder-requested user-count/price scenarios. Supply `--inputs scenario.json` to replace the deliberately illustrative defaults. None of these prices is adopted."
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": "Active GPU-seconds, additional retry calls, cold worker loading, warm idle residency, storage, transfer, verified-success denominator and failure overhead are explicit. GPU-seconds already sum worker time: concurrency does not divide their price. Offered concurrency load can flag impossible average capacity; burst queueing and tail latency remain unknown without arrival measurements."
+              "n": null,
+              "sign": "-",
+              "text": "      \"status\": \"added\",\r"
             },
             {
               "n": 6,
               "sign": "+",
-              "text": ""
+              "text": "      \"path\": \"docs/reviews/cpu-gates-final.json\",\r"
             },
             {
               "n": 7,
               "sign": "+",
-              "text": "Architectures A–F can each supply their own input file after a paired evaluation measures calls, memory, latency, retries and verified success. Do not compare architectures by invented model performance. The calculator refuses to label a scenario as measured by supplying a run name; genuine experiment manifests need a separate evidence review. No GPU price or inference cost has been qualified."
+              "text": "      \"status\": \"modified\",\r"
             }
           ],
           "dropped": 0
-        }
-      ]
-    },
-    {
-      "path": "docs/RELIANCE_DIAGNOSTIC.md",
-      "status": "added",
-      "ranges": [
+        },
         {
-          "start": 1,
-          "end": 9
-        }
-      ],
-      "hunks": [
-        {
-          "start": 1,
-          "end": 9,
+          "start": 10,
+          "end": 31,
           "lines": [
             {
-              "n": 1,
-              "sign": "+",
-              "text": "# Actual local decision diagnostics"
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
             },
             {
-              "n": 2,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": "The existing local d1 service was online and used genuinely. No model was downloaded. The installed artifact is `d1-omni-600M-Q8_0.gguf`, 407,207,584 bytes, SHA-256 `cd94463f4cac9c700ec6750df8df005bb6846de410e159d1f5e985e1171693d3`. This is the existing local quantized stack, not a qualified Hala checkpoint or a reproduction of the publisher's FP16 runtime."
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": "`experiments/reliance/d1-diagnostic-20261014.json` records six authored route cases. Three English cases selected deterministic/mind/type as expected, with tool wall times 781/536/588 ms. All three longer Arabic cases returned HTTP 400 before an answer. The earlier eight-question, seven-way request also returned HTTP 400. Causes are unqualified; these failures must not be described as a demonstrated foundation-model Arabic accuracy rate."
-            },
-            {
-              "n": 6,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": "A separate minimal greeting probe on `مرحبا` did return a typed answer, but assigned only 0.06754 to “Arabic greeting.” A cancellation probe returned 0.98360 to the explicit cancelled condition. These are individual diagnostics, not safety approval or calibration evidence. The deterministic cancellation/budget paths remain mandatory regardless of model output."
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "The runtime is advisory only. H9/E4 is incomplete: no heldout route catalog, end-to-end task/call savings, larger-model routing comparison, or commercial release qualification exists. Default deterministic routing is retained. The local calls have no per-call API charge; electricity and hardware amortization were not measured. Jev used for engineering reviews is separate from Hala's runtime dependencies."
-            }
-          ],
-          "dropped": 0
-        }
-      ]
-    },
-    {
-      "path": "docs/adr/0002-default-to-deterministic-routing.md",
-      "status": "added",
-      "ranges": [
-        {
-          "start": 1,
-          "end": 12
-        }
-      ],
-      "hunks": [
-        {
-          "start": 1,
-          "end": 12,
-          "lines": [
-            {
-              "n": 1,
-              "sign": "+",
-              "text": "# 0002. Default to deterministic routing pending measured ablations"
-            },
-            {
-              "n": 2,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": "Status: accepted (2026-10-14)"
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": "## Context"
-            },
-            {
-              "n": 6,
-              "sign": "+",
-              "text": "An existing local d1-omni-600M Q8 GGUF runtime supports typed advice. Three authored English route diagnostics returned expected labels with 536–781 ms tool latency, while three longer Arabic routes returned HTTP 400. The six-case diagnostic is not a heldout routing benchmark. The large-model comparison and net compute savings are unavailable."
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": "## Decision"
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "Keep the Hala fixture router deterministic and treat d1 solely as research/advisory triage. Do not add a resident Reliance model, adopt Liquid commercial rights, lower local policy or require its inference on every step. Measure actual complete-task quality and saved expensive calls before changing the default."
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 7\r"
             },
             {
               "n": 10,
               "sign": "+",
-              "text": ""
+              "text": "          \"start\": 17,\r"
             },
             {
               "n": 11,
               "sign": "+",
-              "text": "## Consequences"
+              "text": "          \"end\": 17\r"
             },
             {
               "n": 12,
               "sign": "+",
-              "text": "Current mock inference needs no proprietary API and cannot gain authority from a model score. Learned routing quality, Arabic transport, exact native runtime compatibility, licensing and serving cost remain qualification work. CPU tool timings include MCP overhead and do not establish vendor model latency."
-            }
-          ],
-          "dropped": 0
-        }
-      ]
-    },
-    {
-      "path": "experiments/cost/calculator.py",
-      "status": "added",
-      "ranges": [
-        {
-          "start": 1,
-          "end": 119
-        }
-      ],
-      "hunks": [
-        {
-          "start": 1,
-          "end": 119,
-          "lines": [
-            {
-              "n": 1,
-              "sign": "+",
-              "text": "\"\"\"Transparent scenarios, never a substitute for measured serving economics.\"\"\""
-            },
-            {
-              "n": 2,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": "import argparse"
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": "import json"
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": "import math"
-            },
-            {
-              "n": 6,
-              "sign": "+",
-              "text": "from dataclasses import asdict, dataclass, replace"
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "@dataclass(frozen=True)"
-            },
-            {
-              "n": 10,
-              "sign": "+",
-              "text": "class CostInputs:"
-            },
-            {
-              "n": 11,
-              "sign": "+",
-              "text": "    users: int = 10"
-            },
-            {
-              "n": 12,
-              "sign": "+",
-              "text": "    tasks_per_user: int = 100"
+              "text": "        },\r"
             },
             {
               "n": 13,
               "sign": "+",
-              "text": "    model_calls_per_task: float = 2"
+              "text": "        {\r"
             },
             {
               "n": 14,
               "sign": "+",
-              "text": "    images_per_task: float = 1"
+              "text": "          \"start\": 19,\r"
             },
             {
               "n": 15,
               "sign": "+",
-              "text": "    tokens_per_task: float = 1000"
+              "text": "          \"end\": 19\r"
             },
             {
               "n": 16,
               "sign": "+",
-              "text": "    gpu_seconds_per_call: float = 3"
+              "text": "        },\r"
             },
             {
               "n": 17,
               "sign": "+",
-              "text": "    retry_rate: float = 0.1"
+              "text": "        {\r"
             },
             {
               "n": 18,
               "sign": "+",
-              "text": "    success_rate: float = 0.8"
+              "text": "          \"start\": 36,\r"
             },
             {
               "n": 19,
               "sign": "+",
-              "text": "    gpu_hourly_usd: float = 1"
+              "text": "          \"end\": 36\r"
             },
             {
               "n": 20,
               "sign": "+",
-              "text": "    warm_workers: int = 0"
+              "text": "        },\r"
             },
             {
               "n": 21,
               "sign": "+",
-              "text": "    month_hours: float = 720"
+              "text": "        {\r"
             },
             {
               "n": 22,
               "sign": "+",
-              "text": "    cold_starts: int = 0"
+              "text": "          \"start\": 47,\r"
             },
             {
               "n": 23,
               "sign": "+",
-              "text": "    cold_gpu_seconds: float = 0"
+              "text": "          \"end\": 47\r"
             },
             {
               "n": 24,
               "sign": "+",
-              "text": "    storage_gb: float = 0"
+              "text": "        },\r"
+            },
+            {
+              "n": 25,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 26,
+              "sign": "+",
+              "text": "          \"start\": 59,\r"
+            },
+            {
+              "n": 27,
+              "sign": "+",
+              "text": "          \"end\": 59\r"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 29,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "          \"start\": 71,\r"
+            },
+            {
+              "n": 31,
+              "sign": "+",
+              "text": "          \"end\": 71\r"
             }
           ],
-          "dropped": 95
+          "dropped": 0
+        },
+        {
+          "start": 36,
+          "end": 37,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 7,\r"
+            },
+            {
+              "n": 36,
+              "sign": "+",
+              "text": "          \"start\": 17,\r"
+            },
+            {
+              "n": 37,
+              "sign": "+",
+              "text": "          \"end\": 17,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 40,
+          "end": 42,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"# Executable cost scenarios\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 2,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 3,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"Run `python -m experiments.cost.calculator --table` for all 25 founder-requested user-count/price scenarios. Supply `--inputs scenario.json` to replace the deliberately illustrative defaults. None of these prices is adopted.\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 4,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 40,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 41,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 42,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 8.82979570000316,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 45,
+          "end": 45,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 5,\r"
+            },
+            {
+              "n": 45,
+              "sign": "+",
+              "text": "              \"n\": 17,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 47,
+          "end": 55,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"Active GPU-seconds, additional retry calls, cold worker loading, warm idle residency, storage, transfer, verified-success denominator and failure overhead are explicit. GPU-seconds already sum worker time: concurrency does not divide their price. Offered concurrency load can flag impossible average capacity; burst queueing and tail latency remain unknown without arrival measurements.\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 10.160224100007326,\\r\"\r"
+            },
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "            }\r"
+            },
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "          ],\r"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": "          \"dropped\": 0\r"
+            },
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 53,
+              "sign": "+",
+              "text": "          \"start\": 19,\r"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": "          \"end\": 19,\r"
+            },
+            {
+              "n": 55,
+              "sign": "+",
+              "text": "          \"lines\": [\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 57,
+          "end": 59,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 6,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 57,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 58,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 59,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"log_sha256\\\": \\\"bd776bdaac018ca1bdba8fd9956da1d6f2a8a0b8c624c0a2399e43d377640e6c\\\"\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 62,
+          "end": 62,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 7,\r"
+            },
+            {
+              "n": 62,
+              "sign": "+",
+              "text": "              \"n\": 19,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 64,
+          "end": 64,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"Architectures A–F can each supply their own input file after a paired evaluation measures calls, memory, latency, retries and verified success. Do not compare architectures by invented model performance. The calculator refuses to label a scenario as measured by supplying a run name; genuine experiment manifests need a separate evidence review. No GPU price or inference cost has been qualified.\"\r"
+            },
+            {
+              "n": 64,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"log_sha256\\\": \\\"b2b95652a10ecd2b0d30baf00451e6bbfd3eba292d668876f27da1ebe484adbd\\\"\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 68,
+          "end": 68,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        }\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      ]\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"path\": \"docs/RELIANCE_DIAGNOSTIC.md\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"status\": \"added\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"ranges\": [\r"
+            },
+            {
+              "n": 68,
+              "sign": "+",
+              "text": "        },\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 70,
+          "end": 71,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 9\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        }\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      ],\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"hunks\": [\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 9,\r"
+            },
+            {
+              "n": 70,
+              "sign": "+",
+              "text": "          \"start\": 36,\r"
+            },
+            {
+              "n": 71,
+              "sign": "+",
+              "text": "          \"end\": 36,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 74,
+          "end": 76,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"# Actual local decision diagnostics\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 2,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 74,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 75,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 76,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.23770380001224112,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 79,
+          "end": 79,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 3,\r"
+            },
+            {
+              "n": 79,
+              "sign": "+",
+              "text": "              \"n\": 36,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 81,
+          "end": 89,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"The existing local d1 service was online and used genuinely. No model was downloaded. The installed artifact is `d1-omni-600M-Q8_0.gguf`, 407,207,584 bytes, SHA-256 `cd94463f4cac9c700ec6750df8df005bb6846de410e159d1f5e985e1171693d3`. This is the existing local quantized stack, not a qualified Hala checkpoint or a reproduction of the publisher's FP16 runtime.\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": 81,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.3845945000066422,\\r\"\r"
+            },
+            {
+              "n": 82,
+              "sign": "+",
+              "text": "            }\r"
+            },
+            {
+              "n": 83,
+              "sign": "+",
+              "text": "          ],\r"
+            },
+            {
+              "n": 84,
+              "sign": "+",
+              "text": "          \"dropped\": 0\r"
+            },
+            {
+              "n": 85,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 86,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 87,
+              "sign": "+",
+              "text": "          \"start\": 47,\r"
+            },
+            {
+              "n": 88,
+              "sign": "+",
+              "text": "          \"end\": 47,\r"
+            },
+            {
+              "n": 89,
+              "sign": "+",
+              "text": "          \"lines\": [\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 91,
+          "end": 93,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 4,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 91,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 92,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 93,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.13807889999588951,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 96,
+          "end": 96,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 5,\r"
+            },
+            {
+              "n": 96,
+              "sign": "+",
+              "text": "              \"n\": 47,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 98,
+          "end": 106,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"`experiments/reliance/d1-diagnostic-20261014.json` records six authored route cases. Three English cases selected deterministic/mind/type as expected, with tool wall times 781/536/588 ms. All three longer Arabic cases returned HTTP 400 before an answer. The earlier eight-question, seven-way request also returned HTTP 400. Causes are unqualified; these failures must not be described as a demonstrated foundation-model Arabic accuracy rate.\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": 98,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.21668610000051558,\\r\"\r"
+            },
+            {
+              "n": 99,
+              "sign": "+",
+              "text": "            }\r"
+            },
+            {
+              "n": 100,
+              "sign": "+",
+              "text": "          ],\r"
+            },
+            {
+              "n": 101,
+              "sign": "+",
+              "text": "          \"dropped\": 0\r"
+            },
+            {
+              "n": 102,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 103,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 104,
+              "sign": "+",
+              "text": "          \"start\": 59,\r"
+            },
+            {
+              "n": 105,
+              "sign": "+",
+              "text": "          \"end\": 59,\r"
+            },
+            {
+              "n": 106,
+              "sign": "+",
+              "text": "          \"lines\": [\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 108,
+          "end": 110,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 6,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 108,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 109,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 110,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.1104126999998698,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 113,
+          "end": 113,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 7,\r"
+            },
+            {
+              "n": 113,
+              "sign": "+",
+              "text": "              \"n\": 59,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 115,
+          "end": 123,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"A separate minimal greeting probe on `مرحبا` did return a typed answer, but assigned only 0.06754 to “Arabic greeting.” A cancellation probe returned 0.98360 to the explicit cancelled condition. These are individual diagnostics, not safety approval or calibration evidence. The deterministic cancellation/budget paths remain mandatory regardless of model output.\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": 115,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.1689089999999851,\\r\"\r"
+            },
+            {
+              "n": 116,
+              "sign": "+",
+              "text": "            }\r"
+            },
+            {
+              "n": 117,
+              "sign": "+",
+              "text": "          ],\r"
+            },
+            {
+              "n": 118,
+              "sign": "+",
+              "text": "          \"dropped\": 0\r"
+            },
+            {
+              "n": 119,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 120,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 121,
+              "sign": "+",
+              "text": "          \"start\": 71,\r"
+            },
+            {
+              "n": 122,
+              "sign": "+",
+              "text": "          \"end\": 71,\r"
+            },
+            {
+              "n": 123,
+              "sign": "+",
+              "text": "          \"lines\": [\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 125,
+          "end": 127,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 8,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": 125,
+              "sign": "+",
+              "text": "              \"n\": null,\r"
+            },
+            {
+              "n": 126,
+              "sign": "+",
+              "text": "              \"sign\": \"-\",\r"
+            },
+            {
+              "n": 127,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.40278059999400284,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 130,
+          "end": 130,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 9,\r"
+            },
+            {
+              "n": 130,
+              "sign": "+",
+              "text": "              \"n\": 71,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 132,
+          "end": 132,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"The runtime is advisory only. H9/E4 is incomplete: no heldout route catalog, end-to-end task/call savings, larger-model routing comparison, or commercial release qualification exists. Default deterministic routing is retained. The local calls have no per-call API charge; electricity and hardware amortization were not measured. Jev used for engineering reviews is separate from Hala's runtime dependencies.\"\r"
+            },
+            {
+              "n": 132,
+              "sign": "+",
+              "text": "              \"text\": \"      \\\"seconds\\\": 0.5158288000093307,\\r\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 140,
+          "end": 141,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"path\": \"docs/adr/0002-default-to-deterministic-routing.md\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"status\": \"added\",\r"
+            },
+            {
+              "n": 140,
+              "sign": "+",
+              "text": "      \"path\": \"docs/reviews/cpu_unittest.log\",\r"
+            },
+            {
+              "n": 141,
+              "sign": "+",
+              "text": "      \"status\": \"modified\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 144,
+          "end": 149,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 12\r"
+            },
+            {
+              "n": 144,
+              "sign": "+",
+              "text": "          \"start\": 49,\r"
+            },
+            {
+              "n": 145,
+              "sign": "+",
+              "text": "          \"end\": 52\r"
+            },
+            {
+              "n": 146,
+              "sign": "+",
+              "text": "        },\r"
+            },
+            {
+              "n": 147,
+              "sign": "+",
+              "text": "        {\r"
+            },
+            {
+              "n": 148,
+              "sign": "+",
+              "text": "          \"start\": 90,\r"
+            },
+            {
+              "n": 149,
+              "sign": "+",
+              "text": "          \"end\": 90\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 154,
+          "end": 155,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"start\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "          \"end\": 12,\r"
+            },
+            {
+              "n": 154,
+              "sign": "+",
+              "text": "          \"start\": 49,\r"
+            },
+            {
+              "n": 155,
+              "sign": "+",
+              "text": "          \"end\": 52,\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 158,
+          "end": 158,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 1,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"# 0002. Default to deterministic routing pending measured ablations\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 2,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 3,\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"sign\": \"+\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"text\": \"Status: accepted (2026-10-14)\"\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            },\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            {\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              \"n\": 4,\r"
+            }
+          ],
+          "dropped": 6
+        },
+        {
+          "start": 160,
+          "end": 160,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 163,
+          "end": 163,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 165,
+          "end": 165,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 168,
+          "end": 168,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 170,
+          "end": 170,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 173,
+          "end": 173,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 175,
+          "end": 183,
+          "lines": [],
+          "dropped": 21
+        },
+        {
+          "start": 185,
+          "end": 187,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 190,
+          "end": 190,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 192,
+          "end": 192,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 200,
+          "end": 207,
+          "lines": [],
+          "dropped": 10
+        },
+        {
+          "start": 210,
+          "end": 223,
+          "lines": [],
+          "dropped": 16
+        },
+        {
+          "start": 228,
+          "end": 229,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 232,
+          "end": 234,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 237,
+          "end": 237,
+          "lines": [],
+          "dropped": 57
+        },
+        {
+          "start": 239,
+          "end": 247,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 249,
+          "end": 249,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 251,
+          "end": 251,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 254,
+          "end": 254,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 256,
+          "end": 256,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 259,
+          "end": 259,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 261,
+          "end": 261,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 264,
+          "end": 264,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 266,
+          "end": 266,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 269,
+          "end": 269,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 271,
+          "end": 271,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 274,
+          "end": 274,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 276,
+          "end": 276,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 279,
+          "end": 279,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 281,
+          "end": 289,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 291,
+          "end": 291,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 293,
+          "end": 301,
+          "lines": [],
+          "dropped": 16
+        },
+        {
+          "start": 303,
+          "end": 305,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 308,
+          "end": 308,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 310,
+          "end": 310,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 313,
+          "end": 313,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 318,
+          "end": 319,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 322,
+          "end": 331,
+          "lines": [],
+          "dropped": 12
+        },
+        {
+          "start": 336,
+          "end": 337,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 340,
+          "end": 342,
+          "lines": [],
+          "dropped": 61
+        },
+        {
+          "start": 347,
+          "end": 355,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 357,
+          "end": 357,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 359,
+          "end": 359,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 362,
+          "end": 362,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 364,
+          "end": 364,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 367,
+          "end": 367,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 369,
+          "end": 369,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 372,
+          "end": 372,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 374,
+          "end": 374,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 377,
+          "end": 377,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 379,
+          "end": 379,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 382,
+          "end": 382,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 384,
+          "end": 384,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 387,
+          "end": 387,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 389,
+          "end": 389,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 392,
+          "end": 392,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 394,
+          "end": 402,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 404,
+          "end": 406,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 409,
+          "end": 411,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 414,
+          "end": 414,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 416,
+          "end": 416,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 419,
+          "end": 419,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 424,
+          "end": 425,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 428,
+          "end": 433,
+          "lines": [],
+          "dropped": 8
+        },
+        {
+          "start": 438,
+          "end": 439,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 442,
+          "end": 442,
+          "lines": [],
+          "dropped": 67
+        },
+        {
+          "start": 444,
+          "end": 444,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 447,
+          "end": 447,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 449,
+          "end": 449,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 452,
+          "end": 452,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 454,
+          "end": 454,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 457,
+          "end": 457,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 459,
+          "end": 459,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 462,
+          "end": 462,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 464,
+          "end": 464,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 467,
+          "end": 467,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 469,
+          "end": 469,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 472,
+          "end": 472,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 474,
+          "end": 474,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 477,
+          "end": 477,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 479,
+          "end": 487,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 489,
+          "end": 491,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 494,
+          "end": 496,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 499,
+          "end": 499,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 501,
+          "end": 501,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 504,
+          "end": 504,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 509,
+          "end": 510,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 513,
+          "end": 522,
+          "lines": [],
+          "dropped": 12
+        },
+        {
+          "start": 527,
+          "end": 528,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 531,
+          "end": 531,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 533,
+          "end": 533,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 537,
+          "end": 537,
+          "lines": [],
+          "dropped": 14
+        },
+        {
+          "start": 539,
+          "end": 540,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 543,
+          "end": 545,
+          "lines": [],
+          "dropped": 41
+        },
+        {
+          "start": 548,
+          "end": 548,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 550,
+          "end": 558,
+          "lines": [],
+          "dropped": 81
+        },
+        {
+          "start": 560,
+          "end": 560,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 562,
+          "end": 562,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 565,
+          "end": 565,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 571,
+          "end": 575,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 580,
+          "end": 584,
+          "lines": [],
+          "dropped": 10
+        },
+        {
+          "start": 588,
+          "end": 589,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 591,
+          "end": 592,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 596,
+          "end": 597,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 599,
+          "end": 600,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 602,
+          "end": 612,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 615,
+          "end": 616,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 618,
+          "end": 621,
+          "lines": [],
+          "dropped": 7
+        },
+        {
+          "start": 624,
+          "end": 630,
+          "lines": [],
+          "dropped": 13
+        },
+        {
+          "start": 633,
+          "end": 634,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 636,
+          "end": 639,
+          "lines": [],
+          "dropped": 7
+        },
+        {
+          "start": 642,
+          "end": 643,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 645,
+          "end": 648,
+          "lines": [],
+          "dropped": 7
+        },
+        {
+          "start": 651,
+          "end": 652,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 654,
+          "end": 658,
+          "lines": [],
+          "dropped": 11
+        },
+        {
+          "start": 660,
+          "end": 661,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 663,
+          "end": 664,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 666,
+          "end": 666,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 669,
+          "end": 670,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 672,
+          "end": 673,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 678,
+          "end": 679,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 681,
+          "end": 682,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 687,
+          "end": 691,
+          "lines": [],
+          "dropped": 10
+        },
+        {
+          "start": 696,
+          "end": 697,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 699,
+          "end": 700,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 702,
+          "end": 702,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 706,
+          "end": 785,
+          "lines": [],
+          "dropped": 81
+        },
+        {
+          "start": 788,
+          "end": 788,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 790,
+          "end": 790,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 792,
+          "end": 793,
+          "lines": [],
+          "dropped": 3
+        },
+        {
+          "start": 795,
+          "end": 796,
+          "lines": [],
+          "dropped": 4
+        },
+        {
+          "start": 798,
+          "end": 799,
+          "lines": [],
+          "dropped": 6
+        },
+        {
+          "start": 801,
+          "end": 803,
+          "lines": [],
+          "dropped": 5
+        },
+        {
+          "start": 805,
+          "end": 805,
+          "lines": [],
+          "dropped": 2
+        },
+        {
+          "start": 808,
+          "end": 810,
+          "lines": [],
+          "dropped": 7
         }
       ]
     },
     {
-      "path": "experiments/reliance/d1-diagnostic-20261014.json",
-      "status": "added",
+      "path": "docs/reviews/graft-summary.json",
+      "status": "modified",
       "ranges": [
         {
-          "start": 1,
-          "end": 154
+          "start": 8,
+          "end": 8
         }
       ],
       "hunks": [
         {
-          "start": 1,
+          "start": 8,
+          "end": 8,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    \"nodes\":  399,\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"nodes\":  407,\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "training/platforms/build_notebooks.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 28,
+          "end": 28
+        }
+      ],
+      "hunks": [
+        {
+          "start": 28,
+          "end": 28,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                          cell('code', '%pip install --quiet transformers==5.16.1\\n'),"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "                          cell('code', '%pip install --quiet transformers==5.16.1\\nimport subprocess\\nsubprocess.run([\"apt-get\", \"-qq\", \"update\"], check=True)\\nsubprocess.run([\"apt-get\", \"-qq\", \"install\", \"-y\", \"fonts-dejavu-core\"], check=True)\\n'),"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "training/platforms/colab-baseline.ipynb",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 13,
+          "end": 13
+        },
+        {
+          "start": 121,
+          "end": 124
+        },
+        {
+          "start": 154,
+          "end": 154
+        },
+        {
+          "start": 157,
+          "end": 162
+        },
+        {
+          "start": 176,
+          "end": 182
+        },
+        {
+          "start": 207,
+          "end": 217
+        },
+        {
+          "start": 220,
+          "end": 220
+        },
+        {
+          "start": 238,
+          "end": 241
+        },
+        {
+          "start": 287,
+          "end": 288
+        },
+        {
+          "start": 299,
+          "end": 299
+        },
+        {
+          "start": 303,
+          "end": 303
+        },
+        {
+          "start": 308,
+          "end": 308
+        }
+      ],
+      "hunks": [
+        {
+          "start": 13,
+          "end": 13,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "      \"training/scripts/baseline.py\": \"1f5cfa77ef22903151247dcd0846278bca67da61cf87fa90da9843c91991db2a\"\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"training/scripts/baseline.py\": \"a33495c574e0b6bebb9daab693db339c9d5340829605648838ff89b3bb13e02a\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 121,
+          "end": 124,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"%pip install --quiet transformers==5.16.1\\n\"\r"
+            },
+            {
+              "n": 121,
+              "sign": "+",
+              "text": "        \"%pip install --quiet transformers==5.16.1\\n\",\r"
+            },
+            {
+              "n": 122,
+              "sign": "+",
+              "text": "        \"import subprocess\\n\",\r"
+            },
+            {
+              "n": 123,
+              "sign": "+",
+              "text": "        \"subprocess.run([\\\"apt-get\\\", \\\"-qq\\\", \\\"update\\\"], check=True)\\n\",\r"
+            },
+            {
+              "n": 124,
+              "sign": "+",
+              "text": "        \"subprocess.run([\\\"apt-get\\\", \\\"-qq\\\", \\\"install\\\", \\\"-y\\\", \\\"fonts-dejavu-core\\\"], check=True)\\n\"\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 154,
           "end": 154,
           "lines": [
             {
-              "n": 1,
-              "sign": "+",
-              "text": "{"
+              "n": null,
+              "sign": "-",
+              "text": "        \"def parse_answer(answer):\\n\",\r"
             },
             {
-              "n": 2,
+              "n": 154,
               "sign": "+",
-              "text": "  \"schema\": \"hala.reliance.diagnostic.v1\","
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": "  \"date\": \"2026-10-14\","
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": "  \"evidence\": \"actual_local_typed_decision_inference\","
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": "  \"adoption_qualified\": false,"
-            },
-            {
-              "n": 6,
-              "sign": "+",
-              "text": "  \"scope\": \"six authored bilingual route diagnostics, not heldout E4 qualification or authority/safety approval\","
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": "  \"conditions\": \"Local d1 runtime already warmed by smoke calls; calls sequential; tool latency includes MCP overhead; Q8 GGUF path reported by runtime, weights not downloaded\","
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": "  \"cases\": ["
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "    {"
-            },
-            {
-              "n": 10,
-              "sign": "+",
-              "text": "      \"id\": \"english_structured\","
-            },
-            {
-              "n": 11,
-              "sign": "+",
-              "text": "      \"language\": \"en\","
-            },
-            {
-              "n": 12,
-              "sign": "+",
-              "text": "      \"state\": \"Click the uniquely identified Save button in the fresh accessibility tree. A qualified existing structured invoke tool is available.\","
-            },
-            {
-              "n": 13,
-              "sign": "+",
-              "text": "      \"expected\": \"deterministic\","
-            },
-            {
-              "n": 14,
-              "sign": "+",
-              "text": "      \"tool_wall_ms\": 781,"
-            },
-            {
-              "n": 15,
-              "sign": "+",
-              "text": "      \"response\": {"
-            },
-            {
-              "n": 16,
-              "sign": "+",
-              "text": "        \"advisory_only\": true,"
-            },
-            {
-              "n": 17,
-              "sign": "+",
-              "text": "        \"result\": {"
-            },
-            {
-              "n": 18,
-              "sign": "+",
-              "text": "          \"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\","
-            },
-            {
-              "n": 19,
-              "sign": "+",
-              "text": "          \"answers\": {"
-            },
-            {
-              "n": 20,
-              "sign": "+",
-              "text": "            \"route\": {"
-            },
-            {
-              "n": 21,
-              "sign": "+",
-              "text": "              \"type\": \"choice\","
-            },
-            {
-              "n": 22,
-              "sign": "+",
-              "text": "              \"choice\": \"deterministic\","
-            },
-            {
-              "n": 23,
-              "sign": "+",
-              "text": "              \"probabilities\": {"
-            },
-            {
-              "n": 24,
-              "sign": "+",
-              "text": "                \"deterministic\": 0.7294725120820302,"
+              "text": "        \"def parse_answer(answer, coordinate_mode='pixels'):\\n\",\r"
             }
           ],
-          "dropped": 130
-        }
-      ]
-    },
-    {
-      "path": "experiments/runtime/kaggle-t4-probe-20261014.json",
-      "status": "added",
-      "ranges": [
+          "dropped": 0
+        },
         {
-          "start": 1,
-          "end": 51
-        }
-      ],
-      "hunks": [
-        {
-          "start": 1,
-          "end": 51,
+          "start": 157,
+          "end": 162,
           "lines": [
             {
-              "n": 1,
+              "n": 157,
               "sign": "+",
-              "text": "{"
+              "text": "        \"    if coordinate_mode not in ('pixels', 'normalized_1000'):\\n\",\r"
             },
             {
-              "n": 2,
+              "n": 158,
               "sign": "+",
-              "text": "  \"schema\": \"hala.runtime.probe.v1\","
+              "text": "        \"        raise ValueError('Explicit coordinate protocol required')\\n\",\r"
             },
             {
-              "n": 3,
+              "n": 159,
               "sign": "+",
-              "text": "  \"python\": \"3.13.15\","
+              "text": "        \"    if coordinate_mode == 'normalized_1000':\\n\",\r"
             },
             {
-              "n": 4,
+              "n": 160,
               "sign": "+",
-              "text": "  \"platform\": \"Linux-6.18.48+-x86_64-with-glibc2.39\","
+              "text": "        \"        answer = answer.strip()\\n\",\r"
             },
             {
-              "n": 5,
+              "n": 161,
               "sign": "+",
-              "text": "  \"timestamp_unix\": 1791935644.0327435,"
+              "text": "        \"        if answer.startswith('```json\\\\n') and answer.endswith('\\\\n```'):\\n\",\r"
             },
             {
-              "n": 6,
+              "n": 162,
               "sign": "+",
-              "text": "  \"downloads_weights\": false,"
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": "  \"trains_checkpoint\": false,"
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": "  \"devices\": ["
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "    {"
-            },
-            {
-              "n": 10,
-              "sign": "+",
-              "text": "      \"index\": 0,"
-            },
-            {
-              "n": 11,
-              "sign": "+",
-              "text": "      \"name\": \"Tesla T4\","
-            },
-            {
-              "n": 12,
-              "sign": "+",
-              "text": "      \"vram_bytes\": 15636037632,"
-            },
-            {
-              "n": 13,
-              "sign": "+",
-              "text": "      \"capability\": ["
-            },
-            {
-              "n": 14,
-              "sign": "+",
-              "text": "        7,"
-            },
-            {
-              "n": 15,
-              "sign": "+",
-              "text": "        5"
-            },
-            {
-              "n": 16,
-              "sign": "+",
-              "text": "      ],"
-            },
-            {
-              "n": 17,
-              "sign": "+",
-              "text": "      \"bf16_native_candidate\": false,"
-            },
-            {
-              "n": 18,
-              "sign": "+",
-              "text": "      \"four_fp16_steps_seconds\": 0.5110532590000503,"
-            },
-            {
-              "n": 19,
-              "sign": "+",
-              "text": "      \"tensor_gradient_changed\": true,"
-            },
-            {
-              "n": 20,
-              "sign": "+",
-              "text": "      \"max_memory_allocated_bytes\": 17146880,"
-            },
-            {
-              "n": 21,
-              "sign": "+",
-              "text": "      \"final_loss\": 62.83631896972656,"
-            },
-            {
-              "n": 22,
-              "sign": "+",
-              "text": "      \"qualification_scope\": \"small_tensor_fp16_backward_only\""
-            },
-            {
-              "n": 23,
-              "sign": "+",
-              "text": "    },"
-            },
-            {
-              "n": 24,
-              "sign": "+",
-              "text": "    {"
+              "text": "        \"            answer = answer[8:-4]\\n\",\r"
             }
           ],
-          "dropped": 27
-        }
-      ]
-    },
-    {
-      "path": "experiments/runtime/kaggle-t4-probe-20261014.sha256",
-      "status": "added",
-      "ranges": [
+          "dropped": 0
+        },
         {
-          "start": 1,
-          "end": 1
-        }
-      ],
-      "hunks": [
-        {
-          "start": 1,
-          "end": 1,
+          "start": 176,
+          "end": 182,
           "lines": [
             {
-              "n": 1,
+              "n": 176,
               "sign": "+",
-              "text": "4570b66de942da36514b1d696988aff7efc284803023d274564051bb5a94eee4"
+              "text": "        \"    if coordinate_mode == 'normalized_1000':\\n\",\r"
+            },
+            {
+              "n": 177,
+              "sign": "+",
+              "text": "        \"        if (not isinstance(value, dict) or set(value) != {'point'} or\\n\",\r"
+            },
+            {
+              "n": 178,
+              "sign": "+",
+              "text": "        \"                not isinstance(value['point'], list) or len(value['point']) != 2 or\\n\",\r"
+            },
+            {
+              "n": 179,
+              "sign": "+",
+              "text": "        \"                any(type(x) is not int or not 0 <= x <= 1000 for x in value['point'])):\\n\",\r"
+            },
+            {
+              "n": 180,
+              "sign": "+",
+              "text": "        \"            raise ValueError('Exact normalized point schema required')\\n\",\r"
+            },
+            {
+              "n": 181,
+              "sign": "+",
+              "text": "        \"        value = {'point': [min(639, value['point'][0] * 640 // 1000),\\n\",\r"
+            },
+            {
+              "n": 182,
+              "sign": "+",
+              "text": "        \"                           min(359, value['point'][1] * 360 // 1000)]}\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 207,
+          "end": 217,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"def run(output_path='hala-baseline-result.json'):\\n\",\r"
+            },
+            {
+              "n": 207,
+              "sign": "+",
+              "text": "        \"def reject_kaggle_runtime():\\n\",\r"
+            },
+            {
+              "n": 208,
+              "sign": "+",
+              "text": "        \"    # Colab images can contain /kaggle without being Kaggle notebooks.\\n\",\r"
+            },
+            {
+              "n": 209,
+              "sign": "+",
+              "text": "        \"    # Provider markers are deployment diagnostics, not an adversarial boundary.\\n\",\r"
+            },
+            {
+              "n": 210,
+              "sign": "+",
+              "text": "        \"    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or (\\n\",\r"
+            },
+            {
+              "n": 211,
+              "sign": "+",
+              "text": "        \"            Path('/kaggle').exists() and not os.environ.get('COLAB_RELEASE_TAG')):\\n\",\r"
+            },
+            {
+              "n": 212,
+              "sign": "+",
+              "text": "        \"        raise ValueError('Kaggle commercial-use eligibility is blocked')\\n\",\r"
+            },
+            {
+              "n": 213,
+              "sign": "+",
+              "text": "        \"\\n\",\r"
+            },
+            {
+              "n": 214,
+              "sign": "+",
+              "text": "        \"\\n\",\r"
+            },
+            {
+              "n": 215,
+              "sign": "+",
+              "text": "        \"def run(output_path='hala-baseline-result.json', coordinate_mode='pixels'):\\n\",\r"
+            },
+            {
+              "n": 216,
+              "sign": "+",
+              "text": "        \"    if coordinate_mode not in ('pixels', 'normalized_1000'):\\n\",\r"
+            },
+            {
+              "n": 217,
+              "sign": "+",
+              "text": "        \"        raise ValueError('Explicit coordinate protocol required')\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 220,
+          "end": 220,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"    if Path('/kaggle').exists():\\n\",\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"        raise ValueError('Kaggle commercial-use eligibility is blocked')\\n\",\r"
+            },
+            {
+              "n": 220,
+              "sign": "+",
+              "text": "        \"    reject_kaggle_runtime()\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 238,
+          "end": 241,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"              'revision': MODEL_REVISION, 'prompt_revision': PROMPT_REVISION,\\n\",\r"
+            },
+            {
+              "n": 238,
+              "sign": "+",
+              "text": "        \"              'revision': MODEL_REVISION, 'prompt_revision': (PROMPT_REVISION if coordinate_mode == 'pixels'\\n\",\r"
+            },
+            {
+              "n": 239,
+              "sign": "+",
+              "text": "        \"                                                            else 'hala-grounding-calibration-v2'),\\n\",\r"
+            },
+            {
+              "n": 240,
+              "sign": "+",
+              "text": "        \"              'coordinate_protocol': coordinate_mode,\\n\",\r"
+            },
+            {
+              "n": 241,
+              "sign": "+",
+              "text": "        \"              'calibration_only': coordinate_mode != 'pixels',\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 287,
+          "end": 288,
+          "lines": [
+            {
+              "n": 287,
+              "sign": "+",
+              "text": "        \"            if coordinate_mode == 'normalized_1000':\\n\",\r"
+            },
+            {
+              "n": 288,
+              "sign": "+",
+              "text": "        \"                prompt = goal + '\\\\nReturn only JSON: {\\\"point\\\":[x,y]}. Use integer normalized coordinates from 0 to 1000 on each image axis. Do not execute anything.'\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 299,
+          "end": 299,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"                value = parse_answer(answer)\\n\",\r"
+            },
+            {
+              "n": 299,
+              "sign": "+",
+              "text": "        \"                value = parse_answer(answer, coordinate_mode)\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 303,
+          "end": 303,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        \"                valid, passed = False, False\\n\",\r"
+            },
+            {
+              "n": 303,
+              "sign": "+",
+              "text": "        \"                valid, passed, value = False, False, None\\n\",\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 308,
+          "end": 308,
+          "lines": [
+            {
+              "n": 308,
+              "sign": "+",
+              "text": "        \"                                    'decoded_pixel_point': value,\\n\",\r"
             }
           ],
           "dropped": 0
@@ -641,295 +3474,777 @@
       ]
     },
     {
-      "path": "tests/test_cost.py",
-      "status": "added",
+      "path": "training/scripts/baseline.py",
+      "status": "modified",
       "ranges": [
         {
-          "start": 1,
-          "end": 43
+          "start": 20,
+          "end": 20
+        },
+        {
+          "start": 23,
+          "end": 28
+        },
+        {
+          "start": 42,
+          "end": 48
+        },
+        {
+          "start": 73,
+          "end": 83
+        },
+        {
+          "start": 86,
+          "end": 86
+        },
+        {
+          "start": 104,
+          "end": 107
+        },
+        {
+          "start": 153,
+          "end": 154
+        },
+        {
+          "start": 165,
+          "end": 165
+        },
+        {
+          "start": 169,
+          "end": 169
+        },
+        {
+          "start": 174,
+          "end": 174
         }
       ],
       "hunks": [
         {
-          "start": 1,
-          "end": 43,
+          "start": 20,
+          "end": 20,
           "lines": [
             {
-              "n": 1,
-              "sign": "+",
-              "text": "import math"
-            },
-            {
-              "n": 2,
-              "sign": "+",
-              "text": "import unittest"
-            },
-            {
-              "n": 3,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 4,
-              "sign": "+",
-              "text": "from experiments.cost.calculator import CostInputs, estimate, scenario_table"
-            },
-            {
-              "n": 5,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 6,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 7,
-              "sign": "+",
-              "text": "class CostTests(unittest.TestCase):"
-            },
-            {
-              "n": 8,
-              "sign": "+",
-              "text": "    def test_work_and_idle_are_accounted_separately(self):"
-            },
-            {
-              "n": 9,
-              "sign": "+",
-              "text": "        inputs = CostInputs(users=10, tasks_per_user=100, model_calls_per_task=2,"
-            },
-            {
-              "n": 10,
-              "sign": "+",
-              "text": "                            gpu_seconds_per_call=3, retry_rate=0.1,"
-            },
-            {
-              "n": 11,
-              "sign": "+",
-              "text": "                            success_rate=0.8, gpu_hourly_usd=1,"
-            },
-            {
-              "n": 12,
-              "sign": "+",
-              "text": "                            warm_workers=1, month_hours=720,"
-            },
-            {
-              "n": 13,
-              "sign": "+",
-              "text": "                            storage_gb=10, storage_usd_per_gb=0.1,"
-            },
-            {
-              "n": 14,
-              "sign": "+",
-              "text": "                            network_gb_per_task=0.001, network_usd_per_gb=0.2,"
-            },
-            {
-              "n": 15,
-              "sign": "+",
-              "text": "                            failure_cost_usd=0.01)"
-            },
-            {
-              "n": 16,
-              "sign": "+",
-              "text": "        result = estimate(inputs)"
-            },
-            {
-              "n": 17,
-              "sign": "+",
-              "text": "        self.assertAlmostEqual(result['active_gpu_hours'], 6600 / 3600)"
-            },
-            {
-              "n": 18,
-              "sign": "+",
-              "text": "        self.assertAlmostEqual(result['total_usd'], 723.2)"
-            },
-            {
-              "n": 19,
-              "sign": "+",
-              "text": "        self.assertAlmostEqual(result['usd_per_verified_task'], 723.2 / 800)"
+              "n": null,
+              "sign": "-",
+              "text": "def parse_answer(answer):"
             },
             {
               "n": 20,
               "sign": "+",
-              "text": "        self.assertEqual(result['evidence'], 'scenario_assumptions')"
-            },
-            {
-              "n": 21,
-              "sign": "+",
-              "text": ""
-            },
-            {
-              "n": 22,
-              "sign": "+",
-              "text": "    def test_zero_success_has_no_finite_cost_per_success(self):"
-            },
+              "text": "def parse_answer(answer, coordinate_mode='pixels'):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 23,
+          "end": 28,
+          "lines": [
             {
               "n": 23,
               "sign": "+",
-              "text": "        result = estimate(CostInputs(success_rate=0))"
+              "text": "    if coordinate_mode not in ('pixels', 'normalized_1000'):"
             },
             {
               "n": 24,
               "sign": "+",
-              "text": "        self.assertIsNone(result['usd_per_verified_task'])"
+              "text": "        raise ValueError('Explicit coordinate protocol required')"
+            },
+            {
+              "n": 25,
+              "sign": "+",
+              "text": "    if coordinate_mode == 'normalized_1000':"
+            },
+            {
+              "n": 26,
+              "sign": "+",
+              "text": "        answer = answer.strip()"
+            },
+            {
+              "n": 27,
+              "sign": "+",
+              "text": "        if answer.startswith('```json\\n') and answer.endswith('\\n```'):"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "            answer = answer[8:-4]"
             }
           ],
-          "dropped": 19
+          "dropped": 0
+        },
+        {
+          "start": 42,
+          "end": 48,
+          "lines": [
+            {
+              "n": 42,
+              "sign": "+",
+              "text": "    if coordinate_mode == 'normalized_1000':"
+            },
+            {
+              "n": 43,
+              "sign": "+",
+              "text": "        if (not isinstance(value, dict) or set(value) != {'point'} or"
+            },
+            {
+              "n": 44,
+              "sign": "+",
+              "text": "                not isinstance(value['point'], list) or len(value['point']) != 2 or"
+            },
+            {
+              "n": 45,
+              "sign": "+",
+              "text": "                any(type(x) is not int or not 0 <= x <= 1000 for x in value['point'])):"
+            },
+            {
+              "n": 46,
+              "sign": "+",
+              "text": "            raise ValueError('Exact normalized point schema required')"
+            },
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "        value = {'point': [min(639, value['point'][0] * 640 // 1000),"
+            },
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "                           min(359, value['point'][1] * 360 // 1000)]}"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 73,
+          "end": 83,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "def run(output_path='hala-baseline-result.json'):"
+            },
+            {
+              "n": 73,
+              "sign": "+",
+              "text": "def reject_kaggle_runtime():"
+            },
+            {
+              "n": 74,
+              "sign": "+",
+              "text": "    # Colab images can contain /kaggle without being Kaggle notebooks."
+            },
+            {
+              "n": 75,
+              "sign": "+",
+              "text": "    # Provider markers are deployment diagnostics, not an adversarial boundary."
+            },
+            {
+              "n": 76,
+              "sign": "+",
+              "text": "    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or ("
+            },
+            {
+              "n": 77,
+              "sign": "+",
+              "text": "            Path('/kaggle').exists() and not os.environ.get('COLAB_RELEASE_TAG')):"
+            },
+            {
+              "n": 78,
+              "sign": "+",
+              "text": "        raise ValueError('Kaggle commercial-use eligibility is blocked')"
+            },
+            {
+              "n": 79,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 80,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 81,
+              "sign": "+",
+              "text": "def run(output_path='hala-baseline-result.json', coordinate_mode='pixels'):"
+            },
+            {
+              "n": 82,
+              "sign": "+",
+              "text": "    if coordinate_mode not in ('pixels', 'normalized_1000'):"
+            },
+            {
+              "n": 83,
+              "sign": "+",
+              "text": "        raise ValueError('Explicit coordinate protocol required')"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 86,
+          "end": 86,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    if Path('/kaggle').exists():"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        raise ValueError('Kaggle commercial-use eligibility is blocked')"
+            },
+            {
+              "n": 86,
+              "sign": "+",
+              "text": "    reject_kaggle_runtime()"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 104,
+          "end": 107,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "              'revision': MODEL_REVISION, 'prompt_revision': PROMPT_REVISION,"
+            },
+            {
+              "n": 104,
+              "sign": "+",
+              "text": "              'revision': MODEL_REVISION, 'prompt_revision': (PROMPT_REVISION if coordinate_mode == 'pixels'"
+            },
+            {
+              "n": 105,
+              "sign": "+",
+              "text": "                                                            else 'hala-grounding-calibration-v2'),"
+            },
+            {
+              "n": 106,
+              "sign": "+",
+              "text": "              'coordinate_protocol': coordinate_mode,"
+            },
+            {
+              "n": 107,
+              "sign": "+",
+              "text": "              'calibration_only': coordinate_mode != 'pixels',"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 153,
+          "end": 154,
+          "lines": [
+            {
+              "n": 153,
+              "sign": "+",
+              "text": "            if coordinate_mode == 'normalized_1000':"
+            },
+            {
+              "n": 154,
+              "sign": "+",
+              "text": "                prompt = goal + '\\nReturn only JSON: {\"point\":[x,y]}. Use integer normalized coordinates from 0 to 1000 on each image axis. Do not execute anything.'"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 165,
+          "end": 165,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                value = parse_answer(answer)"
+            },
+            {
+              "n": 165,
+              "sign": "+",
+              "text": "                value = parse_answer(answer, coordinate_mode)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 169,
+          "end": 169,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                valid, passed = False, False"
+            },
+            {
+              "n": 169,
+              "sign": "+",
+              "text": "                valid, passed, value = False, False, None"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 174,
+          "end": 174,
+          "lines": [
+            {
+              "n": 174,
+              "sign": "+",
+              "text": "                                    'decoded_pixel_point': value,"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "training/scripts/train_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 22,
+          "end": 22
+        },
+        {
+          "start": 71,
+          "end": 71
+        },
+        {
+          "start": 73,
+          "end": 73
+        }
+      ],
+      "hunks": [
+        {
+          "start": 22,
+          "end": 22,
+          "lines": [
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "from training.scripts.baseline import reject_kaggle_runtime"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 71,
+          "end": 71,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    if config.platform == 'kaggle' or Path('/kaggle').exists():"
+            },
+            {
+              "n": 71,
+              "sign": "+",
+              "text": "    if config.platform == 'kaggle':"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 73,
+          "end": 73,
+          "lines": [
+            {
+              "n": 73,
+              "sign": "+",
+              "text": "    reject_kaggle_runtime()"
+            }
+          ],
+          "dropped": 0
         }
       ]
     }
   ],
   "unindexed": [
-    "docs/COST_MODEL.md",
-    "docs/RELIANCE_DIAGNOSTIC.md",
-    "docs/adr/0002-default-to-deterministic-routing.md",
-    "experiments/reliance/d1-diagnostic-20261014.json",
-    "experiments/runtime/kaggle-t4-probe-20261014.json",
-    "experiments/runtime/kaggle-t4-probe-20261014.sha256"
+    "docs/reviews/cpu-gates-final.json",
+    "docs/reviews/cpu_unittest.log",
+    "docs/reviews/graft-build.log",
+    "docs/reviews/graft-check.json",
+    "docs/reviews/graft-impact.json",
+    "docs/reviews/graft-summary.json",
+    "training/platforms/colab-baseline.ipynb"
   ],
   "deleted": [],
   "seeds": [
     {
-      "id": "experiments/cost/calculator.py#CostInputs",
-      "name": "CostInputs",
-      "kind": "class",
-      "path": "experiments/cost/calculator.py",
-      "span": "L10-L31",
-      "wholeFile": false
-    },
-    {
-      "id": "experiments/cost/calculator.py#estimate",
-      "name": "estimate",
+      "id": "training/platforms/build_notebooks.py#build",
+      "name": "build",
       "kind": "function",
-      "path": "experiments/cost/calculator.py",
-      "span": "L34-L87",
+      "path": "training/platforms/build_notebooks.py",
+      "span": "L15-L32",
       "wholeFile": false
     },
     {
-      "id": "experiments/cost/calculator.py#main",
-      "name": "main",
+      "id": "training/scripts/baseline.py#parse_answer",
+      "name": "parse_answer",
       "kind": "function",
-      "path": "experiments/cost/calculator.py",
-      "span": "L104-L115",
+      "path": "training/scripts/baseline.py",
+      "span": "L20-L51",
       "wholeFile": false
     },
     {
-      "id": "experiments/cost/calculator.py#scenario_table",
-      "name": "scenario_table",
+      "id": "training/scripts/baseline.py#reject_kaggle_runtime",
+      "name": "reject_kaggle_runtime",
       "kind": "function",
-      "path": "experiments/cost/calculator.py",
-      "span": "L90-L101",
+      "path": "training/scripts/baseline.py",
+      "span": "L73-L78",
       "wholeFile": false
     },
     {
-      "id": "tests/test_cost.py#CostTests.test_invalid_inputs_are_rejected",
-      "name": "test_invalid_inputs_are_rejected",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L26-L33",
+      "id": "training/scripts/baseline.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "training/scripts/baseline.py",
+      "span": "L81-L197",
       "wholeFile": false
     },
     {
-      "id": "tests/test_cost.py#CostTests.test_scenarios_cover_requested_counts_and_prices",
-      "name": "test_scenarios_cover_requested_counts_and_prices",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L35-L39",
-      "wholeFile": false
-    },
-    {
-      "id": "tests/test_cost.py#CostTests.test_work_and_idle_are_accounted_separately",
-      "name": "test_work_and_idle_are_accounted_separately",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L8-L20",
-      "wholeFile": false
-    },
-    {
-      "id": "tests/test_cost.py#CostTests.test_zero_success_has_no_finite_cost_per_success",
-      "name": "test_zero_success_has_no_finite_cost_per_success",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L22-L24",
+      "id": "training/scripts/train_adapter.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L64-L198",
       "wholeFile": false
     }
   ],
   "impacted": [
     {
-      "id": "tests/test_cost.py#CostTests.test_invalid_inputs_are_rejected",
-      "name": "test_invalid_inputs_are_rejected",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L26-L33",
-      "relation": "calls",
-      "depth": 1
-    },
-    {
-      "id": "tests/test_cost.py#CostTests.test_scenarios_cover_requested_counts_and_prices",
-      "name": "test_scenarios_cover_requested_counts_and_prices",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L35-L39",
-      "relation": "calls",
-      "depth": 1
-    },
-    {
-      "id": "tests/test_cost.py#CostTests.test_work_and_idle_are_accounted_separately",
-      "name": "test_work_and_idle_are_accounted_separately",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L8-L20",
-      "relation": "calls",
-      "depth": 1
-    },
-    {
-      "id": "tests/test_cost.py#CostTests.test_zero_success_has_no_finite_cost_per_success",
-      "name": "test_zero_success_has_no_finite_cost_per_success",
-      "kind": "method",
-      "path": "tests/test_cost.py",
-      "span": "L22-L24",
-      "relation": "calls",
-      "depth": 1
-    },
-    {
-      "id": "experiments/cost/calculator.py",
-      "name": "calculator.py",
+      "id": "training/platforms/build_notebooks.py",
+      "name": "build_notebooks.py",
       "kind": "file",
-      "path": "experiments/cost/calculator.py",
-      "span": "L1-L120",
+      "path": "training/platforms/build_notebooks.py",
+      "span": "L1-L37",
       "relation": "calls",
       "depth": 1
+    },
+    {
+      "id": "tests/test_baseline.py#BaselineCheckerTests.test_raw_answers_reject_duplicate_keys_and_nonfinite_constants",
+      "name": "test_raw_answers_reject_duplicate_keys_and_nonfinite_constants",
+      "kind": "method",
+      "path": "tests/test_baseline.py",
+      "span": "L7-L13",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects",
+      "name": "test_ambiguous_or_malformed_output_rejects",
+      "kind": "method",
+      "path": "tests/test_normalized_protocol.py",
+      "span": "L18-L26",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_explicit_protocol_converts_both_axes",
+      "name": "test_explicit_protocol_converts_both_axes",
+      "kind": "method",
+      "path": "tests/test_normalized_protocol.py",
+      "span": "L6-L10",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_pixel_protocol_stays_strict",
+      "name": "test_pixel_protocol_stays_strict",
+      "kind": "method",
+      "path": "tests/test_normalized_protocol.py",
+      "span": "L12-L16",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_provider_identity.py#ProviderIdentityTests.check_runtime",
+      "name": "check_runtime",
+      "kind": "method",
+      "path": "tests/test_provider_identity.py",
+      "span": "L7-L14",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L64-L198",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import",
+      "name": "test_unknown_protocol_rejects_before_runtime_import",
+      "kind": "method",
+      "path": "tests/test_normalized_protocol.py",
+      "span": "L28-L30",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/baseline.py",
+      "name": "baseline.py",
+      "kind": "file",
+      "path": "training/scripts/baseline.py",
+      "span": "L1-L202",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_generic_linux_without_root_is_allowed",
+      "name": "test_generic_linux_without_root_is_allowed",
+      "kind": "method",
+      "path": "tests/test_provider_identity.py",
+      "span": "L26-L27",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker",
+      "name": "test_kaggle_marker_wins_over_colab_marker",
+      "kind": "method",
+      "path": "tests/test_provider_identity.py",
+      "span": "L19-L21",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_observed_colab_image_has_kaggle_root",
+      "name": "test_observed_colab_image_has_kaggle_root",
+      "kind": "method",
+      "path": "tests/test_provider_identity.py",
+      "span": "L16-L17",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked",
+      "name": "test_unknown_kaggle_root_stays_blocked",
+      "kind": "method",
+      "path": "tests/test_provider_identity.py",
+      "span": "L23-L24",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L197-L214",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L184-L195",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L201-L207",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_adapter.py",
+      "name": "train_adapter.py",
+      "kind": "file",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L1-L212",
+      "relation": "calls",
+      "depth": 2
     }
   ],
   "modules": [],
-  "testModules": [],
+  "testModules": [
+    {
+      "label": "test_raw_answers_reject_duplic…",
+      "labelSource": "symbol",
+      "key": "tests/",
+      "files": [
+        "tests/test_baseline.py",
+        "tests/test_normalized_protocol.py",
+        "tests/test_provider_identity.py",
+        "tests/test_training_integrity.py"
+      ],
+      "symbols": [
+        {
+          "id": "tests/test_baseline.py#BaselineCheckerTests.test_raw_answers_reject_duplicate_keys_and_nonfinite_constants",
+          "name": "test_raw_answers_reject_duplicate_keys_and_nonfinite_constants",
+          "kind": "method",
+          "path": "tests/test_baseline.py",
+          "span": "L7-L13",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects",
+          "name": "test_ambiguous_or_malformed_output_rejects",
+          "kind": "method",
+          "path": "tests/test_normalized_protocol.py",
+          "span": "L18-L26",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_explicit_protocol_converts_both_axes",
+          "name": "test_explicit_protocol_converts_both_axes",
+          "kind": "method",
+          "path": "tests/test_normalized_protocol.py",
+          "span": "L6-L10",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_pixel_protocol_stays_strict",
+          "name": "test_pixel_protocol_stays_strict",
+          "kind": "method",
+          "path": "tests/test_normalized_protocol.py",
+          "span": "L12-L16",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import",
+          "name": "test_unknown_protocol_rejects_before_runtime_import",
+          "kind": "method",
+          "path": "tests/test_normalized_protocol.py",
+          "span": "L28-L30",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_provider_identity.py#ProviderIdentityTests.check_runtime",
+          "name": "check_runtime",
+          "kind": "method",
+          "path": "tests/test_provider_identity.py",
+          "span": "L7-L14",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L197-L214",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "name": "test_runner_refuses_changed_media_before_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L184-L195",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_generic_linux_without_root_is_allowed",
+          "name": "test_generic_linux_without_root_is_allowed",
+          "kind": "method",
+          "path": "tests/test_provider_identity.py",
+          "span": "L26-L27",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker",
+          "name": "test_kaggle_marker_wins_over_colab_marker",
+          "kind": "method",
+          "path": "tests/test_provider_identity.py",
+          "span": "L19-L21",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_observed_colab_image_has_kaggle_root",
+          "name": "test_observed_colab_image_has_kaggle_root",
+          "kind": "method",
+          "path": "tests/test_provider_identity.py",
+          "span": "L16-L17",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_provider_identity.py#ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked",
+          "name": "test_unknown_kaggle_root_stays_blocked",
+          "kind": "method",
+          "path": "tests/test_provider_identity.py",
+          "span": "L23-L24",
+          "relation": "calls",
+          "depth": 2
+        }
+      ],
+      "from": [
+        "training/scripts/baseline.py",
+        "training/scripts/train_adapter.py"
+      ]
+    }
+  ],
   "areas": [
     {
-      "label": "CostInputs",
+      "label": "parse_answer",
       "labelSource": "symbol",
-      "key": "experiments/cost/",
+      "key": "training/scripts/",
       "files": [
-        "experiments/cost/calculator.py"
+        "training/scripts/baseline.py",
+        "training/scripts/train_adapter.py"
       ],
       "seeds": 4,
-      "tests": "changed",
+      "tests": "stale",
       "testFiles": [
-        "tests/test_cost.py"
+        "tests/test_baseline.py",
+        "tests/test_normalized_protocol.py",
+        "tests/test_provider_identity.py",
+        "tests/test_training_integrity.py"
       ],
-      "changedTestFiles": [
-        "tests/test_cost.py"
-      ],
-      "reached": 3,
+      "changedTestFiles": [],
+      "reached": 4,
       "behavioural": 4,
+      "unreached": [],
+      "seedNames": [
+        "parse_answer",
+        "reject_kaggle_runtime",
+        "train",
+        "run"
+      ],
+      "owners": []
+    },
+    {
+      "label": "build",
+      "labelSource": "symbol",
+      "key": "training/platforms/",
+      "files": [
+        "training/platforms/build_notebooks.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
       "unreached": [
-        "main"
+        "build"
       ],
       "seedNames": [
-        "CostInputs",
-        "estimate",
-        "scenario_table",
-        "main"
+        "build"
       ],
       "owners": []
     }

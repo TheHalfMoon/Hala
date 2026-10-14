@@ -14,7 +14,7 @@
     "removed": [],
     "changed": [],
     "stale": [],
-    "pending": 399,
+    "pending": 413,
     "pendingIds": [
       "data/__init__.py",
       "data/export.py",
@@ -298,6 +298,19 @@
       "tests/test_evaluation.py#EvaluationTests.test_wrong_text_wrong_role_and_multi_action_do_not_fake_success",
       "tests/test_evaluation.py#EvaluationTests.test_wrong_text_wrong_role_and_multi_action_do_not_fake_success.WrongText",
       "tests/test_evaluation.py#EvaluationTests.test_wrong_text_wrong_role_and_multi_action_do_not_fake_success.WrongText.propose",
+      "tests/test_normalized_protocol.py",
+      "tests/test_normalized_protocol.py#NormalizedProtocolTests",
+      "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_ambiguous_or_malformed_output_rejects",
+      "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_explicit_protocol_converts_both_axes",
+      "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_pixel_protocol_stays_strict",
+      "tests/test_normalized_protocol.py#NormalizedProtocolTests.test_unknown_protocol_rejects_before_runtime_import",
+      "tests/test_provider_identity.py",
+      "tests/test_provider_identity.py#ProviderIdentityTests",
+      "tests/test_provider_identity.py#ProviderIdentityTests.check_runtime",
+      "tests/test_provider_identity.py#ProviderIdentityTests.test_generic_linux_without_root_is_allowed",
+      "tests/test_provider_identity.py#ProviderIdentityTests.test_kaggle_marker_wins_over_colab_marker",
+      "tests/test_provider_identity.py#ProviderIdentityTests.test_observed_colab_image_has_kaggle_root",
+      "tests/test_provider_identity.py#ProviderIdentityTests.test_unknown_kaggle_root_stays_blocked",
       "tests/test_serving.py",
       "tests/test_serving.py#BlockingBackend",
       "tests/test_serving.py#BlockingBackend.__init__",
@@ -401,6 +414,7 @@
       "training/scripts/baseline.py#parse_answer",
       "training/scripts/baseline.py#parse_answer.constant",
       "training/scripts/baseline.py#parse_answer.pairs",
+      "training/scripts/baseline.py#reject_kaggle_runtime",
       "training/scripts/baseline.py#run",
       "training/scripts/baseline.py#run.timed_out",
       "training/scripts/baseline.py#valid_point",
@@ -416,6 +430,6 @@
       "training/scripts/train_adapter.py#train",
       "training/scripts/train_adapter.py#train.write_version"
     ],
-    "nodes": 399
+    "nodes": 413
   }
 }

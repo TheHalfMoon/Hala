@@ -19,6 +19,7 @@ from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkp
 from training.masking import completion_labels
 from training.preflight import TrainingConfig, qualify_environment, validate_experiment
 from training.scripts.gpu_probe import probe
+from training.scripts.baseline import reject_kaggle_runtime
 
 LORA_TARGET_PATTERN = r'.*language_model.*\.(q_proj|v_proj)$'
 
@@ -67,8 +68,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     config = TrainingConfig.from_dict(config_data)
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
-    if config.platform == 'kaggle' or Path('/kaggle').exists():
+    if config.platform == 'kaggle':
         raise ValueError('Kaggle commercial-use eligibility is blocked by inspected provider terms')
+    reject_kaggle_runtime()
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     manifest = load_json(manifest_path)
