@@ -23,6 +23,7 @@ class ServiceError(Exception):
         "output_too_large": (502, "Backend output exceeds limit."),
         "busy": (503, "Service capacity exhausted."),
         "backend_unqualified": (503, "Real backend is not qualified."),
+        "unsupported_responsibility": (503, "Candidate responsibility is unsupported."),
     }
 
     def __init__(self, code):

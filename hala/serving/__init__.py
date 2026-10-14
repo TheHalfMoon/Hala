@@ -15,7 +15,8 @@ from hala.inference import MockBackend, RequestContext, ServiceError
 
 API_VERSION = "hala.v1"
 ENDPOINTS = {"/v1/hala/plan": "plan", "/v1/hala/action": "action",
-             "/v1/hala/decision": "decision"}
+             "/v1/hala/decision": "decision", "/v2/hala/action": "v2_action",
+             "/v2/hala/plan": "v2_plan", "/v2/hala/decision": "v2_decision"}
 
 
 @dataclass(frozen=True, repr=False)
@@ -76,9 +77,11 @@ def strict_json(body):
 
 
 class Service:
-    def __init__(self, config, backend=None):
+    def __init__(self, config, backend=None, candidate_backend=None):
         self.config = config
         self.backend = backend or MockBackend()
+        from hala.inference.vision_candidate import CandidateBackend
+        self.candidate_backend = candidate_backend or CandidateBackend()
 
     def authenticate(self, value):
         try:
@@ -90,6 +93,8 @@ class Service:
 
     def infer(self, responsibility, raw, context):
         context.check()
+        if responsibility.startswith('v2_'):
+            return self.infer_candidate(responsibility, raw, context)
         from hala.contracts import ContractError, Request, Proposal, Plan, Decision
         try:
             request = Request.from_dict(raw)
@@ -114,6 +119,23 @@ class Service:
             return result
         except (ContractError, ValueError, TypeError, AttributeError, KeyError, RecursionError):
             raise ServiceError("invalid_backend_output") from None
+
+    def infer_candidate(self, responsibility, raw, context):
+        from hala.inference.vision_candidate import parse_request
+        from hala.contracts import ContractError
+        if responsibility != 'v2_action':
+            raise ServiceError('unsupported_responsibility')
+        try:
+            request, image, eligible, digest = parse_request(raw, self.config.tenant_id)
+        except (ContractError, RecursionError, OverflowError):
+            raise ServiceError('invalid_request') from None
+        context.check()
+        proposal = self.candidate_backend.infer(request, image, eligible, digest, context)
+        context.check()
+        result = {'api_version': 'hala.v2', 'result': proposal}
+        if len(encode(result)) > self.config.max_output_bytes:
+            raise ServiceError('output_too_large')
+        return result
 
     def metadata(self, path):
         result = {"api_version": API_VERSION, "backend": self.backend.metadata()}
