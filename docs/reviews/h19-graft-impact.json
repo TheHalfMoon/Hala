@@ -1,0 +1,2233 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "development/__init__.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Original bounded synthetic development tasks; no native execution.\"\"\""
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "development/data.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 140
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 140,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CC0 authored bilingual fixtures, with application-family separation.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from development.protocol import VERSION, instruction, parse_response"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from development.simulator import Simulator, oracle"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from development.verifier import verify_final"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "FAMILIES = ["
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    ('recipe_box', 'train', 'Recipe box', 'صندوق الوصفات', 'Recipe name', 'اسم الوصفة', 'Soup', 'حساء', 'Lunch', 'الغداء'),"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    ('music_queue', 'train', 'Music queue', 'قائمة الموسيقى', 'Playlist title', 'عنوان القائمة', 'Evening', 'المساء', 'Favorites', 'المفضلة'),"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    ('garden_log', 'train', 'Garden log', 'سجل الحديقة', 'Plant note', 'ملاحظة النبات', 'Watered', 'تم الري', 'Checked', 'تم الفحص'),"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    ('craft_board', 'train', 'Craft board', 'لوحة الحرف', 'Project title', 'عنوان المشروع', 'Blue scarf', 'وشاح أزرق', 'Finished', 'مكتمل'),"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    ('reading_shelf', 'dev', 'Reading shelf', 'رف القراءة', 'Book note', 'ملاحظة الكتاب', 'Reviewed', 'تمت المراجعة', 'Read', 'مقروء'),"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    ('pet_journal', 'dev', 'Pet journal', 'سجل الحيوان', 'Care note', 'ملاحظة الرعاية', 'Fed', 'تم الإطعام', 'Today', 'اليوم'),"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    ('museum_catalog', 'test', 'Museum catalog', 'فهرس المتحف', 'Display title', 'عنوان العرض', 'New exhibit', 'معرض جديد', 'Ready', 'جاهز'),"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    ('sports_roster', 'test', 'Sports roster', 'قائمة الرياضة', 'Team note', 'ملاحظة الفريق', 'Confirmed', 'تم التأكيد', 'Selected', 'مختار'),"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "]"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "def plan_label():"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    return {'kind': 'plan', 'steps': [{'tool': 'visual', 'subgoal': goal} for goal in"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "                                    ('replace_field', 'move_card', 'save_changes')] +"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            [{'tool': 'observe', 'subgoal': 'verify_save'}]}"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 116
+        }
+      ]
+    },
+    {
+      "path": "development/freeze.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 100
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 100,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Freeze authored data, settings, source and real qualified media before inference.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from development.data import build_dataset, canonical, validate_dataset"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from development.media import render_frame"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from development.simulator import Simulator, oracle"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from development.verifier import verify_final"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "def freeze_bundle(output, settings, font_path=None):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    output = Path(output)"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    if output.exists() and any(output.iterdir()):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        raise ValueError('refusing to replace an existing freeze')"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    if not isinstance(settings, dict) or not settings:"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        raise ValueError('explicit runtime settings required')"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    output.mkdir(parents=True, exist_ok=True)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    data = build_dataset()"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    validation = validate_dataset(data)"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    images, materialized = {}, []"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    if font_path is not None:"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        episodes = {e['id']: e for e in data['episodes']}"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        states = [(r['episode'], r['state']) for r in data['rows']]"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        for episode in data['episodes']:"
+            }
+          ],
+          "dropped": 76
+        }
+      ]
+    },
+    {
+      "path": "development/media.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 55
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 55,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Actual media qualification must occur on Linux with exact font and RAQM.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "FONT_SHA256 = 'ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280'"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "def render_frame(episode, state, output, font_path):"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    from PIL import Image, ImageDraw, ImageFont, features, __version__"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    if platform.system() != 'Linux' or not features.check_feature('raqm'):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        raise ValueError('qualified Linux RAQM required for all bilingual media')"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    font_path = Path(font_path)"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    if not font_path.is_file() or hashlib.sha256(font_path.read_bytes()).hexdigest() != FONT_SHA256:"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        raise ValueError('pinned font required')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    if __version__ != '11.3.0':"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        raise ValueError('pinned Pillow 11.3.0 required')"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    if features.version_feature('raqm') != '0.10.1':"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        raise ValueError('pinned RAQM 0.10.1 required')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    from development.simulator import layout, Simulator, WIDTH, HEIGHT"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    sim = Simulator(episode)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    sim.state = dict(state)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    observation = sim.observation()"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    image = Image.new('RGB', (WIDTH, HEIGHT), '#f5f5f5')"
+            }
+          ],
+          "dropped": 31
+        }
+      ]
+    },
+    {
+      "path": "development/protocol.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 80
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 80,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Versioned untrusted proposals, with no authority-bearing fields.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "VERSION = 'hala.development.v1'"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "TOOLS = {'visual', 'observe', 'clarify', 'abstain'}"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "SUBGOALS = {'visual': {'replace_field', 'move_card', 'save_changes'},"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "            'observe': {'inspect_failure', 'verify_save'}, 'clarify': {'resolve_destination'},"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "            'abstain': {'reject_external_command'}}"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "def _step(value):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    return (isinstance(value, dict) and set(value) == {'tool', 'subgoal'} and"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "            isinstance(value.get('tool'), str) and value['tool'] in SUBGOALS and"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "            isinstance(value.get('subgoal'), str) and value['subgoal'] in SUBGOALS[value['tool']])"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "def _pairs(items):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    result = {}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    for key, value in items:"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        if key in result:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            raise ValueError('duplicate field')"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        result[key] = value"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    return result"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 56
+        }
+      ]
+    },
+    {
+      "path": "development/runner.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 101
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 101,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Small synchronous model seam; model proposals never execute native actions."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "infer(component, prompt, image_path) -> bare JSON string. Mind uses no image;"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Type uses the current screenshot. The callback sees no episode/private labels."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from development.data import canonical, prompt"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from development.media import render_frame"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from development.protocol import parse_response"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from development.simulator import Simulator, score_trace"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from development.verifier import verify_final, verify_mind_semantics"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "def run_mind_cases(cases, infer):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    records = []"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    for case in cases:"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        start = time.perf_counter()"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        record = {key: case[key] for key in ('id', 'language', 'split', 'category')}"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        try:"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            raw = infer('mind', case['prompt'], None)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            parsed = parse_response('mind', raw)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            record.update(raw=raw, valid=True, correct=parsed == case['expected'])"
+            }
+          ],
+          "dropped": 77
+        }
+      ]
+    },
+    {
+      "path": "development/simulator.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 118
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 118,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"A bounded local simulator, never a native input executor.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from development.protocol import parse_response"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from development.verifier import verify_final"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "WIDTH, HEIGHT = 800, 600"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "def layout(episode):"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"\"\"Private deterministic layout; Arabic mirrors the entire interface.\"\"\""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    index = episode['layout_index']"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    offset = episode['variant'] * 12"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    boxes = {'field': (65 + index * 13, 110, 450 - index * 12, 64),"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "             'item': (75 if index % 2 == 0 else 470, 230 + (index % 3) * 25, 200, 75),"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "             'destination': (450 if index % 2 == 0 else 65, 225 + (index % 3) * 15, 245, 160),"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "             'save': (70 + (index % 3) * 210 + offset, 470, 160, 65)}"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    if episode['language'] == 'ar':"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        boxes = {name: (WIDTH-x-w, y, w, h) for name, (x, y, w, h) in boxes.items()}"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    return boxes"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def _hit(point, box):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    x, y = min(point[0] * WIDTH // 1000, WIDTH - 1), min(point[1] * HEIGHT // 1000, HEIGHT - 1)"
+            }
+          ],
+          "dropped": 94
+        }
+      ]
+    },
+    {
+      "path": "development/verifier.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 46
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 46,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Final-state checks deliberately independent of simulator/oracle/parser imports.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "def verify_mind_semantics(goal, observation, response, requested_kind):"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"\"\"Score decomposition using public user text/state, never the oracle policy."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    This checker is specific to the authored bilingual replace/move/save tasks."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    It supplies no hints or expected subgoals to the model or Type executor."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"\"\""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    if response.get('kind') != requested_kind:"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        return False"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    quoted = [left or right for left, right in re.findall(r'\"([^\\\"]+)\"|«([^»]+)»', goal)]"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    if len(quoted) != 2:"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        return False"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    requested_value, destination = quoted"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    if requested_kind == 'plan':"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        expected = [{'tool': 'visual', 'subgoal': name} for name in"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "                    ('replace_field', 'move_card', 'save_changes')]"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        expected.append({'tool': 'observe', 'subgoal': 'verify_save'})"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        return response.get('steps') == expected"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    failure = ('temporarily failed' in observation['status'] or 'تعذر الحفظ' in observation['status'])"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    if failure:"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        tool, subgoal = 'observe', 'inspect_failure'"
+            }
+          ],
+          "dropped": 22
+        }
+      ]
+    },
+    {
+      "path": "docs/H19-bilingual-development.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 15
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 15,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H19 bilingual development inputs"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "This new experimental protocol is independent of frozen H14/H17 and the H18 historical audit. It provides original CC0 text and synthetic interfaces, not native computer execution or measured model quality. No models or weights are downloaded by this package. Mind plans decompose replacement, movement, saving and independent verification into bounded tool/subgoal objects; no unrestricted executable text is accepted."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "`build_dataset()` authors 32 episodes: four training application families (recipe box, music queue, garden log, craft board), two development families (reading shelf, pet journal), and two test families (museum catalog, sports roster). Each family has English and Arabic, each with a normal and transient-save-failure variant. None is an H14 family. The 136 training turns share a base checkpoint with component-specific prompts: Mind planning/tool selection/recovery/clarification/abstention, Type normalized click/type/drag, and advisory Reliance. Ten separately worded test Mind decisions cover all five Mind categories in both languages. Train/dev/test application families are disjoint; UI layout and workflow templates are shared and dependent. Counts are not independent sample sizes."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Each workflow replaces a visible text field, drags a card into a named destination, and saves. All sixteen family/variant layouts differ; Arabic mirrors every box. Shared workflow templates remain a limitation. A failure variant rejects the first save and requires observation before retrying. Environment failures are counted separately from model action errors, and redundant Mind observations count as unnecessary calls. Final success checks actual current and persisted values, card destination and a real save revision in `development/verifier.py`, which imports no simulator, oracle, or parser. The simulator is the sole state mutator in evaluation. Malformed output, wrong targets, bad order, redundant actions, recovery and calls are recorded. Native execution, authorization, arbitrary commands and model success receipts are absent. Strict bare JSON rejects duplicate/extra fields, booleans, nonfinite and out-of-range coordinates and unknown tools. Proposed type text is limited to 80 printable characters."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "`development.runner.run_episode(episode, infer, media_dir, font_path, max_calls=16)` calls `infer(component, prompt, image_path) -> str`. Mind receives no image; Type receives the newly rendered current screenshot. The callback receives only public user goal and visible state, never expected boxes, private final state or oracle labels. Mind chooses the tool, and Type chooses the next action under the full goal; no oracle-known next action is placed in its prompt. The first response must be a plan, later responses must be next steps; wrong kinds consume a call without invoking Type. A separate semantic checker derives the required decomposition/subgoal from the public quoted goal values and visible state, without importing the oracle or simulator. It records per-call requested-kind and semantic correctness plus `mind_errors`, `mind_accuracy` and `plan_accuracy`. Wrong semantic subgoals do not rewrite the model's selected tool or leak a corrected subgoal to Type. Therefore task final success and Mind semantic quality are separate measurements: Type can finish despite bad Mind decomposition. `run_mind_cases(cases, infer)` scores the separate text decisions. A failed Mind parse consumes a bounded call; clarification/abstention stops that episode without success. The synchronous callback must provide its own model timeout; the loop limits calls, not arbitrary blocking callback execution. It records individual latency and wall/model seconds; a remote wrapper must add actual CUDA/device telemetry."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Training rows include private audit state separate from `prompt` and `completion`; adapters must feed only those latter fields and an image. `training-rows.jsonl` in a qualified bundle materializes `image` and `image_sha256`; rows retain language, component, split, family and episode provenance. This is a new semantic export, not an input accepted by the historical action-only loader. A later reviewed bridge must validate and load it without editing the old audit. Mind images can be used for training compatibility, although actual Mind baseline is text-only; that modality difference must be resolved explicitly in the training bridge."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Run `tools/build_development_data.py --output NEW_DIRECTORY --settings FILE [--font FONT]` to freeze deterministic inputs and source hashes without overwriting an existing directory. Omitting the font produces a text-only authoring freeze with no media qualification or materialized training rows. A remote media freeze requires Linux, Pillow 11.3.0, RAQM 0.10.1 and DejaVuSans.ttf SHA256 `ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280`. Arabic drawing explicitly sets RTL, Arabic language, RAQM and right anchors. It freezes initial/oracle-path images, dimensions and exact media/font/runtime hashes before baseline outputs. Off-path states during real evaluation are rendered with the same frozen source and logged separately, because model mistakes cannot be predicted in advance. Verify the bundle and independently archive its manifest SHA256 before inference; hashes within an attacker-rewritten manifest alone are not an external trust anchor."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "Qualified `verify_bundle` requires a caller-supplied externally archived manifest SHA256, checks loaded source against frozen code, enforces actual media/row/count consistency, rederives semantic rows, and checks font/runtime/dimensions and image bytes. Its source-only mode cannot claim media qualification. The local tests qualify text, parser, simulator, final verifier, freeze behavior and a mock-rendered callback loop only. They do not qualify Arabic image shaping. No actual data media, baseline inference, GPU performance, LoRA quality, durable adapter or serving improvement has been measured in H19 source work. The proposed settings file is explicitly unexecuted. Required independent review and Jev/Graft qualification follow source tests before commit."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H19-bilingual-development.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 28
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 28,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H19 — Compatible bilingual development tasks"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: in progress. Depends on: verified foundation 0638137724eb9a5bde1e6133aef976020e11fae3. Review: full."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Scope and coordination"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "New isolated model-development branch; PR1 remains unchanged. Own new `development/` package, `tests/test_development.py`, `tools/build_development_data.py`, `docs/H19-bilingual-development.md`, and `experiments/development/` only. Do not edit frozen H14/H17 files or H18 historical audit. Other branches may own Reliance diagnostics or review records."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## Requirements"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Author a small CC0 synthetic dataset with genuinely bilingual English/Arabic user goals, observation content and completions. Use one shared checkpoint, separate task prompts for Mind, Type and advisory Reliance. Mind examples cover plans, tool selection, recovery, clarification and abstention; Type covers strict normalized coordinate click/type/drag proposals. No executable code or model authority. Use explicit independently separated application families (at least four train, two dev, two test); test application families must not appear in train/dev and must not be frozen H14 families. No private target identity, expected box, answer or final state in model input. Do not hide dataset ambiguity through opaque IDs in goals."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Implement bounded synthetic multi-step task state transitions with a separately implemented final-state verifier. Include action errors, recovery opportunities, unnecessary calls and unsafe proposals in trace scoring. Goal success must depend on actual final state, not proposed actions. Prompts and labels must be versioned; strict parsers reject extra fields, duplicates, nonfinite/boolean/out-of-range coordinates and unknown actions. Model output cannot execute arbitrary code or grant permission. Keep native integration explicitly unqualified."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "Arabic media generation must fail closed unless Pillow RAQM and pinned font shaping are available. Local tests may qualify text/state logic without claiming local Arabic media quality. Generate actual qualified media only on verified Linux remote; archive font/version/dimensions/hash provenance. Freeze independent evaluation trajectories and prompt/settings before real baseline output is observed. Include deterministic label/postcondition validation and adversarial negative tests, split leakage checks and independent expected state verification. Do not train or download models in this source phase."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Produce a clean minimal source interface for remote unchanged-base evaluation and subsequent use of the qualified LoRA mechanism. Training adaptation belongs in a later reviewed phase. Keep data small (roughly 80–160 training turns, 12–24 dev/test episodes total), clearly disclose templated/dependent examples and limited coverage. Quality matters more than count."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "## Acceptance"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "- [ ] New bilingual task rows, license/provenance and disjoint family split manifest generated deterministically."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "- [ ] Semantic Mind, normalized Type and conservative Reliance labels validated; real multi-step oracle episodes complete under independent verifier."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "- [ ] Invalid/unsafe proposals fail closed; adversarial state and label corruption tests meaningful."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "- [ ] Strict bounded model prompt/response/trace interface and reproducible frozen baseline inputs ready."
+            }
+          ],
+          "dropped": 4
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 204
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 204,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from development.data import build_dataset, validate_dataset"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from development.protocol import parse_response"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from development.simulator import Simulator, oracle, score_trace"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from development.verifier import verify_final"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from development.media import render_frame"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from development.freeze import freeze_bundle, verify_bundle"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from development.runner import run_episode, run_mind_cases"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "class DevelopmentTests(unittest.TestCase):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    def test_disjoint_bilingual_data(self):"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        data = build_dataset()"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        validate_dataset(data)"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        self.assertEqual(len(data['episodes']), 32)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        self.assertEqual(len(data['rows']), 136)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        self.assertEqual({r['language'] for r in data['rows']}, {'en', 'ar'})"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        families = [{e['family'] for e in data['episodes'] if e['split'] == split}"
+            }
+          ],
+          "dropped": 180
+        }
+      ]
+    },
+    {
+      "path": "tools/build_development_data.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 16
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 16,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Build a new immutable development bundle; never train or load a model.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "sys.path.insert(0, str(Path(__file__).resolve().parents[1]))"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from development.freeze import freeze_bundle"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "if __name__ == '__main__':"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    parser = argparse.ArgumentParser()"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    parser.add_argument('--output', type=Path, required=True)"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    parser.add_argument('--settings', type=Path, required=True)"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    parser.add_argument('--font', type=Path)"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    args = parser.parse_args()"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    print(json.dumps(freeze_bundle(args.output, json.loads(args.settings.read_text(encoding='utf-8')), args.font), sort_keys=True))"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H19-bilingual-development.md",
+    "specs/H19-bilingual-development.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "development/__init__.py",
+      "name": "__init__.py",
+      "kind": "file",
+      "path": "development/__init__.py",
+      "span": "L1-L2",
+      "wholeFile": true
+    },
+    {
+      "id": "development/data.py#_episodes",
+      "name": "_episodes",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L44-L59",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#build_dataset.add",
+      "name": "add",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L92-L97",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#canonical",
+      "name": "canonical",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L34-L35",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#mind_cases",
+      "name": "mind_cases",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L62-L82",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#next_label",
+      "name": "next_label",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L26-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#plan_label",
+      "name": "plan_label",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L20-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#prompt",
+      "name": "prompt",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L38-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "development/data.py#validate_dataset",
+      "name": "validate_dataset",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L128-L140",
+      "wholeFile": false
+    },
+    {
+      "id": "development/freeze.py#freeze_bundle",
+      "name": "freeze_bundle",
+      "kind": "function",
+      "path": "development/freeze.py",
+      "span": "L11-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "development/freeze.py#verify_bundle",
+      "name": "verify_bundle",
+      "kind": "function",
+      "path": "development/freeze.py",
+      "span": "L55-L100",
+      "wholeFile": false
+    },
+    {
+      "id": "development/media.py#render_frame.text",
+      "name": "text",
+      "kind": "function",
+      "path": "development/media.py",
+      "span": "L28-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "development/protocol.py#_pairs",
+      "name": "_pairs",
+      "kind": "function",
+      "path": "development/protocol.py",
+      "span": "L17-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "development/protocol.py#_step",
+      "name": "_step",
+      "kind": "function",
+      "path": "development/protocol.py",
+      "span": "L11-L14",
+      "wholeFile": false
+    },
+    {
+      "id": "development/protocol.py#instruction",
+      "name": "instruction",
+      "kind": "function",
+      "path": "development/protocol.py",
+      "span": "L67-L80",
+      "wholeFile": false
+    },
+    {
+      "id": "development/protocol.py#parse_response",
+      "name": "parse_response",
+      "kind": "function",
+      "path": "development/protocol.py",
+      "span": "L26-L64",
+      "wholeFile": false
+    },
+    {
+      "id": "development/runner.py#run_episode",
+      "name": "run_episode",
+      "kind": "function",
+      "path": "development/runner.py",
+      "span": "L32-L101",
+      "wholeFile": false
+    },
+    {
+      "id": "development/runner.py#run_mind_cases",
+      "name": "run_mind_cases",
+      "kind": "function",
+      "path": "development/runner.py",
+      "span": "L16-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#_hit",
+      "name": "_hit",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L23-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#center",
+      "name": "center",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L29-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#layout",
+      "name": "layout",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L10-L20",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#oracle",
+      "name": "oracle",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L100-L108",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#score_trace",
+      "name": "score_trace",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L111-L118",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#Simulator.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L35-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#Simulator.apply",
+      "name": "apply",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L54-L91",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#Simulator.observation",
+      "name": "observation",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L45-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#Simulator.observe",
+      "name": "observe",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L93-L97",
+      "wholeFile": false
+    },
+    {
+      "id": "development/simulator.py#Simulator.snapshot",
+      "name": "snapshot",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L42-L43",
+      "wholeFile": false
+    },
+    {
+      "id": "development/verifier.py#verify_final",
+      "name": "verify_final",
+      "kind": "function",
+      "path": "development/verifier.py",
+      "span": "L34-L46",
+      "wholeFile": false
+    },
+    {
+      "id": "development/verifier.py#verify_mind_semantics",
+      "name": "verify_mind_semantics",
+      "kind": "function",
+      "path": "development/verifier.py",
+      "span": "L5-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_all_oracles_really_finish_and_corruption_fails",
+      "name": "test_all_oracles_really_finish_and_corruption_fails",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L28-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_arabic_media_fail_closed_on_unqualified_host",
+      "name": "test_arabic_media_fail_closed_on_unqualified_host",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L89-L93",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_closed_loop_runner_uses_new_observation_and_separate_mind.infer",
+      "name": "infer",
+      "kind": "function",
+      "path": "tests/test_development.py",
+      "span": "L111-L127",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_dataset_corruption",
+      "name": "test_dataset_corruption",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L68-L73",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_disjoint_bilingual_data",
+      "name": "test_disjoint_bilingual_data",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L18-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_freeze_no_overwrite_or_false_media_claim",
+      "name": "test_freeze_no_overwrite_or_false_media_claim",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L95-L107",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_independent_mind_semantics_tracks_bilingual_state",
+      "name": "test_independent_mind_semantics_tracks_bilingual_state",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L189-L200",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_independent_verifier_does_not_accept_claim",
+      "name": "test_independent_verifier_does_not_accept_claim",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L62-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_layouts_are_distinct_and_rtl_mirrors",
+      "name": "test_layouts_are_distinct_and_rtl_mirrors",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L137-L145",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_old_observation_cannot_satisfy_new_failure",
+      "name": "test_old_observation_cannot_satisfy_new_failure",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L154-L168",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_parser_rejects_ambiguous_and_unsafe",
+      "name": "test_parser_rejects_ambiguous_and_unsafe",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L40-L50",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_prompt_no_private_labels",
+      "name": "test_prompt_no_private_labels",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L75-L79",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_redundant_observations_consume_budget",
+      "name": "test_redundant_observations_consume_budget",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L147-L152",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_standalone_mind_all_categories_both_languages",
+      "name": "test_standalone_mind_all_categories_both_languages",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L81-L87",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_wrong_mind_decomposition_cannot_score_as_correct.infer",
+      "name": "infer",
+      "kind": "function",
+      "path": "tests/test_development.py",
+      "span": "L173-L181",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_wrong_order_proposal_and_false_receipt_do_not_finish",
+      "name": "test_wrong_order_proposal_and_false_receipt_do_not_finish",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L52-L60",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/build_development_data.py",
+      "name": "build_development_data.py",
+      "kind": "file",
+      "path": "tools/build_development_data.py",
+      "span": "L1-L17",
+      "wholeFile": true
+    }
+  ],
+  "impacted": [
+    {
+      "id": "development/data.py#build_dataset",
+      "name": "build_dataset",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L85-L125",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_independent_mind_semantics_tracks_bilingual_state",
+      "name": "test_independent_mind_semantics_tracks_bilingual_state",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L189-L200",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_closed_loop_runner_uses_new_observation_and_separate_mind.infer",
+      "name": "infer",
+      "kind": "function",
+      "path": "tests/test_development.py",
+      "span": "L111-L127",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/runner.py#run_episode",
+      "name": "run_episode",
+      "kind": "function",
+      "path": "development/runner.py",
+      "span": "L32-L101",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/freeze.py#freeze_bundle",
+      "name": "freeze_bundle",
+      "kind": "function",
+      "path": "development/freeze.py",
+      "span": "L11-L52",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/freeze.py#verify_bundle",
+      "name": "verify_bundle",
+      "kind": "function",
+      "path": "development/freeze.py",
+      "span": "L55-L100",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_dataset_corruption",
+      "name": "test_dataset_corruption",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L68-L73",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_disjoint_bilingual_data",
+      "name": "test_disjoint_bilingual_data",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L18-L26",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_all_oracles_really_finish_and_corruption_fails",
+      "name": "test_all_oracles_really_finish_and_corruption_fails",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L28-L38",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_arabic_media_fail_closed_on_unqualified_host",
+      "name": "test_arabic_media_fail_closed_on_unqualified_host",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L89-L93",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_closed_loop_runner_uses_new_observation_and_separate_mind",
+      "name": "test_closed_loop_runner_uses_new_observation_and_separate_mind",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L109-L135",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_independent_verifier_does_not_accept_claim",
+      "name": "test_independent_verifier_does_not_accept_claim",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L62-L66",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_layouts_are_distinct_and_rtl_mirrors",
+      "name": "test_layouts_are_distinct_and_rtl_mirrors",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L137-L145",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_old_observation_cannot_satisfy_new_failure",
+      "name": "test_old_observation_cannot_satisfy_new_failure",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L154-L168",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_prompt_no_private_labels",
+      "name": "test_prompt_no_private_labels",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L75-L79",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_redundant_observations_consume_budget",
+      "name": "test_redundant_observations_consume_budget",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L147-L152",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_standalone_mind_all_categories_both_languages",
+      "name": "test_standalone_mind_all_categories_both_languages",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L81-L87",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_wrong_mind_decomposition_cannot_score_as_correct",
+      "name": "test_wrong_mind_decomposition_cannot_score_as_correct",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L170-L187",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_wrong_order_proposal_and_false_receipt_do_not_finish",
+      "name": "test_wrong_order_proposal_and_false_receipt_do_not_finish",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L52-L60",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_freeze_no_overwrite_or_false_media_claim",
+      "name": "test_freeze_no_overwrite_or_false_media_claim",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L95-L107",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tools/build_development_data.py",
+      "name": "build_development_data.py",
+      "kind": "file",
+      "path": "tools/build_development_data.py",
+      "span": "L1-L17",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/media.py#render_frame",
+      "name": "render_frame",
+      "kind": "function",
+      "path": "development/media.py",
+      "span": "L9-L55",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/data.py#prompt",
+      "name": "prompt",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L38-L41",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/data.py#validate_dataset",
+      "name": "validate_dataset",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L128-L140",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/runner.py#run_mind_cases",
+      "name": "run_mind_cases",
+      "kind": "function",
+      "path": "development/runner.py",
+      "span": "L16-L29",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/simulator.py#Simulator.apply",
+      "name": "apply",
+      "kind": "method",
+      "path": "development/simulator.py",
+      "span": "L54-L91",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_parser_rejects_ambiguous_and_unsafe",
+      "name": "test_parser_rejects_ambiguous_and_unsafe",
+      "kind": "method",
+      "path": "tests/test_development.py",
+      "span": "L40-L50",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/data.py#build_dataset.add",
+      "name": "add",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L92-L97",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/data.py#mind_cases",
+      "name": "mind_cases",
+      "kind": "function",
+      "path": "development/data.py",
+      "span": "L62-L82",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development.py#DevelopmentTests.test_wrong_mind_decomposition_cannot_score_as_correct.infer",
+      "name": "infer",
+      "kind": "function",
+      "path": "tests/test_development.py",
+      "span": "L173-L181",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "development/simulator.py#score_trace",
+      "name": "score_trace",
+      "kind": "function",
+      "path": "development/simulator.py",
+      "span": "L111-L118",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "verify_final",
+      "labelSource": "symbol",
+      "key": "development/",
+      "files": [
+        "development/__init__.py",
+        "development/data.py",
+        "development/freeze.py",
+        "development/media.py",
+        "development/protocol.py",
+        "development/runner.py",
+        "development/simulator.py",
+        "development/verifier.py"
+      ],
+      "seeds": 30,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_development.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_development.py"
+      ],
+      "reached": 18,
+      "behavioural": 29,
+      "unreached": [
+        "_episodes",
+        "add",
+        "canonical",
+        "mind_cases",
+        "prompt",
+        "text",
+        "_pairs",
+        "_step",
+        "instruction",
+        "_hit",
+        "__init__"
+      ],
+      "seedNames": [
+        "verify_final",
+        "snapshot",
+        "apply",
+        "parse_response",
+        "observation",
+        "oracle",
+        "center",
+        "layout",
+        "plan_label",
+        "prompt",
+        "validate_dataset",
+        "next_label",
+        "run_episode",
+        "score_trace",
+        "_episodes",
+        "freeze_bundle",
+        "verify_mind_semantics",
+        "_hit",
+        "_step",
+        "add",
+        "canonical",
+        "instruction",
+        "mind_cases",
+        "observe",
+        "run_mind_cases",
+        "text",
+        "verify_bundle",
+        "__init__",
+        "_pairs",
+        "__init__.py"
+      ],
+      "owners": []
+    },
+    {
+      "label": "build_development_data.py",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/build_development_data.py"
+      ],
+      "seeds": 1,
+      "tests": "na",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 0,
+      "unreached": [],
+      "seedNames": [
+        "build_development_data.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
