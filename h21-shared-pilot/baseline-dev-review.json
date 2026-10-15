@@ -1,0 +1,272 @@
+{
+  "actual_dev_only": true,
+  "result_sha256": "e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768",
+  "source_commit": "6b9bdff139d57ca29d0e4c5774c2d71805e8188e",
+  "runtime_sha256_matches_published_commit": true,
+  "dev_mind_error_taxonomy": {
+    "invalid_protocol": 30,
+    "valid_kind_wrong_semantics": 6,
+    "valid_wrong_requested_kind": 28
+  },
+  "type_protocol_rejections": [
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "raw": "```json\n{\n  \"action\": \"click\",\n  \"point\": [500, 148]\n}\n```",
+      "diagnostic_syntax": "fenced_json_forensic_only_not_accepted",
+      "forensic_body_not_accepted_proposal": {
+        "action": "click",
+        "point": [
+          500,
+          148
+        ]
+      },
+      "outside_normalized_frame": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "raw": "```json\n{\n  \"goal\": \"\u0641\u064a \u0631\u0641 \u0627\u0644\u0642\u0631\u0627\u0621\u0629\u060c \u0627\u0633\u062a\u0628\u062f\u0644 \u0645\u0644\u0627\u062d\u0638\u0629 \u0627\u0644\u0643\u062a\u0627\u0628 \u0628\u0627\u0644\u0646\u0635 \u00ab\u062a\u0645\u062a \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629\u00bb\u060c \u0648\u0627\u0646\u0642\u0644 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0625\u0644\u0649 \u00ab\u0645\u0642\u0631\u0648\u0621\u00bb\u060c \u062b\u0645 \u0627\u062d\u0641\u0638 \u0627\u0644\u062a\u063a\u064a\u064a\u0631\u0627\u062a.\",\n  \"observation\": {\n    \"destination_label\": \"\u0645\u0642\u0631\u0648\u0621\",\n    \"field_label\": \"\u0645\u0644\u0627\u062d\u0638\u0629 \u0627\u0644\u0643\u062a\u0627\u0628\",\n    \"field_value\": \"\u0645\u0633\u0648\u062f\u0629\",\n    \"item_label\": \"\u0627\u0644\u0628\u0637\u0627\u0642\u0629\",\n    \"item_location\": \"\u0627\u0644\u0648\u0627\u0631\u062f\",\n    \"save_label\": \"\u062d\u0641\u0638\",\n    \"status\": \"\u062c\u0627\u0647\u0632\",\n    \"title",
+      "diagnostic_syntax": "malformed_or_truncated_json",
+      "forensic_body_not_accepted_proposal": null,
+      "outside_normalized_frame": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "raw": "```json\n{\n  \"action\": \"click\",\n  \"point\": [319, 245]\n}\n```",
+      "diagnostic_syntax": "fenced_json_forensic_only_not_accepted",
+      "forensic_body_not_accepted_proposal": {
+        "action": "click",
+        "point": [
+          319,
+          245
+        ]
+      },
+      "outside_normalized_frame": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "raw": "```json\n{\n  \"action\": \"click\",\n  \"point\": [319, 245]\n}\n```",
+      "diagnostic_syntax": "fenced_json_forensic_only_not_accepted",
+      "forensic_body_not_accepted_proposal": {
+        "action": "click",
+        "point": [
+          319,
+          245
+        ]
+      },
+      "outside_normalized_frame": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "raw": "```json\n{\n  \"action\": \"click\",\n  \"point\": [688, 445]\n}\n```",
+      "diagnostic_syntax": "fenced_json_forensic_only_not_accepted",
+      "forensic_body_not_accepted_proposal": {
+        "action": "click",
+        "point": [
+          688,
+          445
+        ]
+      },
+      "outside_normalized_frame": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "raw": "```json\n{\n  \"goal\": \"\u0641\u064a \u0633\u062c\u0644 \u0627\u0644\u062d\u064a\u0648\u0627\u0646\u060c \u0627\u0633\u062a\u0628\u062f\u0644 \u0645\u0644\u0627\u062d\u0638\u0629 \u0627\u0644\u0631\u0639\u0627\u064a\u0629 \u0628\u0627\u0644\u0646\u0635 \u00ab\u062a\u0645 \u0627\u0644\u0625\u0637\u0639\u0627\u0645\u00bb\u060c \u0648\u0627\u0646\u0642\u0644 \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0625\u0644\u0649 \u00ab\u0627\u0644\u064a\u0648\u0645\u00bb\u060c \u062b\u0645 \u0627\u062d\u0641\u0638 \u0627\u0644\u062a\u063a\u064a\u064a\u0631\u0627\u062a.\",\n  \"observation\": {\n    \"destination_label\": \"\u0627\u0644\u064a\u0648\u0645\",\n    \"field_label\": \"\u0645\u0644\u0627\u062d\u0638\u0629 \u0627\u0644\u0631\u0639\u0627\u064a\u0629\",\n    \"field_value\": \"\u0645\u0633\u0648\u062f\u0629\",\n    \"item_label\": \"\u0627\u0644\u0628\u0637\u0627\u0642\u0629\",\n    \"item_location\": \"\u0627\u0644\u0648\u0627\u0631\u062f\",\n    \"save_label\": \"\u062d\u0641\u0638\",\n    \"status\": \"\u062c\u0627\u0647\u0632\",\n    \"",
+      "diagnostic_syntax": "malformed_or_truncated_json",
+      "forensic_body_not_accepted_proposal": null,
+      "outside_normalized_frame": false
+    }
+  ],
+  "type_protocol_taxonomy": {
+    "fenced_json_forensic_only_not_accepted": 4,
+    "malformed_or_truncated_json": 2
+  },
+  "type_outside_normalized_frame_count": 0,
+  "actual_frame_hash_checks": [
+    {
+      "episode": "reading_shelf-ar-0",
+      "frame": "ff6c200d2a780121543f7d3656ab8c698ef122f9e250c71b0b618bf09d9d3cbc.png",
+      "sha256": "23359c2747cd15420b9b46bec8cff29895f7d4d449786c4f4833ac73dbfe6d5a",
+      "global_call": 27
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "frame": "927d1fdb51e325bd13aaffcd7d85a7d0583429d4c35e9e21c6dd93c038a8f072.png",
+      "sha256": "67674a26d11f766ce72a057e6c4242f4933ba6891b0f3b576f9c027bb172579e",
+      "global_call": 36
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "frame": "debbf6309f0c503b5cc368c1908825b42b9305ef2bd752344434312317b691f4.png",
+      "sha256": "2df0b72b4e7c7170871bfba7b795984056cc86820ae21784e789846245ddcf0e",
+      "global_call": 45
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "frame": "68a5ad73ebfe7fc39c4b6e59717a59e7caf6df0978f8689553846af5dee37d69.png",
+      "sha256": "89d3b198451cd1f0fedfc8922e6cfd100b2d226391da19a59e3b0d5aeea50ec7",
+      "global_call": 54
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "frame": "1ad85b130fa4df066d20635d4f88a6413a1ba537f4dbad9155f581c1c5716dc1.png",
+      "sha256": "98949eb6dc27b83461086bdb3429c808cc604150b7eee740e18e248ab2a46515",
+      "global_call": 63
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "frame": "31e660b8af67b2ed67e927c3040208aa5987571b01acaaa3583e900c3f35cf7d.png",
+      "sha256": "b249900a968b2b52e94aeee6394c2b6ab2b3df0bf96edb3bc2cc4be14d5be1b1",
+      "global_call": 72
+    }
+  ],
+  "final_states": [
+    {
+      "episode": "reading_shelf-en-0",
+      "language": "en",
+      "revision": 0,
+      "current": "Draft",
+      "saved": "Draft",
+      "location": "Inbox",
+      "saved_location": "Inbox"
+    },
+    {
+      "episode": "reading_shelf-en-1",
+      "language": "en",
+      "revision": 0,
+      "current": "Draft",
+      "saved": "Draft",
+      "location": "Inbox",
+      "saved_location": "Inbox"
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "revision": 0,
+      "current": "\u0645\u0633\u0648\u062f\u0629",
+      "saved": "\u0645\u0633\u0648\u062f\u0629",
+      "location": "\u0627\u0644\u0648\u0627\u0631\u062f",
+      "saved_location": "\u0627\u0644\u0648\u0627\u0631\u062f"
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "revision": 0,
+      "current": "\u0645\u0633\u0648\u062f\u0629",
+      "saved": "\u0645\u0633\u0648\u062f\u0629",
+      "location": "\u0627\u0644\u0648\u0627\u0631\u062f",
+      "saved_location": "\u0627\u0644\u0648\u0627\u0631\u062f"
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "revision": 0,
+      "current": "Draft",
+      "saved": "Draft",
+      "location": "Inbox",
+      "saved_location": "Inbox"
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "revision": 0,
+      "current": "Draft",
+      "saved": "Draft",
+      "location": "Inbox",
+      "saved_location": "Inbox"
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "revision": 0,
+      "current": "\u0645\u0633\u0648\u062f\u0629",
+      "saved": "\u0645\u0633\u0648\u062f\u0629",
+      "location": "\u0627\u0644\u0648\u0627\u0631\u062f",
+      "saved_location": "\u0627\u0644\u0648\u0627\u0631\u062f"
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "revision": 0,
+      "current": "\u0645\u0633\u0648\u062f\u0629",
+      "saved": "\u0645\u0633\u0648\u062f\u0629",
+      "location": "\u0627\u0644\u0648\u0627\u0631\u062f",
+      "saved_location": "\u0627\u0644\u0648\u0627\u0631\u062f"
+    }
+  ],
+  "timing_seconds": {
+    "mind": {
+      "n": 74,
+      "median": 2.5572022574999664,
+      "p95_nearest_rank": 4.469257162999838,
+      "sum": 204.24470140499852,
+      "min": 1.015276748999895,
+      "max": 6.767666153999926
+    },
+    "type": {
+      "n": 6,
+      "median": 3.4208277955000312,
+      "p95_nearest_rank": 8.68002828800013,
+      "sum": 28.363468681000086,
+      "min": 2.1002528170001824,
+      "max": 8.68002828800013
+    },
+    "dev_mind": {
+      "n": 64,
+      "median": 2.560047901999951,
+      "p95_nearest_rank": 4.469257162999838,
+      "sum": 182.12415683399877,
+      "min": 2.3852285979999124,
+      "max": 6.767666153999926
+    },
+    "all_calls_after_first": {
+      "n": 79,
+      "median": 2.556541374000062,
+      "p95_nearest_rank": 6.289161917000001,
+      "sum": 228.15335375399877,
+      "min": 1.015276748999895,
+      "max": 8.68002828800013
+    },
+    "first_call_seconds": 4.454816331999837
+  },
+  "load_seconds": 86.58522117999996,
+  "wall_seconds": 332.5696123649998,
+  "cpu_process_seconds": 264.47605633999996,
+  "generation_seconds": 232.16854354299903,
+  "gpu": "Tesla T4",
+  "cuda": "13.0",
+  "gpu_capability": [
+    7,
+    5
+  ],
+  "packages": {
+    "Pillow": "11.3.0",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "memory_bytes": {
+    "peak_allocated_bytes": 4514018816,
+    "peak_reserved_bytes": 4575985664,
+    "device_used_bytes": 4744675328,
+    "cpu_peak_rss_bytes": 7793696768
+  },
+  "global_model_calls": 80,
+  "closed_loop_model_calls": 70,
+  "limits": [
+    "Dev episodes only; heldout episode test split is not included in this reviewed result. Standalone test diagnostics counted separately; not used to modify prompts/schedule.",
+    "Recorded telemetry not hardware attestation; sampled device/RSS peaks differ from continuous process/whole-device peaks.",
+    "No failure diagnosis is a prompt/tuning recommendation; preserve predeclared training schedule."
+  ],
+  "archive": {
+    "name": "h21-base-dev-evidence.zip",
+    "bytes": 93929,
+    "sha256": "4542c3497b632be1ca261f75e3136cc68e18b9a6468ff62eea49f04d596957e2",
+    "crc_valid": true,
+    "entries": 12
+  }
+}

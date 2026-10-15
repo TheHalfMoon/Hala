@@ -1,0 +1,18 @@
+{
+  "schema": "hala.h21.pretraining.archive.v1",
+  "identity": {
+    "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+    "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "source_commit": "5b6eb4bf29acbaf21aa199f113f78af4f268b3b7",
+    "data_sha256": "af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e",
+    "evaluation_sha256": "e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768"
+  },
+  "manifest_sha256": "4d0f824ecf045aadcda97e0323f0dd0aad5451544237d8140cf7725b4408ec1a",
+  "baseline_source_commit": "6b9bdff139d57ca29d0e4c5774c2d71805e8188e",
+  "baseline_runtime_sha256": "da6622d6c5c5e32724d4caa8b523e4d3c9186984f5dff63e32cbf13b7d3a0a35",
+  "h19_manifest_sha256": "ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e",
+  "baseline_archive_sha256": "4542c3497b632be1ca261f75e3136cc68e18b9a6468ff62eea49f04d596957e2",
+  "training_completed": false,
+  "trained_adapter_retained": false,
+  "limitations": "Harmless manifest plus actual baseline evidence, not a trained asset. Immutable signed public retrieval and full external identity verification are required before training."
+}
