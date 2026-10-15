@@ -5,7 +5,7 @@ import tempfile
 
 from training.adapter_archive import EXPECTED_SHAPES, LIMITS, verify_bundle
 
-VERSIONS = {'peft': '0.20.0', 'safetensors': '0.6.2'}
+VERSIONS = {'peft': '0.20.0', 'safetensors': '0.8.0'}
 
 
 @contextmanager

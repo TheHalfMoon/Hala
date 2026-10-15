@@ -34,7 +34,7 @@ directory and revalidates that copy against the external pins. Configuration
 bytes are never rewritten, including the original producer's null revision.
 The exact base model revision is supplied explicitly to the base loader.
 
-After the Colab and exact package gates, safetensors 0.6.2 decodes on CPU and
+After the Colab and exact package gates, safetensors 0.8.0 decodes on CPU and
 checks the actual complete 112-tensor inventory, shapes, supported floating
 dtypes and every tensor's finite values. The unchanged FP16 base loads using the
 existing settings and prompt path. PEFT 0.20.0 attaches the verified local
@@ -44,6 +44,15 @@ values against the decoded archive, and requires every model parameter frozen.
 Missing weights, additional initialized modules and load errors fail without a
 baseline fallback. The adapter path calls `eval()` and shares the baseline's
 inference callback, generation settings, cases and independent scoring.
+
+The adapter path uses an FP16 base with PEFT's default adapter dtype promotion;
+the trained F32 LoRA weights remain F32. The whole candidate is not claimed to
+be FP16. A real fresh Colab import exposed that the original safetensors 0.6.2
+pin conflicts with Transformers 5.16.1's required `safetensors>=0.8.0`, before
+model allocation or calls. H21d now pins 0.8.0. Official wheel metadata and the
+Transformers runtime dependency table/check are recorded in
+`docs/reviews/h21d-dependency-repair.json`; this compatibility repair still needs
+independent delta review and Jev/Graft qualification before adapter execution.
 
 Baseline results retain `adapter_loaded=false`, `training_runs=0` and the existing
 baseline schema. Candidate results use `hala.development.adapter_evaluation.v1`
