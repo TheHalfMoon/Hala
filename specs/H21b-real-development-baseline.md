@@ -1,0 +1,13 @@
+# H21b — Actual shared base development evaluation
+
+Status: source reviewed and CPU-tested; actual inference pending; depends on reviewed H19 source and qualified remote media. Review: full.
+
+Own new evaluation/development_runtime.py, tests/test_development_runtime.py, docs/H21b-real-development-baseline.md only; use H19 module interfaces without modifying its frozen source. Root integrates H19 and runs actual GPU after source review. No source change to frozen H14/H17 or foundation PR.
+
+Implement a remote-only unchanged-base baseline CLI, importing ML only after Linux/real Colab/explicit opt-in guard, exact model revision and exact package pins. Use Qwen/Qwen3-VL-2B-Instruct revision89644892e4d85e24eaac8bacfd4f463576704203, torch2.11.0, Transformers5.16.1, Pillow11.3.0, FP16 SDPA, greedy seed42, max128tokens/20second per call, max16modelcalls/8Typeactions per episode, bounded outer deadline. Prompt settings must exactly match frozen H19 bundle; require its externally archived manifest SHA256 before loading weights. Root may specify dev or test split without changing prompt/model configuration; preserve raw output, per-turn latency, actual transitions and independent final state. Evaluate separate heldout Mind decisions in both languages as well as closed-loop episodes, report Mind semantic errors separately from complete-task outcome.
+
+No private labels, episode objects, expected coordinates/finalstate or oracle response passed to model infer callback. Text-only Mind/reliance use no image; Type current qualified screenshot; callback receives only public prompt + image bytes. Return raw decoded string, no repair/retry/parser forgiveness. Dynamic off-path frames use reviewed renderer and get hashes logged. Report actual en/ar outcomes, calls/errors/recoveries/unnecessary/unsafe, load/wall/model seconds, peak allocated/reserved CUDA, sampled full-device memory (not continuous peak), CPU RSS, GPU identity, exact package/prompt/data/source identities. Keep per-case results for independent replay. Persist result atomically, avoid overwriting previous runs.
+
+Expose an explicitly verified local-small-adapter option only after archive verifier is integrated; leave disabled now rather than unsafe download/load. No remote credential transport, paid infrastructure, local large weights, native execution, model authority or release claim.
+
+Tests red then green with fake processor/model seams, meaningful validation/guard/telemetry/result scoring tests; no local ML install/download. Fresh independent PStack combined/security review plus genuine Jev/Graft before signed DCO commit. Root executes real inference only after frozen media/render QA and source publication. No quality claim from CPU fakes.
