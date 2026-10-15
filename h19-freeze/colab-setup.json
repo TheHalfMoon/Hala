@@ -1,0 +1,19 @@
+{
+  "actual_commit": "c7ed4050e00f9c358783ce76440b753110649470",
+  "manifest_sha256": "ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e",
+  "images_count": 120,
+  "training_rows_count": 136,
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.12.0",
+    "pillow": "11.3.0"
+  },
+  "font": {
+    "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "raqm_version": "0.10.1",
+  "gpu": "Tesla T4"
+}

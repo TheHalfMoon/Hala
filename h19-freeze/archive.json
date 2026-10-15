@@ -1,0 +1,14 @@
+{
+  "schema": "hala.development.archive.v1",
+  "archive": "hala-h21-frozen.zip",
+  "bytes": 1608381,
+  "sha256": "d6be1ffba54a3a44978da4c922130fc2d7e74bdc2532a14d0d1e7cc3a691cead",
+  "manifest_sha256": "ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e",
+  "files": 125,
+  "images": 120,
+  "training_rows": 136,
+  "dataset_sha256": "af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e",
+  "source_commit": "c7ed4050e00f9c358783ce76440b753110649470",
+  "provenance": "Original H19 synthetic data, frozen on free Colab; Gemini setup proposal reviewed and corrected before execution. UI stdout transfer, per-chunk and whole-archive SHA256 verified locally. No model inference or trained adapter.",
+  "verification": "ZIP CRC, bounded safe inventory, independent manifest anchor, all data/source/image hashes and materialized rows verified against development.freeze.verify_bundle."
+}
