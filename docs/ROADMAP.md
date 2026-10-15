@@ -14,3 +14,13 @@ Updated 2026-10-15. IMPLEMENTED/TESTED never implies production QUALIFIED.
 | P8 / H16 serving | Bounded authenticatedv2 real loopback2 bilingual fixtures/five negatives | Native integration, in-flight CUDA cancel, production/release review |
 
 Original H0–H13 foundation/research/data/mock-contract work and strict0/8 plus calibration7/8 remain preserved in history and experiments. Full source conventions and current limitations are in CURRENT_STATUS.md. The founder controls main/production; Hala is not complete.
+
+## Isolated model-development continuation
+
+- H19 source: implemented/reviewed,169CPUtests; actual RAQM media and real base evaluation pending.
+- H20: actual Windows transport diagnosis/config repair and conservative routing comparison; parser delta/review gates pending.
+- H21a: small adapter integrity/persistence source repaired; independent final deltas pending.
+- H21b: actual Mind/closed-loop remote baseline candidate; source review pending, no model run yet.
+- H21 quality pilot: planned after data/base/persistence gates; one shared LoRA, fresh-session byte/load/evaluation required.
+
+Foundation PR1 stays fixed for founder review. These experiments use a separate stacked development PR and an isolated small-artifact archival branch; neither main nor Aladdin is modified.

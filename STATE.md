@@ -1,13 +1,13 @@
-Last updated: 2026-10-15 · Branch: ps/foundation
+Last updated: 2026-10-15 · Branch: ps/model-development
 
 ## Current state
-Main00f6692383ca9e9cc147380b062676dd74932e83 unchanged; draftPR#1 unmerged. Source5b8c63c passed153 CPU tests/four CI. Frozen model precision runs FP16/int8/NF4 hit30/34/32 of64, schema 64/64 each; Arabic14/14/13 of32. Independent2048 checks passed. Genuine two-step English LoRA update/save/actualreload/resume matched uninterrupted tensors exactly; original ephemeral binaries expired, metadata retained. Real bilingual loopback smoke2/2 and five negative statuses tested; no native/release qualification. H18 shared-adaptation audit reviewed/repaired; configuration disabled, data incompatible. Jev/PStack/Graft evidence retained.
+Foundation PR1 remains draft/unmerged at0638137724eb9a5bde1e6133aef976020e11fae3; main00f6692383ca9e9cc147380b062676dd74932e83. Final independent foundation review reran153tests and80boundary checks; all4exact-headCI pass, historicalDCOexception disclosed. New development is isolated here. H19 reviewed semantic data has136bilingual training turns,32episodes,10heldoutMinddecisions; fourtrain/twodev/twotest applicationfamilies.169CPUtests pass. Independent review repaired stale recovery observation and separated Mindsemantic errors from actual final task success. Genuine Jev8files and Graft653nodes/exits0 retained; deepcontextfalse. No actual H19 media/inference/training yet.
 
 ## In flight
-Final measured-result documentation/PR status publication; no model process or production server left running. Quantization paths tested, neither adopted. Phase worktrees retained for review; no unrelated work deleted.
+H20 d1 Windows UTF8 repair and32case routing diagnostic await final parser-delta review; no learnedrouter adopted. H21a bounded small-adapter archive and H21b remote baseline source are being independently reviewed. Free Colab reconnected to a fresh T4; original cache gone, no new adapter existed. Immutable harmless archive probe roundtrip passed atab69e61; no trainedasset.
 
 ## Next steps
-Prepare and prospectively freeze compatible rights-cleared bilingual Mind-plan/normalized-Type semantic data and independent family splits; evaluate shared-model Mind baseline. Implement a separately reviewed bounded quality-training pilot after data gates. Keep H14 protected from training/tuning. Qualify representative closed-loop tasks and native frame/DPI/in-flight cancellation before release. Founder controls merge/deployment.
+Publish reviewed development source separately from PR1, freeze qualified Arabic/English media and settings before inference, run unchanged-base Mind/closed-loop tasks, then implement/review one shared small LoRA pilot with durable hash-verified artifacts and fresh-session reload/evaluation. Preserve old H14/H17 results. Complete serving lifecycle/representative quantization later.
 
 ## Blockers / open issues
-Grounding quality only46.9–53.1% on narrow dependent fixtures; no native/general task evidence, retained quality adapter or production cost. Existing58English rows are legacy actions, not prospective task schemas. Historical H15 merge omitted DCO text and has a signed attestation; preserve fact. No paid compute authorized, no Kaggle commercial model work or large weights on PC.
+No quality-improving retained adapter or native/production integration. Browser file-download path is not yet verified; do not train until small-artifact retrieval and durable upload are reliable. Review/provider pauses may delay fresh gates; never substitute d1/Jev for independent required reviews. Shared synthetic workflow templates limit generalization. Founder retains main merge/deployment.
