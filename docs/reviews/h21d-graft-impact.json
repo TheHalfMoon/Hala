@@ -1,0 +1,1203 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "evaluation/development_adapter.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 66
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 66,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Explicit small trained-adapter inference; archive checks need no ML imports.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from contextlib import contextmanager"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from training.adapter_archive import EXPECTED_SHAPES, LIMITS, verify_bundle"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "VERSIONS = {'peft': '0.20.0', 'safetensors': '0.6.2'}"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "@contextmanager"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "def verified_adapter(directory, identity, manifest_sha256):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"\"\"Snapshot exact bounded bytes privately before any model imports/allocation."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    Both source and snapshot must match externally pinned archive identities."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    Configuration is copied verbatim, including a producer's null revision."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"\"\""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    manifest = verify_bundle(directory, identity, manifest_sha256)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    if manifest['kind'] != 'trained_adapter':"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        raise ValueError('A trained adapter archive is required for candidate evaluation')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    with tempfile.TemporaryDirectory(prefix='hala-verified-adapter-') as temp:"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        snapshot = Path(temp)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        for name in ('manifest.json', *manifest['files']):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            with (Path(directory) / name).open('rb') as stream:"
+            }
+          ],
+          "dropped": 42
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_runtime.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        },
+        {
+          "start": 190,
+          "end": 205
+        },
+        {
+          "start": 206,
+          "end": 206
+        },
+        {
+          "start": 221,
+          "end": 223
+        },
+        {
+          "start": 229,
+          "end": 234
+        },
+        {
+          "start": 248,
+          "end": 252
+        },
+        {
+          "start": 277,
+          "end": 285
+        },
+        {
+          "start": 300,
+          "end": 304
+        },
+        {
+          "start": 345,
+          "end": 348
+        },
+        {
+          "start": 350,
+          "end": 353
+        },
+        {
+          "start": 355,
+          "end": 356
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "\"\"\"Remote-only unchanged shared-base development evaluation; no native actions.\"\"\""
+            },
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Remote-only frozen shared-base or verified-adapter evaluation; no native actions.\"\"\""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 190,
+          "end": 205,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev', cache_dir='/tmp/hala-h21-cache', adapter=None):"
+            },
+            {
+              "n": 190,
+              "sign": "+",
+              "text": "def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev', cache_dir='/tmp/hala-h21-cache',"
+            },
+            {
+              "n": 191,
+              "sign": "+",
+              "text": "        adapter=None, adapter_manifest_sha256=None, adapter_identity=None):"
+            },
+            {
+              "n": 192,
+              "sign": "+",
+              "text": "    supplied = (adapter, adapter_manifest_sha256, adapter_identity)"
+            },
+            {
+              "n": 193,
+              "sign": "+",
+              "text": "    if any(value is not None for value in supplied):"
+            },
+            {
+              "n": 194,
+              "sign": "+",
+              "text": "        if any(value is None for value in supplied):"
+            },
+            {
+              "n": 195,
+              "sign": "+",
+              "text": "            raise ValueError('Adapter directory, manifest SHA256 and full external identity required together')"
+            },
+            {
+              "n": 196,
+              "sign": "+",
+              "text": "        remote_guard()"
+            },
+            {
+              "n": 197,
+              "sign": "+",
+              "text": "        from evaluation.development_adapter import verified_adapter"
+            },
+            {
+              "n": 198,
+              "sign": "+",
+              "text": "        with verified_adapter(adapter, adapter_identity, adapter_manifest_sha256) as prepared:"
+            },
+            {
+              "n": 199,
+              "sign": "+",
+              "text": "            return _run(bundle, manifest_sha256, output, font_path, source_commit,"
+            },
+            {
+              "n": 200,
+              "sign": "+",
+              "text": "                        split=split, cache_dir=cache_dir, prepared_adapter=prepared)"
+            },
+            {
+              "n": 201,
+              "sign": "+",
+              "text": "    return _run(bundle, manifest_sha256, output, font_path, source_commit,"
+            },
+            {
+              "n": 202,
+              "sign": "+",
+              "text": "                split=split, cache_dir=cache_dir, prepared_adapter=None)"
+            },
+            {
+              "n": 203,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 204,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 205,
+              "sign": "+",
+              "text": "def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 206,
+          "end": 206,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    if adapter is not None:"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        raise ValueError('Adapter loading disabled until reviewed archive integration')"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 221,
+          "end": 223,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    dirty = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'development', 'evaluation/development_runtime.py'], cwd=root, capture_output=True, text=True, check=True).stdout"
+            },
+            {
+              "n": 221,
+              "sign": "+",
+              "text": "    dirty = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'development',"
+            },
+            {
+              "n": 222,
+              "sign": "+",
+              "text": "                            'evaluation/development_runtime.py', 'evaluation/development_adapter.py',"
+            },
+            {
+              "n": 223,
+              "sign": "+",
+              "text": "                            'training/adapter_archive.py'], cwd=root, capture_output=True, text=True, check=True).stdout"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 229,
+          "end": 234,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    packages = {p: importlib.metadata.version(p) for p in VERSIONS}"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    if any(packages[p].split('+')[0] != expected for p, expected in VERSIONS.items()):"
+            },
+            {
+              "n": 229,
+              "sign": "+",
+              "text": "    pins = dict(VERSIONS)"
+            },
+            {
+              "n": 230,
+              "sign": "+",
+              "text": "    if prepared_adapter is not None:"
+            },
+            {
+              "n": 231,
+              "sign": "+",
+              "text": "        from evaluation.development_adapter import VERSIONS as adapter_versions"
+            },
+            {
+              "n": 232,
+              "sign": "+",
+              "text": "        pins.update(adapter_versions)"
+            },
+            {
+              "n": 233,
+              "sign": "+",
+              "text": "    packages = {p: importlib.metadata.version(p) for p in pins}"
+            },
+            {
+              "n": 234,
+              "sign": "+",
+              "text": "    if any(packages[p].split('+')[0] != expected for p, expected in pins.items()):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 248,
+          "end": 252,
+          "lines": [
+            {
+              "n": 248,
+              "sign": "+",
+              "text": "    if prepared_adapter is not None:"
+            },
+            {
+              "n": 249,
+              "sign": "+",
+              "text": "        result.update(schema='hala.development.adapter_evaluation.v1', adapter={"
+            },
+            {
+              "n": 250,
+              "sign": "+",
+              "text": "            'manifest_sha256': prepared_adapter['manifest_sha256'],"
+            },
+            {
+              "n": 251,
+              "sign": "+",
+              "text": "            'identity': prepared_adapter['manifest']['identity'],"
+            },
+            {
+              "n": 252,
+              "sign": "+",
+              "text": "            'files': prepared_adapter['manifest']['files'], 'kind': 'trained_adapter'})"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 277,
+          "end": 285,
+          "lines": [
+            {
+              "n": 277,
+              "sign": "+",
+              "text": "        if prepared_adapter is not None:"
+            },
+            {
+              "n": 278,
+              "sign": "+",
+              "text": "            import peft"
+            },
+            {
+              "n": 279,
+              "sign": "+",
+              "text": "            import safetensors"
+            },
+            {
+              "n": 280,
+              "sign": "+",
+              "text": "            from evaluation.development_adapter import read_tensors"
+            },
+            {
+              "n": 281,
+              "sign": "+",
+              "text": "            actual_adapter_packages = {'peft': peft.__version__, 'safetensors': safetensors.__version__}"
+            },
+            {
+              "n": 282,
+              "sign": "+",
+              "text": "            if any(actual_adapter_packages[p] != expected for p, expected in adapter_versions.items()):"
+            },
+            {
+              "n": 283,
+              "sign": "+",
+              "text": "                raise ValueError('Imported adapter packages differ from exact pins')"
+            },
+            {
+              "n": 284,
+              "sign": "+",
+              "text": "            result['imported_packages'].update(actual_adapter_packages)"
+            },
+            {
+              "n": 285,
+              "sign": "+",
+              "text": "            adapter_tensors = read_tensors(prepared_adapter, torch)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 300,
+          "end": 304,
+          "lines": [
+            {
+              "n": 300,
+              "sign": "+",
+              "text": "        if prepared_adapter is not None:"
+            },
+            {
+              "n": 301,
+              "sign": "+",
+              "text": "            from evaluation.development_adapter import attach_adapter"
+            },
+            {
+              "n": 302,
+              "sign": "+",
+              "text": "            model = attach_adapter(model, prepared_adapter, torch, adapter_tensors)"
+            },
+            {
+              "n": 303,
+              "sign": "+",
+              "text": "            del adapter_tensors"
+            },
+            {
+              "n": 304,
+              "sign": "+",
+              "text": "            result['adapter_loaded'] = True"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 345,
+          "end": 348,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    parser.add_argument('--adapter', help='Reserved and disabled until archive integration')"
+            },
+            {
+              "n": 345,
+              "sign": "+",
+              "text": "    parser.add_argument('--adapter', help='Operator-downloaded local archive directory on the approved remote runtime')"
+            },
+            {
+              "n": 346,
+              "sign": "+",
+              "text": "    parser.add_argument('--adapter-manifest-sha256')"
+            },
+            {
+              "n": 347,
+              "sign": "+",
+              "text": "    for field in ('base-model', 'base-revision', 'source-commit', 'data-sha256', 'evaluation-sha256'):"
+            },
+            {
+              "n": 348,
+              "sign": "+",
+              "text": "        parser.add_argument('--adapter-' + field)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 350,
+          "end": 353,
+          "lines": [
+            {
+              "n": 350,
+              "sign": "+",
+              "text": "    identity = {field: getattr(args, 'adapter_' + field) for field in"
+            },
+            {
+              "n": 351,
+              "sign": "+",
+              "text": "                ('base_model', 'base_revision', 'source_commit', 'data_sha256', 'evaluation_sha256')}"
+            },
+            {
+              "n": 352,
+              "sign": "+",
+              "text": "    if all(value is None for value in identity.values()):"
+            },
+            {
+              "n": 353,
+              "sign": "+",
+              "text": "        identity = None"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 355,
+          "end": 356,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                 split=args.split, cache_dir=args.cache_dir, adapter=args.adapter)"
+            },
+            {
+              "n": 355,
+              "sign": "+",
+              "text": "                 split=args.split, cache_dir=args.cache_dir, adapter=args.adapter,"
+            },
+            {
+              "n": 356,
+              "sign": "+",
+              "text": "                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_adapter.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 326
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 326,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU boundary evidence; fake tensors are not model qualification.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from contextlib import ExitStack"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from contextlib import redirect_stderr"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path, PurePosixPath"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "from tests import test_adapter_archive as archive_tests"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from tests import test_development_runtime as runtime_tests"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from training.adapter_archive import create_bundle, EXPECTED_SHAPES"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "ROOT = Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "IDENTITY = archive_tests.IDENTITY"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "class DevelopmentAdapterTests(unittest.TestCase):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def fixture(self, root):"
+            }
+          ],
+          "dropped": 302
+        }
+      ]
+    }
+  ],
+  "unindexed": [],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_adapter.py#attach_adapter",
+      "name": "attach_adapter",
+      "kind": "function",
+      "path": "evaluation/development_adapter.py",
+      "span": "L51-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_adapter.py#read_tensors",
+      "name": "read_tensors",
+      "kind": "function",
+      "path": "evaluation/development_adapter.py",
+      "span": "L43-L48",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_adapter.py#validate_tensors",
+      "name": "validate_tensors",
+      "kind": "function",
+      "path": "evaluation/development_adapter.py",
+      "span": "L33-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_adapter.py#verified_adapter",
+      "name": "verified_adapter",
+      "kind": "function",
+      "path": "evaluation/development_adapter.py",
+      "span": "L12-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#_run",
+      "name": "_run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L205-L333",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L190-L202",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L336-L357",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.fixture",
+      "name": "fixture",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L24-L28",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.runtime",
+      "name": "runtime",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L30-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.tensors.Tensor.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L116-L117",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.tensors.Tensor.cpu",
+      "name": "cpu",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L120-L121",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.tensors.Tensor.detach",
+      "name": "detach",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L118-L119",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.tensors.Tensor.to",
+      "name": "to",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L122-L123",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_actual_tensor_inventory_shapes_dtypes_and_every_finite_value_checked",
+      "name": "test_actual_tensor_inventory_shapes_dtypes_and_every_finite_value_checked",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L126-L148",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_baseline_path_and_candidate_classification_are_honest.execute",
+      "name": "execute",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L205-L208",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_cli_missing_identity_or_unknown_flags_fail_closed",
+      "name": "test_cli_missing_identity_or_unknown_flags_fail_closed",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L64-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.base_load",
+      "name": "base_load",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L247-L249",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.episode",
+      "name": "episode",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L260-L263",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.mind",
+      "name": "mind",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L256-L259",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.peft_load",
+      "name": "peft_load",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L253-L255",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.safe_load",
+      "name": "safe_load",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L250-L252",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results.verified",
+      "name": "verified",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L293-L295",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_inference_load_uses_snapshot_exact_bytes_no_training_or_fallback.load",
+      "name": "load",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L162-L165",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_inference_load_uses_snapshot_exact_bytes_no_training_or_fallback.load_file",
+      "name": "load_file",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L159-L161",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_invalid_or_partial_identity_fails_before_model_imports.guarded",
+      "name": "guarded",
+      "kind": "function",
+      "path": "tests/test_development_adapter.py",
+      "span": "L40-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_roundtrip_kind_is_never_a_candidate",
+      "name": "test_roundtrip_kind_is_never_a_candidate",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L102-L111",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_verified_private_snapshot_preserves_exact_config_and_rejects_missing_or_extra",
+      "name": "test_verified_private_snapshot_preserves_exact_config_and_rejects_missing_or_extra",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L78-L100",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/development_runtime.py#_run",
+      "name": "_run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L205-L333",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_inference_load_uses_snapshot_exact_bytes_no_training_or_fallback",
+      "name": "test_inference_load_uses_snapshot_exact_bytes_no_training_or_fallback",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L150-L196",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_actual_tensor_inventory_shapes_dtypes_and_every_finite_value_checked",
+      "name": "test_actual_tensor_inventory_shapes_dtypes_and_every_finite_value_checked",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L126-L148",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L190-L202",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_roundtrip_kind_is_never_a_candidate",
+      "name": "test_roundtrip_kind_is_never_a_candidate",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L102-L111",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_verified_private_snapshot_preserves_exact_config_and_rejects_missing_or_extra",
+      "name": "test_verified_private_snapshot_preserves_exact_config_and_rejects_missing_or_extra",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L78-L100",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L336-L357",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "evaluation/development_runtime.py",
+      "name": "development_runtime.py",
+      "kind": "file",
+      "path": "evaluation/development_runtime.py",
+      "span": "L1-L362",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_baseline_path_and_candidate_classification_are_honest",
+      "name": "test_baseline_path_and_candidate_classification_are_honest",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L198-L211",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "name": "test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L213-L322",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_invalid_or_partial_identity_fails_before_model_imports",
+      "name": "test_invalid_or_partial_identity_fails_before_model_imports",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L36-L62",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_adapter.py#read_tensors",
+      "name": "read_tensors",
+      "kind": "function",
+      "path": "evaluation/development_adapter.py",
+      "span": "L43-L48",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#compare_checkpoints",
+      "name": "compare_checkpoints",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L89-L114",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "name": "test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L13-L26",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_lora_qualification.py#QualificationTests.test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "name": "test_saved_identity_and_optimizer_rng_mismatches_fail",
+      "kind": "method",
+      "path": "tests/test_lora_qualification.py",
+      "span": "L59-L78",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "training/scripts/qualify_lora.py#qualify",
+      "name": "qualify",
+      "kind": "function",
+      "path": "training/scripts/qualify_lora.py",
+      "span": "L128-L188",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [
+    {
+      "label": "compare_checkpoints",
+      "labelSource": "symbol",
+      "key": "training/scripts/",
+      "files": [
+        "training/scripts/qualify_lora.py"
+      ],
+      "symbols": [
+        {
+          "id": "training/scripts/qualify_lora.py#compare_checkpoints",
+          "name": "compare_checkpoints",
+          "kind": "function",
+          "path": "training/scripts/qualify_lora.py",
+          "span": "L89-L114",
+          "relation": "calls",
+          "depth": 1
+        },
+        {
+          "id": "training/scripts/qualify_lora.py#qualify",
+          "name": "qualify",
+          "kind": "function",
+          "path": "training/scripts/qualify_lora.py",
+          "span": "L128-L188",
+          "relation": "calls",
+          "depth": 2
+        }
+      ],
+      "from": [
+        "tests/test_development_adapter.py"
+      ],
+      "owners": []
+    }
+  ],
+  "testModules": [
+    {
+      "label": "test_loss_trajectory_mismatch_…",
+      "labelSource": "symbol",
+      "key": "tests/",
+      "files": [
+        "tests/test_lora_qualification.py"
+      ],
+      "symbols": [
+        {
+          "id": "tests/test_lora_qualification.py#QualificationTests.test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+          "name": "test_loss_trajectory_mismatch_blocks_qualification_but_timing_does_not",
+          "kind": "method",
+          "path": "tests/test_lora_qualification.py",
+          "span": "L13-L26",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_lora_qualification.py#QualificationTests.test_saved_identity_and_optimizer_rng_mismatches_fail",
+          "name": "test_saved_identity_and_optimizer_rng_mismatches_fail",
+          "kind": "method",
+          "path": "tests/test_lora_qualification.py",
+          "span": "L59-L78",
+          "relation": "calls",
+          "depth": 2
+        }
+      ],
+      "from": [
+        "tests/test_development_adapter.py"
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "label": "verified_adapter",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_adapter.py",
+        "evaluation/development_runtime.py"
+      ],
+      "seeds": 7,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_development_adapter.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_development_adapter.py"
+      ],
+      "reached": 4,
+      "behavioural": 7,
+      "unreached": [
+        "_run",
+        "run",
+        "main"
+      ],
+      "seedNames": [
+        "verified_adapter",
+        "validate_tensors",
+        "attach_adapter",
+        "read_tensors",
+        "_run",
+        "main",
+        "run"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
