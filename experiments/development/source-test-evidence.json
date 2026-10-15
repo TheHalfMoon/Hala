@@ -1,0 +1,45 @@
+{
+  "phase": "H19",
+  "red": {
+    "command": "python -m unittest tests.test_development -v",
+    "result": "ModuleNotFoundError: No module named development"
+  },
+  "initial_scoped_green": {
+    "tests": 13,
+    "seconds": 0.568
+  },
+  "integrated_green_before_review": {
+    "command": "python -m unittest discover -s tests -q",
+    "tests": 166,
+    "seconds": 25.02
+  },
+  "cycle1_red": {
+    "tests": 2,
+    "failures": 1,
+    "errors": 1,
+    "observations": [
+      "Earlier observation remained true after new transient failure",
+      "Wrong Mind decomposition had no mind_errors metric"
+    ]
+  },
+  "cycle1_scoped_green": {
+    "tests": 16,
+    "seconds": 0.992,
+    "regressions": [
+      "Pre-failure observation cannot satisfy new failure; subsequent observation recovers",
+      "Wrong initial Mind kind consumes call; wrong semantic subgoals score errors despite independently successful Type",
+      "Independent semantic checker cross-checks bilingual public goal and state"
+    ]
+  },
+  "media_claim": "Not locally qualified; renderer requires actual Linux Pillow11.3.0/RAQM0.10.1/pinned font; callback loop test patches renderer only.",
+  "model_inference_run": false,
+  "training_run": false,
+  "independent_review": "Combined and separate integrity reviews found recovery freshness bug; repaired with red/green regressions; both fresh delta reviews passed. Mind semantics separately scored from final task outcome.",
+  "jev": "Actual jev-1.13.0 typed judgments on eight source files; numeric advisory concern probabilities retained, not approval.",
+  "graft": "Actual Graft0.21.1 build/check/blast exits0; graph653nodes; deep_context_built=false. Graph/impact only.",
+  "final_integrated_green": {
+    "tests": 169,
+    "seconds": 25.975,
+    "result": "OK"
+  }
+}
