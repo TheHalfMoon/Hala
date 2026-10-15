@@ -1,13 +1,13 @@
 {
   "files": {
     "docs/H17_QUANTIZATION.md": "ea60e5691137c1f3e5d51eff0d8c52caab8ad50b4de9305ca3b70e9f2191bd39",
-    "evaluation/quantization.py": "55cd8313241b3c7ac662a7f314f27dc2642a59ace90cd07a6bc72f37d29d39f2",
+    "evaluation/quantization.py": "849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154",
     "evaluation/quantization_runner.py": "4b83a10984912fdedc5bae274a0c13aa0c890fa12a7b5d80048045ac3857bcb6",
     "experiments/quantization/baseline-fp16.json": "6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32",
     "experiments/quantization/config.json": "2b006e66f5d4fc76f23d89a16b59ccbecbc26281f429682f8ed9831f138a210a",
     "experiments/quantization/official-sources.json": "01be3370c21485ddc976f8f5315e115f1434063f08b71cc1399f8afc999ed601",
     "specs/H17-paired-quantization.md": "866a15d17f22bb6637bb40e591b71e244b2c36b5964be890a79d86ae76bc56b1",
-    "tests/test_quantization.py": "0b71f8407f6d7b6122c67a314002940039c69d7c5cad9c1831c33837c193da1d",
+    "tests/test_quantization.py": "4a8fdc76b58ed58794fddfe910e4320639bfbaca924130ab9e954e6109e3bf1c",
     "tools/capture_quantization_sources.py": "4f160331a2c0e507d61281281cf822cee3d0afb90436e32b50e746786ca9a0c7",
     "tools/freeze_quantization.py": "0e54ba703bfe63896e6b75ca3851fcbd636da6697bb1592ca3807811b4c6ae95"
   },

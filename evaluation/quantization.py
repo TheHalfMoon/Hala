@@ -27,7 +27,7 @@ def remote_guard():
     if (platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_QUANT_ALLOWED') != '1'
             or not os.environ.get('COLAB_RELEASE_TAG')):
         raise ValueError('Explicit opt-in Linux Colab required; local weights forbidden')
-    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or Path('/kaggle').exists():
+    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE'):
         raise ValueError('Kaggle blocked')
     for key in ('HF_HOME', 'HF_HUB_CACHE', 'HUGGINGFACE_HUB_CACHE',
                 'TRANSFORMERS_CACHE', 'XDG_CACHE_HOME', 'TORCH_HOME'):

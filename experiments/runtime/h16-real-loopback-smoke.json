@@ -1,0 +1,261 @@
+{
+  "schema": "hala.h16.remote_loopback_smoke.v1",
+  "run_completed": true,
+  "qualified": false,
+  "diagnostic_cases": 2,
+  "execution_performed": false,
+  "scope": "Two original synthetic bilingual grounding proposals, not task/native/release qualification.",
+  "script_sha256": "79f3ffb22e7499a4708131532f9666b3ec50265cf992c7caa5099e11d9a56d97",
+  "started_utc": "2026-10-14T20:53:38Z",
+  "stage": "completed_diagnostic_only",
+  "source": {
+    "files_sha256": {
+      "hala/inference/remote_qwen.py": "9e70afbc23c4d5730ed980b960b804d2f4e6320587116cb85f525f8a06084484",
+      "hala/inference/vision_candidate.py": "89e363aa8dd4e62be21509fd371226d1d509cbc8ffca7ac3a9516e77ef8f0465",
+      "hala/inference/__init__.py": "e3746f97556157329fdad9d3471d52ff728d35480c67be243a6abfe36918aa4c",
+      "hala/serving/__init__.py": "37370ba25119268e47b4da5e554f8e12ebb4ad5608997510575fe2df00f1634f",
+      "hala/contracts/proposal.py": "f20fc5d2800d5e3ad33c11d1386666314912ca1a32bbbf89171970e1ac5b829d",
+      "hala/contracts/request.py": "a9435a471e29ff2c7be67bcd0330c1967ffaeb5d1c02ab63226b191f9dc7b9e5",
+      "hala/contracts/validation.py": "3621871f99827ca9a6fd75dae8183f5bc9f5145a9b1a8127c63c064584e0956b"
+    },
+    "observed_git_head": "5f2db976c07989f8dceb60e1c06b221eb3f23c7e"
+  },
+  "cache": {
+    "method": "remote_same_device_hardlinks",
+    "source": "/tmp/hala-model-cache/hub/models--Qwen--Qwen3-VL-2B-Instruct",
+    "path": "/tmp/hala-serving-model-cache",
+    "linked_files": 18,
+    "weight_bytes_copied": 0,
+    "network_cache_fill": false
+  },
+  "environment": {
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "python": "3.13.15",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1",
+    "pillow": "11.3.0",
+    "cuda_available": true,
+    "colab_marker_present": true,
+    "network_cache_fill": false,
+    "provider": "colab",
+    "gpu": "Tesla T4",
+    "gpu_total_memory_bytes": 15637086208,
+    "cuda_version": "13.0"
+  },
+  "model": {
+    "id": "Qwen/Qwen3-VL-2B-Instruct",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "protocol": "h16-v2-normalized-point-v1",
+    "precision": "float16",
+    "trust_remote_code": false
+  },
+  "load_ms": 21662.56106400033,
+  "transport": {
+    "binding": "IPv4 loopback only",
+    "ephemeral_port": true,
+    "ephemeral_bearer_token": true,
+    "token_recorded": false,
+    "tunnel": false,
+    "deployment": false
+  },
+  "cases": [
+    {
+      "language": "en",
+      "fixture": {
+        "rights": "original synthetic authored by this smoke",
+        "font": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "font_sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+        "raqm": true,
+        "image_size": [
+          640,
+          480
+        ],
+        "screenshot_kind": "synthetic independent Save button",
+        "remote_png_path": "/content/h16-smoke-en.png"
+      },
+      "media_sha256": "6e634129f867e3d5ccca3cec48254fe4a375820a01c544a4ae0f0c05c87db873",
+      "response": {
+        "http_status": 200,
+        "elapsed_ms": 2255.5595180001546,
+        "body": {
+          "api_version": "hala.v2",
+          "result": {
+            "schema": "hala.click_proposal.v2",
+            "request_id": "request-en-smoke",
+            "tenant_id": "h16-smoke-tenant",
+            "task_id": "task-en-smoke",
+            "device_id": "synthetic-device",
+            "session_id": "synthetic-session-en-smoke",
+            "frame_id": "frame-en-smoke",
+            "media_sha256": "6e634129f867e3d5ccca3cec48254fe4a375820a01c544a4ae0f0c05c87db873",
+            "actions": [
+              {
+                "type": "click",
+                "point": [
+                  463,
+                  362
+                ],
+                "coordinate_space": "window",
+                "image_scale": 1,
+                "element_ref_hint": "save-button"
+              }
+            ],
+            "confidence": null,
+            "status": "continue",
+            "execution_authorized": false,
+            "verification_required": true,
+            "provenance": {
+              "engine": "remote_transformers",
+              "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+              "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+              "processor_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+              "precision": "float16",
+              "prompt_revision": "h16-v2-normalized-point-v1",
+              "qualified": false,
+              "latency_ms": 2247.3864029998367,
+              "serving_config_revision": "h16-v2-bounded-v1"
+            }
+          }
+        }
+      },
+      "synchronized_elapsed_ms": 2255.70804400013,
+      "bounded_untrusted_advice_observed": true,
+      "observed_target_proposal": true
+    },
+    {
+      "language": "ar",
+      "fixture": {
+        "rights": "original synthetic authored by this smoke",
+        "font": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "font_sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+        "raqm": true,
+        "image_size": [
+          640,
+          480
+        ],
+        "screenshot_kind": "synthetic independent Save button",
+        "remote_png_path": "/content/h16-smoke-ar.png"
+      },
+      "media_sha256": "db3b53e18ade8ea40305ede61cd7f9179a8d3f78397c26dcfc887148c340cde9",
+      "response": {
+        "http_status": 200,
+        "elapsed_ms": 935.5499799999052,
+        "body": {
+          "api_version": "hala.v2",
+          "result": {
+            "schema": "hala.click_proposal.v2",
+            "request_id": "request-ar-smoke",
+            "tenant_id": "h16-smoke-tenant",
+            "task_id": "task-ar-smoke",
+            "device_id": "synthetic-device",
+            "session_id": "synthetic-session-ar-smoke",
+            "frame_id": "frame-ar-smoke",
+            "media_sha256": "db3b53e18ade8ea40305ede61cd7f9179a8d3f78397c26dcfc887148c340cde9",
+            "actions": [
+              {
+                "type": "click",
+                "point": [
+                  472,
+                  362
+                ],
+                "coordinate_space": "window",
+                "image_scale": 1,
+                "element_ref_hint": "save-button"
+              }
+            ],
+            "confidence": null,
+            "status": "continue",
+            "execution_authorized": false,
+            "verification_required": true,
+            "provenance": {
+              "engine": "remote_transformers",
+              "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+              "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+              "processor_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+              "precision": "float16",
+              "prompt_revision": "h16-v2-normalized-point-v1",
+              "qualified": false,
+              "latency_ms": 929.3997959998705,
+              "serving_config_revision": "h16-v2-bounded-v1"
+            }
+          }
+        }
+      },
+      "synchronized_elapsed_ms": 935.6821609999315,
+      "bounded_untrusted_advice_observed": true,
+      "observed_target_proposal": true
+    }
+  ],
+  "negative_checks": {
+    "auth_reject": {
+      "http_status": 401,
+      "elapsed_ms": 1.0640549999152427,
+      "body": {
+        "api_version": "hala.v1",
+        "error": {
+          "code": "unauthorized",
+          "message": "Bearer authentication required."
+        }
+      }
+    },
+    "media_hash_reject": {
+      "http_status": 400,
+      "elapsed_ms": 1.5634790001968213,
+      "body": {
+        "api_version": "hala.v1",
+        "error": {
+          "code": "invalid_request",
+          "message": "Invalid request."
+        }
+      }
+    },
+    "unsupported_plan": {
+      "http_status": 503,
+      "elapsed_ms": 1.1447420001786668,
+      "body": {
+        "api_version": "hala.v1",
+        "error": {
+          "code": "unsupported_responsibility",
+          "message": "Candidate responsibility is unsupported."
+        }
+      }
+    },
+    "cancelled_before_inference": {
+      "http_status": 409,
+      "elapsed_ms": 1.301803999922413,
+      "body": {
+        "api_version": "hala.v1",
+        "error": {
+          "code": "cancelled",
+          "message": "Request cancelled."
+        }
+      }
+    },
+    "pre_inference_deadline": {
+      "http_status": 408,
+      "elapsed_ms": 51.08563400017374,
+      "body": {
+        "api_version": "hala.v1",
+        "error": {
+          "code": "deadline_exceeded",
+          "message": "Request deadline exceeded."
+        }
+      }
+    }
+  },
+  "negative_expected_statuses_observed": {
+    "auth_reject": true,
+    "media_hash_reject": true,
+    "unsupported_plan": true,
+    "cancelled_before_inference": true,
+    "pre_inference_deadline": true
+  },
+  "negative_scope": "Auth/media/unsupported/cancel/deadline reject before model; in-flight GPU cancellation untested.",
+  "workers_idle_at_shutdown": true,
+  "memory": {
+    "allocated_bytes": 4266221568,
+    "reserved_bytes": 4605345792,
+    "peak_allocated_bytes": 4491862528,
+    "peak_reserved_bytes": 4605345792
+  }
+}

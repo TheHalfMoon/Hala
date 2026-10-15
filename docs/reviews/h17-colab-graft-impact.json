@@ -1,0 +1,281 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "evaluation/quantization.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 30,
+          "end": 30
+        }
+      ],
+      "hunks": [
+        {
+          "start": 30,
+          "end": 30,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE') or Path('/kaggle').exists():"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "    if os.environ.get('KAGGLE_KERNEL_RUN_TYPE'):"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/source-freeze.json",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 4,
+          "end": 4
+        },
+        {
+          "start": 10,
+          "end": 10
+        }
+      ],
+      "hunks": [
+        {
+          "start": 4,
+          "end": 4,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    \"evaluation/quantization.py\": \"55cd8313241b3c7ac662a7f314f27dc2642a59ace90cd07a6bc72f37d29d39f2\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"evaluation/quantization.py\": \"849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154\","
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 10,
+          "end": 10,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    \"tests/test_quantization.py\": \"0b71f8407f6d7b6122c67a314002940039c69d7c5cad9c1831c33837c193da1d\","
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"tests/test_quantization.py\": \"4a8fdc76b58ed58794fddfe910e4320639bfbaca924130ab9e954e6109e3bf1c\","
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_quantization.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 47,
+          "end": 70
+        }
+      ],
+      "hunks": [
+        {
+          "start": 47,
+          "end": 70,
+          "lines": [
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "    def test_colab_guard_allows_incidental_kaggle_directory(self):"
+            },
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "        with patch('evaluation.quantization.platform.system', return_value='Linux'), patch.dict("
+            },
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "                'os.environ', {'HALA_REMOTE_QUANT_ALLOWED': '1',"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": "                               'COLAB_RELEASE_TAG': 'release'}, clear=True), patch("
+            },
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "                'evaluation.quantization.Path.exists', return_value=True), patch("
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "                'evaluation.quantization.Path.is_symlink', return_value=False):"
+            },
+            {
+              "n": 53,
+              "sign": "+",
+              "text": "            remote_guard()"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 55,
+              "sign": "+",
+              "text": "    def test_colab_guard_still_rejects_kaggle_marker_and_missing_colab_opt_in(self):"
+            },
+            {
+              "n": 56,
+              "sign": "+",
+              "text": "        environments = ("
+            },
+            {
+              "n": 57,
+              "sign": "+",
+              "text": "            {'HALA_REMOTE_QUANT_ALLOWED': '1', 'COLAB_RELEASE_TAG': 'release',"
+            },
+            {
+              "n": 58,
+              "sign": "+",
+              "text": "             'KAGGLE_KERNEL_RUN_TYPE': 'Interactive'},"
+            },
+            {
+              "n": 59,
+              "sign": "+",
+              "text": "            {'HALA_REMOTE_QUANT_ALLOWED': '1'},"
+            },
+            {
+              "n": 60,
+              "sign": "+",
+              "text": "            {'COLAB_RELEASE_TAG': 'release'},"
+            },
+            {
+              "n": 61,
+              "sign": "+",
+              "text": "        )"
+            },
+            {
+              "n": 62,
+              "sign": "+",
+              "text": "        with patch('evaluation.quantization.platform.system', return_value='Linux'), patch("
+            },
+            {
+              "n": 63,
+              "sign": "+",
+              "text": "                'evaluation.quantization.Path.exists', return_value=True), patch("
+            },
+            {
+              "n": 64,
+              "sign": "+",
+              "text": "                'evaluation.quantization.Path.is_symlink', return_value=False):"
+            },
+            {
+              "n": 65,
+              "sign": "+",
+              "text": "            for environment in environments:"
+            },
+            {
+              "n": 66,
+              "sign": "+",
+              "text": "                with self.subTest(environment=environment), patch.dict("
+            },
+            {
+              "n": 67,
+              "sign": "+",
+              "text": "                        'os.environ', environment, clear=True):"
+            },
+            {
+              "n": 68,
+              "sign": "+",
+              "text": "                    with self.assertRaises(ValueError):"
+            },
+            {
+              "n": 69,
+              "sign": "+",
+              "text": "                        remote_guard()"
+            },
+            {
+              "n": 70,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "experiments/quantization/source-freeze.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/quantization.py#remote_guard",
+      "name": "remote_guard",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L26-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_colab_guard_allows_incidental_kaggle_directory",
+      "name": "test_colab_guard_allows_incidental_kaggle_directory",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L47-L53",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_colab_guard_still_rejects_kaggle_marker_and_missing_colab_opt_in",
+      "name": "test_colab_guard_still_rejects_kaggle_marker_and_missing_colab_opt_in",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L55-L69",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "remote_guard",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/quantization.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
+      "unreached": [
+        "remote_guard"
+      ],
+      "seedNames": [
+        "remote_guard"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

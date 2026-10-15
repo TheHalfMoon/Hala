@@ -44,6 +44,30 @@ class QuantizationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 remote_guard()
 
+    def test_colab_guard_allows_incidental_kaggle_directory(self):
+        with patch('evaluation.quantization.platform.system', return_value='Linux'), patch.dict(
+                'os.environ', {'HALA_REMOTE_QUANT_ALLOWED': '1',
+                               'COLAB_RELEASE_TAG': 'release'}, clear=True), patch(
+                'evaluation.quantization.Path.exists', return_value=True), patch(
+                'evaluation.quantization.Path.is_symlink', return_value=False):
+            remote_guard()
+
+    def test_colab_guard_still_rejects_kaggle_marker_and_missing_colab_opt_in(self):
+        environments = (
+            {'HALA_REMOTE_QUANT_ALLOWED': '1', 'COLAB_RELEASE_TAG': 'release',
+             'KAGGLE_KERNEL_RUN_TYPE': 'Interactive'},
+            {'HALA_REMOTE_QUANT_ALLOWED': '1'},
+            {'COLAB_RELEASE_TAG': 'release'},
+        )
+        with patch('evaluation.quantization.platform.system', return_value='Linux'), patch(
+                'evaluation.quantization.Path.exists', return_value=True), patch(
+                'evaluation.quantization.Path.is_symlink', return_value=False):
+            for environment in environments:
+                with self.subTest(environment=environment), patch.dict(
+                        'os.environ', environment, clear=True):
+                    with self.assertRaises(ValueError):
+                        remote_guard()
+
     def test_media_mapping_rejects_traversal_and_missing_images(self):
         with tempfile.TemporaryDirectory() as directory:
             baseline = {'cases': [{'id': 'a', 'image_sha256': 'x'}],
