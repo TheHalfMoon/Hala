@@ -1,0 +1,1243 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H18_ADAPTATION.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 62
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 62,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H18 adaptation readiness"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "H18 prepares a prospective single shared Mind/Type multitask LoRA experiment. It"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "does not train, download weights, submit jobs, or retain a learned quality adapter."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Readiness is blocked by incompatible/missing data, not by a missing launch switch."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "`experiments/adaptation/readiness-audit.json` is a deterministic audit of checked-in"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "bytes. It records source, protocol/contract, candidate, H14/H15 and media hashes;"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "rights evidence; split/family/language counts; and explicit hard stops. The audit"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "verifies all candidate media and original source identities and reconstructs each"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "original prompt and first-action label. This is an existing-artifact inventory,"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "not a general dataset validator or a license determination for outside material."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "The original source has 180 synthetic tasks: train 116, dev 32, test 32. Its candidate"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "contains 58 English train rows across eight workflow families. The converter excluded"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "58 Arabic train records because image shaping was unqualified. Completions are"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "20 semantic_invoke, 20 click and 18 set_value actions. The click labels use window"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "pixel coordinates, image_scale and element_ref_hint. All 58 prompts include observed"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "controls and incidental fixture IDs in their goal. These properties differ from"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "image-plus-semantic-goal normalized point prediction and from bound Mind plans."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "No compatible normalized Type, Mind plan, bilingual semantic, or independent adaptation"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "dev/test set is present. Original CC0 synthetic rights do not cure these mismatches."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "H14 raw outputs rescore to 30/64 hits: English 16/32 and Arabic 14/32. Transit arrivals"
+            }
+          ],
+          "dropped": 38
+        }
+      ]
+    },
+    {
+      "path": "experiments/adaptation/readiness-audit.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 245
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 245,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"candidate\": {\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"arabic_image_training\": {\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "      \"enabled\": false,\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "      \"excluded_records\": 58,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "      \"raqm_available\": false,\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"raqm_qualified\": false,\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"reason\": \"Arabic images excluded until actual shaping is independently qualified\"\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"click_protocol\": \"window pixel points with image_scale and element_ref_hint; not normalized 0..1000\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"completion_target_refs\": {\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "      \"field\": 15,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"source\": 5,\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"target\": 38\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"completion_types\": {\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"click\": 20,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"semantic_invoke\": 20,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      \"set_value\": 18\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"every_media_hash_and_rights_validated\": true,\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    \"families\": {\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"workflow-archive\": 8,\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"workflow-delete_confirm\": 5,\r"
+            }
+          ],
+          "dropped": 221
+        }
+      ]
+    },
+    {
+      "path": "experiments/adaptation/shared-multitask.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 23
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 23,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h18.prospective-shared-lora.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"status\": \"blocked_preparation_only\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"base_model\": \"Qwen/Qwen3-VL-2B-Instruct\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"base_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"architecture\": \"single_shared_base_single_multitask_lora\","
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"adapter_count\": 1,"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"tasks\": [\"mind_plan_v1\", \"type_normalized_point_v1\"],"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"languages\": [\"en\", \"ar\"],"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"datasets\": [],"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"training_enabled\": false,"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"download_weights\": false,"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"submit_job\": false,"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"candidate_hyperparameters\": {"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"precision\": \"fp16\", \"rank\": 4, \"learning_rate\": 0.00005,"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"batch_size\": 1, \"gradient_accumulation\": 1"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  \"data_requirements\": ["
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"rights_cleared_content_bound\", \"validated_mind_plans\", \"normalized_type_points\","
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    \"bilingual_semantic_coverage\", \"qualified_arabic_rendering\","
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"independent_family_disjoint_train_dev_test\", \"h14_never_training_or_prompt_tuning\""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  ]"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H18-adaptation-readiness.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 97
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 97,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H18: shared Mind/Type adaptation preparation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: source implemented and CPU tested; independent parent review gates pending."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Scope: deterministic data/contract readiness audit and disabled experiment specification."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "This phase neither trains nor qualifies a learned model."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "## Resolved choices"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Retain one pinned Qwen3-VL-2B multimodal base. First compare its unchanged behavior"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "under task-specific Mind and Type prompts. If suitable new data and evidence justify"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "adaptation, propose one rank-4 multitask LoRA on that shared base. Separate adapters"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "require a later measured deficit, suitable data, and a demonstrated gain large enough"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "to justify residency, serving and maintenance costs. No split-adapter work is authorized"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "here. The current 58-row artifact is inventory evidence, not the proposed training set."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "## Acceptance and evidence"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "- [x] Audit original frozen source allocations, candidate rows, all media hashes/rights,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  family/language counts, source identities and exact original prompts/first actions."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "- [x] Distinguish pixel/window logical actions from normalized point outputs and bound"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  Mind plans. Report English-only coverage and unqualified Arabic rendering."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "- [x] Recompute H14 per-family/language outcomes from frozen tasks and raw outputs;"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  enforce its training exclusion and report H15's limited engineering evidence."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "- [x] Reject altered rows even with updated JSONL hashes, relabeled heldouts/languages,"
+            }
+          ],
+          "dropped": 73
+        }
+      ]
+    },
+    {
+      "path": "tests/test_adaptation.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 131
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 131,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"H18 audits evidence; a prospective specification never authorizes training.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import shutil"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from training.adaptation import audit, validate_config"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from training.artifacts import sha256_file"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "ROOT = Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "class AdaptationTests(unittest.TestCase):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    def test_real_inventory_does_not_mistake_actions_for_plans_or_normalized_points(self):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        report = audit(ROOT)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['records'], 58)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['languages'], {'en': 58})"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['completion_types'],"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                         {'click': 20, 'semantic_invoke': 20, 'set_value': 18})"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['mind_plans'], 0)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['normalized_points'], 0)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        self.assertEqual(report['candidate']['goal_contains_fixture_id'], 58)"
+            }
+          ],
+          "dropped": 107
+        }
+      ]
+    },
+    {
+      "path": "tools/audit_adaptation_data.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 28
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 28,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Reproduce H18 readiness evidence; exit 2 means valid evidence but blocked training.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from training.adaptation import audit, read"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from training.artifacts import sha256_file"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "def main():"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    parser = argparse.ArgumentParser(description=__doc__)"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    parser.add_argument('--output', type=Path)"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    args = parser.parse_args()"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    config = read(args.root / 'experiments/adaptation/shared-multitask.json')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    result = audit(args.root, config)"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    result['evidence_sha256']['experiments/adaptation/shared-multitask.json'] = sha256_file("
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        args.root / 'experiments/adaptation/shared-multitask.json')"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    payload = json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + '\\n'"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    if args.output:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        args.output.write_text(payload, encoding='utf-8')"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    else:"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        print(payload, end='')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    return 0 if result['training_ready'] else 2"
+            }
+          ],
+          "dropped": 4
+        }
+      ]
+    },
+    {
+      "path": "training/adaptation.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 177
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 177,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"H18 deterministic inventory and fail-closed prospective adaptation policy."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No training entrypoint, generic data importer, model imports or job submission."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Only the existing original synthetic candidate is admitted for inventory."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from collections import Counter"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from data.factory import load_frozen, manifest_bytes, training_records"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from evaluation.engine import Environment, OracleProvider"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from evaluation.heldout_protocol import score"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from training.artifacts import load_sft_artifact, sha256_file, strict_json"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "def read(path):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    return strict_json(Path(path).read_text(encoding='utf-8'))"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "def counts(rows, key):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    return dict(sorted(Counter(row[key] for row in rows).items()))"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 153
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H18_ADAPTATION.md",
+    "experiments/adaptation/readiness-audit.json",
+    "experiments/adaptation/shared-multitask.json",
+    "specs/H18-adaptation-readiness.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.fixture",
+      "name": "fixture",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L42-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.mutate_row",
+      "name": "mutate_row",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L54-L63",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_edited_bytes_rejected_even_with_recomputed_manifest_digest",
+      "name": "test_edited_bytes_rejected_even_with_recomputed_manifest_digest",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L65-L71",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_existing_synthetic_dev_test_are_not_claimed_as_compatible_sft",
+      "name": "test_existing_synthetic_dev_test_are_not_claimed_as_compatible_sft",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L34-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_h14_scores_are_recomputed_and_train_exclusion_cannot_be_relabeled",
+      "name": "test_h14_scores_are_recomputed_and_train_exclusion_cannot_be_relabeled",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L98-L112",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_prospective_shared_config_cannot_enable_jobs_or_separate_adapters",
+      "name": "test_prospective_shared_config_cannot_enable_jobs_or_separate_adapters",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L114-L127",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_real_inventory_does_not_mistake_actions_for_plans_or_normalized_points",
+      "name": "test_real_inventory_does_not_mistake_actions_for_plans_or_normalized_points",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L16-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_relabeling_h14_or_arabic_does_not_create_admitted_training",
+      "name": "test_relabeling_h14_or_arabic_does_not_create_admitted_training",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L73-L81",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_rights_and_media_evidence_are_checked_not_just_counted",
+      "name": "test_rights_and_media_evidence_are_checked_not_just_counted",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L83-L96",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/audit_adaptation_data.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "tools/audit_adaptation_data.py",
+      "span": "L10-L24",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adaptation.py#audit.summary",
+      "name": "summary",
+      "kind": "function",
+      "path": "training/adaptation.py",
+      "span": "L121-L122",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adaptation.py#counts",
+      "name": "counts",
+      "kind": "function",
+      "path": "training/adaptation.py",
+      "span": "L21-L22",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adaptation.py#read",
+      "name": "read",
+      "kind": "function",
+      "path": "training/adaptation.py",
+      "span": "L17-L18",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adaptation.py#validate_config",
+      "name": "validate_config",
+      "kind": "function",
+      "path": "training/adaptation.py",
+      "span": "L25-L53",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tools/audit_adaptation_data.py",
+      "name": "audit_adaptation_data.py",
+      "kind": "file",
+      "path": "tools/audit_adaptation_data.py",
+      "span": "L1-L29",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/adaptation.py#audit",
+      "name": "audit",
+      "kind": "function",
+      "path": "training/adaptation.py",
+      "span": "L56-L177",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tools/audit_adaptation_data.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "tools/audit_adaptation_data.py",
+      "span": "L10-L24",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_prospective_shared_config_cannot_enable_jobs_or_separate_adapters",
+      "name": "test_prospective_shared_config_cannot_enable_jobs_or_separate_adapters",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L114-L127",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_edited_bytes_rejected_even_with_recomputed_manifest_digest",
+      "name": "test_edited_bytes_rejected_even_with_recomputed_manifest_digest",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L65-L71",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_existing_synthetic_dev_test_are_not_claimed_as_compatible_sft",
+      "name": "test_existing_synthetic_dev_test_are_not_claimed_as_compatible_sft",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L34-L40",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_h14_scores_are_recomputed_and_train_exclusion_cannot_be_relabeled",
+      "name": "test_h14_scores_are_recomputed_and_train_exclusion_cannot_be_relabeled",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L98-L112",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_real_inventory_does_not_mistake_actions_for_plans_or_normalized_points",
+      "name": "test_real_inventory_does_not_mistake_actions_for_plans_or_normalized_points",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L16-L32",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_relabeling_h14_or_arabic_does_not_create_admitted_training",
+      "name": "test_relabeling_h14_or_arabic_does_not_create_admitted_training",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L73-L81",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_adaptation.py#AdaptationTests.test_rights_and_media_evidence_are_checked_not_just_counted",
+      "name": "test_rights_and_media_evidence_are_checked_not_just_counted",
+      "kind": "method",
+      "path": "tests/test_adaptation.py",
+      "span": "L83-L96",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "main",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/audit_adaptation_data.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
+      "unreached": [
+        "main"
+      ],
+      "seedNames": [
+        "main"
+      ],
+      "owners": []
+    },
+    {
+      "label": "read",
+      "labelSource": "symbol",
+      "key": "training/",
+      "files": [
+        "training/adaptation.py"
+      ],
+      "seeds": 4,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_adaptation.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_adaptation.py"
+      ],
+      "reached": 1,
+      "behavioural": 4,
+      "unreached": [
+        "summary",
+        "counts",
+        "read"
+      ],
+      "seedNames": [
+        "read",
+        "validate_config",
+        "counts",
+        "summary"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

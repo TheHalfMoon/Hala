@@ -1,0 +1,246 @@
+{
+  "candidate": {
+    "arabic_image_training": {
+      "enabled": false,
+      "excluded_records": 58,
+      "raqm_available": false,
+      "raqm_qualified": false,
+      "reason": "Arabic images excluded until actual shaping is independently qualified"
+    },
+    "click_protocol": "window pixel points with image_scale and element_ref_hint; not normalized 0..1000",
+    "completion_target_refs": {
+      "field": 15,
+      "source": 5,
+      "target": 38
+    },
+    "completion_types": {
+      "click": 20,
+      "semantic_invoke": 20,
+      "set_value": 18
+    },
+    "every_media_hash_and_rights_validated": true,
+    "families": {
+      "workflow-archive": 8,
+      "workflow-delete_confirm": 5,
+      "workflow-drag_drop": 8,
+      "workflow-filter": 8,
+      "workflow-form": 8,
+      "workflow-open": 8,
+      "workflow-rename": 5,
+      "workflow-save": 8
+    },
+    "first_action_source_binding_validated": true,
+    "goal_contains_fixture_id": 58,
+    "label_scope": "First oracle logical action from initial synthetic observation only",
+    "languages": {
+      "en": 58
+    },
+    "media_rights": {
+      "benchmark_evaluation": false,
+      "commercial_training_allowed": true,
+      "contains_personal_data": false,
+      "generator_revision": "hala-synthetic-v1",
+      "license": "CC0-1.0",
+      "source": "original_synthetic"
+    },
+    "media_sha256": {
+      "images/gui-archive-00-869331.png": "9b290090a7cf1813882e843aedbf4293c45af75a97d8708197b16ce72109c8a2",
+      "images/gui-archive-02-926539.png": "83413f70e6829568738766c64eb37032cb3eeaacebe3c3b97ee5b3913a73dce3",
+      "images/gui-archive-04-584821.png": "e0fa80fedcce25a876d599a21c5dd0aef4a3cd2943eaae6c13af7d8cff40fd80",
+      "images/gui-archive-06-590006.png": "80a1439712389e6bb00b3bb8e03ebf048de7e6445fa80cb7dcd6f879b9b1b331",
+      "images/gui-archive-08-678859.png": "4615bdc1978519f0cf23e1d32a66ffac45ef749b4851ccca82e76f3740b0e9cd",
+      "images/gui-delete_confirm-00-804814.png": "1943b2761e684b715cd4ce4853d07677aa9f59e700a9ad8e7fb7ea094f5969fe",
+      "images/gui-delete_confirm-02-586871.png": "a9035b4dc4e759e14f158f22a23177a6c7bf38a357b9f0b4a07c5239578f1dd2",
+      "images/gui-delete_confirm-04-275049.png": "1c31da776a533ba8b75e8012a0668a2b8845828d488a5f8952b601940242210a",
+      "images/gui-delete_confirm-06-928274.png": "a4a962fe31d976771e7f25df01b089c870ddff5ec8c0b3e30d01fe9bb474d429",
+      "images/gui-delete_confirm-08-980431.png": "e64d5afaceb8f02d2b6fe644b71a1377dff5719b9e0ec20e62c9ee3b5adfb52d",
+      "images/gui-drag_drop-00-655309.png": "b2fe36b696a0b8387c8e770076d7963d8d7e0902ad352f204fdfde461a427195",
+      "images/gui-drag_drop-02-706772.png": "05627b97c1d7d341aba6fb5ff32d3b55e29732d1efc3a9c59d2a1a74e56ee086",
+      "images/gui-drag_drop-04-793575.png": "ff67246be6bcb67abfd5c4e7bad3197770c39185448d72d346109f66eb7519f0",
+      "images/gui-drag_drop-06-972732.png": "28800e2d5062d63930eb8bf8963fa5cee706e5c367319ec2d7058413a97970c3",
+      "images/gui-drag_drop-08-124213.png": "b1bc81c48c101895a53a68475ea6cd78abad032eac44ccd302ff04d0906c9e5c",
+      "images/gui-filter-00-788659.png": "b7386edda1c141aaacdfd02a207a601968f3837c2dcab8ce6958b8d07926cf75",
+      "images/gui-filter-02-901639.png": "8be001fa67af236a8c6a981022305fcf808967141816ae3e087e2caa85b0bbeb",
+      "images/gui-filter-04-845095.png": "031a9f4e4e3a78ca83643197bee8f50966c49f50d9ee54160496dab96b549a08",
+      "images/gui-filter-06-924593.png": "3577c996b1c061d3b8869db97dff288427fba505d9c62b6acc2c0e1157df8199",
+      "images/gui-filter-08-713697.png": "2b68ae95cb29c673e96ed7badd0887b870c6773b6e3b2a698e88b68bece70e2e",
+      "images/gui-form-00-913757.png": "d901e709a0d08b273593b25b3716aa6d0ac949b12049c78ed625d384dc4a9831",
+      "images/gui-form-02-326000.png": "742d4283445c3f689fa8d8ca366997a85a7a4433b50ab6b79b142d85a7f6c31c",
+      "images/gui-form-04-968160.png": "fee724d711b204319bf89b030801b81550f3be83d9e65c4bc56ff344647bbae8",
+      "images/gui-form-06-881297.png": "1ff3205587e0c67c380d8e8a7cec74d389915a43e24dab843f9f777ebc5c5125",
+      "images/gui-form-08-739764.png": "3cffac083951bade67a650028fba5499da7458830442fdf33b7afbea4a962bb0",
+      "images/gui-open-00-211654.png": "c90b9d5be5ccd8479cae201557c9ce66fdca7899efaf97130d33768c88a0800b",
+      "images/gui-open-02-550087.png": "9ceb9da28c357f2a0370044384603a80ee14eb9c3f016d2bbc10a0b90f308743",
+      "images/gui-open-04-744708.png": "d0ef5c7b1494e745b790cee2aeb7715061b5165a10219f7329bea79834c78c0c",
+      "images/gui-open-06-436945.png": "2d9077b94e46a6a4578119c07678112cae79d73d7a838182b88aab298bea540a",
+      "images/gui-open-08-384804.png": "500fd177e8ddf5401711a7b849a7c5ba631d02a3bd69e7083479a9681a1bd60e",
+      "images/gui-rename-00-904095.png": "628501eefd2b444a81d4bea45e73de1a5813ae80a0efc6b87e8292767032605e",
+      "images/gui-rename-02-187373.png": "9ba2ff030e732879201a6c9394fcca953778554ff5cfc39e8bb435e82e60ebc2",
+      "images/gui-rename-04-996961.png": "00d60aaa04b56021a684909b4725936bc60a05399d9785eb6b1274f1c39c5a19",
+      "images/gui-rename-06-496049.png": "8de413f87b52db17024aaf0a390bb046b76596b8972b7a0d2dc82ef0de0b0071",
+      "images/gui-rename-08-427090.png": "943e7576c99ad1f21eeb499dd88b83d04de5abd8818a7bd9cdd28ff2b66977bd",
+      "images/gui-save-00-924903.png": "471371f69a27d52b53d2e7b0cb1d613f09625c71255f437ced8eefa197c8de62",
+      "images/gui-save-02-262507.png": "3596136c80c3f739fbb05ce0f0c82f4539c8ae84c2c6b2c767084074e771bfde",
+      "images/gui-save-04-495257.png": "73ca62759149a232c6736291dce6abb1979b84f55da1a8270555112fca2f1c3f",
+      "images/gui-save-06-361454.png": "29c3bc43e68317b84e74bda2495c145d0cad722e469dc72efa3aaec9612179fc",
+      "images/gui-save-08-216236.png": "e6967b2eb7bdbcdeb32afc7d90703c87ff7c83223a2330b320c232fc71390a43",
+      "images/intent-archive-00-752456.png": "32b5f933147ea597eeb7dfb13b771de8e8b1b6923542ddc3efbda51f2b2b3efe",
+      "images/intent-archive-02-340815.png": "0b5026cfd97ae4dfb6d434018584ccf81afb25e9f307b67637d1432cb15978c3",
+      "images/intent-archive-04-652986.png": "bf569f4d65e1a6ca73f2e6a898eb75a58dec93580b37efcde9cfa7e18af02452",
+      "images/intent-drag_drop-00-853530.png": "1fa8b555ea90e69c2dadd961e80118ae419fd9f2caea892a8ac1aa4f1de81e92",
+      "images/intent-drag_drop-02-887875.png": "398bca1dd21e5f60da538499f4f9c4c3e92acb225799d9a1bd19bafb78102142",
+      "images/intent-drag_drop-04-613281.png": "846863b03e899f57140338c492dcc22d1be901d20ca4f23eddfee3d2e43e7b9e",
+      "images/intent-filter-00-145921.png": "b50b051f82fa7498d0be01122fc79c1df146732d4c008964e6bcb980c03361df",
+      "images/intent-filter-02-405840.png": "439dbee65674400212204aeca52630439798111ec40e90751ea0aed08cfabf14",
+      "images/intent-filter-04-667634.png": "d61fbdedd1410f304d8ba8ad2f77b4e924ec83299e18e8703b89aa88f0e71247",
+      "images/intent-form-00-183611.png": "fd8c1a5ac2e11976e22e4f6b9bb70864f5791a1d65e33469b7b233340666f32d",
+      "images/intent-form-02-572622.png": "bd27af8fc4993476c7c9b638bceee5627f507c723ac836fb6f56e1c64d082bde",
+      "images/intent-form-04-862585.png": "c0bb0fa12e20777877bf40a75c6f12f3c769b27605ac47747624b996f77e9293",
+      "images/intent-open-00-732603.png": "ef782050fbecd242cfd8a55d5dc27af419a8a74c8f8e82b047d3dac9d7e7a7a1",
+      "images/intent-open-02-555247.png": "3fa2032817e30d2229dd939bdfea4028a61f7d66b24cd39c2440d62577f32da1",
+      "images/intent-open-04-853751.png": "147024b6c7ba17a850db4e6ffd9e4f1ee36cb0c0ee2a853423f1c7ad2cae360e",
+      "images/intent-save-00-862846.png": "8479fedc2c3ee8de7fb895beff8f8d44b88cad7ac4021cc135bdcaa6400f1314",
+      "images/intent-save-02-112562.png": "ea35d3970ededda7e99196a934da9d355d62ba2bb0471cc1c66561c1613b6e71",
+      "images/intent-save-04-106890.png": "64dab8babb24ae129cb4ae1297f23d984b66f08d5b7083407a855cce98bf06c9"
+    },
+    "mind_plans": 0,
+    "normalized_points": 0,
+    "observed_controls_in_prompt": 58,
+    "records": 58,
+    "rights_cleared": true,
+    "splits": {
+      "train": 58
+    }
+  },
+  "config_validated": true,
+  "evidence_sha256": {
+    "data/frozen/tasks.json": "bdde4ea5326b391172435e29cee77701135c8bfa73805856ffa5dab538bbd35e",
+    "evaluation/heldout/manifest.json": "0d81cc61ecaafb79b52b6a0368f76d550c92f5e4c5ccb05ef468e92a83c5b8d6",
+    "evaluation/heldout/tasks.json": "0efd21686fb1fc6255ffe463256f290c8d1cbb2fbcd61ad8d982ae1c5990e6c5",
+    "evaluation/heldout_protocol.py": "d040066be79faf5521f2f227484b0a0eeb41810889004755dd1be5a4801d03a9",
+    "experiments/adaptation/shared-multitask.json": "b47aa540e0e3cc976918da637f2bb5a6c40e9f99154d13a44401d1ce1ca9c328",
+    "experiments/heldout/h14-fp16-result.json": "6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32",
+    "experiments/runtime/h15-independent-checkpoint-verification.json": "0370da9427b6e14df7ec34c31c01ee4d76d6a08f085b37bdd502bdf640c9cf1c",
+    "experiments/runtime/h15-lora-qualification.json": "2d638e61cc1d8c536ec7793204b249a9d7bdfe1807f4af71b07eee4ed5918257",
+    "hala/contracts/responses.py": "2a88c9f239d3e3fa8d922f40055d54f709ae5c8ff64bdfa591bcf5c8d8dd8281",
+    "hala/inference/vision_candidate.py": "89e363aa8dd4e62be21509fd371226d1d509cbc8ffca7ac3a9516e77ef8f0465",
+    "training/generated-candidate/examples.jsonl": "60c79bf7d06f6fc436e92bbfd35a86cb3bbf3b751df9fb13246cc74410a30c91",
+    "training/generated-candidate/manifest.json": "95dfe1614bcc4a2dcd9942431350958005f6d07abbf14efa10a38d3d13ee3aa6",
+    "training/scripts/convert_sft.py": "1c4e93a3574cddf5b57bd91bf36c3b9c553b30b949cd1eb1319b4690dd8fa65e"
+  },
+  "h14": {
+    "families": {
+      "calendar_dates": {
+        "hits": 7,
+        "records": 8
+      },
+      "chart_peaks": {
+        "hits": 3,
+        "records": 8
+      },
+      "document_versions": {
+        "hits": 2,
+        "records": 8
+      },
+      "kanban_priority": {
+        "hits": 3,
+        "records": 8
+      },
+      "palette_colors": {
+        "hits": 5,
+        "records": 8
+      },
+      "seat_locations": {
+        "hits": 7,
+        "records": 8
+      },
+      "transit_arrivals": {
+        "hits": 1,
+        "records": 8
+      },
+      "warehouse_stock": {
+        "hits": 2,
+        "records": 8
+      }
+    },
+    "hits": 30,
+    "languages": {
+      "ar": {
+        "hits": 14,
+        "records": 32
+      },
+      "en": {
+        "hits": 16,
+        "records": 32
+      }
+    },
+    "records": 64,
+    "scope": "Frozen one-click synthetic selection only; dependent authored variants.",
+    "training_allowed": false
+  },
+  "h15": {
+    "adapter_quality_qualified": false,
+    "arabic_remediation_claimed": false,
+    "independent_comparison_exact": true,
+    "retained_quality_adapter": false,
+    "scope": "Two English microbatch engineering steps; remote runtime expired; no retained quality adapter."
+  },
+  "hard_stops": [
+    "mind_plan_training_missing",
+    "normalized_type_training_missing",
+    "bilingual_semantic_training_missing",
+    "qualified_arabic_rendering_missing",
+    "compatible_independent_dev_test_missing",
+    "prospective_data_loader_and_runner_unimplemented",
+    "prospective_experiment_review_and_runtime_qualification_required"
+  ],
+  "quality_qualified": false,
+  "reviewed_historical_snapshot_verified": true,
+  "schema": "hala.h18.adaptation-audit.v1",
+  "source": {
+    "families_by_split": {
+      "dev": {
+        "workflow-export": 16,
+        "workflow-recovery": 16
+      },
+      "test": {
+        "workflow-scroll_confirm": 16,
+        "workflow-toggle": 16
+      },
+      "train": {
+        "workflow-archive": 16,
+        "workflow-delete_confirm": 10,
+        "workflow-drag_drop": 16,
+        "workflow-filter": 16,
+        "workflow-form": 16,
+        "workflow-open": 16,
+        "workflow-rename": 10,
+        "workflow-save": 16
+      }
+    },
+    "languages_by_split": {
+      "dev": {
+        "ar": 16,
+        "en": 16
+      },
+      "test": {
+        "ar": 16,
+        "en": 16
+      },
+      "train": {
+        "ar": 58,
+        "en": 58
+      }
+    },
+    "original_identity_validation": true,
+    "records": 180,
+    "rights_notice": "Original synthetic tasks and labels generated for Hala; dedicated to CC0-1.0. No benchmark trajectories or personal data.",
+    "splits": {
+      "dev": 32,
+      "test": 32,
+      "train": 116
+    }
+  },
+  "training_executed": false,
+  "training_ready": false
+}
