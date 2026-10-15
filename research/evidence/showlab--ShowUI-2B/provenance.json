@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/showlab/ShowUI-2B",
+    "type": "hub_api",
+    "revision": "cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60"
+  },
+  {
+    "url": "https://huggingface.co/showlab/ShowUI-2B/resolve/cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60/README.md",
+    "file": "README.md",
+    "sha256": "40946552d4ce1625d6c234b8b85b33bf70765f1c76a6e56c678cc1ac2d2a72b5"
+  },
+  {
+    "url": "https://huggingface.co/showlab/ShowUI-2B/resolve/cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60/config.json",
+    "file": "config.json",
+    "sha256": "af55577df34ffbfb22c7d694647ce692dad7cd52fe1a1e5b520996a9aef37f6b"
+  },
+  {
+    "url": "https://huggingface.co/showlab/ShowUI-2B/resolve/cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60/preprocessor_config.json",
+    "file": "preprocessor_config.json",
+    "sha256": "8885ee26f126992101959631b5bc8cd2767da5cdae05a89f2989426e5dab0069"
+  }
+]

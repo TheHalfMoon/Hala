@@ -1,0 +1,15 @@
+**/__pycache__
+**/*.pyc
+.git
+.env
+.env.*
+work
+outputs
+experiments
+research
+training
+data
+model_cards
+*.safetensors
+*.gguf
+*.bin

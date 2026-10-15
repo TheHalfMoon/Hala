@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-14",
+  "main": "00f6692383ca9e9cc147380b062676dd74932e83",
+  "pr": {
+    "baseRefOid": "00f6692383ca9e9cc147380b062676dd74932e83",
+    "headRefOid": "9f4c26dbb4d4cefe15c4177e10f3e6976145af14",
+    "isDraft": true,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-14T15:53:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/TheHalfMoon/Hala/actions/runs/38593192528/job/115953119615",
+        "name": "unittest (3.11.14)",
+        "startedAt": "2026-10-14T15:52:44Z",
+        "status": "COMPLETED",
+        "workflowName": "cpu-qualification"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-14T15:53:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/TheHalfMoon/Hala/actions/runs/38593183742/job/115953091570",
+        "name": "unittest (3.11.14)",
+        "startedAt": "2026-10-14T15:52:41Z",
+        "status": "COMPLETED",
+        "workflowName": "cpu-qualification"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-14T15:53:06Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/TheHalfMoon/Hala/actions/runs/38593192528/job/115953119750",
+        "name": "unittest (3.12.14)",
+        "startedAt": "2026-10-14T15:52:45Z",
+        "status": "COMPLETED",
+        "workflowName": "cpu-qualification"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-14T15:53:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/TheHalfMoon/Hala/actions/runs/38593183742/job/115953091102",
+        "name": "unittest (3.12.14)",
+        "startedAt": "2026-10-14T15:52:41Z",
+        "status": "COMPLETED",
+        "workflowName": "cpu-qualification"
+      }
+    ]
+  },
+  "commits": [
+    {
+      "sha": "9f4c26dbb4d4cefe15c4177e10f3e6976145af14",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "b85e46e36cdabcb09863603304752d9dd5218310",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "dbce84e4e066cde8acbf610102b1b8e5e1492a48",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "d5fe4d26d583d9015a57f49c13d17e88b58c1f21",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "28c74ab89eb46e3d9c319fb670e2747863ec9a8a",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "dad38038bb547f782cddf7b817ef21eb3c8bff4a",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "b27174ce3cdc9ee54e162f58f81f454b6c7bc8e9",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "62c33171d04e5345b9ccce5cd64035f750d500a3",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "8e32086c6f14b8aaca53e79806800f1f810b0c12",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "0565ca9d81aa3d54e10f4cf8f7ca11103a112edc",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "a8709c3da3a0c9c9dd565921bbf8a95e8b2f6f0a",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    },
+    {
+      "sha": "00f6692383ca9e9cc147380b062676dd74932e83",
+      "verified": true,
+      "reason": "valid",
+      "dco": true
+    }
+  ]
+}

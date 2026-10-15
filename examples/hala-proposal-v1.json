@@ -1,0 +1,27 @@
+{
+  "schema": "hala.proposal.v1",
+  "request_id": "r-1",
+  "tenant_id": "tenant-1",
+  "task_id": "task-1",
+  "device_id": "device-1",
+  "session_id": "session-1",
+  "observation_generation": "obs-1",
+  "actions": [
+    {
+      "type": "semantic_invoke",
+      "element_ref": "save-1"
+    }
+  ],
+  "status": "continue",
+  "confidence": 0.0,
+  "rationale_short": "Deterministic synthetic fixture proposal; Aladdin local policy remains authoritative.",
+  "metadata": {
+    "model_id": "hala-offline-fixture-mock",
+    "model_revision": "daab8d6af4150a786e4c0bc19d0c2ae5391fb179e040dff72f650641cc917a43",
+    "prompt_template_revision": "fixture-prompts-v1",
+    "serving_config_revision": "offline-mock-v1",
+    "latency_ms": 0.0,
+    "backend": "deterministic_mock",
+    "qualified": false
+  }
+}

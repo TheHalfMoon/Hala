@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/Hcompany/Holo-3.1-4B",
+    "type": "hub_api",
+    "revision": "8c88265a5a159bfd1492db9243733dd2e6e04a6e"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo-3.1-4B/resolve/8c88265a5a159bfd1492db9243733dd2e6e04a6e/README.md",
+    "file": "README.md",
+    "sha256": "059de62841a8ca6c8d2c32f1210ecf58cd8efc8755c2795000d8d87afe49ad5e"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo-3.1-4B/resolve/8c88265a5a159bfd1492db9243733dd2e6e04a6e/config.json",
+    "file": "config.json",
+    "sha256": "33102ec9e0846357803b65cd3b579de494ed55ae3c29bc7aec14c4b563dff7d1"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo-3.1-4B/resolve/8c88265a5a159bfd1492db9243733dd2e6e04a6e/model.safetensors.index.json",
+    "file": "model.safetensors.index.json",
+    "sha256": "7b03a0145171130242e6068c91aa2aea4af17f8324d861a907392b3fbfe4e1e7"
+  },
+  {
+    "url": "https://huggingface.co/Hcompany/Holo-3.1-4B/resolve/8c88265a5a159bfd1492db9243733dd2e6e04a6e/preprocessor_config.json",
+    "file": "preprocessor_config.json",
+    "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+  }
+]

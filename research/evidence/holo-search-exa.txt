@@ -1,0 +1,140 @@
+Title: N/A
+URL: https://hcompany.ai/holo3
+Published: N/A
+Author: N/A
+Highlights:
+Holo3 is more than a benchmark leader; it is engineered for production. Built using our agentic flywheel, it has been trained to execute real-world workflows within synthetic enterprise environments. This not only ensures that Holo3 excels in today's business scenarios, but establishes the foundation for a future where our agents can autonomously navigate virtually any digital landscape.
+...
+What sets Holo3 apart is its specialized training pipeline—a continuous feedback loop designed to sharpen two core agentic pillars: perception and decision-making.
+
+Our training flywheel is about teaching our model from annotated examples how to execute specific tasks, all while developing generalist skills across a virtually infinite variety of user interfaces. Here is how we build world-class computer use models:
+
+- Synthetic Navigation Data: using human and generated instructions, we generate scenario-specific navigation examples.
+- Out-of-Domain Augmentation: we programmatically extend the scenarios and augment the data to ensure Holo3 can handle the unexpected.
+- Curated Reinforcement Learning: every data sample is carefully curated and ingested through a pipeline that leverages advanced data filtering and reinforcement learning to maximize performance.
+
+Beyond the raw scores, the OSWorld results serve as a definitive proof-of-concept for our learning flywheel. To validate its transferability to real-world business applications we created the Synthetic Environment Factory.
+...
+This proprietary factory reproduces the reality of enterprise systems and is one of the training gyms Holo3 was forged in. Our environments are automatically built using coding agents that program websites from scratch based on scenario specifications, producing verifiable tasks of varying difficulty that are validated end-to-end with verification scripts.
+
+To measure real-world readiness, we also designed H Corporate Benchmarks, a dedicated evaluation suite of 486 multi-step realistic tasks spanning 4 categories: E-commerce, Business software, Collaboration, and various Multi-App setups.
+...
+calculation and document
+...
+In our results below, we see Holo3 surpassing its competitors on single application benchmarks. The performance difference between Holo3 and the base Qwen3.5 models reflects the impact of our agentic learning flywheel. By achieving higher success rates than models with significantly larger parameter counts—while maintaining the same localization and grounding standards—Holo3 illustrates the true magnitude of this specialized training.
+...
+As our "Synthetic Environment Factory" continues to evolve, our agents are learning to handle increasingly more intricate tasks. While Holo3 today masters the interface, we are already at work on the next frontier: Adaptive Agency, where our models will not only use the tools they know but autonomously learn to navigate entirely new, bespoke enterprise software in real-time.
+
+---
+
+Title: Holo3: Breaking the Computer Use Frontier | H
+URL: https://hcompany.ai/newsroom/holo3
+Published: 2026-03-31T00:00:00.000Z
+Author: N/A
+Highlights:
+Holo3 isn't just a benchmark leader; we built it for production. Using our agentic flywheel, we trained it to run real workflows inside synthetic enterprise environments. That makes it good at today's business tasks and sets it up to handle a much wider range of software over time.
+...
+### The Agentic Learning Flywheel
+
+Holo3's edge comes from its training pipeline, a feedback loop that sharpens the two things an agent needs most: perception and decision-making.
+
+The flywheel teaches the model to carry out specific tasks from annotated examples while building general skills across a huge range of interfaces. Here's how we build these computer-use models:
+
+- Synthetic Navigation Data: using human and generated instructions, we generate scenario-specific navigation examples.
+- Out-of-Domain Augmentation: we programmatically extend the scenarios and augment the data to ensure Holo3 can handle the unexpected.
+- Curated reinforcement learning: every sample is filtered and run through a reinforcement-learning pipeline tuned for performance.
+
+Beyond the scores, the OSWorld results are proof that the flywheel works. To check that it transfers to real business applications, we built the Synthetic Environment Factory.
+...
+This factory reproduces the reality of enterprise systems and is one of the environments we trained Holo3 in. Coding agents build the environments automatically, programming websites from scratch based on scenario specifications, and produce verifiable tasks of varying difficulty that are validated end-to-end with verification scripts.
+
+To measure real-world readiness, we also designed H Corporate Benchmarks, a dedicated evaluation suite of 486 multi-step realistic tasks spanning 4 categories: E-commerce, Business software, Collaboration, and various Multi-App setups.
+
+The benchmark spans the full complexity spectrum: from focused, single-application tasks to long-horizon, multi-application workflows that mirror how work actually gets done. At the harder end of the scale (Multi-Apps), tasks require the agent to coordinate information across multiple systems simultaneously. For example, retrieving equipment prices from a PDF, cross-referencing them against each employee's remaining budget, and autonomously sending personalised approval or rejection emails to every individual. This kind of task demands not only accurate calculation and document parsing, but sustained multi-step reasoning across applications without losing state or intent.
+...
+As the Synthetic Environment Factory keeps growing, our agents take on harder tasks. Holo3 handles known interfaces well; we're now working on the next step, adaptive agency, where a model can learn to operate new, custom enterprise software on its own, in real time.
+
+---
+
+Title: Hcompany/Holo3-35B-A3B · Hugging Face
+URL: https://huggingface.co/Hcompany/Holo3-35B-A3B
+Published: N/A
+Author: N/A
+Highlights:
+Holo3 is our latest generation of large-scale Vision-Language Models (VLMs) specifically optimized for GUI Agents. Like its predecessors, it operates across diverse digital environments—web, desktop, and mobile—by interpreting visual interfaces, reasoning over complex content, and executing precise actions.
+
+Holo3 achieves state-of-the-art performance on OSWorld-Verified, setting a new benchmark for computer use agents. While it retains the world-class web navigation capabilities of Holo2, the new Holo3-35B-A3B architecture is designed to thrive in realistic business environments.
+
+- Developed by: H Company
+- Model type: Vision-Language Model for Navigation and Computer Use Agents
+- Architecture: Sparse Mixture-of-Experts (MoE) with 35B total / 3B active parameters
+- Fine-tuned from model: Qwen/Qwen3.5-35B-A3B
+- Blog Post: hcompany.ai/holo3
+- Quickstart: hub.hcompany.ai/quickstart
+- License: Apache 2.0 License
+
+## Training Strategy 
+
+Holo3-35B-A3B is based on the Qwen3.5 architecture and has been reinforced to strengthen its core agentic pillars: perception and decision-making. The training pipeline utilizes a carefully curated mix of open-source datasets, large-scale synthetic trajectories, and high-quality human-annotated samples to ensure reliable multi-step reasoning.
+...
+To benchmark Hol ... World-Verified
+...
+To measure real-world utility, we developed the H Corporate Benchmark: a dedicated evaluation suite of 486 multi-step tasks across four categories: E-commerce, Business Software, Collaboration, and Multi-App workflows. Holo3 consistently outperforms significantly larger competitors in these dense, business-logic environments.
+
+---
+
+Title: Holo3: Breaking the Computer Use Frontier
+URL: https://huggingface.co/blog/Hcompany/holo3
+Published: 2026-04-01T00:00:00.000Z
+Author: N/A
+Highlights:
+We are proud to unveil Holo3, the latest evolution of our vision for the Autonomous Enterprise. With a score of 78.85% on the OSWorld-Verified benchmark, Holo3 establishes a new state of the art for the industry on the leading desktop computer use benchmark.
+
+Holo3 is more than a benchmark leader; it is engineered for production. Built using our agentic flywheel, it has been trained to execute real-world workflows within synthetic enterprise environments. This not only ensures that Holo3 excels in today's business scenarios, but establishes the foundation for a future where our agents can autonomously navigate virtually any digital landscape.
+...
+## The Agentic Learning Flywheel 
+
+What sets Holo3 apart is its specialized training pipeline—a continuous feedback loop designed to sharpen two core agentic pillars: perception and decision-making.
+
+Our training flywheel is about teaching our model from annotated examples how to execute specific tasks, all while developing generalist skills across a virtually infinite variety of user interfaces. Here is how we build world-class computer use models:
+
+- Synthetic Navigation Data: using human and generated instructions, we generate scenario-specific navigation examples.
+- Out-of-Domain Augmentation: we programmatically extend the scenarios and augment the data to ensure Holo3 can handle the unexpected.
+- Curated Reinforcement Learning: every data sample is carefully curated and ingested through a pipeline that leverages advanced data filtering and reinforcement learning to maximize performance.
+
+Beyond the raw scores, the OSWorld results serve as a definitive proof-of-concept for our learning flywheel. To validate its transferability to real-world business applications we created the Synthetic Environment Factory.
+
+## The Synthetic Environment Factory & H Corporate Benchmarks 
+
+This proprietary factory reproduces the reality of enterprise systems and is one of the training gyms Holo3 was forged in. Our environments are automatically built using coding agents that program websites from scratch based on scenario specifications, producing verifiable tasks of varying difficulty that are validated end-to-end with verification scripts.
+
+To measure real-world readiness, we also designed H Corporate Benchmarks, a dedicated evaluation suite of 486 multi-step realistic tasks spanning 4 categories: E-commerce, Business software, Collaboration, and various Multi-App setups.
+...
+In our results below, we see Holo3 surpassing its competitors on single application benchmarks. The performance difference between Holo3 and the base Qwen3.5 models reflects the impact of our agentic learning flywheel. By achieving higher success rates than models with significantly larger parameter counts—while maintaining the same localization and grounding standards—Holo3 illustrates the true magnitude of this specialized training.
+...
+As our "Synthetic Environment Factory" continues to evolve, our agents are learning to handle increasingly more intricate tasks. While Holo3 today masters the interface, we are already at work on the next frontier: Adaptive Agency, where our models will not only use the tools they know but autonomously learn to navigate entirely new, bespoke enterprise software in real-time.
+
+---
+
+Title: Readme
+URL: https://huggingface.co/Hcompany/Holo3-35B-A3B/resolve/main/README.md?download=true
+Published: N/A
+Author: N/A
+Highlights:
+# **Holo3: Foundational Models for Navigation and Computer Use Agents**
+...
+**Holo3** is our latest generation of large-scale Vision-Language Models (VLMs) specifically optimized for **GUI Agents**. Like its predecessors, it operates across diverse digital environments—web, desktop, and mobile—by interpreting visual interfaces, reasoning over complex content, and executing precise actions.
+...
+* **Developed by:** [**H Company**](https://www.hcompany.ai/)
+* **Model type:** Vision-Language Model for Navigation and Computer Use Agents
+* **Architecture:** Sparse Mixture-of-Experts (MoE) with 35B total / 3B active parameters
+* **Fine-tuned from model:** Qwen/Qwen3.5-35B-A3B
+* **Blog Post:** [hcompany.ai/holo3](https://www.hcompany.ai/holo3)
+* **Quickstart:** [hub.hcompany.ai/quickstart](https://hub.hcompany.ai/quickstart)
+* **License:** Apache 2.0 License
+...
+## **Training Strategy**
+
+**Holo3-35B-A3B** is based on the **Qwen3.5** architecture and has been reinforced to strengthen its core agentic pillars: perception and decision-making. The training pipeline utilizes a carefully curated mix of open-source datasets, large-scale synthetic trajectories, and high-quality human-annotated samples to ensure reliable multi-step reasoning.
+...
+To measure real-world utility, we developed the **H Corporate Benchmark ... a dedicated evaluation suite of 486 multi-step tasks across four categories: E-commerce, Business Software, Collaboration, and Multi-App workflows. Holo3 consistently outperforms significantly larger competitors in these dense, business-logic environments.

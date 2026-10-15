@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/Qwen/Qwen3-VL-4B-Instruct",
+    "type": "hub_api",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct/resolve/ebb281ec70b05090aa6165b016eac8ec08e71b17/README.md",
+    "file": "README.md",
+    "sha256": "a884e5e78f7d6f7bfe237f909dbc41a126542e259dc79d8ab33cc8980580ff79"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct/resolve/ebb281ec70b05090aa6165b016eac8ec08e71b17/config.json",
+    "file": "config.json",
+    "sha256": "edac7703329133edfc53e46ac0081835144c99d7eebf28b71c732694d435224d"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct/resolve/ebb281ec70b05090aa6165b016eac8ec08e71b17/model.safetensors.index.json",
+    "file": "model.safetensors.index.json",
+    "sha256": "58a7841d7bff2548dd91577d216274a83cf1b500bc6a534b809d6c1b1707cf2b"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct/resolve/ebb281ec70b05090aa6165b016eac8ec08e71b17/preprocessor_config.json",
+    "file": "preprocessor_config.json",
+    "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+  }
+]

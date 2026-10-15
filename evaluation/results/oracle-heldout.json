@@ -1,0 +1,1868 @@
+{
+  "cases": [
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-00-815915"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-00-815915",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-01-297882"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-01-297882",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-02-768533"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-02-768533",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-03-936021"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-03-936021",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-04-887409"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-04-887409",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-05-370706"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-toggle-05-370706",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-00-164857"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-00-164857",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-01-189853"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-01-189853",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-02-712177"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-02-712177",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-03-768358"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-03-768358",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-04-858268"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-04-858268",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-05-878988"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-05-878988",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-00-487325",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-00-487325",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              961.5,
+              319.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-01-679518",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-01-679518",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              615.0,
+              657.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-02-516961",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-02-516961",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 2,
+            "point": [
+              770.0,
+              202.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-03-191449",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-03-191449",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1,
+            "point": [
+              165.0,
+              216.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-04-145271",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-04-145271",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 2,
+            "point": [
+              1286.0,
+              220.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-05-156206",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-05-156206",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              238.5,
+              646.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-06-611207",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-06-611207",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              954.0,
+              316.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-07-634224",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-07-634224",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              994.5,
+              322.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-08-845528",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-08-845528",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1,
+            "point": [
+              140.0,
+              325.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-09-599157",
+        "enabled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 2,
+      "suite": "gui",
+      "task_id": "gui-toggle-09-599157",
+      "trace": [
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "target",
+            "image_scale": 1.5,
+            "point": [
+              616.5,
+              660.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 1,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-00-489860",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-00-489860",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1,
+            "point": [
+              393.0,
+              213.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-01-504724",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-01-504724",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1,
+            "point": [
+              664.0,
+              442.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-02-468757",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-02-468757",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 2,
+            "point": [
+              776.0,
+              200.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-03-507865",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-03-507865",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1.5,
+            "point": [
+              232.5,
+              661.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-04-803049",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-04-803049",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1,
+            "point": [
+              393.0,
+              332.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-05-822970",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-05-822970",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 2,
+            "point": [
+              1304.0,
+              214.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-06-479428",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-06-479428",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1.5,
+            "point": [
+              211.5,
+              664.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-07-170283",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-07-170283",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1.5,
+            "point": [
+              234.0,
+              156.0
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-08-449318",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-08-449318",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1.5,
+            "point": [
+              580.5,
+              649.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": true,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-09-986884",
+        "scrolled": true
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "oracle",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-09-986884",
+      "trace": [
+        {
+          "action": {
+            "delta_x": 0,
+            "delta_y": 300,
+            "element_ref": "pane",
+            "type": "scroll"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "coordinate_space": "window",
+            "element_ref_hint": "confirm",
+            "image_scale": 1.5,
+            "point": [
+              244.5,
+              166.5
+            ],
+            "type": "click"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "type": "done_proposed"
+          },
+          "done": true,
+          "effect_applied": false,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    }
+  ],
+  "manifest_revision": "hala-synthetic-v1",
+  "metrics": {
+    "claim": "synthetic infrastructure baseline only; no real model quality measurement",
+    "false_done_count": 0,
+    "family_wilson_95": [
+      0.34238022750665303,
+      1
+    ],
+    "fully_passed_family_count": 2,
+    "independent_family_count": 2,
+    "invalid_outputs": 0,
+    "language_strata": {
+      "ar": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 16,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.8063923194655637,
+          1
+        ],
+        "verified_success_count": 16,
+        "verified_success_rate": 1.0,
+        "wrong_target_count": 0
+      },
+      "en": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 16,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.8063923194655637,
+          1
+        ],
+        "verified_success_count": 16,
+        "verified_success_rate": 1.0,
+        "wrong_target_count": 0
+      }
+    },
+    "sample_count": 32,
+    "schema_failures": 0,
+    "stale_failures": 0,
+    "suite_strata": {
+      "gui": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 20,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.8388748419471806,
+          1
+        ],
+        "verified_success_count": 20,
+        "verified_success_rate": 1.0,
+        "wrong_target_count": 0
+      },
+      "intent": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 12,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.7575059933447592,
+          1
+        ],
+        "verified_success_count": 12,
+        "verified_success_rate": 1.0,
+        "wrong_target_count": 0
+      }
+    },
+    "task_wilson_95": [
+      0.8928208017449293,
+      1
+    ],
+    "uncertainty_note": "Descriptive binomial intervals only. Tasks share workflow families; variants are not independent families. Neither interval estimates real model performance.",
+    "verified_success_count": 32,
+    "verified_success_rate": 1.0,
+    "wrong_target_count": 0
+  },
+  "provider": "oracle",
+  "screenshots": [
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-00-815915.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-01-297882.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-02-768533.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-03-936021.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-04-887409.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-toggle-05-370706.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-00-164857.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-01-189853.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-02-712177.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-03-768358.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-04-858268.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\intent-scroll_confirm-05-878988.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-00-487325.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-01-679518.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-02-516961.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-03-191449.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-04-145271.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-05-156206.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-06-611207.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-07-634224.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-08-845528.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-toggle-09-599157.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-00-489860.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-01-504724.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-02-468757.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-03-507865.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-04-803049.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-05-822970.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-06-479428.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-07-170283.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-08-449318.png",
+      "rtl_layout": false,
+      "rtl_shaping_supported": false
+    },
+    {
+      "font": "C:/Windows/Fonts/arial.ttf",
+      "note": "Initial-state synthetic image; not a captured real application. Arabic shaping requires Pillow RAQM.",
+      "path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\Hala\\evaluation\\screenshots\\gui-scroll_confirm-09-986884.png",
+      "rtl_layout": true,
+      "rtl_shaping_supported": false
+    }
+  ],
+  "seed": 20261014,
+  "selected_split": "test"
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://huggingface.co/api/datasets/Hcompany/DragOn",
+    "type": "hub_api",
+    "revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5"
+  },
+  {
+    "url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/README.md",
+    "file": "README.md",
+    "sha256": "e7ef94cafcfd155961beec373f2f4e727715b7d517a819f52b5407fc2dec4009"
+  }
+]

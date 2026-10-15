@@ -1,0 +1,428 @@
+# Budgets
+URL: https://modal.com/docs/guide/budgets
+
+# Budgets
+
+Modal budgets let you cap usage at both the Workspace and Environment level:
+
+- Workspace budget: a monthly cap for total Workspace usage across the
+Workspace.
+- Environment budget: a monthly cap for compute usage in a specific
+Environment.
+
+Only Workspace Owners and Managers can set, edit, or remove budgets. See Workspace roles for role details.
+
+## When to use each budget
+
+- Use a Workspace budget when you want one overall monthly cap for the Workspace.
+- Add Environment budgets when multiple teams or workloads share a Workspace and need independent usage guardrails.
+- Keep both enabled when you want per-Environment isolation without losing a Workspace-wide hard cap.
+
+## How limits apply
+
+Workspace and Environment budgets are enforced together:
+
+- The Workspace budget is the hard outer cap for the entire Workspace.
+- If an Environment has no explicit budget, it inherits the Workspace effective limit.
+- You cannot set an Environment budget to a value that exceeds the Workspace effective cap.
+- Environment budgets do not need to sum to the Workspace budget.
+
+Example: if your Workspace budget is `$50`, setting Environment budgets of `$30` and `$40` does not raise the Workspace cap. The Workspace can still hit `$50` first, without hitting either Environment budget.
+
+## Workspace budgets
+
+Workspace budgets (also shown as your usage limit in the dashboard) cap
+total usage for the Workspace during the current billing cycle — before
+credits are applied.
+
+You can set, edit, or remove a Workspace budget on the Usage & Billing page.
+
+The maximum budget you can set depends on prior successful charges for the Workspace. If incremental usage charges succeed, that maximum can increase.
+
+## Spend limits
+
+A Workspace spend limit is a monthly cap on net charges (what you pay out
+of pocket after credits are applied). This is separate from your Workspace
+budget, which caps usage.
+
+When the spend limit is reached, Modal stops workloads that would incur
+additional out-of-pocket charges. Workloads that can still be covered by
+remaining applicable credits may continue until the usage limit is reached.
+
+If you do not set a custom spend limit, Modal uses the cycle's usage limit
+minus credits. For example, if your usage limit is `$100` and you have `$30`
+in credits, the default spend limit is `$70`.
+
+Workspace Owners and Managers can set, edit, or reset the spend limit
+on the Usage & Billing page. Use Reset to default to
+clear a custom value and return to the cycle's usage limit minus credits.
+
+## Environment budgets
+
+Environment budgets are available on the Team and Enterprise plans. Visit workspace settings to upgrade.
+
+Environment budgets cap compute usage for a single Environment within the same billing cycle. Note that this means it does not include all Workspace-level charges (for example, storage and reservations), so Environment budget usage is not a full invoice total by itself.
+
+You can set, edit, or remove Environment budgets on the Workspace Management → Environments page.
+
+# Academics | Modal
+URL: https://modal.com/academics
+
+Academics | Modal
+
+# Modal for Academics
+
+Modal is the fastest way for researchers to develop tomorrow's cutting-edge AI models and machine learning methods. Instantly deploy experiments on the most powerful GPUs with just a few lines of code. Iterate faster with Modal.
+
+> “Verifying an LLM-based approach that relies on test-time compute can be challenging to scale. Through collaboration with ARC Prize, the MIT + Cornell team partnered with Modal to provide both credits and infrastructure to make this possible. Huge thanks to Modal for working with us to spin up an environment that efficiently ran our model for verification.”
+
+Kevin Ellis & Zenna Tavares, Researchers
+
+> “Check out Tokasaurus on Modal to make Llama-1B brrr! This repeated sampling example shows off two engine features that are important for serving small models: very low CPU overhead and automatic shared prefix exploitation with Hydragen.”
+
+Jordan Juravsky, Researcher
+
+> “We wouldn't have been able to publish Four Over Six on such a tight deadline if it weren't for Modal! We needed to run hundreds of experiments on B200s to fill out our evaluation tables, and Modal made it super easy to run them all in parallel.”
+
+Jack Cook, Researcher
+
+# Billing
+URL: https://modal.com/docs/guide/billing
+
+# Billing
+
+Modal is serverless, which means you only pay for the compute you use or request. Reservations are not required, and there are no minimum usage-time increments. Up-to-date unit pricing for all of our products is available on our Pricing page.
+
+## Billing frequency and incremental billing
+
+All Workspaces are billed monthly. At the end of each billing cycle, you are auto-charged for the Modal usage incurred during that cycle (less any credits and incremental usage charges), as well as any subscription fees (non-Starter plans only) for the following billing cycle.
+
+In addition to monthly billing, you will be auto-charged for incremental usage the first time you exceed certain thresholds. These charges occur within the billing cycle.
+
+## Budgets
+
+Modal supports both Workspace-level and Environment-level spend budgets. See Budgets for where to configure them and how they interact.
+
+## Updating billing information
+
+To update your billing information, click on “Manage payment details” in the Usage & Billing section of Settings. This will take you to a Stripe-hosted page where you can update your payment method and/or billing email.
+
+Note that you must have a payment method on file in order to use Modal. If you would like to remove your payment method and delete your Workspace, please contact support@modal.com.
+
+## Viewing invoice history
+
+To view your invoice history and/or download receipts, click on “View invoices” in the Usage & Billing section of Settings. You should see an “Invoice History” section at the bottom of the Stripe-hosted page.
+
+## Generating billing reports
+
+We also offer programmatic APIs for exporting billing reports to Workspaces at the Team and Enterprise plan levels. Use the APIs in `modal.billing` or the `modal billing` CLI to generate tabular reports of spend over time broken down across specific Modal Apps or other resources.
+
+Note that the granular billing reports generated by these interfaces show a cost breakdown before factoring in credits or reservations, so the total invoiced cost may be less than the aggregate from these reports.
+
+In most cases, billing data will be available in the database that the API queries within minutes, although there may be collection delays. If completeness is important for your use case, we recommend leaving a buffer after the end of the query interval.
+
+## Attributing costs
+
+We offer a flexible tagging system so that you can categorize your Apps and properly attribute spend across your Workspace to different teams, projects, etc. Tags are key-value pairs that can be set when deploying an App or assigned to already running Apps:
+
+```python
+app = modal.App(name="inference-engine", tags={"team": "llm-platform"})
+
+```
+
+When generating a billing report through the API or CLI, you can request to include these tags in the report output. Note that tags will be attributed to the entire interval, even if they were added or removed at some point within it. If the tag name was not in use during the interval, it will be absent from the tags dictionary in that output row.
+
+## Custom invoicing
+
+Invoiced billing, international bank transfer payment methods, splitting invoices, and other custom requirements are available to customers on an Enterprise plan who have a usage commitment with us. Please contact sales@modal.com.
+
+Questions on billing? Reach out to billing@modal.com.
+
+# Getting Started on Kaggle | Kaggle
+URL: https://www.kaggle.com/docs/notebooks
+
+Getting Started on Kaggle | Kaggle
+
+# How to Use Kaggle
+
+keyboard_arrow_right Tensor Processing Units (TPUs)
+
+Notebooks
+
+Types of Notebooks
+
+Searching for Notebooks
+
+Using the Notebook Editor
+
+Adding Data Sources
+
+Collaborating on Notebooks
+
+Scheduling Notebooks
+
+[EXPERIMENTAL] Kaggle Jupyter Server
+
+Technical Specifications
+
+[EXPERIMENTAL] Increase GPU compute with Colab Pro
+
+keyboard_arrow_right MCP Server
+
+keyboard_arrow_right Benchmarks
+
+## Notebooks
+
+Explore and run machine learning code with Kaggle Notebooks, a cloud computational environment that enables reproducible and collaborative analysis
+
+### Types of Notebooks
+
+There are multiple different types of Notebooks on Kaggle.
+
+#### Notebooks
+
+The most common type is Jupyter notebooks (usually just “notebooks”). Jupyter notebooks consist of a sequence of cells, where each cell is formatted in either Markdown (for writing text) or in a programming language of your choice (for writing code). To start a notebook, click on `Create > New Notebook`. This will open the Notebooks editing interface.
+
+Notebooks may be written in either R or Python. The language can be changed under the `File > Language` menu.
+
+#### Scripts
+
+It's also possible to create a script. Scripts are files that execute everything as code sequentially. To start a script, create a new notebook, and then change the type to Script under `File > Editor Type`.
+
+Also under the `File` menu, you can select what type of script you would like to execute. You may write scripts in R or in Python.
+
+You can also execute selected lines of code by highlighting the code in the editor interface and clicking the “Run” button or hitting shift-enter. Any results will be printed to the console.
+
+##### RMarkdown Scripts
+
+RMarkdown scripts are a special type of script that executes not just R code, but RMarkdown code. This is a combination of R code and Markdown editing syntax that is prefered by many R authors in our community.
+
+The RMarkdown editor is the same one used for basic R or Python scripts, except that it uses the special RMarkdown syntax. To start editing an RMarkdown script, create a new notebook, change the file type to "Script" under `File > Editor Type` and then change the language under `File > Language`
+
+### Searching for Notebooks
+
+In addition to being an interactive editing platform, you can find and use code that others in the community have shared public. Kagglers working with data across both the Datasets and Competitions platforms are constantly building cool things. Exploring and reading other Kagglers’ code is a great way to both learn new techniques and stay involved in the community.
+
+There’s no better place than Kaggle Notebooks to discover such a huge repository of public, open-sourced, and reproducible code for data science and machine learning.
+
+The latest and greatest from Notebooks is surfaced on Kaggle in several different places.
+
+#### Site Search
+
+You can use the site search in the top bar of the website while on any page to look for not only Notebooks but Datasets, Competitions, Users, and more across Kaggle. Start typing a search query to get quick results and hit "Enter" to see a full page of results that you can drill down into. From the full page search results, you can filter just to "Notebooks" and add even more filter criteria using the filter options on the left hand side of the page.
+
+#### Homepage
+
+When you’re logged into your Kaggle account, the Kaggle homepage provides a live newsfeed of what people are doing on the platform. While Discussion forum posts and new Datasets make up some of the contents of the home page, most of it is dedicated to hot new Notebooks activity. By browsing down the page you can check out all the latest updates from your fellow Kagglers.
+
+You can tweak your newsfeed to your liking by following other Kagglers. To follow someone, go to their profile page and click on “Follow User”. Content posted and upvotes made by users you have followed will show up more prominently.
+
+The same is true of other users who choose to follow you. Post high-quality notebooks and datasets and you will soon find other users following along with what you are doing!
+
+#### Notebook Listing
+
+A more structured way of accessing Notebooks is the Notebook listing, accessible from the “Notebooks” tab in the main menu bar.
+
+The Notebook listing is sorted by “ Hotness” by default. “Hotness” is what it sounds like: a way of measuring the interestingness of Notebooks on the platform. Notebooks which score highly in Hotness, and thus appear highly in this list, are usually either recently written Notebooks that are scoring highly in things like upvotes and views, or “all-time” greats that have been consistently popular on the platform for a long time.
+
+Other methods of sorting are by 
+
+- Most Votes: Surfaces the most popular notebooks of all time
+- Most Comments: Returns the most discussed notebooks of all time
+- Recently Created: A real-time stream of new Notebooks
+- Recently Run: A real-time stream of activity
+- Relevance: Sorts the results based on their relevance to the query
+
+Other filtering options, available from the navigation bar, are Categories (Datasets or Competitions?), Outputs, Languages (R or Python?), and Types (Script or Notebook?).
+
+You can also use the Notebook listing to sort through your own Notebooks (“Your Work”), find Notebooks that others have shared with you ("Shared With You"), or to look at Notebooks you have previously upvoted (“Favorites”).
+
+Finally, a Notebooks-specific search bar is available here. This is often the fastest way to find a specific Notebook that you are looking for.
+
+#### Datasets and Competitions
+
+Data on Kaggle is available through either Datasets or our Competitions. Both prominently feature the best community-created Notebooks on the “Notebooks” tab. Browsing Notebooks on Datasets and Competitions provides a way to quickly get acquainted with a specific dataset. You can fork any existing public Notebook to make a copy of the code and start experimenting with changes.
+
+The Iris Species dataset and the Titanic competition are two classic examples of Datasets and Competitions, respectively, hosting great Notebooks on their content.
+
+#### Tags and Tag Pages
+
+Tags are the most advanced of the searching options available in the Notebook listing page. Tags are added by Notebook owners to indicate the topic of the Notebook, techniques you can use (e.g., “classification”), or the type of the data itself (e.g., “text data”). You can navigate to tag pages to browse more content sharing a tag either by clicking on a tag on a Notebook, or by searching by tag using the tag-specific search syntax: `tag:[TAG NAME]`.
+
+Searching by tags allow you to search for Notebooks by topical area or technique. For example, if you are interested in learning new techniques for tackling classification problems you might try a search with the tag “classification” (`tag:classification`); if you are interested in an analysis of police records maybe a search with “crime” (`tag:crime`) would do the trick.
+
+Alternatively, you can achieve the same thing by visiting the related tag pages. For example, the crime and classification tags live at https://www.kaggle.com/tags/crime and https://www.kaggle.com/tags/classification, respectively.
+
+Tag pages include a section listing the most popular pages with the given tag, making them a great way of searching for Notebooks by content.
+
+### Using the Notebook Editor
+
+Kaggle Notebooks may be created and edited via the Notebook editor. On larger screens, the Notebook editor consists of three parts:
+
+- An editing window
+- A console
+- A settings window
+
+The Notebook editor allows you to write and execute both traditional Scripts (for code-only files ideal for batch execution or Rmarkdown scripts) and Notebooks (for interactive code and markdown editor ideal for narrative analyses, visualizations, and sharing work).
+
+The main difference between Scripts and Notebooks is the editing pane and how you experience editing and executing code.
+
+#### Editing
+
+Whether you use Scripts or Notebooks might depend on your choice of language and what your use case is. R users tend to prefer the Scripts, while Python users prefer the Notebooks. For more on why that is, refer to the “Types of Notebooks” section. Scripts are also favored for making competition submissions where the code is the focus, whereas Notebooks are popular for sharing EDAs (exploratory data analysis), tutorials, and other share-worthy insights.
+
+Both editing interfaces are organized around the concept of “Versions”. This is a collection consisting of a Notebook version, the output it generates, and the associated metadata about the environment.
+
+In the Script editor, the code you write is executed all at once, whenever you generate a new version. For finer-grained control, it’s also possible to specifically execute only a single line or selection of lines of code.
+
+Notebooks are built on Jupyter notebooks. Notebooks consist of individual cells, each of which may be a Markdown (text) cell or a code cell. Code can be run (and the resulting variables saved) by running individual code cells, and cells can be added or deleted from the notebook at any time.
+
+#### Console
+
+The console tab provides an alternative interface to the same Python or R container running in the Notebook. Commands you input into the console will not change the content of your version. However, any variables you create in the console will persist throughout the session (unless you delete them). Additionally, any code that you execute in the editor will also execute in the console pane.
+
+#### Settings
+
+In the expanded editor, the Settings pane takes up the right side of the screen. In the compact editor (where you hide the settings pane), it is folded into tabs above the Editor tab. In either case the Settings pane contains the following main tabs:
+
+- Input: add and remove data sources attached to the Notebook. See more info in the Adding Data Sources section below.
+- Output: view output files created by the Notebook.
+- Table of contents: see and navigate the headings of the Notebook.
+- Session options: configure how the Notebook will run, including language, internet, acccelerator, and docker image settings. See more info in the The Notebook Environment section below.
+- Scheduling options: a notebook may be configured to run automatically. See more info in the Scheduling Notebooks section below.
+
+Other sections may also be available, depending on the Notebook's configurations.
+
+### Adding Data Sources
+
+One of the advantages to using Notebooks as your data science workbench is that you can easily add data sources from thousands of publicly available data sources or even upload your own. You can also use output files from another Notebook as a data source. You can add multiple data sources to your Notebook’s environment, allowing you to join them together and produce new insights.
+
+#### Models
+
+Kaggle Models contain many of the latest models from leading researchers and the Kaggle community.
+
+There are two ways of loading a Model in a Notebook. The first is to navigate to a chosen model's detail page, click on the "Code" button, and select "New Notebook". When the Notebook Editor loads, you will be able to select a framework and variation, and then the model will be attached automatically.
+
+Alternatively, you may wish to add models after creating your Notebook. To do that, navigate to the “Input” pane in a Notebook editor and click the “Add Input” button. From here, you can search and add any models you have access to.
+
+Note that some models require you to accept licenses, which you'll have to do before you can add them to your Notebook.
+
+#### Datasets
+
+Kaggle Datasets provides a rich variety of interesting datasets for any kind of data science project.
+
+Similar to models, there are two ways of loading a Dataset in a Notebook. The first is to navigate to a chosen dataset’s detail page, click on the "Code" button, and select "Create a notebook" at the bottom. This will launch a new Notebook session with the dataset in question spun up and ready to go.
+
+Alternatively, you may wish to add datasets after creating your Notebook. To do that, navigate to the “Input” pane in a Notebook editor and click the “Add Input” button. From here, you can search and add any datasets you have access to.
+
+#### Competitions
+
+You can also add Competition data sources to your Notebook environment using the same steps as above.
+
+The main difference is that you need to accept the rules for any Competition data sources you add to your Notebook. Whether you start a new Notebook from the “Notebooks” tab of a Competition or add a Competition data source from an existing Notebook editor, you’ll be prompted to read and accept the rules first.
+
+You can mix Competitions and Datasets data sources in the same Notebook, but please be sure to abide by the rules of the specific Competition with respect to using external data sources. If you don’t, you risk consequences for rule-breaking in the Competition.
+
+#### Notebooks
+
+Up to 20 GBs of output from a Notebook may be saved to disk in /kaggle/working. This data is saved automatically and you can then reuse that data in any future Notebook: just navigate to the “Input” pane in a Notebook editor, click on “Add Input”, and search for any Notebook with output files, just as with Models, Datasets, and Competitions.
+
+By chaining Notebooks as data sources in this way, it’s possible to build pipelines and generate more and better content than you could in a single notebook alone.
+
+“ Minimal LSTM + NB-SVM baseline ensemble”, written by Jeremy Howard, is one example of a great Notebook using this feature. Click on the “Input” tab to view the data sources he uses.
+
+### Collaborating on Notebooks
+
+Notebooks collaboration is a powerful feature. It allows multiple users to co-own and edit a Notebook. For example, you can work with Co
+
+# Terms of Use | Kaggle
+URL: https://www.kaggle.com/terms
+
+Terms of Use | Kaggle
+
+PLEASE NOTE THAT YOUR USE OF AND ACCESS TO OUR SERVICES (DEFINED BELOW) ARE SUBJECT TO THE FOLLOWING TERMS. IF YOU DO NOT AGREE TO ALL OF THE FOLLOWING, YOU MAY NOT USE OR ACCESS THE SERVICES IN ANY MANNER.
+
+Terms of Use
+
+Effective Date: June 22, 2025
+
+Welcome to Kaggle. Please read on to learn the rules and restrictions that govern your use of our website(s), products, services and applications (the “Services”). If you have any questions, comments, or concerns regarding these Terms or the Services, please contact us. These Terms of Use (the “Terms”) are a binding contract between you and Kaggle Inc. (“Kaggle,” “we” and “us”). Kaggle is organized under the laws of the State of Delaware, USA, and has offices located at 1600 Amphitheatre Parkway, Mountain View, California 94043 USA. You must agree to and accept all of the Terms, or you don’t have the right to use the Services. Your use of the Services in any way means that you agree to all of these Terms, and these Terms will remain in effect while you use the Services. These Terms include the provisions in this document, as well as those in the Privacy Policy and the Community Guidelines. In these Terms, the words “include” or “including” mean “including but not limited to”, and examples are for illustration purposes and are not limiting.
+
+Will these Terms ever change?
+
+We are constantly trying to improve our Services, so these Terms may need to change along with the Services. We reserve the right to change the Terms at any time, but if we do, we will bring it to your attention by placing a notice on the www.kaggle.com website, by sending you an email, or by some other means. Changes will not apply retroactively and will become effective no sooner than 14 days after they are posted. However, changes addressing new functions for a Service or changes made for legal reasons will be effective immediately. If you don’t agree with the new Terms, you are free to reject them; unfortunately, that means you will no longer be able to use the Services. If you use the Services in any way after a change to the Terms is effective, that means you agree to all of the changes.
+
+Except for changes by us as described here, no other amendment or modification of these Terms will be effective unless in writing and signed by both you and us.
+
+What about my privacy?
+
+Kaggle takes the privacy of its users very seriously. For the current Kaggle Privacy Policy, please click here.
+
+What are the basics of using Kaggle?
+
+You may be required to sign up for an account, and select a password and username (“Kaggle User ID”). You promise to provide us with accurate, complete, and updated registration information about yourself. You may not select as your Kaggle User ID a name that you don’t have the right to use, or another person’s name with the intent to impersonate that person. You may not transfer your account to anyone else without our prior written permission. You also may not have, control, or operate under more than one active Kaggle account or Kaggle User ID. If we determine that you have, control, or are operating under more than one Kaggle account or Kaggle User ID, we may take action without notice, including banning your user account, revoking access to your Kaggle User ID, and disqualifying you from any ongoing Competition(s).
+
+If you are not of legal age to form a binding contract, please see “Our Commitment to Children’s Privacy” in the Privacy Policy and contact us at Kaggle Support for more information on the parental consent process.
+
+If you’re agreeing to these Terms on behalf of an organization or entity, you represent and warrant that you are authorized to agree to these Terms on that organization or entity’s behalf and bind them to these Terms (in which case, the references to “you” and “your” in these Terms, except for in this sentence, refer to that organization or entity), but you are still required to sign up each individual user from your organization with a Kaggle User ID. You are not allowed to allow multiple individuals to operate under one Kaggle User ID, even if you are an organization or entity.
+
+You will only use the Services for your own internal, personal, non-commercial use, and not on behalf of or for the benefit of any third party, and only in a manner that complies with all laws that apply to you. If your use of the Services is prohibited by applicable laws, then you aren’t authorized to use the Services. We are not responsible if you use the Services in a way that breaks the law.
+
+You will keep all your registration information accurate and current. You will not share your account or password with anyone, and you must protect the security of your account and your password. You’re responsible for any activity associated with your account. 
+
+Are there any additional restrictions on my use of the Services? 
+
+Yes. Unless otherwise specified in writing by Kaggle, Kaggle does not intend uses of the Services to create obligations under the Health Insurance Portability and Accountability Act of 1996 as it may be amended from time to time, and any regulations issued under it (“HIPAA”), and makes no representations that the Services satisfy HIPAA requirements. If you are or become a Covered Entity or Business Associate, as defined in HIPAA, you will not use the Services for any purpose or in any manner involving Protected Health Information (as defined in HIPAA) unless you have received prior written consent for such use from Kaggle.
+
+You represent, warrant, and agree that you will not contribute any Content or User Submission or otherwise use the Services or interact with the Services in a manner that:
+
+1. Violates the Acceptable Use Policy, available at www.kaggle.com/aup;
+2. Is harmful, threatening, harassing, defamatory, obscene, or otherwise objectionable;
+3. “Crawls,” “scrapes,” or “spiders” any page, data, or portion of or relating to the Services or Content (through use of manual or automated means);
+4. Copies or stores any significant portion of the Content;
+5. Decompiles, reverse engineers, or otherwise attempts to obtain the source code or underlying ideas or information of or relating to the Services.
+6. Processes or stores any data that is subject to the International Traffic in Arms Regulations maintained by the U.S. Department of State.
+7. Engages in cryptomining or otherwise encourages, requests or allows any form of cryptomining.
+8. Violates these Terms.
+
+You represent, warrant and agree that for any Content or User Submission uploaded to the Service, you have taken appropriate steps to minimize the risk of the Content or User Submission being used by third parties to generate material used to support or facilitate violent extremism or child sexual exploitation.
+
+Without limitation to any other remedies available to Kaggle, a violation of any of the foregoing is grounds for termination of your right to use or access the Services. We reserve the right to remove any Content or User Submissions from the Services at any time, in particular for the reasons mentioned above (including if someone alleges you contributed that Content in violation of these Terms), and without prior notice.
+
+What are my rights in Kaggle?
+
+The materials displayed or performed or available on or through the Services, including text, graphics, data, articles, photos, images, illustrations, and User Submissions (collectively, the “Content”), are protected by copyright and other intellectual property laws. You promise to abide by all copyright notices, trademark rules, information, and restrictions contained in any Content you access through the Services, and you won’t use, copy, reproduce, modify, translate, publish, broadcast, transmit, distribute, perform, upload, display, license, sell or otherwise exploit for any purpose any Content not owned by you, (i) without the prior consent of the owner of that Content or (ii) in a way that violates someone else’s (including Kaggle’s) rights.
+
+You understand that Kaggle owns the Services. You won’t modify, publish, transmit, participate in the transfer or sale of, reproduce (except as expressly provided in this Section), create derivative works based on, or otherwise exploit any of the Services.
+
+The Services may allow you to copy or download certain Content; please remember that just because this functionality exists, doesn’t mean that all the restrictions above don’t apply — they do!
+
+A notice for U.S. Federal Agency Users: The Services were developed solely at private expense and are commercial computer software and related documentation within the meaning of the applicable Federal Acquisition Regulations and their agency supplements.
+
+If you’re an EEA-based consumer of digital content or services and you’ve agreed to these Terms, then EEA consumer laws provide you with a legal guarantee. Under this guarantee, we’re liable for any lack of conformity that you discover:
+
+within two years of the one-time supply of digital content or services; or
+
+at any time during the “continuous” supply of digital content or services.
+
+Your national laws may provide an even longer guarantee. Your rights under these legal guarantees aren’t limited by any other commercial guarantees that we provide. If you want to make a guarantee claim, please contact customer support support@kaggle.com.
+
+Who is responsible for what I see and do on the Services?
+
+Any information or Content publicly posted or privately transmitted through the Services is the sole responsibility of the person from whom such Content originated, and you access all such information and Content at your own risk. We aren’t liable for any errors or omissions in such information, outputs, or Content, or for any damages or loss you might suffer in connection with it. We cannot control and have no duty to take any action regarding how you may interpret and use the Content or what actions you may take as a result of having been exposed to the Content, and you release us from all liability for you having acquired or not acquired Content through the Services. We can’t guarantee the identity of any users with whom you interact in using the Services and are not responsible for which users gain access to the Services.
+
+You are responsible for all Content you contribute to the Services, and you represent and warrant you have all rights necessary to do so.
+
+The Services may contain links, information or connections to third party websites or services that are not owned or controlled by Kaggle. When you access third party websites or engage with third party services, you accept that there are risks in doing so, and that Kaggle is not responsible for such risks. We encourage you to be aware when you leave the Services and to read the terms and privacy policy of each third party website or service that you visit or utilize.
+
+Kaggle has no control over, and assumes no responsibility for, the content, accuracy, privacy policies, or practices of or opinions expressed in any third party websites or by any third party that you interact with through the Services. In addition, Kaggle will not and cannot monitor, verify, censor or edit the content of any third party site or service. By using the Services, you release and hold us harmless from any and all liability arising from your use of any third party website or service.
+
+Your interactions with organizations or individuals found on or through the Services, including payment and delivery of goods or services, and any other terms, conditions, warranties or representations associated with such dealings, are solely between you and such organizations or individuals. You should make whatever investigation you feel necessary or appropriate before proceeding with any online or offline transaction with any of these third parties. You agree that Kaggle will not be responsible or liable for any loss or damage of any sort incurred as the result of any such dealings.
+
+If there is a dispute between participants on this site, or between users and any third party, you agree that Kaggle is under no obligation to become involved. If you have a dispute with one or more other users, you release Kaggle, its officers, employees, agents, and successors from claims, demands, and damages of every kind or nature, known or unknown, suspected or unsuspected, disclosed or undisclosed, arising out of or in any way related to such disputes or our Services. If you are a California resident, you are expressly waiving California Civil Code Section 1542, which says: "A general release does not extend to claims which the creditor does not know or suspect to exist in his or her favor at the time of executing the release, which, if known by him or her must have materially affected his or her settlement with the debtor."
+
+What are the rules for competitions on Kaggle?
+
+Subject to these Terms and any contract with Kaggle, a user may post (“Host User”) a skills-based competition or challenge on the Services (“Competition”) for other users to participate in such Competition (“Participant User”). Competitions are subject to separate Competition Rules (defined below) that are established by the Host User. Competitions, except as related to Simulations, exclude games of chance. You may not use or attempt to use the Service to host any such game of chance. Competitions are open to residents of the United States and worldwide, except if you are a resident of Crimea, so-called Donetsk People's Republic (DNR) or Luhansk People's Republic (LNR), Cuba, Iran, North Korea, or any other place prohibited by law you may not enter any Competition. Certain Competitions may also have further geographic or age restrictions and be open only to residents of certain countries. 
+
+If you would like to host a Competition on Kaggle, go to https://www.kaggle.com/c/about/host. Competitions are run according to rules that describe participation guidelines, the data set(s) to be used by the Participant Users, the criteria used by

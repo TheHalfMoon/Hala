@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-14",
+  "candidate_count": 9,
+  "pinned_file_hashes_checked": 35,
+  "drag_eval_samples_checked": 4,
+  "weights_downloaded_locally": false,
+  "model_runtime_tested_by_research_builder": false,
+  "integrity_check": "pass",
+  "limitations": "Checks captured file integrity/schema and original-dimension sample bounds, not model correctness, dataset rights, provider eligibility or performance."
+}

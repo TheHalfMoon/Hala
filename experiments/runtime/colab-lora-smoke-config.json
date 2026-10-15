@@ -1,0 +1,12 @@
+{
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "precision": "fp16",
+  "max_steps": 2,
+  "batch_size": 1,
+  "gradient_accumulation": 1,
+  "learning_rate": 0.00005,
+  "lora_rank": 4,
+  "platform": "colab",
+  "download_remote_weights": true
+}

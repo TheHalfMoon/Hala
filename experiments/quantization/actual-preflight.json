@@ -1,0 +1,16 @@
+{
+  "schema": "hala.h17.preflight.v1",
+  "frozen_source_verified": true,
+  "all64_original_png_hashes_match": true,
+  "font_sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+  "raqm": true,
+  "raqm_version": "0.10.1",
+  "packages": {
+    "Pillow": "11.3.0",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.50.2",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "gpu_allocation": "fresh free Colab T4 after prior runtime expiry; separate subprocesses planned"
+}

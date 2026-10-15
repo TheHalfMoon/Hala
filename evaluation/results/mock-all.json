@@ -1,0 +1,7078 @@
+{
+  "cases": [
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-00-862846"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-00-862846",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-01-553437"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-01-553437",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-02-112562"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-02-112562",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-03-160108"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-03-160108",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-04-106890"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-04-106890",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-save-05-396818"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-save-05-396818",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-00-732603"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-00-732603",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-01-978584"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-01-978584",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-02-555247"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-02-555247",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-03-881938"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-03-881938",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-04-853751"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-04-853751",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-open-05-931860"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-open-05-931860",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-00-752456"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-00-752456",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-01-562216"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-01-562216",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-02-340815"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-02-340815",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-03-161016"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-03-161016",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-04-652986"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-04-652986",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-archive-05-819289"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-archive-05-819289",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-00-296025"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-00-296025",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-01-579653"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-01-579653",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-02-893497"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-02-893497",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-03-117259"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-03-117259",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-04-452423"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-04-452423",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-export-05-197358"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-export-05-197358",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-00-815915"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-00-815915",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-01-297882"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-01-297882",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-02-768533"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-02-768533",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-03-936021"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-03-936021",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-04-887409"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-04-887409",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-toggle-05-370706"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-toggle-05-370706",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-00-183611",
+        "name": "Hala-8330"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-form-00-183611",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-8330",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-8330",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-8330",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-01-371721",
+        "name": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "intent",
+      "task_id": "intent-form-01-371721",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-02-572622",
+        "name": "Hala-2209"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-form-02-572622",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2209",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2209",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2209",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-03-318454",
+        "name": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "intent",
+      "task_id": "intent-form-03-318454",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-04-862585",
+        "name": "Hala-2659"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-form-04-862585",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2659",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2659",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "secret": false,
+            "text": "Hala-2659",
+            "type": "set_value"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "intent-form-05-225541",
+        "name": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "intent",
+      "task_id": "intent-form-05-225541",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-00-145921"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-00-145921",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-01-514888"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-01-514888",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-02-405840"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-02-405840",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-03-620661"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-03-620661",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-04-667634"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-04-667634",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-filter-05-674857"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-filter-05-674857",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-00-853530"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-00-853530",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-01-854760"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-01-854760",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-02-887875"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-02-887875",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-03-223586"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-03-223586",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-04-613281"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-04-613281",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-drag_drop-05-677356"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-drag_drop-05-677356",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-00-910968"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-00-910968",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-01-775531"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-01-775531",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-02-477866"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-02-477866",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-03-743974"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-03-743974",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-04-962329"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-04-962329",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-recovery-05-563736"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-recovery-05-563736",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-00-164857"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-00-164857",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-01-189853"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-01-189853",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-02-712177"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-02-712177",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-03-768358"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-03-768358",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-04-858268"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-04-858268",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": true,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "activated": true,
+        "distractor_activated": false,
+        "document": "intent-scroll_confirm-05-878988"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 3,
+      "suite": "intent",
+      "task_id": "intent-scroll_confirm-05-878988",
+      "trace": [
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 0,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 1,
+          "wrong_target": false
+        },
+        {
+          "action": {
+            "element_ref": "target",
+            "type": "semantic_invoke"
+          },
+          "effect_applied": true,
+          "step": 2,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": true,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-00-924903",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-00-924903",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-01-210893",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-01-210893",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-02-262507",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-02-262507",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-03-354897",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-03-354897",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-04-495257",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-04-495257",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-05-167920",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-05-167920",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-06-361454",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-06-361454",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-07-801634",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-07-801634",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-08-216236",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-08-216236",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-save",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-save-09-872228",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-save-09-872228",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-00-211654",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-00-211654",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-01-296625",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-01-296625",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-02-550087",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-02-550087",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-03-897845",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-03-897845",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-04-744708",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-04-744708",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-05-942279",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-05-942279",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-06-436945",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-06-436945",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-07-774489",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-07-774489",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-08-384804",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-08-384804",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-open",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-open-09-216537",
+        "opened": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-open-09-216537",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-00-869331"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-00-869331",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-01-784079"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-01-784079",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-02-926539"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-02-926539",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-03-667054"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-03-667054",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-04-584821"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-04-584821",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-05-130607"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-05-130607",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-06-590006"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-06-590006",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-07-449875"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-07-449875",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-08-678859"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-08-678859",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-archive",
+      "final_state": {
+        "archived": false,
+        "distractor_activated": false,
+        "document": "gui-archive-09-160845"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-archive-09-160845",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-00-990727",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-00-990727",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-01-218715",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-01-218715",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-02-469580",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-02-469580",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-03-558565",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-03-558565",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-04-685217",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-04-685217",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-05-224923",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-05-224923",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-06-466979",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-06-466979",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-07-948133",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-07-948133",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-08-347200",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-08-347200",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-export",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-export-09-205811",
+        "exported": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-export-09-205811",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-00-487325",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-00-487325",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-01-679518",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-01-679518",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-02-516961",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-02-516961",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-03-191449",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-03-191449",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-04-145271",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-04-145271",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-05-156206",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-05-156206",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-06-611207",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-06-611207",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-07-634224",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-07-634224",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-08-845528",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-08-845528",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-toggle",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-toggle-09-599157",
+        "enabled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-toggle-09-599157",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-00-913757",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-00-913757",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-01-587962",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-01-587962",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-02-326000",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-02-326000",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-03-851236",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-03-851236",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-04-968160",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-04-968160",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-05-226731",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-05-226731",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-06-881297",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-06-881297",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-07-804197",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-07-804197",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-08-739764",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-08-739764",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-form",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-form-09-539876",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-form-09-539876",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-00-788659",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-00-788659",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-01-168609",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-01-168609",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-02-901639",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-02-901639",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-03-644316",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-03-644316",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-04-845095",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-04-845095",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-05-870401",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-05-870401",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-06-924593",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-06-924593",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-07-600596",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-07-600596",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-08-713697",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-08-713697",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-filter",
+      "final_state": {
+        "applied": false,
+        "distractor_activated": false,
+        "document": "gui-filter-09-329674",
+        "filter": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-filter-09-329674",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-00-655309",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-00-655309",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-01-557813",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-01-557813",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-02-706772",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-02-706772",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-03-631030",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-03-631030",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-04-793575",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-04-793575",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-05-377986",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-05-377986",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-06-972732",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-06-972732",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-07-474160",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-07-474160",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-08-124213",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-08-124213",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-drag_drop",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-drag_drop-09-648201",
+        "location": "Inbox",
+        "selection": ""
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-drag_drop-09-648201",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-00-937002",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-00-937002",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-01-655371",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-01-655371",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-02-706053",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-02-706053",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-03-228378",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-03-228378",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-04-374280",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-04-374280",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-05-146487",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-05-146487",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-06-317909",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-06-317909",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-07-862418",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-07-862418",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-08-469230",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-08-469230",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-recovery",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-recovery-09-323107",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "dev",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-recovery-09-323107",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-00-489860",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-00-489860",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-01-504724",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-01-504724",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-02-468757",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-02-468757",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-03-507865",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-03-507865",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-04-803049",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-04-803049",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-05-822970",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-05-822970",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-06-479428",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-06-479428",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-07-170283",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-07-170283",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-08-449318",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-08-449318",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-scroll_confirm",
+      "final_state": {
+        "confirmed": false,
+        "distractor_activated": false,
+        "document": "gui-scroll_confirm-09-986884",
+        "scrolled": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "test",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-scroll_confirm-09-986884",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-00-904095",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-00-904095",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-01-312377",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-01-312377",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-02-187373",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-02-187373",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-03-363973",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-03-363973",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-04-996961",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-04-996961",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-05-206871",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-05-206871",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-06-496049",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-06-496049",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-07-166014",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-07-166014",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-08-427090",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-08-427090",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-rename",
+      "final_state": {
+        "distractor_activated": false,
+        "document": "gui-rename-09-266000",
+        "name": "",
+        "saved": false
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-rename-09-266000",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-00-804814"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-00-804814",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-01-495446"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-01-495446",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-02-586871"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-02-586871",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-03-323406"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-03-323406",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-04-275049"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-04-275049",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-05-350370"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-05-350370",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-06-928274"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-06-928274",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-07-370878"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-07-370878",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-08-980431"
+      },
+      "invalid_outputs": 0,
+      "language": "en",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-08-980431",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    },
+    {
+      "budget_exhausted": false,
+      "false_done": false,
+      "family_id": "workflow-delete_confirm",
+      "final_state": {
+        "deleted": false,
+        "dialog": false,
+        "distractor_activated": false,
+        "document": "gui-delete_confirm-09-692166"
+      },
+      "invalid_outputs": 0,
+      "language": "ar",
+      "provider": "hala_contract_mock",
+      "schema_failures": 0,
+      "split": "train",
+      "stale_failures": 0,
+      "steps": 1,
+      "suite": "gui",
+      "task_id": "gui-delete_confirm-09-692166",
+      "trace": [
+        {
+          "action": {
+            "reason": "Offline mock could not uniquely ground this fixture intent; no action is recommended.",
+            "type": "abstain"
+          },
+          "effect_applied": false,
+          "step": 0,
+          "stop": true,
+          "wrong_target": false
+        }
+      ],
+      "verified_success": false,
+      "wrong_target": 0
+    }
+  ],
+  "manifest_revision": "hala-synthetic-v1",
+  "metrics": {
+    "claim": "synthetic infrastructure baseline only; no real model quality measurement",
+    "false_done_count": 0,
+    "family_wilson_95": [
+      2.7755575615628914e-17,
+      0.24249400665524085
+    ],
+    "fully_passed_family_count": 0,
+    "independent_family_count": 12,
+    "invalid_outputs": 0,
+    "language_strata": {
+      "ar": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 90,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.2151091449772697,
+          0.40126510524846093
+        ],
+        "verified_success_count": 27,
+        "verified_success_rate": 0.3,
+        "wrong_target_count": 0
+      },
+      "en": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 90,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.24453505279444637,
+          0.4357768223936625
+        ],
+        "verified_success_count": 30,
+        "verified_success_rate": 0.3333333333333333,
+        "wrong_target_count": 0
+      }
+    },
+    "sample_count": 180,
+    "schema_failures": 0,
+    "stale_failures": 0,
+    "suite_strata": {
+      "gui": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 120,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0,
+          0.031019166418703486
+        ],
+        "verified_success_count": 0,
+        "verified_success_rate": 0.0,
+        "wrong_target_count": 0
+      },
+      "intent": {
+        "false_done_count": 0,
+        "invalid_outputs": 0,
+        "sample_count": 60,
+        "schema_failures": 0,
+        "stale_failures": 0,
+        "task_wilson_95": [
+          0.8629948352365147,
+          0.9828504978356043
+        ],
+        "verified_success_count": 57,
+        "verified_success_rate": 0.95,
+        "wrong_target_count": 0
+      }
+    },
+    "task_wilson_95": [
+      0.25314597550504087,
+      0.3878490403995504
+    ],
+    "uncertainty_note": "Descriptive binomial intervals only. Tasks share workflow families; variants are not independent families. Neither interval estimates real model performance.",
+    "verified_success_count": 57,
+    "verified_success_rate": 0.31666666666666665,
+    "wrong_target_count": 0
+  },
+  "provider": "mock",
+  "screenshots": [],
+  "seed": 20261014,
+  "selected_split": "all"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "intent": "Starting at the 8th occurrence of 'Medicare' in the Insurance_Type column, drag to select across to the Patient_Age cell",
+    "start_bbox": [
+      1549,
+      680,
+      1634,
+      695
+    ],
+    "end_bbox": [
+      1639,
+      680,
+      1733,
+      695
+    ],
+    "domain": "sheet",
+    "subtype": "cell_range",
+    "ordered": false,
+    "image_id": "0251a62e-9be7-5d80-adcd-008dc6156936",
+    "metadata": {
+      "range_bbox": [
+        1549,
+        680,
+        1733,
+        695
+      ],
+      "col_letter": null,
+      "start_cell_content": "Medicare",
+      "end_cell_content": "0"
+    }
+  }
+]

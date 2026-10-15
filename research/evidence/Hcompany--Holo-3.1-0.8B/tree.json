@@ -1,0 +1,92 @@
+[
+  {
+    "type": "file",
+    "oid": "52373fe24473b1aa44333d318f578ae6bf04b49b",
+    "size": 1570,
+    "path": ".gitattributes"
+  },
+  {
+    "type": "file",
+    "oid": "c467935a2285131c0577449d229642a04364206b",
+    "size": 2927,
+    "path": "README.md"
+  },
+  {
+    "type": "file",
+    "oid": "0ef09f214eaa6d9bca297988afc1454b5827b2c7",
+    "size": 7755,
+    "path": "chat_template.jinja"
+  },
+  {
+    "type": "file",
+    "oid": "cf65a5dab0627bdeda346e7adb56627404625fe9",
+    "size": 2579,
+    "path": "config.json"
+  },
+  {
+    "type": "file",
+    "oid": "e36120aad33535b4951ed0580c072deacf55fa8e",
+    "size": 5,
+    "path": "latest"
+  },
+  {
+    "type": "file",
+    "oid": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+    "size": 3353259,
+    "path": "merges.txt"
+  },
+  {
+    "type": "file",
+    "oid": "1825ffbf970ffbeec0ff50d152966711ac2b793e",
+    "size": 2214629376,
+    "lfs": {
+      "oid": "f972d122ce65df42f9de54a54c847eb08369cc2512eb2a19d0f0ade867c45395",
+      "size": 2214629376,
+      "pointerSize": 135
+    },
+    "xetHash": "080d1260b0f21505436326656f3b6b405a759e74e6249810976e76ea12e48f3b",
+    "path": "model-00001-of-00001.safetensors"
+  },
+  {
+    "type": "file",
+    "oid": "b373c514e33697eb8c162e4c02f567bb41217272",
+    "size": 43961,
+    "path": "model.safetensors.index.json"
+  },
+  {
+    "type": "file",
+    "oid": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+    "size": 390,
+    "path": "preprocessor_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "a73a846725794819aa6e1c9e97d8dc9671c2006d",
+    "size": 12807982,
+    "lfs": {
+      "oid": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "size": 12807982,
+      "pointerSize": 133
+    },
+    "xetHash": "655d3f6803c619aa34c31a027ce74a315eaa200aad3fca5b968dcdf6485bfba2",
+    "path": "tokenizer.json"
+  },
+  {
+    "type": "file",
+    "oid": "fae3ce993e07c092ad024dde45e592379fde91bb",
+    "size": 16709,
+    "path": "tokenizer_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+    "size": 385,
+    "path": "video_preprocessor_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+    "size": 6722759,
+    "path": "vocab.json"
+  }
+]

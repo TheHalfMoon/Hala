@@ -1,0 +1,16 @@
+HALA_H17_INT8_EXIT: 1
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/content/hala-quant-final/evaluation/quantization_runner.py", line 165, in <module>
+    run(args.mode, args.images, args.output, args.source_freeze_sha256)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/hala-quant-final/evaluation/quantization_runner.py", line 20, in run
+    remote_guard()  # Before importing torch, transformers, bitsandbytes or processor.
+    ~~~~~~~~~~~~^^
+  File "/content/hala-quant-final/evaluation/quantization.py", line 31, in remote_guard
+    raise ValueError('Kaggle blocked')
+ValueError: Kaggle blocked
+
+HALA_H17_INT8_RESULT_JSON:RESULT_ABSENT

@@ -1,0 +1,113 @@
+{
+  "sha": "d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+  "node_id": "C_kwDOSFqo19oAKGQ0Zjg1NWQ4ODVjZjM5ZjQ3YWY1YmNhZTljZDdmNzk2M2MxOGVmMDk",
+  "commit": {
+    "author": {
+      "name": "0Cymantek0",
+      "email": "75481661+0Cymantek0@users.noreply.github.com",
+      "date": "2026-10-13T00:19:29Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-10-13T00:19:29Z"
+    },
+    "message": "fix: read ProxyCommand stdin with a blocking os.read instead of select() (#158)\n\n* fix: read ProxyCommand stdin with a blocking os.read instead of select()\n\nWindows select() only accepts sockets, so in --proxy-mode the stdin pump\ndied with OSError before any input was forwarded, leaving the runtime\nwithout a stdin. A blocking os.read() is equivalent on POSIX (the select\nwaited on just this one fd with no timeout) and works everywhere.\n\nThe pump direction had no coverage (the existing bridge test stubs the\nreader thread out), so this adds test_bridge_proxy_mode_pumps_stdin_to_ws,\nwhich fails with the select() call in place on Windows and passes with\nthe blocking read on every platform.\n\n* drop comment per review",
+    "tree": {
+      "sha": "f759caa4bec42250bd2b334edc3cbb7bb4d918a9",
+      "url": "https://api.github.com/repos/googlecolab/google-colab-cli/git/trees/f759caa4bec42250bd2b334edc3cbb7bb4d918a9"
+    },
+    "url": "https://api.github.com/repos/googlecolab/google-colab-cli/git/commits/d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqzXkRCRC1aQ7uu5UhlAAAaQkQAHTtFLbKlAqbO1S53U87pai8\nvLA0+BgRviF4jyyNFBt4fn0yxtxzvv1XQuHkNfl0OnJotWr4DlBT4iDZ+3B5/R0+\no9BF/OAtmTc4rHUE8DWKfFeetM5ICMU3fi/hT/S5zqBRXAG9RPIrXbp/oUBJNBfi\nkqKCzrNxD+v4aux6TfzvxGQXyU8KIpTKT0TQT4+amgsPx8x00VAQSJv2kHrdWX5t\nK6brr19Ow+AcuR7zyPgSz0BLRKwON+YXzgzB7nX0d/YUwAyOINEEI4SaZTecUvTR\nEGBB62yE+/KjN6uQ9lFMFoHL2J3GbnRyK57+LGz0xzJV+hqtOqzNzm2RTNZcfzxx\niLvQSxFXt4m1RBpjza/7c1m9S+vmjOrewYJ/1JkbJR6wcdd0chwr/e3VzPasuRaR\nZYCnPVzaCpBRDkPKIgVDS/EwUu9n/bHbAZ0fXFbnRTXGcyQdpItAA0/tGWLxwtwl\nMN2AIklEMHEhtD1BoRAnBIkirutj1ZnSgkrp96tRn8cjRtVDz7AuKtMmg2DO3NJu\nELJ2m9Mz8+tmF9Is9l3eqf7uH5B0cZi+3l26mc3b8V2RpNd9bNYCCrLF2rJIPFYo\nIkS1hGa0YFodoj9asdtx52yhKUE/E9rsTaXB/sakHngmeHQ8nLU9i7M7mI7/hTO/\nDj3iSAnuTjEG2ZhIoBOC\n=L70l\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree f759caa4bec42250bd2b334edc3cbb7bb4d918a9\nparent fff44358426cbda741ee75f3c6126980665eacb0\nauthor 0Cymantek0 <75481661+0Cymantek0@users.noreply.github.com> 1791850769 +0530\ncommitter GitHub <noreply@github.com> 1791850769 -0700\n\nfix: read ProxyCommand stdin with a blocking os.read instead of select() (#158)\n\n* fix: read ProxyCommand stdin with a blocking os.read instead of select()\n\nWindows select() only accepts sockets, so in --proxy-mode the stdin pump\ndied with OSError before any input was forwarded, leaving the runtime\nwithout a stdin. A blocking os.read() is equivalent on POSIX (the select\nwaited on just this one fd with no timeout) and works everywhere.\n\nThe pump direction had no coverage (the existing bridge test stubs the\nreader thread out), so this adds test_bridge_proxy_mode_pumps_stdin_to_ws,\nwhich fails with the select() call in place on Windows and passes with\nthe blocking read on every platform.\n\n* drop comment per review",
+      "verified_at": "2026-10-13T00:19:30Z"
+    }
+  },
+  "url": "https://api.github.com/repos/googlecolab/google-colab-cli/commits/d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+  "html_url": "https://github.com/googlecolab/google-colab-cli/commit/d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+  "comments_url": "https://api.github.com/repos/googlecolab/google-colab-cli/commits/d4f855d885cf39f47af5bcae9cd7f7963c18ef09/comments",
+  "author": {
+    "login": "0Cymantek0",
+    "id": 75481661,
+    "node_id": "MDQ6VXNlcjc1NDgxNjYx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/75481661?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/0Cymantek0",
+    "html_url": "https://github.com/0Cymantek0",
+    "followers_url": "https://api.github.com/users/0Cymantek0/followers",
+    "following_url": "https://api.github.com/users/0Cymantek0/following{/other_user}",
+    "gists_url": "https://api.github.com/users/0Cymantek0/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/0Cymantek0/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/0Cymantek0/subscriptions",
+    "organizations_url": "https://api.github.com/users/0Cymantek0/orgs",
+    "repos_url": "https://api.github.com/users/0Cymantek0/repos",
+    "events_url": "https://api.github.com/users/0Cymantek0/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/0Cymantek0/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "fff44358426cbda741ee75f3c6126980665eacb0",
+      "url": "https://api.github.com/repos/googlecolab/google-colab-cli/commits/fff44358426cbda741ee75f3c6126980665eacb0",
+      "html_url": "https://github.com/googlecolab/google-colab-cli/commit/fff44358426cbda741ee75f3c6126980665eacb0"
+    }
+  ],
+  "stats": {
+    "total": 48,
+    "additions": 44,
+    "deletions": 4
+  },
+  "files": [
+    {
+      "sha": "6d709571e354d364d9741da67fb8df3c7d29aa39",
+      "filename": "src/colab_cli/commands/ssh.py",
+      "status": "modified",
+      "additions": 0,
+      "deletions": 4,
+      "changes": 4,
+      "blob_url": "https://github.com/googlecolab/google-colab-cli/blob/d4f855d885cf39f47af5bcae9cd7f7963c18ef09/src%2Fcolab_cli%2Fcommands%2Fssh.py",
+      "raw_url": "https://github.com/googlecolab/google-colab-cli/raw/d4f855d885cf39f47af5bcae9cd7f7963c18ef09/src%2Fcolab_cli%2Fcommands%2Fssh.py",
+      "contents_url": "https://api.github.com/repos/googlecolab/google-colab-cli/contents/src%2Fcolab_cli%2Fcommands%2Fssh.py?ref=d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+      "patch": "@@ -37,7 +37,6 @@\n import contextlib\n import os\n from pathlib import Path\n-import select\n import shlex\n import signal\n import subprocess\n@@ -360,9 +359,6 @@ def _bridge_proxy_mode(ws: websocket.WebSocket) -> int:\n     def stdin_to_ws():\n         try:\n             while True:\n-                ready, _, _ = select.select([stdin_fd], [], [], None)\n-                if not ready:\n-                    continue\n                 data = os.read(stdin_fd, 8192)\n                 if not data:\n                     break"
+    },
+    {
+      "sha": "5027753235f86c95e70e95e868513aefb99076c0",
+      "filename": "tests/test_ssh.py",
+      "status": "modified",
+      "additions": 44,
+      "deletions": 0,
+      "changes": 44,
+      "blob_url": "https://github.com/googlecolab/google-colab-cli/blob/d4f855d885cf39f47af5bcae9cd7f7963c18ef09/tests%2Ftest_ssh.py",
+      "raw_url": "https://github.com/googlecolab/google-colab-cli/raw/d4f855d885cf39f47af5bcae9cd7f7963c18ef09/tests%2Ftest_ssh.py",
+      "contents_url": "https://api.github.com/repos/googlecolab/google-colab-cli/contents/tests%2Ftest_ssh.py?ref=d4f855d885cf39f47af5bcae9cd7f7963c18ef09",
+      "patch": "@@ -25,6 +25,7 @@\n import shlex\n import subprocess\n import sys\n+import threading\n from unittest.mock import MagicMock\n \n from colab_cli.cli import app\n@@ -235,6 +236,49 @@ def test_bridge_proxy_mode_pumps_ws_to_stdout(mocker):\n     ws.close.assert_called()\n \n \n+def test_bridge_proxy_mode_pumps_stdin_to_ws(mocker):\n+    \"\"\"os.read() chunks leave as binary frames; EOF ends the pump and closes\n+    the socket.\n+\n+    Regression test: the pump used select() on the stdin fd before reading.\n+    Windows select() only accepts sockets, so there the OSError killed the\n+    pump thread and the remote side saw no input at all; a plain blocking\n+    read works on every platform.\n+    \"\"\"\n+    reads = iter([b\"ping \", b\"hello\", b\"\"])\n+    stdin_eof = threading.Event()\n+\n+    def fake_read(fd, size):\n+        chunk = next(reads)\n+        if not chunk:\n+            stdin_eof.set()\n+        return chunk\n+\n+    mocker.patch(\"sys.stdin\")\n+    sys.stdin.buffer.fileno.return_value = 0\n+    mocker.patch.object(ssh_module.os, \"read\", side_effect=fake_read)\n+    fake_stdout = MagicMock()\n+    fake_stdout.buffer = io.BytesIO()\n+    mocker.patch(\"sys.stdout\", fake_stdout)\n+\n+    # Hold the ws->stdout loop until the pump has drained stdin, so the\n+    # send_binary assertions below can't race the reader thread.\n+    def recv_data(control_frame):\n+        stdin_eof.wait(timeout=5)\n+        return (websocket.ABNF.OPCODE_CLOSE, b\"\")\n+\n+    ws = MagicMock()\n+    ws.recv_data.side_effect = recv_data\n+\n+    rc = ssh_module._bridge_proxy_mode(ws)\n+    assert rc == 0\n+    assert [call.args[0] for call in ws.send_binary.call_args_list] == [\n+        b\"ping \",\n+        b\"hello\",\n+    ]\n+    ws.close.assert_called()\n+\n+\n # --- ProxyCommand shell quoting ---------------------------------------------\n \n "
+    }
+  ]
+}

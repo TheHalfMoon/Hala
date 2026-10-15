@@ -1,0 +1,696 @@
+# Terms of Use | Kaggle
+URL: https://www.kaggle.com/terms
+
+Terms of Use | Kaggle
+
+PLEASE NOTE THAT YOUR USE OF AND ACCESS TO OUR SERVICES (DEFINED BELOW) ARE SUBJECT TO THE FOLLOWING TERMS. IF YOU DO NOT AGREE TO ALL OF THE FOLLOWING, YOU MAY NOT USE OR ACCESS THE SERVICES IN ANY MANNER.
+
+Terms of Use
+
+Effective Date: June 22, 2025
+
+Welcome to Kaggle. Please read on to learn the rules and restrictions that govern your use of our website(s), products, services and applications (the “Services”). If you have any questions, comments, or concerns regarding these Terms or the Services, please contact us. These Terms of Use (the “Terms”) are a binding contract between you and Kaggle Inc. (“Kaggle,” “we” and “us”). Kaggle is organized under the laws of the State of Delaware, USA, and has offices located at 1600 Amphitheatre Parkway, Mountain View, California 94043 USA. You must agree to and accept all of the Terms, or you don’t have the right to use the Services. Your use of the Services in any way means that you agree to all of these Terms, and these Terms will remain in effect while you use the Services. These Terms include the provisions in this document, as well as those in the Privacy Policy and the Community Guidelines. In these Terms, the words “include” or “including” mean “including but not limited to”, and examples are for illustration purposes and are not limiting.
+
+Will these Terms ever change?
+
+We are constantly trying to improve our Services, so these Terms may need to change along with the Services. We reserve the right to change the Terms at any time, but if we do, we will bring it to your attention by placing a notice on the www.kaggle.com website, by sending you an email, or by some other means. Changes will not apply retroactively and will become effective no sooner than 14 days after they are posted. However, changes addressing new functions for a Service or changes made for legal reasons will be effective immediately. If you don’t agree with the new Terms, you are free to reject them; unfortunately, that means you will no longer be able to use the Services. If you use the Services in any way after a change to the Terms is effective, that means you agree to all of the changes.
+
+Except for changes by us as described here, no other amendment or modification of these Terms will be effective unless in writing and signed by both you and us.
+
+What about my privacy?
+
+Kaggle takes the privacy of its users very seriously. For the current Kaggle Privacy Policy, please click here.
+
+What are the basics of using Kaggle?
+
+You may be required to sign up for an account, and select a password and username (“Kaggle User ID”). You promise to provide us with accurate, complete, and updated registration information about yourself. You may not select as your Kaggle User ID a name that you don’t have the right to use, or another person’s name with the intent to impersonate that person. You may not transfer your account to anyone else without our prior written permission. You also may not have, control, or operate under more than one active Kaggle account or Kaggle User ID. If we determine that you have, control, or are operating under more than one Kaggle account or Kaggle User ID, we may take action without notice, including banning your user account, revoking access to your Kaggle User ID, and disqualifying you from any ongoing Competition(s).
+
+If you are not of legal age to form a binding contract, please see “Our Commitment to Children’s Privacy” in the Privacy Policy and contact us at Kaggle Support for more information on the parental consent process.
+
+If you’re agreeing to these Terms on behalf of an organization or entity, you represent and warrant that you are authorized to agree to these Terms on that organization or entity’s behalf and bind them to these Terms (in which case, the references to “you” and “your” in these Terms, except for in this sentence, refer to that organization or entity), but you are still required to sign up each individual user from your organization with a Kaggle User ID. You are not allowed to allow multiple individuals to operate under one Kaggle User ID, even if you are an organization or entity.
+
+You will only use the Services for your own internal, personal, non-commercial use, and not on behalf of or for the benefit of any third party, and only in a manner that complies with all laws that apply to you. If your use of the Services is prohibited by applicable laws, then you aren’t authorized to use the Services. We are not responsible if you use the Services in a way that breaks the law.
+
+You will keep all your registration information accurate and current. You will not share your account or password with anyone, and you must protect the security of your account and your password. You’re responsible for any activity associated with your account. 
+
+Are there any additional restrictions on my use of the Services? 
+
+Yes. Unless otherwise specified in writing by Kaggle, Kaggle does not intend uses of the Services to create obligations under the Health Insurance Portability and Accountability Act of 1996 as it may be amended from time to time, and any regulations issued under it (“HIPAA”), and makes no representations that the Services satisfy HIPAA requirements. If you are or become a Covered Entity or Business Associate, as defined in HIPAA, you will not use the Services for any purpose or in any manner involving Protected Health Information (as defined in HIPAA) unless you have received prior written consent for such use from Kaggle.
+
+You represent, warrant, and agree that you will not contribute any Content or User Submission or otherwise use the Services or interact with the Services in a manner that:
+
+1. Violates the Acceptable Use Policy, available at www.kaggle.com/aup;
+2. Is harmful, threatening, harassing, defamatory, obscene, or otherwise objectionable;
+3. “Crawls,” “scrapes,” or “spiders” any page, data, or portion of or relating to the Services or Content (through use of manual or automated means);
+4. Copies or stores any significant portion of the Content;
+5. Decompiles, reverse engineers, or otherwise attempts to obtain the source code or underlying ideas or information of or relating to the Services.
+6. Processes or stores any data that is subject to the International Traffic in Arms Regulations maintained by the U.S. Department of State.
+7. Engages in cryptomining or otherwise encourages, requests or allows any form of cryptomining.
+8. Violates these Terms.
+
+You represent, warrant and agree that for any Content or User Submission uploaded to the Service, you have taken appropriate steps to minimize the risk of the Content or User Submission being used by third parties to generate material used to support or facilitate violent extremism or child sexual exploitation.
+
+Without limitation to any other remedies available to Kaggle, a violation of any of the foregoing is grounds for termination of your right to use or access the Services. We reserve the right to remove any Content or User Submissions from the Services at any time, in particular for the reasons mentioned above (including if someone alleges you contributed that Content in violation of these Terms), and without prior notice.
+
+What are my rights in Kaggle?
+
+The materials displayed or performed or available on or through the Services, including text, graphics, data, articles, photos, images, illustrations, and User Submissions (collectively, the “Content”), are protected by copyright and other intellectual property laws. You promise to abide by all copyright notices, trademark rules, information, and restrictions contained in any Content you access through the Services, and you won’t use, copy, reproduce, modify, translate, publish, broadcast, transmit, distribute, perform, upload, display, license, sell or otherwise exploit for any purpose any Content not owned by you, (i) without the prior consent of the owner of that Content or (ii) in a way that violates someone else’s (including Kaggle’s) rights.
+
+You understand that Kaggle owns the Services. You won’t modify, publish, transmit, participate in the transfer or sale of, reproduce (except as expressly provided in this Section), create derivative works based on, or otherwise exploit any of the Services.
+
+The Services may allow you to copy or download certain Content; please remember that just because this functionality exists, doesn’t mean that all the restrictions above don’t apply — they do!
+
+A notice for U.S. Federal Agency Users: The Services were developed solely at private expense and are commercial computer software and related documentation within the meaning of the applicable Federal Acquisition Regulations and their agency supplements.
+
+If you’re an EEA-based consumer of digital content or services and you’ve agreed to these Terms, then EEA consumer laws provide you with a legal guarantee. Under this guarantee, we’re liable for any lack of conformity that you discover:
+
+within two years of the one-time supply of digital content or services; or
+
+at any time during the “continuous” supply of digital content or services.
+
+Your national laws may provide an even longer guarantee. Your rights under these legal guarantees aren’t limited by any other commercial guarantees that we provide. If you want to make a guarantee claim, please contact customer support support@kaggle.com.
+
+Who is responsible for what I see and do on the Services?
+
+Any information or Content publicly posted or privately transmitted through the Services is the sole responsibility of the person from whom such Content originated, and you access all such information and Content at your own risk. We aren’t liable for any errors or omissions in such information, outputs, or Content, or for any damages or loss you might suffer in connection with it. We cannot control and have no duty to take any action regarding how you may interpret and use the Content or what actions you may take as a result of having been exposed to the Content, and you release us from all liability for you having acquired or not acquired Content through the Services. We can’t guarantee the identity of any users with whom you interact in using the Services and are not responsible for which users gain access to the Services.
+
+You are responsible for all Content you contribute to the Services, and you represent and warrant you have all rights necessary to do so.
+
+The Services may contain links, information or connections to third party websites or services that are not owned or controlled by Kaggle. When you access third party websites or engage with third party services, you accept that there are risks in doing so, and that Kaggle is not responsible for such risks. We encourage you to be aware when you leave the Services and to read the terms and privacy policy of each third party website or service that you visit or utilize.
+
+Kaggle has no control over, and assumes no responsibility for, the content, accuracy, privacy policies, or practices of or opinions expressed in any third party websites or by any third party that you interact with through the Services. In addition, Kaggle will not and cannot monitor, verify, censor or edit the content of any third party site or service. By using the Services, you release and hold us harmless from any and all liability arising from your use of any third party website or service.
+
+Your interactions with organizations or individuals found on or through the Services, including payment and delivery of goods or services, and any other terms, conditions, warranties or representations associated with such dealings, are solely between you and such organizations or individuals. You should make whatever investigation you feel necessary or appropriate before proceeding with any online or offline transaction with any of these third parties. You agree that Kaggle will not be responsible or liable for any loss or damage of any sort incurred as the result of any such dealings.
+
+If there is a dispute between participants on this site, or between users and any third party, you agree that Kaggle is under no obligation to become involved. If you have a dispute with one or more other users, you release Kaggle, its officers, employees, agents, and successors from claims, demands, and damages of every kind or nature, known or unknown, suspected or unsuspected, disclosed or undisclosed, arising out of or in any way related to such disputes or our Services. If you are a California resident, you are expressly waiving California Civil Code Section 1542, which says: "A general release does not extend to claims which the creditor does not know or suspect to exist in his or her favor at the time of executing the release, which, if known by him or her must have materially affected his or her settlement with the debtor."
+
+What are the rules for competitions on Kaggle?
+
+Subject to these Terms and any contract with Kaggle, a user may post (“Host User”) a skills-based competition or challenge on the Services (“Competitio
+
+# (no title)
+URL: https://www.apache.org/licenses/LICENSE-2.0.txt
+
+
+ Apache License
+ Version 2.0, January 2004
+ http://www.apache.org/licenses/
+
+ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+ 1. Definitions.
+
+ "License" shall mean the terms and conditions for use, reproduction,
+ and distribution as defined by Sections 1 through 9 of this document.
+
+ "Licensor" shall mean the copyright owner or entity authorized by
+ the copyright owner that is granting the License.
+
+ "Legal Entity" shall mean the union of the acting entity and all
+ other entities that control, are controlled by, or are under common
+ control with that entity. For the purposes of this definition,
+ "control" means (i) the power, direct or indirect, to cause the
+ direction or management of such entity, whether by contract or
+ otherwise, or (ii) ownership of fifty percent (50%) or more of the
+ outstanding shares, or (iii) beneficial ownership of such entity.
+
+ "You" (or "Your") shall mean an individual or Legal Entity
+ exercising permissions granted by this License.
+
+ "Source" form shall mean the preferred form for making modifications,
+ including but not limited to software source code, documentation
+ source, and configuration files.
+
+ "Object" form shall mean any form resulting from mechanical
+ transformation or translation of a Source form, including but
+ not limited to compiled object code, generated documentation,
+ and conversions to other media types.
+
+ "Work" shall mean the work of authorship, whether in Source or
+ Object form, made available under the License, as indicated by a
+ copyright notice that is included in or attached to the work
+ (an example is provided in the Appendix below).
+
+ "Derivative Works" shall mean any work, whether in Source or Object
+ form, that is based on (or derived from) the Work and for which the
+ editorial revisions, annotations, elaborations, or other modifications
+ represent, as a whole, an original work of authorship. For the purposes
+ of this License, Derivative Works shall not include works that remain
+ separable from, or merely link (or bind by name) to the interfaces of,
+ the Work and Derivative Works thereof.
+
+ "Contribution" shall mean any work of authorship, including
+ the original version of the Work and any modifications or additions
+ to that Work or Derivative Works thereof, that is intentionally
+ submitted to Licensor for inclusion in the Work by the copyright owner
+ or by an individual or Legal Entity authorized to submit on behalf of
+ the copyright owner. For the purposes of this definition, "submitted"
+ means any form of electronic, verbal, or written communication sent
+ to the Licensor or its representatives, including but not limited to
+ communication on electronic mailing lists, source code control systems,
+ and issue tracking systems that are managed by, or on behalf of, the
+ Licensor for the purpose of discussing and improving the Work, but
+ excluding communication that is conspicuously marked or otherwise
+ designated in writing by the copyright owner as "Not a Contribution."
+
+ "Contributor" shall mean Licensor and any individual or Legal Entity
+ on behalf of whom a Contribution has been received by Licensor and
+ subsequently incorporated within the Work.
+
+ 2. Grant of Copyright License. Subject to the terms and conditions of
+ this License, each Contributor hereby grants to You a perpetual,
+ worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ copyright license to reproduce, prepare Derivative Works of,
+ publicly display, publicly perform, sublicense, and distribute the
+ Work and such Derivative Works in Source or Object form.
+
+ 3. Grant of Patent License. Subject to the terms and conditions of
+ this License, each Contributor hereby grants to You a perpetual,
+ worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+ (except as stated in this section) patent license to make, have made,
+ use, offer to sell, sell, import, and otherwise transfer the Work,
+ where such license applies only to those patent claims licensable
+ by such Contributor that are necessarily infringed by their
+ Contribution(s) alone or by combination of their Contribution(s)
+ with the Work to which such Contribution(s) was submitted. If You
+ institute patent litigation against any entity (including a
+ cross-claim or counterclaim in a lawsuit) alleging that the Work
+ or a Contribution incorporated within the Work constitutes direct
+ or contributory patent infringement, then any patent licenses
+ granted to You under this License for that Work shall terminate
+ as of the date such litigation is filed.
+
+ 4. Redistribution. You may reproduce and distribute copies of the
+ Work or Derivative Works thereof in any medium, with or without
+ modifications, and in Source or Object form, provided that You
+ meet the following conditions:
+
+ (a) You must give any other recipients of the Work or
+ Derivative Works a copy of this License; and
+
+ (b) You must cause any modified files to carry prominent notices
+ stating that You changed the files; and
+
+ (c) You must retain, in the Source form of any Derivative Works
+ that You distribute, all copyright, patent, trademark, and
+ attribution notices from the Source form of the Work,
+ excluding those notices that do not pertain to any part of
+ the Derivative Works; and
+
+ (d) If the Work includes a "NOTICE" text file as part of its
+ distribution, then any Derivative Works that You distribute must
+ include a readable copy of the attribution notices contained
+ within such NOTICE file, excluding those notices that do not
+ pertain to any part of the Derivative Works, in at least one
+ of the following places: within a NOTICE text file distributed
+ as part of the Derivative Works; within the Source form or
+ documentation, if provided along with the Derivative Works; or,
+ within a display generated by the Derivative Works, if and
+ wherever such third-party notices normally appear. The contents
+ of the NOTICE file are for informational purposes only and
+ do not modify the License. You may add Your own attribution
+ notices within Derivative Works that You distribute, alongside
+ or as an addendum to the NOTICE text from the Work, provided
+ that such additional attribution notices cannot be construed
+ as modifying the License.
+
+ You may add Your own copyright statement to Your modifications and
+ may provide additional or different license terms and conditions
+ for use, reproduction, or distribution of Your modifications, or
+ for any such Derivative Works as a whole, provided Your use,
+ reproduction, and distribution of the Work otherwise complies with
+ the conditions stated in this License.
+
+ 5. Submission of Contributions. Unless You explicitly state otherwise,
+ any Contribution intentionally submitted for inclusion in the Work
+ by You to the Licensor shall be under the terms and conditions of
+ this License, without any additional terms or conditions.
+ Notwithstanding the above, nothing herein shall supersede or modify
+ the terms of any separate license agreement you may have executed
+ with Licensor regarding such Contributions.
+
+ 6. Trademarks. This License does not grant permission to use the trade
+ names, trademarks, service marks, or product names of the Licensor,
+ except as required for reasonable and customary use in describing the
+ origin of the Work and reproducing the content of the NOTICE file.
+
+ 7. Disclaimer of Warranty. Unless required by applicable law or
+ agreed to in writing, Licensor provides the Work (and each
+ Contributor provides its Contributions) on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ implied, including, without limitation, any warranties or conditions
+ of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+ PARTICULAR PURPOSE. You are solely responsible for determining the
+ appropriateness of using or redistributing the Work and assume any
+ risks associated with Your exercise of permissions under this License.
+
+ 8. Limitation of Liability. In no event and under no legal theory,
+ whether in tort (including negligence), contract, or otherwise,
+ unless required by applicable law (such as deliberate and grossly
+ negligent acts) or agreed to in writing, shall any Contributor be
+ liable to You for damages, including any direct, indirect, special,
+ incidental, or consequential damages of any character arising as a
+ result of this License or out of the use or inability to use the
+ Work (including but not limited to damages for loss of goodwill,
+ work stoppage, computer failure or malfunction, or any and all
+ other commercial damages or losses), even if such Contributor
+ has been advised of the possibility of such damages.
+
+ 9. Accepting Warranty or Additional Liability. While redistributing
+ the Work or Derivative Works thereof, You may choose to offer,
+ and charge a fee for, acceptance of support, warranty, indemnity,
+ or other liability obligations and/or rights consistent with this
+ License. However, in accepting such obligations, You may act only
+ on Your own behalf and on Your sole responsibility, not on behalf
+ of any other Contributor, and only if You agree to indemnify,
+ defend, and hold each Contributor harmless for any liability
+ incurred by, or claims asserted against, such Contributor by reason
+ of your accepting any such warranty or additional liability.
+
+ END OF TERMS AND CONDITIONS
+
+ APPENDIX: How to apply the Apache License to your work.
+
+ To apply the Apache License to your work, attach the following
+ boilerplate notice, with the fields enclosed by brackets "[]"
+ replaced with your own identifying information. (Don't include
+ the brackets!) The text should be enclosed in the appropriate
+ comment syntax for the file format. We also recommend that a
+ file or class name and description of purpose be included on the
+ same "printed page" as the copyright notice for easier
+ identification within third-party archives.
+
+ Copyright [yyyy] [name of copyright owner]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+
+# Core concepts - H Platform Docs
+URL: https://hub.hcompany.ai/models-api/build-an-agent/core-concepts
+
+Core concepts - H Platform Docs
+
+# Core concepts
+
+The harness conventions Holo is trained on. Get them right and either output format works.
+
+Holo is trained to act as a multi-step agent inside a specific harness. Six of its conventions have to come along for the model to behave well in yours; skip any one and quality suffers.
+
+## Output format
+
+Function calling or structured outputs, depending on the model.
+
+## Answer tool
+
+The only way the model signals it is done.
+
+## Reasoning
+
+Read it, never replay it.
+
+## Coordinates
+
+Normalized to `[0, 1000]`, scale back yourself.
+
+## Observations
+
+Tool results, plus screenshots in ` ` tags.
+
+## Sampling
+
+0.8 for loops, 0.0 for single calls.
+
+Set up the OpenAI client first by following the Quickstart.
+
+Pick an output format
+
+| | Holo4 (`holo4-27b`, `holo4-35b-a3b`) | Holo3.1 (`holo3-1-35b-a3b`) | Holo3 (`holo3-122b-a10b`) |
+| --- | --- | --- | --- |
+| Function calling | Only option | | Not supported |
+| Structured outputs | Not supported | | Only option |
+
+Pick one and stay in it. Only how you declare tools and read the output changes; everything on this page is shared.
+
+Answer tool
+
+Holo is trained to end a task by calling a tool named `answer` with its work report in the `content` argument. Register it alongside your action tools, in both formats, and stop the loop when it is called. A step that comes back without any tool call is not a stop signal: treat it as a no-op, append the message, and keep looping. Only `answer` ends the run.
+
+Reasoning
+
+Holo returns two streams on every call: a thinking trace in `message.reasoning` and the action in `content`. Reasoning is essential in agent mode (Holo was trained to plan before each step), so leave it on; `reasoning_effort: "medium"` is a sensible default.
+
+```
+extra_body={"chat_template_kwargs": {"enable_thinking": True}}
+
+```
+
+```
+// H-specific fields are passed through in the request body
+...({ chat_template_kwargs: { enable_thinking: true } } as any)
+
+```
+
+Past reasoning is dropped between turns by the Qwen 3.5 chat template Holo inherits, so anything the model needs to remember has to flow through `content`. When re-adding the assistant message to the conversation, push only the parsed output. Do not splice the reasoning back in.
+
+Coordinates in `[0, 1000]`
+
+Send a screenshot at any size. Holo returns coordinates as integers in `[0, 1000]`, normalized to that image. Scale back to pixels using its dimensions:
+
+```
+abs_x = int((x / 1000) * screenshot.width)
+abs_y = int((y / 1000) * screenshot.height)
+
+```
+
+```
+const absX = Math.round((x / 1000) * screenshot.width);
+const absY = Math.round((y / 1000) * screenshot.height);
+
+```
+
+Origin is top-left. Send and scale against the same image bytes. Any resize, crop, or DPI mismatch will misclick. Pick one pixel unit (CSS or device) and stay in it end to end.
+
+Observations
+
+An observation is what the agent sees after it acts. Agents without a screen, such as a code agent or an MCP agent, need nothing extra: the task is the first `user` message, and each tool result goes back as a `tool` message. The rest of this section applies when the agent works on a screen. Each step, the current screenshot goes in as a `user` message wrapped in ` ` tags:
+
+```
+messages.append({"role": "user", "content": [
+    {"type": "text", "text": "<observation>\n"},
+    {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}},
+    {"type": "text", "text": "\n</observation>"},
+]})
+
+```
+
+```
+messages.push({
+  role: "user",
+  content: [
+    { type: "text", text: "<observation>\n" },
+    { type: "image_url", image_url: { url: `data:image/png;base64,${b64}` } },
+    { type: "text", text: "\n</observation>" },
+  ],
+});
+
+```
+
+Keep at most the last 3 screenshots in context. More degrades accuracy. Replace older screenshots with a short text placeholder and keep the ` ` wrapper:
+
+```
+def trim_to_last_n_images(messages, n=3):
+    seen = 0
+    for msg in reversed(messages):
+        if msg["role"] != "user" or not isinstance(msg["content"], list):
+            continue
+        for chunk in msg["content"]:
+            if chunk.get("type") != "image_url":
+                continue
+            seen += 1
+            if seen > n:
+                chunk["type"] = "text"
+                chunk["text"] = "[screenshot evicted]"
+                chunk.pop("image_url", None)
+
+```
+
+```
+function trimToLastNImages(messages: any[], n = 3) {
+  let seen = 0;
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const msg = messages[i];
+    if (msg.role !== "user" || !Array.isArray(msg.content)) continue;
+    for (const chunk of msg.content) {
+      if (chunk.type !== "image_url") continue;
+      seen += 1;
+      if (seen > n) {
+        chunk.type = "text";
+        chunk.text = "[screenshot evicted]";
+        delete chunk.image_url;
+      }
+    }
+  }
+}
+
+```
+
+Both loop guides call this helper right after appending each observation.
+
+Sampling
+
+Agent loops run with `temperature: 0.8`. Single-call tasks such as element localization and document OCR run with thinking off and `temperature: 0.0`.
+
+Common pitfalls
+
+| Symptom | Likely cause |
+| --- | --- |
+| Clicks land far from the target | Coordinates not scaled to screenshot dimensions, or the screenshot was resized between send and execute |
+| Model loops, forgets earlier facts | Durable facts not carried forward in `content`, or older ` ` wrappers dropped instead of stripped to text |
+| Context window fills up | Image budget not enforced |
+| Reasoning leaks into the action | `... ` written inline in `content` instead of read from `message.reasoning` |
+| Quality collapses after one bad step | Raw model output replayed in history instead of the parsed result |
+| Run stops early, or never ends | Loop exits on an empty tool call instead of on `answer`, or no `answer` tool registered |
+
+Format-specific pitfalls are listed on each loop guide.
+
+# Local inference - H Platform Docs
+URL: https://hub.hcompany.ai/models-api/local-inference
+
+Local inference - H Platform Docs
+
+# Local inference
+
+Holo4 and Holo3.1 are open weights. Serve them with llama.cpp or vLLM, point base_url at your server, and every example in these docs runs as is. Prompts, screenshots, and tool results never leave your network.
+
+Holo4
+
+Both Holo4 models ship in four precisions. Holo4 35B-A3B is under Apache 2.0; Holo4 27B is for research use.
+
+| Checkpoint | Holo4 27B | Holo4 35B-A3B | Serve with |
+| --- | --- | --- | --- |
+| BF16 | Holo4-27B | Holo4-35B-A3B | vLLM |
+| FP8 | Holo4-27B-FP8 | Holo4-35B-A3B-FP8 | vLLM |
+| NVFP4 | Holo4-27B-NVFP4 | Holo4-35B-A3B-NVFP4 | vLLM on Blackwell |
+| Q4 GGUF | Holo4-27B-GGUF | Holo4-35B-A3B-GGUF | llama.cpp |
+
+Recommended vLLM flags, on vLLM 0.28 or newer. Swap the repo and `--served-model-name` for the other size or precision.
+
+```
+vllm serve Hcompany/Holo4-35B-A3B-FP8 \
+  --served-model-name holo4-35b-a3b \
+  --max-model-len 262144 \
+  --enable-prefix-caching \
+  --chat-template-content-format openai \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --limit-mm-per-prompt '{"image": 5, "video": 0}'
+
+```
+
+Serves on port `8000`, so the base URL is `http://localhost:8000/v1`. The rest of this page covers Holo3.1, with measured memory and speed.
+
+Pick a size
+
+Weights on disk are the minimum GPU or unified memory you need. The KV cache and the image encoder come on top. 35B-A3B is the model the API serves as `holo3-1-35b-a3b`, and the one to run quantized (next section). 9B and 4B are dense models that fit on a single GPU. 0.8B is for on-device use.
+
+| | 35B-A3B | 9B | 4B | 0.8B |
+| --- | --- | --- | --- | --- |
+| Weights (BF16) | 70.2 GB | 18.8 GB | 10.4 GB | 2.2 GB |
+
+Pick a precision
+
+35B-A3B also comes in three quantized checkpoints. NVFP4 needs a third of the memory of BF16.
+
+| Checkpoint | Weights | Throughput on DGX Spark | Serve with |
+| --- | --- | --- | --- |
+| BF16 | 70.2 GB | 326 tok/s | vLLM |
+| FP8 | 37.6 GB | 404 tok/s | vLLM |
+| NVFP4 (W4A16) | 23.7 GB | 568 tok/s | vLLM on Blackwell (DGX Spark, GB10, GB300) |
+| Q4_K_M GGUF | 21.3 GB | | llama.cpp on Apple Silicon or RTX GPUs |
+
+Throughput measured with vLLM’s benchmark tool on an agentic workload: 12k input tokens, 1k output tokens, three 1080p images per request, concurrency 1. NVFP4 uses NVIDIA Model Optimizer in a W4A16 configuration.
+
+Agent speed
+
+Token throughput matters less than how many steps the agent gets through in a minute. Holo3.1 35B-A3B inside HoloDesktop CLI, by hardware and precision: On DGX Spark, NVFP4 plus the harness optimizations cut the average step from 6.8 s to 3.3 s, about twice as fast as the FP8 baseline. The fast harness (`holo run --fast`) takes one screenshot per step, skips thinking, and sends smaller images. It is quicker and less accurate on fiddly UIs. llama.cpp does not yet cache prefixes or images for the Qwen architecture, which holds its throughput back.
+
+Run it
+
+1
+
+Start a server
+
+- macOS (llama.cpp)
+- DGX Spark (vLLM)
+
+Use llama.cpp with Metal acceleration and the `Q4_K_M` GGUF weights. You want an M3 or newer with at least 36 GB of unified memory: the weights alone take 21 GB, and prefix caching needs room for the KV cache. If memory is tight, lower `--cache-ram` and `--ctx-size`.
+
+```
+brew install llama.cpp
+llama-server -hf Hcompany/Holo-3.1-35B-A3B-GGUF
+
+```
+
+Tuned flags for higher throughput:
+
+```
+llama-server \
+  --hf Hcompany/Holo-3.1-35B-A3B-GGUF \
+  --n-gpu-layers 999 \
+  --ctx-size 65536 \
+  --batch-size 16384 \
+  --ubatch-size 2048 \
+  --flash-attn 1 \
+  --cache-type-k q8_0 \
+  --cache-type-v q8_0 \
+  --image-min-tokens 1024 \
+  --ctx-checkpoints 8 \
+  --cache-ram 32768 \
+  --kv-unified \
+  --threads 16
+
+```
+
+Serves on port `8080`, so the base URL is `http://localhost:8080/v1`. Any string works as the model ID.
+
+Use the aarch64 vLLM image with the NVFP4 weights. The GB10’s Blackwell cores run NVFP4 natively.
+
+```
+docker pull vllm/vllm-openai:v0.23.0-aarch64-cu129-ubuntu2404
+docker run -d --gpus all \
+  --shm-size=16g \
+  --network host \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  vllm/vllm-openai:v0.23.0-aarch64-cu129-ubuntu2404 \
+  vllm serve Hcompany/Holo-3.1-35B-A3B-NVFP4 \
+  --served-model-name holo3-1-35b-a3b \
+  --host 0.0.0.0
+
+```
+
+Tuned flags for higher throughput:
+
+```
+docker run -d --gpus all \
+  --shm-size=16g \
+  --network host \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  vllm/vllm-openai:v0.23.0-aarch64-cu129-ubuntu2404 \
+  vllm serve Hcompany/Holo-3.1-35B-A3B-NVFP4 \
+  --served-model-name holo3-1-35b-a3b \
+  --host 0.0.0.0 \
+  --gpu-memory-utilization 0.8 \
+  --max-model-len 65537 \
+  --max-num-batched-tokens 32768 \
+  --chat-template-content-format openai \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --limit-mm-per-prompt '{"image": 5, "video": 0}' \
+  --mm-encoder-tp-mode data \
+  --mm-processor-cache-type shm \
+  --mm-processor-cache-gb 15
+
+```
+
+Serves on port `8000`, so the base URL is `http://localhost:8000/v1`. The model ID you pass must match `--served-model-name`.
+
+2
+
+Point your client at it
+
+Same client as the Quickstart, different `base_url`. The server ignores the API key, but the OpenAI SDKs refuse an empty one.
+
+```
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="local")
+
+```
+
+```
+import OpenAI from "openai";
+
+const client = new OpenAI({ baseURL: "http://localhost:8000/v1", apiKey: "local" });
+
+```
+
+```
+holo run "Open TextEdit and write a short note saying HoloDesktop CLI is installed" \
+  --base-url http://localhost:8000/v1 \
+  --model holo3-1-35b-a3b
+
+```
+
+For MCP hosts, see Run the model yourself.
+
+## Core concepts
+
+The harness conventions Holo expects, hosted or local.
+
+## HoloDesktop CLI
+
+A ready-made desktop agent that runs on your local server.
+
+# Holo3: Breaking the Computer Use Frontier | H
+URL: https://hcompany.ai/newsroom/holo3
+Published: 2026-03-31
+
+Holo3: Breaking the Computer Use Frontier | H
+
+Today we're releasing Holo3, the next model in our work on autonomous enterprise agents. Holo3-122B-A10B scores 78.85% on OSWorld-Verified, a new state of the art on the main desktop computer-use benchmark.
+
+Holo3 isn't just a benchmark leader; we built it for production. Using our agentic flywheel, we trained it to run real workflows inside synthetic enterprise environments. That makes it good at today's business tasks and sets it up to handle a much wider range of software over time.
+
+Best of all, Holo3 achieves this with only 10B active parameters (122B total), so at a fraction of the cost of large-scale proprietary models, such as GPT 5.4 or Opus 4.6. All models are available through our Inference API. Holo3-35B-A3B weights are openly accessible on Hugging Face under the Apache2 license and freely accessible through our inference API under a free tier.
+
+(opens full size in a new tab)
+
+OSWorld-Verified score versus cost per million output tokens for Holo3, Holo2, Qwen3.5, Kimi-K2.5, GPT-5.4, and Claude 4.6 models.
+
+### The Agentic Learning Flywheel
+
+Holo3's edge comes from its training pipeline, a feedback loop that sharpens the two things an agent needs most: perception and decision-making.
+
+The flywheel teaches the model to carry out specific tasks from annotated examples while building general skills across a huge range of interfaces. Here's how we build these computer-use models:
+
+- Synthetic Navigation Data: using human and generated instructions, we generate scenario-specific navigation examples.
+- Out-of-Domain Augmentation: we programmatically extend the scenarios and augment the data to ensure Holo3 can handle the unexpected.
+- Curated reinforcement learning: every sample is filtered and run through a reinforcement-learning pipeline tuned for performance.
+
+Beyond the scores, the OSWorld results are proof that the flywheel works. To check that it transfers to real business applications, we built the Synthetic Environment Factory.
+
+### The Synthetic Environment Factory & H Corporate Benchmarks
+
+This factory reproduces the reality of enterprise systems and is one of the environments we trained Holo3 in. Coding agents build the environments automatically, programming websites from scratch based on scenario specifications, and produce verifiable tasks of varying difficulty that are validated end-to-end with verification scripts.
+
+To measure real-world readiness, we also designed H Corporate Benchmarks, a dedicated evaluation suite of 486 multi-step realistic tasks spanning 4 categories: E-commerce, Business software, Collaboration, and various Multi-App setups.
+
+The benchmark spans the full complexity spectrum: from focused, single-application tasks to long-horizon, multi-application workflows that mirror how work actually gets done. At the harder end of the scale (Multi-Apps), tasks require the agent to coordinate information across multiple systems simultaneously. For example, retrieving equipment prices from a PDF, cross-referencing them against each employee's remaining budget, and autonomously sending personalised approval or rejection emails to every individual. This kind of task demands not only accurate calculation and document parsing, but sustained multi-step reasoning across applications without losing state or intent.
+
+(opens full size in a new tab)
+
+Examples of synthetic environments created for training Holo3.
+
+The results below show Holo3 ahead of its competitors on single-application benchmarks. The gap between Holo3 and the base Qwen3.5 models is what the flywheel buys us: higher success rates than models with far more parameters, at the same localization and grounding quality.
+
+(opens full size in a new tab)
+
+Holo3 leads most computer use, H Corporate, and UI grounding benchmarks. Baseline numbers are evaluated by H; starred numbers are reported from original source material.
+
+### Towards Universal Agency
+
+Holo3 is a milestone, not the finish line. By building a system that can see, reason, and act inside our clients' software, we're making the autonomous enterprise real.
+
+As the Synthetic Environment Factory keeps growing, our agents take on harder tasks. Holo3 handles known interfaces well; we're now working on the next step, adaptive agency, where a model can learn to operate new, custom enterprise software on its own, in real time.

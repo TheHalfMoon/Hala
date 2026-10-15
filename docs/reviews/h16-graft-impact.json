@@ -1,0 +1,1338 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H16_SERVING_CANDIDATE.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 11
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 11,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H16 v2 image serving candidate"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Implemented experimental source; CPU contract tests use a fake engine and provide no model-quality or GPU qualification. The real v1 backend remains unavailable and v1 mock metadata remains strict. Production readiness is never enabled by the candidate path or caller flags."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "`POST /v2/hala/action` accepts exactly `schema: hala.image_request.v2`, `policy_request` (the existing strict v1 request used only as a pure policy record), and `media`. Media requires bounded PNG base64, SHA-256, request/tenant/task/device/session IDs, `frame_id` equal to observation generation, `origin: [0,0]`, and `dpi: 96`. Only identity image scaling is supported; dimensions must match the PNG, and images are limited to 524288 bytes and 1048576 pixels. Existing transport body limits may impose a smaller bound; raising them is explicit server configuration. Redaction regions must contain black pixels. Media digests bind bytes to the submitted observation, not to a trusted capture device; future Aladdin integration must supply authenticated fresh observations."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "The engine receives one RGB image and the goal; the remote prompt does not include observed IDs or private bounds. The independent v2 protocol `h16-v2-normalized-point-v1` accepts only `{\"point\":[x,y]}` with integer axes in 0..1000, either bare JSON or exactly one `json` code fence. No prose extraction, duplicate fields, extra fields or guessed protocol are accepted. The server maps each coordinate by `min(size-1, coordinate*size//1000)`, identifies exactly one eligible observed target, rejects protected or ambiguous overlapping hits, and reuses deterministic action policy validation. Confidence is `null`: model confidence is uncalibrated and is not requested or invented. Output `hala.click_proposal.v2` carries all bindings, media digest and engine/model/processor/prompt/precision provenance. It is unqualified advice with `execution_authorized: false` and `verification_required: true`; it contains no success receipt. `/v2/hala/plan` and `/v2/hala/decision` fail closed. Authentication, admission leases, framing, deadline, disconnect cancellation and output limits reuse the existing transport. `/ready` remains the existing v1 backend readiness and does not claim v2 qualification."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "`CandidateBackend()` is unavailable by default. A server-owned injected engine enables experimental candidate calls only. CPU tests label provenance `cpu_fake`. `RemoteQwenEngine.load(cache_dir)` is an optional remote-only Linux Colab loader requiring explicit `HALA_REMOTE_SERVING_ALLOWED=1` and an actual `COLAB_RELEASE_TAG` marker. It rejects the Kaggle runtime marker and an unknown `/kaggle` runtime, local Windows, and caches outside `/content` or the approved `/tmp/hala-serving-model-cache` before importing ML packages. Kaggle commercial-use eligibility remains blocked. Provider markers are diagnostics, not an adversarial proof or permission to spend. It pins Qwen/Qwen3-VL-2B-Instruct revision `89644892e4d85e24eaac8bacfd4f463576704203`, Torch 2.11.0 and Transformers 5.16.1, FP16, eager attention and `trust_remote_code=False`. It uses a 4096-token input ceiling, deterministic bounded 96-token generation and context stopping, with one active shared model call. Deadline cannot preempt an in-progress CUDA kernel; admission stays retained until the worker finishes."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "No loader execution, downloaded weights, GPU E2E, release qualification, native Aladdin integration, training, public tunnel or deployment is included in CPU evidence. Actual free-session GPU serving evidence and independent Jev/PStack/Graft/CI gates remain required. Do not install these ML packages or call the loader on the personal PC."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "hala/inference/__init__.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 26,
+          "end": 26
+        }
+      ],
+      "hunks": [
+        {
+          "start": 26,
+          "end": 26,
+          "lines": [
+            {
+              "n": 26,
+              "sign": "+",
+              "text": "        \"unsupported_responsibility\": (503, \"Candidate responsibility is unsupported.\"),"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "hala/inference/remote_qwen.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 91
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 91,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Optional pinned remote GPU engine. Never import ML dependencies on CPU CI.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from hala.inference import ServiceError"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from hala.inference.vision_candidate import PROMPT_REVISION, INSTRUCTION"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "MODEL_ID = 'Qwen/Qwen3-VL-2B-Instruct'"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "MODEL_REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "TORCH_VERSION = '2.11.0'"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "TRANSFORMERS_VERSION = '5.16.1'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "class RemoteQwenEngine:"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"\"\"Source candidate, not a runtime qualification or deployment entrypoint."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    Loading is restricted to explicitly opted-in Linux Colab ephemeral roots. The caller must"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    verify a free GPU session before calling this optional loader. No startup"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    path invokes it automatically and there is no caller qualification flag."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"\"\""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    provenance = {'engine': 'remote_transformers', 'model_id': MODEL_ID,"
+            }
+          ],
+          "dropped": 67
+        }
+      ]
+    },
+    {
+      "path": "hala/inference/vision_candidate.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 144
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 144,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Experimental v2 image advice. CPU fakes and remote engines stay unqualified.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import base64"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import binascii"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from hala.contracts import Request, ContractError"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from hala.contracts.proposal import Action, validate_action, validate_target"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from hala.contracts.validation import object_fields, require, number, sequence, contains"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from hala.inference import ServiceError"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "MAX_PNG_BYTES = 524288"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "MAX_PIXELS = 1048576"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "PROMPT_REVISION = 'h16-v2-normalized-point-v1'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "INSTRUCTION = ('Return only JSON: {\"point\":[x,y]}. Use integer normalized coordinates '"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "               'from 0 to 1000 on each image axis. The supplied image is the entire '"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "               'coordinate frame. Do not execute actions or claim completion.')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "BINDINGS = ('request_id', 'tenant_id', 'task_id', 'device_id', 'session_id', 'frame_id')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def bindings(request):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    return dict(request_id=request.request_id, tenant_id=request.tenant_id,"
+            }
+          ],
+          "dropped": 120
+        }
+      ]
+    },
+    {
+      "path": "hala/serving/__init__.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 18,
+          "end": 19
+        },
+        {
+          "start": 80,
+          "end": 80
+        },
+        {
+          "start": 83,
+          "end": 84
+        },
+        {
+          "start": 96,
+          "end": 97
+        },
+        {
+          "start": 123,
+          "end": 139
+        }
+      ],
+      "hunks": [
+        {
+          "start": 18,
+          "end": 19,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "             \"/v1/hala/decision\": \"decision\"}"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "             \"/v1/hala/decision\": \"decision\", \"/v2/hala/action\": \"v2_action\","
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "             \"/v2/hala/plan\": \"v2_plan\", \"/v2/hala/decision\": \"v2_decision\"}"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 80,
+          "end": 80,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    def __init__(self, config, backend=None):"
+            },
+            {
+              "n": 80,
+              "sign": "+",
+              "text": "    def __init__(self, config, backend=None, candidate_backend=None):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 83,
+          "end": 84,
+          "lines": [
+            {
+              "n": 83,
+              "sign": "+",
+              "text": "        from hala.inference.vision_candidate import CandidateBackend"
+            },
+            {
+              "n": 84,
+              "sign": "+",
+              "text": "        self.candidate_backend = candidate_backend or CandidateBackend()"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 96,
+          "end": 97,
+          "lines": [
+            {
+              "n": 96,
+              "sign": "+",
+              "text": "        if responsibility.startswith('v2_'):"
+            },
+            {
+              "n": 97,
+              "sign": "+",
+              "text": "            return self.infer_candidate(responsibility, raw, context)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 123,
+          "end": 139,
+          "lines": [
+            {
+              "n": 123,
+              "sign": "+",
+              "text": "    def infer_candidate(self, responsibility, raw, context):"
+            },
+            {
+              "n": 124,
+              "sign": "+",
+              "text": "        from hala.inference.vision_candidate import parse_request"
+            },
+            {
+              "n": 125,
+              "sign": "+",
+              "text": "        from hala.contracts import ContractError"
+            },
+            {
+              "n": 126,
+              "sign": "+",
+              "text": "        if responsibility != 'v2_action':"
+            },
+            {
+              "n": 127,
+              "sign": "+",
+              "text": "            raise ServiceError('unsupported_responsibility')"
+            },
+            {
+              "n": 128,
+              "sign": "+",
+              "text": "        try:"
+            },
+            {
+              "n": 129,
+              "sign": "+",
+              "text": "            request, image, eligible, digest = parse_request(raw, self.config.tenant_id)"
+            },
+            {
+              "n": 130,
+              "sign": "+",
+              "text": "        except (ContractError, RecursionError, OverflowError):"
+            },
+            {
+              "n": 131,
+              "sign": "+",
+              "text": "            raise ServiceError('invalid_request') from None"
+            },
+            {
+              "n": 132,
+              "sign": "+",
+              "text": "        context.check()"
+            },
+            {
+              "n": 133,
+              "sign": "+",
+              "text": "        proposal = self.candidate_backend.infer(request, image, eligible, digest, context)"
+            },
+            {
+              "n": 134,
+              "sign": "+",
+              "text": "        context.check()"
+            },
+            {
+              "n": 135,
+              "sign": "+",
+              "text": "        result = {'api_version': 'hala.v2', 'result': proposal}"
+            },
+            {
+              "n": 136,
+              "sign": "+",
+              "text": "        if len(encode(result)) > self.config.max_output_bytes:"
+            },
+            {
+              "n": 137,
+              "sign": "+",
+              "text": "            raise ServiceError('output_too_large')"
+            },
+            {
+              "n": 138,
+              "sign": "+",
+              "text": "        return result"
+            },
+            {
+              "n": 139,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_serving_v2.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 248
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 248,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU candidate contracts with fake inference; no model qualification.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import base64"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import socket"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from PIL import Image"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from hala.inference import RequestContext, ServiceError"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from hala.inference.vision_candidate import CandidateBackend"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "from hala.serving import Config, Service"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from tests import test_serving as transport"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "payload, TOKEN = transport.payload, transport.TOKEN"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "def candidate_payload():"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    request = payload()"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    request['allowed_actions'] = ['click', 'abstain']"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    stream = io.BytesIO()"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    Image.new('RGB', (800, 600)).save(stream, format='PNG')"
+            }
+          ],
+          "dropped": 224
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H16_SERVING_CANDIDATE.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "hala/inference/__init__.py#ServiceError",
+      "name": "ServiceError",
+      "kind": "class",
+      "path": "hala/inference/__init__.py",
+      "span": "L7-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/remote_qwen.py#RemoteQwenEngine.__call__.Stop.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "hala/inference/remote_qwen.py",
+      "span": "L69-L70",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/remote_qwen.py#RemoteQwenEngine.load",
+      "name": "load",
+      "kind": "method",
+      "path": "hala/inference/remote_qwen.py",
+      "span": "L29-L60",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#bindings",
+      "name": "bindings",
+      "kind": "function",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L23-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#CandidateBackend.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L105-L106",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#CandidateBackend.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L112-L144",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#CandidateBackend.metadata",
+      "name": "metadata",
+      "kind": "method",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L108-L110",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#decode_point",
+      "name": "decode_point",
+      "kind": "function",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L29-L45",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#parse_request",
+      "name": "parse_request",
+      "kind": "function",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L48-L100",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L80-L84",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L94-L121",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.infer_candidate",
+      "name": "infer_candidate",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L123-L138",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#candidate_payload",
+      "name": "candidate_payload",
+      "kind": "function",
+      "path": "tests/test_serving_v2.py",
+      "span": "L20-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L52-L53",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.rejected",
+      "name": "rejected",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L54-L57",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.setUp",
+      "name": "setUp",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L48-L51",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_ambiguous_or_overlapping_protected_target",
+      "name": "test_ambiguous_or_overlapping_protected_target",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L112-L118",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_candidate_is_explicit_unqualified_advice",
+      "name": "test_candidate_is_explicit_unqualified_advice",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L58-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_context_after_engine_and_output_bound.CancelEngine.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L158-L160",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_decoder_generalized_dimensions_and_axis_endpoints",
+      "name": "test_decoder_generalized_dimensions_and_axis_endpoints",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L120-L124",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_explicit_json_fence_and_server_target_mapping",
+      "name": "test_explicit_json_fence_and_server_target_mapping",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L106-L110",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_frame_scale_origin_and_png_dimensions",
+      "name": "test_frame_scale_origin_and_png_dimensions",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L74-L83",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_local_loader_rejected_before_dependencies",
+      "name": "test_local_loader_rejected_before_dependencies",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L167-L170",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_malformed_media_pixels_and_caller_qualification",
+      "name": "test_malformed_media_pixels_and_caller_qualification",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L142-L154",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_media_binding_and_tamper_precede_engine",
+      "name": "test_media_binding_and_tamper_precede_engine",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L67-L73",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_output_nonfinite_unknown_unobserved_and_outside",
+      "name": "test_output_nonfinite_unknown_unobserved_and_outside",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L96-L104",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_policy_ceiling_budget_protected_and_redacted",
+      "name": "test_policy_ceiling_budget_protected_and_redacted",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L84-L95",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_remote_loader_provider_and_optin_guards_before_ml_imports",
+      "name": "test_remote_loader_provider_and_optin_guards_before_ml_imports",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L172-L186",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_tenant_cancel_deadline_unsupported_default",
+      "name": "test_tenant_cancel_deadline_unsupported_default",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L125-L140",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#FakeEngine.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L41-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#FakeEngine.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L38-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_auth_and_default_gate",
+      "name": "test_v2_auth_and_default_gate",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L194-L197",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_deadline_retains_capacity_until_worker_exit.Blocking.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L208-L211",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_disconnect_cancels_and_retains_capacity.Blocking.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L230-L234",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_transport_candidate",
+      "name": "test_v2_transport_candidate",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L198-L202",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "hala/inference/__init__.py#MockBackend.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/inference/__init__.py",
+      "span": "L54-L64",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/inference/__init__.py#RealBackend.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/inference/__init__.py",
+      "span": "L76-L78",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/inference/__init__.py#RequestContext.check",
+      "name": "check",
+      "kind": "method",
+      "path": "hala/inference/__init__.py",
+      "span": "L40-L45",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/inference/remote_qwen.py#RemoteQwenEngine.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "hala/inference/remote_qwen.py",
+      "span": "L62-L91",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#CandidateBackend.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L112-L144",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/inference/vision_candidate.py#parse_request",
+      "name": "parse_request",
+      "kind": "function",
+      "path": "hala/inference/vision_candidate.py",
+      "span": "L48-L100",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_error",
+      "name": "_error",
+      "kind": "function",
+      "path": "hala/serving/__init__.py",
+      "span": "L215-L231",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Handler.inference",
+      "name": "inference",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L291-L325",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Handler.inference.work",
+      "name": "work",
+      "kind": "function",
+      "path": "hala/serving/__init__.py",
+      "span": "L296-L305",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Handler.read",
+      "name": "read",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L240-L289",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Handler.run",
+      "name": "run",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L327-L351",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Reader.body",
+      "name": "body",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L195-L201",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Reader.line",
+      "name": "line",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L185-L193",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#_Reader.receive",
+      "name": "receive",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L172-L183",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.authenticate",
+      "name": "authenticate",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L86-L92",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L94-L121",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#Service.infer_candidate",
+      "name": "infer_candidate",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L123-L138",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#strict_json",
+      "name": "strict_json",
+      "kind": "function",
+      "path": "hala/serving/__init__.py",
+      "span": "L52-L76",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/__init__.py#Server.handle_error",
+      "name": "handle_error",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L392-L394",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "hala/serving/__init__.py#Server.process_request",
+      "name": "process_request",
+      "kind": "method",
+      "path": "hala/serving/__init__.py",
+      "span": "L365-L380",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.infer",
+      "name": "infer",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L52-L53",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_tenant_cancel_deadline_unsupported_default",
+      "name": "test_tenant_cancel_deadline_unsupported_default",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L125-L140",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_decoder_generalized_dimensions_and_axis_endpoints",
+      "name": "test_decoder_generalized_dimensions_and_axis_endpoints",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L120-L124",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.rejected",
+      "name": "rejected",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L54-L57",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_candidate_is_explicit_unqualified_advice",
+      "name": "test_candidate_is_explicit_unqualified_advice",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L58-L66",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_explicit_json_fence_and_server_target_mapping",
+      "name": "test_explicit_json_fence_and_server_target_mapping",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L106-L110",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_deadline_retains_capacity_until_worker_exit",
+      "name": "test_v2_deadline_retains_capacity_until_worker_exit",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L204-L224",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_v2.py#V2TransportTests.test_v2_disconnect_cancels_and_retains_capacity",
+      "name": "test_v2_disconnect_cancels_and_retains_capacity",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L226-L248",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_v2.py#CandidateTests.test_context_after_engine_and_output_bound",
+      "name": "test_context_after_engine_and_output_bound",
+      "kind": "method",
+      "path": "tests/test_serving_v2.py",
+      "span": "L156-L165",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "ServiceError",
+      "labelSource": "symbol",
+      "key": "hala/inference/",
+      "files": [
+        "hala/inference/__init__.py",
+        "hala/inference/remote_qwen.py",
+        "hala/inference/vision_candidate.py"
+      ],
+      "seeds": 9,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_serving_v2.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_serving_v2.py"
+      ],
+      "reached": 1,
+      "behavioural": 9,
+      "unreached": [
+        "ServiceError",
+        "__call__",
+        "load",
+        "bindings",
+        "__init__",
+        "infer",
+        "metadata",
+        "parse_request"
+      ],
+      "seedNames": [
+        "ServiceError",
+        "bindings",
+        "decode_point",
+        "parse_request",
+        "__call__",
+        "__init__",
+        "infer",
+        "load",
+        "metadata"
+      ],
+      "owners": []
+    },
+    {
+      "label": "infer",
+      "labelSource": "symbol",
+      "key": "hala/serving/",
+      "files": [
+        "hala/serving/__init__.py"
+      ],
+      "seeds": 3,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_serving_v2.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_serving_v2.py"
+      ],
+      "reached": 1,
+      "behavioural": 3,
+      "unreached": [
+        "__init__",
+        "infer_candidate"
+      ],
+      "seedNames": [
+        "infer",
+        "infer_candidate",
+        "__init__"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

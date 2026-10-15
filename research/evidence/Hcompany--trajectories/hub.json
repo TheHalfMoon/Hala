@@ -1,0 +1,22 @@
+{
+  "_id": "6aba330f9281fcce91d69c15",
+  "id": "Hcompany/trajectories",
+  "sha": "ede2a362c99ddba0d03f439c47a0b8fea6abae22",
+  "cardData": {
+    "license": "apache-2.0",
+    "pretty_name": "Holo4 Trajectories",
+    "language": [
+      "en"
+    ],
+    "tags": [
+      "agents",
+      "computer-use",
+      "trajectories",
+      "benchmark"
+    ],
+    "size_categories": [
+      "1K<n<10K"
+    ]
+  },
+  "description": "\n\t\n\t\t\n\t\n\t\n\t\tHolo4 Trajectories\n\t\n\nEvery run behind the Holo4 benchmark scores: 7,366 agent trajectories from Holo4 27B and Holo4 35B-A3B, with each step's reasoning, actions, tool results and screenshots.\nBrowse them at trajectories.hcompany.ai. This dataset is the same bundle the site serves.\n\n\t\n\t\t\nBenchmark\nHolo4 27B\nHolo4 35B-A3B\nUpstream\nLicense\n\n\n\t\t\nOSWorld\n1,096\n1,102\nxlang-ai/OSWorld\nApache 2.0\n\n\nOSWorld 2\n106\n106\nxlang-ai/OSWorld-V2\nApache 2.0\n\n\nAndroidWorld\n344\n347\u2026 See the full description on the dataset page: https://huggingface.co/datasets/Hcompany/trajectories."
+}

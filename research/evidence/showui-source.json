@@ -1,0 +1,101 @@
+{
+  "sha": "21ed7cb24be0cc877bb8352ee34d58a9aea2c876",
+  "node_id": "C_kwDONIYS_toAKDIxZWQ3Y2IyNGJlMGNjODc3YmI4MzUyZWUzNGQ1OGE5YWVhMmM4NzY",
+  "commit": {
+    "author": {
+      "name": "Kevin",
+      "email": "kevin.qh.lin@gmail.com",
+      "date": "2026-04-24T07:16:50Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-04-24T07:16:50Z"
+    },
+    "message": "Update README.md",
+    "tree": {
+      "sha": "842e03ffbae918a0b47b5051e15a73a2be483e24",
+      "url": "https://api.github.com/repos/showlab/ShowUI/git/trees/842e03ffbae918a0b47b5051e15a73a2be483e24"
+    },
+    "url": "https://api.github.com/repos/showlab/ShowUI/git/commits/21ed7cb24be0cc877bb8352ee34d58a9aea2c876",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp6xjiCRC1aQ7uu5UhlAAAKr8QAJT0SO2N+fgumtiK08y58cQz\nPmjfr50rHxLUmZjbYjst+dl+93qPl2EsTijNHBDxoYtTmkVOIcwZESYsJdzKlKtm\npDc8utJDvUMqzkc0XPYFTuquZco/t/kfy0Y8JvMOzp+CBMFJNQ4IyNtlEVOVG0gC\nNJbtGxHytCNkxdLcL3CTA+S0MHpunVALW2215xrHVq3W43m5mTOPCmuHy2Knf9r4\nLNhc5BYYw6oiyzSWe2XRgS6cHr5cbg4eLWFGBsQeFbUFg9gZlw5kWDmHLErxHOcL\n6fepZNuzGh2tlorAsYf/TcY32rEc9Ssm9U3KMWCv3D8XBwOyMHUYAUTkol32PY4q\nZZeRnsHtPoH3Y0Xl4z+J2A0IZJuxxI7+UdyO1pLF01treq7rqgIH/OmTz45FjBO9\npTdiwyYGyj2NBSUPhnYqfhci3dFbPvxqLjhDG5PmH68+v56APl51L3aIlsAm/+hy\nFBPkey0Z9RV2etQn1SukyGLXbqhPjVxkLj19n2MaisixO0fnZdnW3zKnCEbrRphz\nwUbvIAFykQz51W6zf+1/dGx0ltlg+9nRW7SObHpRRk5AwhRDFpW2U+FGkalHG6Au\nLZN+JvkbzkgwrC5NaHXWcacgFlGGxbDYXPDCWo8P3lZGPJGXvmPxJw3r4UjCSeqh\nzobrwBaGGThWx/X8/pKV\n=R13U\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 842e03ffbae918a0b47b5051e15a73a2be483e24\nparent e02ef3d2f9f30fd88bbc20042aeb9b48d451875d\nauthor Kevin <kevin.qh.lin@gmail.com> 1777015010 -0700\ncommitter GitHub <noreply@github.com> 1777015010 -0700\n\nUpdate README.md",
+      "verified_at": "2026-04-24T07:16:50Z"
+    }
+  },
+  "url": "https://api.github.com/repos/showlab/ShowUI/commits/21ed7cb24be0cc877bb8352ee34d58a9aea2c876",
+  "html_url": "https://github.com/showlab/ShowUI/commit/21ed7cb24be0cc877bb8352ee34d58a9aea2c876",
+  "comments_url": "https://api.github.com/repos/showlab/ShowUI/commits/21ed7cb24be0cc877bb8352ee34d58a9aea2c876/comments",
+  "author": {
+    "login": "QinghongLin",
+    "id": 103281027,
+    "node_id": "U_kgDOBifxgw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/103281027?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/QinghongLin",
+    "html_url": "https://github.com/QinghongLin",
+    "followers_url": "https://api.github.com/users/QinghongLin/followers",
+    "following_url": "https://api.github.com/users/QinghongLin/following{/other_user}",
+    "gists_url": "https://api.github.com/users/QinghongLin/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/QinghongLin/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/QinghongLin/subscriptions",
+    "organizations_url": "https://api.github.com/users/QinghongLin/orgs",
+    "repos_url": "https://api.github.com/users/QinghongLin/repos",
+    "events_url": "https://api.github.com/users/QinghongLin/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/QinghongLin/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "e02ef3d2f9f30fd88bbc20042aeb9b48d451875d",
+      "url": "https://api.github.com/repos/showlab/ShowUI/commits/e02ef3d2f9f30fd88bbc20042aeb9b48d451875d",
+      "html_url": "https://github.com/showlab/ShowUI/commit/e02ef3d2f9f30fd88bbc20042aeb9b48d451875d"
+    }
+  ],
+  "stats": {
+    "total": 2,
+    "additions": 1,
+    "deletions": 1
+  },
+  "files": [
+    {
+      "sha": "a9543af69392f2710f44be6f588e60daad5034ff",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/showlab/ShowUI/blob/21ed7cb24be0cc877bb8352ee34d58a9aea2c876/README.md",
+      "raw_url": "https://github.com/showlab/ShowUI/raw/21ed7cb24be0cc877bb8352ee34d58a9aea2c876/README.md",
+      "contents_url": "https://api.github.com/repos/showlab/ShowUI/contents/README.md?ref=21ed7cb24be0cc877bb8352ee34d58a9aea2c876",
+      "patch": "@@ -27,7 +27,7 @@ ShowUI \u662f\u4e00\u6b3e\u5f00\u6e90\u7684\u3001\u7aef\u5230\u7aef\u3001\u8f7b\u91cf\u7ea7\u7684\u89c6\u89c9-\u8bed\u8a00-\u52a8\u4f5c\u6a21\u578b\n > <br>Show Lab @ National University of Singapore, Microsoft<br>\n \n ## \ud83d\udd25 Update\n-- [x] [2026.2.21] ShowUI-pi has been accepted to **CVPR 2026**.\n+- [x] [2026.2.21] [ShowUI-pi](https://github.com/showlab/showui-pi) has been accepted to **CVPR 2026**.\n - [x] [2025.12.31] We released [**ShowUI-Aloha**](https://github.com/showlab/ShowUI-Aloha) for human demonstration workflow.\n - [x] [2025.12.31] We released [**ShowUI-\u03c0**](https://github.com/showlab/showui-pi) for GUI dragging.\n - [x] [2025.3.2] Support fine-tuning and inference of the lastest base model **Qwen2.5-VL**."
+    }
+  ]
+}

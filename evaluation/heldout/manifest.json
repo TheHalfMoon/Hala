@@ -1,0 +1,23 @@
+{
+  "families": 8,
+  "files": {
+    "docs/H14_PROTOCOL.md": "9a3e53a09a66ce6fdeaa17838a5fa08d55e514019fcf601b1cf3c67f8a8d5b9e",
+    "docs/H14_RUN.md": "f01ef9d3b66f6662540a435bd1b8d0b50bde830572440872e5ca1c14b6d85846",
+    "evaluation/heldout/tasks.json": "0efd21686fb1fc6255ffe463256f290c8d1cbb2fbcd61ad8d982ae1c5990e6c5",
+    "evaluation/heldout_fixtures.py": "3458d012b8d90582e2528e9b08be928e393b925ff9f513fbef09de8b76ee8aae",
+    "evaluation/heldout_protocol.py": "d040066be79faf5521f2f227484b0a0eeb41810889004755dd1be5a4801d03a9",
+    "evaluation/heldout_runner.py": "b7797e938c9ecb74e71a1ecbd834cd12bc41a70b61539e9299ec68eb59c5b014",
+    "specs/H14-heldout-frontier.md": "0927eed4183d79b263f2befddd2b7d5b3a5074a26280e7bb1a2c78501ed681b1",
+    "tools/freeze_heldout.py": "ae86392c1357011c0a83331d8562f39190c0e1a7367045c504a53aff845351ba",
+    "training/artifacts.py": "80742d1ea6bdafc2d16db27d57aec4e653ca53b8ca54776908bd07869d97e2c1",
+    "training/checkpoints.py": "93e34ea8e20e77e7424a400656e15c814457d608382c8b4db75597a65a891826"
+  },
+  "frozen_at_utc": "2026-10-14T20:02:23.520459+00:00",
+  "instances": 64,
+  "languages": {
+    "ar": 32,
+    "en": 32
+  },
+  "phase": "P2_before_inference",
+  "schema": "hala.h14.freeze.v1"
+}

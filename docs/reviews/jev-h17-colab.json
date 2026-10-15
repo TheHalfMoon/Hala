@@ -1,0 +1,62 @@
+{
+  "version": "2026.919.0",
+  "scope": "Advisory source judgments, not independent/release approval",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this source under the stated experimental scope?",
+      "criteria": {
+        "true": "Concrete invariant violation, false qualification flag, incorrect scoring or unsafe resume.",
+        "false": "No evident defect; unexecuted GPU support is unknown rather than proved defective."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this code evidently grant model authority, trust false completion, execute raw model output, or falsely accept malformed/bypassed artifacts?",
+      "criteria": {
+        "true": "Concrete unsafe path crosses the declared trust boundary.",
+        "false": "Outputs remain bounded advice; offline operator configuration is not a hostile user boundary."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim mock or calibration observations qualify real training, complete native tasks or release?",
+      "criteria": {
+        "true": "False qualification is claimed.",
+        "false": "Synthetic fixture, CPU control, engineering smoke and native task limits are explicit."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "evaluation/quantization.py",
+      "source_sha256": "849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154",
+      "exit_code": 0,
+      "wall_seconds": 0.852343300000939,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.37,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.12,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 438,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2527,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Tokens disclosed, account charges not independently verified; no billing action activated."
+}

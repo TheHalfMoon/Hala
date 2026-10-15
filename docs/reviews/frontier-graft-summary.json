@@ -1,0 +1,12 @@
+﻿{
+    "head":  "9f4c26dbb4d4cefe15c4177e10f3e6976145af14",
+    "base":  "00f6692383ca9e9cc147380b062676dd74932e83",
+    "version":  "0.21.1",
+    "build_exit":  0,
+    "check_exit":  0,
+    "impact_exit":  0,
+    "nodes":  413,
+    "graph_ok":  true,
+    "scope":  "Immutable PR source graph and actual base-to-head blast radius; not correctness",
+    "earlier_archive_attempt":  "build/check passed, blast failed because archive lacked Git metadata; rerun in detached exact-head Git worktree"
+}

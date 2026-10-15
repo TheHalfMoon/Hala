@@ -1,0 +1,11 @@
+{
+  "schema": "hala.h14.observation.provenance.v1",
+  "source_commit": "ae0a9977edb2ec51825a8d5be5c2a3bdf9eb61ae",
+  "result_sha256": "6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32",
+  "capture": "Rendered Colab cell output via browser accessibility; exact JSON copied",
+  "cost": "No paid resource action; account invoice not independently inspected",
+  "native_qualified": false,
+  "model_quality_qualified": false,
+  "original_strict_preserved": true,
+  "calibration_preserved": true
+}

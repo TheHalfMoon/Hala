@@ -1,0 +1,227 @@
+{
+  "schema": "hala.baseline.smoke.v1",
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "prompt_revision": "hala-grounding-calibration-v2",
+  "coordinate_protocol": "normalized_1000",
+  "calibration_only": true,
+  "evidence": "real_inference",
+  "training_runs": 0,
+  "precision": "fp16",
+  "attention": "sdpa",
+  "python": "3.13.15",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.16.1",
+  "gpu": "Tesla T4",
+  "vram_bytes": 15637086208,
+  "cases": [
+    {
+      "id": 0,
+      "language": "en",
+      "goal": "Click the Save button.",
+      "image_sha256": "77725681866e5ffe45192921b3413a693995aa54973e665dcc4dd0c1c2f44898",
+      "expected_box": [
+        340,
+        200,
+        560,
+        260
+      ],
+      "output": "```json\n{\"point\":[688, 648]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          440,
+          233
+        ]
+      },
+      "inference_seconds": 1.0430503970000018,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 1,
+      "language": "en",
+      "goal": "Click the Cancel button.",
+      "image_sha256": "193e1b85f29f094d0d0ef7cb2156df11898d941b2a6c22a41e4aa473b5f8b5d1",
+      "expected_box": [
+        40,
+        200,
+        260,
+        260
+      ],
+      "output": "```json\n{\"point\":[166, 658]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          106,
+          236
+        ]
+      },
+      "inference_seconds": 0.8272284500000069,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 2,
+      "language": "en",
+      "goal": "Click the Search button.",
+      "image_sha256": "43aeb1d07696f2a324beb0e11539d5b7c9b69e04a5bc169b14fc3f84b26af773",
+      "expected_box": [
+        40,
+        200,
+        260,
+        260
+      ],
+      "output": "```json\n{\"point\":[175, 648]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          112,
+          233
+        ]
+      },
+      "inference_seconds": 0.8401053180000417,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 3,
+      "language": "en",
+      "goal": "Click the Open button.",
+      "image_sha256": "9878c04d688fb5f6afb9be21cfd77efd0914f87aee7621f8dfc152916c6ad7cc",
+      "expected_box": [
+        340,
+        100,
+        560,
+        160
+      ],
+      "output": "```json\n{\"point\":[648, 326]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          414,
+          117
+        ]
+      },
+      "inference_seconds": 0.8336770999999317,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 4,
+      "language": "ar",
+      "goal": "انقر على زر حفظ.",
+      "image_sha256": "895c2462738ac99d8db8449fb733d5ca7dab9b9a538209fc9799bfe874dd1161",
+      "expected_box": [
+        340,
+        200,
+        560,
+        260
+      ],
+      "output": "```json\n{\"point\":[648, 648]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          414,
+          233
+        ]
+      },
+      "inference_seconds": 0.8071885049999992,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 5,
+      "language": "ar",
+      "goal": "انقر على زر إلغاء.",
+      "image_sha256": "a5f77282da70a3fa5886f41d367731d1ea264f336d1bd3a2ddcc0a12cd68f674",
+      "expected_box": [
+        340,
+        100,
+        560,
+        160
+      ],
+      "output": "```json\n{\"point\":[688, 345]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          440,
+          124
+        ]
+      },
+      "inference_seconds": 0.8217235650000703,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 6,
+      "language": "ar",
+      "goal": "انقر على زر بحث.",
+      "image_sha256": "a5f77282da70a3fa5886f41d367731d1ea264f336d1bd3a2ddcc0a12cd68f674",
+      "expected_box": [
+        340,
+        200,
+        560,
+        260
+      ],
+      "output": "```json\n{\"point\":[666, 666]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": true,
+      "decoded_pixel_point": {
+        "point": [
+          426,
+          239
+        ]
+      },
+      "inference_seconds": 0.9304042119999849,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    },
+    {
+      "id": 7,
+      "language": "ar",
+      "goal": "انقر على زر فتح.",
+      "image_sha256": "f370499c8ec5faa855304bea7c7a455e4f443dfb07085e2678bf7a15fb4cd2f5",
+      "expected_box": [
+        40,
+        100,
+        260,
+        160
+      ],
+      "output": "```json\n{\"point\":[674, 674]}\n```",
+      "schema_valid": true,
+      "verified_target_hit": false,
+      "decoded_pixel_point": {
+        "point": [
+          431,
+          242
+        ]
+      },
+      "inference_seconds": 0.8744174360000443,
+      "output_tokens": 17,
+      "status": "tested",
+      "state_verification_scope": "geometric_target_only"
+    }
+  ],
+  "release_qualified": false,
+  "download_and_load_seconds": 19.23064893100002,
+  "loaded_allocated_bytes": 4274478592,
+  "evaluated_tasks": 8,
+  "verified_target_hit_rate": 0.875,
+  "peak_vram_bytes": 4347313152,
+  "status": "tested",
+  "limits": "Eight diagnostic GUI cases only. No native action execution, complete-task success, quantization comparison or general bilingual qualification."
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "hala.h15.runtime.failure.v1",
+  "source_commit": "ae0a9977edb2ec51825a8d5be5c2a3bdf9eb61ae",
+  "resource": "free Colab Tesla T4",
+  "attempts": [
+    {
+      "status": "failed_before_adapter_injection",
+      "error": "PEFT 0.20.0 rejects preinstalled torchao 0.10.0",
+      "repair": "Unused optional torchao removed from ephemeral remote environment"
+    },
+    {
+      "status": "failed_before_optimizer_update",
+      "error": "Nonfinite adapter gradient",
+      "reached": "actual model forward and backward",
+      "diagnosis": "Default GradScaler overflow is a hypothesis pending repaired rerun"
+    }
+  ],
+  "actual_adapter_update_verified": false,
+  "save_reload_resume_qualified": false,
+  "paid_action_activated": false
+}

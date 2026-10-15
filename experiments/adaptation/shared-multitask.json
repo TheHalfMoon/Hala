@@ -1,0 +1,23 @@
+{
+  "schema": "hala.h18.prospective-shared-lora.v1",
+  "status": "blocked_preparation_only",
+  "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+  "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "architecture": "single_shared_base_single_multitask_lora",
+  "adapter_count": 1,
+  "tasks": ["mind_plan_v1", "type_normalized_point_v1"],
+  "languages": ["en", "ar"],
+  "datasets": [],
+  "training_enabled": false,
+  "download_weights": false,
+  "submit_job": false,
+  "candidate_hyperparameters": {
+    "precision": "fp16", "rank": 4, "learning_rate": 0.00005,
+    "batch_size": 1, "gradient_accumulation": 1
+  },
+  "data_requirements": [
+    "rights_cleared_content_bound", "validated_mind_plans", "normalized_type_points",
+    "bilingual_semantic_coverage", "qualified_arabic_rendering",
+    "independent_family_disjoint_train_dev_test", "h14_never_training_or_prompt_tuning"
+  ]
+}

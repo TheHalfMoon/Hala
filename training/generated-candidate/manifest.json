@@ -1,0 +1,792 @@
+{
+  "adapter_qualified": false,
+  "arabic_image_training": {
+    "enabled": false,
+    "excluded_records": 58,
+    "raqm_available": false,
+    "raqm_qualified": false,
+    "reason": "Arabic images excluded until actual shaping is independently qualified"
+  },
+  "dataset_sha256": "60c79bf7d06f6fc436e92bbfd35a86cb3bbf3b751df9fb13246cc74410a30c91",
+  "families": [
+    "workflow-archive",
+    "workflow-delete_confirm",
+    "workflow-drag_drop",
+    "workflow-filter",
+    "workflow-form",
+    "workflow-open",
+    "workflow-rename",
+    "workflow-save"
+  ],
+  "held_out_families": [
+    "workflow-export",
+    "workflow-recovery",
+    "workflow-scroll_confirm",
+    "workflow-toggle"
+  ],
+  "label_scope": "First oracle logical action from initial synthetic observation only",
+  "media": [
+    {
+      "family": "workflow-save",
+      "path": "images/intent-save-00-862846.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "8479fedc2c3ee8de7fb895beff8f8d44b88cad7ac4021cc135bdcaa6400f1314"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/intent-save-02-112562.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "ea35d3970ededda7e99196a934da9d355d62ba2bb0471cc1c66561c1613b6e71"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/intent-save-04-106890.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "64dab8babb24ae129cb4ae1297f23d984b66f08d5b7083407a855cce98bf06c9"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/intent-open-00-732603.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "ef782050fbecd242cfd8a55d5dc27af419a8a74c8f8e82b047d3dac9d7e7a7a1"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/intent-open-02-555247.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "3fa2032817e30d2229dd939bdfea4028a61f7d66b24cd39c2440d62577f32da1"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/intent-open-04-853751.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "147024b6c7ba17a850db4e6ffd9e4f1ee36cb0c0ee2a853423f1c7ad2cae360e"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/intent-archive-00-752456.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "32b5f933147ea597eeb7dfb13b771de8e8b1b6923542ddc3efbda51f2b2b3efe"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/intent-archive-02-340815.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "0b5026cfd97ae4dfb6d434018584ccf81afb25e9f307b67637d1432cb15978c3"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/intent-archive-04-652986.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "bf569f4d65e1a6ca73f2e6a898eb75a58dec93580b37efcde9cfa7e18af02452"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/intent-form-00-183611.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "fd8c1a5ac2e11976e22e4f6b9bb70864f5791a1d65e33469b7b233340666f32d"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/intent-form-02-572622.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "bd27af8fc4993476c7c9b638bceee5627f507c723ac836fb6f56e1c64d082bde"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/intent-form-04-862585.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "c0bb0fa12e20777877bf40a75c6f12f3c769b27605ac47747624b996f77e9293"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/intent-filter-00-145921.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "b50b051f82fa7498d0be01122fc79c1df146732d4c008964e6bcb980c03361df"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/intent-filter-02-405840.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "439dbee65674400212204aeca52630439798111ec40e90751ea0aed08cfabf14"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/intent-filter-04-667634.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "d61fbdedd1410f304d8ba8ad2f77b4e924ec83299e18e8703b89aa88f0e71247"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/intent-drag_drop-00-853530.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "1fa8b555ea90e69c2dadd961e80118ae419fd9f2caea892a8ac1aa4f1de81e92"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/intent-drag_drop-02-887875.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "398bca1dd21e5f60da538499f4f9c4c3e92acb225799d9a1bd19bafb78102142"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/intent-drag_drop-04-613281.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "846863b03e899f57140338c492dcc22d1be901d20ca4f23eddfee3d2e43e7b9e"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/gui-save-00-924903.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "471371f69a27d52b53d2e7b0cb1d613f09625c71255f437ced8eefa197c8de62"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/gui-save-02-262507.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "3596136c80c3f739fbb05ce0f0c82f4539c8ae84c2c6b2c767084074e771bfde"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/gui-save-04-495257.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "73ca62759149a232c6736291dce6abb1979b84f55da1a8270555112fca2f1c3f"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/gui-save-06-361454.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "29c3bc43e68317b84e74bda2495c145d0cad722e469dc72efa3aaec9612179fc"
+    },
+    {
+      "family": "workflow-save",
+      "path": "images/gui-save-08-216236.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "e6967b2eb7bdbcdeb32afc7d90703c87ff7c83223a2330b320c232fc71390a43"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/gui-open-00-211654.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "c90b9d5be5ccd8479cae201557c9ce66fdca7899efaf97130d33768c88a0800b"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/gui-open-02-550087.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "9ceb9da28c357f2a0370044384603a80ee14eb9c3f016d2bbc10a0b90f308743"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/gui-open-04-744708.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "d0ef5c7b1494e745b790cee2aeb7715061b5165a10219f7329bea79834c78c0c"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/gui-open-06-436945.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "2d9077b94e46a6a4578119c07678112cae79d73d7a838182b88aab298bea540a"
+    },
+    {
+      "family": "workflow-open",
+      "path": "images/gui-open-08-384804.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "500fd177e8ddf5401711a7b849a7c5ba631d02a3bd69e7083479a9681a1bd60e"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/gui-archive-00-869331.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "9b290090a7cf1813882e843aedbf4293c45af75a97d8708197b16ce72109c8a2"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/gui-archive-02-926539.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "83413f70e6829568738766c64eb37032cb3eeaacebe3c3b97ee5b3913a73dce3"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/gui-archive-04-584821.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "e0fa80fedcce25a876d599a21c5dd0aef4a3cd2943eaae6c13af7d8cff40fd80"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/gui-archive-06-590006.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "80a1439712389e6bb00b3bb8e03ebf048de7e6445fa80cb7dcd6f879b9b1b331"
+    },
+    {
+      "family": "workflow-archive",
+      "path": "images/gui-archive-08-678859.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "4615bdc1978519f0cf23e1d32a66ffac45ef749b4851ccca82e76f3740b0e9cd"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/gui-form-00-913757.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "d901e709a0d08b273593b25b3716aa6d0ac949b12049c78ed625d384dc4a9831"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/gui-form-02-326000.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "742d4283445c3f689fa8d8ca366997a85a7a4433b50ab6b79b142d85a7f6c31c"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/gui-form-04-968160.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "fee724d711b204319bf89b030801b81550f3be83d9e65c4bc56ff344647bbae8"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/gui-form-06-881297.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "1ff3205587e0c67c380d8e8a7cec74d389915a43e24dab843f9f777ebc5c5125"
+    },
+    {
+      "family": "workflow-form",
+      "path": "images/gui-form-08-739764.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "3cffac083951bade67a650028fba5499da7458830442fdf33b7afbea4a962bb0"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/gui-filter-00-788659.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "b7386edda1c141aaacdfd02a207a601968f3837c2dcab8ce6958b8d07926cf75"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/gui-filter-02-901639.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "8be001fa67af236a8c6a981022305fcf808967141816ae3e087e2caa85b0bbeb"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/gui-filter-04-845095.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "031a9f4e4e3a78ca83643197bee8f50966c49f50d9ee54160496dab96b549a08"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/gui-filter-06-924593.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "3577c996b1c061d3b8869db97dff288427fba505d9c62b6acc2c0e1157df8199"
+    },
+    {
+      "family": "workflow-filter",
+      "path": "images/gui-filter-08-713697.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "2b68ae95cb29c673e96ed7badd0887b870c6773b6e3b2a698e88b68bece70e2e"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/gui-drag_drop-00-655309.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "b2fe36b696a0b8387c8e770076d7963d8d7e0902ad352f204fdfde461a427195"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/gui-drag_drop-02-706772.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "05627b97c1d7d341aba6fb5ff32d3b55e29732d1efc3a9c59d2a1a74e56ee086"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/gui-drag_drop-04-793575.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "ff67246be6bcb67abfd5c4e7bad3197770c39185448d72d346109f66eb7519f0"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/gui-drag_drop-06-972732.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "28800e2d5062d63930eb8bf8963fa5cee706e5c367319ec2d7058413a97970c3"
+    },
+    {
+      "family": "workflow-drag_drop",
+      "path": "images/gui-drag_drop-08-124213.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "b1bc81c48c101895a53a68475ea6cd78abad032eac44ccd302ff04d0906c9e5c"
+    },
+    {
+      "family": "workflow-rename",
+      "path": "images/gui-rename-00-904095.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "628501eefd2b444a81d4bea45e73de1a5813ae80a0efc6b87e8292767032605e"
+    },
+    {
+      "family": "workflow-rename",
+      "path": "images/gui-rename-02-187373.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "9ba2ff030e732879201a6c9394fcca953778554ff5cfc39e8bb435e82e60ebc2"
+    },
+    {
+      "family": "workflow-rename",
+      "path": "images/gui-rename-04-996961.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "00d60aaa04b56021a684909b4725936bc60a05399d9785eb6b1274f1c39c5a19"
+    },
+    {
+      "family": "workflow-rename",
+      "path": "images/gui-rename-06-496049.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "8de413f87b52db17024aaf0a390bb046b76596b8972b7a0d2dc82ef0de0b0071"
+    },
+    {
+      "family": "workflow-rename",
+      "path": "images/gui-rename-08-427090.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "943e7576c99ad1f21eeb499dd88b83d04de5abd8818a7bd9cdd28ff2b66977bd"
+    },
+    {
+      "family": "workflow-delete_confirm",
+      "path": "images/gui-delete_confirm-00-804814.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "1943b2761e684b715cd4ce4853d07677aa9f59e700a9ad8e7fb7ea094f5969fe"
+    },
+    {
+      "family": "workflow-delete_confirm",
+      "path": "images/gui-delete_confirm-02-586871.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "a9035b4dc4e759e14f158f22a23177a6c7bf38a357b9f0b4a07c5239578f1dd2"
+    },
+    {
+      "family": "workflow-delete_confirm",
+      "path": "images/gui-delete_confirm-04-275049.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "1c31da776a533ba8b75e8012a0668a2b8845828d488a5f8952b601940242210a"
+    },
+    {
+      "family": "workflow-delete_confirm",
+      "path": "images/gui-delete_confirm-06-928274.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "a4a962fe31d976771e7f25df01b089c870ddff5ec8c0b3e30d01fe9bb474d429"
+    },
+    {
+      "family": "workflow-delete_confirm",
+      "path": "images/gui-delete_confirm-08-980431.png",
+      "provenance": {
+        "benchmark_evaluation": false,
+        "commercial_training_allowed": true,
+        "contains_personal_data": false,
+        "generator_revision": "hala-synthetic-v1",
+        "license": "CC0-1.0",
+        "source": "original_synthetic"
+      },
+      "sha256": "e64d5afaceb8f02d2b6fe644b71a1377dff5719b9e0ec20e62c9ee3b5adfb52d"
+    }
+  ],
+  "rights_cleared": true,
+  "schema": "hala.training.manifest.v1",
+  "source_kind": "synthetic",
+  "source_schema": "hala.synthetic.manifest.v1",
+  "source_sha256": "bdde4ea5326b391172435e29cee77701135c8bfa73805856ffa5dab538bbd35e",
+  "split": "train",
+  "token_budget": 4096,
+  "training_executed": false
+}

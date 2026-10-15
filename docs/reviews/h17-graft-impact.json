@@ -1,0 +1,1992 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": ".gitattributes",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 26,
+          "end": 33
+        }
+      ],
+      "hunks": [
+        {
+          "start": 26,
+          "end": 33,
+          "lines": [
+            {
+              "n": 26,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 27,
+              "sign": "+",
+              "text": "# Preserve the prospective paired quantization freeze."
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "evaluation/quantization*.py -text"
+            },
+            {
+              "n": 29,
+              "sign": "+",
+              "text": "experiments/quantization/** -text"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "tools/*quantization*.py -text"
+            },
+            {
+              "n": 31,
+              "sign": "+",
+              "text": "tests/test_quantization.py -text"
+            },
+            {
+              "n": 32,
+              "sign": "+",
+              "text": "docs/H17_QUANTIZATION.md -text"
+            },
+            {
+              "n": 33,
+              "sign": "+",
+              "text": "specs/H17-paired-quantization.md -text"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H17_QUANTIZATION.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 48
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 48,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H17 paired experimental comparison"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "The measured H14 FP16 baseline has 30/64 hits (English16/32, Arabic14/32),"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "64 schema-valid outputs, 19 wrong-target selections and 15 misses. It does not"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "qualify production, general bilingual competence or native complete-task success."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "H17 never turns equal observed hit counts into an accuracy-equivalence or adoption"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "claim. Eight authored families have dependent variants. Reusing this exposed set"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "is a paired diagnostic, not a new blinded qualification set. Do not tune on it."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "Both modes use the exact pinned model/processor revision and unchanged H14 functions."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "The existing actual FP16 result is included byte-for-byte; supply its original frozen"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "PNG directory, not newly rendered approximations. PNG/RGB/dimension hashes are checked."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "int8 uses threshold6 and no FP32 CPU offload; NF4 uses double quantization, uint8"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "storage and FP16 compute. The intended scope includes all transformable linear modules,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "including vision; record actual converted module names and full-model/vision storage."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "Unconverted vision tensors stay FP16. This is mixed precision, not an assertion that"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "every tensor has the requested bit width. No explicit skip list or tuning is allowed."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "Official evidence is captured with URL, SHA256 and relevant exact-version source"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "excerpts in official-sources.json. Runtime pins are torch2.11.0+cu130,"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "transformers5.16.1, Pillow11.3.0, bitsandbytes0.50.2 and accelerate1.12.0."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "PyPI runtime constraints admit these versions; Transformers' tagged integrations"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "support BitsAndBytesConfig and CUDA device maps. bitsandbytes' optional test extra"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "still constrains transformers<5: that extra is not installed and does not prove"
+            }
+          ],
+          "dropped": 24
+        }
+      ]
+    },
+    {
+      "path": "evaluation/quantization.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 156
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 156,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"H17 experimental comparison helpers; CPU checks never qualify quantized inference.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import statistics"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import ROOT, digest, verify_freeze"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "CONFIG = ROOT / 'experiments/quantization/config.json'"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "FREEZE = ROOT / 'experiments/quantization/source-freeze.json'"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "CACHE = '/tmp/hala-h17-cache'"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "def quantization_config(mode):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    if mode == 'int8':"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        return {'load_in_8bit': True, 'llm_int8_threshold': 6.0,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "                'llm_int8_enable_fp32_cpu_offload': False}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    if mode == 'nf4':"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        return {'load_in_4bit': True, 'bnb_4bit_quant_type': 'nf4',"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                'bnb_4bit_use_double_quant': True, 'bnb_4bit_compute_dtype': 'float16',"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "                'bnb_4bit_quant_storage': 'uint8', 'llm_int8_enable_fp32_cpu_offload': False}"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    raise ValueError('Only prespecified int8 or nf4 experiments allowed')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 132
+        }
+      ]
+    },
+    {
+      "path": "evaluation/quantization_runner.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 165
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 165,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Opt-in Colab T4 H17 experiment. Run one prespecified mode per fresh session.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import signal"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import digest"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from evaluation.heldout_protocol import model_prompt, score, summarize, REVISION"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from evaluation.heldout_runner import device_memory, MODEL_ID, MODEL_REVISION"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from evaluation.quantization import (CACHE, FREEZE, remote_guard, verify_sources,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "                                     verify_media, quantization_config, paired, residency)"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from training.checkpoints import atomic_json"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "def run(mode, image_dir, output_path, source_freeze_sha256):"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    remote_guard()  # Before importing torch, transformers, bitsandbytes or processor."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    settings = quantization_config(mode)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    config, dataset, baseline = verify_sources(source_freeze_sha256)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    paths = verify_media(baseline, Path(image_dir))"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    output = Path(output_path)"
+            }
+          ],
+          "dropped": 141
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/baseline-fp16.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 3177
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 3177,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"all_images_frozen_before_model_load\": true,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"attention\": \"sdpa\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"cases\": ["
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "      \"call_seconds\": 5.345755999999938,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"call_temperature\": \"cold_first_call\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"family\": \"calendar_dates\","
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "      \"fixture_complete\": false,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      \"hit\": false,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "      \"id\": \"h14-calendar_dates-00\","
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "      \"image_sha256\": \"9b0361946ae9e99880248f96cc5e49ebe0b4b62e577c87c6aa52567b5809c995\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"inference_seconds\": 5.201857450000034,"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"language\": \"en\","
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"memory\": {"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        \"allocator_allocated_bytes\": 4303333888,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        \"allocator_peak_allocated_bytes\": 4454523392,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        \"allocator_peak_reserved_bytes\": 4485808128,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        \"allocator_reserved_bytes\": 4485808128,"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        \"device_free_bytes\": 10982588416,"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        \"device_total_bytes\": 15637086208,"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        \"device_used_bytes\": 4654497792"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      },"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"miss\": true,"
+            }
+          ],
+          "dropped": 3153
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/config.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 24
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 24,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adoption_qualified\": false,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"attention\": \"sdpa\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"baseline_path\": \"experiments/quantization/baseline-fp16.json\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"baseline_sha256\": \"6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"deadline_seconds\": 1800,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"h14_manifest_sha256\": \"0d81cc61ecaafb79b52b6a0368f76d550c92f5e4c5ccb05ef468e92a83c5b8d6\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"max_new_tokens\": 48,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"max_time_seconds\": 15,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"model_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\","
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"modes\": ["
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"int8\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"nf4\""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  ],"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  \"packages\": {"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"Pillow\": \"11.3.0\","
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"accelerate\": \"1.12.0\","
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"bitsandbytes\": \"0.50.2\","
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"torch\": \"2.11.0+cu130\","
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    \"transformers\": \"5.16.1\""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h17.config.v1\","
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  \"seed\": 42"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/mechanical.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 43
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 43,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"all_changes_new_files\": true,\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"baseline_counts\": {\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"ar_hit\": 14,\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"en_hit\": 16,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"hit\": 30,\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"miss\": 15,\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"valid\": 64,\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"wrong\": 19\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"commits_created\": 0,\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"full_cpu_suite\": {\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"count\": 136,\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"runs\": 1,\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"seconds\": 8.709,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"status\": \"passed\"\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  \"gpu_qualified\": false,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  \"h14_frozen_dependency_files_verified\": 10,\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  \"local_packages\": {\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"Pillow\": \"12.3.0\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    \"accelerate\": \"not installed locally\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"bitsandbytes\": \"not installed locally\",\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    \"torch\": \"not installed locally\",\r"
+            }
+          ],
+          "dropped": 19
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/official-sources.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 145
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 145,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"gpu_compatibility_qualified\": false,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"lookup_date\": \"2026-10-14\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h17.official-source-evidence.v1\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"sources\": ["
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"details\": {"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "        \"linux_wheels\": ["
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "          \"bitsandbytes-0.50.2-py3-none-manylinux_2_24_aarch64.whl\","
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "          \"bitsandbytes-0.50.2-py3-none-manylinux_2_24_x86_64.whl\""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "        ],"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        \"requires_dist\": ["
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "          \"torch<3,>=2.4\","
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "          \"numpy>=1.17\","
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "          \"packaging>=20.9\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "          \"pandas; extra == \\\"benchmark\\\"\","
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          \"matplotlib; extra == \\\"benchmark\\\"\","
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "          \"hf-doc-builder==0.5.0; extra == \\\"docs\\\"\","
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "          \"bitsandbytes[test]; extra == \\\"dev\\\"\","
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "          \"build<2,>=1.0.0; extra == \\\"dev\\\"\","
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "          \"ruff~=0.14.3; extra == \\\"dev\\\"\","
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "          \"pre-commit<4,>=3.5.0; extra == \\\"dev\\\"\","
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "          \"wheel<1,>=0.42; extra == \\\"dev\\\"\","
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "          \"einops~=0.8.0; extra == \\\"test\\\"\","
+            }
+          ],
+          "dropped": 121
+        }
+      ]
+    },
+    {
+      "path": "experiments/quantization/source-freeze.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 17
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 17,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"files\": {"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"docs/H17_QUANTIZATION.md\": \"bd9ec72165f1e9c11ccdbd7d43edd82e5098366bc88d23fe2f0b34469607766b\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"evaluation/quantization.py\": \"55cd8313241b3c7ac662a7f314f27dc2642a59ace90cd07a6bc72f37d29d39f2\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"evaluation/quantization_runner.py\": \"4b83a10984912fdedc5bae274a0c13aa0c890fa12a7b5d80048045ac3857bcb6\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"experiments/quantization/baseline-fp16.json\": \"6a1adf9a4dd322c06e07ed317f1d880763c60c214d1cc87c036dea21567a7a32\","
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"experiments/quantization/config.json\": \"2b006e66f5d4fc76f23d89a16b59ccbecbc26281f429682f8ed9831f138a210a\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"experiments/quantization/official-sources.json\": \"01be3370c21485ddc976f8f5315e115f1434063f08b71cc1399f8afc999ed601\","
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"specs/H17-paired-quantization.md\": \"aff4d12e9c4f7c7670e5281519e8aa938ff7ee043459d1d2a6c22dc4bb52d219\","
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"tests/test_quantization.py\": \"0b71f8407f6d7b6122c67a314002940039c69d7c5cad9c1831c33837c193da1d\","
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"tools/capture_quantization_sources.py\": \"4f160331a2c0e507d61281281cf822cee3d0afb90436e32b50e746786ca9a0c7\","
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"tools/freeze_quantization.py\": \"0e54ba703bfe63896e6b75ca3851fcbd636da6697bb1592ca3807811b4c6ae95\""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"model_runs\": 0,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  \"phase\": \"before_quantized_model_runs\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h17.source-freeze.v1\""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H17-paired-quantization.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 27
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 27,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H17: prespecified paired quantization experiment"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: implemented CPU contracts; actual quantized GPU runs pending. No adoption decision."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Scope: NEW experimental files only; preserve all ten H14 frozen dependency hashes,"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "serving and trainer. Use the actual frozen64 FP16 baseline: schema-valid64, hit30,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "wrong19, miss15; English16/32 and Arabic14/32. This is an insufficient production"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "baseline and dependent authored task sample."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "Acceptance criteria:"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- [x] Freeze source, protocol, exact library settings and baseline before any quantized inference."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- [x] Prespecify unchanged model/processor revision, SDPA, normalized H14 decoder,"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  prompt, task order, media, seed42 and deterministic 48-token/15-second generation."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- [x] Separate opt-in remote Linux Colab T4 int8 and NF4 paths; reject local/Kaggle,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  external caches and offload; 1800-second wall deadline; no paid action."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "- [x] Paired descriptive hit changes, per-case latency, language/family summaries;"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  full-model and vision residency, quant-state tensor storage and allocator/device metrics."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "- [x] Meaningful offline tests for mapping, corruption, config, pairs and pre-import guards."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "- [ ] Independent root review and mechanical evidence accepted."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "- [ ] Actual fresh-session int8 and NF4 GPU results, including blocked outcomes."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "Builder preparation hardstop: no model download or run before source gates."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "After independent review and publication of the prospective freeze, the root"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "operator may run the authorized bounded experiment on a verified free Colab T4."
+            }
+          ],
+          "dropped": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/test_quantization.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 87
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 87,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from evaluation.quantization import quantization_config, paired, verify_media, remote_guard, verify_sources"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from evaluation.quantization_runner import run"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "class QuantizationTests(unittest.TestCase):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    def test_prespecified_quantizers_disable_offload(self):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        self.assertEqual(quantization_config('int8')['llm_int8_threshold'], 6.0)"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        self.assertFalse(quantization_config('int8')['llm_int8_enable_fp32_cpu_offload'])"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        self.assertEqual(quantization_config('nf4')['bnb_4bit_quant_type'], 'nf4')"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        with self.assertRaises(ValueError):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "            quantization_config('fp16')"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    def test_paired_counts_and_reject_missing_duplicate_or_media_change(self):"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        base = [{'id': str(i), 'language': 'ar', 'family': 'a', 'image_sha256': 'x',"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "                 'hit': i < 2, 'schema_valid': True, 'call_seconds': 1.0} for i in range(4)]"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        quant = copy.deepcopy(base)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        quant[1]['hit'] = False"
+            }
+          ],
+          "dropped": 63
+        }
+      ]
+    },
+    {
+      "path": "tools/capture_quantization_sources.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 50,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Authoring evidence lookup: registry/source text only, no imports or model weights.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import urllib.request"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import ROOT, canonical, digest"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "SOURCES = ("
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    'https://pypi.org/pypi/bitsandbytes/0.50.2/json',"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    'https://pypi.org/pypi/accelerate/1.12.0/json',"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    'https://raw.githubusercontent.com/huggingface/transformers/v5.16.1/src/transformers/utils/import_utils.py',"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    'https://raw.githubusercontent.com/huggingface/transformers/v5.16.1/src/transformers/quantizers/quantizer_bnb_4bit.py',"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    'https://raw.githubusercontent.com/huggingface/transformers/v5.16.1/src/transformers/quantizers/quantizer_bnb_8bit.py',"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    'https://raw.githubusercontent.com/bitsandbytes-foundation/bitsandbytes/0.50.2/README.md',"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ")"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "def capture():"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    records = []"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    for url in SOURCES:"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        with urllib.request.urlopen(url, timeout=30) as response:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            raw = response.read()"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        text = raw.decode('utf-8')"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        if url.endswith('/json'):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            data = json.loads(text)"
+            }
+          ],
+          "dropped": 26
+        }
+      ]
+    },
+    {
+      "path": "tools/freeze_quantization.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 19
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 19,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Authoring-only freeze. Never invoked automatically by the model runner.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from evaluation.heldout_fixtures import ROOT, canonical, digest"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "FILES = ('evaluation/quantization.py', 'evaluation/quantization_runner.py',"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "         'experiments/quantization/config.json', 'experiments/quantization/baseline-fp16.json',"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "         'experiments/quantization/official-sources.json', 'docs/H17_QUANTIZATION.md',"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "         'specs/H17-paired-quantization.md', 'tests/test_quantization.py',"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "         'tools/freeze_quantization.py', 'tools/capture_quantization_sources.py')"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "def freeze():"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    payload = {'schema': 'hala.h17.source-freeze.v1', 'phase': 'before_quantized_model_runs',"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "               'model_runs': 0, 'files': {name: digest(ROOT / name) for name in FILES}}"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    (ROOT / 'experiments/quantization/source-freeze.json').write_bytes(canonical(payload))"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "if __name__ == '__main__':"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    freeze()"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    ".gitattributes",
+    "docs/H17_QUANTIZATION.md",
+    "experiments/quantization/baseline-fp16.json",
+    "experiments/quantization/config.json",
+    "experiments/quantization/mechanical.json",
+    "experiments/quantization/official-sources.json",
+    "experiments/quantization/source-freeze.json",
+    "specs/H17-paired-quantization.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/quantization.py#paired.group",
+      "name": "group",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L99-L105",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#paired.index",
+      "name": "index",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L82-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#quantization_config",
+      "name": "quantization_config",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L15-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#remote_guard",
+      "name": "remote_guard",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L26-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#residency.add",
+      "name": "add",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L121-L135",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#residency.state",
+      "name": "state",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L136-L144",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#verify_media",
+      "name": "verify_media",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L64-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization.py#verify_sources",
+      "name": "verify_sources",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L41-L61",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization_runner.py#run.deadline",
+      "name": "deadline",
+      "kind": "function",
+      "path": "evaluation/quantization_runner.py",
+      "span": "L42-L43",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/quantization_runner.py#run.persist",
+      "name": "persist",
+      "kind": "function",
+      "path": "evaluation/quantization_runner.py",
+      "span": "L40-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_guard_blocks_local_and_external_cache_before_imports",
+      "name": "test_guard_blocks_local_and_external_cache_before_imports",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L37-L45",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_media_mapping_rejects_traversal_and_missing_images",
+      "name": "test_media_mapping_rejects_traversal_and_missing_images",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L47-L56",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_new_source_freeze_and_immutable_h14_verified",
+      "name": "test_new_source_freeze_and_immutable_h14_verified",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L58-L61",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_package_failure_persists_blocked_without_importing_frameworks",
+      "name": "test_package_failure_persists_blocked_without_importing_frameworks",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L63-L83",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_paired_counts_and_reject_missing_duplicate_or_media_change",
+      "name": "test_paired_counts_and_reject_missing_duplicate_or_media_change",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L20-L35",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_prespecified_quantizers_disable_offload",
+      "name": "test_prespecified_quantizers_disable_offload",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L13-L18",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/capture_quantization_sources.py#capture",
+      "name": "capture",
+      "kind": "function",
+      "path": "tools/capture_quantization_sources.py",
+      "span": "L17-L46",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/freeze_quantization.py#freeze",
+      "name": "freeze",
+      "kind": "function",
+      "path": "tools/freeze_quantization.py",
+      "span": "L12-L15",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/quantization.py#paired",
+      "name": "paired",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L81-L114",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/quantization_runner.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/quantization_runner.py",
+      "span": "L19-L155",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_prespecified_quantizers_disable_offload",
+      "name": "test_prespecified_quantizers_disable_offload",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L13-L18",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/quantization.py#residency",
+      "name": "residency",
+      "kind": "function",
+      "path": "evaluation/quantization.py",
+      "span": "L117-L156",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_media_mapping_rejects_traversal_and_missing_images",
+      "name": "test_media_mapping_rejects_traversal_and_missing_images",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L47-L56",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_new_source_freeze_and_immutable_h14_verified",
+      "name": "test_new_source_freeze_and_immutable_h14_verified",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L58-L61",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_quantization.py#QuantizationTests.test_paired_counts_and_reject_missing_duplicate_or_media_change",
+      "name": "test_paired_counts_and_reject_missing_duplicate_or_media_change",
+      "kind": "method",
+      "path": "tests/test_quantization.py",
+      "span": "L20-L35",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "evaluation/quantization_runner.py",
+      "name": "quantization_runner.py",
+      "kind": "file",
+      "path": "evaluation/quantization_runner.py",
+      "span": "L1-L166",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tools/capture_quantization_sources.py",
+      "name": "capture_quantization_sources.py",
+      "kind": "file",
+      "path": "tools/capture_quantization_sources.py",
+      "span": "L1-L51",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tools/freeze_quantization.py",
+      "name": "freeze_quantization.py",
+      "kind": "file",
+      "path": "tools/freeze_quantization.py",
+      "span": "L1-L20",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "add",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/quantization.py",
+        "evaluation/quantization_runner.py"
+      ],
+      "seeds": 10,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_quantization.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_quantization.py"
+      ],
+      "reached": 3,
+      "behavioural": 10,
+      "unreached": [
+        "group",
+        "index",
+        "remote_guard",
+        "add",
+        "state",
+        "deadline",
+        "persist"
+      ],
+      "seedNames": [
+        "add",
+        "quantization_config",
+        "state",
+        "verify_media",
+        "verify_sources",
+        "group",
+        "index",
+        "persist",
+        "deadline",
+        "remote_guard"
+      ],
+      "owners": []
+    },
+    {
+      "label": "capture",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/capture_quantization_sources.py",
+        "tools/freeze_quantization.py"
+      ],
+      "seeds": 2,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 2,
+      "unreached": [
+        "capture",
+        "freeze"
+      ],
+      "seedNames": [
+        "capture",
+        "freeze"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

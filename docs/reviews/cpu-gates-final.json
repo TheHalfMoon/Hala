@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-14",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "results": [
+    {
+      "name": "cpu_unittest",
+      "command": [
+        "C:\\Users\\Shehr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 7.73635039999499,
+      "log": "docs/reviews/cpu_unittest.log",
+      "log_sha256": "2404f4813eac09e7f8071667498335a35712fc1ac96f365f6c6f881ccbb63766"
+    },
+    {
+      "name": "syntax",
+      "command": [
+        "C:\\Users\\Shehr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "hala",
+        "evaluation",
+        "training",
+        "data",
+        "experiments",
+        "research"
+      ],
+      "exit_code": 0,
+      "seconds": 0.27026250000926666,
+      "log": "docs/reviews/syntax.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "metadata_integrity",
+      "command": [
+        "C:\\Users\\Shehr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "research/validate_sources.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.14013710001017898,
+      "log": "docs/reviews/metadata_integrity.log",
+      "log_sha256": "5fe119c7b6be416fcdc77065af4dfecda66326d749ddc6b0aabedccde70c5fb6"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.14306839999335352,
+      "log": "docs/reviews/whitespace.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "sft_integrity",
+      "command": [
+        "C:\\Users\\Shehr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-c",
+        "import json;from training.artifacts import load_sft_artifact;from pathlib import Path;p=Path('training/generated-candidate');m=json.loads((p/'manifest.json').read_text());r=load_sft_artifact(p/'examples.jsonl',m);print(json.dumps({'records':len(r),'families':len(m['families']),'heldout_families':len(m['held_out_families']),'arabic_enabled':m['arabic_image_training']['enabled'],'training_executed':False}))"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3866534000117099,
+      "log": "docs/reviews/sft_integrity.log",
+      "log_sha256": "3da6c05528846a3f7fcfa50777c379ec65fd5aec975e46bdf966345fe42b4dcd"
+    }
+  ],
+  "scope": "CPU infrastructure and helper gates; no foundation-model qualification"
+}

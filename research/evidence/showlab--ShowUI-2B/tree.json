@@ -1,0 +1,92 @@
+[
+  {
+    "type": "directory",
+    "oid": "9f48841f478928f62edc4a326b47a4408105abf0",
+    "size": 0,
+    "path": "examples"
+  },
+  {
+    "type": "file",
+    "oid": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+    "size": 1519,
+    "path": ".gitattributes"
+  },
+  {
+    "type": "file",
+    "oid": "e6e822323be237730387ac8dcb33a774d2a3bbd5",
+    "size": 7410,
+    "path": "README.md"
+  },
+  {
+    "type": "file",
+    "oid": "caa81304af029feb531f1fe80a096dc539ea0153",
+    "size": 392,
+    "path": "added_tokens.json"
+  },
+  {
+    "type": "file",
+    "oid": "feeb28054af5405e6125cd014c380cf4a4bc3c91",
+    "size": 928,
+    "path": "chat_template.json"
+  },
+  {
+    "type": "file",
+    "oid": "eaa9198384dd91f3ed016478c1ef00b120858767",
+    "size": 1156,
+    "path": "config.json"
+  },
+  {
+    "type": "file",
+    "oid": "57084defc7bf62df7b157cbc2df3a382764e4ba9",
+    "size": 255,
+    "path": "generation_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+    "size": 1671853,
+    "path": "merges.txt"
+  },
+  {
+    "type": "file",
+    "oid": "2ef5e95d7d22f4b301fbf6bd6de694f5918a33fd",
+    "size": 567,
+    "path": "preprocessor_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "36c9b59c3f7bf0db006cf3c218816595e9ac2d66",
+    "size": 4418202778,
+    "lfs": {
+      "oid": "68080df785764e98976eb9cc93a07c6c69cf8a6933738496e02aef55b53d2aa3",
+      "size": 4418202778,
+      "pointerSize": 135
+    },
+    "xetHash": "db7750c8f0dbc53d5a6ffd3eca71bbae30100382a1b2f4a9c1b78dd92bf5ec65",
+    "path": "pytorch_model.bin"
+  },
+  {
+    "type": "file",
+    "oid": "75ca451b5055cfd14c9297c72bb615988d9391bd",
+    "size": 467,
+    "path": "special_tokens_map.json"
+  },
+  {
+    "type": "file",
+    "oid": "6a12bcd76a6f4151c9aca398ff5ef0dbfdb4a235",
+    "size": 7030148,
+    "path": "tokenizer.json"
+  },
+  {
+    "type": "file",
+    "oid": "01b36bc43490feb20f4be86de8591c7081eb27af",
+    "size": 4189,
+    "path": "tokenizer_config.json"
+  },
+  {
+    "type": "file",
+    "oid": "4783fe10ac3adce15ac8f358ef5462739852c569",
+    "size": 2776833,
+    "path": "vocab.json"
+  }
+]

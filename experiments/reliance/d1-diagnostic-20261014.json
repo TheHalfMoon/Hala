@@ -1,0 +1,154 @@
+{
+  "schema": "hala.reliance.diagnostic.v1",
+  "date": "2026-10-14",
+  "evidence": "actual_local_typed_decision_inference",
+  "adoption_qualified": false,
+  "scope": "six authored bilingual route diagnostics, not heldout E4 qualification or authority/safety approval",
+  "conditions": "Local d1 runtime already warmed by smoke calls; calls sequential; tool latency includes MCP overhead; Q8 GGUF path reported by runtime, weights not downloaded",
+  "cases": [
+    {
+      "id": "english_structured",
+      "language": "en",
+      "state": "Click the uniquely identified Save button in the fresh accessibility tree. A qualified existing structured invoke tool is available.",
+      "expected": "deterministic",
+      "tool_wall_ms": 781,
+      "response": {
+        "advisory_only": true,
+        "result": {
+          "model": "C:\\Users\\Shehr\\AppData\\Local\\D1Local\\models\\d1-omni-600M-Q8_0.gguf",
+          "answers": {
+            "route": {
+              "type": "choice",
+              "choice": "deterministic",
+              "probabilities": {
+                "deterministic": 0.7294725120820302,
+                "mind": 0.047941672219463986,
+                "type": 0.22258581569850575
+              },
+              "confidence": 0.5942087681230453
+            }
+          },
+          "usage": {
+            "input_tokens": 88,
+            "output_tokens": 0
+          }
+        }
+      },
+      "isError": false
+    },
+    {
+      "id": "english_planning",
+      "language": "en",
+      "state": "Investigate why an unfamiliar application crashes and plan a sequence of observations. There is no uniquely identified next tool.",
+      "expected": "mind",
+      "tool_wall_ms": 536,
+      "response": {
+        "advisory_only": true,
+        "result": {
+          "model": "C:\\Users\\Shehr\\AppData\\Local\\D1Local\\models\\d1-omni-600M-Q8_0.gguf",
+          "answers": {
+            "route": {
+              "type": "choice",
+              "choice": "mind",
+              "probabilities": {
+                "deterministic": 0.04080218211683566,
+                "mind": 0.9502478776064229,
+                "type": 0.008949940276741413
+              },
+              "confidence": 0.9253718164096344
+            }
+          },
+          "usage": {
+            "input_tokens": 89,
+            "output_tokens": 0
+          }
+        }
+      },
+      "isError": false
+    },
+    {
+      "id": "english_visual",
+      "language": "en",
+      "state": "Click an unlabeled icon visible only in a screenshot. There is no accessibility or DOM target. Visual GUI grounding is needed.",
+      "expected": "type",
+      "tool_wall_ms": 588,
+      "response": {
+        "advisory_only": true,
+        "result": {
+          "model": "C:\\Users\\Shehr\\AppData\\Local\\D1Local\\models\\d1-omni-600M-Q8_0.gguf",
+          "answers": {
+            "route": {
+              "type": "choice",
+              "choice": "type",
+              "probabilities": {
+                "deterministic": 0.08117120871377563,
+                "mind": 0.010260166052439637,
+                "type": 0.9085686252337848
+              },
+              "confidence": 0.8628529378506772
+            }
+          },
+          "usage": {
+            "input_tokens": 96,
+            "output_tokens": 0
+          }
+        }
+      },
+      "isError": false
+    },
+    {
+      "id": "arabic_structured",
+      "language": "ar",
+      "state": "انقر زر الحفظ المحدد بشكل فريد في شجرة إمكانية الوصول الحديثة. توجد أداة استدعاء منظمة معتمدة.",
+      "expected": "deterministic",
+      "tool_wall_ms": 34,
+      "response": {
+        "error": [
+          {
+            "type": "text",
+            "text": "HTTPError: HTTP Error 400: Bad Request"
+          }
+        ]
+      },
+      "isError": true
+    },
+    {
+      "id": "arabic_planning",
+      "language": "ar",
+      "state": "حقق في سبب تعطل تطبيق غير مألوف وخطط لسلسلة ملاحظات. لا توجد أداة تالية محددة بشكل فريد.",
+      "expected": "mind",
+      "tool_wall_ms": 21,
+      "response": {
+        "error": [
+          {
+            "type": "text",
+            "text": "HTTPError: HTTP Error 400: Bad Request"
+          }
+        ]
+      },
+      "isError": true
+    },
+    {
+      "id": "arabic_visual",
+      "language": "ar",
+      "state": "انقر أيقونة غير معنونة تظهر في لقطة الشاشة فقط. لا توجد هوية هدف في شجرة إمكانية الوصول أو DOM. يلزم فهم بصري.",
+      "expected": "type",
+      "tool_wall_ms": 30,
+      "response": {
+        "error": [
+          {
+            "type": "text",
+            "text": "HTTPError: HTTP Error 400: Bad Request"
+          }
+        ]
+      },
+      "isError": true
+    }
+  ],
+  "earlier_batch_attempt": {
+    "status": "HTTP400",
+    "scope": "8 questions with richer 7-way catalog; capability unqualified"
+  },
+  "larger_model_comparison": "blocked_no_qualified_remote_foundation",
+  "billing": "local per-call API cost zero; hardware electricity and amortization unmeasured"
+}

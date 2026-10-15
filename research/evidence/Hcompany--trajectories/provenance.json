@@ -1,0 +1,12 @@
+[
+  {
+    "url": "https://huggingface.co/api/datasets/Hcompany/trajectories?expand[]=sha&expand[]=cardData&expand[]=description",
+    "type": "hub_api",
+    "revision": "ede2a362c99ddba0d03f439c47a0b8fea6abae22"
+  },
+  {
+    "url": "https://huggingface.co/datasets/Hcompany/trajectories/resolve/ede2a362c99ddba0d03f439c47a0b8fea6abae22/README.md",
+    "file": "README.md",
+    "sha256": "ee2feb78fb0ee48bc89f8f0af9aff178ac678464afe0782901812a3719dea89e"
+  }
+]

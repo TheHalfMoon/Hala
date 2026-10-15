@@ -1,0 +1,27 @@
+{
+  "actual_environment_probe": "pending root UI",
+  "changed_sources": {
+    "evaluation/quantization.py": "849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154",
+    "tests/test_quantization.py": "4a8fdc76b58ed58794fddfe910e4320639bfbaca924130ab9e954e6109e3bf1c"
+  },
+  "full_cpu_suite": {
+    "count": 140,
+    "runs": 1,
+    "seconds": 9.569,
+    "status": "passed"
+  },
+  "h14_frozen_files_verified": 10,
+  "independent_review": "pending root",
+  "model_runs": 0,
+  "old_freeze_sha256": "e35342f0e6f58b53c25ee7220ca5ee25484673d718096791e7680823ff975d46",
+  "phase_tests": {
+    "count": 8,
+    "status": "passed"
+  },
+  "py_compile": "passed",
+  "python": "3.12.14",
+  "red_regression": "incidental /kaggle rejected with Kaggle blocked before repair",
+  "schema": "hala.h17.colab-guard-repair.v1",
+  "source_commits": 0,
+  "source_freeze_sha256": "d9cbb88f567e43325028151d39c1a00e2ae9c9081fdd1556094aedce8e69585c"
+}

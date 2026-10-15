@@ -1,0 +1,57 @@
+{
+  "schema": "hala.request.v1",
+  "request_id": "r-1",
+  "tenant_id": "tenant-1",
+  "task": {
+    "task_id": "task-1",
+    "goal": "Click Save",
+    "step_index": 0,
+    "max_steps": 10
+  },
+  "device": {
+    "device_id": "device-1",
+    "session_id": "session-1",
+    "os": "windows-11",
+    "locale": "en-US"
+  },
+  "observation": {
+    "generation": "obs-1",
+    "window": {
+      "window_ref": "window-1",
+      "title": "Editor",
+      "process": "synthetic.exe"
+    },
+    "accessibility": [
+      {
+        "element_ref": "save-1",
+        "role": "Button",
+        "name": "Save",
+        "bounds": [
+          10,
+          20,
+          100,
+          30
+        ]
+      }
+    ],
+    "image": {
+      "format": "png",
+      "width": 800,
+      "height": 600,
+      "coordinate_space": "window",
+      "scale": 1.0,
+      "redactions": []
+    },
+    "truncation": {
+      "elements_omitted": 0
+    }
+  },
+  "allowed_actions": [
+    "semantic_invoke",
+    "ask_user",
+    "abstain",
+    "observe"
+  ],
+  "method_ceiling": "WINDOW_TARGETED_INPUT",
+  "cancelled": false
+}

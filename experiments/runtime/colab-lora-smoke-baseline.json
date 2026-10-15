@@ -1,0 +1,11 @@
+{
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "evidence": "real_inference",
+  "evaluated_tasks": 8,
+  "verified_success_rate": 0.875,
+  "state_verification_scope": "geometric_target_only_calibration",
+  "deficit": "One of four Arabic target selections failed after explicit coordinate calibration. Two-step English-only LoRA run is engineering qualification of real processor/masking/optimizer/checkpoints, not claimed remediation of this Arabic deficit or adapter-quality qualification.",
+  "source_record": "experiments/runtime/colab-calibration-fp16-20261014.json",
+  "release_qualified": false
+}

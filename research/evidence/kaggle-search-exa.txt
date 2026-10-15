@@ -1,0 +1,170 @@
+Title: Getting Started on Kaggle | Kaggle
+URL: https://www.kaggle.com/docs/Notebooks
+Published: N/A
+Author: N/A
+Highlights:
+##### Adding a free GPU
+
+You can add a single NVIDIA Tesla P100 to your Notebook for free. GPU environments have lower CPU and main memory, but are a great way to achieve significant speed-ups for certain types of work like training neural networks on image data. One of the major benefits to using Notebooks as opposed to a local machine or your own VM is that the Notebook environment is already pre-configured with GPU-ready software and packages which can be time consuming and frustrating to set-up. Free GPU availability is limited: in busy times, you might be placed in a queue.
+
+To add a GPU, navigate to the “Settings” pane from the Notebook editor and click the “Accelerator" > GPU option. Your session will restart which may take a few moments to several minutes if you don’t need to wait in a queue to access a GPU-enabled machine.
+...
+You can add a TPU v3-8 to your Notebook ... deep learning tasks ... through the Keras high-level API and ... in models using a custom training loop ... Free TPU availability ... placed in a queue. To learn more about ... the most out of using a TPU in Notebooks ... depth guide.
+...
+### Technical Specifications
+...
+writing, each Notebook
+...
+- 12 hours execution time for CPU and GPU notebook sessions and 9 hours for TPU notebook sessions
+- 20 Gigabytes of auto-saved disk space (/kaggle/working)
+- Additional scratchpad disk space (outside /kaggle/working) that will not be saved outside of the current session 
+
+CPU Specifications
+...
+P100 GPU Specifications
+
+- 1 Nvidia Tesla P100 GPU
+- 4 CPU cores
+- 29 Gigabytes of RAM
+
+T4 x2 GPU Specifications
+
+- 2 Nvidia Tesla T4 GPUs
+- 4 CPU cores
+- 29 Gigabytes of RAM
+...
+- Save & Run ... creates a new session ... completely clean state and runs ... top to bottom. This is perfect for major milestones or when you want to share your work, as it gives you (and anyone else who reads your notebook) the confidence that your ... can be run reproducibly ... In order to ... the “Commit” behavior you may have used previously on
+...
+### [EXPERIMENTAL] Increase GPU compute with Colab Pro
+
+ We're introducing an experimental feature that gives you access to additional GPU hours on Kaggle if you are a Colab Pro customer. This is a limited time promotion and we expect it to modify and graduate to a sustainable, long term pay to scale feature on Kaggle. 
+
+- You may link your Colab Account in the Notebook editor via the `File` menu and clicking the `Link to Colab` option. User who have linked their account previously are automatically enrolled into this promotion.
+- Colab Pro and Pro+ users will get 15 and 30 hours of extra GPU hours per week respectively on Kaggle. To claim this benefit, you will verify your Colab subscription by linking your Kaggle account with an active Colab Pro account.
+- These extra GPU hours don't consume your Colab compute units.
+- You'll be using the same Kaggle hardware you're accustomed to (CPUs, T4s, P100s, TPUv3-8).
+- Once the account is verified to have an active Colab subscription, you will be granted additional GPU hours and you can see them in quotas in your Kaggle account settings.
+- You may unlink your Colab Account via the settings page at any time.
+...
+- Kaggle reserves the right to end or suspend the Promotion at any time, with or without notice, at its sole discretion. The end date of the Promotion may not be publicly announced and can occur without prior warning.
+- Kaggle reserves the right to modify the amount of extra GPU hours offered or the terms of the Promotion at any time without prior notice.
+- Kaggle shall not be liable for any loss or inconvenience resulting from the termination or modification of the
+...
+- This Promotion is limited to one linked Kaggle account for each Colab Pro subscriber.
+- If a Kaggle user cancels their Colab Pro account, Kaggle may terminate the extra GPU hours for their linked Kaggle account.
+- The extra GPU hours are non-transferable and cannot be exchanged for cash or any other goods or services.
+- The use of Kaggle's GPU resources is subject to Kaggle's Terms of Use and other applicable policies. Abuse or misuse of GPU resources may result in the suspension or termination of your Kaggle account.
+- Kaggle reserves the right to disqualify any user who violates these Terms or engages in fraudulent or abusive activity related to the Promotion.
+
+---
+
+Title: Kaggle's notebook documentation
+URL: https://www.kaggle.com/docs/notebooks
+Published: N/A
+Author: N/A
+Highlights:
+##### Adding a free GPU
+
+You can add a single NVIDIA Tesla P100 to your Notebook for free. GPU environments have lower CPU and main memory, but are a great way to achieve significant speed-ups for certain types of work like training neural networks on image data. One of the major benefits to using Notebooks as opposed to a local machine or your own VM is that the Notebook environment is already pre-configured with GPU-ready software and packages which can be time consuming and frustrating to set-up. Free GPU availability is limited: in busy times, you might be placed in a queue.
+
+To add a GPU, navigate to the “Settings” pane from the Notebook editor and click the “Accelerator" > GPU option. Your session will restart which may take a few moments to several minutes if you don’t need to wait in a queue to access a GPU-enabled machine.
+...
+placed in a queue
+...
+### Technical Specifications
+...
+- 12 hours execution time for CPU and GPU notebook sessions and 9 hours for TPU notebook sessions
+- 20 Gigabytes of auto-saved disk space (/kaggle/working)
+- Additional scratchpad disk space (outside /kaggle/working) that will not be saved outside of the current session 
+
+CPU
+...
+P100 GPU Specifications
+
+- 1 Nvidia Tesla P100 GPU
+- 4 CPU cores
+- 29 Gigabytes of RAM
+
+T4 x2 GPU Specifications
+
+- 2 Nvidia Tesla T4 GPUs
+- 4 CPU cores
+- 29 Gigabytes of RAM
+...
+- Save & Run All creates a new session with a completely clean state and runs your notebook from top to ... . This is perfect for major milestones or when you want to share your work, as it gives you (and anyone else who reads your notebook) the confidence that your notebook can be run reproducibly. In order to ... (9 hours for TPU notebooks). Save ... the “Commit” behavior you may have used previously on
+...
+### [EXPERIMENTAL] Increase GPU compute with Colab Pro
+
+ We're introducing an experimental feature that gives you access to additional GPU hours on Kaggle if you are a Colab Pro customer. This is a limited time promotion and we expect it to modify and graduate to a sustainable, long term pay to scale feature on Kaggle. 
+
+- You may link your Colab Account in the Notebook editor via the `File` menu and clicking the `Link to Colab` option. User who have linked their account previously are automatically enrolled into this promotion.
+- Colab Pro and Pro+ users will get 15 and 30 hours of extra GPU hours per week respectively on Kaggle. To claim this benefit, you will verify your Colab subscription by linking your Kaggle account with an active Colab Pro account.
+- These extra GPU hours don't consume your Colab compute units.
+- You'll be using the same Kaggle hardware you're accustomed to (CPUs, T4s, P100s, TPUv3-8).
+- Once the account is verified to have an active Colab subscription, you will be granted additional GPU hours and you can see them in quotas in your Kaggle account settings.
+- You may unlink your Colab Account via the settings page at any time.
+...
+- Kaggle reserves the right to end or suspend the Promotion at any time, with or without notice, at its sole discretion. The end date of the Promotion may not be publicly announced and can occur without prior warning.
+- Kaggle reserves the right to modify the amount of extra GPU hours offered or the terms of the Promotion at any time without prior notice.
+- Kaggle shall not be liable for any loss or inconvenience resulting from the termination or modification of the Promotion.
+- This Promotion is limited to one linked Kaggle account for each Colab Pro subscriber.
+- If a Kaggle user cancels their Colab Pro account, Kaggle may terminate the extra GPU hours for their linked Kaggle account.
+- The extra GPU hours are non-transferable and cannot be exchanged for cash or any other goods or services.
+- The use of Kaggle's GPU resources is subject to Kaggle's Terms of Use and other applicable policies. Abuse or misuse of GPU resources may result in the suspension or termination of your Kaggle account.
+- Kaggle reserves the right to disqualify any user who violates these Terms or engages in fraudulent or abusive activity related to the Promotion.
+
+---
+
+Title: RAPIDS on Kaggle - NVIDIA Documentation
+URL: https://docs.nvidia.com/datascience/deployment/26.08/platforms/kaggle/
+Published: N/A
+Author: N/A
+Highlights:
+Kaggle Notebooks provide hosted Jupyter notebooks with GPU accelerators. The latest Kaggle notebook environment includes RAPIDS libraries such as cuDF and cuML, so you can start using them without a separate installation.
+...
+1. Log in to Kaggle or create a Kaggle account.
+2. Select Create and then Notebook. You can also open the new notebook page directly.
+3. In the notebook editor, select Settings > Accelerator, then choose an available GPU option, such as GPU T4 x2 or GPU P100. Starting a GPU session uses your Kaggle GPU quota, so stop the session when you are done.
+4. Select Settings > Environment Preferences > Always use latest environment. This makes the notebook use Kaggle’s latest environment, which contains the preinstalled RAPIDS libraries.
+
+---
+
+Title: [Notebooks update] New GPU (T4s) options & more CPU RAM
+URL: https://www.kaggle.com/discussions/product-feedback/361104
+Published: N/A
+Author: N/A
+Highlights:
+- We’re adding a new GPU option, making NVIDIA T4(x2) available as a choice in addition to the currently available NVIDIA P100 GPUs.
+- We’re increasing the RAM allocation for CPU jobs from 16GB to 30GB per session.
+...
+T4s on Kaggle Before today, adding a GPU to a notebook session always offered a P100. Now, when Kagglers select GPU T4 x2, they will get an environment with 2 T4 GPUs. The choice is up to you: there is no change to GPU quotas and both GPU environments will count towards the same quota. This opens up exciting new opportunities like training larger models and faster training times for some workloads, while also providing a great way to learn how to use multi-gpu environments. We can’t wait to see what you do with it!
+...
+Upgrading CPU RAM We’ve made our base Notebook environment more powerful, increasing the amount of CPU RAM available to Kagglers using Notebooks from 16GB to 30GB per session. We hope this provides a faster and smoother experience when working with data.
+...
+What’s the difference between T4 & P100 GPUs? Both T4s and P100s are GPUs made by NVIDIA. A P100 GPU will perform better on some applications and the T4x2 will perform better on others. For example, a P100 typically has better single-precision performance than a T4, but the T4 has better mixed precision performance, and you'll have twice as much GPU RAM in the T4x2 configuration. You can learn more about each GPU on NVIDIA’s website: NVIDIA T4 & NVIDIA P100. 
+
+Do I have to change my code to use a different GPUs? In short, no. Both T4 & P100s are cross-compatible. However, their differing specs may mean that some workloads could hit resource limits on one GPU that might execute successfully on another. Code may need to be altered to efficiently use both GPUs. 
+
+How does this change affect my quotas? There is no change to quotas. Both GPU environments will count towards the same GPU quota.
+...
+What about jobs submitted via Kaggle Notebooks API? For now, notebooks submitted via API with the ‘enable_gpu’ flag flipped on, will default to use P100s.
+...
+1. Yes you can use this anywhere you used a GPU on Kaggle today, including competitions :) if you run into any issues with this let me know!
+2. Nope! 1 hour of Notebook runtime in the 2xT4 setup only consumes 1 hour of your GPU quota, even though you had access to two GPUs during that time :)
+...
+Hello, it still shows CPU 13GB,where is 30GB? 
+
+@zhichengwen The 30GBs is currently only for CPU-only Notebooks (Accelerator = None), since you're using an Accelerator it has a different amount of RAM.
+...
+Now there's no GPU for free Is this a new feature or a bug?
+
+---
+
+Title: Getting Started on Kaggle | Kaggle
+URL: https://www.kaggle.com/docs/efficient-gpu-usage
+Published: N/A
+Author: N/A
+Highlights:
+Efficient GPU Usage Tips Documentation | Kaggle
+
+Efficient GPU Usage Tips Documentation | Kaggle

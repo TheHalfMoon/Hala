@@ -1,0 +1,31 @@
+[
+  {
+    "intent": "Select the phrase 'sous le protonyme Neogovea mexasca'",
+    "start_bbox": [
+      440,
+      560,
+      453,
+      586
+    ],
+    "end_bbox": [
+      907,
+      560,
+      921,
+      586
+    ],
+    "domain": "text_highlight",
+    "subtype": null,
+    "ordered": false,
+    "image_id": "016929de-c1df-5ed8-bafa-316ac97f6694",
+    "metadata": {
+      "selection_type": "phrase",
+      "text": "sous le protonyme Neogovea mexasca",
+      "full_bbox": [
+        446,
+        560,
+        914,
+        586
+      ]
+    }
+  }
+]

@@ -1,0 +1,168 @@
+[
+  {
+    "domain": "text_highlight",
+    "task_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/text_highlight/tasks/016929de-c1df-5ed8-bafa-316ac97f6694.json",
+    "task_count": 1,
+    "sample": {
+      "intent": "Select the phrase 'sous le protonyme Neogovea mexasca'",
+      "start_bbox": [
+        440,
+        560,
+        453,
+        586
+      ],
+      "end_bbox": [
+        907,
+        560,
+        921,
+        586
+      ],
+      "domain": "text_highlight",
+      "subtype": null,
+      "ordered": false,
+      "image_id": "016929de-c1df-5ed8-bafa-316ac97f6694",
+      "metadata": {
+        "selection_type": "phrase",
+        "text": "sous le protonyme Neogovea mexasca",
+        "full_bbox": [
+          446,
+          560,
+          914,
+          586
+        ]
+      }
+    },
+    "image_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/text_highlight/images/016929de-c1df-5ed8-bafa-316ac97f6694.jpg",
+    "image_bytes": 162336,
+    "image_width": 1650,
+    "image_height": 1275,
+    "image_format": "JPEG"
+  },
+  {
+    "domain": "sheet",
+    "task_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/sheet/tasks/0251a62e-9be7-5d80-adcd-008dc6156936.json",
+    "task_count": 1,
+    "sample": {
+      "intent": "Starting at the 8th occurrence of 'Medicare' in the Insurance_Type column, drag to select across to the Patient_Age cell",
+      "start_bbox": [
+        1549,
+        680,
+        1634,
+        695
+      ],
+      "end_bbox": [
+        1639,
+        680,
+        1733,
+        695
+      ],
+      "domain": "sheet",
+      "subtype": "cell_range",
+      "ordered": false,
+      "image_id": "0251a62e-9be7-5d80-adcd-008dc6156936",
+      "metadata": {
+        "range_bbox": [
+          1549,
+          680,
+          1733,
+          695
+        ],
+        "col_letter": null,
+        "start_cell_content": "Medicare",
+        "end_cell_content": "0"
+      }
+    },
+    "image_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/sheet/images/0251a62e-9be7-5d80-adcd-008dc6156936.jpg",
+    "image_bytes": 731971,
+    "image_width": 1920,
+    "image_height": 1080,
+    "image_format": "JPEG"
+  },
+  {
+    "domain": "slide_resize",
+    "task_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/slide_resize/tasks/00824bfc-7bee-5e5e-a116-5ad2679ba05f.json",
+    "task_count": 1,
+    "sample": {
+      "intent": "pull the bottom-right crop corner to cut the visible area by 51%",
+      "start_bbox": [
+        913,
+        101,
+        923,
+        111
+      ],
+      "end_bbox": [
+        628,
+        91,
+        673,
+        95
+      ],
+      "domain": "slide_resize",
+      "subtype": null,
+      "ordered": true,
+      "image_id": "00824bfc-7bee-5e5e-a116-5ad2679ba05f",
+      "metadata": {
+        "action_type": "crop_diagonal",
+        "handle": "bot_right",
+        "scale_factor": 0.7,
+        "scale_w": 0.7,
+        "scale_h": 0.7,
+        "angle_deg": null,
+        "element_bbox": [
+          26,
+          62,
+          918,
+          106
+        ]
+      }
+    },
+    "image_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/slide_resize/images/00824bfc-7bee-5e5e-a116-5ad2679ba05f.jpg",
+    "image_bytes": 76342,
+    "image_width": 960,
+    "image_height": 720,
+    "image_format": "JPEG"
+  },
+  {
+    "domain": "slider",
+    "task_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/slider/tasks/00f6cad5-a737-56a5-9533-4f13aac3f3d5.json",
+    "task_count": 1,
+    "sample": {
+      "intent": "Set it to 1 of a possible 10",
+      "start_bbox": [
+        666,
+        232,
+        688,
+        254
+      ],
+      "end_bbox": [
+        527,
+        238,
+        537,
+        248
+      ],
+      "domain": "slider",
+      "subtype": null,
+      "ordered": true,
+      "image_id": "00f6cad5-a737-56a5-9533-4f13aac3f3d5",
+      "metadata": {
+        "variant": "ios_group",
+        "thumb_size": "l",
+        "context": "settings_panel",
+        "anchor_kind": "AT_NUMERIC",
+        "affordance": {
+          "has_endpoints": false,
+          "has_tick_labels": false,
+          "has_tooltip": false,
+          "has_cross_reference": true,
+          "icon_is_conventional": false,
+          "range_is_conventional": false
+        },
+        "url": "ctx_settings_panel.html?color=lime&track_size=thick&thumb=square&thumb_size=l&theme=dark&icon=temperature&min=0&max=10&initial=3&step=1&show_endpoints=0&show_scale_badge=1&variant=ios_group"
+      }
+    },
+    "image_url": "https://huggingface.co/datasets/Hcompany/DragOn/resolve/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/eval/slider/images/00f6cad5-a737-56a5-9533-4f13aac3f3d5.jpg",
+    "image_bytes": 50804,
+    "image_width": 1280,
+    "image_height": 800,
+    "image_format": "JPEG"
+  }
+]

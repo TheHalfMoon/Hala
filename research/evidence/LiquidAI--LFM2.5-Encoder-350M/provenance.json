@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://huggingface.co/api/models/LiquidAI/LFM2.5-Encoder-350M",
+    "type": "hub_api",
+    "revision": "b886781f7c6f10ca9b7096e21b83e30a073c2f39"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M/resolve/b886781f7c6f10ca9b7096e21b83e30a073c2f39/LICENSE",
+    "file": "LICENSE",
+    "sha256": "4d28ca14dedc0b3d0fcc2b3339f0e79931faa33874f3d24f522183a8fc70068c"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M/resolve/b886781f7c6f10ca9b7096e21b83e30a073c2f39/README.md",
+    "file": "README.md",
+    "sha256": "1e8659cbe458ef9250ad6b0e4f3792ae78d02ed69df2b92c60fee1dc77fab846"
+  },
+  {
+    "url": "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M/resolve/b886781f7c6f10ca9b7096e21b83e30a073c2f39/config.json",
+    "file": "config.json",
+    "sha256": "559f88ddcebfb0a7b46ba99a074b17f3a951f278b3010a0f22fdf5d9cc358d11"
+  }
+]

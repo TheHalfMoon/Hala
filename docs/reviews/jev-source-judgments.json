@@ -1,0 +1,644 @@
+{
+  "tool": "jev 2026.919.0",
+  "scope": "file-level bounded typed semantic review, advisory; not independent release approval",
+  "date": "2026-10-14",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident correctness defect present in this source under the stated scope?",
+      "criteria": {
+        "true": "Concrete reachable error, violated invariant or falsely claimed measurement.",
+        "false": "No evident defect; unknown runtime support alone does not prove a defect."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently grant model authority, trust false completion, permit cross-tenant leakage, arbitrary execution or unbounded attacker work?",
+      "criteria": {
+        "true": "An evident path violates one of those invariants.",
+        "false": "The source provides bounded untrusted advice or offline synthetic analysis without that path."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source falsely treat mock or synthetic measurements as real trained-model or production qualification?",
+      "criteria": {
+        "true": "False model/training/deployment qualification is claimed.",
+        "false": "Mock, scenario or unqualified status is explicit; actual model scripts are merely candidate code."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "hala/contracts/validation.py",
+      "source_sha256": "3621871f99827ca9a6fd75dae8183f5bc9f5145a9b1a8127c63c064584e0956b",
+      "exit_code": 0,
+      "wall_seconds": 0.9919957999954931,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.57,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 488,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1415,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/contracts/request.py",
+      "source_sha256": "a9435a471e29ff2c7be67bcd0330c1967ffaeb5d1c02ab63226b191f9dc7b9e5",
+      "exit_code": 0,
+      "wall_seconds": 0.49619869999878574,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.5,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 428,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2522,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/contracts/proposal.py",
+      "source_sha256": "f20fc5d2800d5e3ad33c11d1386666314912ca1a32bbbf89171970e1ac5b829d",
+      "exit_code": 0,
+      "wall_seconds": 0.6107413999998244,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.57,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 530,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3415,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/contracts/responses.py",
+      "source_sha256": "2a88c9f239d3e3fa8d922f40055d54f709ae5c8ff64bdfa591bcf5c8d8dd8281",
+      "exit_code": 0,
+      "wall_seconds": 0.9319175999989966,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.44,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 857,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2057,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/contracts/mock.py",
+      "source_sha256": "2071db7511b3182adc5a94428dbd354787700bc02bc3e302a9f4cb452c2a9cdd",
+      "exit_code": 0,
+      "wall_seconds": 0.6855359000037424,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.36,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.03,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 604,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2058,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/serving/__init__.py",
+      "source_sha256": "01ccef5c8638d4cf4a362a11996dc8255c257cd5cbb2607c456e6086fcddc424",
+      "exit_code": 0,
+      "wall_seconds": 0.8793699999951059,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.58,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 788,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4260,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "hala/inference/__init__.py",
+      "source_sha256": "3521ce22fc22290160662f2a4099f9867537de5afb7aae6c16a9c2c271ba20df",
+      "exit_code": 0,
+      "wall_seconds": 0.9630555999901844,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.4,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 877,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1277,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "data/factory.py",
+      "source_sha256": "5faf1a61298e069f7f26bdecce8cb8766a747388ac7208bcf69353f041f0badc",
+      "exit_code": 0,
+      "wall_seconds": 0.7197648000001209,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.64,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 664,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4839,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "data/export.py",
+      "source_sha256": "66beb0d86c2964dbb7331f0328b5458bc37ab9f40265a00e77e77c69ec395ae4",
+      "exit_code": 0,
+      "wall_seconds": 0.5006625999958487,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.52,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 435,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 839,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "evaluation/engine.py",
+      "source_sha256": "c53c656c03af6698cafeb609826ed38041d990f8f06fbce3b871b7a00991c22b",
+      "exit_code": 0,
+      "wall_seconds": 0.6225319999939529,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.66,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 561,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2848,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "evaluation/metrics.py",
+      "source_sha256": "cfbc54742e63fc9cf3f796f169ab7ee939d4b429cdb5a0d613055b19b0ec8ef8",
+      "exit_code": 0,
+      "wall_seconds": 0.9597720000019763,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.48,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.03,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 878,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1102,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "experiments/cost/calculator.py",
+      "source_sha256": "bced9d0548ef8c9fb5a5656aab05340c7ad9049f72ead638753e6d86ad2528ee",
+      "exit_code": 0,
+      "wall_seconds": 0.5753478999977233,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.52,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 477,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1897,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/preflight.py",
+      "source_sha256": "2858d6b087568a9696b415db71357b13fe2c66e70540c73e3989579a7d14be83",
+      "exit_code": 0,
+      "wall_seconds": 0.7616156000003684,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.35,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 675,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1702,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/scripts/train_adapter.py",
+      "source_sha256": "21c145d232d2d0c7de520684a85269d9fc0a2e497a0b11a6c2f91fdb80caad79",
+      "exit_code": 0,
+      "wall_seconds": 0.6387035000079777,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.64,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 534,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3114,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/scripts/baseline.py",
+      "source_sha256": "1f5cfa77ef22903151247dcd0846278bca67da61cf87fa90da9843c91991db2a",
+      "exit_code": 0,
+      "wall_seconds": 0.5249293999950169,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.6,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 429,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2675,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/artifacts.py",
+      "source_sha256": "80742d1ea6bdafc2d16db27d57aec4e653ca53b8ca54776908bd07869d97e2c1",
+      "exit_code": 0,
+      "wall_seconds": 1.0058449000061955,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.65,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 920,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2865,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/checkpoints.py",
+      "source_sha256": "93e34ea8e20e77e7424a400656e15c814457d608382c8b4db75597a65a891826",
+      "exit_code": 0,
+      "wall_seconds": 0.5880048999970313,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.55,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 492,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2445,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/masking.py",
+      "source_sha256": "30406582bba4521eede1c2494a7026c9fcfa34567478e3ef9a110781215da708",
+      "exit_code": 0,
+      "wall_seconds": 0.5451130000001285,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.46,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 455,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 665,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "training/scripts/convert_sft.py",
+      "source_sha256": "1c4e93a3574cddf5b57bd91bf36c3b9c553b30b949cd1eb1319b4690dd8fa65e",
+      "exit_code": 0,
+      "wall_seconds": 0.5318067000043811,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.57,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 443,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1611,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tools/review_jev.py",
+      "source_sha256": "4b8999ee6470bd19224eb426c3772c6712426255c860a666b0e7044a9bc0e843",
+      "exit_code": 0,
+      "wall_seconds": 0.5444122000044445,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.31,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.12,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 447,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1492,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tools/qualify_cpu.py",
+      "source_sha256": "aa4e7995cf6e9a96196a6e982632c4e61a6546ab3817cb63d4434f1cb3c2e07b",
+      "exit_code": 0,
+      "wall_seconds": 0.5144610999996075,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.65,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 425,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1084,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "API responses report tokens, not billing. No billing/top-up/subscription action performed.",
+  "cost_delta_retested": "Nonfinite derived results and subnormal denominators rejected; independent PStack cycle2 confirms"
+}
