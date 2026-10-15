@@ -34,3 +34,11 @@ specs/H17-paired-quantization.md -text
 experiments/heldout/** -text
 experiments/runtime/h15-*.json -text
 experiments/runtime/h16-*.json -text
+
+# Preserve the reviewed adaptation audit and proposal.
+training/adaptation.py -text
+tools/audit_adaptation_data.py -text
+tests/test_adaptation.py -text
+experiments/adaptation/** -text
+docs/H18_ADAPTATION.md -text
+specs/H18-adaptation-readiness.md -text
