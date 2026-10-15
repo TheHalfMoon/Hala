@@ -13,3 +13,7 @@ Reproduction: `python tools/qualify_cpu.py`, `python tools/review_jev.py`, and P
 The initial training builder hit an account usage limit. The later independent training and final cost delta reviews completed successfully. The generic Kaggle tensor probe is runtime evidence only; terms prevent commercial Hala model work there. Colab later assigned a free T4 and actual unchanged FP16 multimodal inference completed. Strict 0/8 and explicit normalized calibration 7/8 are preserved separately; no training or quantization result exists yet. Provider/font and coordinate delta evidence is separately recorded.
 
 Colab delta: provider/font setup and explicit coordinate calibration passed independent review. All saved decoded points and hits recompute; strict 0/8 remains immutable, normalized 7/8 is same-fixture calibration. Fresh narrow Jev source hashes are in `reviews/jev-colab-provider.json`; Graft latest graph is 413 nodes. Neither score nor source review qualifies complete-task or adapter quality.
+
+## 2026-10-15 verified continuation
+
+H14/H15/H16/H17/H18 source and repair reports are under docs/reviews. Source integration153 tests passed; four GitHub jobs passed at5b8c63c. Independent H17 verification2048 assertions covers all192 raw FP16/int8/NF4 outputs and logged measurements. H18 coherent substitution/false-evidence findings were repaired with pinned historical inputs and13 phase tests. See CURRENT_STATUS.md for exact source commits, memory metrics, limitations and historical DCO attestation. Founder release/merge remains gated.

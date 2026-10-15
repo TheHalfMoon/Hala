@@ -1,6 +1,6 @@
 # H18: shared Mind/Type adaptation preparation
 
-Status: source implemented and CPU tested; independent parent review gates pending.
+Status: preparation TESTED; independent parent correctness/integrity reviews and repair deltas passed. Genuine Jev/Graft gates passed; integrated153 CPU tests passed. Prospective quality training remains disabled.
 Scope: deterministic data/contract readiness audit and disabled experiment specification.
 This phase neither trains nor qualifies a learned model.
 
@@ -29,7 +29,7 @@ here. The current 58-row artifact is inventory evidence, not the proposed traini
 - [x] Produce reproducible JSON evidence and one disabled shared-model configuration;
   absent compatible data, independent splits and reviewed runtime keep training blocked.
 - [x] Full CPU suite once; exact result recorded in docs/H18_ADAPTATION.md.
-- [ ] Independent PStack, genuine Jev and supported Graft qualification by parent.
+- [x] Independent PStack, genuine Jev and supported Graft source qualification by parent; no release or learned-quality approval.
 
 ## Hard stops
 

@@ -1,29 +1,16 @@
 # Hala roadmap
 
-Status dated 2026-10-14. All qualification requires authentic evidence; IMPLEMENTED or TESTED is not QUALIFIED.
+Updated 2026-10-15. IMPLEMENTED/TESTED never implies production QUALIFIED.
 
-| Milestone | Status | Completion evidence required |
+| Area | Actual frontier | Remaining gate |
 |---|---|---|
-| H0 bootstrap | TESTED; CI passed | Signed main exists; draft PR #1, CPU CI and scoped independent source reviews passed |
-| H1 foundation | TESTED metadata | Official immutable metadata, commercial terms, runtime qualification |
-| H2 contracts | TESTED mock | Strict contracts and negative tests; independent mandatory reviews |
-| H3 evaluation | TESTED infrastructure | 60 intent and 120 GUI tasks, independently checked execution |
-| H4 free GPU | TESTED free Colab T4 | Actual remote device, quota, no billing risk, runtime probe |
-| H5 unchanged base | TESTED diagnostic; full-task UNQUALIFIED | Actual strict 0/8 and normalized calibration 7/8; held-out full-task evidence still required |
-| H6 Holo/LaVague | TESTED research | Pinned source assessment; verified reusable methods |
-| H7 data factory | TESTED | Rights, family splits, duplicates, labels and frozen manifests |
-| H8 adapters | IMPLEMENTED candidate; qualification BLOCKED | Base deficits plus qualified GPU and real gradient evidence |
-| H9 Reliance | TESTED limited diagnostics; adoption UNQUALIFIED | Deterministic ablation first; actual cost/quality tradeoff |
-| H10 quantization | BLOCKED | Qualified base/runtime; paired precision measurements |
-| H11 inference | TESTED mock | Authenticated bounded mock server plus gated real backend |
-| H12 integration | TESTED fixture; native UNQUALIFIED | Versioned compatibility adapter and independent mock integration |
-| H13 release | BLOCKED | Real model and mandatory independent release evidence |
-| H14 frozen protocol / held-out evaluation | TESTED; quality insufficient | Frozen actual run: schema64/64, hit/completion30/64; en16/32 ar14/32. Independent score/hash recomputation passed; native/general qualification absent |
-| H15 real LoRA engineering smoke | TESTED engineering smoke; quality unqualified | Actual forward/backward/update/paired save/model reload/resumed-step comparison; two English microbatches, no large training or quality claim |
+| P1 / PR#1 | Draft unmerged; signed source;153 CPU/four CI; independent review evidence | Founder review/merge; historical DCO attestation disclosed |
+| P2 / H14 protocol | Frozen strict normalized points, mapping/half-open boxes/DPI/failure behavior | Native scaled-frame integration |
+| P3 / H14 evaluation | Frozen64 original en/ar fixtures, actualFP16 hit30/64, independently rescored | Representative closed-loop/native qualification |
+| P4 / H15 training | Genuine2-step update/save/actualreload/resume exact-match engineering smoke | Learned quality, Arabic remediation and durable reviewed artifacts |
+| P5 / H18 adaptation | Reviewed pinned audit; disabled single-shared-model proposal | Compatible bilingual Mind/Type semantic data and dev/test; Mind baseline |
+| P6 / H9 Reliance | Deterministic baseline; existing local d1 diagnostics; no adoption | Demonstrated task/reliability/cost improvement without policy override |
+| P7 / H17 quantization | ActualFP16/int8/NF4 hit30/34/32; fullvision GPU paths; independent2048 checks | No precision adopted; representative quality/cost/robustness |
+| P8 / H16 serving | Bounded authenticatedv2 real loopback2 bilingual fixtures/five negatives | Native integration, in-flight CUDA cancel, production/release review |
 
-Engineering order: H2 -> H3/H7 -> H9 deterministic -> H11/H12. Research and platform investigation can proceed independently. H8/H10 require scoped base evidence and actual engineering/paired precision qualification; a geometric calibration is not full-task evidence. The founder controls merge and production launch.
-
-Actual CPU scope: 138 tests after reviewed quantization preparation and actual training repair;180 task instances across12 dependent workflow families;58 English-only SFT PNGs;20 Linux container transport checks. The unchanged Qwen3-VL-2B runtime is diagnostic-tested; full model/task and release qualification remain pending. See CURRENT_STATUS.md and REVIEW_EVIDENCE.md for exact limits and gates.
-
-| H16 real image serving candidate | SOURCE TESTED; GPU unqualified | Explicit v2 bounded authenticated untrusted proposal API; independent reviews, Jev/Graft and 130 pre-repair integrated CPU tests passed |
-| H17 paired experimental quantization | IN PROGRESS; no measurements | Separate prospective remote runner; frozen H14 tasks/protocol never retuned. FP16 baseline is insufficient for production |
+Original H0–H13 foundation/research/data/mock-contract work and strict0/8 plus calibration7/8 remain preserved in history and experiments. Full source conventions and current limitations are in CURRENT_STATUS.md. The founder controls main/production; Hala is not complete.

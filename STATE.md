@@ -1,9 +1,13 @@
-Updated 2026-10-14, branch ps/foundation.
+Last updated: 2026-10-15 · Branch: ps/foundation
 
-Signed bootstrap main 00f6692; draft PR #1 published. CPU/source/helper foundations and independent repairs reviewed. GitHub CI 3.11/3.12 passed at b85e46e for all current source changes; 91 local CPU tests pass after new provider/protocol regressions.
+## Current state
+Main00f6692383ca9e9cc147380b062676dd74932e83 unchanged; draftPR#1 unmerged. Source5b8c63c passed153 CPU tests/four CI. Frozen model precision runs FP16/int8/NF4 hit30/34/32 of64, schema 64/64 each; Arabic14/14/13 of32. Independent2048 checks passed. Genuine two-step English LoRA update/save/actualreload/resume matched uninterrupted tensors exactly; original ephemeral binaries expired, metadata retained. Real bilingual loopback smoke2/2 and five negative statuses tested; no native/release qualification. H18 shared-adaptation audit reviewed/repaired; configuration disabled, data incompatible. Jev/PStack/Graft evidence retained.
 
-Actual free Colab T4 finally assigned; tensor probe and unchanged Qwen3-VL-2B FP16 ran. Strict pixel-JSON result 0/8 preserved. Explicit normalized calibration 7/8 (English 4/4, Arabic 3/4) on the same eight fixtures; not held-out or complete-task qualification. Model allocator about 4.27 GB, peak about 4.35 GB. Weights remain remote. Provider/font fixes reviewed; coordinate delta independently reviewed, no findings. JSON/reports under experiments/runtime and docs/reviews.
+## In flight
+Final measured-result documentation/PR status publication; no model process or production server left running. Quantization paths tested, neither adopted. Phase worktrees retained for review; no unrelated work deleted.
 
-Next: freeze protocol and evaluate held-out tasks; actual two-step English processor/LoRA/checkpoint engineering smoke (inputs proposed only; audits 58 rows, consumes two microbatches); justified adaptation/quantization. No real adapter, quantized model or native Aladdin integration exists yet. English engineering training would not claim to fix the observed Arabic miss.
+## Next steps
+Prepare and prospectively freeze compatible rights-cleared bilingual Mind-plan/normalized-Type semantic data and independent family splits; evaluate shared-model Mind baseline. Implement a separately reviewed bounded quality-training pilot after data gates. Keep H14 protected from training/tuning. Qualify representative closed-loop tasks and native frame/DPI/in-flight cancellation before release. Founder controls merge/deployment.
 
-Remaining limits: Arabic training shaping/external rights; native integration/release evidence; no measured full-task success or production operating cost. No paid resource, merge or production launch activated. Aladdin read only.
+## Blockers / open issues
+Grounding quality only46.9–53.1% on narrow dependent fixtures; no native/general task evidence, retained quality adapter or production cost. Existing58English rows are legacy actions, not prospective task schemas. Historical H15 merge omitted DCO text and has a signed attestation; preserve fact. No paid compute authorized, no Kaggle commercial model work or large weights on PC.

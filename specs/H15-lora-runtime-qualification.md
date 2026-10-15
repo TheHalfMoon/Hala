@@ -1,6 +1,6 @@
 # H15: real two-step LoRA runtime qualification
 
-Status: planned. Depends on: H8 existing candidate helpers and actual H5/Colab runtime. Surfaces: new qualification orchestrator/tests/docs; existing trainer only if a real defect requires a bounded repair. Disjoint from H14 experimental protocol/dataset files. No large training job or adapter quality claim.
+Status: TESTED actual two-step engineering qualification; independent checkpoint comparison exact. Ephemeral binaries expired; quality and Arabic remediation remain unqualified. Depends on: H8 existing candidate helpers and actual H5/Colab runtime. Surfaces: new qualification orchestrator/tests/docs; bounded conservative-scaler trainer repair. Disjoint from H14 experimental protocol/dataset files. No large training job or adapter quality claim.
 
 Use the existing pinned Qwen3-VL-2B, FP16, rank4, batch1/accumulation1 and 58-row English rights-cleared artifact. This smoke audits all 58 records but consumes two microbatches. The previously measured Arabic grounding deficit is not remediated by this English engineering smoke.
 
