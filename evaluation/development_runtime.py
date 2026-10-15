@@ -1,4 +1,4 @@
-"""Remote-only unchanged shared-base development evaluation; no native actions."""
+"""Remote-only frozen shared-base or verified-adapter evaluation; no native actions."""
 import argparse
 import hashlib
 import importlib.metadata
@@ -187,10 +187,23 @@ def summarize(episodes, mind):
     return result
 
 
-def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev', cache_dir='/tmp/hala-h21-cache', adapter=None):
+def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev', cache_dir='/tmp/hala-h21-cache',
+        adapter=None, adapter_manifest_sha256=None, adapter_identity=None):
+    supplied = (adapter, adapter_manifest_sha256, adapter_identity)
+    if any(value is not None for value in supplied):
+        if any(value is None for value in supplied):
+            raise ValueError('Adapter directory, manifest SHA256 and full external identity required together')
+        remote_guard()
+        from evaluation.development_adapter import verified_adapter
+        with verified_adapter(adapter, adapter_identity, adapter_manifest_sha256) as prepared:
+            return _run(bundle, manifest_sha256, output, font_path, source_commit,
+                        split=split, cache_dir=cache_dir, prepared_adapter=prepared)
+    return _run(bundle, manifest_sha256, output, font_path, source_commit,
+                split=split, cache_dir=cache_dir, prepared_adapter=None)
+
+
+def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter):
     remote_guard()
-    if adapter is not None:
-        raise ValueError('Adapter loading disabled until reviewed archive integration')
     check_digest(manifest_sha256)
     check_digest(source_commit, 40)
     if split not in ('dev', 'test'):
@@ -205,14 +218,20 @@ def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev
         raise ValueError('Exact qualified font required before model allocation')
     root = Path(__file__).resolve().parents[1]
     actual_commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root, capture_output=True, text=True, check=True).stdout.strip()
-    dirty = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'development', 'evaluation/development_runtime.py'], cwd=root, capture_output=True, text=True, check=True).stdout
+    dirty = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'development',
+                            'evaluation/development_runtime.py', 'evaluation/development_adapter.py',
+                            'training/adapter_archive.py'], cwd=root, capture_output=True, text=True, check=True).stdout
     if actual_commit != source_commit or dirty:
         raise ValueError('Exact published clean source commit required')
     cache = Path(cache_dir).resolve()
     if not (str(cache).startswith('/tmp/hala-') or cache.is_relative_to('/content')):
         raise ValueError('Remote approved cache path required')
-    packages = {p: importlib.metadata.version(p) for p in VERSIONS}
-    if any(packages[p].split('+')[0] != expected for p, expected in VERSIONS.items()):
+    pins = dict(VERSIONS)
+    if prepared_adapter is not None:
+        from evaluation.development_adapter import VERSIONS as adapter_versions
+        pins.update(adapter_versions)
+    packages = {p: importlib.metadata.version(p) for p in pins}
+    if any(packages[p].split('+')[0] != expected for p, expected in pins.items()):
         raise ValueError('Exact runtime package pins required')
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
@@ -226,6 +245,11 @@ def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev
               'split': split, 'calls': [], 'episodes': [], 'mind_cases': [], 'training_runs': 0,
               'adapter_loaded': False, 'quality_qualified': False, 'native_qualified': False,
               'execution_authorized': False, 'memory_sampling': 'Before/after load and calls; full-device samples are not a continuous peak.'}
+    if prepared_adapter is not None:
+        result.update(schema='hala.development.adapter_evaluation.v1', adapter={
+            'manifest_sha256': prepared_adapter['manifest_sha256'],
+            'identity': prepared_adapter['manifest']['identity'],
+            'files': prepared_adapter['manifest']['files'], 'kind': 'trained_adapter'})
     result_path = output / 'result.json'
     persist(result_path, result)
     start_all, cpu_start = time.perf_counter(), time.process_time()
@@ -250,6 +274,15 @@ def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev
         result['imported_packages'] = actual_packages
         if not torch.cuda.is_available() or not features.check_feature('raqm') or features.version_feature('raqm') != '0.10.1':
             raise ValueError('Actual CUDA and qualified RAQM required')
+        if prepared_adapter is not None:
+            import peft
+            import safetensors
+            from evaluation.development_adapter import read_tensors
+            actual_adapter_packages = {'peft': peft.__version__, 'safetensors': safetensors.__version__}
+            if any(actual_adapter_packages[p] != expected for p, expected in adapter_versions.items()):
+                raise ValueError('Imported adapter packages differ from exact pins')
+            result['imported_packages'].update(actual_adapter_packages)
+            adapter_tensors = read_tensors(prepared_adapter, torch)
         torch.manual_seed(42)
         torch.cuda.manual_seed_all(42)
         torch.use_deterministic_algorithms(True)
@@ -264,6 +297,11 @@ def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev
         processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION, trust_remote_code=False)
         model = Qwen3VLForConditionalGeneration.from_pretrained(MODEL_ID, revision=REVISION,
                     trust_remote_code=False, dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()
+        if prepared_adapter is not None:
+            from evaluation.development_adapter import attach_adapter
+            model = attach_adapter(model, prepared_adapter, torch, adapter_tensors)
+            del adapter_tensors
+            result['adapter_loaded'] = True
         torch.cuda.synchronize(0)
         result.update(load_seconds=time.perf_counter() - start_load, status='running')
         record_memory(result, 'memory_loaded', torch)
@@ -304,10 +342,18 @@ def main():
     parser.add_argument('--source-commit', required=True)
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
     parser.add_argument('--cache-dir', default='/tmp/hala-h21-cache')
-    parser.add_argument('--adapter', help='Reserved and disabled until archive integration')
+    parser.add_argument('--adapter', help='Operator-downloaded local archive directory on the approved remote runtime')
+    parser.add_argument('--adapter-manifest-sha256')
+    for field in ('base-model', 'base-revision', 'source-commit', 'data-sha256', 'evaluation-sha256'):
+        parser.add_argument('--adapter-' + field)
     args = parser.parse_args()
+    identity = {field: getattr(args, 'adapter_' + field) for field in
+                ('base_model', 'base_revision', 'source_commit', 'data_sha256', 'evaluation_sha256')}
+    if all(value is None for value in identity.values()):
+        identity = None
     result = run(args.bundle, args.manifest_sha256, args.output, args.font_path, args.source_commit,
-                 split=args.split, cache_dir=args.cache_dir, adapter=args.adapter)
+                 split=args.split, cache_dir=args.cache_dir, adapter=args.adapter,
+                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity)
     print(json.dumps({'status': result['status'], 'summary': result['summary']}, sort_keys=True))
 
 
