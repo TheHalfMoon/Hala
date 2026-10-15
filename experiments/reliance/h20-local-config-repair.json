@@ -1,0 +1,60 @@
+{
+  "schema": "hala.reliance.local-config-repair.v1",
+  "date_utc": "2026-10-15T02:04:00.118723+00:00",
+  "scope": "Only d1_local PYTHONIOENCODING env setting changed; installed source/runtime/model unchanged.",
+  "config_sha256_before": "c2ceaf432d6c13020b9171615643e784ff24770e1bff71e7b152f114d4198fe8",
+  "config_sha256_after": "7a890fcf6239a07c94779f2096f5c20ef78c63dca8fb2a27e82033d2376f6871",
+  "backup_path": "C:\\Users\\Shehr\\Documents\\Codex\\2026-10-14\\files-pasted-by-the-user-hala\\work\\h20-codex-config-before-20261015T020358Z.toml",
+  "nonsecret_selected_before": {
+    "command": "C:\\Users\\Shehr\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "args": [
+      "C:\\Users\\Shehr\\AppData\\Local\\D1Local\\mcp\\d1_mcp.py"
+    ],
+    "PYTHONIOENCODING": null
+  },
+  "nonsecret_selected_after": {
+    "command": "C:\\Users\\Shehr\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "args": [
+      "C:\\Users\\Shehr\\AppData\\Local\\D1Local\\mcp\\d1_mcp.py"
+    ],
+    "PYTHONIOENCODING": "utf-8"
+  },
+  "other_parsed_config_unchanged": true,
+  "fresh_child_response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"advisory_only\": true, \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"route\": {\"type\": \"choice\", \"choice\": \"deterministic\", \"probabilities\": {\"deterministic\": 0.45807622059520564, \"mind\": 0.06076137730565104, \"type\": 0.02996998832532492, \"abstain\": 0.4511924137738184}, \"confidence\": 0.2774349607936075}}, \"usage\": {\"input_tokens\": 70, \"output_tokens\": 0}}}"
+        }
+      ]
+    }
+  },
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "d1_decide",
+      "arguments": {
+        "state": "اختر زر الحفظ الوحيد باستخدام أداة منظمة مؤهلة.",
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose an advisory route; never authorize execution.",
+            "criteria": {
+              "deterministic": "Qualified structured tool",
+              "mind": "Planning",
+              "type": "Screenshot only",
+              "abstain": "Unsafe or ambiguous"
+            }
+          }
+        }
+      }
+    }
+  },
+  "request_wire_sha256": "80d03ed9c5de9cbd81e106f9d8116a8d5fbd266353a448f7d33838acdf5d138c",
+  "lifecycle_limitation": "Existing desktop MCP process was not restarted; it can remain CP1252 until reconnect. Verification uses fresh unchanged MCP child with actual updated config env."
+}

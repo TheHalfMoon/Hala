@@ -1,0 +1,1109 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H21a-adapter-archive.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 27
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 27,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H21a small adapter archive"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Implemented CPU-only archival plumbing, not a trained asset or quality qualification. A bundle is a new flat directory containing canonical `manifest.json`, exactly `adapter_model.safetensors` and `adapter_config.json`, and optionally `training_metadata.json`. Pretraining roundtrip mode instead contains only its manifest and explicitly reports `contains_adapter: false`. Neither mode claims quality qualification."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "The base is fixed to Qwen/Qwen3-VL-2B-Instruct revision `89644892e4d85e24eaac8bacfd4f463576704203`. The caller supplies immutable source commit, data SHA256 and evaluation SHA256. Verification requires those independently expected identities and the exact manifest SHA256 from the signed archival commit. Reading the expected digest from the downloaded manifest itself would defeat this trust boundary. GitHub ownership, signatures, authorization and actual remote roundtrips are the conductor's separate responsibility; this tool has no credentials or network path."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "The adapter budget is 8 MiB, config 32 KiB, optional metadata 16 KiB, manifest 32 KiB and whole directory 16 MiB. Only regular exact allowlisted files are accepted; nesting, additional files, symlinks and reparse points fail closed. Parent directories must also be free of symlinks/reparse points. Windows junction rejection uses `lstat().st_file_attributes`, available on Python3.11, rather than the Python3.12-only `Path.is_junction` API. The caller must exclusively own directories while creating/verifying: this is a bounded artifact verifier, not an operating-system sandbox against concurrent filesystem mutation."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Only the complete rank4, alpha8, dropout0 language q_proj/v_proj LoRA inventory is accepted: 112 tensors across 28 layers, with exactly 802816 elements. The pinned official text configuration has hidden size2048, 16 query heads, 8 value heads and head dimension128: A shapes are `[4,2048]`, q B shapes `[2048,4]`, v B shapes `[1024,4]`. Its checked-in config SHA256 is `bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b`; a regression derives the inventory from this evidence and checks the qualified producer target regex. Missing tensors, layer99, alternate names or incompatible shapes are rejected before loading."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Safetensors JSON has duplicate-key/nonfinite rejection, a bounded header, bounded floating tensor dimensions, exact payload length and contiguous nonoverlapping offsets. Config accepts PEFT0.20.0 and exactly the qualified producer regex `.*language_model.*\\.(q_proj|v_proj)$` or the explicit q/v list. Official0.20 serialized defaults including `peft_version`, `lora_ga_config`, `monteclora_config`, `use_bdlora` and `velora_config` are covered; these four variant configs must remain null. Broader regexes, different versions, nondefault initialization, auto mapping, extra learned modules and other unqualified variants are rejected. Producer config bytes are preserved exactly. The saved-config fixture is grounded in the official PEFT0.20 wheel, SHA256 `0fbba16ffebfad3de96e06f2da6860fd860292324b85b6141909fa1e26ea9233`; no optional package was installed or imported locally."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "No pickle, model import, tensor deserialization, execution or base-weight path exists. Exact tensor inventory checks do not prove tensor finiteness, actual training, successful runtime loading, quality, hardware behavior or safe downstream application; those require subsequent isolated remote loading and evaluation. Do not describe offline structural compatibility as a successful actual loader seam."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "Optional training metadata has exactly `training_run_id`, `steps`, `seed`, `training_script_sha256`; it is bounded evidence supplied by the producer, not independently attested training. Never include customer data, credentials, optimizer pickle or base weights. Preserve original config bytes; if an actual PEFT config has unsupported fields, reject and review a source change rather than silently dropping fields or changing archive expectations."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Fresh-session local commands (Python 3.11+; no optional dependencies):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "python tools/archive_adapter.py create --source EMPTY_DIRECTORY --directory NEW_BUNDLE --kind pretraining_roundtrip --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "python tools/archive_adapter.py create --source ADAPTER_DIRECTORY --directory NEW_BUNDLE --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "python tools/archive_adapter.py verify --directory DOWNLOADED_BUNDLE --manifest-sha256 EXTERNALLY_PINNED_MANIFEST_SHA256 --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 3
+        }
+      ]
+    },
+    {
+      "path": "specs/H21a-adapter-archive.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 16
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 16,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H21a adapter archival integrity"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: implemented and CPU tested; independent reviews, Jev/Graft and remote persistence pending."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Purpose: make the H21 small-adapter durable archive prerequisite concrete without training, loading weights, changing old loaders, or claiming an asset exists. Own only training/adapter_archive.py, tools/archive_adapter.py, tests/test_adapter_archive.py and this phase's docs/spec."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Acceptance criteria:"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Exact allowlisted flat directory, immutable pinned base/revision and externally expected source/data/evaluation identities."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- Canonical manifest exact-byte SHA256 is externally pinned; all files have exact lengths and SHA256. Extra files, nesting, duplicate JSON keys, malformed paths, symlinks/junctions, unexpected config and malformed tensor headers/offsets fail closed."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Small adapter < = 8 MiB, whole directory < = 16 MiB; no pickle, base weights, network, credentials or model imports. Bounded optional metadata only."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- Safetensors-only rank4 language q/v LoRA format with exactly all112 tensors/802816 elements across28 layers and pinned Qwen shapes; offline structure validation explicitly does not substitute for actual remote tensor loading/evaluation. Exact qualified PEFT0.20 producer regex/config bytes must roundtrip; no alternate variants."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- Manifest-only pretraining roundtrip is distinguishable from a trained asset. No overwrites; verification precedes publication."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- Adversarial unit tests red before implementation, then green; integrated CPU suite once. Independent PStack security/correctness and genuine Jev/Graft remain required before committing/publication."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "Recorded initial red: test module import failed because training.adapter_archive did not exist. Cycle1 review regressions then reproduced actual producer config rejection, incomplete tensor inventory acceptance and a real junction acceptance with Python3.12 detection API absent (three failures/one error). Repairs enforce exact producer compatibility/inventory and lstat reparse-point detection. Final CPU results are reported by the builder to the conductor. Windows real-symlink creation may require a privilege absent in this account; deterministic mocked component rejection covers the guard locally and the real-symlink case runs in Linux CI. The real Windows junction regression executes locally, including absent Path.is_junction."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_adapter_archive.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 293
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 293,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Adversarial small-adapter archival tests, without model dependencies.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import ast"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import struct"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from training.adapter_archive import create_bundle, verify_bundle, EXPECTED_SHAPES, TARGET_PATTERN"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "BASE = 'Qwen/Qwen3-VL-2B-Instruct'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "IDENTITY = {'base_model': BASE, 'base_revision': REVISION,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "            'source_commit': 'a' * 40, 'data_sha256': 'b' * 64,"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            'evaluation_sha256': 'c' * 64}"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def tensor_bytes():"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    header = {}"
+            }
+          ],
+          "dropped": 269
+        }
+      ]
+    },
+    {
+      "path": "tools/archive_adapter.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 44
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 44,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Create/verify a local small-adapter directory bundle. No network or ML imports.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "sys.path.insert(0, str(Path(__file__).resolve().parents[1]))"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from training.adapter_archive import BASE, REVISION, create_bundle, verify_bundle"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "def main():"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    parser = argparse.ArgumentParser(description=__doc__)"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    parser.add_argument('operation', choices=['create', 'verify'])"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    parser.add_argument('--directory', required=True, help='Bundle directory')"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    parser.add_argument('--source', help='Exact adapter files or empty pretraining source directory')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    parser.add_argument('--kind', choices=['trained_adapter', 'pretraining_roundtrip'], default='trained_adapter')"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    parser.add_argument('--source-commit', required=True)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    parser.add_argument('--data-sha256', required=True)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    parser.add_argument('--evaluation-sha256', required=True)"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    parser.add_argument('--manifest-sha256', help='Externally pinned digest, mandatory for verify')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    args = parser.parse_args()"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    identity = {'base_model': BASE, 'base_revision': REVISION,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "                'source_commit': args.source_commit, 'data_sha256': args.data_sha256,"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "                'evaluation_sha256': args.evaluation_sha256}"
+            }
+          ],
+          "dropped": 20
+        }
+      ]
+    },
+    {
+      "path": "training/adapter_archive.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 295
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 295,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Bounded directory bundles for one pinned small language LoRA; no ML imports."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "The external expected manifest digest and identities are trust anchors supplied by"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "the caller from the signed archival commit. Self-consistent bytes prove neither"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "that training happened nor that the adapter improves model quality."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import stat"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import struct"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "BASE = 'Qwen/Qwen3-VL-2B-Instruct'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "LIMITS = {'adapter_model.safetensors': 8 * 1024 * 1024,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          'adapter_config.json': 32 * 1024, 'training_metadata.json': 16 * 1024,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "          'manifest.json': 32 * 1024}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "TOTAL_LIMIT = 16 * 1024 * 1024"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "KINDS = {'trained_adapter', 'pretraining_roundtrip'}"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "TARGET_PATTERN = r'.*language_model.*\\.(q_proj|v_proj)$'"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "# Pinned official text_config: 28 layers, hidden2048, 16 query heads,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "# 8 value heads, head_dim128. Rank4 gives 112 tensors /802816 elements."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "EXPECTED_SHAPES = {"
+            }
+          ],
+          "dropped": 271
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H21a-adapter-archive.md",
+    "specs/H21a-adapter-archive.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.fixture",
+      "name": "fixture",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L79-L88",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_complete_exact_pinned_tensor_inventory_required",
+      "name": "test_complete_exact_pinned_tensor_inventory_required",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L107-L133",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_deterministic_roundtrip_and_external_identity",
+      "name": "test_deterministic_roundtrip_and_external_identity",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L154-L165",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_exact_official_peft_producer_config_preserved",
+      "name": "test_exact_official_peft_producer_config_preserved",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L90-L105",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_extra_pickle_and_nested_files_rejected",
+      "name": "test_extra_pickle_and_nested_files_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L177-L184",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_hash_tamper_manifest_duplicate_and_extra_rejected",
+      "name": "test_hash_tamper_manifest_duplicate_and_extra_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L252-L270",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_malformed_tensor_headers_ranges_and_base_weights",
+      "name": "test_malformed_tensor_headers_ranges_and_base_weights",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L228-L250",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_pretraining_roundtrip_cannot_be_mistaken_for_asset",
+      "name": "test_pretraining_roundtrip_cannot_be_mistaken_for_asset",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L167-L175",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_projection_shapes_and_producer_regex_match_pinned_source",
+      "name": "test_projection_shapes_and_producer_regex_match_pinned_source",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L58-L77",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_real_junction_rejected_when_pathlib_api_missing",
+      "name": "test_real_junction_rejected_when_pathlib_api_missing",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L136-L152",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_real_symlink_files_rejected",
+      "name": "test_real_symlink_files_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L185-L197",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_symlink_component_rejection_without_windows_privileges",
+      "name": "test_symlink_component_rejection_without_windows_privileges",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L199-L205",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_untrusted_metadata_and_manifest_types_rejected",
+      "name": "test_untrusted_metadata_and_manifest_types_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L207-L226",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_wrong_config_and_oversize_or_nonimmutable_identity",
+      "name": "test_wrong_config_and_oversize_or_nonimmutable_identity",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L272-L289",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#producer_config",
+      "name": "producer_config",
+      "kind": "function",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L37-L54",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_adapter_archive.py#tensor_bytes",
+      "name": "tensor_bytes",
+      "kind": "function",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L23-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/archive_adapter.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "tools/archive_adapter.py",
+      "span": "L11-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_canonical",
+      "name": "_canonical",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L61-L63",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_config",
+      "name": "_config",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L120-L160",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_hash",
+      "name": "_hash",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L66-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_identity",
+      "name": "_identity",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L70-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_json.constant",
+      "name": "constant",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L53-L54",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_json.pairs",
+      "name": "pairs",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L46-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_read_directory",
+      "name": "_read_directory",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L98-L117",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_redirected",
+      "name": "_redirected",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L81-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_root",
+      "name": "_root",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L89-L95",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_safetensors",
+      "name": "_safetensors",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L163-L213",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#_validate_files",
+      "name": "_validate_files",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L216-L236",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#create_bundle",
+      "name": "create_bundle",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L239-L267",
+      "wholeFile": false
+    },
+    {
+      "id": "training/adapter_archive.py#verify_bundle",
+      "name": "verify_bundle",
+      "kind": "function",
+      "path": "training/adapter_archive.py",
+      "span": "L270-L295",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tools/archive_adapter.py",
+      "name": "archive_adapter.py",
+      "kind": "file",
+      "path": "tools/archive_adapter.py",
+      "span": "L1-L45",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_complete_exact_pinned_tensor_inventory_required",
+      "name": "test_complete_exact_pinned_tensor_inventory_required",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L107-L133",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_deterministic_roundtrip_and_external_identity",
+      "name": "test_deterministic_roundtrip_and_external_identity",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L154-L165",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_exact_official_peft_producer_config_preserved",
+      "name": "test_exact_official_peft_producer_config_preserved",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L90-L105",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_extra_pickle_and_nested_files_rejected",
+      "name": "test_extra_pickle_and_nested_files_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L177-L184",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_hash_tamper_manifest_duplicate_and_extra_rejected",
+      "name": "test_hash_tamper_manifest_duplicate_and_extra_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L252-L270",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_malformed_tensor_headers_ranges_and_base_weights",
+      "name": "test_malformed_tensor_headers_ranges_and_base_weights",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L228-L250",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_pretraining_roundtrip_cannot_be_mistaken_for_asset",
+      "name": "test_pretraining_roundtrip_cannot_be_mistaken_for_asset",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L167-L175",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_real_junction_rejected_when_pathlib_api_missing",
+      "name": "test_real_junction_rejected_when_pathlib_api_missing",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L136-L152",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_real_symlink_files_rejected",
+      "name": "test_real_symlink_files_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L185-L197",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_symlink_component_rejection_without_windows_privileges",
+      "name": "test_symlink_component_rejection_without_windows_privileges",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L199-L205",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_untrusted_metadata_and_manifest_types_rejected",
+      "name": "test_untrusted_metadata_and_manifest_types_rejected",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L207-L226",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_adapter_archive.py#AdapterArchiveTests.test_wrong_config_and_oversize_or_nonimmutable_identity",
+      "name": "test_wrong_config_and_oversize_or_nonimmutable_identity",
+      "kind": "method",
+      "path": "tests/test_adapter_archive.py",
+      "span": "L272-L289",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tools/archive_adapter.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "tools/archive_adapter.py",
+      "span": "L11-L40",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "create_bundle",
+      "labelSource": "symbol",
+      "key": "training/",
+      "files": [
+        "training/adapter_archive.py"
+      ],
+      "seeds": 13,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_adapter_archive.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_adapter_archive.py"
+      ],
+      "reached": 2,
+      "behavioural": 13,
+      "unreached": [
+        "_canonical",
+        "_config",
+        "_hash",
+        "_identity",
+        "constant",
+        "pairs",
+        "_read_directory",
+        "_redirected",
+        "_root",
+        "_safetensors",
+        "_validate_files"
+      ],
+      "seedNames": [
+        "create_bundle",
+        "verify_bundle",
+        "_canonical",
+        "_hash",
+        "_identity",
+        "_read_directory",
+        "_redirected",
+        "_root",
+        "_validate_files",
+        "_config",
+        "_safetensors",
+        "constant",
+        "pairs"
+      ],
+      "owners": []
+    },
+    {
+      "label": "main",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/archive_adapter.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
+      "unreached": [
+        "main"
+      ],
+      "seedNames": [
+        "main"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

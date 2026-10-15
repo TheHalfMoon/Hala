@@ -1,0 +1,794 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H21b-real-development-baseline.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 108
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 108,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H21b unchanged shared-base development runtime"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "This implements a remote evaluation entry point. CPU fake-seam tests do not"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "establish model quality, actual GPU performance, Arabic quality or successful"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "closed-loop tasks. Root must integrate reviewed H19 source, prospectively freeze"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "qualified bilingual media/settings and publish reviewed source before a real run."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "No local ML dependency, model weights or paid service is needed for the tests."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "The runtime accepts only Linux with an actual Colab release marker, explicit"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "`HALA_REMOTE_DEVELOPMENT_ALLOWED=1`, and no Kaggle runtime marker. These environment"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "checks prevent accidental local execution; they are not cryptographic hardware"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "attestation. All guards, external manifest/source verification, settings equality,"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "font hash, clean source commit and exact package metadata checks precede ML imports"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "and model allocation. Imported package versions are checked again. Pins are Torch"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "2.11.0, Transformers 5.16.1 and Pillow 11.3.0; media requires RAQM 0.10.1 and H19's"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "existing pinned font. The model is Qwen/Qwen3-VL-2B-Instruct revision"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "`89644892e4d85e24eaac8bacfd4f463576704203`, FP16, SDPA, greedy seed42 with"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "deterministic algorithms, no TF32 and no sampling."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "## Prospective freeze and invocation"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "The exact settings to archive are the plain dictionary"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "`evaluation.development_runtime.SETTINGS`. It fixes the model/revision/precision,"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "attention, seed, deterministic flags, 4,096 expanded input tokens, 128 completion"
+            }
+          ],
+          "dropped": 84
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_runtime.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 295
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 295,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Remote-only unchanged shared-base development evaluation; no native actions.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import signal"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "MODEL_ID = 'Qwen/Qwen3-VL-2B-Instruct'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "REVISION = '89644892e4d85e24eaac8bacfd4f463576704203'"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "VERSIONS = {'torch': '2.11.0', 'transformers': '5.16.1', 'Pillow': '11.3.0'}"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "SETTINGS = {'schema': 'hala.development.runtime.v1', 'model_id': MODEL_ID,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "            'model_revision': REVISION, 'precision': 'fp16', 'attention': 'sdpa',"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "            'seed': 42, 'do_sample': False, 'num_beams': 1, 'max_new_tokens': 128,"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            'max_input_tokens': 4096,"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            'max_time_seconds': 20, 'max_calls_per_episode': 16,"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            'max_type_actions_per_episode': 8, 'outer_deadline_seconds': 3600,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            'deterministic_algorithms': True}"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 271
+        }
+      ]
+    },
+    {
+      "path": "specs/H21b-real-development-baseline.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 13
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 13,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H21b — Actual shared base development evaluation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: in progress; depends on reviewed H19 source and qualified remote media. Review: full."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Own new evaluation/development_runtime.py, tests/test_development_runtime.py, docs/H21b-real-development-baseline.md only; use H19 module interfaces without modifying its frozen source. Root integrates H19 and runs actual GPU after source review. No source change to frozen H14/H17 or foundation PR."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Implement a remote-only unchanged-base baseline CLI, importing ML only after Linux/real Colab/explicit opt-in guard, exact model revision and exact package pins. Use Qwen/Qwen3-VL-2B-Instruct revision89644892e4d85e24eaac8bacfd4f463576704203, torch2.11.0, Transformers5.16.1, Pillow11.3.0, FP16 SDPA, greedy seed42, max128tokens/20second per call, max16modelcalls/8Typeactions per episode, bounded outer deadline. Prompt settings must exactly match frozen H19 bundle; require its externally archived manifest SHA256 before loading weights. Root may specify dev or test split without changing prompt/model configuration; preserve raw output, per-turn latency, actual transitions and independent final state. Evaluate separate heldout Mind decisions in both languages as well as closed-loop episodes, report Mind semantic errors separately from complete-task outcome."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "No private labels, episode objects, expected coordinates/finalstate or oracle response passed to model infer callback. Text-only Mind/reliance use no image; Type current qualified screenshot; callback receives only public prompt + image bytes. Return raw decoded string, no repair/retry/parser forgiveness. Dynamic off-path frames use reviewed renderer and get hashes logged. Report actual en/ar outcomes, calls/errors/recoveries/unnecessary/unsafe, load/wall/model seconds, peak allocated/reserved CUDA, sampled full-device memory (not continuous peak), CPU RSS, GPU identity, exact package/prompt/data/source identities. Keep per-case results for independent replay. Persist result atomically, avoid overwriting previous runs."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Expose an explicitly verified local-small-adapter option only after archive verifier is integrated; leave disabled now rather than unsafe download/load. No remote credential transport, paid infrastructure, local large weights, native execution, model authority or release claim."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Tests red then green with fake processor/model seams, meaningful validation/guard/telemetry/result scoring tests; no local ML install/download. Fresh independent PStack combined/security review plus genuine Jev/Graft before signed DCO commit. Root executes real inference only after frozen media/render QA and source publication. No quality claim from CPU fakes."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_runtime.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 150
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 150,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from contextlib import nullcontext"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "SPEC = importlib.util.spec_from_file_location('h21_runtime', Path(__file__).resolve().parents[1] / 'evaluation/development_runtime.py')"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "class DevelopmentRuntimeTests(unittest.TestCase):"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    @classmethod"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    def setUpClass(cls):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        cls.m = importlib.util.module_from_spec(SPEC)"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        SPEC.loader.exec_module(cls.m)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    def test_guard_before_any_model_import(self):"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        with patch.object(self.m.platform, 'system', return_value='Windows'), patch.dict(self.m.os.environ, {'COLAB_RELEASE_TAG': 'real', 'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1'}, clear=True):"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            with self.assertRaises(ValueError):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "                self.m.remote_guard()"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        with patch.object(self.m.platform, 'system', return_value='Linux'), patch.dict(self.m.os.environ, {'COLAB_RELEASE_TAG': 'real', 'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'KAGGLE_KERNEL_RUN_TYPE': 'Interactive'}, clear=True):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            with self.assertRaises(ValueError):"
+            }
+          ],
+          "dropped": 126
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H21b-real-development-baseline.md",
+    "specs/H21b-real-development-baseline.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_runtime.py#check_digest",
+      "name": "check_digest",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L26-L28",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#check_settings",
+      "name": "check_settings",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L31-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L278-L291",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#memory_sample",
+      "name": "memory_sample",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L55-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#persist",
+      "name": "persist",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L44-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#QwenInfer.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "evaluation/development_runtime.py",
+      "span": "L78-L140",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#QwenInfer.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "evaluation/development_runtime.py",
+      "span": "L72-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#remote_guard",
+      "name": "remote_guard",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L37-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#run.deadline",
+      "name": "deadline",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L207-L208",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#summarize",
+      "name": "summarize",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L143-L160",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Image.close",
+      "name": "close",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L89-L90",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Image.convert",
+      "name": "convert",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L87-L88",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Inputs.to",
+      "name": "to",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L65-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Model.generate",
+      "name": "generate",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L79-L84",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Processor.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L72-L74",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Processor.apply_chat_template",
+      "name": "apply_chat_template",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L69-L71",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Processor.batch_decode",
+      "name": "batch_decode",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L75-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.seam.Tensor.__getitem__",
+      "name": "__getitem__",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L60-L62",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L15-L17",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_aggregate_language_separates_task_and_mind",
+      "name": "test_aggregate_language_separates_task_and_mind",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L47-L55",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_expanded_token_budget_and_failure_record",
+      "name": "test_expanded_token_budget_and_failure_record",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L125-L136",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_expired_outer_deadline_prevents_further_model_calls",
+      "name": "test_expired_outer_deadline_prevents_further_model_calls",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L138-L146",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_failed_atomic_persist_preserves_prior_result",
+      "name": "test_failed_atomic_persist_preserves_prior_result",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L38-L45",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_fake_model_seam_preserves_raw_without_parser_repair",
+      "name": "test_fake_model_seam_preserves_raw_without_parser_repair",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L97-L108",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_frozen_settings_and_external_hash",
+      "name": "test_frozen_settings_and_external_hash",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L29-L36",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_guard_before_any_model_import",
+      "name": "test_guard_before_any_model_import",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L19-L27",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_runtime.py#DevelopmentRuntimeTests.test_type_frame_binding_and_text_image_exclusion",
+      "name": "test_type_frame_binding_and_text_image_exclusion",
+      "kind": "method",
+      "path": "tests/test_development_runtime.py",
+      "span": "L110-L123",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L163-L275",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py",
+      "name": "development_runtime.py",
+      "kind": "file",
+      "path": "evaluation/development_runtime.py",
+      "span": "L1-L296",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "check_digest",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_runtime.py"
+      ],
+      "seeds": 10,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 10,
+      "unreached": [
+        "check_digest",
+        "check_settings",
+        "main",
+        "memory_sample",
+        "persist",
+        "__call__",
+        "__init__",
+        "remote_guard",
+        "deadline",
+        "summarize"
+      ],
+      "seedNames": [
+        "check_digest",
+        "check_settings",
+        "main",
+        "memory_sample",
+        "persist",
+        "remote_guard",
+        "summarize",
+        "__call__",
+        "__init__",
+        "deadline"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
