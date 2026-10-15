@@ -270,7 +270,7 @@ class DevelopmentAdapterTests(unittest.TestCase):
                     Qwen3VLForConditionalGeneration=SimpleNamespace(from_pretrained=base_load)),
                 'peft': SimpleNamespace(__version__='0.20.0', PeftModel=SimpleNamespace(from_pretrained=peft_load),
                     get_peft_model_state_dict=lambda *a, **kw: tensors),
-                'safetensors': SimpleNamespace(__version__='0.6.2'),
+                'safetensors': SimpleNamespace(__version__='0.8.0'),
                 'safetensors.torch': SimpleNamespace(load_file=safe_load),
                 'development.freeze': SimpleNamespace(verify_bundle=lambda *a, **kw: {
                     'files': {'dataset.json': 'd' * 64}, 'source': {'fake': True}}),
