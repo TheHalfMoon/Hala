@@ -1,0 +1,27 @@
+{
+  "schema": "hala.reliance.diagnostic-failures.v1",
+  "failures": [
+    {
+      "stage": "diagnostic evidence serialization after adding malformed-state control",
+      "exception": "UnicodeEncodeError: utf-8 codec cannot encode character U+DC81: surrogates not allowed",
+      "cause": "ensure_ascii=False could not persist the deliberately malformed surrogateescape state",
+      "repair": "Serialize with ASCII JSON escapes, encode fully before opening output, then publish by temporary-file replacement",
+      "consequence": "An unpublished local diagnostic record was truncated; the complete diagnostic was rerun after repair. No prior published evidence or installed source was changed."
+    },
+    {
+      "stage": "first test execution before implementation",
+      "exception": "FileNotFoundError tools/diagnose_reliance.py",
+      "repair": "Implemented the specified diagnostic; phase tests passed"
+    },
+    {
+      "stage": "independent combined review malformed-response regression",
+      "exception": "OverflowError: int too large to convert to float",
+      "cause": "A bounded valid JSON response containing a 4001-digit probability reached math.isfinite before the probability range check",
+      "repair": "Reject out-of-range numbers before math.isfinite; preserve finite in-range probability behavior",
+      "regression": "Targeted test reproduced OverflowError before repair, then all six Reliance diagnostic tests passed in 0.237 seconds",
+      "historical_measured_script_sha256": "7260f83e484ce51d86a7278a93e29c16d16d24276a0c232ffe757279966bd7db",
+      "repaired_script_sha256": "2dcef6570c051db1e4fab455355796dfd83bde04e3538a4ff0f901047e257e49",
+      "consequence": "Offline review probe only. No online cases were rerun; the original measured comparison and its executed-source provenance remain unchanged"
+    }
+  ]
+}

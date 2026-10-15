@@ -1,0 +1,772 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H20-reliance-diagnostic.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 102
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 102,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H20: local bilingual routing diagnostic"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "The Arabic HTTP 400 was caused by the Windows MCP process reading UTF-8 input"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "through CP1252 with surrogateescape. Arabic UTF-8 bytes became mojibake and"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "unpaired surrogate values, which the model server rejected while parsing JSON."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "This was a transport failure, not evidence that d1 cannot process Arabic."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "The actual purpose-built MCP reproduced the failure: matched English succeeded"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "in 833 ms, Arabic failed in 42 ms. The unchanged installed Python 3.14 MCP child"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "reproduced the same difference. ASCII-escaped Arabic JSON succeeded under CP1252;"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "raw UTF-8 Arabic failed. Setting only the child environment to UTF-8 made both"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "forms succeed with identical answer probabilities. Direct HTTP requests using"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "either encoding also succeeded. An invalid question type returned its own clear"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "schema error. A matched CP1252-corrupted-state HTTP control preserves the parser"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "error body. Complete wire bytes, hashes, response bodies and timings are saved in"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "the diagnostic records, without credentials."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "The authorized repair adds only `PYTHONIOENCODING = 'utf-8'` under"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "`[mcp_servers.d1_local.env]` in the local Codex configuration. A complete backup"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "is retained outside the repository. Parsed configuration comparison verified"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "that every other setting stayed the same. A fresh unchanged MCP child using the"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "actual updated configuration processed raw UTF-8 Arabic successfully. Installed"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "MCP source, runtime and model files were unchanged; no inference-server or desktop"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "restart occurred. The existing desktop MCP process can retain CP1252 until its"
+            }
+          ],
+          "dropped": 78
+        }
+      ]
+    },
+    {
+      "path": "specs/H20-reliance-diagnostic.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 27
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 27,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H20: local bilingual routing transport diagnosis"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: implementation and actual local measurement complete; independent review"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "and Jev/Graft qualification pending. Diagnostic only, no learned routing adoption."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "Acceptance criteria:"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "- Reproduce the existing Arabic MCP HTTP 400 without modifying the old evidence."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Compare ASCII-escaped JSON and native UTF-8 on the installed loopback runtime,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  preserving request bytes/hash, status/error body, outputs and elapsed time."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Isolate transport, schema and model explanations using matched controls; do not"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  infer Arabic incapability from malformed requests."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- Compare d1 to a standard-library learned classifier and deterministic routing on"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  authored bilingual data with disjoint application-family train/test splits."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- Preserve every test prediction and report errors, abstentions, CPU latency and"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  serialized classifier size. Tiny synthetic results cannot qualify adoption."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "- Tests cover valid/invalid inputs, split leakage, conservative authority boundaries"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  and malformed/nonfinite runtime responses. No new dependencies, weights or jobs."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "- Preserve installed MCP/runtime/model source. Apply the authorized minimal"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  d1_local-only config environment repair with a full local backup and verify a"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  fresh unchanged MCP child using that configured environment. Do not restart"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  the desktop or live inference server. Disclose that the existing desktop MCP"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  process may retain its old environment until reconnect."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/test_reliance_diagnostic.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 65
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 65,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "SPEC = importlib.util.spec_from_file_location('h20_diagnostic', Path(__file__).resolve().parents[1] / 'tools/diagnose_reliance.py')"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "class RelianceDiagnosticTests(unittest.TestCase):"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    @classmethod"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    def setUpClass(cls):"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "        cls.m = importlib.util.module_from_spec(SPEC)"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        SPEC.loader.exec_module(cls.m)"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    def test_encoding_controls(self):"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        p = self.m.payload('احفظ الملف')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        import json"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        self.assertEqual(json.loads(self.m.encode(p, True)), p)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        self.assertEqual(json.loads(self.m.encode(p, False)), p)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        self.assertNotEqual(self.m.encode(p, True), self.m.encode(p, False))"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        corrupted = 'الحفظ'.encode('utf-8').decode('cp1252', errors='surrogateescape')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        self.assertEqual(json.loads(self.m.encode(self.m.payload(corrupted), True))['state'], corrupted)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    def test_split_families_and_language_balance(self):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        train, test = self.m.corpus()"
+            }
+          ],
+          "dropped": 41
+        }
+      ]
+    },
+    {
+      "path": "tools/diagnose_reliance.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 262
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 262,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Bounded offline routing diagnostic; never imported by Hala serving.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from __future__ import annotations"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from collections import Counter"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "import urllib.error"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "import urllib.request"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "ROUTES = ('deterministic', 'mind', 'type', 'abstain')"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "ENDPOINT = 'http://127.0.0.1:18775/v1/systemone'"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "INSTRUCTIONS = ('Suggest only a route, never execution or permission. Choose deterministic '"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                'only for an unambiguous qualified structured tool; mind for investigation '"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "                'or planning; type for screenshot-only grounding; abstain for unsafe, '"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "                'unauthorized or ambiguous requests. Arabic and English are both inputs.')"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "CRITERIA = {"
+            }
+          ],
+          "dropped": 238
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H20-reliance-diagnostic.md",
+    "specs/H20-reliance-diagnostic.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L10-L12",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.test_encoding_controls",
+      "name": "test_encoding_controls",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L14-L21",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.test_invalid_response_and_authority",
+      "name": "test_invalid_response_and_authority",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L31-L36",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.test_recorded_transport_controls_preserve_identity",
+      "name": "test_recorded_transport_controls_preserve_identity",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L45-L61",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.test_small_classifier_and_unknown_abstention",
+      "name": "test_small_classifier_and_unknown_abstention",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L38-L43",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_reliance_diagnostic.py#RelianceDiagnosticTests.test_split_families_and_language_balance",
+      "name": "test_split_families_and_language_balance",
+      "kind": "method",
+      "path": "tests/test_reliance_diagnostic.py",
+      "span": "L23-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#check_splits",
+      "name": "check_splits",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L72-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#corpus",
+      "name": "corpus",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L46-L69",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#deterministic",
+      "name": "deterministic",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L109-L116",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#encode",
+      "name": "encode",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L38-L39",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#fit",
+      "name": "fit",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L79-L87",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#payload",
+      "name": "payload",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L31-L35",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#predict",
+      "name": "predict",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L90-L106",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#request",
+      "name": "request",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L135-L149",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#route_answer",
+      "name": "route_answer",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L119-L132",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L184-L246",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#stdio_probe",
+      "name": "stdio_probe",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L152-L181",
+      "wholeFile": false
+    },
+    {
+      "id": "tools/diagnose_reliance.py#tokens",
+      "name": "tokens",
+      "kind": "function",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L42-L43",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tools/diagnose_reliance.py",
+      "name": "diagnose_reliance.py",
+      "kind": "file",
+      "path": "tools/diagnose_reliance.py",
+      "span": "L1-L263",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "encode",
+      "labelSource": "symbol",
+      "key": "tools/",
+      "files": [
+        "tools/diagnose_reliance.py"
+      ],
+      "seeds": 12,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 12,
+      "unreached": [
+        "check_splits",
+        "corpus",
+        "deterministic",
+        "encode",
+        "fit",
+        "payload",
+        "predict",
+        "request",
+        "route_answer",
+        "run",
+        "stdio_probe",
+        "tokens"
+      ],
+      "seedNames": [
+        "encode",
+        "payload",
+        "tokens",
+        "check_splits",
+        "corpus",
+        "deterministic",
+        "fit",
+        "predict",
+        "request",
+        "route_answer",
+        "run",
+        "stdio_probe"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
