@@ -1,0 +1,108 @@
+{
+  "test_result_sha256": "82d04d2a3bcf3eaae9394273f81d9ff6043830bcdf360e8e51d0cb4f3f5f0c9f",
+  "test_archive_sha256": "6542d126ca6732843f103d0ddee1a31dad4069e12397a546c7907b56ae596f4a",
+  "test_archive_crc_pass": true,
+  "test_summary": {
+    "all": {
+      "action_calls": 4,
+      "action_errors": 4,
+      "environment_errors": 0,
+      "episodes": 8,
+      "episodes_complete": 0,
+      "mind_calls": 64,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 10,
+      "mind_correct": 0,
+      "mind_errors": 64,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 68,
+      "model_errors": 64,
+      "plan_calls": 8,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 4
+    },
+    "ar": {
+      "action_calls": 4,
+      "action_errors": 4,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 36,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 4
+    },
+    "en": {
+      "action_calls": 0,
+      "action_errors": 0,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 32,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    }
+  },
+  "test_actual_frames_verified": [
+    {
+      "episode": "museum_catalog-ar-0",
+      "sha256": "a45c1848ee37618af67a1f69f77d87516ce2f054060c2b250000e0b9ce77a6f5"
+    },
+    {
+      "episode": "museum_catalog-ar-1",
+      "sha256": "858a954abd08fe4b4e01ef57fdbc1dc1c7c16da5be2bc9d1e19364834edf6133"
+    },
+    {
+      "episode": "sports_roster-ar-0",
+      "sha256": "b34ccafcbfe375da3a61187f630d4a1ead075621307bb27f8e9461b559a1b8ee"
+    },
+    {
+      "episode": "sports_roster-ar-1",
+      "sha256": "939047d39d729ad1fdd4b704babdadc535a1923ae81fbede9ef31ae5c175e6e8"
+    }
+  ],
+  "source_commit": "11a3a5359afa896787198e0492ccd036d0b6f4f8",
+  "runtime_source_sha256": "cbc80167c80461a267a7232b0596ccf176c0c118dbf7772128a92798ee0fca2e",
+  "blocked_candidate_archive_sha256": "3997fa07312496d8090545940c3ec8eba367f0cc0d53b6d09381f41c07294028",
+  "candidate_attempt_status": "blocked",
+  "candidate_attempt_model_calls": 0,
+  "candidate_attempt_adapter_loaded": false,
+  "actual_failure_lines": [
+    "  File \"/usr/local/lib/python3.13/dist-packages/peft/tuners/lora/torchao.py\", line 160, in dispatch_torchao",
+    "    if not is_torchao_available():",
+    "  File \"/usr/local/lib/python3.13/dist-packages/peft/import_utils.py\", line 147, in is_torchao_available",
+    "ImportError: Found an incompatible version of torchao. Found version 0.10.0, but only versions above 0.16.0 are supported"
+  ],
+  "baseline_has_no_explicit_torchao_import": true,
+  "peft_import_is_candidate_conditional": true,
+  "removal_assessment": "Removing unused incompatible optional TorchAO is a recorded environment repair, not a model/source/prompt/data change. Keep mandatory pins and old failed attempt; use new retry dirs. Baseline FP16 model is unquantized and PEFT import is conditional on candidate, so this failure alone does not justify repeating baseline. Actual post-removal imports and candidate attachment remain separate required observations.",
+  "limits": [
+    "No candidate quality result exists in this failed zero-call attempt.",
+    "No native safety conclusion from protocol-rejection counter.",
+    "Test outcomes are checked without a test-specific forensic taxonomy or tuning."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "hala.independent.kaggle.actual_dev_review.v1",
+  "result_sha256": "e8034ecf9bf055c7441405cb9096e8a74e4244834d5198452d2ac56d0f148b4e",
+  "archive_sha256": "20b30a46c25dd04b7577785afc291166f987cec87961fd8409b15a4d9dd13be2",
+  "archive_bytes": 98107,
+  "archive_crc_pass": true,
+  "source_commit": "11a3a5359afa896787198e0492ccd036d0b6f4f8",
+  "runtime_sha256": "cbc80167c80461a267a7232b0596ccf176c0c118dbf7772128a92798ee0fca2e",
+  "baseline_callback_settings_model_AST_unchanged": true,
+  "provider": {
+    "inherited_colab_release_tag": "release-colab-external-images_20260917-060051_RC00",
+    "kernel_run_type": "Interactive",
+    "name": "kaggle",
+    "working_directory": "/kaggle/working"
+  },
+  "prepared_render_checks": 120,
+  "prepared_same_png_and_pixels": true,
+  "actual_frames_verified": [
+    {
+      "episode": "reading_shelf-ar-0",
+      "file": "ff6c200d2a780121543f7d3656ab8c698ef122f9e250c71b0b618bf09d9d3cbc.png",
+      "sha256": "23359c2747cd15420b9b46bec8cff29895f7d4d449786c4f4833ac73dbfe6d5a"
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "file": "927d1fdb51e325bd13aaffcd7d85a7d0583429d4c35e9e21c6dd93c038a8f072.png",
+      "sha256": "67674a26d11f766ce72a057e6c4242f4933ba6891b0f3b576f9c027bb172579e"
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "file": "debbf6309f0c503b5cc368c1908825b42b9305ef2bd752344434312317b691f4.png",
+      "sha256": "2df0b72b4e7c7170871bfba7b795984056cc86820ae21784e789846245ddcf0e"
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "file": "68a5ad73ebfe7fc39c4b6e59717a59e7caf6df0978f8689553846af5dee37d69.png",
+      "sha256": "89d3b198451cd1f0fedfc8922e6cfd100b2d226391da19a59e3b0d5aeea50ec7"
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "file": "1ad85b130fa4df066d20635d4f88a6413a1ba537f4dbad9155f581c1c5716dc1.png",
+      "sha256": "98949eb6dc27b83461086bdb3429c808cc604150b7eee740e18e248ab2a46515"
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "file": "31e660b8af67b2ed67e927c3040208aa5987571b01acaaa3583e900c3f35cf7d.png",
+      "sha256": "b249900a968b2b52e94aeee6394c2b6ab2b3df0bf96edb3bc2cc4be14d5be1b1"
+    }
+  ],
+  "unchanged_final_states": 8,
+  "dev_mind_taxonomy": {
+    "invalid_protocol": 30,
+    "wrong_semantics": 6,
+    "wrong_requested_kind": 28
+  },
+  "type_protocol_rejections": {
+    "fenced_click_with_inrange_coordinates": 4,
+    "malformed_or_truncated_input_echo": 2
+  },
+  "prior_colab_prompt_and_raw_matches": 80,
+  "all_calls": 80,
+  "timings": {
+    "dev_mind": {
+      "n": 64,
+      "median": 2.3202868790000366,
+      "p95_nearest_rank": 2.5946548329998222
+    },
+    "type": {
+      "n": 6,
+      "median": 3.0868442309999864,
+      "p95_nearest_rank": 7.680210665000004
+    }
+  },
+  "load_seconds": 30.764207484000053,
+  "wall_seconds": 235.234308328,
+  "generation_seconds": 195.95918928400056,
+  "memory_bytes": {
+    "peak_allocated_bytes": 4514018816,
+    "peak_reserved_bytes": 4575985664,
+    "device_used_bytes": 4744675328,
+    "cpu_peak_rss_bytes": 9685209088
+  },
+  "packages": {
+    "Pillow": "11.3.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1"
+  },
+  "python": "3.13.15",
+  "gpu": "Tesla T4",
+  "cuda": "12.8",
+  "limits": [
+    "120-frame pixel agreement is a logged preparation assertion checked for complete frozen-key/language coverage; only six actual retained frames were independently byte-hashed here.",
+    "No GPU execution/hardware attestation; timings from different allocations/providers/CUDA builds are not paired production cost evidence.",
+    "Only DEV episodes audited; separately counted standalone test diagnostics are not tuning material; no test-episode inference claim."
+  ]
+}

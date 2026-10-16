@@ -1,0 +1,68 @@
+{
+  "schema": "hala.h21.kaggle.controls_retention.v1",
+  "source_commit": "11a3a5359afa896787198e0492ccd036d0b6f4f8",
+  "runtime_sha256": "cbc80167c80461a267a7232b0596ccf176c0c118dbf7772128a92798ee0fca2e",
+  "trained_adapter_manifest_sha256": "7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d",
+  "base_task_completion": {
+    "dev": "0/8",
+    "test": "0/8"
+  },
+  "adapter_attempt": {
+    "status": "blocked",
+    "adapter_loaded": false,
+    "calls": 0,
+    "reason": "Preinstalled optional torchao0.10.0 incompatible with PEFT0.20"
+  },
+  "candidate_quality_measured": false,
+  "native_qualified": false,
+  "files": {
+    "adapter-load-first-failure-evidence.zip": {
+      "bytes": 11879,
+      "sha256": "3997fa07312496d8090545940c3ec8eba367f0cc0d53b6d09381f41c07294028"
+    },
+    "base-dev-audit.json": {
+      "bytes": 2871,
+      "sha256": "ba9d827fe1adff4f720af7a871515536cbf02def8e612b7c187a435053c8709c"
+    },
+    "base-dev-evidence.zip": {
+      "bytes": 98107,
+      "sha256": "20b30a46c25dd04b7577785afc291166f987cec87961fd8409b15a4d9dd13be2"
+    },
+    "base-dev-independent-review.json": {
+      "bytes": 3773,
+      "sha256": "3590d7a62b953aa3b5340b4cc96aad520b4622133a15468f890136ed76c333fc"
+    },
+    "base-dev-independent-review.md": {
+      "bytes": 3462,
+      "sha256": "0e03e047d9554289056659337d4c0e46f4d4120126b0286786e181d2ef357584"
+    },
+    "base-dev-result.json": {
+      "bytes": 329137,
+      "sha256": "e8034ecf9bf055c7441405cb9096e8a74e4244834d5198452d2ac56d0f148b4e"
+    },
+    "base-test-and-failure-independent-review.json": {
+      "bytes": 4127,
+      "sha256": "ab6adab6bcf1e168db6943f183ebbe031ec260ed77039a8452e9099f0ee3c95c"
+    },
+    "base-test-audit.json": {
+      "bytes": 2871,
+      "sha256": "2fbb3fbba6d7ea0feebd47a1ec2fe0c925a5556f345774c93d3c9999e44591b4"
+    },
+    "base-test-evidence.zip": {
+      "bytes": 73146,
+      "sha256": "6542d126ca6732843f103d0ddee1a31dad4069e12397a546c7907b56ae596f4a"
+    },
+    "base-test-result.json": {
+      "bytes": 321101,
+      "sha256": "82d04d2a3bcf3eaae9394273f81d9ff6043830bcdf360e8e51d0cb4f3f5f0c9f"
+    },
+    "preparation.json": {
+      "bytes": 20941,
+      "sha256": "86a462a0dadb6e0fceaf04274fd341b8bef89340bf7a0fb8334bf5ebd1d0583b"
+    },
+    "qualified-environment.json": {
+      "bytes": 820,
+      "sha256": "42f53d2264e2fc0ed85cbc33b8e3e61d52e43da2c924a70252893c3d1f3e2c8c"
+    }
+  }
+}
