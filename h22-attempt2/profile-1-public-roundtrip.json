@@ -1,0 +1,18 @@
+{
+  "schema": "hala.h22.public_roundtrip.v1",
+  "index": 1,
+  "commit": "e3d400424766aad3c5856ba29266e11033392ef5",
+  "verified": true,
+  "files": [
+    {
+      "path": "h22-attempt2/profile-1-int8-dev-evidence.zip",
+      "bytes": 294412,
+      "sha256": "e0dbe2d692c522943b3e0c49c198e540416cbabfa2b19499c9da4a518b8339e5"
+    },
+    {
+      "path": "h22-attempt2/profile-1-int8-dev-receipt.json",
+      "bytes": 321,
+      "sha256": "d693bdf0cb5fede0931cb423296efbf0a7a470b4a91039c1b23ff90089936af7"
+    }
+  ]
+}
