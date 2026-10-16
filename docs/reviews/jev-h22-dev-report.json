@@ -1,0 +1,91 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "docs/H22-measured-dev-20261016.md",
+      "source_sha256": "4a2fbaeba4387416babf2f1bb2082c7eb5264a609bfa2b5471ea88ed9911ef6f",
+      "exit_code": 0,
+      "wall_seconds": 0.981721899996046,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.4,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.11,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 519,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2654,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "docs/CURRENT_STATUS.md",
+      "source_sha256": "84f7786764634611df9022494416bb36b37cca1ee8352a30cd2c25ae5560ea19",
+      "exit_code": 0,
+      "wall_seconds": 0.6000544999842532,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.45,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 429,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1491,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}
