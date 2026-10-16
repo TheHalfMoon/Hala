@@ -1,0 +1,7 @@
+{
+  "schema": "hala.h22.public_retention_receipt.v1",
+  "index": 0,
+  "experiment_sha256": "60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02",
+  "archive_sha256": "6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580",
+  "archive_path": "h22-attempt2/profile-0-fp16-dev-evidence.zip"
+}
