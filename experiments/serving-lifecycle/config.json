@@ -1,0 +1,12 @@
+{
+  "schema": "hala.h23.private-lifecycle.v1",
+  "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "font_sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+  "request_timeout_seconds": 60,
+  "max_steps": 3,
+  "rights": "Original Hala synthetic fixture descriptions; Apache-2.0 repository license. Evaluation only, excluded from training.",
+  "tasks": [
+    {"id":"h23-lantern-en", "locale":"en-US", "goal":"Open Lantern settings, enable Quiet mode, and save the setting.", "labels":["Open Lantern settings", "Enable Quiet mode", "Save setting"], "key":"lantern_quiet", "value":true},
+    {"id":"h23-harbor-ar", "locale":"ar-SA", "goal":"افتح إعدادات الميناء ثم فعّل الوضع الليلي واحفظ الإعداد.", "labels":["افتح إعدادات الميناء", "فعّل الوضع الليلي", "احفظ الإعداد"], "key":"harbor_night", "value":true}
+  ]
+}

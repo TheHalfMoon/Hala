@@ -1,0 +1,2330 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/ROADMAP.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 31,
+          "end": 32
+        }
+      ],
+      "hunks": [
+        {
+          "start": 31,
+          "end": 32,
+          "lines": [
+            {
+              "n": 31,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 32,
+              "sign": "+",
+              "text": "- H23: [private serving lifecycle](../specs/H23-serving-lifecycle.md) in progress, source only; new bilingual three-step synthetic outcomes and owned remote worker recovery. Actual CUDA cancellation, allocator-budget exhaustion, independent review and remote evidence pending; public defaults remain unavailable.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/adr/0008-isolate-private-serving-worker.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 12
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 12,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# 0008. Isolate the private serving experiment worker"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: accepted (2026-10-16)"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Context"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "H16 threads preserve admission until model work exits but cannot recover a failed CUDA context. Lifecycle evidence needs bounded recovery without extending the public API or enabling native execution."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "## Decision"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "An optional operator engine owns one fixed-module child process over bounded JSON pipes. Cancel/deadline/failure ends that child; explicit restart reloads the pinned model. Existing authenticated v2 validation remains authoritative. Evaluation admission is separate from training and default RemoteQwenEngine behavior."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "## Consequences"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "Cancellation cleanup has a hard process boundary and no generic command surface. Reload is expensive and actual CUDA work/cancellation proof still requires remote evidence. Two synthetic outcomes cannot qualify native or production use."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "evaluation/serving_lifecycle.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 374
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 374,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Private H23 synthetic operator. Existing v2 proposals only, no native execution.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import base64"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import http.client"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import secrets"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import socket"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "from hala.inference import ServiceError"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from hala.serving import Config, Service, create_server, encode, strict_json"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from hala.inference.vision_candidate import CandidateBackend"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "from evaluation.serving_lifecycle_verifier import verify_outcome"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "ROOT = Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "CONFIG = ROOT/'experiments/serving-lifecycle/config.json'"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "def tasks():"
+            }
+          ],
+          "dropped": 350
+        }
+      ]
+    },
+    {
+      "path": "evaluation/serving_lifecycle_verifier.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 16
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 16,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Independent persisted outcome check; never trusts service status or receipts.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "def verify_outcome(path, task):"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    try:"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "        raw = Path(path).read_bytes()"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "        if len(raw)>4096: return False"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "        value = json.loads(raw)"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "        return (type(value) is dict and set(value) == {'task_id','settings'} and"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "                value['task_id'] == task['id'] and type(value['settings']) is dict and"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "                set(value['settings']) == {task['key']} and"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "                value['settings'][task['key']] is task['value'])"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    except (OSError, ValueError, TypeError, KeyError):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        return False"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/serving-lifecycle/README.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 25
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 25,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 private serving lifecycle source"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Source only; CPU tests do not establish actual CUDA cancellation, allocator exhaustion, model quality or production readiness. Two original evaluation-only synthetic settings workflows each require open, enable and save. The second has Arabic intent and labels. The independent verifier reads each separate persisted settings file; service responses cannot certify success."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "After independent source gates, run only inside a genuinely admitted free remote GPU evaluation session with exact Torch 2.11.0, Transformers 5.16.1, Pillow 11.3.0, RAQM and the pinned DejaVuSans font bytes. Font hash, Pillow and RAQM are checked before any worker start/download and every restart, in both parent and child. Model and processor revision are `89644892e4d85e24eaac8bacfd4f463576704203`. `HALA_REMOTE_DEVELOPMENT_ALLOWED=1` is the explicit opt-in; provider identity must come from the actual runtime. Cache environment overrides must be unset or resolve to `/tmp/hala-h23-cache`; cache escape/symlink scans remain fail closed. No local model execution or downloads are authorized."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "From the frozen repository, the operator command is:"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "python -m evaluation.serving_lifecycle --provider kaggle --freeze-sha256 4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a --source-commit <REVIEWED_SOURCE_COMMIT> --font /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf --output /kaggle/working/h23-run --faults"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Replace the commit placeholder with the exact independently reviewed final 40-character commit. The source must be a fully clean Git checkout, including untracked-file checks; place outputs outside that checkout. The freeze covers all 53 first-party Python/config files in the admitted superset, including package initializers and heldout fixture dependencies. Use `colab` only in actual Colab and a fresh ephemeral output directory. No installation, GPU allocation, tunnel or billing is performed by this command. The worker loads once initially and explicitly reloads after each destructive fault. The private HTTP socket uses only `127.0.0.1`, an ephemeral port, random bearer token, one admitted request and existing strict v2 validation. No HTTP fault/kill/OOM schema was added."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "`--faults` tests a real allocator *budget* cap with a bounded 8 MiB allocation and restoration, client disconnect after an actual model matrix operation has a pending CUDA event, an absolute deadline, and termination of only the operator's own child handle. Worker failure is an injected operational fault, not model behavior. Repeated post-restart tasks are recovery checks, not additional independent quality samples. Failed task proposals produce independent failure records and never mutate synthetic persisted state. Atomic progress is persisted before each risky task/probe/reload and after each outcome; failure paths retain raw wire traces, cancellation acknowledgments, attempted requests and reload errors. Every resulting record remains unqualified."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "TorchDispatchMode records an event immediately after real active-model CUDA `mm`/`addmm`/`bmm` enqueue and retains at most 128 such events. No toy CUDA workload is used. A private inherited socketpair reaches a concurrent child status thread. At cancellation, the parent timestamps the transport's actual `Event.set`, queries the child with a 250 ms total deadline, and then terminates/reaps only its owned child. The acknowledgment selects an event recorded before that cancellation receipt and queries whether it remains pending at the later child acknowledgment. An independently reviewed real-model event with `event_recorded_monotonic <= cancel_received_monotonic <= worker_receipt_monotonic` and `event_pending=true`, precise `event_set` receipt, cancelled fault and successful reap supplies a prospective route to actual overlap proof. CPU fixture acknowledgments, missing/stale/completed events, observation-only timestamps and post-generation cancellation cannot qualify it. Forward timings and generation-return traces provide additional context. The runner leaves `actual_cuda_cancel_qualified=false` until independently inspected actual remote evidence establishes the criterion."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "CPU evidence: initial lifecycle/workflow tests failed before source implementation; review repairs also began with four failing regression tests. Scoped repair suite: 16 tests passed, including font/RAQM before load/restart, dependency tampering and dirty checkout rejection, private event acknowledgment, exact cancellation receipt and partial-progress retention. New tests use a separately named CPU child, synthetic images, fake event queries and injected resource response and make no actual CUDA/OOM claim. Independent review deltas, genuine Jev/Graft, source signing and actual remote execution are root-owned pending gates. Default public server, training admission, RemoteQwenEngine, H19/H21 sources/prompts/verifier/settings and H22 code remain unchanged."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "Second repair cycle retains the exact child handle across terminate/wait and kill/wait timeouts, records explicit `reap.confirmed=false` and error, and blocks restart until a later close retry confirms exit. `child_reaped` comes from that confirmed wait evidence. Buffered pipe closure is deferred while unreaped to avoid blocking I/O locks; control closure and reader join remain bounded. Final failure results retain reap evidence even if cleanup raises."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "Third repair cycle separates retained ownership from inference usability. Close/model/cleanup faults disable exchanges before cleanup, and rejected exchanges cannot write to pipes, consume queued stale output or retry cleanup. Confirmed reap alone does not restore usability; only an explicit fresh worker start with successful pinned provenance handshake can do so."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 1
+        }
+      ]
+    },
+    {
+      "path": "experiments/serving-lifecycle/config.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 12
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 12,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h23.private-lifecycle.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"model_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"font_sha256\": \"ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"request_timeout_seconds\": 60,"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"max_steps\": 3,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"rights\": \"Original Hala synthetic fixture descriptions; Apache-2.0 repository license. Evaluation only, excluded from training.\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"tasks\": ["
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    {\"id\":\"h23-lantern-en\", \"locale\":\"en-US\", \"goal\":\"Open Lantern settings, enable Quiet mode, and save the setting.\", \"labels\":[\"Open Lantern settings\", \"Enable Quiet mode\", \"Save setting\"], \"key\":\"lantern_quiet\", \"value\":true},"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    {\"id\":\"h23-harbor-ar\", \"locale\":\"ar-SA\", \"goal\":\"افتح إعدادات الميناء ثم فعّل الوضع الليلي واحفظ الإعداد.\", \"labels\":[\"افتح إعدادات الميناء\", \"فعّل الوضع الليلي\", \"احفظ الإعداد\"], \"key\":\"harbor_night\", \"value\":true}"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  ]"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/serving-lifecycle/source-freeze.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 60
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 60,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"base_commit\": \"733fc7e11cfc147a463d388ee65559acd1fa847b\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"files\": {\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"data/__init__.py\": \"3fdcef559ca1a378d43b036cdc50b8c0296cc6b60507bc932d85387ae747e2a2\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"data/export.py\": \"66beb0d86c2964dbb7331f0328b5458bc37ab9f40265a00e77e77c69ec395ae4\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"data/factory.py\": \"5faf1a61298e069f7f26bdecce8cb8766a747388ac7208bcf69353f041f0badc\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"evaluation/__init__.py\": \"c1c082f588ebe0930a6ebb2b2ac5a93880f6fc793e1cfd4d2d0506d3638773da\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"evaluation/__main__.py\": \"a60542324b4d7138d2e6c41af2a07c71c49014fa69eda2c1307f0156ccbbeca2\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"evaluation/coordinates.py\": \"25a7cd00f42f2967ab97b974dad0d9edea007addb59c2ce454f2d33570313f03\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"evaluation/development_adapter.py\": \"d9d972a6af1758dddfd9061998e76ff336100a281a776f016ab7743856d7a622\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"evaluation/development_precision.py\": \"1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"evaluation/development_runtime.py\": \"20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895\",\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"evaluation/engine.py\": \"c53c656c03af6698cafeb609826ed38041d990f8f06fbce3b871b7a00991c22b\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_fixtures.py\": \"3458d012b8d90582e2528e9b08be928e393b925ff9f513fbef09de8b76ee8aae\",\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_protocol.py\": \"d040066be79faf5521f2f227484b0a0eeb41810889004755dd1be5a4801d03a9\",\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_runner.py\": \"b7797e938c9ecb74e71a1ecbd834cd12bc41a70b61539e9299ec68eb59c5b014\",\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"evaluation/metrics.py\": \"cfbc54742e63fc9cf3f796f169ab7ee939d4b429cdb5a0d613055b19b0ec8ef8\",\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"evaluation/quantization.py\": \"849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154\",\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"evaluation/quantization_runner.py\": \"4b83a10984912fdedc5bae274a0c13aa0c890fa12a7b5d80048045ac3857bcb6\",\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    \"evaluation/render.py\": \"b76cdd71ae530156a58d5b1c30a8523722c0c7aa9d45734e74c09afecdd78aa2\",\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"evaluation/serving_lifecycle.py\": \"600356109958514a3644d683025983524e5ed85e0aa8841130e2a66dadd1c860\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    \"evaluation/serving_lifecycle_verifier.py\": \"dda44427e07cec76d974e0b2239fea30ee786b4bbdc7d3d43aab563272345bb4\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"experiments/serving-lifecycle/config.json\": \"8c864b4a6dd885da53069e64fea6aefcb7cad75d2fc667e5cfcefa9fef9cdeaa\",\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    \"hala/__init__.py\": \"5cc02335c511b8da1e52a14c159cb74aad15a9d905be5b004e0f4b9d6c3aa5fa\",\r"
+            }
+          ],
+          "dropped": 36
+        }
+      ]
+    },
+    {
+      "path": "hala/serving/lifecycle.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 257
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 257,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Private experimental operator process. No public startup or qualification path.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import base64"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import queue"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import socket"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from hala.inference import ServiceError"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from hala.inference.remote_qwen import RemoteQwenEngine"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from hala.serving import encode, strict_json"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "PROVENANCE = dict(RemoteQwenEngine.provenance)"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "CACHE = '/tmp/hala-h23-cache'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "MAX_MESSAGE = 1048576"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "class CancellationReceipt:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"\"\"Timestamp transport's actual Event.set without changing its semantics.\"\"\""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    def __init__(self,event):"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        self.event, self.lock = event, threading.Lock()"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        self.received_monotonic = None"
+            }
+          ],
+          "dropped": 233
+        }
+      ]
+    },
+    {
+      "path": "hala/serving/lifecycle_worker.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 196
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 196,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Fixed private child entrypoint; model output has no native execution path.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import base64"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import contextlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import socket"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from collections import deque"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from hala.inference import RequestContext, ServiceError"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from hala.inference.remote_qwen import (RemoteQwenEngine, MODEL_ID, MODEL_REVISION,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "                                        TORCH_VERSION, TRANSFORMERS_VERSION)"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from hala.serving import encode, strict_json"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from hala.serving.lifecycle import admission, CACHE, MAX_MESSAGE, PROVENANCE"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "def allocator_budget_probe(torch):"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"\"\"Actual allocator cap exhaustion, not whole-device physical OOM.\"\"\""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    previous = torch.cuda.get_per_process_memory_fraction(0)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    allocated = torch.cuda.memory_allocated(0)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    total = torch.cuda.get_device_properties(0).total_memory"
+            }
+          ],
+          "dropped": 172
+        }
+      ]
+    },
+    {
+      "path": "specs/H23-serving-lifecycle.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 24
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 24,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23: private remote serving lifecycle experiment"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: source CPU-tested; independent gates and actual remote evidence pending. Depends on: reviewed H16 transport, H21f evaluation admission, H22 source base. Surfaces: new optional operator modules, fixtures/config, CPU tests; no existing public API or backend defaults change. Review: full."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Use the existing authenticated v2 click-proposal loopback service with a single pinned Qwen worker process. The fixed child module uses bounded JSON pipes, no pickle or caller program paths. Deadline, cancellation and worker failure destroy only the owned child and fail closed; explicit restart loads a fresh model. Operator faults are private Python operations, never HTTP fields. Cache admission reuses reviewed evaluation guard with a fixed ephemeral cache. No local weights or generic Linux fallback."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "New rights-cleared synthetic workflows: two independent three-step open/toggle/save tasks, English and Arabic, causal observations and separate persisted-state verifier. No H19/H21 fixture, prompt, verifier or training changes. All proposals remain untrusted; only the synthetic state machine applies them. No native execution, receipts, production adoption or general quality claims."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Acceptance:"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- [x] CPU loopback sequential turns with independent task outcomes and unsafe proposal rejection."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- [x] Owned worker lifecycle CPU tests: cancellation after CPU work starts, absolute deadline, failure/restart, output/injected-resource bounds and exact revision check."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- [x] Source remote-only admission, inherited strict auth/media/policy compatibility and immutable source/config/fixture freeze; no actual remote qualification inferred."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- [ ] Optional actual CUDA start evidence and bounded allocator-budget exhaustion probe; CPU fakes explicitly excluded from actual CUDA/OOM claims."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- [ ] Full CPU suite, independent combined/security, genuine Jev/Graft and prospective remote run remain separate gates."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "Assumptions (assumed): single worker, no queue, explicit operator restart, 60-second request ceiling inherited from transport. Actual cancellation qualification requires a CUDA event recorded after a real active-model matrix operation, enqueued before exact transport cancellation receipt and still pending at the later private child acknowledgment, followed by owned-child reap. CPU timers, pre-enqueue markers and completed-forward timestamps are insufficient. Actual remote evaluation, resource exhaustion and worker restart remain pending until root operator evidence. Torch 2.11.0, Transformers 5.16.1, exact model/processor 89644892e4d85e24eaac8bacfd4f463576704203; frozen font bytes, Pillow and RAQM checked before every load/restart. The full first-party Python superset is frozen and exact external source commit/clean Git checkout required before ML."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "Initial source gate: 248 CPU tests passed, one skipped (24.903s). Review repair scoped suite: 16 CPU tests passed after four initial regression failures; compileall passed. Prospective 53-file freeze SHA256 `20b57ebb7e66b59f480cb89cb7fd363e671d212d48249ec99356856bc16730ae`. Independent review deltas/Jev/Graft/signing and actual evaluation are deliberately not claimed by the builder. Incremental atomic task/fault/load progress retains evidence if later probes or reloads fail."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "Final repair full-suite gate: 253 tests run, one skipped, passed in 27.987s. No actual CUDA/allocator qualification or adoption claimed."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "Second repair cycle: owned handle remains until a successful wait confirms reap, double wait timeout records explicit unreaped/error state, restart is prohibited while owned/unreaped, and a later bounded close can retry. Buffered pipe closure waits for reap; control cleanup/reader join stay bounded. Red-to-green double-timeout/retry regression; scoped 17 tests and final full suite 254 tests run, one skipped, passed in 28.066s. Current freeze superseding earlier hashes: `063dde2eee1635ce1a52e40748ef76c06fb63a2fedb8a69da3322e269261015c`. All actual qualification flags remain false."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "Third repair cycle: retained ownership cannot serve inference after a fault/cleanup. Explicit unusable state rejects pipe writes/queue reads until confirmed reap and an explicit successful fresh-worker provenance handshake. Red-to-green queued stale-output regression; scoped 18 tests and final full suite 255 tests run, one skipped, passed in 25.905s. Current freeze superseding all earlier hashes: `4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a`. Third-cycle cap reached; root final independent delta review must pass or leave the phase parked. Actual qualification remains false."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/lifecycle_child.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 26
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 26,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Fixed CPU subprocess fixture. Never imported by the operator loader.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from hala.serving.lifecycle import PROVENANCE"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "def emit(value):"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    print(json.dumps(value), flush=True)"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "if __name__ == '__main__':"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    emit({'ready': PROVENANCE})"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    for line in sys.stdin.buffer:"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "        value = json.loads(line)"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        if value == {'probe':'allocator_budget'}:"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "            emit({'probe_result':{'kind':'allocator_budget','exhausted':True,'requested_bytes':8388608}})"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "            continue"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        goal = value['request']['goal']"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        if goal == 'wait':"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "            emit({'event':'cpu_work_started'})"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            time.sleep(5)"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        if goal == 'crash': sys.exit(4)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        if goal == 'oversize':"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            print('x'*1100000, flush=True)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            continue"
+            }
+          ],
+          "dropped": 2
+        }
+      ]
+    },
+    {
+      "path": "tests/test_serving_lifecycle.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 305
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 305,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU process/HTTP contracts only; no actual model, CUDA or OOM evidence.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import socket"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import queue"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from hala.inference import RequestContext, ServiceError"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from hala.serving.lifecycle import WorkerEngine, PROVENANCE"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "from PIL import Image"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "class WorkflowTests(unittest.TestCase):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    def test_operator_preflight_rejects_bad_font_before_start(self):"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        from evaluation import serving_lifecycle as operator"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        arguments = ['operator','--provider','kaggle','--freeze-sha256','a'*64,"
+            }
+          ],
+          "dropped": 281
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/ROADMAP.md",
+    "docs/adr/0008-isolate-private-serving-worker.md",
+    "experiments/serving-lifecycle/README.md",
+    "experiments/serving-lifecycle/config.json",
+    "experiments/serving-lifecycle/source-freeze.json",
+    "specs/H23-serving-lifecycle.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/serving_lifecycle.py#apply_proposal",
+      "name": "apply_proposal",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L176-L190",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#font_preflight",
+      "name": "font_preflight",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L28-L33",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#main.save",
+      "name": "save",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L351-L353",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#post",
+      "name": "post",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L133-L145",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#preflight",
+      "name": "preflight",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L47-L53",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#probe_fault",
+      "name": "probe_fault",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L247-L304",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#probe_lifecycle.capture",
+      "name": "capture",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L225-L227",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#render",
+      "name": "render",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L112-L130",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#restart_worker",
+      "name": "restart_worker",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L56-L59",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#run_operator",
+      "name": "run_operator",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L193-L206",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#run_tasks",
+      "name": "run_tasks",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L148-L173",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#source_files",
+      "name": "source_files",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L307-L313",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#tasks",
+      "name": "tasks",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L24-L25",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#verify_git",
+      "name": "verify_git",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L36-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#verify_sources",
+      "name": "verify_sources",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L316-L327",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#Workflow.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L64-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#Workflow.apply",
+      "name": "apply",
+      "kind": "method",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L72-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#Workflow.payload",
+      "name": "payload",
+      "kind": "method",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L88-L109",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#Workflow.target_center",
+      "name": "target_center",
+      "kind": "method",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L69-L70",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/serving_lifecycle_verifier.py#verify_outcome",
+      "name": "verify_outcome",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle_verifier.py",
+      "span": "L6-L16",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#admission",
+      "name": "admission",
+      "kind": "function",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L38-L51",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#CancellationReceipt.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L22-L24",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#CancellationReceipt.is_set",
+      "name": "is_set",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L31-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#CancellationReceipt.set",
+      "name": "set",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L26-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#CancellationReceipt.wait",
+      "name": "wait",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L34-L35",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L179-L187",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L58-L69",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine._capture_cancel",
+      "name": "_capture_cancel",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L88-L106",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine._exchange.write",
+      "name": "write",
+      "kind": "function",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L207-L212",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine._spawn",
+      "name": "_spawn",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L71-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.allocator_probe",
+      "name": "allocator_probe",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L189-L191",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.close",
+      "name": "close",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L149-L177",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.start.read",
+      "name": "read",
+      "kind": "function",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L124-L136",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#allocator_budget_probe",
+      "name": "allocator_budget_probe",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L20-L37",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#control_status",
+      "name": "control_status",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L79-L91",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#load.after",
+      "name": "after",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L137-L145",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#load.before",
+      "name": "before",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L129-L136",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#load.ModelWork.__torch_dispatch__",
+      "name": "__torch_dispatch__",
+      "kind": "method",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L116-L125",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#main.emit",
+      "name": "emit",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L153-L157",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#PendingModelWork.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L42-L47",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#PendingModelWork.record",
+      "name": "record",
+      "kind": "method",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L54-L63",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#PendingModelWork.reset",
+      "name": "reset",
+      "kind": "method",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L49-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#PendingModelWork.snapshot",
+      "name": "snapshot",
+      "kind": "method",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L65-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/lifecycle_child.py#emit",
+      "name": "emit",
+      "kind": "function",
+      "path": "tests/lifecycle_child.py",
+      "span": "L7-L8",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#fake_child",
+      "name": "fake_child",
+      "kind": "function",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L159-L161",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.call",
+      "name": "call",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L226-L227",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.setUp",
+      "name": "setUp",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L220-L223",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.tearDown",
+      "name": "tearDown",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L224-L225",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_cancel_after_child_started_fails_closed_and_restart.acknowledge",
+      "name": "acknowledge",
+      "kind": "function",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L233-L239",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_cancel_after_child_started_fails_closed_and_restart.run",
+      "name": "run",
+      "kind": "function",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L243-L245",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_deadline_failure_oversize_and_resource_fail_closed",
+      "name": "test_deadline_failure_oversize_and_resource_fail_closed",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L282-L289",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_double_reap_timeout_retains_handle_blocks_restart_then_allows_retry",
+      "name": "test_double_reap_timeout_retains_handle_blocks_restart_then_allows_retry",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L190-L218",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_local_start_rejected_before_spawn",
+      "name": "test_local_start_rejected_before_spawn",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L295-L299",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_pending_model_event_ack_selects_only_work_enqueued_before_cancel",
+      "name": "test_pending_model_event_ack_selects_only_work_enqueued_before_cancel",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L261-L281",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_resource_probe_is_private_and_cpu_injected",
+      "name": "test_resource_probe_is_private_and_cpu_injected",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L301-L305",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_revision_mismatch_never_ready",
+      "name": "test_revision_mismatch_never_ready",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L290-L294",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_sequential_calls_exact_revision",
+      "name": "test_sequential_calls_exact_revision",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L228-L230",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_unreaped_failed_owner_cannot_serve_queued_stale_output",
+      "name": "test_unreaped_failed_owner_cannot_serve_queued_stale_output",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L165-L188",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_causal_three_turns_and_independent_persisted_outcomes",
+      "name": "test_causal_three_turns_and_independent_persisted_outcomes",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L125-L135",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_client_rechecks_stale_binding_and_policy_before_synthetic_apply",
+      "name": "test_client_rechecks_stale_binding_and_policy_before_synthetic_apply",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L79-L94",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_fault_probe_progress_survives_reload_failure",
+      "name": "test_fault_probe_progress_survives_reload_failure",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L69-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_font_bytes_and_raqm_fail_closed_before_render",
+      "name": "test_font_bytes_and_raqm_fail_closed_before_render",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L118-L123",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_loopback_six_proposals_auth_and_policy_still_authoritative",
+      "name": "test_loopback_six_proposals_auth_and_policy_still_authoritative",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L136-L156",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_operator_preflight_rejects_bad_font_before_start",
+      "name": "test_operator_preflight_rejects_bad_font_before_start",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L22-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_restart_font_and_raqm_gates_precede_start",
+      "name": "test_restart_font_and_raqm_gates_precede_start",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L33-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_source_closure_rejects_unfrozen_dependency_and_dirty_git",
+      "name": "test_source_closure_rejects_unfrozen_dependency_and_dirty_git",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L46-L67",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_unsafe_or_stale_proposals_cannot_persist",
+      "name": "test_unsafe_or_stale_proposals_cannot_persist",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L96-L116",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_client_rechecks_stale_binding_and_policy_before_synthetic_apply",
+      "name": "test_client_rechecks_stale_binding_and_policy_before_synthetic_apply",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L79-L94",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L330-L370",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#probe_lifecycle",
+      "name": "probe_lifecycle",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L209-L244",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_restart_font_and_raqm_gates_precede_start",
+      "name": "test_restart_font_and_raqm_gates_precede_start",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L33-L44",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_loopback_six_proposals_auth_and_policy_still_authoritative",
+      "name": "test_loopback_six_proposals_auth_and_policy_still_authoritative",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L136-L156",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_unsafe_or_stale_proposals_cannot_persist",
+      "name": "test_unsafe_or_stale_proposals_cannot_persist",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L96-L116",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_causal_three_turns_and_independent_persisted_outcomes",
+      "name": "test_causal_three_turns_and_independent_persisted_outcomes",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L125-L135",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_font_bytes_and_raqm_fail_closed_before_render",
+      "name": "test_font_bytes_and_raqm_fail_closed_before_render",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L118-L123",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py",
+      "name": "serving_lifecycle.py",
+      "kind": "file",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L1-L375",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#WorkflowTests.test_fault_probe_progress_survives_reload_failure",
+      "name": "test_fault_probe_progress_survives_reload_failure",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L69-L78",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#run_tasks",
+      "name": "run_tasks",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L148-L173",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#run_operator",
+      "name": "run_operator",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L193-L206",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "evaluation/serving_lifecycle.py#preflight",
+      "name": "preflight",
+      "kind": "function",
+      "path": "evaluation/serving_lifecycle.py",
+      "span": "L47-L53",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine._exchange",
+      "name": "_exchange",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L193-L257",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_pending_model_event_ack_selects_only_work_enqueued_before_cancel",
+      "name": "test_pending_model_event_ack_selects_only_work_enqueued_before_cancel",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L261-L281",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/lifecycle.py#WorkerEngine.start",
+      "name": "start",
+      "kind": "method",
+      "path": "hala/serving/lifecycle.py",
+      "span": "L108-L147",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_resource_probe_is_private_and_cpu_injected",
+      "name": "test_resource_probe_is_private_and_cpu_injected",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L301-L305",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.tearDown",
+      "name": "tearDown",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L224-L225",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_double_reap_timeout_retains_handle_blocks_restart_then_allows_retry",
+      "name": "test_double_reap_timeout_retains_handle_blocks_restart_then_allows_retry",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L190-L218",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_local_start_rejected_before_spawn",
+      "name": "test_local_start_rejected_before_spawn",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L295-L299",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_revision_mismatch_never_ready",
+      "name": "test_revision_mismatch_never_ready",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L290-L294",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_unreaped_failed_owner_cannot_serve_queued_stale_output",
+      "name": "test_unreaped_failed_owner_cannot_serve_queued_stale_output",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L165-L188",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.setUp",
+      "name": "setUp",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L220-L223",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_cancel_after_child_started_fails_closed_and_restart",
+      "name": "test_cancel_after_child_started_fails_closed_and_restart",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L231-L259",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_serving_lifecycle.py#LifecycleTests.test_deadline_failure_oversize_and_resource_fail_closed",
+      "name": "test_deadline_failure_oversize_and_resource_fail_closed",
+      "kind": "method",
+      "path": "tests/test_serving_lifecycle.py",
+      "span": "L282-L289",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L151-L192",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "hala/serving/lifecycle_worker.py",
+      "name": "lifecycle_worker.py",
+      "kind": "file",
+      "path": "hala/serving/lifecycle_worker.py",
+      "span": "L1-L197",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/lifecycle_child.py",
+      "name": "lifecycle_child.py",
+      "kind": "file",
+      "path": "tests/lifecycle_child.py",
+      "span": "L1-L27",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "close",
+      "labelSource": "symbol",
+      "key": "hala/serving/",
+      "files": [
+        "hala/serving/lifecycle.py",
+        "hala/serving/lifecycle_worker.py"
+      ],
+      "seeds": 23,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_serving_lifecycle.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_serving_lifecycle.py"
+      ],
+      "reached": 6,
+      "behavioural": 23,
+      "unreached": [
+        "admission",
+        "__init__",
+        "is_set",
+        "set",
+        "wait",
+        "__call__",
+        "__init__",
+        "write",
+        "_spawn",
+        "read",
+        "allocator_budget_probe",
+        "control_status",
+        "after",
+        "before",
+        "__torch_dispatch__",
+        "emit",
+        "__init__"
+      ],
+      "seedNames": [
+        "close",
+        "emit",
+        "_capture_cancel",
+        "_spawn",
+        "admission",
+        "allocator_budget_probe",
+        "allocator_probe",
+        "record",
+        "reset",
+        "snapshot",
+        "__call__",
+        "__init__",
+        "__init__",
+        "__init__",
+        "__torch_dispatch__",
+        "after",
+        "before",
+        "control_status",
+        "is_set",
+        "read",
+        "set",
+        "wait",
+        "write"
+      ],
+      "owners": []
+    },
+    {
+      "label": "tasks",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/serving_lifecycle.py",
+        "evaluation/serving_lifecycle_verifier.py"
+      ],
+      "seeds": 20,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_serving_lifecycle.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_serving_lifecycle.py"
+      ],
+      "reached": 8,
+      "behavioural": 20,
+      "unreached": [
+        "font_preflight",
+        "save",
+        "post",
+        "preflight",
+        "probe_fault",
+        "capture",
+        "render",
+        "run_operator",
+        "source_files",
+        "verify_git",
+        "verify_sources",
+        "__init__"
+      ],
+      "seedNames": [
+        "tasks",
+        "payload",
+        "restart_worker",
+        "run_tasks",
+        "apply_proposal",
+        "font_preflight",
+        "verify_outcome",
+        "apply",
+        "post",
+        "preflight",
+        "probe_fault",
+        "render",
+        "run_operator",
+        "save",
+        "source_files",
+        "target_center",
+        "verify_git",
+        "verify_sources",
+        "__init__",
+        "capture"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

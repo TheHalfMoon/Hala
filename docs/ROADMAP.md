@@ -28,3 +28,5 @@ Original H0–H13 foundation/research/data/mock-contract work and strict0/8 plus
 Details: docs/H21-measured-pilot-20261016.md. Foundation PR1 remains fixed; PR2 is stacked/draft/unmerged, artifact branch isolated. No model/precision adoption or native/production qualification. Founder controls merge/release.
 
 - H22: [representative closed-loop precision/process cost](../specs/H22-development-precision.md) source CPU-tested on isolated branch; prospective freeze prepared, independent gates and actual matched GPU execution pending. H21 active execution remains unchanged.
+
+- H23: [private serving lifecycle](../specs/H23-serving-lifecycle.md) source CPU-tested and independently gated after three repair cycles; new bilingual three-step synthetic outcomes and owned remote worker recovery. Actual model outcomes, CUDA cancellation, allocator-budget exhaustion and remote recovery evidence pending; public defaults remain unavailable. Source reviews/Jev/Graft are archived in `docs/reviews/h23-source-gates.json`.
