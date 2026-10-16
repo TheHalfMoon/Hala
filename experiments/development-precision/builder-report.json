@@ -1,0 +1,19 @@
+{
+  "schema": "hala.h22.builder-report.v1",
+  "status": "source_cpu_tested_independent_delta_gates_pending",
+  "branch": "ps/h22-development-precision",
+  "base_commit": "11a3a5359afa896787198e0492ccd036d0b6f4f8",
+  "commit_created": false,
+  "initial_red": "Seven missing-module criterion tests failed before implementation.",
+  "repair_red": "Three criteria failed before UUID attribution, traversal budgets and sample-wait reporting repairs.",
+  "final_delta_red": "Admission entry/time budget and physical GPU pair-identity regressions failed before repair.",
+  "scoped_green": {"tests": 39, "h22_tests": 16, "seconds": 2.229},
+  "final_full_green": {"command": "python -m unittest discover -s tests -q", "tests": 237, "skipped": 1, "seconds": 21.374},
+  "diff_check": "passed",
+  "source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+  "preserved": ["All development/*.py bytes", "Complete QwenInfer, SETTINGS and remote_guard AST", "Default FP16 loader behavior", "Historical H14/H17 source and artifacts", "Original retained adapter bytes"],
+  "review_repairs": ["GPU telemetry uses the physical UUID resolved from logical cuda:0, never assumes physical GPU0", "Unresolved UUID and unsupported fields labelled with null values", "Sampler states minimum two-second wait plus query duration with actual timestamps", "Cache admission and measurement both incrementally cap100000 entries and check five-second elapsed budget", "Admission exhaustion rejects before dependency/model imports; finalization timeout preserves evidence", "Pair identity rejects different physical GPU UUIDs; unknown UUID pairs explicitly leave physical-device comparison unqualified"],
+  "remaining_gates": ["Fresh delta independent review", "Jev/Graft", "Signed clean source commit", "Operator external freeze pin", "Initial base/candidate choice from actual H21 evidence", "Fresh remote dependency/model/quantized-adapter/residency qualification", "Actual matched bilingual closed-loop precision and cost runs"],
+  "limitations": ["CPU ML seams are fake and establish no model quality or hardware measurements", "Sampled GPU maxima are not continuous peaks", "Whole-GPU observations include other processes", "Cache bytes measure unique stored file content, not allocated filesystem blocks", "Elapsed traversal checks do not preempt an OS filesystem operation that itself stalls"],
+  "actions_not_performed": ["GPU execution", "Model download", "ML package installation", "Judges", "Jev/Graft", "Training", "Precision adoption", "Main merge", "Commit"]
+}

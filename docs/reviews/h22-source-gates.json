@@ -1,0 +1,66 @@
+{
+  "schema": "hala.h22.source_gates.v1",
+  "base_commit": "11a3a5359afa896787198e0492ccd036d0b6f4f8",
+  "source_sha256": {
+    "evaluation/development_runtime.py": "20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895",
+    "evaluation/development_precision.py": "1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5",
+    "tests/test_development_precision.py": "9bed14e6a09c82a6347e1bcfef8d7d2eb62eea0076b5fcd25ba4e18a144bb668",
+    "experiments/development-precision/config.json": "a6a18c4336af7eda4bcf1aa805254fe545672faac6d14f1ad82410375480e470",
+    "experiments/development-precision/source-freeze.json": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+    "specs/H22-development-precision.md": "b82d4a9a5db0a28dd956b1ef04617d02c58d561a73d2e78edebbaf063f270af8",
+    "docs/H22_PRECISION.md": "828bde06fcb5610fbf8f518c85418d881ee0ba49accd7a59af01e7864e69535f",
+    "docs/adr/0007-share-representative-precision-runtime.md": "84fdf7faa3007abd2ce3029b8f1ad97b26c445646d0d35c71b2bd0949634cbba"
+  },
+  "builder_full_suite": {
+    "tests": 237,
+    "skipped": 1,
+    "seconds": 21.374,
+    "skip_reason": "Windows native symlink privilege unavailable"
+  },
+  "independent_reviews": {
+    "combined": "h22-combined-review.md",
+    "security": "h22-security-review.md",
+    "remaining_findings": []
+  },
+  "repair_evidence": [
+    "Actual logical CUDA device UUID replaces physical-zero telemetry assumption",
+    "Unsupported GPU fields have null values and labels",
+    "Minimum sampling delay and actual timestamps distinguish query duration",
+    "Measurement and pre-ML cache admission scan are cooperatively bounded",
+    "Pairing binds actual GPU UUID; unavailable physical identity remains unqualified"
+  ],
+  "preserved": [
+    "All H19 development source bytes",
+    "QwenInfer and SETTINGS AST",
+    "Training remote_guard AST",
+    "Default FP16 loader behavior",
+    "Historical H14/H17 artifacts",
+    "Retained adapter bytes"
+  ],
+  "jev": {
+    "file": "jev-h22-final.json",
+    "model": "jev-1.13.0",
+    "role": "Actual typed advisory judgments, not approval"
+  },
+  "graft": {
+    "grain": "h22-final",
+    "version": "0.21.1",
+    "build_exit": 0,
+    "check_exit": 0,
+    "impact_exit": 0,
+    "graph_ok": true,
+    "nodes": 882,
+    "deep_context_built": false,
+    "scope": "Working grain source freshness and actual staged/unstaged diff blast; not correctness or isolated execution",
+    "telemetry": "disabled"
+  },
+  "actual_gpu_qualified": false,
+  "quality_qualified": false,
+  "adoption_qualified": false,
+  "limits": [
+    "CPU ML test seams are fakes",
+    "Filesystem budgets check between OS operations, not hard preemption",
+    "Source graph freshness is not correctness or isolated execution",
+    "GPU sampled maxima are not continuous peaks"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "adoption_qualified": false,
+  "execution": "one mode per fresh remote process",
+  "initial_model_choice": "pending actual H21 quality; same base or identical verified retained adapter across all modes",
+  "profiles": [
+    {
+      "mode": "fp16",
+      "packages": {
+        "accelerate": "1.12.0",
+        "bitsandbytes": "0.50.2"
+      },
+      "quantization": null,
+      "reference_settings": {
+        "attention": "sdpa",
+        "deterministic_algorithms": true,
+        "do_sample": false,
+        "max_calls_per_episode": 16,
+        "max_input_tokens": 4096,
+        "max_new_tokens": 128,
+        "max_time_seconds": 20,
+        "max_type_actions_per_episode": 8,
+        "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+        "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+        "num_beams": 1,
+        "outer_deadline_seconds": 3600,
+        "precision": "fp16",
+        "schema": "hala.development.runtime.v1",
+        "seed": 42
+      },
+      "schema": "hala.h22.precision.v1"
+    },
+    {
+      "mode": "int8",
+      "packages": {
+        "accelerate": "1.12.0",
+        "bitsandbytes": "0.50.2"
+      },
+      "quantization": {
+        "llm_int8_enable_fp32_cpu_offload": false,
+        "llm_int8_threshold": 6.0,
+        "load_in_8bit": true
+      },
+      "reference_settings": {
+        "attention": "sdpa",
+        "deterministic_algorithms": true,
+        "do_sample": false,
+        "max_calls_per_episode": 16,
+        "max_input_tokens": 4096,
+        "max_new_tokens": 128,
+        "max_time_seconds": 20,
+        "max_type_actions_per_episode": 8,
+        "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+        "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+        "num_beams": 1,
+        "outer_deadline_seconds": 3600,
+        "precision": "fp16",
+        "schema": "hala.development.runtime.v1",
+        "seed": 42
+      },
+      "schema": "hala.h22.precision.v1"
+    },
+    {
+      "mode": "nf4",
+      "packages": {
+        "accelerate": "1.12.0",
+        "bitsandbytes": "0.50.2"
+      },
+      "quantization": {
+        "bnb_4bit_compute_dtype": "float16",
+        "bnb_4bit_quant_storage": "uint8",
+        "bnb_4bit_quant_type": "nf4",
+        "bnb_4bit_use_double_quant": true,
+        "llm_int8_enable_fp32_cpu_offload": false,
+        "load_in_4bit": true
+      },
+      "reference_settings": {
+        "attention": "sdpa",
+        "deterministic_algorithms": true,
+        "do_sample": false,
+        "max_calls_per_episode": 16,
+        "max_input_tokens": 4096,
+        "max_new_tokens": 128,
+        "max_time_seconds": 20,
+        "max_type_actions_per_episode": 8,
+        "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+        "model_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+        "num_beams": 1,
+        "outer_deadline_seconds": 3600,
+        "precision": "fp16",
+        "schema": "hala.development.runtime.v1",
+        "seed": 42
+      },
+      "schema": "hala.h22.precision.v1"
+    }
+  ],
+  "quality_qualified": false,
+  "schema": "hala.h22.config.v1",
+  "task_order": "all existing Mind diagnostics then stored closed-loop split order",
+  "task_source": "unchanged frozen H19 bundle selected by external manifest SHA256"
+}

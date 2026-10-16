@@ -221,8 +221,15 @@ def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev
                 split=split, cache_dir=cache_dir, prepared_adapter=None, provider=provider)
 
 
-def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab'):
+def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab', precision=None):
     admitted_provider = evaluation_guard(provider)
+    if precision is not None:
+        from evaluation import development_precision as precision_runtime
+        selected = dict(precision)
+        freeze_digest = selected.pop('source_freeze_sha256')
+        precision_runtime.check_profile(selected)
+        precision_runtime.verify_sources(freeze_digest)
+        precision_runtime.check_cache(cache_dir)
     check_digest(manifest_sha256)
     check_digest(source_commit, 40)
     if split not in ('dev', 'test'):
@@ -239,13 +246,17 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
     actual_commit = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=root, capture_output=True, text=True, check=True).stdout.strip()
     dirty = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', 'development',
                             'evaluation/development_runtime.py', 'evaluation/development_adapter.py',
-                            'training/adapter_archive.py'], cwd=root, capture_output=True, text=True, check=True).stdout
+                            'training/adapter_archive.py', *(['evaluation/development_precision.py',
+                            'evaluation/quantization.py', 'experiments/development-precision'] if precision is not None else [])],
+                            cwd=root, capture_output=True, text=True, check=True).stdout
     if actual_commit != source_commit or dirty:
         raise ValueError('Exact published clean source commit required')
     cache = Path(cache_dir).resolve()
     if not (str(cache).startswith('/tmp/hala-') or cache.is_relative_to('/content')):
         raise ValueError('Remote approved cache path required')
     pins = dict(VERSIONS)
+    if precision is not None:
+        pins.update(precision_runtime.PINS)
     if prepared_adapter is not None:
         from evaluation.development_adapter import VERSIONS as adapter_versions
         pins.update(adapter_versions)
@@ -270,16 +281,27 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
             'manifest_sha256': prepared_adapter['manifest_sha256'],
             'identity': prepared_adapter['manifest']['identity'],
             'files': prepared_adapter['manifest']['files'], 'kind': 'trained_adapter'})
+    if precision is not None:
+        result.update(schema='hala.development.precision.v1', precision_profile=precision,
+                      reference_schema=result['schema'], adoption_qualified=False)
     result_path = output / 'result.json'
     persist(result_path, result)
     start_all, cpu_start = time.perf_counter(), time.process_time()
     deadline_monotonic = start_all + SETTINGS['outer_deadline_seconds']
-    torch = model = None
+    torch = model = observer = None
     def deadline(_signum, _frame):
         raise TimeoutError('Bounded outer experiment deadline exceeded')
     previous = signal.signal(signal.SIGALRM, deadline)
     signal.alarm(SETTINGS['outer_deadline_seconds'])
     try:
+        if precision is not None:
+            try:
+                observer = precision_runtime.CostSampler()
+                observer.start()
+            except Exception as error:
+                result.setdefault('telemetry_errors', {})['process_cost_start'] = type(error).__name__
+            for key in precision_runtime.CACHE_KEYS:
+                os.environ[key] = str(cache)
         os.environ.update(HF_HUB_DISABLE_TELEMETRY='1', DO_NOT_TRACK='1',
                           HF_HOME=str(cache), HF_HUB_CACHE=str(cache),
                           CUBLAS_WORKSPACE_CONFIG=':4096:8')
@@ -292,6 +314,13 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
         if any(actual_packages[p].split('+')[0] != expected for p, expected in VERSIONS.items()):
             raise ValueError('Imported runtime differs from exact package pins')
         result['imported_packages'] = actual_packages
+        if precision is not None:
+            import accelerate
+            import bitsandbytes
+            actual_precision_packages = {'accelerate': accelerate.__version__, 'bitsandbytes': bitsandbytes.__version__}
+            if actual_precision_packages != precision_runtime.PINS:
+                raise ValueError('Imported precision dependencies differ from exact pins')
+            result['imported_packages'].update(actual_precision_packages)
         if not torch.cuda.is_available() or not features.check_feature('raqm') or features.version_feature('raqm') != '0.10.1':
             raise ValueError('Actual CUDA and qualified RAQM required')
         if prepared_adapter is not None:
@@ -311,23 +340,40 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
         torch.backends.cudnn.allow_tf32 = False
         result.update(gpu=torch.cuda.get_device_name(0), cuda=torch.version.cuda,
                       gpu_capability=list(torch.cuda.get_device_capability(0)))
+        if precision is not None:
+            try:
+                result['gpu_uuid'] = precision_runtime.resolve_device_uuid(torch)
+                if observer is not None:
+                    observer.device_uuid = result['gpu_uuid']
+            except Exception as error:
+                result['gpu_uuid'] = None
+                result.setdefault('telemetry_errors', {})['device_identity'] = type(error).__name__
         record_memory(result, 'memory_before_load', torch)
         torch.cuda.reset_peak_memory_stats(0)
         start_load = time.perf_counter()
-        processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION, trust_remote_code=False)
-        model = Qwen3VLForConditionalGeneration.from_pretrained(MODEL_ID, revision=REVISION,
-                    trust_remote_code=False, dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()
+        if precision is None:
+            processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION, trust_remote_code=False)
+            model = Qwen3VLForConditionalGeneration.from_pretrained(MODEL_ID, revision=REVISION,
+                        trust_remote_code=False, dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()
+        else:
+            processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION,
+                        trust_remote_code=False, cache_dir=str(cache))
+            model = precision_runtime.load_model(torch, Qwen3VLForConditionalGeneration, precision, str(cache))
         if prepared_adapter is not None:
             from evaluation.development_adapter import attach_adapter
             model = attach_adapter(model, prepared_adapter, torch, adapter_tensors)
             del adapter_tensors
             result['adapter_loaded'] = True
+        if precision is not None:
+            result['residency_loaded'] = precision_runtime.residency(model)
         torch.cuda.synchronize(0)
         result.update(load_seconds=time.perf_counter() - start_load, status='running')
         record_memory(result, 'memory_loaded', torch)
         persist(result_path, result)
         infer = QwenInfer(torch, model, processor, Image.open, frames, result['calls'], deadline_monotonic=deadline_monotonic)
         dataset = json.loads((bundle / 'dataset.json').read_text(encoding='utf-8'))
+        if precision is not None:
+            result['comparison_identity'] = precision_runtime.identity(result, dataset, precision)
         # Standalone Mind diagnostics remain the explicitly labelled test split,
         # even if the closed-loop episode allocation chosen here is dev.
         for case in dataset['mind_cases']:
@@ -347,6 +393,17 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
     finally:
         signal.alarm(0)
         signal.signal(signal.SIGALRM, previous)
+        if precision is not None:
+            if observer is not None:
+                try:
+                    result['process_cost'] = observer.stop()
+                except Exception as error:
+                    result.setdefault('telemetry_errors', {})['process_cost'] = type(error).__name__
+            try:
+                result['unique_physical_cache_bytes'] = precision_runtime.disk_bytes(cache)
+            except Exception as error:
+                result['unique_physical_cache_bytes'] = None
+                result.setdefault('telemetry_errors', {})['cache_bytes'] = type(error).__name__
         finalize_result(result, result_path, torch, start_all, cpu_start)
         if model is not None:
             del model
