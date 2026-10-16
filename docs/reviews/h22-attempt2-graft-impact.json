@@ -1,0 +1,1880 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-attempt2/attempt1-retention-failure.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 18
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 18,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.interrupted_attempt.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"observed_utc\": \"2026-10-16T15:17:31Z\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"source_commit\": \"07591f109b6683c9302fcf890259ddf0bde91494\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"prospective_experiment_sha256\": \"3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"operator_sha256\": \"74ea598b88f79a2b5b98d60d63b77adecdb186307ffa54ebffc311f334a75a9d\","
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"launch_pid_observed\": 925,"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"result_files_retrieved\": 0,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"execution_and_outcomes_verifiable\": false,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"observed_after_pause\": {"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"kaggle_working_hala_root_exists\": false,"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"precision_launcher_status_exists\": false,"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"runtime_kernel\": \"Interactive\""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  \"reason\": \"Interactive session expired during the usage-limit/user gap; no precision output was exported before expiry.\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  \"preserved\": [\"Original trained adapter and full hashes\", \"Verified original and Kaggle controls\", \"Fresh GPU candidate dev and test results and independent replays\", \"Prospective precision source/config/operator and reviews\"],"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  \"next\": \"New prospectively recorded hardware allocation; one unchanged profile at a time, requiring verified durable export before advancing. Do not claim unobserved first-attempt scores or repeat completed H21 training/comparisons.\""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/builder-report.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 36
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 36,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 attempt2 operator source handoff"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No inference, GPU execution, downloads, publication or commit by this builder. Production source07591, frozen H19/model/adapter/budgets and the original prospective manifest are unchanged. Attempt1's ephemeral VM disappeared after the user pause; zero precision results were retrieved, so there is no attempt1 quality/cost conclusion."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Files:"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- `outputs/h22-attempt2-qualify.py`: frozen SHA256 `1ef101eb2ca16305c06f6739ce00138b8b0b75236e18316775b072805e77d373`. Checks complete clean07591 Git tree before source imports and again before ML imports, exact original packages including Torch2.11.0+cu128, genuine provider, frozen bundle/font and privately verified retained adapter. Requires externally observed new GPU UUID, exercises UUID-bound/bounded sampler, and atomically writes `h22-attempt2-qualification.json` without overwriting. No H21 previous-status dependency, Git mutation or model prewarm. Cache observation explicitly precedes prewarm."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "- `outputs/h22-run-one-profile.py`: repaired/frozen SHA256 `3e24085ce05b16a0e511e6b03f4fd2dd4138ae0213d5ac23349b6687232e0adc`. Fixed indices0..5 remain fp16-dev/int8-dev/nf4-dev/fp16-test/int8-test/nf4-test. One profile per invocation,3700-second timeout, fresh subprocess, complete clean07591 source guard before every invocation, no automatic advancement and no overwrite/rerun of existing profile directory. Preserves terminal status, raw log, experiment, qualification, optional separate prewarm record and raw runtime output in evidence ZIP. Failures/timeouts are retained rather than becoming quality conclusions."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- `outputs/h22-attempt2-prospective-experiment.json`: draft SHA256 `2388e1ff4fd971c7e7b0305a9fbf5dc0c46c6fded59b63fe1ea3ea1553e8f48b`. Copies original load-bearing study fields verbatim and changes attempt/hardware/retention/cache metadata only. New UUID is `GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1`. Root reviews/publishes this manifest and supplies its actual immutable artifact commit and SHA; a later manifest edit needs a new external SHA."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- `outputs/test_h22_attempt2_operator.py`: nine stdlib adversarial tests pass in0.289s. Covers wrong/dirty source, changed fixed study fields, invalid indices, mutable URL rejection, redirects/oversize/wrong digest, receipt/archive/current-experiment/previous-index mismatches, missing retention blocking before launch, failure/timeout evidence ZIP, no auto-advance and no rerun. Independent review's missing-raw-evidence/forged-result criteria first reproduced six failing subcases, then passed after the retention-only repair. Measured result tests additionally reject wrong raw status, mode, allocation, source and GPU. ML/network/subprocess execution is mocked; these tests establish no GPU quality."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "Qualification invocation:"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "python h22-attempt2-qualify.py --expected-gpu-uuid GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "Then separately record any original-base prewarm in `/kaggle/working/hala-h21/h22-attempt2-prewarm.json`. Qualification does not claim a warm cache. Actual first run uses:"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "python h22-run-one-profile.py --index 0 --manifest-commit <40hex-artifact-commit> --manifest-sha <external-experiment-sha256>"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "The manifest is fetched only at `https://raw.githubusercontent.com/TheHalfMoon/Hala/<40hex>/h22-attempt2/experiment.json`, bounded64KiB and checked against supplied SHA. Its fixed model/source/freeze/data/adapter/package/budget/order fields must match the original SHA-pinned publicly retained prospective manifest. Qualification source/freeze/new UUID must match it."
+            }
+          ],
+          "dropped": 12
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/experiment.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 89
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 89,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adapter_identity\": {\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"base_model\": \"Qwen/Qwen3-VL-2B-Instruct\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"base_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"data_sha256\": \"af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"evaluation_sha256\": \"e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"source_commit\": \"5b6eb4bf29acbaf21aa199f113f78af4f268b3b7\"\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"adapter_manifest_sha256\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"adoption_qualified\": false,\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"attempt\": 2,\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"blocked_policy\": \"Retain failed/partial run with raw errors; continue independent next profile in a fresh process; no fallback, retraining, parser repair or test-driven tuning\",\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"budget\": {\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"generation_seconds\": 20,\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"generation_tokens\": 128,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"input_tokens\": 4096,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"launcher_timeout_seconds_per_run\": 3700,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"runtime_seconds_per_run\": 3600\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  \"cache\": \"/tmp/hala-h22-cache\",\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  \"cache_state\": \"Pinned original base files prewarmed remotely before any model inference; all profiles start with the same disk cache; OS page cache may differ\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  \"cost_limits\": [\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"Same physical GPU but fixed temporal order and warm cache confound timing\",\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    \"Whole GPU0 plus current process measurements; allocated idle second T4 is not included in GPU0 process cost\",\r"
+            }
+          ],
+          "dropped": 65
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/operator-launcher.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 255
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 255,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Attempt2 operator: run one fixed H22 profile only after public prior retention.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import urllib.request"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "ROOT = Path('/kaggle/working/hala-h21')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "COMMIT = '07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "FREEZE = '98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "ORDER = [['fp16', 'dev'], ['int8', 'dev'], ['nf4', 'dev'], ['fp16', 'test'], ['int8', 'test'], ['nf4', 'test']]"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "PREFIX = 'https://raw.githubusercontent.com/TheHalfMoon/Hala/'"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "ARTIFACT = 'h22-attempt2/'"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "ORIGINAL_SHA = '3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39'"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "ORIGINAL_URL = PREFIX + '253dccf22f54ca0aead4afc3137da1a2276276a0/h22-prospective-20261016/experiment.json'"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 231
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/operator-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 34
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 34,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 attempt2 — independent operator review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Scope: single-profile launcher, qualification helper, separate prewarm helper, prospective attempt2 manifest and seven adversarial operator tests. No inference, GPU execution, downloads, publication or source edits by reviewer. Attempt1 yielded no retrieved results; it supplies no precision quality/cost evidence."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Must fix"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- `outputs/h22-run-one-profile.py`, `prior_retention`: the durable-retention gate checks only the ZIP experiment and status metadata. It does not require a raw log, qualification or launcher, nor require/hash-check `run/result.json` when `result_sha256` claims one exists. A CPU probe accepted a ZIP containing only `experiment.json` and `profile-status.json` with `status=finished`, `result_status=measured` and an arbitrary claimed result hash. Thus the next profile can run without the previous raw inference evidence being publicly retained. Require mandatory provenance/raw-log members, and verify any claimed raw result against its hash/status; a reported successful measured run must include that raw result. Add incomplete/missing/changed-result adversarial cases before proceeding."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## Confirmed clean"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Exactly one selected index0..5 launches one fresh process with the unchanged six-mode order, source07591, freeze98ca7, original H19/retained-adapter identities and original package/budget/model-choice fields. New manifest fields distinguish the restored GPU/cache/retention context; original scientific settings are checked against the original immutable SHA-bound manifest."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- Complete clean source and exact Git HEAD are checked before imports/launch; immutable fixed-repository artifact URLs require lowercase40hex commits, external SHA256 and bounded reads. Receipts bind experiment, prior index and actual public ZIP bytes; missing previous receipt blocks output/process creation. ZIP inventory bounds and no extraction avoid path traversal/decompression expansion beyond the checked limits."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- A new per-profile directory and exclusive ZIP creation prevent overwriting/rerunning an existing local profile. There is no automatic advancement. Failed/timeout subprocesses receive terminal status and retained logs; overflow fails packaging while leaving raw evidence on disk. Rerun prohibition is local to this restored working directory and assumes the trusted operator does not reset it or replay an already retained index in another VM."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- Qualification checks actual package imports, source/freeze, provider, bundle, font, exact retained archive and UUID-bound telemetry without loading a model. The source review cannot freshly establish remote GPU facts."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- Prewarm is a separate original-model frozen-revision `snapshot_download` with non-code asset patterns, no model construction and explicit cache/time/file-hash provenance. It uses the Hub client's normal configured endpoint, whose default is the official Hub; an official-source claim assumes the actual environment has no alternate Hub endpoint override. Fixed warm-cache order and page-cache differences remain limitations."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "## Validation and identities"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "Seven existing stdlib tests independently passed in0.194 seconds. The additional in-memory incomplete-ZIP probe reproduced the must-fix above without network, ML or a profile process. Parsed all three helpers successfully."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "- Launcher SHA256: `a63d5168e53dc5f592a6266fcd4aa40a5c63595aeed9206918dd5a8236b065eb`."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "- Qualification SHA256: `1ef101eb2ca16305c06f6739ce00138b8b0b75236e18316775b072805e77d373`."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "- Prewarm SHA256: `1ee033a0fa6de214bb4a58c98ee70c8f8a08f2459fcd94f4872e5cdb5e19f0c4`."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "- Attempt2 manifest SHA256: `2388e1ff4fd971c7e7b0305a9fbf5dc0c46c6fded59b63fe1ea3ea1553e8f48b`."
+            }
+          ],
+          "dropped": 10
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/preparation.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 738
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 738,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adapter_file_sha256\": {"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"adapter_config.json\": \"21bbc4037d9fe27e1281700e72dcc402c4ce801d2d27798ac64cba33ac4d5de2\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"adapter_model.safetensors\": \"7eb2f17df11151e5b77a5c715c59f56c854ca7b0d0da3ee591f394b501826fa7\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"manifest.json\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"training_metadata.json\": \"d1251b39c3d71fcd410ec0fce631b2c065a6df4978309bedaff168807314020d\""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"all_pixels_match\": true,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"all_pngs_match\": true,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"downloads_base_weights\": false,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"freetype\": \"2.13.3\","
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"freeze_manifest_sha256\": \"ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"render_checks\": ["
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"key\": \"0037f107a956de5da7346ced9c97127e1439fc1cafb7498dd767c70f627193d4\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"language\": \"en\","
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"same_pixels\": true,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"same_png\": true"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      \"key\": \"076e2a09058a1fdba6e5b3d67160a54c436b2e15b8dc808677542ab5ce1ea635\","
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"language\": \"en\","
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"same_pixels\": true,"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"same_png\": true"
+            }
+          ],
+          "dropped": 714
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/prewarm.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 54
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 54,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"cache_bytes_after\": 4266758226,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"cache_bytes_before\": 0,"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"files\": {"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"chat_template.json\": {"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "      \"bytes\": 5502,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"sha256\": \"6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4\""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"config.json\": {"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      \"bytes\": 1505,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "      \"sha256\": \"bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b\""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"generation_config.json\": {"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"bytes\": 269,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"sha256\": \"1e241830b48b397cb0900101421df5450baddc7adf01e5fc86b5615865f3bae4\""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"merges.txt\": {"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"bytes\": 1671839,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      \"sha256\": \"599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3\""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"model.safetensors\": {"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"bytes\": 4255140312,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"sha256\": \"7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0\""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    },"
+            }
+          ],
+          "dropped": 30
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/prewarm.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 18
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 18,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import os,json,time,sys,hashlib,subprocess,shutil"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "root=Path('/kaggle/working/hala-h21'); source=root/'source'"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=source,text=True).strip()=='07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],cwd=source,text=True).strip()"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "q=json.loads((root/'h22-attempt2-qualification.json').read_text()); assert q['gpu_uuid']=='GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1' and not q['model_loaded']"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "for k in ('HF_HOME','HF_HUB_CACHE','HUGGINGFACE_HUB_CACHE','TRANSFORMERS_CACHE','XDG_CACHE_HOME','TORCH_HOME'): os.environ[k]='/tmp/hala-h22-cache'"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "os.environ['HF_HUB_DISABLE_TELEMETRY']='1';os.environ['DO_NOT_TRACK']='1'"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "sys.path.insert(0,str(source))"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from evaluation.development_precision import check_cache,disk_bytes"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "check_cache('/tmp/hala-h22-cache'); before=disk_bytes('/tmp/hala-h22-cache')"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "assert shutil.disk_usage('/tmp').free>6*1024**3"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from huggingface_hub import snapshot_download"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "start=time.time(); path=snapshot_download('Qwen/Qwen3-VL-2B-Instruct',revision='89644892e4d85e24eaac8bacfd4f463576704203',cache_dir='/tmp/hala-h22-cache',allow_patterns=['*.json','*.safetensors','*.txt','*.jinja','*.model','*.tiktoken'],max_workers=4)"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "check_cache('/tmp/hala-h22-cache')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "record={'schema':'hala.h22.attempt2.cache_prewarm.v1','source_commit':q['source_commit'],'gpu_uuid':q['gpu_uuid'],'model_revision':'89644892e4d85e24eaac8bacfd4f463576704203','cache_bytes_before':before,'cache_bytes_after':disk_bytes('/tmp/hala-h22-cache'),'wall_seconds':time.time()-start,'files':{str(p.relative_to(path)):{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(Path(path).rglob('*')) if p.is_file()},'model_loaded':False,'training_runs':0,'scope':'Network preparation only; all later profiles start with disk cache prewarmed; OS page cache and fixed temporal order may differ'}"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "(root/'h22-attempt2-prewarm.json').write_text(json.dumps(record,sort_keys=True)+'\\n')"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "print('HALA_H22_ATTEMPT2_PREWARM:'+json.dumps(record,sort_keys=True),flush=True)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/qualification.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 80
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 80,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"actual_precision_quality_qualified\": false,"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"adapter_manifest_sha256\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"attempt\": 2,"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"bounded_sampler\": {"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"continuous_peak_qualified\": false,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"minimum_wait_between_samples_seconds\": 2,"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"sample_limit\": 1,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"samples\": ["
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      {"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "        \"cpu_process_seconds\": 17.140338444,"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "        \"cpu_rss_bytes\": 945287168,"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "        \"device\": {"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "          \"free_mib\": 14909,"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "          \"power_watts\": 10.06,"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "          \"used_mib\": 3,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          \"utilization_percent\": 0"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        },"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        \"device_uuid\": \"GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1\","
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        \"monotonic_seconds\": 957.845093965"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      }"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    ],"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    \"scope\": \"Current process RSS/CPU; whole GPU includes other processes; best effort.\""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "  },"
+            }
+          ],
+          "dropped": 56
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/qualify.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 107
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 107,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Qualify a newly restored attempt2 runtime; no model load, fetch, checkout or prewarm.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "ROOT = Path('/kaggle/working/hala-h21')"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "COMMIT = '07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "FREEZE = '98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "DATA = 'ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e'"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "ADAPTER = '7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "IDENTITY = {'base_model': 'Qwen/Qwen3-VL-2B-Instruct', 'base_revision': '89644892e4d85e24eaac8bacfd4f463576704203',"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    'data_sha256': 'af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e',"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    'evaluation_sha256': 'e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768',"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    'source_commit': '5b6eb4bf29acbaf21aa199f113f78af4f268b3b7'}"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def clean_source(root):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    actual = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root / 'source', text=True, timeout=30).strip()"
+            }
+          ],
+          "dropped": 83
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/test_operator.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 210
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 210,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Stdlib-only adversarial operator checks; no ML or network execution.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from contextlib import redirect_stdout"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "HERE = Path(__file__).resolve().parent"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "def load(name, filename):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    spec = importlib.util.spec_from_file_location(name, HERE / filename)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    module = importlib.util.module_from_spec(spec)"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    spec.loader.exec_module(module)"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    return module"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "class Attempt2Tests(unittest.TestCase):"
+            }
+          ],
+          "dropped": 186
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-attempt2/attempt1-retention-failure.json",
+    "h22-attempt2/builder-report.md",
+    "h22-attempt2/experiment.json",
+    "h22-attempt2/operator-review.md",
+    "h22-attempt2/preparation.json",
+    "h22-attempt2/prewarm.json",
+    "h22-attempt2/qualification.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-attempt2/operator-launcher.py#artifact_url",
+      "name": "artifact_url",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L34-L36",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#atomic_json",
+      "name": "atomic_json",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L141-L148",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#clean_source",
+      "name": "clean_source",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L51-L57",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#fetch",
+      "name": "fetch",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L39-L48",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#hex_digest",
+      "name": "hex_digest",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L29-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L243-L251",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#prior_retention",
+      "name": "prior_retention",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L81-L138",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#profile_name",
+      "name": "profile_name",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L60-L63",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L151-L240",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L25-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/operator-launcher.py#validate_manifest",
+      "name": "validate_manifest",
+      "kind": "function",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L66-L78",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/prewarm.py",
+      "name": "prewarm.py",
+      "kind": "file",
+      "path": "h22-attempt2/prewarm.py",
+      "span": "L1-L19",
+      "wholeFile": true
+    },
+    {
+      "id": "h22-attempt2/qualify.py#clean_source",
+      "name": "clean_source",
+      "kind": "function",
+      "path": "h22-attempt2/qualify.py",
+      "span": "L23-L28",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/qualify.py#qualify",
+      "name": "qualify",
+      "kind": "function",
+      "path": "h22-attempt2/qualify.py",
+      "span": "L31-L101",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.drive.fetched",
+      "name": "fetched",
+      "kind": "function",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L183-L184",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.manifest",
+      "name": "manifest",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L31-L33",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.retention",
+      "name": "retention",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L87-L113",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L26-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_clean_source_rejects_dirty_tree_before_qualification_imports",
+      "name": "test_clean_source_rejects_dirty_tree_before_qualification_imports",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L70-L85",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_fixed_study_rejects_budget_adapter_and_task_changes",
+      "name": "test_fixed_study_rejects_budget_adapter_and_task_changes",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L35-L46",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_immutable_urls_and_fetch_limits_reject_redirect_or_wrong_hash.Redirect.geturl",
+      "name": "geturl",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L65-L65",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_immutable_urls_and_fetch_limits_reject_redirect_or_wrong_hash.Response.__enter__",
+      "name": "__enter__",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L55-L55",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_immutable_urls_and_fetch_limits_reject_redirect_or_wrong_hash.Response.__exit__",
+      "name": "__exit__",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L56-L56",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_immutable_urls_and_fetch_limits_reject_redirect_or_wrong_hash.Response.geturl",
+      "name": "geturl",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L57-L57",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_immutable_urls_and_fetch_limits_reject_redirect_or_wrong_hash.Response.read",
+      "name": "read",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L58-L58",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_measured_retention_checks_actual_result_status_and_mode.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L146-L151",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_missing_retention_blocks_next_profile_before_output_or_process",
+      "name": "test_missing_retention_blocks_next_profile_before_output_or_process",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L164-L165",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_public_raw_zip_must_match_receipt_previous_index_and_experiment.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L118-L120",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_retention_rejects_missing_raw_members_or_forged_result_claim",
+      "name": "test_retention_rejects_missing_raw_members_or_forged_result_claim",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L133-L139",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_single_failed_profile_is_zipped_and_cannot_autoadvance_or_rerun",
+      "name": "test_single_failed_profile_is_zipped_and_cannot_autoadvance_or_rerun",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L167-L168",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_timeout_preserves_terminal_status_and_raw_log_zip",
+      "name": "test_timeout_preserves_terminal_status_and_raw_log_zip",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L170-L171",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#load",
+      "name": "load",
+      "kind": "function",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L17-L21",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "h22-attempt2/operator-launcher.py",
+      "name": "operator-launcher.py",
+      "kind": "file",
+      "path": "h22-attempt2/operator-launcher.py",
+      "span": "L1-L256",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/qualify.py",
+      "name": "qualify.py",
+      "kind": "file",
+      "path": "h22-attempt2/qualify.py",
+      "span": "L1-L108",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.drive",
+      "name": "drive",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L173-L206",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_measured_retention_checks_actual_result_status_and_mode",
+      "name": "test_measured_retention_checks_actual_result_status_and_mode",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L141-L162",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/test_operator.py#Attempt2Tests.test_public_raw_zip_must_match_receipt_previous_index_and_experiment",
+      "name": "test_public_raw_zip_must_match_receipt_previous_index_and_experiment",
+      "kind": "method",
+      "path": "h22-attempt2/test_operator.py",
+      "span": "L115-L131",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "manifest",
+      "labelSource": "symbol",
+      "key": "h22-attempt2/",
+      "files": [
+        "h22-attempt2/operator-launcher.py",
+        "h22-attempt2/prewarm.py",
+        "h22-attempt2/qualify.py",
+        "h22-attempt2/test_operator.py"
+      ],
+      "seeds": 32,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 31,
+      "unreached": [
+        "artifact_url",
+        "atomic_json",
+        "clean_source",
+        "fetch",
+        "hex_digest",
+        "main",
+        "prior_retention",
+        "profile_name",
+        "run",
+        "sha",
+        "validate_manifest",
+        "clean_source",
+        "qualify",
+        "fetched",
+        "manifest",
+        "retention",
+        "setUpClass",
+        "test_clean_source_rejects_dirty_tree_before_qualification_imports",
+        "test_fixed_study_rejects_budget_adapter_and_task_changes",
+        "geturl",
+        "__enter__",
+        "__exit__",
+        "geturl",
+        "read",
+        "check",
+        "test_missing_retention_blocks_next_profile_before_output_or_process",
+        "check",
+        "test_retention_rejects_missing_raw_members_or_forged_result_claim",
+        "test_single_failed_profile_is_zipped_and_cannot_autoadvance_or_rerun",
+        "test_timeout_preserves_terminal_status_and_raw_log_zip",
+        "load"
+      ],
+      "seedNames": [
+        "manifest",
+        "retention",
+        "hex_digest",
+        "sha",
+        "artifact_url",
+        "fetch",
+        "profile_name",
+        "atomic_json",
+        "clean_source",
+        "clean_source",
+        "load",
+        "main",
+        "prior_retention",
+        "qualify",
+        "run",
+        "validate_manifest",
+        "__enter__",
+        "__exit__",
+        "check",
+        "check",
+        "fetched",
+        "geturl",
+        "geturl",
+        "read",
+        "setUpClass",
+        "test_clean_source_rejects_dirty_tree_before_qualification_imports",
+        "test_fixed_study_rejects_budget_adapter_and_task_changes",
+        "test_missing_retention_blocks_next_profile_before_output_or_process",
+        "test_retention_rejects_missing_raw_members_or_forged_result_claim",
+        "test_single_failed_profile_is_zipped_and_cannot_autoadvance_or_rerun",
+        "test_timeout_preserves_terminal_status_and_raw_log_zip",
+        "prewarm.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

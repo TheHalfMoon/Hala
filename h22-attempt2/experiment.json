@@ -1,0 +1,89 @@
+{
+  "adapter_identity": {
+    "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+    "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "data_sha256": "af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e",
+    "evaluation_sha256": "e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768",
+    "source_commit": "5b6eb4bf29acbaf21aa199f113f78af4f268b3b7"
+  },
+  "adapter_manifest_sha256": "7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d",
+  "adoption_qualified": false,
+  "attempt": 2,
+  "blocked_policy": "Retain failed/partial run with raw errors; continue independent next profile in a fresh process; no fallback, retraining, parser repair or test-driven tuning",
+  "budget": {
+    "generation_seconds": 20,
+    "generation_tokens": 128,
+    "input_tokens": 4096,
+    "launcher_timeout_seconds_per_run": 3700,
+    "runtime_seconds_per_run": 3600
+  },
+  "cache": "/tmp/hala-h22-cache",
+  "cache_state": "Pinned original base files prewarmed remotely before any model inference; all profiles start with the same disk cache; OS page cache may differ",
+  "cost_limits": [
+    "Same physical GPU but fixed temporal order and warm cache confound timing",
+    "Whole GPU0 plus current process measurements; allocated idle second T4 is not included in GPU0 process cost",
+    "Sampled maxima are not continuous hardware peaks; unique physical cache file content is not allocated disk blocks or a monetary price"
+  ],
+  "execution": "Exactly one requested fixed index per launcher invocation; fresh model process; require public SHA-verified previous-profile raw ZIP before next index",
+  "gpu_uuid": "GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1",
+  "h19_manifest_sha256": "ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e",
+  "mode_order": [
+    [
+      "fp16",
+      "dev"
+    ],
+    [
+      "int8",
+      "dev"
+    ],
+    [
+      "nf4",
+      "dev"
+    ],
+    [
+      "fp16",
+      "test"
+    ],
+    [
+      "int8",
+      "test"
+    ],
+    [
+      "nf4",
+      "test"
+    ]
+  ],
+  "model_choice": "Fixed retained research adapter across all modes; no serving/adoption selection",
+  "native_qualified": false,
+  "observed_before_prespec": {
+    "adapter_arabic_complete": 0,
+    "adapter_dev_complete": 1,
+    "adapter_test_complete": 2,
+    "base_dev_complete": 0,
+    "base_test_complete": 0,
+    "episodes_per_allocation": 8,
+    "pilot_results_artifact_commit": "ef359cabe7aefd7d07fc6485df7b68b55090983f"
+  },
+  "packages": {
+    "Pillow": "11.3.0",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.50.2",
+    "peft": "0.20.0",
+    "safetensors": "0.8.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1"
+  },
+  "precision_scope": "FP16/int8/NF4 base model with the same original F32 LoRA; not a claim that every tensor uses one dtype",
+  "previous_attempt_results_retrieved": false,
+  "prior_attempt": "Attempt1 ephemeral VM disappeared after the user pause; zero precision result artifacts retrieved; no quality or cost conclusion",
+  "quality_qualified": false,
+  "rationale": "Measure cost and whether quantization preserves the observed small task/component gains; poor Arabic and overall success preclude deployment",
+  "retention": "Known public h22-attempt2/profile-N-MODE-SPLIT-evidence.zip and SHA-bound receipt at immutable40hex artifact commit before next profile",
+  "schema": "hala.h22.prospective_experiment.v1",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+  "task_scope": "H19 two dev/two test application families, shared workflow templates; ten repeated standalone diagnostic probes, not new untouched test cases",
+  "prewarm_record_sha256": "db56772612b5c52642c25e5be9180420bcf904dffaa8d608b442bb48dc00b819",
+  "qualification_record_sha256": "0a1b7515b3ab768470e52598c736f129b26767ac6006774007a920c563a8cd97",
+  "cache_bytes_before_profiles": 4266758226
+}

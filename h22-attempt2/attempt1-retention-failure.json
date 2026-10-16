@@ -1,0 +1,18 @@
+{
+  "schema": "hala.h22.interrupted_attempt.v1",
+  "observed_utc": "2026-10-16T15:17:31Z",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "prospective_experiment_sha256": "3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39",
+  "operator_sha256": "74ea598b88f79a2b5b98d60d63b77adecdb186307ffa54ebffc311f334a75a9d",
+  "launch_pid_observed": 925,
+  "result_files_retrieved": 0,
+  "execution_and_outcomes_verifiable": false,
+  "observed_after_pause": {
+    "kaggle_working_hala_root_exists": false,
+    "precision_launcher_status_exists": false,
+    "runtime_kernel": "Interactive"
+  },
+  "reason": "Interactive session expired during the usage-limit/user gap; no precision output was exported before expiry.",
+  "preserved": ["Original trained adapter and full hashes", "Verified original and Kaggle controls", "Fresh GPU candidate dev and test results and independent replays", "Prospective precision source/config/operator and reviews"],
+  "next": "New prospectively recorded hardware allocation; one unchanged profile at a time, requiring verified durable export before advancing. Do not claim unobserved first-attempt scores or repeat completed H21 training/comparisons."
+}
