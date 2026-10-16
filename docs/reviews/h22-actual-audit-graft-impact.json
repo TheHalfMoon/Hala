@@ -1,0 +1,980 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 295
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 295,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Independent standard-library audit of recorded H21 baseline/candidate evidence."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No production parser, scorer, verifier, simulator, model or ML package imports."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Usage: python h21_actual_baseline_audit.py RESULT FROZEN_BUNDLE"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "       --manifest-sha256 EXTERNALLY_ARCHIVED_SHA [--output REPORT.json]"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "This checks recorded consistency; it cannot attest hardware or honest capture."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "def strict(raw):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    def pairs(items):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        out = {}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        for key, value in items:"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            if key in out:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                raise ValueError('duplicate JSON key')"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            out[key] = value"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        return out"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def bad(_):"
+            }
+          ],
+          "dropped": 271
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 207
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 207,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Independent stdlib-only H22 saved-record audit; never runs ML/production code."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Requires an actually retrieved result and external ZIP/result identities. This"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "cannot turn a partial run, matching metadata, or CPU tests into qualification."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import argparse, copy, hashlib, json, math, struct, subprocess, tempfile, zipfile"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from h21_actual_baseline_audit import audit as record_audit, strict, parsed"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "ROOT=Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "SOURCE='07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "RUNTIME='20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895'"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "PRECISION='1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5'"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "FREEZE='98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "MANIFEST='ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e'"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "ADAPTER='7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "UUID='GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "ORDER=[('fp16','dev'),('int8','dev'),('nf4','dev'),('fp16','test'),('int8','test'),('nf4','test')]"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "def sha(raw): return hashlib.sha256(raw).hexdigest()"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "def canonical(v): return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "def number(v): return type(v) in (int,float) and math.isfinite(v) and v>=0"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "def byte_count(v): return type(v) is int and v>=0"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def same(a,b): return json.dumps(a,sort_keys=True,allow_nan=False)==json.dumps(b,sort_keys=True,allow_nan=False)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "def complete(e,s): return type(s.get('revision')) is int and s['revision']>0 and s.get('value')==s.get('saved_value')==e['requested_value'] and s.get('location')==s.get('saved_location')==e['destination']"
+            }
+          ],
+          "dropped": 183
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/profile-0-actual-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 32
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 32,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 attempt2 profile0 FP16 DEV: actual evidence review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Verdict: saved-record integrity PASS. `outputs/h22-attempt2-profile-0-audit.json` records 9114 checks, zero errors and zero warnings. All 54 actual actions were independently replayed against half-open normalized/mirrored geometry; all 54 frame-occurrence state bindings, PNG hashes/signatures/dimensions and frozen PNG byte matches pass. The archive has 25 files, including 18 unique PNGs reused across these occurrences. This is the actual retained-adapter FP16 DEV reference run, not a precision comparison or adoption decision."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "The 274574-byte ZIP SHA256 is `6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580`; extracted result SHA256 is `2536e446322228331b8b3dfd45002c363e8ab4a0144097c16b47ee0c638b61ce`. CRCs and every extracted entry's bytes agree. Exact source `07591f109b6683c9302fcf890259ddf0bde91494`, runtime `20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895`, precision source `1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5`, source freeze `98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b`, original H19 data/freeze and original adapter manifest `7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d` pass independent byte/identity checks. Fixed profile 0 is FP16 DEV; no fallback mode or source adjustment is inferred."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Independently rescored complete persisted tasks are 1/8: English 1/4, Arabic 0/4. Semantically correct plans 8/8; episode Mind 26/59; action errors 42/54; one environment save failure and zero recoveries; five episode model errors. There are 113 episode calls plus ten repeated standalone diagnostics = 123 global calls. The repeated standalone exact result is 3/10, not a new untouched holdout. These aggregate quality counts equal the earlier H21 retained-adapter DEV counts; this single reference run establishes no quantization quality outcome. No TEST failure analysis or tuning was performed."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| Actual recorded cost measure | Value | Interpretation |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "|---|---:|---|"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Run wall seconds |234.564268298|Includes loading, calls and runtime overhead |"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| Load seconds |6.267743557|Warm-cache load, not model download time |"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| Generation seconds, summed across global calls |215.872863998|Independent arithmetic agrees |"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "| CPU process seconds |240.006778940|Aggregated CPU time may exceed wall time |"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "| First global call wall seconds |4.539678662|First call in this fresh model process |"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "| Remaining 122-call median wall seconds |1.470972204|Different task/component lengths; descriptive |"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "| Final peak CUDA allocated bytes |4517451776|Allocator high-water measurement |"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "| Final peak CUDA reserved bytes |4674551808|Allocator reservation high-water measurement |"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "| Maximum runtime sampled device used bytes |4843241472|Whole-device before/after samples, not continuous peak |"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "| Full model/state unique-storage bytes |4258275904|Recorded storage sums; distinct from allocator use |"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "| Vision subset unique-storage bytes |813914176|Vision subset sums independently agree |"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "| Unique physical cache-content bytes |4266814970|File-content count, not allocated disk blocks or price |"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "| CPU peak RSS bytes |9685237760|Recorded process high-water RSS, including load |"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "| Final CPU RSS bytes |3451183104|Current RSS differs from prior peak |"
+            }
+          ],
+          "dropped": 8
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/profile-0-audit.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 97
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 97,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.independent.h22.precision_record_audit.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"passed\": true,\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"checks\": 9114,\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"errors\": [],\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"warnings\": [],\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"result_sha256\": \"2536e446322228331b8b3dfd45002c363e8ab4a0144097c16b47ee0c638b61ce\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"archive_sha256\": \"6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"profile_index\": 0,\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"mode\": \"fp16\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"split\": \"dev\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"result_status\": \"measured\",\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"complete_measured_run\": true,\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"independent_summary\": {\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"en\": {\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"episodes\": 4,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"episodes_complete\": 1,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"mind_cases\": 5,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      \"mind_case_exact_correct\": 2,\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "      \"mind_invalid\": 0,\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      \"model_calls\": 49,\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"model_errors\": 5,\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"action_calls\": 22,\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"action_errors\": 12,\r"
+            }
+          ],
+          "dropped": 73
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/profile-0-public-roundtrip.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 18
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 18,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.public_roundtrip.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"index\": 0,\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"commit\": \"e252b7805055fa6a89e1d92b6bba7faa5dbf1efc\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"verified\": true,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"files\": [\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"path\": \"h22-attempt2/profile-0-fp16-dev-evidence.zip\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "      \"bytes\": 274574,\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      \"sha256\": \"6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580\"\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"path\": \"h22-attempt2/profile-0-fp16-dev-receipt.json\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"bytes\": 321,\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"sha256\": \"0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a\"\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    }\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  ]\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "}\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-attempt2/profile-0-actual-review.md",
+    "h22-attempt2/profile-0-audit.json",
+    "h22-attempt2/profile-0-public-roundtrip.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#audit.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L109-L112",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#audit.global_match",
+      "name": "global_match",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L168-L182",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#finished",
+      "name": "finished",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L101-L104",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L284-L292",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#parsed",
+      "name": "parsed",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L64-L68",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#proposal.step",
+      "name": "step",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L42-L45",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#public_input",
+      "name": "public_input",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L71-L75",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#semantic",
+      "name": "semantic",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L78-L98",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L29-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#strict.bad",
+      "name": "bad",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L24-L25",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#strict.pairs",
+      "name": "pairs",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L17-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#audit.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L29-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#audit.hit",
+      "name": "hit",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L92-L94",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#audit.memory_row",
+      "name": "memory_row",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L135-L144",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#audit.source",
+      "name": "source",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L52-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#byte_count",
+      "name": "byte_count",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L22-L22",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#canonical",
+      "name": "canonical",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L20-L20",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#complete",
+      "name": "complete",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L24-L24",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L200-L206",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#number",
+      "name": "number",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L21-L21",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#same",
+      "name": "same",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L23-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L19-L19",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#audit",
+      "name": "audit",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L107-L281",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py",
+      "name": "h21_actual_baseline_audit.py",
+      "kind": "file",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L1-L296",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#audit",
+      "name": "audit",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L26-L198",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/h21_actual_baseline_audit.py#proposal",
+      "name": "proposal",
+      "kind": "function",
+      "path": "h22-attempt2/h21_actual_baseline_audit.py",
+      "span": "L33-L61",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L200-L206",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "h22-attempt2/h22_actual_precision_audit.py",
+      "name": "h22_actual_precision_audit.py",
+      "kind": "file",
+      "path": "h22-attempt2/h22_actual_precision_audit.py",
+      "span": "L1-L208",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "byte_count",
+      "labelSource": "symbol",
+      "key": "h22-attempt2/",
+      "files": [
+        "h22-attempt2/h21_actual_baseline_audit.py",
+        "h22-attempt2/h22_actual_precision_audit.py"
+      ],
+      "seeds": 22,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 22,
+      "unreached": [
+        "check",
+        "global_match",
+        "finished",
+        "main",
+        "parsed",
+        "step",
+        "public_input",
+        "semantic",
+        "sha",
+        "bad",
+        "pairs",
+        "check",
+        "hit",
+        "memory_row",
+        "source",
+        "byte_count",
+        "canonical",
+        "complete",
+        "main",
+        "number",
+        "same",
+        "sha"
+      ],
+      "seedNames": [
+        "byte_count",
+        "check",
+        "check",
+        "parsed",
+        "canonical",
+        "complete",
+        "finished",
+        "global_match",
+        "hit",
+        "main",
+        "main",
+        "memory_row",
+        "number",
+        "public_input",
+        "same",
+        "semantic",
+        "sha",
+        "sha",
+        "source",
+        "step",
+        "bad",
+        "pairs"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
