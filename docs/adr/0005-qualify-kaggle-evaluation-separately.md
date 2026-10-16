@@ -1,6 +1,6 @@
 # 0005. Qualify Kaggle evaluation separately
 
-Status: accepted (2026-10-16)
+Status: Superseded by [0006](0006-recognize-inherited-kaggle-image-marker.md) for the mixed-marker assumption only; other decisions remain accepted.
 
 ## Context
 The fixed 116-step shared pilot completed and its original adapter bytes were retained at signed archive commit 274024e14699599a51fca2c948af40819532e18c. Fresh CPU-session public retrieval and finite payload checks passed. Colab now refuses free GPU allocation. The user authorized an existing free Kaggle GPU account; actual Kaggle GPU/internet eligibility remains unresolved in the refreshed UI. At the start of this phase, evaluation and training guards permitted only Colab.

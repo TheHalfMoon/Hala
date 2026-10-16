@@ -1,0 +1,12 @@
+﻿{
+    "grain":  "h21f-inherited",
+    "version":  "0.21.1",
+    "build_exit":  0,
+    "check_exit":  0,
+    "impact_exit":  0,
+    "graph_ok":  true,
+    "nodes":  839,
+    "deep_context_built":  false,
+    "scope":  "Working grain source freshness and actual staged/unstaged diff blast; not correctness or isolated execution",
+    "telemetry":  "disabled"
+}
