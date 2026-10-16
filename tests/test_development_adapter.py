@@ -55,7 +55,7 @@ class DevelopmentAdapterTests(unittest.TestCase):
                            adapter_identity=dict(IDENTITY, **{field: value}))
                       for field, value in [('source_commit', 'd' * 40), ('data_sha256', 'd' * 64),
                                            ('evaluation_sha256', 'd' * 64), ('base_model', 'other')]]
-            with patch.object(runtime, 'remote_guard'), patch('builtins.__import__', side_effect=guarded):
+            with patch.object(runtime, 'evaluation_guard'), patch('builtins.__import__', side_effect=guarded):
                 for kwargs in cases:
                     with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
                         runtime.run('unused', 'b' * 64, 'unused', 'unused', 'a' * 40, **kwargs)
@@ -65,7 +65,7 @@ class DevelopmentAdapterTests(unittest.TestCase):
         runtime = self.runtime()
         argv = ['runtime', '--bundle', 'unused', '--manifest-sha256', 'b' * 64,
                 '--output', 'unused', '--font-path', 'unused', '--source-commit', 'a' * 40]
-        with patch.object(runtime, 'remote_guard'), patch.object(runtime, '_run') as execute:
+        with patch.object(runtime, 'evaluation_guard'), patch.object(runtime, '_run') as execute:
             for flags in (['--adapter', 'unused'], ['--adapter-base-model', runtime.MODEL_ID]):
                 with self.subTest(flags=flags), patch.object(sys, 'argv', argv + flags):
                     with self.assertRaises(ValueError):
@@ -206,12 +206,17 @@ class DevelopmentAdapterTests(unittest.TestCase):
                 self.assertEqual(prepared_adapter['manifest']['identity'], IDENTITY)
                 self.assertEqual(prepared_adapter['manifest_sha256'], digest)
                 return 'candidate'
-            with patch.object(runtime, 'remote_guard'), patch.object(runtime, '_run', side_effect=execute):
+            with patch.object(runtime, 'evaluation_guard'), patch.object(runtime, '_run', side_effect=execute):
                 self.assertEqual(runtime.run('bundle', 'b' * 64, 'output', 'font', 'a' * 40,
                     adapter=archive, adapter_manifest_sha256=digest, adapter_identity=IDENTITY), 'candidate')
 
     def test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results(self):
         """Drive the real runtime control flow without installed ML or model I/O."""
+        for provider in ('colab', 'kaggle'):
+            with self.subTest(provider=provider):
+                self.full_fake_runtime(provider)
+
+    def full_fake_runtime(self, provider):
         from evaluation import development_adapter as adapter_module
         runtime = self.runtime()
         events, tasks = [], []
@@ -277,7 +282,10 @@ class DevelopmentAdapterTests(unittest.TestCase):
                 'development.media': SimpleNamespace(FONT_SHA256=hashlib.sha256(font.read_bytes()).hexdigest()),
                 'development.runner': SimpleNamespace(run_episode=episode, run_mind_cases=mind)}
             stack.enter_context(patch.dict(sys.modules, modules))
-            stack.enter_context(patch.object(runtime, 'remote_guard'))
+            provenance = ({'name': 'colab', 'colab_release_tag': 'fake-release'} if provider == 'colab'
+                          else {'name': 'kaggle', 'kernel_run_type': 'Interactive',
+                                'working_directory': '/kaggle/working'})
+            admission = stack.enter_context(patch.object(runtime, 'evaluation_guard', return_value=provenance))
             stack.enter_context(patch.object(runtime, 'Path', side_effect=lambda value:
                 SimpleNamespace(resolve=lambda: PurePosixPath('/tmp/hala-cache'))
                 if value == 'fake-remote-cache' else Path(value)))
@@ -295,7 +303,10 @@ class DevelopmentAdapterTests(unittest.TestCase):
                 return original(*args)
             stack.enter_context(patch.object(adapter_module, 'verify_bundle', side_effect=verified))
             baseline = runtime.run(bundle, 'b' * 64, root / 'baseline', font, 'a' * 40,
-                                   cache_dir='fake-remote-cache')
+                                   cache_dir='fake-remote-cache', provider=provider)
+            admission.assert_called_with(provider)
+            self.assertEqual(baseline['evaluation_provider'], provenance)
+            self.assertEqual(json.loads((root / 'baseline/result.json').read_text())['evaluation_provider'], provenance)
             baseline_tasks = tasks[:]
             self.assertFalse(baseline['adapter_loaded'])
             self.assertEqual(baseline['training_runs'], 0)
@@ -304,7 +315,8 @@ class DevelopmentAdapterTests(unittest.TestCase):
             tasks.clear()
             candidate = runtime.run(bundle, 'b' * 64, root / 'candidate', font, 'a' * 40,
                 cache_dir='fake-remote-cache', adapter=archive,
-                adapter_manifest_sha256=digest, adapter_identity=IDENTITY)
+                adapter_manifest_sha256=digest, adapter_identity=IDENTITY, provider=provider)
+            admission.assert_called_with(provider)
             self.assertEqual(tasks, baseline_tasks)
             self.assertEqual([c['raw'] for c in candidate['calls']], ['RAW'] * 3)
             self.assertEqual(candidate['summary'], baseline['summary'])
@@ -314,6 +326,7 @@ class DevelopmentAdapterTests(unittest.TestCase):
             self.assertEqual(base_args[2], {'revision': runtime.REVISION, 'trust_remote_code': False,
                 'dtype': 'float16', 'attn_implementation': 'sdpa'})
             saved = json.loads((root / 'candidate/result.json').read_text())
+            self.assertEqual(saved['evaluation_provider'], provenance)
             self.assertTrue(saved['adapter_loaded'])
             self.assertEqual(saved['adapter']['identity'], IDENTITY)
             self.assertEqual(saved['adapter']['manifest_sha256'], digest)
