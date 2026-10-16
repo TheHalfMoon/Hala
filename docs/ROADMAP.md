@@ -26,3 +26,5 @@ Original H0–H13 foundation/research/data/mock-contract work and strict0/8 plus
 - H21f: separate evaluation-only Kaggle guard in progress; actual free GPU/provider/package/media qualification required, Colab quota exhausted.
 
 Details: docs/H21-measured-pilot-20261016.md. Foundation PR1 remains fixed; PR2 is stacked/draft/unmerged, artifact branch isolated. No model/precision adoption or native/production qualification. Founder controls merge/release.
+
+- H22: [representative closed-loop precision/process cost](../specs/H22-development-precision.md) source CPU-tested on isolated branch; prospective freeze prepared, independent gates and actual matched GPU execution pending. H21 active execution remains unchanged.

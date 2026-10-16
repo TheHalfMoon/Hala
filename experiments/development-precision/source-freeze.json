@@ -1,0 +1,22 @@
+{
+  "files": {
+    "development/__init__.py": "33a0f7f3049ff72a76955d0996301dcde19026dbb4208748cbb1172d5511dd57",
+    "development/data.py": "309f7281a6d65cbf31b122465a5f843a60fc364aed16101cb233c69c4b18b397",
+    "development/freeze.py": "5e9108c5f076fb5ba1ce14a51944bf1080677775f419899cd91630d00f7f8c60",
+    "development/media.py": "56db480232ab06a85e0b7b77d07038eb4e4fbba0aab1a8f6d3ecd755eb8c581d",
+    "development/protocol.py": "bdc9cc5c419955dbe1c253474bdb2e8bff2ec5ddc4c7c01d52d664e35d7da1d8",
+    "development/runner.py": "c2f491c731ff2656de9bfe8e3b7bbf15eeca677f41aebafd07514a13e2879fb1",
+    "development/simulator.py": "461f8e931336cf6a3a28225ed815616034277b66dd266e2fdf768ddda34f4141",
+    "development/verifier.py": "79cd886a0fc5f9f2022fe7d8b79687de7df53e84a25d2b4977b76e842a7c6ceb",
+    "evaluation/development_adapter.py": "d9d972a6af1758dddfd9061998e76ff336100a281a776f016ab7743856d7a622",
+    "evaluation/development_precision.py": "1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5",
+    "evaluation/development_runtime.py": "20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895",
+    "evaluation/heldout_fixtures.py": "3458d012b8d90582e2528e9b08be928e393b925ff9f513fbef09de8b76ee8aae",
+    "evaluation/quantization.py": "849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154",
+    "experiments/development-precision/config.json": "a6a18c4336af7eda4bcf1aa805254fe545672faac6d14f1ad82410375480e470",
+    "training/adapter_archive.py": "95773e65224b6ee57c89f7edd61a3d7b247cd623eef3cca4637eed7cbc6abc55"
+  },
+  "note": "Prospective source/config freeze; operator must externally pin its SHA256 after independent gates before actual GPU execution. No result or adapter selection is qualified.",
+  "quality_qualified": false,
+  "schema": "hala.h22.source-freeze.v1"
+}
