@@ -1,0 +1,3 @@
+# Prospective review disposition
+
+The reviewed plan was clarified before execution: external official coreutils timeout owns the invocation process group and enforces1200 seconds plus5 seconds kill grace; timeout cannot qualify success. Preserve command stdout/stderr, incremental structured records and fault wire traces, while disclosing that the worker stderr is discarded by reviewed source. Actual cancellation additionally requires fault code cancelled and no contradictory generation-return evidence. All actual/native/production qualification remains false. No H23 model invocation has started; H22 profiles and verified exports finish first.
