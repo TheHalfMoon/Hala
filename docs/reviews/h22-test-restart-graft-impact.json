@@ -1,0 +1,2199 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-test-restart/audit-preparation.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 17
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 17,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST-only restart: independent audit preparation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Prepared `work/h22_test_restart_audit.py`, coordinated against the builder's `hala.h22.test_restart_amendment.v1` contract. It requires an explicit external amendment file/SHA and explicitly qualified expected GPU UUID; `PENDING_ACTUAL_QUALIFICATION` is rejected. The old auditor remains byte-identical at SHA256 `a816cde40e58b361f7143e5adb165006a877b5a9c39ef9b88540a59e05d1a09f`. No frozen production source, old auditor, experiment input or raw record was edited."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "The amendment must bind attempt 3, exact source07591/freeze98ca, original adapter/data/package/budget identities, only FP16/int8/NF4 TEST profiles, prior DEV manifest `60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02`, and the exact three immutable DEV retention identities. Local index0/1/2 maps explicitly to original logical index3/4/5. The wrapper compares actual record UUID/mode/split and bound comparison metadata to those expectations without rewriting the record. Archived experiment bytes must hash to the externally supplied public amendment SHA, and profile/qualification records must agree with attempt3 and the new UUID. All published identity inputs remain caller-supplied external expectations; this script does not infer publication from local filenames."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "The new script contains a copied independent stdlib scoring/geometry/cost core from the immutable previous auditor. Its actual-record checks are unchanged apart from receiving the expected UUID as an explicit parameter instead of a fixed attempt2 constant; expected logical order is passed separately. Strict H19 JSON/semantics, persisted-state replay, pixel/hash bindings, package/source checks, quantized/vision storage, cost arithmetic and null handling are preserved. It imports only the independent H21 stdlib audit helper, with no production or ML imports. `--source-repo`, `--bundle` and `--adapter` are explicit portable overrides; defaults derive from this script's workspace, not a personal absolute path."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Eight stdlib tests pass via `rtk proxy python -X utf8 -m unittest discover -s work -p test_h22_test_restart_audit.py -v`. Meaningful negative tests use the real saved FP16 DEV record unchanged: it is rejected for TEST split even when expected UUID/mode match, and independently rejects wrong expected UUID and mode. Other tests reject pending/mismatched external UUID, changed source/freeze/DEV identity/profile groups/adoption flags and wrong amendment SHA; they verify index mapping, syntax and unchanged old auditor SHA. Synthetic UUIDs are only configuration fixtures. No fake TEST-success record, actual TEST outcome count, model execution or tuning was created."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "No actual restart audit can run before the new public amendment SHA, qualified UUID and retained raw result/ZIP hashes arrive. Example with actual future values:"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "```powershell"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "rtk proxy python -X utf8 work/h22_test_restart_audit.py PATH_TO_EXTRACTED/run/result.json --archive PATH_TO_RAW.zip --result-sha256 ACTUAL_RESULT_SHA --archive-sha256 ACTUAL_ARCHIVE_SHA --amendment PATH_TO_PUBLISHED_AMENDMENT.json --amendment-sha256 PUBLIC_AMENDMENT_SHA --expected-gpu-uuid ACTUALLY_QUALIFIED_UUID --index 0 --source-repo PATH_TO_SOURCE_REPO --bundle PATH_TO_H19_BUNDLE --adapter PATH_TO_RETAINED_ADAPTER --output PATH_TO_INDEPENDENT_AUDIT.json"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Output always leaves adoption/quality/native/execution false. Exceptions or identity mismatches cannot produce complete success or fabricated counters. The new TEST hardware group cannot establish a same-device cost comparison with the completed DEV group. Power sensors remain uncalibrated; no energy/efficiency/monetary conclusion follows. Repeated standalone probes remain exposed diagnostics. No TEST-failure tuning or source/parser relaxation is authorized by this preparation."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/builder-report.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 37
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 37,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 remaining TEST-only restart source handoff"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No GPU execution, model download, publication, commit or production source edit. Original DEV profiles all completed and have durable raw public ZIPs; none will rerun. The original matched GPU expired before TEST index3 began. The replacement VM observed after expiry is not treated as qualified hardware. Root must qualify the actual newly started UUID and externally freeze the new TEST amendment before inference."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Frozen operator source:"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "| File | SHA256 |"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "|---|---|"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| `outputs/h22-test-only-operator.py` | `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e` |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "| `outputs/h22-test-restart-qualify.py` | `16d1c476ab0a5321c54d30838b4b7f96fc069990bc44efab11fedf994622e48a` |"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| `outputs/h22-test-restart-prospective-amendment.json` draft | `94b5a33358aa24c0335e5ea709aa707068f39d65c9697a56ca0c547b1a8e5f2f` |"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "The amendment GPU field is deliberately `PENDING_ACTUAL_QUALIFICATION`, which the operator rejects. Root replaces it with the actual newly qualified UUID and publishes the resulting immutable artifact commit/SHA. The amendment schema is `hala.h22.test_restart_amendment.v1`, attempt3, with only `mode_order=[['fp16','test'],['int8','test'],['nf4','test']]`. Local indices0..2 are the original study's logical slots3..5. Runtime07591, freeze98ca, source/data/font/model/adapter/pins/budgets remain identical; no parser/task/training change or selection based on new TEST outcomes."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "Original DEV group is explicitly `60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02`. `dev_retention` fixes all3 original index/commit/receipt/archive hashes in the amendment/helper. Public commits are fp16 `e252b7805055fa6a89e1d92b6bba7faa5dbf1efc`, int8 `e3d400424766aad3c5856ba29266e11033392ef5`, nf4 `d08f522de433d9da866ec3907161e4a9b326efba`. First TEST index0 fetches/verifies every old DEV receipt and actual raw ZIP using its original group SHA and complete mandatory raw provenance/result checks before creating output or launching a process. The confirmed receipts are retained in its new evidence ZIP. Missing old DEV evidence blocks TEST."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Qualification command on genuinely restored remote source:"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "python h22-test-restart-qualify.py --expected-gpu-uuid <externally-observed-new-actual-UUID>"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "This preserves the old qualifier untouched. The new qualifier enforces clean07591 before imports, exact packages/font/H19/retained archive before ML, genuine provider, actual UUID and bounded sampler. It atomically creates `/kaggle/working/hala-h21/h22-test-restart-qualification.json` without overwriting. No prior-VM status or fake GPU metadata is used. A separate `h22-test-restart-prewarm.json` may record original-base cache preparation; qualification does not prewarm or claim a warm cache."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 13
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/combined-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 26
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 26,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST-only restart — independent combined operator review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Scope: new TEST-only operator, qualification helper, draft amendment, builder handoff and focused operator tests. No production-phase source audit repeated. No GPU, inference, model download, network fetch, source edit or publication by reviewer."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Must fix: none. Worth considering: none for the fixed trusted-operator workflow. The amendment's deliberate GPU placeholder remains an execution blocker until actual qualification and external publication of the final manifest identity."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "## Reviewed behavior"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Only local indices0..2 exist, fixed to fp16/int8/nf4 TEST. No DEV mode or automatic advance is reachable from the profile CLI. Frozen source07591, freeze98ca, original H19/model/font/retained-adapter/package/budget fields are preserved and checked against the original immutable SHA-bound study manifest. Clean complete Git source is checked before imports/launch as previously reviewed."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- First TEST requires all three fixed original DEV receipts and actual public raw ZIPs from original group `60a0986c...`, with pinned commits/receipt/archive hashes. Each passes the existing complete provenance/raw-result checks; confirmed DEV receipts enter the first new ZIP. The locally retained actual DEV ZIP bytes independently matched all three fixed archive hashes and satisfied these checks in the focused suite. Public retrieval itself occurs in the real gate, not this review."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Later TEST requires the immediately prior new TEST receipt and actual ZIP under the distinct TEST path/SHA. Group/index checks prevent negative, boolean, out-of-range or wrong-group selection; DEV additionally requires its original SHA. Actual raw result hash/source/freeze/mode/split/status and terminal outcomes remain checked. Finished measured evidence additionally requires returncode0 and the experiment GPU UUID. No missing/forged raw-result bypass found in this delta."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- Qualification binds actual newly observed GPU UUID, real provider, original exact imports/bundle/font/retained archive and UUID-bound sampler without model loading. Placeholder UUID is rejected by amendment admission; qualification mismatch rejects before profile output/process creation. The root must publish the final postqualification amendment SHA and commit before inference."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- Each invocation launches one fresh bounded3700-second process, preserves terminal failure/timeout evidence, and exclusively creates profile directory/ZIP. Rerun prevention remains scoped to the trusted operator's retained working directory. Original DEV and new TEST remain separate physical-hardware groups; cross-group matched-device cost claims are explicitly unqualified."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- Operational reuse/copying is proportionate here: old immutable operators/manifests and DEV evidence are preserved, while separate paths/attempt identity avoid retroactively changing the completed study group."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "## Independent checks"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "`python -m unittest discover -s outputs -p test_h22*operator.py -q`: 16 tests passed in0.408 seconds. Covers all3 old DEV prerequisites, actual retained DEV ZIP compatibility, TEST-only invocation/no overwrite, dirty source rejection, wrong GPU/missing DEV blocking before output, and missing/forged raw evidence. Five additional direct CPU cases confirmed wrong group, index0, boolean index, index4 and wrong DEV SHA reject before network."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "Recomputed exact reviewed identities:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "- TEST operator: `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e`."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "- TEST qualification helper: `16d1c476ab0a5321c54d30838b4b7f96fc069990bc44efab11fedf994622e48a`."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "- Draft amendment with blocking placeholder: `94b5a33358aa24c0335e5ea709aa707068f39d65c9697a56ca0c547b1a8e5f2f`."
+            }
+          ],
+          "dropped": 2
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/experiment-template.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 96
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 96,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adapter_identity\": {\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"base_model\": \"Qwen/Qwen3-VL-2B-Instruct\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"base_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"data_sha256\": \"af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"evaluation_sha256\": \"e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"source_commit\": \"5b6eb4bf29acbaf21aa199f113f78af4f268b3b7\"\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"adapter_manifest_sha256\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"adoption_qualified\": false,\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"amendment\": \"DEV group completed and retained; original matched GPU expired before TEST started. TEST requires new qualification and separate hardware group; cross-group cost comparisons are unqualified.\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"attempt\": 3,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"blocked_policy\": \"Retain failed/partial run with raw errors; continue independent next profile in a fresh process; no fallback, retraining, parser repair or test-driven tuning\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"budget\": {\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"generation_seconds\": 20,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"generation_tokens\": 128,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"input_tokens\": 4096,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"launcher_timeout_seconds_per_run\": 3700,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"runtime_seconds_per_run\": 3600\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  \"cache\": \"/tmp/hala-h22-cache\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  \"cache_state\": \"New runtime must be genuinely qualified; any original-base prewarm recorded separately\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  \"cost_limits\": [\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    \"Same physical GPU but fixed temporal order and warm cache confound timing\",\r"
+            }
+          ],
+          "dropped": 72
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 295
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 295,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Independent standard-library audit of recorded H21 baseline/candidate evidence."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No production parser, scorer, verifier, simulator, model or ML package imports."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Usage: python h21_actual_baseline_audit.py RESULT FROZEN_BUNDLE"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "       --manifest-sha256 EXTERNALLY_ARCHIVED_SHA [--output REPORT.json]"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "This checks recorded consistency; it cannot attest hardware or honest capture."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "def strict(raw):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    def pairs(items):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        out = {}"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        for key, value in items:"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            if key in out:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "                raise ValueError('duplicate JSON key')"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            out[key] = value"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        return out"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def bad(_):"
+            }
+          ],
+          "dropped": 271
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 284
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 284,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Independent saved-record TEST restart audit, with explicit external identity."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "No production imports, models, source/record rewrites, or TEST-driven tuning."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "The copied stdlib scoring/geometry/cost core keeps the prior auditor immutable."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import argparse, copy, hashlib, json, math, re, struct, subprocess, tempfile, zipfile"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from h21_actual_baseline_audit import audit as record_audit, strict, parsed"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "ROOT=Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "SOURCE='07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "RUNTIME='20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895'"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "PRECISION='1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "FREEZE='98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "MANIFEST='ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e'"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "ADAPTER='7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "DEV_EXPERIMENT='60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02'"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "ORDER=[('fp16','dev'),('int8','dev'),('nf4','dev'),('fp16','test'),('int8','test'),('nf4','test')]"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "RESTART_ORDER=[['fp16','test'],['int8','test'],['nf4','test']]"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "PINS={'torch':'2.11.0+cu128','transformers':'5.16.1','Pillow':'11.3.0','peft':'0.20.0','safetensors':'0.8.0','accelerate':'1.12.0','bitsandbytes':'0.50.2'}"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "IDENTITY={'base_model':'Qwen/Qwen3-VL-2B-Instruct','base_revision':'89644892e4d85e24eaac8bacfd4f463576704203','data_sha256':'af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e','evaluation_sha256':'e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768','source_commit':'5b6eb4bf29acbaf21aa199f113f78af4f268b3b7'}"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "DEV_RETENTION=["
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    {'index':0,'commit':'e252b7805055fa6a89e1d92b6bba7faa5dbf1efc','archive_sha256':'6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580','receipt_sha256':'0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a'},"
+            }
+          ],
+          "dropped": 260
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/operator-launcher.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 285
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 285,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"TEST-only restart operator: retain all original DEV, then run one remaining TEST profile.\"\"\"\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import io\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import re\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import subprocess\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import sys\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import time\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import urllib.request\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import zipfile\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "ROOT = Path('/kaggle/working/hala-h21')\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "COMMIT = '07591f109b6683c9302fcf890259ddf0bde91494'\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "FREEZE = '98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "ORDER = [['fp16', 'test'], ['int8', 'test'], ['nf4', 'test']]\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "DEV_ORDER = [['fp16', 'dev'], ['int8', 'dev'], ['nf4', 'dev']]\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "DEV_SHA = '60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02'\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "DEV_RETENTION = [\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    {'index': 0, 'commit': 'e252b7805055fa6a89e1d92b6bba7faa5dbf1efc',\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "     'receipt_sha256': '0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a',\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "     'archive_sha256': '6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580'},\r"
+            }
+          ],
+          "dropped": 261
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/qualify.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 107
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 107,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Qualify a newly restored test-restart runtime; no model load, fetch, checkout or prewarm.\"\"\"\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import importlib.util\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import os\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import subprocess\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import sys\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "ROOT = Path('/kaggle/working/hala-h21')\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "COMMIT = '07591f109b6683c9302fcf890259ddf0bde91494'\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "FREEZE = '98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b'\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "DATA = 'ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e'\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "ADAPTER = '7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d'\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "IDENTITY = {'base_model': 'Qwen/Qwen3-VL-2B-Instruct', 'base_revision': '89644892e4d85e24eaac8bacfd4f463576704203',\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    'data_sha256': 'af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e',\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    'evaluation_sha256': 'e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768',\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    'source_commit': '5b6eb4bf29acbaf21aa199f113f78af4f268b3b7'}\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "def clean_source(root):\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    actual = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root / 'source', text=True, timeout=30).strip()\r"
+            }
+          ],
+          "dropped": 83
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/security-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 10
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 10,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST-only restart independent security review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "- Verdict: PASS for this trusted-operator restart grain; findings: []. No production audit or model execution repeated."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "- Reviewed identities: operator `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e`; qualifier `16d1c476ab0a5321c54d30838b4b7f96fc069990bc44efab11fedf994622e48a`; blocking-placeholder amendment draft `94b5a33358aa24c0335e5ea709aa707068f39d65c9697a56ca0c547b1a8e5f2f`. Independently recomputed all three."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "- Scope boundary: only fixed indices0..2/fp16,int8,nf4 TEST; one subprocess per invocation, 3700-second timeout, exclusive profile directory and ZIP creation. No DEV rerun or automatic next-profile launch. Fixed source07591/freeze98ca, original data/model/adapter identity/pins/cache/budgets remain bound to the immutable original manifest."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "- Admission: clean complete first-party source checked before qualifier imports and operator retrieval/launch. Qualifier enforces genuine Kaggle admission, bounded cache checks, source freeze, H19 media/font and full retained-adapter identity before ML imports; then actual imported pins/CUDA/RAQM and externally expected UUID/sampler. No model load or prewarm in qualification. Placeholder UUID blocks operator admission."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- Retention: first TEST requires all three fixed original DEV public receipt/raw-ZIP SHA pairs; later TEST requires immediate prior TEST terminal raw receipt/ZIP under the new experiment group. URLs are fixed own-repository paths with strict 40hex commits; bounded fetch rejects redirected/mismatched bytes. ZIP inventory/member bounds, mandatory log/qualification/launcher, experiment/status/profile identities and actual claimed result hash/status are checked. Finished claims additionally require measured raw result, returncode0 and matching GPU. No extraction or arbitrary output path from ZIP content."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "- Failure evidence: terminal failures/timeouts remain retainable, without becoming measured-quality claims. Raw evidence remains on disk if archive bounds fail. Publication/retention remains an operator gate; these scripts send no messages or uploads."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Independent verification: 16 focused stdlib operator tests passed in0.406 seconds, including actual retained DEV ZIP hashes and raw completeness. Additional new-operator timeout probe verified exactly one subprocess, timeout3700, terminal timeout status and CRC-clean archive containing mandatory provenance/log/status plus DEV receipts."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- Limits: fixed trusted Git/interpreter/operator environment assumptions from the earlier source-boundary review remain. This does not authenticate hardware adversarially or establish free eligibility, model quality, cross-group physical-device/cost comparability or adoption. Actual new qualification and externally published final amendment identity remain required before TEST execution. No GPU, ML download, source edit, network retrieval or publication by this reviewer."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/source-gates.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 15
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 15,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"operator_sha256\": \"d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"qualifier_sha256\": \"16d1c476ab0a5321c54d30838b4b7f96fc069990bc44efab11fedf994622e48a\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"auditor_sha256\": \"ee1a044198feb0725aed00706600eec5f815ef80a6fa7da78a2b948e6eaa7d8a\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"operator_cpu_tests\": 16,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"independent_extra_rejection_checks\": 5,\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"auditor_cpu_tests\": 8,\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"combined_review\": \"PASS\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"security_review\": \"PASS\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"actual_gpu_qualified\": false,\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"actual_inference_started\": false,\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"final_amendment_published\": false,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"source_commit\": \"07591f109b6683c9302fcf890259ddf0bde91494\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"scope\": \"Source snapshot; template GPU is a rejecting placeholder. Final actual qualification and immutable experiment.json publication precede inference. Test snapshots expect original workspace fixtures; portable auditor offers explicit source/bundle/adapter flags.\"\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "}\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 51
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 51,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Stdlib negative guards using saved DEV records; never fake a TEST success.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import ast, copy, hashlib, json, tempfile, unittest"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import h22_test_restart_audit as audit"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "ROOT=Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "OLD_UUID='GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1'"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "DIFFERENT_UUID='GPU-11111111-2222-3333-4444-555555555555'"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "class RestartAuditGuards(unittest.TestCase):"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    @classmethod"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    def setUpClass(cls):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "        cls.record=json.loads((ROOT/'outputs/h22-attempt2-profile-0-fp16-dev-evidence/run/result.json').read_bytes())"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        cls.amendment=json.loads((ROOT/'outputs/h22-test-restart-prospective-amendment.json').read_bytes())"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        # Synthetic manifest UUID solely for testing validation. No qualification"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        # or actual TEST result is asserted by this configuration fixture."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        cls.amendment['gpu_uuid']=OLD_UUID"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    def test_local_three_indices_map_only_to_original_test_indices(self):"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        for local,mode in enumerate(('fp16','int8','nf4')):"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "            expected=audit.expected_identity(self.amendment,OLD_UUID,local)"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "            self.assertEqual((expected['mode'],expected['split'],expected['logical_original_index']),(mode,'test',local+3))"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        for bad in (-1,3,True):"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            with self.assertRaises(ValueError): audit.expected_identity(self.amendment,OLD_UUID,bad)"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def test_pending_or_wrong_external_uuid_rejected(self):"
+            }
+          ],
+          "dropped": 27
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 151
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 151,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU-only TEST restart guard, fixed retained DEV and complete raw-archive regressions.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from contextlib import redirect_stdout"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from test_h22_attempt2_operator import load"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "HERE = Path(__file__).resolve().parent"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "class TestRestartTests(unittest.TestCase):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    @classmethod"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    def setUpClass(cls):"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        cls.m = load('test_only_operator', 'h22-test-only-operator.py')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        cls.original = json.loads((HERE / 'h22-prospective-experiment.json').read_text())"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    def manifest(self):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        value = json.loads((HERE / 'h22-test-restart-prospective-amendment.json').read_text())"
+            }
+          ],
+          "dropped": 127
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-test-restart/audit-preparation.md",
+    "h22-test-restart/builder-report.md",
+    "h22-test-restart/combined-review.md",
+    "h22-test-restart/experiment-template.json",
+    "h22-test-restart/security-review.md",
+    "h22-test-restart/source-gates.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#audit.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L109-L112",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#audit.global_match",
+      "name": "global_match",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L168-L182",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#finished",
+      "name": "finished",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L101-L104",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L284-L292",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#parsed",
+      "name": "parsed",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L64-L68",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#proposal.step",
+      "name": "step",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L42-L45",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#public_input",
+      "name": "public_input",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L71-L75",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#semantic",
+      "name": "semantic",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L78-L98",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L29-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#strict.bad",
+      "name": "bad",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L24-L25",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#strict.pairs",
+      "name": "pairs",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L17-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#audit_restart",
+      "name": "audit_restart",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L239-L270",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#byte_count",
+      "name": "byte_count",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L30-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#canonical",
+      "name": "canonical",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L28-L28",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#complete",
+      "name": "complete",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L32-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#expected_identity",
+      "name": "expected_identity",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L34-L47",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L272-L283",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#number",
+      "name": "number",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L29-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#precision_record_audit.check",
+      "name": "check",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L63-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#precision_record_audit.hit",
+      "name": "hit",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L126-L128",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#precision_record_audit.memory_row",
+      "name": "memory_row",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L169-L178",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#precision_record_audit.source",
+      "name": "source",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L86-L86",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#same",
+      "name": "same",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L31-L31",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L27-L27",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#validate_record_identity",
+      "name": "validate_record_identity",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L49-L58",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#artifact_url",
+      "name": "artifact_url",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L46-L50",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#atomic_json",
+      "name": "atomic_json",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L168-L175",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#clean_source",
+      "name": "clean_source",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L65-L71",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#dev_prerequisites",
+      "name": "dev_prerequisites",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L162-L165",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#fetch",
+      "name": "fetch",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L53-L62",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#hex_digest",
+      "name": "hex_digest",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L41-L43",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L273-L281",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#prior_retention",
+      "name": "prior_retention",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L96-L159",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#profile_name",
+      "name": "profile_name",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L74-L77",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L178-L270",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L37-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py#validate_manifest",
+      "name": "validate_manifest",
+      "kind": "function",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L80-L93",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/qualify.py#clean_source",
+      "name": "clean_source",
+      "kind": "function",
+      "path": "h22-test-restart/qualify.py",
+      "span": "L23-L28",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/qualify.py#qualify",
+      "name": "qualify",
+      "kind": "function",
+      "path": "h22-test-restart/qualify.py",
+      "span": "L31-L101",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L12-L17",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_actual_saved_dev_cannot_pass_as_restart_test_even_when_uuid_mode_match",
+      "name": "test_actual_saved_dev_cannot_pass_as_restart_test_even_when_uuid_mode_match",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L31-L35",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_actual_saved_dev_wrong_expected_mode_is_separately_rejected",
+      "name": "test_actual_saved_dev_wrong_expected_mode_is_separately_rejected",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L39-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_actual_saved_dev_wrong_expected_uuid_is_separately_rejected",
+      "name": "test_actual_saved_dev_wrong_expected_uuid_is_separately_rejected",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L36-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_dev_manifest_or_group_cannot_be_substituted",
+      "name": "test_dev_manifest_or_group_cannot_be_substituted",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L27-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_immutable_old_auditor_and_new_syntax",
+      "name": "test_immutable_old_auditor_and_new_syntax",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L47-L50",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_local_three_indices_map_only_to_original_test_indices",
+      "name": "test_local_three_indices_map_only_to_original_test_indices",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L18-L23",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_pending_or_wrong_external_uuid_rejected",
+      "name": "test_pending_or_wrong_external_uuid_rejected",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L24-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_audit.py#RestartAuditGuards.test_public_amendment_hash_required_before_record_access",
+      "name": "test_public_amendment_hash_required_before_record_access",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_audit.py",
+      "span": "L42-L46",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.manifest",
+      "name": "manifest",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L23-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L19-L21",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_all_three_original_dev_public_raw_prerequisites_are_fixed",
+      "name": "test_all_three_original_dev_public_raw_prerequisites_are_fixed",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L42-L51",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_first_test_runs_only_test_once_and_archives_dev_receipts",
+      "name": "test_first_test_runs_only_test_once_and_archives_dev_receipts",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L80-L103",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_new_test_raw_gate_rejects_missing_members_and_forged_measured_result",
+      "name": "test_new_test_raw_gate_rejects_missing_members_and_forged_measured_result",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L124-L147",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_only_three_fixed_test_modes_and_manifest_no_dev_or_changed_identity",
+      "name": "test_only_three_fixed_test_modes_and_manifest_no_dev_or_changed_identity",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L28-L40",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_original_actual_dev_zips_satisfy_unchanged_completeness_checks",
+      "name": "test_original_actual_dev_zips_satisfy_unchanged_completeness_checks",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L53-L65",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_wrong_gpu_or_missing_old_dev_blocks_first_test_before_output",
+      "name": "test_wrong_gpu_or_missing_old_dev_blocks_first_test_before_output",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L105-L122",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-test-restart/test_h22_test_restart_operator.py#TestRestartTests.test_wrong_source_stops_before_manifest_or_profile_process",
+      "name": "test_wrong_source_stops_before_manifest_or_profile_process",
+      "kind": "method",
+      "path": "h22-test-restart/test_h22_test_restart_operator.py",
+      "span": "L67-L78",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#audit",
+      "name": "audit",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L107-L281",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py",
+      "name": "h21_actual_baseline_audit.py",
+      "kind": "file",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L1-L296",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/h21_actual_baseline_audit.py#proposal",
+      "name": "proposal",
+      "kind": "function",
+      "path": "h22-test-restart/h21_actual_baseline_audit.py",
+      "span": "L33-L61",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py#precision_record_audit",
+      "name": "precision_record_audit",
+      "kind": "function",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L60-L236",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/h22_test_restart_audit.py",
+      "name": "h22_test_restart_audit.py",
+      "kind": "file",
+      "path": "h22-test-restart/h22_test_restart_audit.py",
+      "span": "L1-L285",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/operator-launcher.py",
+      "name": "operator-launcher.py",
+      "kind": "file",
+      "path": "h22-test-restart/operator-launcher.py",
+      "span": "L1-L286",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-test-restart/qualify.py",
+      "name": "qualify.py",
+      "kind": "file",
+      "path": "h22-test-restart/qualify.py",
+      "span": "L1-L108",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "manifest",
+      "labelSource": "symbol",
+      "key": "h22-test-restart/",
+      "files": [
+        "h22-test-restart/h21_actual_baseline_audit.py",
+        "h22-test-restart/h22_test_restart_audit.py",
+        "h22-test-restart/operator-launcher.py",
+        "h22-test-restart/qualify.py",
+        "h22-test-restart/test_h22_test_restart_audit.py",
+        "h22-test-restart/test_h22_test_restart_operator.py"
+      ],
+      "seeds": 57,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 57,
+      "unreached": [
+        "check",
+        "global_match",
+        "finished",
+        "main",
+        "parsed",
+        "step",
+        "public_input",
+        "semantic",
+        "sha",
+        "bad",
+        "pairs",
+        "audit_restart",
+        "byte_count",
+        "canonical",
+        "complete",
+        "expected_identity",
+        "main",
+        "number",
+        "check",
+        "hit",
+        "memory_row",
+        "source",
+        "same",
+        "sha",
+        "validate_record_identity",
+        "artifact_url",
+        "atomic_json",
+        "clean_source",
+        "dev_prerequisites",
+        "fetch",
+        "hex_digest",
+        "main",
+        "prior_retention",
+        "profile_name",
+        "run",
+        "sha",
+        "validate_manifest",
+        "clean_source",
+        "qualify",
+        "setUpClass",
+        "test_actual_saved_dev_cannot_pass_as_restart_test_even_when_uuid_mode_match",
+        "test_actual_saved_dev_wrong_expected_mode_is_separately_rejected",
+        "test_actual_saved_dev_wrong_expected_uuid_is_separately_rejected",
+        "test_dev_manifest_or_group_cannot_be_substituted",
+        "test_immutable_old_auditor_and_new_syntax",
+        "test_local_three_indices_map_only_to_original_test_indices",
+        "test_pending_or_wrong_external_uuid_rejected",
+        "test_public_amendment_hash_required_before_record_access",
+        "manifest",
+        "setUpClass",
+        "test_all_three_original_dev_public_raw_prerequisites_are_fixed",
+        "test_first_test_runs_only_test_once_and_archives_dev_receipts",
+        "test_new_test_raw_gate_rejects_missing_members_and_forged_measured_result",
+        "test_only_three_fixed_test_modes_and_manifest_no_dev_or_changed_identity",
+        "test_original_actual_dev_zips_satisfy_unchanged_completeness_checks",
+        "test_wrong_gpu_or_missing_old_dev_blocks_first_test_before_output",
+        "test_wrong_source_stops_before_manifest_or_profile_process"
+      ],
+      "seedNames": [
+        "manifest",
+        "hex_digest",
+        "same",
+        "sha",
+        "artifact_url",
+        "byte_count",
+        "check",
+        "check",
+        "fetch",
+        "prior_retention",
+        "sha",
+        "atomic_json",
+        "audit_restart",
+        "canonical",
+        "clean_source",
+        "clean_source",
+        "complete",
+        "dev_prerequisites",
+        "expected_identity",
+        "finished",
+        "global_match",
+        "hit",
+        "main",
+        "main",
+        "main",
+        "memory_row",
+        "number",
+        "parsed",
+        "profile_name",
+        "public_input",
+        "qualify",
+        "run",
+        "semantic",
+        "sha",
+        "source",
+        "step",
+        "validate_manifest",
+        "validate_record_identity",
+        "bad",
+        "pairs",
+        "setUpClass",
+        "setUpClass",
+        "test_actual_saved_dev_cannot_pass_as_restart_test_even_when_uuid_mode_match",
+        "test_actual_saved_dev_wrong_expected_mode_is_separately_rejected",
+        "test_actual_saved_dev_wrong_expected_uuid_is_separately_rejected",
+        "test_all_three_original_dev_public_raw_prerequisites_are_fixed",
+        "test_dev_manifest_or_group_cannot_be_substituted",
+        "test_first_test_runs_only_test_once_and_archives_dev_receipts",
+        "test_immutable_old_auditor_and_new_syntax",
+        "test_local_three_indices_map_only_to_original_test_indices",
+        "test_new_test_raw_gate_rejects_missing_members_and_forged_measured_result",
+        "test_only_three_fixed_test_modes_and_manifest_no_dev_or_changed_identity",
+        "test_original_actual_dev_zips_satisfy_unchanged_completeness_checks",
+        "test_pending_or_wrong_external_uuid_rejected",
+        "test_public_amendment_hash_required_before_record_access",
+        "test_wrong_gpu_or_missing_old_dev_blocks_first_test_before_output",
+        "test_wrong_source_stops_before_manifest_or_profile_process"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

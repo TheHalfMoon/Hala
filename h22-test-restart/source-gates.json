@@ -1,0 +1,15 @@
+{
+  "operator_sha256": "d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e",
+  "qualifier_sha256": "16d1c476ab0a5321c54d30838b4b7f96fc069990bc44efab11fedf994622e48a",
+  "auditor_sha256": "ee1a044198feb0725aed00706600eec5f815ef80a6fa7da78a2b948e6eaa7d8a",
+  "operator_cpu_tests": 16,
+  "independent_extra_rejection_checks": 5,
+  "auditor_cpu_tests": 8,
+  "combined_review": "PASS",
+  "security_review": "PASS",
+  "actual_gpu_qualified": false,
+  "actual_inference_started": false,
+  "final_amendment_published": false,
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "scope": "Source snapshot; template GPU is a rejecting placeholder. Final actual qualification and immutable experiment.json publication precede inference. Test snapshots expect original workspace fixtures; portable auditor offers explicit source/bundle/adapter flags."
+}
