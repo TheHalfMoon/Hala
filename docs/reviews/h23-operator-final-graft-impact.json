@@ -1,0 +1,1692 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h23-operator-source-20261016/amendment-template.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 20
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 20,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h23.hardware_retention_amendment.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"original_prospective_commit\": \"d0e2115456be9f199841b6df44531b55467ccca0\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"original_prospective_sha256\": \"399b094ba74dde4b7c3f6aa2551f9d0d0eaf6df86c236332481e6a5b06c27592\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"source_commit\": \"18ad45deaa890c27c7250681e4bffe8b881e5690\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"source_freeze_sha256\": \"4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a\","
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"dev_experiment_sha256\": \"60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"test_manifest_commit\": null,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"test_manifest_sha256\": null,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"h23_expected_gpu_uuid\": null,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"execution_sequence\": ["
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"original_DEV_public_retention_0_1_2\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"new_TEST_public_and_local_retention_0_1_2\","
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"H23_single_fault_run_and_immediate_export\""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  ],"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  \"cross_gpu_cost_pairing\": false,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  \"scientific_changes\": false,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  \"actual_gpu_execution_started\": false,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  \"actual_qualification\": false"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/builder-report.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 60
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 60,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 operator preparation and dual-group amendment handoff"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Files: `outputs/h23-operator.py`, `outputs/test_h23_operator.py`. No Hala scientific source changed. No GPU, model download, remote process, publication or operational launcher execution occurred."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Historical preparation initially disabled the partial operator with `EXECUTION_READY=False` while the new contract was unavailable. That old all-six-local barrier and hardcoded old GPU have now been replaced by the current strict two-group contract below. The original GPU `24febf58...` expired after three published DEV results; old TEST profiles never started. Root stopped the later empty VM. Missing old-VM local files and nonexistent TEST outcomes are never fabricated or substituted."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Read-only source review of partial helper:"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Original H22 helper is byte-checked against `3e24085ce05b16a0e511e6b03f4fd2dd4138ae0213d5ac23349b6687232e0adc` before import. Its public retention validator fetches real bounded raw receipt and ZIP bytes using immutable 40-hex raw URLs, verifies source/experiment/mode/result bindings and raw ZIP member/CRC bounds."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- H23 original prospective identity remains `d0e2115456be9f199841b6df44531b55467ccca0`, experiment SHA `399b094ba74dde4b7c3f6aa2551f9d0d0eaf6df86c236332481e6a5b06c27592`. Scientific source remains `18ad45deaa890c27c7250681e4bffe8b881e5690`, freeze `4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a`; source tasks, pins and all qualification flags remain unchanged."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Partial operational sequence includes exact clean clone, reviewed bounded cache scan, exact non-symlink cache rename into nonexistent H23 cache, source/provider/font/pin checks, actual logical/physical GPU identity checks, one fixed official GNU timeout command with an owned new invocation group, bounded stdout capture and immediate bounded raw ZIP retention. This is source inspection only, not operational validation."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- Packaging retains structured incremental task/fault/reap/reload result, operator, prospective metadata, source freeze and raw command log. Per file <=8 MiB, total <=64 MiB, ZIP <=16 MiB. Log overflow/timeout stays incomplete; no automatic rerun, model fallback or qualification."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "Minimal amendment proposal, coordinated with `/root/precision_development_builder`:"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "1. Keep exactly six global slots: original DEV local indices0..2, then new TEST local indices0..2. Fixed mode order fp16/int8/nf4 within each group. The source/freeze stays original reviewed precision `07591...`/`98ca...` for both retained precision groups."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "2. Original DEV group is fixed to experiment SHA `60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02`, known public `h22-attempt2/profile-N-MODE-dev-*` paths and externally supplied immutable commit/receipt/archive SHA rows. Verify all three published raw receipts+ZIPs; old local status files are no longer required or available."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "3. New TEST group is a separate explicit frozen prospective manifest, new actual GPU UUID and new experiment SHA (pending precision builder/root qualification). Fixed paths `h22-test-restart/profile-N-MODE-test-evidence.zip` and matching `-receipt.json`; receipt schema remains `hala.h22.public_retention_receipt.v1`, local index0..2 and new TEST experiment binding. Require actual new TEST local terminal status/raw ZIP identity as well as all three published raw receipts/ZIPs before H23 model work."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "4. Retention table binds `dev_experiment_sha256` and `test_experiment_sha256` separately, six ordered unique `{group,index,commit,receipt_sha256,archive_sha256}` rows. No arbitrary group counts, prefixes, scientific manifests or dynamic mode order."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "5. A new externally SHA-bound public H23 hardware/retention amendment must bind the original H23 prospective bytes, unchanged scientific source/freeze/tasks/pins, both precision groups and explicitly expected H23 physical UUID/execution order before inference. Never silently rewrite the original plan. Cross-GPU precision costs are not paired."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "6. Prefer the new TEST operator's own exact SHA-verified `prior_retention` validator if its final reviewed interface matches, rather than mutating old helper constants or duplicating a generic validation framework. Exact new helper SHA/manifest commit/SHA/local status paths remain pending. Do not enable the runner until the contract and independent review are complete."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "CPU-only preparation checks: six stdlib tests passed in0.117s; py_compile passed. Tests cover disabled execution/no allocation, helper tamper rejection before import, immutable URL/redirect/hash/size negatives, incomplete/unordered old barrier rejection, raw failed-progress ZIP retention and mocked official timeout/new-group/incomplete-status behavior. Network/Popen/selector data are faked; no command, GPU or Linux process-group behavior is qualified by these tests."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 36
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/combined-delta-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 11
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 11,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 operator combined repair delta review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Reviewed operator SHA `fff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9` and tests SHA `9902261a74f3f9923b4a4c02cbc2ae942235d0d1106c0594338102da030bad09`. Scope is the post-Popen settlement/retention repair only; no scientific source changes or actual operator/GPU execution."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "- **Must-fix: none remaining in this delta.** Post-launch capture is protected by finally. Selector, read and log failures trigger bounded TERM/wait and KILL/wait handling of only the newly owned invocation group, close captured stdout, and record leader-reap plus group-quiescence separately."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "- The normal export path now requires confirmed producer quiescence after any launched invocation. Failed settlement records `incomplete_cleanup` and emits a raw-retention diagnostic with no normal ZIP, avoiding the earlier live-producer evidence snapshot. Prelaunch failures can still export their static failure evidence."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- No new correctness, parsimony or product issue found in the repair. Reviewed helper SHA remains `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e`; the two-group/source/hardware barriers remain unchanged."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Validation: `rtk python -m unittest discover -s outputs -p test_h23_operator.py -v` — 12 CPU tests passed in 1.132 s, including selector/read/log error cleanup and failed settlement blocking normal archive. Linux process-group behavior and actual H23 execution remain unqualified; no GPU/model work, remote operation or publication performed in this review."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "panel: operator delta combined contribution — correctness ✓ fresh-context Codex · parsimony ✓ combined · product ✓ combined · security separate/root-owned"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/combined-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 20
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 20,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 two-group operator combined review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Scope: operational wrapper and two metadata templates only; no rerun of reviewed H23 scientific-module review. Operator SHA `cb48b0ee3824027b597c64c38b6b0dd389e50333e7436964c2279efb6f3ef034` and helper SHA `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e` match inspected bytes. No operator/GPU/remote execution or source edits."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Must-fix"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- **P2 — `outputs/h23-operator.py:invoke` post-Popen exception path / `run` failure retention:** selector creation/registration/select, log open/write or stdout read exceptions bypass stdout close and process wait. `run` catches the exception and immediately creates/announces the evidence ZIP while the owned H23 producer may still be running and modifying scientific evidence. The independent GNU timeout eventually bounds that group, but export no longer represents a settled terminal attempt and may precede final task/fault/reap records. Put post-launch cleanup/settlement in a bounded finally path: close owned capture resources, let or cause only this owned invocation group to terminate within its fixed budget/grace, record explicit termination/reap outcome, and package after settlement (or explicitly record inability to settle). Add a CPU post-Popen selector/read/log failure regression proving the process is handled before retention. CPU mock reproduction: `selector.select` raises OSError; `invoke` exits with zero process.wait calls and zero stdout.close calls."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## Clean / intentional pending state"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Exact hash check precedes helper import. External immutable commit/SHA checks bind original H23 prospective bytes, unchanged H23 source/freeze, explicit hardware amendment and separate retention table. Null TEST manifest/GPU/table fields reject before source/cache/model work."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- Six fixed rows are ordered DEV0..2 then TEST0..2 with fp16/int8/nf4 mapping; original DEV rows are literal and verified publicly without requiring expired old local files. New TEST rows bind the new manifest/attempt/GPU and require both published raw receipt/ZIP validation and matching local terminal status/raw archive. All twelve public reads and all three new local checks precede clone/cache movement/ML work."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- Same expected physical/logical GPU UUID as the frozen TEST group is rechecked before H23 invocation. Cache movement is restricted to the fixed reviewed old cache into a nonexistent fixed H23 cache after a bounded cache scan."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- Normal invocation uses one fixed official GNU timeout command, 1200 seconds plus 5-second kill grace, in a newly owned session/group. Capture stops waiting after 1208 seconds; raw log prefix is bounded and overflow remains incomplete. The issue above is the exception branch, not the normal timer branch."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- Evidence preserves original prospective metadata plus the amendment, table and incremental scientific results; no cross-GPU paired cost or actual CUDA/native/production qualification is asserted. Pending immutable TEST/hardware metadata remains root-owned work before execution."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "- No additional parsimony or product-scope issue found."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "Validation: `rtk python -m unittest discover -s outputs -p test_h23_operator.py -v` — 10 CPU tests passed in 1.136 s. Exact operator/helper hashes checked. Additional CPU exception-path mock performed without subprocess launch. No actual H23 inference, clone/cache move, model download or publication."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "panel: operator combined contribution — correctness ✓ fresh-context Codex · parsimony ✓ combined · product ✓ combined · security separate/root-owned"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/operator.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 398
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 398,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"One private H23 run, only after all six H22 profiles are publicly retained.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import platform"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import selectors"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import signal"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "import urllib.request"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "WORK = Path('/kaggle/working')"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "ROOT = WORK / 'hala-h23'"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "H22 = WORK / 'hala-h21'"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "EVIDENCE = WORK / 'h23-operator-evidence'"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "H22_OPERATOR = WORK / 'h22-test-only-operator.py'"
+            }
+          ],
+          "dropped": 374
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/retention-template.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 13
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 13,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h23.two_group_retention.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"dev_experiment_sha256\": \"60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"test_experiment_sha256\": null,"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"profiles\": ["
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    {\"group\":\"dev\",\"index\":0,\"commit\":\"e252b7805055fa6a89e1d92b6bba7faa5dbf1efc\",\"receipt_sha256\":\"0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a\",\"archive_sha256\":\"6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580\"},"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    {\"group\":\"dev\",\"index\":1,\"commit\":\"e3d400424766aad3c5856ba29266e11033392ef5\",\"receipt_sha256\":\"d693bdf0cb5fede0931cb423296efbf0a7a470b4a91039c1b23ff90089936af7\",\"archive_sha256\":\"e0dbe2d692c522943b3e0c49c198e540416cbabfa2b19499c9da4a518b8339e5\"},"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    {\"group\":\"dev\",\"index\":2,\"commit\":\"d08f522de433d9da866ec3907161e4a9b326efba\",\"receipt_sha256\":\"641c760bd286991c5c5d565cd8a1b3034a747e37cbcb109af5d0da8a4495a850\",\"archive_sha256\":\"84dac2fd6ab44d751cefbe9ce61a958ef44a39aad3b1f09e880c5350bbd87458\"},"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    {\"group\":\"test\",\"index\":0,\"commit\":null,\"receipt_sha256\":null,\"archive_sha256\":null},"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    {\"group\":\"test\",\"index\":1,\"commit\":null,\"receipt_sha256\":null,\"archive_sha256\":null},"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    {\"group\":\"test\",\"index\":2,\"commit\":null,\"receipt_sha256\":null,\"archive_sha256\":null}"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  ]"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/security-delta-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 14
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 14,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 operator cleanup security delta"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Reviewed operator SHA256 `fff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9` against the prior operator monitoring-exception finding. Independent byte check matches."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Verdict: previous P2 resolved; no remaining must-fix security finding in this narrow delta."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- The full post-spawn monitor is now inside `try/finally`. Read, selector, log and other monitor failures enter bounded owned-group cleanup, close stdout and record errors before retention."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "- `finish_owned()` targets only the session/group created by this invocation's `Popen(start_new_session=True)`. Abort sends TERM, waits up to 5 seconds, escalates to KILL and waits up to 2 seconds; group-presence probes and short final group cleanup are bounded. No caller/external PID or process-name kill is added."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Leader reap and group quiescence are separate explicit evidence fields. Cleanup failure cannot become `finished`: status remains `incomplete_cleanup`, and normal ZIP export is blocked while `producer_quiescent=false`. A `HALA_H23_RETENTION_BLOCKED` diagnostic retains raw-evidence location and cleanup evidence without claiming a stable archive."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- Existing fixed timeout, six-profile prerequisite barrier, source/pins/cache/hardware identity and unqualified flags remain intact. No scientific-source or native-execution scope expansion."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "Validation: `rtk proxy python outputs/test_h23_operator.py -v` passed 12 tests in 1.452s, including monitor read/selector/log failure cleanup and double-timeout archive blocking. All process/group/network behavior in these tests is mocked; no actual operator invocation, model/GPU work, cache move, publication or live Linux cleanup experiment was performed. Actual TEST/H23 evidence and qualification remain separate root-owned gates."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "panel: operator security delta ✓ independent session-model judge."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/security-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 24
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 24,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H23 two-group operator independent security review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Scope: operator preparation grain only: `outputs/h23-operator.py`, its frozen TEST retention helper, two pending hardware/retention templates and operator tests. No H23 scientific source re-audit or operational run."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Reviewed bytes: operator SHA256 `cb48b0ee3824027b597c64c38b6b0dd389e50333e7436964c2279efb6f3ef034`; helper SHA256 `d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e` independently match."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Verdict: one must-fix before operator execution."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| Class | Location | Finding | Concrete fix |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "|---|---|---|---|"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| must-fix (P2) | `outputs/h23-operator.py:242` | Exceptions after `Popen` from selector setup/read or evidence-log writes skip both stdout closure and owned-process wait/cleanup. `run()` catches the exception and immediately archives while the model invocation may remain active under its separate 1200s GNU timeout. Its incremental result can continue changing after export, losing final failure/reap evidence and leaving model work running after the wrapper reports failure. CPU-only injection of `os.read` raising `OSError` confirmed zero `wait`, `terminate`, `kill` or stdout-close calls. | Guard the entire post-spawn monitor with `try/finally`; on monitor failure stop only the new owned invocation group, apply bounded grace/kill/reap, record confirmed or unconfirmed cleanup explicitly, close the pipe, then retain evidence. Add a monitor-exception regression demonstrating bounded owned cleanup before export; no external PID/name kill or automatic rerun. |"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Clean checks:"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- Original DEV rows are literal immutable rows, bound to experiment `60a098...`; reviewed helper binds source `07591...`, original experiment/GPU identity and exact DEV mode/index/path. Old DEV local paths are unnecessary."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "- New TEST has a separate immutable manifest and experiment SHA; its local terminal status and raw archive must match the public raw archive SHA, archived status/manifest and frozen physical GPU. Exactly six ordered DEV0..2/TEST0..2 rows are required. All six public receipts and raw ZIPs are checked before clone/cache/model preparation."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "- Helper bytes are SHA-checked before import. Metadata and evidence URLs have fixed public host/repository, immutable commit paths, external digests and read bounds; redirects reject. ZIP validation covers unique/bounded inventory, per-member/total size, required raw evidence, hashes/CRC on consumed members and source/mode/result identity; no extraction or arbitrary execution occurs."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "- Hardware amendment and retention table are separate external commit/SHA inputs. Their present null TEST/hardware fields fail closed. Original H23 source `18ad45...`, freeze `4c522...`, original prospective bytes, pins and scientific scope remain fixed. H23 expected GPU equals the frozen TEST GPU; no cross-GPU paired-cost claim."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "- Linux Kaggle identity, exact clean source, reviewed cache traversal, exact non-symlink old-cache rename into a nonexistent new cache, package/font/RAQM/logical+physical GPU checks and fixed official GNU timeout invocation are present. The normal launch uses one new owned session/group, no shell, caller program, external PID or native-action scope."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "- Output log prefix, member/total/ZIP bounds and failure status remain unqualified. No credentials, telemetry, billing or external service execution were introduced. Templates and source preparation do not establish remote execution or GPU qualification."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "Validation: `rtk proxy python outputs/test_h23_operator.py -v` passed all 10 tests in 1.411s. Additional stdlib mock reproduced the monitoring-exception cleanup gap; no actual subprocess, network fetch, clone, cache move, model/GPU operation or publication occurred. Actual TEST/hardware fields, public artifacts and H23 evidence remain root-owned pending gates."
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "panel: operator security ✓ independent session-model judge; correctness/Jev/Graft/publication and actual hardware qualification are separate gates."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/source-gates.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 14
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 14,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h23.operator_gates.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"operator_sha256\": \"fff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"cpu_tests_passed\": 12,\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"combined_delta\": \"PASS\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"security_delta\": \"PASS\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"repair_cycles\": 1,\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"actual_execution_started\": false,\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"actual_cuda_qualified\": false,\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"source_commit\": \"18ad45deaa890c27c7250681e4bffe8b881e5690\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"source_freeze_sha256\": \"4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"test_helper_sha256\": \"d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e\",\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"remaining\": \"Bind qualified actual TEST manifest/hardware amendment and all six public receipts before H23 inference; incomplete cleanup blocks normal archive\"\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "}\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 316
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 316,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Stdlib-only H23 operator contract checks. No GPU, downloads or subprocess execution.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import importlib.util"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import signal"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "HERE = Path(__file__).resolve().parent"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "spec = importlib.util.spec_from_file_location('h23_operator_contract',HERE/'h23-operator.py')"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "operator = importlib.util.module_from_spec(spec)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "spec.loader.exec_module(operator)"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "class OperatorBasics(unittest.TestCase):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    barrier_original = staticmethod(operator.barrier)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    @classmethod"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    def setUpClass(cls):"
+            }
+          ],
+          "dropped": 292
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h23-operator-source-20261016/amendment-template.json",
+    "h23-operator-source-20261016/builder-report.md",
+    "h23-operator-source-20261016/combined-delta-review.md",
+    "h23-operator-source-20261016/combined-review.md",
+    "h23-operator-source-20261016/retention-template.json",
+    "h23-operator-source-20261016/security-delta-review.md",
+    "h23-operator-source-20261016/security-review.md",
+    "h23-operator-source-20261016/source-gates.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h23-operator-source-20261016/operator.py#atomic",
+      "name": "atomic",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L77-L85",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#barrier",
+      "name": "barrier",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L126-L174",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#clean_source",
+      "name": "clean_source",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L177-L181",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#digest",
+      "name": "digest",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L52-L54",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#fetch",
+      "name": "fetch",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L66-L74",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#finish_owned.gone",
+      "name": "gone",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L241-L245",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#finish_owned.send",
+      "name": "send",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L235-L240",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#finish_owned.wait",
+      "name": "wait",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L246-L251",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#genuine_provider",
+      "name": "genuine_provider",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L88-L91",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#invoke",
+      "name": "invoke",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L271-L315",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#prepare_source_and_cache",
+      "name": "prepare_source_and_cache",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L184-L203",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#qualify",
+      "name": "qualify",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L206-L228",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#read",
+      "name": "read",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L57-L63",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#retain",
+      "name": "retain",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L318-L338",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L341-L388",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#sha",
+      "name": "sha",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L48-L49",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#validate_amendment",
+      "name": "validate_amendment",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L104-L123",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py#verified_h22_operator",
+      "name": "verified_h22_operator",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L94-L101",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.amendments",
+      "name": "amendments",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L117-L123",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.drive.invoked",
+      "name": "invoked",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L56-L58",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.drive.metadata_fetch",
+      "name": "metadata_fetch",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L49-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.drive.prepared",
+      "name": "prepared",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L53-L55",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.fixtures.fetched",
+      "name": "fetched",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L169-L172",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.setUpClass",
+      "name": "setUpClass",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L24-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_bad_groups_original_dev_rows_and_missing_test_local_block_barrier",
+      "name": "test_bad_groups_original_dev_rows_and_missing_test_local_block_barrier",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L187-L206",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_bound_export_preserves_failure_raw_log_operator_and_incremental_result",
+      "name": "test_bound_export_preserves_failure_raw_log_operator_and_incremental_result",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L217-L236",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_cleanup_double_timeout_retains_error_and_blocks_normal_archive",
+      "name": "test_cleanup_double_timeout_retains_error_and_blocks_normal_archive",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L296-L313",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_cross_group_qualification_and_forged_raw_result_claim_rejected",
+      "name": "test_cross_group_qualification_and_forged_raw_result_claim_rejected",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L208-L215",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_exact_h23_and_test_amendment_source_hardware_groups",
+      "name": "test_exact_h23_and_test_amendment_source_hardware_groups",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L103-L115",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_guarded_run_checks_six_public_exports_before_mocked_allocation",
+      "name": "test_guarded_run_checks_six_public_exports_before_mocked_allocation",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L31-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_immutable_fetch_bounds_digest_and_redirects.Redirect.geturl",
+      "name": "geturl",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L99-L99",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_immutable_fetch_bounds_digest_and_redirects.Response.__enter__",
+      "name": "__enter__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L90-L90",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_immutable_fetch_bounds_digest_and_redirects.Response.__exit__",
+      "name": "__exit__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L91-L91",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_immutable_fetch_bounds_digest_and_redirects.Response.geturl",
+      "name": "geturl",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L92-L92",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_immutable_fetch_bounds_digest_and_redirects.Response.read",
+      "name": "read",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L93-L93",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_invalid_amendment_stops_before_allocation_and_retains_raw_failure",
+      "name": "test_invalid_amendment_stops_before_allocation_and_retains_raw_failure",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L28-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_official_timeout_owns_only_new_invocation_group_and_marks_incomplete.Selector.__enter__",
+      "name": "__enter__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L240-L240",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_official_timeout_owns_only_new_invocation_group_and_marks_incomplete.Selector.__exit__",
+      "name": "__exit__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L241-L241",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_official_timeout_owns_only_new_invocation_group_and_marks_incomplete.Selector.register",
+      "name": "register",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L242-L242",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_official_timeout_owns_only_new_invocation_group_and_marks_incomplete.Selector.select",
+      "name": "select",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L243-L243",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.killpg",
+      "name": "killpg",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L275-L278",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.log_open",
+      "name": "log_open",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L281-L283",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.Selector.__enter__",
+      "name": "__enter__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L262-L262",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.Selector.__exit__",
+      "name": "__exit__",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L263-L263",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.Selector.register",
+      "name": "register",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L264-L264",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_read_selector_and_log_errors_cleanup_owned_group_before_archive.Selector.select",
+      "name": "select",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L265-L265",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_reused_helper_hash_is_checked_before_import",
+      "name": "test_reused_helper_hash_is_checked_before_import",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L79-L85",
+      "wholeFile": false
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.test_two_groups_verify_all_six_public_raws_without_old_dev_local_files",
+      "name": "test_two_groups_verify_all_six_public_raws_without_old_dev_local_files",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L175-L185",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "h23-operator-source-20261016/operator.py#finish_owned",
+      "name": "finish_owned",
+      "kind": "function",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L231-L268",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h23-operator-source-20261016/operator.py",
+      "name": "operator.py",
+      "kind": "file",
+      "path": "h23-operator-source-20261016/operator.py",
+      "span": "L1-L399",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.drive",
+      "name": "drive",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L34-L77",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h23-operator-source-20261016/test_operator.py#OperatorBasics.fixtures",
+      "name": "fixtures",
+      "kind": "method",
+      "path": "h23-operator-source-20261016/test_operator.py",
+      "span": "L125-L173",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "read",
+      "labelSource": "symbol",
+      "key": "h23-operator-source-20261016/",
+      "files": [
+        "h23-operator-source-20261016/operator.py",
+        "h23-operator-source-20261016/test_operator.py"
+      ],
+      "seeds": 48,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 48,
+      "unreached": [
+        "atomic",
+        "barrier",
+        "clean_source",
+        "digest",
+        "fetch",
+        "gone",
+        "send",
+        "wait",
+        "genuine_provider",
+        "invoke",
+        "prepare_source_and_cache",
+        "qualify",
+        "read",
+        "retain",
+        "run",
+        "sha",
+        "validate_amendment",
+        "verified_h22_operator",
+        "amendments",
+        "invoked",
+        "metadata_fetch",
+        "prepared",
+        "fetched",
+        "setUpClass",
+        "test_bad_groups_original_dev_rows_and_missing_test_local_block_barrier",
+        "test_bound_export_preserves_failure_raw_log_operator_and_incremental_result",
+        "test_cleanup_double_timeout_retains_error_and_blocks_normal_archive",
+        "test_cross_group_qualification_and_forged_raw_result_claim_rejected",
+        "test_exact_h23_and_test_amendment_source_hardware_groups",
+        "test_guarded_run_checks_six_public_exports_before_mocked_allocation",
+        "geturl",
+        "__enter__",
+        "__exit__",
+        "geturl",
+        "read",
+        "test_invalid_amendment_stops_before_allocation_and_retains_raw_failure",
+        "__enter__",
+        "__exit__",
+        "register",
+        "select",
+        "killpg",
+        "log_open",
+        "__enter__",
+        "__exit__",
+        "register",
+        "select",
+        "test_reused_helper_hash_is_checked_before_import",
+        "test_two_groups_verify_all_six_public_raws_without_old_dev_local_files"
+      ],
+      "seedNames": [
+        "read",
+        "sha",
+        "digest",
+        "amendments",
+        "atomic",
+        "clean_source",
+        "barrier",
+        "fetch",
+        "genuine_provider",
+        "gone",
+        "invoke",
+        "prepare_source_and_cache",
+        "qualify",
+        "retain",
+        "run",
+        "send",
+        "validate_amendment",
+        "verified_h22_operator",
+        "wait",
+        "__enter__",
+        "__enter__",
+        "__enter__",
+        "__exit__",
+        "__exit__",
+        "__exit__",
+        "fetched",
+        "geturl",
+        "geturl",
+        "invoked",
+        "killpg",
+        "log_open",
+        "metadata_fetch",
+        "prepared",
+        "read",
+        "register",
+        "register",
+        "select",
+        "select",
+        "setUpClass",
+        "test_bad_groups_original_dev_rows_and_missing_test_local_block_barrier",
+        "test_bound_export_preserves_failure_raw_log_operator_and_incremental_result",
+        "test_cleanup_double_timeout_retains_error_and_blocks_normal_archive",
+        "test_cross_group_qualification_and_forged_raw_result_claim_rejected",
+        "test_exact_h23_and_test_amendment_source_hardware_groups",
+        "test_guarded_run_checks_six_public_exports_before_mocked_allocation",
+        "test_invalid_amendment_stops_before_allocation_and_retains_raw_failure",
+        "test_reused_helper_hash_is_checked_before_import",
+        "test_two_groups_verify_all_six_public_raws_without_old_dev_local_files"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

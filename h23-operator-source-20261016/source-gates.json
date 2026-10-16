@@ -1,0 +1,14 @@
+{
+  "schema": "hala.h23.operator_gates.v1",
+  "operator_sha256": "fff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9",
+  "cpu_tests_passed": 12,
+  "combined_delta": "PASS",
+  "security_delta": "PASS",
+  "repair_cycles": 1,
+  "actual_execution_started": false,
+  "actual_cuda_qualified": false,
+  "source_commit": "18ad45deaa890c27c7250681e4bffe8b881e5690",
+  "source_freeze_sha256": "4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a",
+  "test_helper_sha256": "d8914643a539a059b6d7f5e4d4d940717ed2020b936948410fed2cd5ef58a42e",
+  "remaining": "Bind qualified actual TEST manifest/hardware amendment and all six public receipts before H23 inference; incomplete cleanup blocks normal archive"
+}

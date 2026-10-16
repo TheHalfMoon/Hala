@@ -1,0 +1,20 @@
+{
+  "schema": "hala.h23.hardware_retention_amendment.v1",
+  "original_prospective_commit": "d0e2115456be9f199841b6df44531b55467ccca0",
+  "original_prospective_sha256": "399b094ba74dde4b7c3f6aa2551f9d0d0eaf6df86c236332481e6a5b06c27592",
+  "source_commit": "18ad45deaa890c27c7250681e4bffe8b881e5690",
+  "source_freeze_sha256": "4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a",
+  "dev_experiment_sha256": "60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02",
+  "test_manifest_commit": "9d055aeec6329909c91b91a5f144298365110819",
+  "test_manifest_sha256": "21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99",
+  "h23_expected_gpu_uuid": "GPU-14ac1f01-0bec-e9da-d360-51d417657b16",
+  "execution_sequence": [
+    "original_DEV_public_retention_0_1_2",
+    "new_TEST_public_and_local_retention_0_1_2",
+    "H23_single_fault_run_and_immediate_export"
+  ],
+  "cross_gpu_cost_pairing": false,
+  "scientific_changes": false,
+  "actual_gpu_execution_started": false,
+  "actual_qualification": false
+}

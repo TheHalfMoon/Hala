@@ -1,0 +1,13 @@
+{
+  "schema": "hala.h23.two_group_retention.v1",
+  "dev_experiment_sha256": "60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02",
+  "test_experiment_sha256": null,
+  "profiles": [
+    {"group":"dev","index":0,"commit":"e252b7805055fa6a89e1d92b6bba7faa5dbf1efc","receipt_sha256":"0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a","archive_sha256":"6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580"},
+    {"group":"dev","index":1,"commit":"e3d400424766aad3c5856ba29266e11033392ef5","receipt_sha256":"d693bdf0cb5fede0931cb423296efbf0a7a470b4a91039c1b23ff90089936af7","archive_sha256":"e0dbe2d692c522943b3e0c49c198e540416cbabfa2b19499c9da4a518b8339e5"},
+    {"group":"dev","index":2,"commit":"d08f522de433d9da866ec3907161e4a9b326efba","receipt_sha256":"641c760bd286991c5c5d565cd8a1b3034a747e37cbcb109af5d0da8a4495a850","archive_sha256":"84dac2fd6ab44d751cefbe9ce61a958ef44a39aad3b1f09e880c5350bbd87458"},
+    {"group":"test","index":0,"commit":null,"receipt_sha256":null,"archive_sha256":null},
+    {"group":"test","index":1,"commit":null,"receipt_sha256":null,"archive_sha256":null},
+    {"group":"test","index":2,"commit":null,"receipt_sha256":null,"archive_sha256":null}
+  ]
+}
