@@ -41,6 +41,22 @@ def remote_guard():
         raise ValueError('Explicit opt-in and actual Linux Colab marker required; local weights forbidden')
 
 
+def evaluation_guard(provider='colab'):
+    """Admit evaluation only; markers do not qualify GPU availability or packages."""
+    if provider == 'colab':
+        remote_guard()
+        if 'KAGGLE_KERNEL_RUN_TYPE' in os.environ:
+            raise ValueError('Ambiguous evaluation provider markers')
+        return {'name': 'colab', 'colab_release_tag': os.environ['COLAB_RELEASE_TAG']}
+    if (provider != 'kaggle' or platform.system() != 'Linux' or
+            os.environ.get('HALA_REMOTE_DEVELOPMENT_ALLOWED') != '1' or
+            os.environ.get('KAGGLE_KERNEL_RUN_TYPE') not in ('Interactive', 'Batch') or
+            'COLAB_RELEASE_TAG' in os.environ or not Path('/kaggle/working').is_dir()):
+        raise ValueError('Explicit Kaggle evaluation opt-in and actual supported Linux kernel required')
+    return {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],
+            'working_directory': '/kaggle/working'}
+
+
 def persist(path, value):
     raw = (json.dumps(value, ensure_ascii=True, sort_keys=True, allow_nan=False) + '\n').encode('ascii')
     path = Path(path)
@@ -188,22 +204,22 @@ def summarize(episodes, mind):
 
 
 def run(bundle, manifest_sha256, output, font_path, source_commit, *, split='dev', cache_dir='/tmp/hala-h21-cache',
-        adapter=None, adapter_manifest_sha256=None, adapter_identity=None):
+        adapter=None, adapter_manifest_sha256=None, adapter_identity=None, provider='colab'):
     supplied = (adapter, adapter_manifest_sha256, adapter_identity)
     if any(value is not None for value in supplied):
         if any(value is None for value in supplied):
             raise ValueError('Adapter directory, manifest SHA256 and full external identity required together')
-        remote_guard()
+        evaluation_guard(provider)
         from evaluation.development_adapter import verified_adapter
         with verified_adapter(adapter, adapter_identity, adapter_manifest_sha256) as prepared:
             return _run(bundle, manifest_sha256, output, font_path, source_commit,
-                        split=split, cache_dir=cache_dir, prepared_adapter=prepared)
+                        split=split, cache_dir=cache_dir, prepared_adapter=prepared, provider=provider)
     return _run(bundle, manifest_sha256, output, font_path, source_commit,
-                split=split, cache_dir=cache_dir, prepared_adapter=None)
+                split=split, cache_dir=cache_dir, prepared_adapter=None, provider=provider)
 
 
-def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter):
-    remote_guard()
+def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab'):
+    admitted_provider = evaluation_guard(provider)
     check_digest(manifest_sha256)
     check_digest(source_commit, 40)
     if split not in ('dev', 'test'):
@@ -238,6 +254,7 @@ def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, ca
     frames = output / 'frames'
     frames.mkdir()
     result = {'schema': 'hala.development.baseline.v1', 'status': 'preparing',
+              'evaluation_provider': admitted_provider,
               'model_id': MODEL_ID, 'model_revision': REVISION, 'settings': SETTINGS,
               'source_commit': source_commit, 'runtime_source_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
               'manifest_sha256': manifest_sha256, 'data_file_sha256': manifest['files']['dataset.json'],
@@ -342,6 +359,8 @@ def main():
     parser.add_argument('--source-commit', required=True)
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
     parser.add_argument('--cache-dir', default='/tmp/hala-h21-cache')
+    parser.add_argument('--provider', choices=['colab', 'kaggle'], default='colab',
+                        help='Evaluation provider; Kaggle requires explicit selection and real runtime markers')
     parser.add_argument('--adapter', help='Operator-downloaded local archive directory on the approved remote runtime')
     parser.add_argument('--adapter-manifest-sha256')
     for field in ('base-model', 'base-revision', 'source-commit', 'data-sha256', 'evaluation-sha256'):
@@ -353,7 +372,7 @@ def main():
         identity = None
     result = run(args.bundle, args.manifest_sha256, args.output, args.font_path, args.source_commit,
                  split=args.split, cache_dir=args.cache_dir, adapter=args.adapter,
-                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity)
+                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity, provider=args.provider)
     print(json.dumps({'status': result['status'], 'summary': result['summary']}, sort_keys=True))
 
 

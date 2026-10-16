@@ -1,0 +1,806 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "evaluation/development_runtime.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 44,
+          "end": 59
+        },
+        {
+          "start": 207,
+          "end": 207
+        },
+        {
+          "start": 212,
+          "end": 212
+        },
+        {
+          "start": 216,
+          "end": 216
+        },
+        {
+          "start": 218,
+          "end": 218
+        },
+        {
+          "start": 221,
+          "end": 222
+        },
+        {
+          "start": 257,
+          "end": 257
+        },
+        {
+          "start": 362,
+          "end": 363
+        },
+        {
+          "start": 375,
+          "end": 375
+        }
+      ],
+      "hunks": [
+        {
+          "start": 44,
+          "end": 59,
+          "lines": [
+            {
+              "n": 44,
+              "sign": "+",
+              "text": "def evaluation_guard(provider='colab'):"
+            },
+            {
+              "n": 45,
+              "sign": "+",
+              "text": "    \"\"\"Admit evaluation only; markers do not qualify GPU availability or packages.\"\"\""
+            },
+            {
+              "n": 46,
+              "sign": "+",
+              "text": "    if provider == 'colab':"
+            },
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "        remote_guard()"
+            },
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "        if 'KAGGLE_KERNEL_RUN_TYPE' in os.environ:"
+            },
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "            raise ValueError('Ambiguous evaluation provider markers')"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": "        return {'name': 'colab', 'colab_release_tag': os.environ['COLAB_RELEASE_TAG']}"
+            },
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "    if (provider != 'kaggle' or platform.system() != 'Linux' or"
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "            os.environ.get('HALA_REMOTE_DEVELOPMENT_ALLOWED') != '1' or"
+            },
+            {
+              "n": 53,
+              "sign": "+",
+              "text": "            os.environ.get('KAGGLE_KERNEL_RUN_TYPE') not in ('Interactive', 'Batch') or"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": "            'COLAB_RELEASE_TAG' in os.environ or not Path('/kaggle/working').is_dir()):"
+            },
+            {
+              "n": 55,
+              "sign": "+",
+              "text": "        raise ValueError('Explicit Kaggle evaluation opt-in and actual supported Linux kernel required')"
+            },
+            {
+              "n": 56,
+              "sign": "+",
+              "text": "    return {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],"
+            },
+            {
+              "n": 57,
+              "sign": "+",
+              "text": "            'working_directory': '/kaggle/working'}"
+            },
+            {
+              "n": 58,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 59,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 207,
+          "end": 207,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        adapter=None, adapter_manifest_sha256=None, adapter_identity=None):"
+            },
+            {
+              "n": 207,
+              "sign": "+",
+              "text": "        adapter=None, adapter_manifest_sha256=None, adapter_identity=None, provider='colab'):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 212,
+          "end": 212,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        remote_guard()"
+            },
+            {
+              "n": 212,
+              "sign": "+",
+              "text": "        evaluation_guard(provider)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 216,
+          "end": 216,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                        split=split, cache_dir=cache_dir, prepared_adapter=prepared)"
+            },
+            {
+              "n": 216,
+              "sign": "+",
+              "text": "                        split=split, cache_dir=cache_dir, prepared_adapter=prepared, provider=provider)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 218,
+          "end": 218,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                split=split, cache_dir=cache_dir, prepared_adapter=None)"
+            },
+            {
+              "n": 218,
+              "sign": "+",
+              "text": "                split=split, cache_dir=cache_dir, prepared_adapter=None, provider=provider)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 221,
+          "end": 222,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter):"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    remote_guard()"
+            },
+            {
+              "n": 221,
+              "sign": "+",
+              "text": "def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab'):"
+            },
+            {
+              "n": 222,
+              "sign": "+",
+              "text": "    admitted_provider = evaluation_guard(provider)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 257,
+          "end": 257,
+          "lines": [
+            {
+              "n": 257,
+              "sign": "+",
+              "text": "              'evaluation_provider': admitted_provider,"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 362,
+          "end": 363,
+          "lines": [
+            {
+              "n": 362,
+              "sign": "+",
+              "text": "    parser.add_argument('--provider', choices=['colab', 'kaggle'], default='colab',"
+            },
+            {
+              "n": 363,
+              "sign": "+",
+              "text": "                        help='Evaluation provider; Kaggle requires explicit selection and real runtime markers')"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 375,
+          "end": 375,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity)"
+            },
+            {
+              "n": 375,
+              "sign": "+",
+              "text": "                 adapter_manifest_sha256=args.adapter_manifest_sha256, adapter_identity=identity, provider=args.provider)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 58,
+          "end": 58
+        },
+        {
+          "start": 68,
+          "end": 68
+        },
+        {
+          "start": 209,
+          "end": 209
+        },
+        {
+          "start": 215,
+          "end": 219
+        },
+        {
+          "start": 285,
+          "end": 288
+        },
+        {
+          "start": 306,
+          "end": 309
+        },
+        {
+          "start": 318,
+          "end": 319
+        },
+        {
+          "start": 329,
+          "end": 329
+        }
+      ],
+      "hunks": [
+        {
+          "start": 58,
+          "end": 58,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            with patch.object(runtime, 'remote_guard'), patch('builtins.__import__', side_effect=guarded):"
+            },
+            {
+              "n": 58,
+              "sign": "+",
+              "text": "            with patch.object(runtime, 'evaluation_guard'), patch('builtins.__import__', side_effect=guarded):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 68,
+          "end": 68,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        with patch.object(runtime, 'remote_guard'), patch.object(runtime, '_run') as execute:"
+            },
+            {
+              "n": 68,
+              "sign": "+",
+              "text": "        with patch.object(runtime, 'evaluation_guard'), patch.object(runtime, '_run') as execute:"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 209,
+          "end": 209,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            with patch.object(runtime, 'remote_guard'), patch.object(runtime, '_run', side_effect=execute):"
+            },
+            {
+              "n": 209,
+              "sign": "+",
+              "text": "            with patch.object(runtime, 'evaluation_guard'), patch.object(runtime, '_run', side_effect=execute):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 215,
+          "end": 219,
+          "lines": [
+            {
+              "n": 215,
+              "sign": "+",
+              "text": "        for provider in ('colab', 'kaggle'):"
+            },
+            {
+              "n": 216,
+              "sign": "+",
+              "text": "            with self.subTest(provider=provider):"
+            },
+            {
+              "n": 217,
+              "sign": "+",
+              "text": "                self.full_fake_runtime(provider)"
+            },
+            {
+              "n": 218,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 219,
+              "sign": "+",
+              "text": "    def full_fake_runtime(self, provider):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 285,
+          "end": 288,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            stack.enter_context(patch.object(runtime, 'remote_guard'))"
+            },
+            {
+              "n": 285,
+              "sign": "+",
+              "text": "            provenance = ({'name': 'colab', 'colab_release_tag': 'fake-release'} if provider == 'colab'"
+            },
+            {
+              "n": 286,
+              "sign": "+",
+              "text": "                          else {'name': 'kaggle', 'kernel_run_type': 'Interactive',"
+            },
+            {
+              "n": 287,
+              "sign": "+",
+              "text": "                                'working_directory': '/kaggle/working'})"
+            },
+            {
+              "n": 288,
+              "sign": "+",
+              "text": "            admission = stack.enter_context(patch.object(runtime, 'evaluation_guard', return_value=provenance))"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 306,
+          "end": 309,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                                   cache_dir='fake-remote-cache')"
+            },
+            {
+              "n": 306,
+              "sign": "+",
+              "text": "                                   cache_dir='fake-remote-cache', provider=provider)"
+            },
+            {
+              "n": 307,
+              "sign": "+",
+              "text": "            admission.assert_called_with(provider)"
+            },
+            {
+              "n": 308,
+              "sign": "+",
+              "text": "            self.assertEqual(baseline['evaluation_provider'], provenance)"
+            },
+            {
+              "n": 309,
+              "sign": "+",
+              "text": "            self.assertEqual(json.loads((root / 'baseline/result.json').read_text())['evaluation_provider'], provenance)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 318,
+          "end": 319,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                adapter_manifest_sha256=digest, adapter_identity=IDENTITY)"
+            },
+            {
+              "n": 318,
+              "sign": "+",
+              "text": "                adapter_manifest_sha256=digest, adapter_identity=IDENTITY, provider=provider)"
+            },
+            {
+              "n": 319,
+              "sign": "+",
+              "text": "            admission.assert_called_with(provider)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 329,
+          "end": 329,
+          "lines": [
+            {
+              "n": 329,
+              "sign": "+",
+              "text": "            self.assertEqual(saved['evaluation_provider'], provenance)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_provider.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 97
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 97,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU admission tests do not establish a real provider's GPU eligibility.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import builtins"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from contextlib import ExitStack"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from contextlib import redirect_stdout, redirect_stderr"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import io"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from evaluation import development_runtime as runtime"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "class DevelopmentProviderTests(unittest.TestCase):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    def environment(self, values, *, system='Linux', directory=True):"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        stack = ExitStack()"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        stack.enter_context(patch.dict(os.environ, values, clear=True))"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        stack.enter_context(patch.object(runtime.platform, 'system', return_value=system))"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        stack.enter_context(patch.object(Path, 'is_dir', return_value=directory))"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        return stack"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    def test_default_colab_and_explicit_kaggle_provenance(self):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        with self.environment({'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'COLAB_RELEASE_TAG': 'release'}):"
+            }
+          ],
+          "dropped": 73
+        }
+      ]
+    }
+  ],
+  "unindexed": [],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_runtime.py#evaluation_guard",
+      "name": "evaluation_guard",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L44-L57",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L206-L218",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#_run",
+      "name": "_run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L221-L350",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L353-L376",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_invalid_or_partial_identity_fails_before_model_imports",
+      "name": "test_invalid_or_partial_identity_fails_before_model_imports",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L36-L62",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_cli_missing_identity_or_unknown_flags_fail_closed",
+      "name": "test_cli_missing_identity_or_unknown_flags_fail_closed",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L64-L76",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_baseline_path_and_candidate_classification_are_honest",
+      "name": "test_baseline_path_and_candidate_classification_are_honest",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L198-L211",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.full_fake_runtime",
+      "name": "full_fake_runtime",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L219-L335",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "name": "test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L213-L217",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.environment",
+      "name": "environment",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L16-L21",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_cli_defaults_to_colab_and_requires_explicit_known_provider",
+      "name": "test_cli_defaults_to_colab_and_requires_explicit_known_provider",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L81-L93",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_default_colab_and_explicit_kaggle_provenance",
+      "name": "test_default_colab_and_explicit_kaggle_provenance",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L23-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_invalid_requests_fail_before_any_ml_import_or_adapter_validation.guarded",
+      "name": "guarded",
+      "kind": "function",
+      "path": "tests/test_development_provider.py",
+      "span": "L62-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_training_guard_accepts_colab_without_evaluation_provider",
+      "name": "test_training_guard_accepts_colab_without_evaluation_provider",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L77-L79",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/development_runtime.py",
+      "name": "development_runtime.py",
+      "kind": "file",
+      "path": "evaluation/development_runtime.py",
+      "span": "L1-L381",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_invalid_requests_fail_before_any_ml_import_or_adapter_validation",
+      "name": "test_invalid_requests_fail_before_any_ml_import_or_adapter_validation",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L36-L75",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "evaluation_guard",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_runtime.py"
+      ],
+      "seeds": 4,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 4,
+      "unreached": [
+        "evaluation_guard",
+        "run",
+        "_run",
+        "main"
+      ],
+      "seedNames": [
+        "evaluation_guard",
+        "_run",
+        "main",
+        "run"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

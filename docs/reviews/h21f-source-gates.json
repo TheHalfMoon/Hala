@@ -1,0 +1,36 @@
+{
+  "phase": "H21f",
+  "source_sha256": {
+    "evaluation/development_runtime.py": "296794e7ae9eb8c7f4e8c9382179183befe6c3bc2423e8a6652c85627a9a5d4c",
+    "tests/test_development_provider.py": "7373c5974a9515028afd14ce7d75cb4f68c4baa74e2c27a2220ded31e130842b",
+    "tests/test_development_adapter.py": "f91d8da3468f62bd46c0a1c0a71a488dbfb5d8da9073ecad039560315e0f760e"
+  },
+  "red": "Provider tests failed before implementation: missing evaluation_guard/provider argument.",
+  "full_cpu": {
+    "tests": 220,
+    "skipped": 1,
+    "seconds": 24.827
+  },
+  "independent_combined_scoped": {
+    "tests": 12,
+    "seconds": 1.257
+  },
+  "independent_security_scoped": {
+    "tests": 12,
+    "seconds": 0.905
+  },
+  "reports": [
+    "h21f-combined-review.md",
+    "h21f-security-review.md"
+  ],
+  "frozen_ast_unchanged": [
+    "SETTINGS",
+    "QwenInfer",
+    "remote_guard"
+  ],
+  "jev": "Actual jev-1.13.0 three-file judgments retained, advisory only",
+  "graft": "Actual0.21.1 build/check/blast exits0 graph838nodes deep_context_built=false; graph evidence only",
+  "actual_kaggle_environment_qualified": false,
+  "actual_kaggle_inference": false,
+  "operational_status": "User reports phone verification complete; last refreshed notebook UI still showed Get phone verified and disabled GPU/internet. Root requested a check; no eligibility claimed."
+}
