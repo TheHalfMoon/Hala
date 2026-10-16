@@ -1,0 +1,99 @@
+{
+  "adapter_identity": {
+    "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+    "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "data_sha256": "af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e",
+    "evaluation_sha256": "e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768",
+    "source_commit": "5b6eb4bf29acbaf21aa199f113f78af4f268b3b7"
+  },
+  "adapter_manifest_sha256": "7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d",
+  "adoption_qualified": false,
+  "amendment": "DEV group completed and retained; original matched GPU expired before TEST started. TEST requires new qualification and separate hardware group; cross-group cost comparisons are unqualified.",
+  "attempt": 3,
+  "blocked_policy": "Retain failed/partial run with raw errors; continue independent next profile in a fresh process; no fallback, retraining, parser repair or test-driven tuning",
+  "budget": {
+    "generation_seconds": 20,
+    "generation_tokens": 128,
+    "input_tokens": 4096,
+    "launcher_timeout_seconds_per_run": 3700,
+    "runtime_seconds_per_run": 3600
+  },
+  "cache": "/tmp/hala-h22-cache",
+  "cache_state": "Original pinned base files prewarmed remotely before model inference; fixed temporal order and OS cache remain confounders",
+  "cost_limits": [
+    "Same physical GPU but fixed temporal order and warm cache confound timing",
+    "Whole GPU0 plus current process measurements; allocated idle second T4 is not included in GPU0 process cost",
+    "Sampled maxima are not continuous hardware peaks; unique physical cache file content is not allocated disk blocks or a monetary price"
+  ],
+  "dev_experiment_sha256": "60a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02",
+  "dev_retention": [
+    {
+      "archive_sha256": "6d5cfe7c3746a76eaceb8ebc37605d0d98cc69b69ca94765421f081b64d64580",
+      "commit": "e252b7805055fa6a89e1d92b6bba7faa5dbf1efc",
+      "index": 0,
+      "receipt_sha256": "0664e9c17358a3ab38cc6ba3df04852ca7e6b59a027117725502c3fe70f6531a"
+    },
+    {
+      "archive_sha256": "e0dbe2d692c522943b3e0c49c198e540416cbabfa2b19499c9da4a518b8339e5",
+      "commit": "e3d400424766aad3c5856ba29266e11033392ef5",
+      "index": 1,
+      "receipt_sha256": "d693bdf0cb5fede0931cb423296efbf0a7a470b4a91039c1b23ff90089936af7"
+    },
+    {
+      "archive_sha256": "84dac2fd6ab44d751cefbe9ce61a958ef44a39aad3b1f09e880c5350bbd87458",
+      "commit": "d08f522de433d9da866ec3907161e4a9b326efba",
+      "index": 2,
+      "receipt_sha256": "641c760bd286991c5c5d565cd8a1b3034a747e37cbcb109af5d0da8a4495a850"
+    }
+  ],
+  "execution": "Remaining TEST only; one fresh process per fixed local index0..2; no DEV rerun",
+  "gpu_uuid": "GPU-14ac1f01-0bec-e9da-d360-51d417657b16",
+  "h19_manifest_sha256": "ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e",
+  "mode_order": [
+    [
+      "fp16",
+      "test"
+    ],
+    [
+      "int8",
+      "test"
+    ],
+    [
+      "nf4",
+      "test"
+    ]
+  ],
+  "model_choice": "Fixed retained research adapter across all modes; no serving/adoption selection",
+  "native_qualified": false,
+  "observed_before_prespec": {
+    "adapter_arabic_complete": 0,
+    "adapter_dev_complete": 1,
+    "adapter_test_complete": 2,
+    "base_dev_complete": 0,
+    "base_test_complete": 0,
+    "episodes_per_allocation": 8,
+    "pilot_results_artifact_commit": "ef359cabe7aefd7d07fc6485df7b68b55090983f"
+  },
+  "packages": {
+    "Pillow": "11.3.0",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.50.2",
+    "peft": "0.20.0",
+    "safetensors": "0.8.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1"
+  },
+  "precision_scope": "FP16/int8/NF4 base model with the same original F32 LoRA; not a claim that every tensor uses one dtype",
+  "prior_attempt": "Attempt1 ephemeral VM disappeared after the user pause; zero precision result artifacts retrieved; no quality or cost conclusion",
+  "prior_dev_results_retained": true,
+  "quality_qualified": false,
+  "rationale": "Measure cost and whether quantization preserves the observed small task/component gains; poor Arabic and overall success preclude deployment",
+  "retention": "h22-test-restart/profile-N-MODE-test-evidence.zip and receipt at immutable artifact commit; first TEST requires all original DEV raw ZIPs",
+  "schema": "hala.h22.test_restart_amendment.v1",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+  "task_scope": "H19 two dev/two test application families, shared workflow templates; ten repeated standalone diagnostic probes, not new untouched test cases",
+  "qualification_raw_sha256": "361e892e499dbd62ed1e622965f61502683f45bb076467efc4b7ce92d440c26e",
+  "prewarm_raw_sha256": "a813e1636396b9734e827e54182787b27fc5a6ac4ceaca5ced67bd5dbe6f1afd",
+  "power_scope": "Uncalibrated raw sensor values; no energy/efficiency/monetary conclusions"
+}

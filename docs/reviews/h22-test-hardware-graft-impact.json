@@ -1,0 +1,493 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-test-restart/experiment.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 99
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 99,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adapter_identity\": {\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"base_model\": \"Qwen/Qwen3-VL-2B-Instruct\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"base_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"data_sha256\": \"af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"evaluation_sha256\": \"e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"source_commit\": \"5b6eb4bf29acbaf21aa199f113f78af4f268b3b7\"\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"adapter_manifest_sha256\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"adoption_qualified\": false,\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"amendment\": \"DEV group completed and retained; original matched GPU expired before TEST started. TEST requires new qualification and separate hardware group; cross-group cost comparisons are unqualified.\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"attempt\": 3,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"blocked_policy\": \"Retain failed/partial run with raw errors; continue independent next profile in a fresh process; no fallback, retraining, parser repair or test-driven tuning\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"budget\": {\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"generation_seconds\": 20,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"generation_tokens\": 128,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"input_tokens\": 4096,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    \"launcher_timeout_seconds_per_run\": 3700,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    \"runtime_seconds_per_run\": 3600\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  \"cache\": \"/tmp/hala-h22-cache\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "  \"cache_state\": \"Original pinned base files prewarmed remotely before model inference; fixed temporal order and OS cache remain confounders\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "  \"cost_limits\": [\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    \"Same physical GPU but fixed temporal order and warm cache confound timing\",\r"
+            }
+          ],
+          "dropped": 75
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/preparation.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 738
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 738,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adapter_file_sha256\": {"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"adapter_config.json\": \"21bbc4037d9fe27e1281700e72dcc402c4ce801d2d27798ac64cba33ac4d5de2\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"adapter_model.safetensors\": \"7eb2f17df11151e5b77a5c715c59f56c854ca7b0d0da3ee591f394b501826fa7\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"manifest.json\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"training_metadata.json\": \"d1251b39c3d71fcd410ec0fce631b2c065a6df4978309bedaff168807314020d\""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  },"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"all_pixels_match\": true,"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"all_pngs_match\": true,"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"downloads_base_weights\": false,"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"freetype\": \"2.13.3\","
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"freeze_manifest_sha256\": \"ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"render_checks\": ["
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"key\": \"0037f107a956de5da7346ced9c97127e1439fc1cafb7498dd767c70f627193d4\","
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"language\": \"en\","
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"same_pixels\": true,"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"same_png\": true"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    },"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    {"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      \"key\": \"076e2a09058a1fdba6e5b3d67160a54c436b2e15b8dc808677542ab5ce1ea635\","
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"language\": \"en\","
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"same_pixels\": true,"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"same_png\": true"
+            }
+          ],
+          "dropped": 714
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/prewarm.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\"cache_bytes_after\": 4266758228, \"cache_bytes_before\": 0, \"files\": {\"chat_template.json\": {\"bytes\": 5502, \"sha256\": \"6f8a6a55027e3da5160105556cda5dd69f6423f1c32645f6730d32de7773d0c4\"}, \"config.json\": {\"bytes\": 1505, \"sha256\": \"bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b\"}, \"generation_config.json\": {\"bytes\": 269, \"sha256\": \"1e241830b48b397cb0900101421df5450baddc7adf01e5fc86b5615865f3bae4\"}, \"merges.txt\": {\"bytes\": 1671839, \"sha256\": \"599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3\"}, \"model.safetensors\": {\"bytes\": 4255140312, \"sha256\": \"7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0\"}, \"preprocessor_config.json\": {\"bytes\": 390, \"sha256\": \"27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516\"}, \"tokenizer.json\": {\"bytes\": 7032403, \"sha256\": \"a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7\"}, \"tokenizer_config.json\": {\"bytes\": 10868, \"sha256\": \"c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399\"}, \"video_preprocessor_config.json\": {\"bytes\": 385, \"sha256\": \"7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13\"}, \"vocab.json\": {\"bytes\": 2776833, \"sha256\": \"ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910\"}}, \"gpu_uuid\": \"GPU-14ac1f01-0bec-e9da-d360-51d417657b16\", \"model_loaded\": false, \"model_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\", \"schema\": \"hala.h22.test_restart.cache_prewarm.v1\", \"scope\": \"Network preparation only; all later profiles start with disk cache prewarmed; OS page cache and fixed temporal order may differ\", \"source_commit\": \"07591f109b6683c9302fcf890259ddf0bde91494\", \"total_preparation_wall_seconds\": 31.739954471588135, \"training_runs\": 0, \"wall_seconds\": 17.937619924545288}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/prewarm.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 20
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 20,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import os,json,time,sys,hashlib,subprocess,shutil"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "root=Path('/kaggle/working/hala-h21'); source=root/'source'"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=source,text=True).strip()=='07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "assert not subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],cwd=source,text=True).strip()"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "q=json.loads((root/'h22-test-restart-qualification.json').read_text()); assert q['gpu_uuid']=='GPU-14ac1f01-0bec-e9da-d360-51d417657b16' and not q['model_loaded']"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "for k in ('HF_HOME','HF_HUB_CACHE','HUGGINGFACE_HUB_CACHE','TRANSFORMERS_CACHE','XDG_CACHE_HOME','TORCH_HOME'): os.environ[k]='/tmp/hala-h22-cache'"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "os.environ['HF_HUB_DISABLE_TELEMETRY']='1';os.environ['DO_NOT_TRACK']='1'"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "sys.path.insert(0,str(source))"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from evaluation.development_precision import check_cache,disk_bytes"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "check_cache('/tmp/hala-h22-cache'); before=disk_bytes('/tmp/hala-h22-cache')"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "assert shutil.disk_usage('/tmp').free>6*1024**3"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from huggingface_hub import snapshot_download"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "start=time.time(); path=snapshot_download('Qwen/Qwen3-VL-2B-Instruct',revision='89644892e4d85e24eaac8bacfd4f463576704203',cache_dir='/tmp/hala-h22-cache',allow_patterns=['*.json','*.safetensors','*.txt','*.jinja','*.model','*.tiktoken'],max_workers=4,endpoint=\"https://huggingface.co\")"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "check_cache('/tmp/hala-h22-cache')"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "record={'schema':'hala.h22.test_restart.cache_prewarm.v1','source_commit':q['source_commit'],'gpu_uuid':q['gpu_uuid'],'model_revision':'89644892e4d85e24eaac8bacfd4f463576704203','cache_bytes_before':before,'cache_bytes_after':disk_bytes('/tmp/hala-h22-cache'),'wall_seconds':time.time()-start,'files':{str(p.relative_to(path)):{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(Path(path).rglob('*')) if p.is_file()},'model_loaded':False,'training_runs':0,'scope':'Network preparation only; all later profiles start with disk cache prewarmed; OS page cache and fixed temporal order may differ'}"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "assert record['files']['model.safetensors']['sha256']=='7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0'"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "record['total_preparation_wall_seconds']=time.time()-start"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "(root/'h22-test-restart-prewarm.json').write_text(json.dumps(record,sort_keys=True)+'\\n')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "print('HALA_H22_TEST_RESTART_PREWARM:'+json.dumps(record,sort_keys=True),flush=True)"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/qualification.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\"actual_precision_quality_qualified\": false, \"adapter_manifest_sha256\": \"7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d\", \"attempt\": 3, \"bounded_sampler\": {\"continuous_peak_qualified\": false, \"minimum_wait_between_samples_seconds\": 2, \"sample_limit\": 1, \"samples\": [{\"cpu_process_seconds\": 17.122008511, \"cpu_rss_bytes\": 944369664, \"device\": {\"free_mib\": 14909.0, \"power_watts\": 10.75, \"used_mib\": 3.0, \"utilization_percent\": 0.0}, \"device_uuid\": \"GPU-14ac1f01-0bec-e9da-d360-51d417657b16\", \"monotonic_seconds\": 409.83091215}], \"scope\": \"Current process RSS/CPU; whole GPU includes other processes; best effort.\"}, \"cache_prewarm_performed\": false, \"cache_state\": \"Observed restored cache before any test-restart prewarm; prewarm must be recorded separately\", \"cuda\": \"12.8\", \"device_sample\": {\"cpu_process_seconds\": 17.121311936, \"cpu_rss_bytes\": 944369664, \"device\": {\"free_mib\": 14909.0, \"power_watts\": 10.75, \"used_mib\": 3.0, \"utilization_percent\": 0.0}, \"device_uuid\": \"GPU-14ac1f01-0bec-e9da-d360-51d417657b16\", \"monotonic_seconds\": 409.786598913}, \"font_sha256\": \"ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280\", \"gpu\": \"Tesla T4\", \"gpu_capability\": [7, 5], \"gpu_uuid\": \"GPU-14ac1f01-0bec-e9da-d360-51d417657b16\", \"h19_image_count\": 120, \"h19_manifest_sha256\": \"ced87ae6874df6de2ed1ab853312824084191a29a42b97869f6eb462aceb629e\", \"imported_packages\": {\"Pillow\": \"11.3.0\", \"accelerate\": \"1.12.0\", \"bitsandbytes\": \"0.50.2\", \"peft\": \"0.20.0\", \"safetensors\": \"0.8.0\", \"torch\": \"2.11.0+cu128\", \"transformers\": \"5.16.1\"}, \"model_loaded\": false, \"packages\": {\"Pillow\": \"11.3.0\", \"accelerate\": \"1.12.0\", \"bitsandbytes\": \"0.50.2\", \"peft\": \"0.20.0\", \"safetensors\": \"0.8.0\", \"torch\": \"2.11.0+cu128\", \"transformers\": \"5.16.1\"}, \"prior_dev_results_retained\": true, \"provider\": {\"inherited_colab_release_tag\": \"release-colab-external-images_20260917-060051_RC00\", \"kernel_run_type\": \"Interactive\", \"name\": \"kaggle\", \"working_directory\": \"/kaggle/working\"}, \"raqm\": \"0.10.1\", \"remaining_test_results_retrieved\": false, \"schema\": \"hala.h22.remote_qualification.v1\", \"source_commit\": \"07591f109b6683c9302fcf890259ddf0bde91494\", \"source_freeze_sha256\": \"98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b\", \"unique_physical_cache_bytes\": 0}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-test-restart/experiment.json",
+    "h22-test-restart/preparation.json",
+    "h22-test-restart/prewarm.json",
+    "h22-test-restart/qualification.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-test-restart/prewarm.py",
+      "name": "prewarm.py",
+      "kind": "file",
+      "path": "h22-test-restart/prewarm.py",
+      "span": "L1-L21",
+      "wholeFile": true
+    }
+  ],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "prewarm.py",
+      "labelSource": "symbol",
+      "key": "h22-test-restart/",
+      "files": [
+        "h22-test-restart/prewarm.py"
+      ],
+      "seeds": 1,
+      "tests": "na",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 0,
+      "unreached": [],
+      "seedNames": [
+        "prewarm.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
