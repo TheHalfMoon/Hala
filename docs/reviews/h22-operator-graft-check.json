@@ -1,0 +1,38 @@
+﻿{
+  "context": {
+    "ok": false,
+    "missing": true,
+    "contentDrift": [],
+    "removed": [],
+    "coverage": [],
+    "indexDrift": []
+  },
+  "graph": {
+    "ok": true,
+    "missing": false,
+    "added": [],
+    "removed": [],
+    "changed": [],
+    "stale": [],
+    "pending": 16,
+    "pendingIds": [
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py#hit",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py#read",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#canonical",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#check",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#completed",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#hit",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#parse",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#parse.pairs",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#parse.step",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#read",
+      "h21-shared-pilot/fresh-gpu-candidate-20261016/independent-replay.py#sha",
+      "h21-shared-pilot/launcher.py",
+      "h22-prospective-20261016/operator-launcher.py",
+      "h22-prospective-20261016/operator-launcher.py#save"
+    ],
+    "nodes": 16
+  }
+}

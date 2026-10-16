@@ -1,0 +1,812 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 597
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 597,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.dev_only.error_analysis.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"split\": \"dev\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"scope\": \"Eight DEV episodes only; standalone test-labelled probes and TEST failures excluded.\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"integrity_replay_passed\": true,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"counts\": [\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"language\": \"ar\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "      \"measure\": \"actions\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      \"action\": \"click\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "      \"count\": 14\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"language\": \"ar\",\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"measure\": \"actions\",\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"action\": \"type\",\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"count\": 18\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "      \"language\": \"ar\",\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      \"measure\": \"errors\",\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"action\": \"click\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"count\": 14\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    },\r"
+            }
+          ],
+          "dropped": 573
+        }
+      ]
+    },
+    {
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 32
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 32,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# Retained candidate: DEV-only error analysis"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "The gain is weak: candidate completes 1/8 DEV tasks (English 1/4, Arabic 0/4), versus captured Kaggle base DEV 0/8. Plans improve to 8/8, but correct initial decomposition does not establish successful state-dependent execution. This analysis uses only the eight DEV episodes and the independent 54-action geometry replay. It does not analyze TEST failures or the ten standalone test-labelled probes for remediation. No training, data, prompt, parser, or production source changes were made."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "| Language/action | Attempts | Action errors | DEV explanation |"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "|---|---:|---:|---|"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "| English type | 4 | 0 | All field targets and requested text correct |"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "| English drag | 16 | 12 | Twelve repeated drags after destination already reached |"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| English click | 2 | 0 | One saves; one triggers the authored transient failure |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "| Arabic type | 18 | 16 | Sixteen field-point misses in the reading-shelf pair, despite correct text |"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Arabic drag | 0 | 0 | No card-move proposal occurs |"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| Arabic click | 14 | 14 | Seven premature save target hits, seven save misses also premature |"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| Total | 54 | 42 | All 42 error actions leave state unchanged |"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "The categories above are disjoint for counting but some actions have multiple causes. Twelve English repeated drags start and end inside the destination region after the card was already moved; their starts also miss the original item box and their moves violate the source-location prerequisite. Seven Arabic premature-save actions hit the save rectangle correctly but fail because the card is still in its source location. The other seven Arabic clicks miss the save target and likewise omit the required move. Thus coordinate accuracy alone would not resolve all failures. All 22 type proposals carry the exact requested text, so DEV does not indicate a text-content problem. The sixteen Arabic field misses repeatedly use a point around the card's vertical level rather than the field, and make no field update."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Mind contributes 33 semantic errors out of 59 calls: 28 are schema-valid `move_card` decisions inappropriate to current state, and five are invalid tool/subgoal combinations. Fourteen valid wrong decisions occur in the English episodes: two after the reading-shelf move and twelve while already-moved pet-journal episodes repeat dragging. Fourteen occur in Arabic reading-shelf episodes, where Mind requests moving although the failed type left the field unchanged. In Arabic pet-journal episodes Mind's 16/16 semantic decisions are correct, yet Type skips moving and repeatedly clicks; correct Mind scoring therefore does not imply the visual action follows the intended next state transition. The runner supplies the public goal/state to Type and does not enforce the Mind subgoal as an action precondition."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "The five `model_errors` are specifically five Mind `ValueError`s in the English transient reading-shelf episode. Every one returns `{\"kind\":\"next\",\"tool\":\"visual\",\"subgoal\":\"inspect_failure\"}`; `inspect_failure` belongs to `observe`, so the strict protocol rejects the pair before another visual call. They are not five GPU failures, timeouts, bad visual JSON proposals, or five additional errors to add to the 33 semantic errors. These five are included in the semantic-error total. The episode correctly reaches a transient save failure but never observes/retries, leaving zero recoveries. The one authored environment error is separate from the 42 action errors and the five model errors."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "The initial plans reproduce the required replace/move/save/verify sequence in all eight episodes. Subsequent observations expose the missing skills: recognizing that a proposed action did not change the field, recognizing that a successful move is already complete, executing a drag when the next semantic operation requires it, and routing a transient failure through observation before retry. These observations explain why a strong plan score coexists with weak completion; they do not prove a particular training cause or that any proposed remedy will work."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "If a later, separately authorized development phase is pursued, DEV supports these data priorities:"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 8
+        }
+      ]
+    },
+    {
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 39
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 39,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"DEV-only descriptive error accounting; no production imports or edits.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from collections import Counter"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "root=Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "def read(p): return json.loads((root/p).read_text(encoding='utf-8'))"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "d=read('outputs/h21-kaggle-retry1-adapter-dev-evidence/adapter-dev/result.json')"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "replay=read('work/h21-retained-candidate-dev-actual-review.json')"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "dataset=read('outputs/h21-frozen-data/dataset.json')"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "frozen={e['id']:e for e in dataset['episodes'] if e['split']=='dev'}"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "boxes={e['episode']:e['boxes'] for e in replay['episodes']}"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "counts=Counter(); rows=[]; semantic=Counter(); model=Counter(); text=Counter()"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "for ep in d['episodes']:"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    e=frozen[ep['episode']]; b=boxes[e['id']]; language=e['language']"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    def hit(p,key):"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        x,y=min(p[0]*800//1000,799),min(p[1]*600//1000,599); l,t,w,h=b[key]"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        return l<=x<l+w and t<=y<t+h"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    per=Counter()"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    for t in ep['trace']:"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        p=t['proposal']; action=p['action']; before=t['before']"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        counts[(language,'actions',action)]+=1"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        if action=='type': text['correct' if p['text']==e['requested_value'] else 'incorrect']+=1"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        if not t['action_error']: continue"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        counts[(language,'errors',action)]+=1"
+            }
+          ],
+          "dropped": 15
+        }
+      ]
+    },
+    {
+      "path": "h22-prospective-20261016/operator-launcher-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 27
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 27,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 prespecified operator launcher — independent review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Reviewed `outputs/h22-run-prespecified.py` only as an operational helper, together with the local prospective manifest, qualification and preparation records. No execution, model import/download, source edit or broad test run."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Reviewed launcher SHA256: `0c99db95311c294df668e3d0c11a01e745941aaecab9e9864f6ac4c2898c2e84`."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Must fix: none. Worth considering: none for the fixed admitted study."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- The immutable published manifest URL is bounded to 65536 bytes and SHA256-pinned to `3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39`. Independently hashed the local prospective manifest and confirmed that identity."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "- Source HEAD is required to equal `07591f109b6683c9302fcf890259ddf0bde91494`; qualification binds that source, freeze `98ca7bba...`, and physical GPU UUID. Independently compared qualification/manifest source, freeze, GPU UUID, original retained adapter manifest and complete package maps: all match."
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "- Exactly six fixed modes run in the published order, fp16/int8/nf4 dev then fp16/int8/nf4 test. Each launches a fresh interpreter with explicit Kaggle admission, original H19 manifest, original retained adapter manifest/full identity, qualified font and source/freeze flags. The reviewed runtime supplies the actual preimport/archive/cache/package checks and bounded model calls. No selector, retraining, fallback or native execution was added."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- A new study directory is required; each profile uses a unique output path and a 3700-second external timeout around the runtime's 3600-second bound. Nonzero exits and timeout records are retained and permit the next independent profile. Raw logs/results, immutable manifest, source freeze, preparation/qualification and launcher itself enter per-profile evidence archives; individual output files and final archives have explicit size checks. Archive construction or filesystem failures may stop orchestration, but do not silently erase completed run files."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- Reporting keeps adoption unqualified; the prospective manifest explicitly limits warm-cache/fixed-order timing, idle second-GPU cost, sampled peaks, repeated authored tasks and original F32 adapter scope. Runtime device UUID is checked against the prespec after each run; mismatch is labelled as a failed profile. Actual runtime/result evidence remains necessary and was not generated by this review."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "Validation: parsed launcher AST without executing it; independently checked local manifest hash and qualification identities. The operational helper must be committed/published before model execution as stated in the handoff. Published source CI and actual remote qualification claims are supplied context, not fresh GPU evidence from this review."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "Panel contribution: independent operator correctness/parsimony/product review, session model. No remaining launcher source blocker for the fixed study."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "## Prelaunch whole-source guard delta"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "Reviewed launcher SHA256 `74ea598b88f79a2b5b98d60d63b77adecdb186307ffa54ebffc311f334a75a9d`. `check_clean_source()` requires the exact published source HEAD and an empty whole-repository `git status --porcelain --untracked-files=all`, before manifest retrieval, again after retrieval and before every profile. The calls precede profile construction/subprocess execution. Git command errors also abort instead of admitting an unknown tree."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "For the fixed trusted published clone, this binds normally tracked transitive first-party modules to the published Git tree even when absent from the direct scientific file manifest. A change in `evaluation/__init__.py` or `evaluation/heldout_fixtures.py` is no longer outside the operator admission check. Runtime/config/budgets and the fixed study remain unchanged. Scope is the trusted clone and ordinary Git status semantics; the check does not freeze third-party packages, Python import paths, ignored files, hostile Git index flags or concurrent edits after a check. The qualified environment and trusted operator remain assumptions."
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 3
+        }
+      ]
+    },
+    {
+      "path": "h22-prospective-20261016/operator-launcher.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 102
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 102,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Run the externally published fixed six-profile study; never trains or changes a task.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import urllib.request"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import zipfile"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "root=Path('/kaggle/working/hala-h21')"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "source=root/'source'"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "commit='07591f109b6683c9302fcf890259ddf0bde91494'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "def check_clean_source():"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"\"\"Bind the complete first-party Git tree, including transitive imports.\"\"\""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    actual=subprocess.check_output(['git','rev-parse','HEAD'],cwd=source,text=True).strip()"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    status=subprocess.run(['git','status','--porcelain','--untracked-files=all'],cwd=source,"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "                          capture_output=True,text=True,check=True)"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    if actual!=commit or status.stdout.strip():"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        raise ValueError('Exact complete clean published source required before every profile')"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "check_clean_source()"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "manifest_sha='3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39'"
+            }
+          ],
+          "dropped": 78
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.json",
+    "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.md",
+    "h22-prospective-20261016/operator-launcher-review.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py#hit",
+      "name": "hit",
+      "kind": "function",
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "span": "L15-L17",
+      "wholeFile": false
+    },
+    {
+      "id": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py#read",
+      "name": "read",
+      "kind": "function",
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "span": "L6-L6",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-prospective-20261016/operator-launcher.py#check_clean_source",
+      "name": "check_clean_source",
+      "kind": "function",
+      "path": "h22-prospective-20261016/operator-launcher.py",
+      "span": "L15-L21",
+      "wholeFile": false
+    },
+    {
+      "id": "h22-prospective-20261016/operator-launcher.py#save",
+      "name": "save",
+      "kind": "function",
+      "path": "h22-prospective-20261016/operator-launcher.py",
+      "span": "L45-L49",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "name": "dev-error-analysis.py",
+      "kind": "file",
+      "path": "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py",
+      "span": "L1-L40",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "h22-prospective-20261016/operator-launcher.py",
+      "name": "operator-launcher.py",
+      "kind": "file",
+      "path": "h22-prospective-20261016/operator-launcher.py",
+      "span": "L1-L103",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "check_clean_source",
+      "labelSource": "symbol",
+      "key": "h22-prospective-20261016/",
+      "files": [
+        "h22-prospective-20261016/operator-launcher.py"
+      ],
+      "seeds": 2,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 2,
+      "unreached": [
+        "check_clean_source",
+        "save"
+      ],
+      "seedNames": [
+        "check_clean_source",
+        "save"
+      ],
+      "owners": []
+    },
+    {
+      "label": "hit",
+      "labelSource": "symbol",
+      "key": "h21-shared-pilot/fresh-gpu-candidate-20261016/",
+      "files": [
+        "h21-shared-pilot/fresh-gpu-candidate-20261016/dev-error-analysis.py"
+      ],
+      "seeds": 2,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 2,
+      "unreached": [
+        "hit",
+        "read"
+      ],
+      "seedNames": [
+        "hit",
+        "read"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

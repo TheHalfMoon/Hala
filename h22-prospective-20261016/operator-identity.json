@@ -1,0 +1,16 @@
+{
+  "schema": "hala.h22.operator_identity.v1",
+  "launcher_sha256": "74ea598b88f79a2b5b98d60d63b77adecdb186307ffa54ebffc311f334a75a9d",
+  "experiment_sha256": "3742fc46ec9f4e5151e24f20a78450ab315c25aaae70b002408a64af44a87f39",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "source_guard": "Exact published HEAD and full clean Git status before retrieval and every profile; ordinary trusted first-party clone, not hostile environment attestation",
+  "independent_reviews": [
+    "operator-launcher-review.md",
+    "operator-source-identity-security-review.md"
+  ],
+  "hosted_ci": "Four exact-head Python3.11.14/3.12.14 push/PR jobs passed after immutable-history repair",
+  "model_execution_started": false,
+  "training_runs": 0,
+  "final_advisory_jev": "../docs/reviews/jev-h22-operator-final.json",
+  "final_graft": "../docs/reviews/h22-operator-final-graft-summary.json"
+}

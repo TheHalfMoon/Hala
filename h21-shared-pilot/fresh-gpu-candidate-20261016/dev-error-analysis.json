@@ -1,0 +1,597 @@
+{
+  "schema": "hala.dev_only.error_analysis.v1",
+  "split": "dev",
+  "scope": "Eight DEV episodes only; standalone test-labelled probes and TEST failures excluded.",
+  "integrity_replay_passed": true,
+  "counts": [
+    {
+      "language": "ar",
+      "measure": "actions",
+      "action": "click",
+      "count": 14
+    },
+    {
+      "language": "ar",
+      "measure": "actions",
+      "action": "type",
+      "count": 18
+    },
+    {
+      "language": "ar",
+      "measure": "errors",
+      "action": "click",
+      "count": 14
+    },
+    {
+      "language": "ar",
+      "measure": "errors",
+      "action": "type",
+      "count": 16
+    },
+    {
+      "language": "en",
+      "measure": "actions",
+      "action": "click",
+      "count": 2
+    },
+    {
+      "language": "en",
+      "measure": "actions",
+      "action": "drag",
+      "count": 16
+    },
+    {
+      "language": "en",
+      "measure": "actions",
+      "action": "type",
+      "count": 4
+    },
+    {
+      "language": "en",
+      "measure": "errors",
+      "action": "drag",
+      "count": 12
+    }
+  ],
+  "primary_error_categories": {
+    "field_point_miss_correct_text": 16,
+    "repeat_drag_after_destination_reached": 12,
+    "premature_save_target_hit_before_move": 7,
+    "save_target_miss_and_premature_save_before_move": 7
+  },
+  "mind_errors": [
+    {
+      "language": "ar",
+      "category": "valid_wrong_state_subgoal",
+      "count": 14
+    },
+    {
+      "language": "en",
+      "category": "invalid_tool_subgoal_pair",
+      "count": 5
+    },
+    {
+      "language": "en",
+      "category": "valid_wrong_state_subgoal",
+      "count": 14
+    }
+  ],
+  "model_errors": [
+    {
+      "language": "en",
+      "component": "mind",
+      "error": "ValueError",
+      "count": 5
+    }
+  ],
+  "type_text_counts": {
+    "correct": 22
+  },
+  "action_error_records": [
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "language": "ar",
+      "action": "type",
+      "category": "field_point_miss_correct_text",
+      "field_hit": false,
+      "save_hit": null,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "language": "en",
+      "action": "drag",
+      "category": "repeat_drag_after_destination_reached",
+      "field_hit": null,
+      "save_hit": null,
+      "item_start_hit": false,
+      "destination_end_hit": true,
+      "already_at_destination": true,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "language": "ar",
+      "action": "click",
+      "category": "premature_save_target_hit_before_move",
+      "field_hit": null,
+      "save_hit": true,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "language": "ar",
+      "action": "click",
+      "category": "save_target_miss_and_premature_save_before_move",
+      "field_hit": null,
+      "save_hit": false,
+      "item_start_hit": null,
+      "destination_end_hit": null,
+      "already_at_destination": false,
+      "state_changed": false
+    }
+  ],
+  "future_recommendations_basis": "DEV-only, descriptive proposals; no new pilot or retraining authorized or performed."
+}
