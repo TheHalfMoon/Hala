@@ -1,0 +1,14 @@
+{
+  "query": "Tesla T4, GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1, 52.63, 70.00, 70.00",
+  "schema": "hala.h22.power_limit_observation.v1",
+  "query_fields": [
+    "name",
+    "uuid",
+    "power.draw",
+    "power.limit",
+    "power.max_limit"
+  ],
+  "units": "nvidia-smi nounits; power fields watts",
+  "observed_during_profile": 2,
+  "retained_utc": "2026-10-16T16:03:22.795082+00:00"
+}
