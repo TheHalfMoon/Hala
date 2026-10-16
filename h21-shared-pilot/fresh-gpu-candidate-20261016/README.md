@@ -1,0 +1,5 @@
+# Fresh GPU download, exact PEFT loading and actual frozen-task comparison
+
+Original retained shared adapter, source and full training identity remain unchanged. Fresh Kaggle T4 retrieval and loaded112-tensor inventory/value/frozen-parameter checks passed. Dev completion improved0/8 to1/8 (English1/4, Arabic0/4); test0/8 to2/8 (English2/4, Arabic0/4), including one independently replayed simulator recovery. All16 plans matched strict expected plans. Episode Mind was26/59 dev and26/56 test, versus0/64 in each base allocation. Standalone3/10 repeats the same ten exposed probes.
+
+Independent persisted-state audits and109 complete action-geometry replays passed. This is a small measured task/component gain, not qualified deployment or native capability. Arabic still completes no tasks and84/109 action proposals produce action-error flags. There is no precision adoption or release. Timings use different GPU allocations; mandatory pins/source/tasks and model bytes are identical, optional incompatible TorchAO is removed.

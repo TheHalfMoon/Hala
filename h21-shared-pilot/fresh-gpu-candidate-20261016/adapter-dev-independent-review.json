@@ -1,0 +1,477 @@
+{
+  "schema": "hala.independent.candidate_geometry_review.v1",
+  "passed": true,
+  "checks": 949,
+  "errors": [],
+  "archive_sha256": "0619aa121f044e26fbe1be8533f3ade5c2279c333a0b09bf70ba2448d51bfb25",
+  "result_sha256": "ab57e72fc5efc9badb394fe11272e6896713c2481896630e25418e3e8e4b1b15",
+  "actions_replayed": 54,
+  "frames_checked": 54,
+  "frames_matching_frozen_png": 54,
+  "episodes": [
+    {
+      "episode": "reading_shelf-en-0",
+      "actions": 3,
+      "success": true,
+      "boxes": {
+        "field": [
+          117,
+          110,
+          402,
+          64
+        ],
+        "item": [
+          75,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          450,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          280,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Reviewed",
+        "location": "Read",
+        "saved_value": "Reviewed",
+        "saved_location": "Read",
+        "revision": 1,
+        "failed_once": false,
+        "status": "saved",
+        "observed": false
+      }
+    },
+    {
+      "episode": "reading_shelf-en-1",
+      "actions": 3,
+      "success": false,
+      "boxes": {
+        "field": [
+          117,
+          110,
+          402,
+          64
+        ],
+        "item": [
+          75,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          450,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          292,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Reviewed",
+        "location": "Read",
+        "saved_value": "Draft",
+        "saved_location": "Inbox",
+        "revision": 0,
+        "failed_once": true,
+        "status": "transient_failure",
+        "observed": false
+      }
+    },
+    {
+      "episode": "reading_shelf-ar-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          281,
+          110,
+          402,
+          64
+        ],
+        "item": [
+          525,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          105,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          360,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "مسودة",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "reading_shelf-ar-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          281,
+          110,
+          402,
+          64
+        ],
+        "item": [
+          525,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          105,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          348,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "مسودة",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "pet_journal-en-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          130,
+          110,
+          390,
+          64
+        ],
+        "item": [
+          470,
+          280,
+          200,
+          75
+        ],
+        "destination": [
+          65,
+          255,
+          245,
+          160
+        ],
+        "save": [
+          490,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Fed",
+        "location": "Today",
+        "saved_value": "Draft",
+        "saved_location": "Inbox",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "pet_journal-en-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          130,
+          110,
+          390,
+          64
+        ],
+        "item": [
+          470,
+          280,
+          200,
+          75
+        ],
+        "destination": [
+          65,
+          255,
+          245,
+          160
+        ],
+        "save": [
+          502,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Fed",
+        "location": "Today",
+        "saved_value": "Draft",
+        "saved_location": "Inbox",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "pet_journal-ar-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          280,
+          110,
+          390,
+          64
+        ],
+        "item": [
+          130,
+          280,
+          200,
+          75
+        ],
+        "destination": [
+          490,
+          255,
+          245,
+          160
+        ],
+        "save": [
+          150,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "تم الإطعام",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "pet_journal-ar-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          280,
+          110,
+          390,
+          64
+        ],
+        "item": [
+          130,
+          280,
+          200,
+          75
+        ],
+        "destination": [
+          490,
+          255,
+          245,
+          160
+        ],
+        "save": [
+          138,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "تم الإطعام",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    }
+  ],
+  "candidate_summary": {
+    "all": {
+      "action_calls": 54,
+      "action_errors": 42,
+      "environment_errors": 1,
+      "episodes": 8,
+      "episodes_complete": 1,
+      "mind_calls": 59,
+      "mind_case_exact_correct": 3,
+      "mind_cases": 10,
+      "mind_correct": 26,
+      "mind_errors": 33,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.4406779661016949,
+      "model_calls": 113,
+      "model_errors": 5,
+      "plan_calls": 8,
+      "plan_correct": 8,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    },
+    "ar": {
+      "action_calls": 32,
+      "action_errors": 30,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 1,
+      "mind_cases": 5,
+      "mind_correct": 18,
+      "mind_errors": 14,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.5625,
+      "model_calls": 64,
+      "model_errors": 0,
+      "plan_calls": 4,
+      "plan_correct": 4,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    },
+    "en": {
+      "action_calls": 22,
+      "action_errors": 12,
+      "environment_errors": 1,
+      "episodes": 4,
+      "episodes_complete": 1,
+      "mind_calls": 27,
+      "mind_case_exact_correct": 2,
+      "mind_cases": 5,
+      "mind_correct": 8,
+      "mind_errors": 19,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.2962962962962963,
+      "model_calls": 49,
+      "model_errors": 5,
+      "plan_calls": 4,
+      "plan_correct": 4,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    }
+  },
+  "base_summary": {
+    "all": {
+      "action_calls": 6,
+      "action_errors": 6,
+      "environment_errors": 0,
+      "episodes": 8,
+      "episodes_complete": 0,
+      "mind_calls": 64,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 10,
+      "mind_correct": 0,
+      "mind_errors": 64,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 70,
+      "model_errors": 64,
+      "plan_calls": 8,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 6
+    },
+    "ar": {
+      "action_calls": 4,
+      "action_errors": 4,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 36,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 4
+    },
+    "en": {
+      "action_calls": 2,
+      "action_errors": 2,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 34,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 2
+    }
+  },
+  "limits": [
+    "No local ML or weights execution.",
+    "PNG hashes/dimensions and fixed-byte equality verified; no local RAQM re-render.",
+    "Source PEFT load/state equality inspected; result is software evidence, not independent hardware attestation.",
+    "TEST is pending and not inspected."
+  ]
+}

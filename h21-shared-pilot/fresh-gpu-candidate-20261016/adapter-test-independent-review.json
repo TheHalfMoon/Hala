@@ -1,0 +1,478 @@
+{
+  "schema": "hala.independent.candidate_geometry_review.v1",
+  "split": "test",
+  "passed": true,
+  "checks": 955,
+  "errors": [],
+  "archive_sha256": "be538578cd0e0f3eb6aef4155d9e6a0625a04169ce32d3fefb1bae4cf6649c1c",
+  "result_sha256": "1de1a9f270b5dfa730c04ef258ceb4f26aabc2a95610ebbaef2d8a1f9ae19831",
+  "actions_replayed": 55,
+  "frames_checked": 55,
+  "frames_matching_frozen_png": 54,
+  "episodes": [
+    {
+      "episode": "museum_catalog-en-0",
+      "actions": 3,
+      "success": true,
+      "boxes": {
+        "field": [
+          143,
+          110,
+          378,
+          64
+        ],
+        "item": [
+          75,
+          230,
+          200,
+          75
+        ],
+        "destination": [
+          450,
+          225,
+          245,
+          160
+        ],
+        "save": [
+          70,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "New exhibit",
+        "location": "Ready",
+        "saved_value": "New exhibit",
+        "saved_location": "Ready",
+        "revision": 1,
+        "failed_once": false,
+        "status": "saved",
+        "observed": false
+      }
+    },
+    {
+      "episode": "museum_catalog-en-1",
+      "actions": 4,
+      "success": true,
+      "boxes": {
+        "field": [
+          143,
+          110,
+          378,
+          64
+        ],
+        "item": [
+          75,
+          230,
+          200,
+          75
+        ],
+        "destination": [
+          450,
+          225,
+          245,
+          160
+        ],
+        "save": [
+          82,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "New exhibit",
+        "location": "Ready",
+        "saved_value": "New exhibit",
+        "saved_location": "Ready",
+        "revision": 1,
+        "failed_once": true,
+        "status": "saved",
+        "observed": true
+      }
+    },
+    {
+      "episode": "museum_catalog-ar-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          279,
+          110,
+          378,
+          64
+        ],
+        "item": [
+          525,
+          230,
+          200,
+          75
+        ],
+        "destination": [
+          105,
+          225,
+          245,
+          160
+        ],
+        "save": [
+          570,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "معرض جديد",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "museum_catalog-ar-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          279,
+          110,
+          378,
+          64
+        ],
+        "item": [
+          525,
+          230,
+          200,
+          75
+        ],
+        "destination": [
+          105,
+          225,
+          245,
+          160
+        ],
+        "save": [
+          558,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "معرض جديد",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "sports_roster-en-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          156,
+          110,
+          366,
+          64
+        ],
+        "item": [
+          470,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          65,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          280,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Confirmed",
+        "location": "Selected",
+        "saved_value": "Draft",
+        "saved_location": "Inbox",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "sports_roster-en-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          156,
+          110,
+          366,
+          64
+        ],
+        "item": [
+          470,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          65,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          292,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "Confirmed",
+        "location": "Selected",
+        "saved_value": "Draft",
+        "saved_location": "Inbox",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "sports_roster-ar-0",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          278,
+          110,
+          366,
+          64
+        ],
+        "item": [
+          130,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          490,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          360,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "مسودة",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    },
+    {
+      "episode": "sports_roster-ar-1",
+      "actions": 8,
+      "success": false,
+      "boxes": {
+        "field": [
+          278,
+          110,
+          366,
+          64
+        ],
+        "item": [
+          130,
+          255,
+          200,
+          75
+        ],
+        "destination": [
+          490,
+          240,
+          245,
+          160
+        ],
+        "save": [
+          348,
+          470,
+          160,
+          65
+        ]
+      },
+      "final_state": {
+        "value": "مسودة",
+        "location": "الوارد",
+        "saved_value": "مسودة",
+        "saved_location": "الوارد",
+        "revision": 0,
+        "failed_once": false,
+        "status": "ready",
+        "observed": false
+      }
+    }
+  ],
+  "candidate_summary": {
+    "all": {
+      "action_calls": 55,
+      "action_errors": 42,
+      "environment_errors": 1,
+      "episodes": 8,
+      "episodes_complete": 2,
+      "mind_calls": 56,
+      "mind_case_exact_correct": 3,
+      "mind_cases": 10,
+      "mind_correct": 26,
+      "mind_errors": 30,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.4642857142857143,
+      "model_calls": 111,
+      "model_errors": 0,
+      "plan_calls": 8,
+      "plan_correct": 8,
+      "recoveries": 1,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    },
+    "ar": {
+      "action_calls": 32,
+      "action_errors": 30,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 1,
+      "mind_cases": 5,
+      "mind_correct": 4,
+      "mind_errors": 28,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.125,
+      "model_calls": 64,
+      "model_errors": 0,
+      "plan_calls": 4,
+      "plan_correct": 4,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    },
+    "en": {
+      "action_calls": 23,
+      "action_errors": 12,
+      "environment_errors": 1,
+      "episodes": 4,
+      "episodes_complete": 2,
+      "mind_calls": 24,
+      "mind_case_exact_correct": 2,
+      "mind_cases": 5,
+      "mind_correct": 22,
+      "mind_errors": 2,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.9166666666666666,
+      "model_calls": 47,
+      "model_errors": 0,
+      "plan_calls": 4,
+      "plan_correct": 4,
+      "recoveries": 1,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    }
+  },
+  "base_summary": {
+    "all": {
+      "action_calls": 4,
+      "action_errors": 4,
+      "environment_errors": 0,
+      "episodes": 8,
+      "episodes_complete": 0,
+      "mind_calls": 64,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 10,
+      "mind_correct": 0,
+      "mind_errors": 64,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 68,
+      "model_errors": 64,
+      "plan_calls": 8,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 4
+    },
+    "ar": {
+      "action_calls": 4,
+      "action_errors": 4,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 0,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 36,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 4
+    },
+    "en": {
+      "action_calls": 0,
+      "action_errors": 0,
+      "environment_errors": 0,
+      "episodes": 4,
+      "episodes_complete": 0,
+      "mind_calls": 32,
+      "mind_case_exact_correct": 0,
+      "mind_cases": 5,
+      "mind_correct": 0,
+      "mind_errors": 32,
+      "mind_invalid": 3,
+      "mind_semantic_accuracy": 0.0,
+      "model_calls": 32,
+      "model_errors": 32,
+      "plan_calls": 4,
+      "plan_correct": 0,
+      "recoveries": 0,
+      "unnecessary_calls": 0,
+      "unsafe_proposals": 0
+    }
+  },
+  "limits": [
+    "No local ML or weights execution.",
+    "PNG hashes/dimensions and fixed-byte equality verified; no local RAQM re-render.",
+    "Source PEFT load/state equality inspected; result is software evidence, not independent hardware attestation.",
+    "No test-driven tuning or forensic optimization."
+  ]
+}
