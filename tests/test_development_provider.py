@@ -11,6 +11,8 @@ from unittest.mock import patch
 
 from evaluation import development_runtime as runtime
 
+KAGGLE_IMAGE_TAG = 'release-colab-external-images_20260917-060051_RC00'
+
 
 class DevelopmentProviderTests(unittest.TestCase):
     def environment(self, values, *, system='Linux', directory=True):
@@ -33,6 +35,19 @@ class DevelopmentProviderTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     runtime.evaluation_guard()  # Kaggle is never the default.
 
+    def test_actual_kaggle_inherited_colab_image_tag_is_preserved_without_environment_spoofing(self):
+        environment = {'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'KAGGLE_KERNEL_RUN_TYPE': 'Interactive',
+                       'COLAB_RELEASE_TAG': KAGGLE_IMAGE_TAG}
+        with self.environment(environment):
+            self.assertEqual(runtime.evaluation_guard('kaggle'), {
+                'name': 'kaggle', 'kernel_run_type': 'Interactive', 'working_directory': '/kaggle/working',
+                'inherited_colab_release_tag': KAGGLE_IMAGE_TAG})
+            self.assertEqual(dict(os.environ), environment)
+            with self.assertRaises(ValueError):
+                runtime.evaluation_guard('colab')
+            with self.assertRaises(ValueError):
+                runtime.remote_guard()
+
     def test_invalid_requests_fail_before_any_ml_import_or_adapter_validation(self):
         valid = {'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'KAGGLE_KERNEL_RUN_TYPE': 'Interactive'}
         cases = [
@@ -43,8 +58,11 @@ class DevelopmentProviderTests(unittest.TestCase):
             ('kaggle', dict(valid, HALA_REMOTE_DEVELOPMENT_ALLOWED='0'), 'Linux', True),
             ('kaggle', dict(valid, KAGGLE_KERNEL_RUN_TYPE='Unknown'), 'Linux', True),
             ('kaggle', dict(valid, KAGGLE_KERNEL_RUN_TYPE=''), 'Linux', True),
-            ('kaggle', dict(valid, COLAB_RELEASE_TAG='release'), 'Linux', True),
-            ('kaggle', dict(valid, COLAB_RELEASE_TAG=''), 'Linux', True),
+            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG), 'Linux', False),
+            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG), 'Windows', True),
+            ('kaggle', {'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'COLAB_RELEASE_TAG': KAGGLE_IMAGE_TAG}, 'Linux', True),
+            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG, KAGGLE_KERNEL_RUN_TYPE='Unknown'), 'Linux', True),
+            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG, HALA_REMOTE_DEVELOPMENT_ALLOWED='0'), 'Linux', True),
             ('kaggle', valid, 'Windows', True),
             ('kaggle', valid, 'Linux', False),
             ('colab', valid, 'Linux', True),

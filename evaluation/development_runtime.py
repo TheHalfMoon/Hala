@@ -51,10 +51,13 @@ def evaluation_guard(provider='colab'):
     if (provider != 'kaggle' or platform.system() != 'Linux' or
             os.environ.get('HALA_REMOTE_DEVELOPMENT_ALLOWED') != '1' or
             os.environ.get('KAGGLE_KERNEL_RUN_TYPE') not in ('Interactive', 'Batch') or
-            'COLAB_RELEASE_TAG' in os.environ or not Path('/kaggle/working').is_dir()):
+            not Path('/kaggle/working').is_dir()):
         raise ValueError('Explicit Kaggle evaluation opt-in and actual supported Linux kernel required')
-    return {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],
-            'working_directory': '/kaggle/working'}
+    admitted = {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],
+                'working_directory': '/kaggle/working'}
+    if 'COLAB_RELEASE_TAG' in os.environ:
+        admitted['inherited_colab_release_tag'] = os.environ['COLAB_RELEASE_TAG']
+    return admitted
 
 
 def persist(path, value):

@@ -284,7 +284,8 @@ class DevelopmentAdapterTests(unittest.TestCase):
             stack.enter_context(patch.dict(sys.modules, modules))
             provenance = ({'name': 'colab', 'colab_release_tag': 'fake-release'} if provider == 'colab'
                           else {'name': 'kaggle', 'kernel_run_type': 'Interactive',
-                                'working_directory': '/kaggle/working'})
+                                'working_directory': '/kaggle/working',
+                                'inherited_colab_release_tag': 'release-colab-external-images_20260917-060051_RC00'})
             admission = stack.enter_context(patch.object(runtime, 'evaluation_guard', return_value=provenance))
             stack.enter_context(patch.object(runtime, 'Path', side_effect=lambda value:
                 SimpleNamespace(resolve=lambda: PurePosixPath('/tmp/hala-cache'))
