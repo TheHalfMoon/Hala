@@ -1,0 +1,11 @@
+# H22 TEST retention helper delta review
+
+Read-only comparison against the original DEV/general helpers; no publication, helper execution or GPU work.
+
+- **No must-fix found in the requested delta.** Both helpers consistently use TEST-local indices 0..2, fixed fp16/int8/nf4 order and `h22-test-restart` input, retained artifact, receipt, immutable public URL and roundtrip-record namespaces. The retainer binds exact experiment SHA `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99`; no old global indices 3..5 or DEV experiment/namespace remain.
+- Neither helper contains Git publish commands or broad staging. Retention copies only the selected fixed archive and creates its selected receipt; public verification reads exactly its archive and receipt at the supplied 40-hex commit and rejects redirects/byte differences.
+- These remain preparation/roundtrip utilities, not the full source/result/GPU gate: the retainer validates the exact archived experiment and selected status binding, while the separate reviewed operator validates archived source, qualification, mode/allocation and result identity before proceeding. Do not substitute roundtrip PASS for that required validation.
+- Read-only profile-0 inspection matches the reported 308219-byte archive SHA `e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471`, TEST0 receipt and source `07591f109b6683c9302fcf890259ddf0bde91494`. The saved roundtrip record names immutable commit `9568d58c74f3e1326b55b04d304f643e2bf1b99f`; this review did not repeat its network verification.
+- Filled H23 hardware amendment SHA is `882ccf1b5df14338e703db0c29f9ef8a777710f3bc9bd3034d434deed1c89852`. Its TEST manifest commit `9d055aeec6329909c91b91a5f144298365110819`, SHA `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99` and expected GPU `GPU-14ac1f01-0bec-e9da-d360-51d417657b16` match the filled TEST manifest. The exact reviewed H23 operator/helper `validate_amendment` accepts these bytes against the original precision metadata. Original H23 source/freeze/prospective identity and false qualification fields remain intact.
+
+No actual H23, model-quality, cancellation, resource or production qualification follows from this review.

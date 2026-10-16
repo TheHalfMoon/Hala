@@ -1,0 +1,922 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-test-restart/profile-0-fp16-test-audit.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 104
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 104,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.independent.h22.test_restart_record_audit.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"passed\": true,\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"checks\": 9048,\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"errors\": [],\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"warnings\": [],\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"result_sha256\": \"4f00aea88962adcee085c5ab476e16d72bc8f9db12b897e40ed615f3bbbf6f51\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"archive_sha256\": \"e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"mode\": \"fp16\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"split\": \"test\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"result_status\": \"measured\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"complete_measured_run\": true,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"independent_summary\": {\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"en\": {\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"episodes\": 4,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"episodes_complete\": 2,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "      \"mind_cases\": 5,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "      \"mind_case_exact_correct\": 2,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      \"mind_invalid\": 0,\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "      \"model_calls\": 47,\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "      \"model_errors\": 0,\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"action_calls\": 23,\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"action_errors\": 12,\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"environment_errors\": 1,\r"
+            }
+          ],
+          "dropped": 80
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/profile-0-fp16-test-public-roundtrip.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 18
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 18,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.public_roundtrip.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"index\": 0,\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"commit\": \"9568d58c74f3e1326b55b04d304f643e2bf1b99f\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"verified\": true,\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"files\": [\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"path\": \"h22-test-restart/profile-0-fp16-test-evidence.zip\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "      \"bytes\": 308219,\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "      \"sha256\": \"e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471\"\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"path\": \"h22-test-restart/profile-0-fp16-test-receipt.json\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"bytes\": 326,\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"sha256\": \"5544f32576858d4aace6e209803048c5f2c1c5720d4421eee00968f2890d9854\"\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    }\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  ]\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "}\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/profile-0-fp16-test-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 21
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 21,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST restart profile 0: actual FP16 review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Saved-record integrity PASS: `outputs/h22-test-restart-profile-0-audit.json` reports 9048 checks, zero errors and zero warnings. The unchanged prepared restart auditor independently replayed all 55 actions, full state/observe chains, half-open mirrored target geometry and persisted outcomes. All 55 frame-occurrence bindings/hashes/signatures/dimensions pass; 54 occurrences match frozen PNG bytes. One reached-state frame has no original frozen PNG and was not independently rerendered. The archive contains 27 files, including 19 unique PNGs."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "The 308219-byte ZIP SHA256 is `e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471`; result SHA256 is `4f00aea88962adcee085c5ab476e16d72bc8f9db12b897e40ed615f3bbbf6f51`. CRCs and extracted bytes pass. Published amendment SHA `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99`, exact prior DEV retention identities, source07591/freeze98ca, original adapter/data/package pins, archived amendment, profile status and attempt3 qualification all bind correctly. Explicit expected UUID `GPU-14ac1f01-0bec-e9da-d360-51d417657b16` matches actual metadata, comparison identity and subsequent device samples. Local TEST index 0 maps to original logical index 3; no actual record metadata was rewritten."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Persisted completion is 2/8: English 2/4 and Arabic 0/4. Both English successes persist `New exhibit` at `Ready`, revision 1. The transient episode records a real authored failure, observation and successful retry, supporting one recovery. Plans are semantically correct 8/8; episode Mind is 26/56 (English22/24; Arabic4/32). There are 55 actions, 42 action errors, one environment failure, zero model errors and zero protocol-rejected visual proposals. Global calls total 121: 111 episode calls plus ten previously exposed standalone probes. Standalone exact3/10 is repeated diagnostic evidence, not a fresh untouched holdout. No TEST-failure remediation analysis or tuning was performed."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| Recorded cost | Value |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "|---|---:|"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Wall / load / generation seconds |231.873164098 / 5.011049736 / 214.501665819|"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| CPU process seconds |237.967811784|"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| Peak allocated / reserved CUDA bytes |4517115392 / 4609540096|"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "| Maximum runtime sampled device used bytes |4778229760|"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "| Full / vision model-state storage bytes |4258275904 / 813914176|"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "| Unique cache-content bytes |4266814972|"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "| Process observer samples |114|"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "Storage/residency sums, byte units, generation arithmetic, clocks, null/error handling and UUID bindings pass. Initial observer device identity is explicitly unavailable before resolution. Later whole-device samples have maximum4557 MiB used; sampled device readings and allocator peaks are distinct measures, not continuous hardware peaks. Storage/cache aggregate records cannot independently reconstruct pointer/inode deduplication. CPU time can exceed wall time. Power observations remain uncalibrated and unsuitable for energy/efficiency/monetary conclusions; the earlier power addendum is a measurement-limit precedent, not proof of this new GPU's calibration or power-limit history."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "This new TEST hardware group is separate from the completed DEV group; cross-group physical-device cost comparison remains unqualified. Fixed temporal order, warm-cache state, adaptive outputs and small dependent authored templates limit interpretation. Saved records do not independently attest GPU capture or representative capability. Adoption, quality, native and execution flags remain false. No source, parser, auditor, inputs or model changes occurred in this review."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/retain-local-profile.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 44
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 44,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Retain an externally hash-verified small raw H22 profile and receipt.\"\"\"\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from pathlib import Path\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import shutil\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import zipfile\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "parser=argparse.ArgumentParser()\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "parser.add_argument('index',type=int,choices=range(3))\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "parser.add_argument('sha256')\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "args=parser.parse_args()\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "workspace=Path(__file__).parent.parent\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "order=[('fp16','test'),('int8','test'),('nf4','test')]\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "name='profile-'+str(args.index)+'-'+'-'.join(order[args.index])\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "archive=workspace/'outputs'/('h22-test-restart-'+name+'-evidence.zip')\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "raw=archive.read_bytes()\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "assert len(raw)<=16*1024**2 and hashlib.sha256(raw).hexdigest()==args.sha256\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "dest=workspace/'work/Hala-artifacts/h22-test-restart'\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "experiment=(dest/'experiment.json').read_bytes()\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "experiment_sha=hashlib.sha256(experiment).hexdigest()\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "assert experiment_sha=='21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99'\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "with zipfile.ZipFile(archive) as z:\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    assert z.testzip() is None\r"
+            }
+          ],
+          "dropped": 20
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/retention-helpers-jev.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 91
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 91,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"cli_version\": \"2026.919.0\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"scope\": \"Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"questions\": {\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"correctness_concern\": {\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "      \"type\": \"noul\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"instructions\": \"Is an evident reachable correctness defect present in this experimental source?\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"criteria\": {\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "        \"true\": \"Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "        \"false\": \"No evident defect; unexecuted GPU behavior is unknown, not proven correct.\"\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "      }\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"security_concern\": {\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "      \"type\": \"noul\",\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "      \"instructions\": \"Does this source evidently cross its trust boundary?\",\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "      \"criteria\": {\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        \"true\": \"Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.\",\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        \"false\": \"Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments.\"\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "      }\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    },\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    \"evidence_concern\": {\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "      \"type\": \"noul\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "      \"instructions\": \"Does this source claim synthetic or unexecuted work qualifies model quality or release?\",\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "      \"criteria\": {\r"
+            }
+          ],
+          "dropped": 67
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/retention-helpers-review.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 11
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 11,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST retention helper delta review"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Read-only comparison against the original DEV/general helpers; no publication, helper execution or GPU work."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "- **No must-fix found in the requested delta.** Both helpers consistently use TEST-local indices 0..2, fixed fp16/int8/nf4 order and `h22-test-restart` input, retained artifact, receipt, immutable public URL and roundtrip-record namespaces. The retainer binds exact experiment SHA `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99`; no old global indices 3..5 or DEV experiment/namespace remain."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "- Neither helper contains Git publish commands or broad staging. Retention copies only the selected fixed archive and creates its selected receipt; public verification reads exactly its archive and receipt at the supplied 40-hex commit and rejects redirects/byte differences."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "- These remain preparation/roundtrip utilities, not the full source/result/GPU gate: the retainer validates the exact archived experiment and selected status binding, while the separate reviewed operator validates archived source, qualification, mode/allocation and result identity before proceeding. Do not substitute roundtrip PASS for that required validation."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "- Read-only profile-0 inspection matches the reported 308219-byte archive SHA `e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471`, TEST0 receipt and source `07591f109b6683c9302fcf890259ddf0bde91494`. The saved roundtrip record names immutable commit `9568d58c74f3e1326b55b04d304f643e2bf1b99f`; this review did not repeat its network verification."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "- Filled H23 hardware amendment SHA is `882ccf1b5df14338e703db0c29f9ef8a777710f3bc9bd3034d434deed1c89852`. Its TEST manifest commit `9d055aeec6329909c91b91a5f144298365110819`, SHA `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99` and expected GPU `GPU-14ac1f01-0bec-e9da-d360-51d417657b16` match the filled TEST manifest. The exact reviewed H23 operator/helper `validate_amendment` accepts these bytes against the original precision metadata. Original H23 source/freeze/prospective identity and false qualification fields remain intact."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "No actual H23, model-quality, cancellation, resource or production qualification follows from this review."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "h22-test-restart/verify-public-retention.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 26
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 26,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import argparse\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import re\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import urllib.request\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "parser=argparse.ArgumentParser()\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "parser.add_argument('index',type=int,choices=range(3));parser.add_argument('commit')\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "args=parser.parse_args()\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "assert re.fullmatch('[0-9a-f]{40}',args.commit)\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "workspace=Path(__file__).parent.parent\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "mode,split=[('fp16','test'),('int8','test'),('nf4','test')][args.index]\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "name=f'profile-{args.index}-{mode}-{split}'\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "records=[]\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "for suffix,limit in [('-evidence.zip',16*1024**2),('-receipt.json',65536)]:\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    local=workspace/'work/Hala-artifacts/h22-test-restart'/(name+suffix)\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    url=f'https://raw.githubusercontent.com/TheHalfMoon/Hala/{args.commit}/h22-test-restart/{name}{suffix}'\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    with urllib.request.urlopen(url,timeout=45) as response:\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        assert response.geturl()==url\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        raw=response.read(limit+1)\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    assert len(raw)<=limit and raw==local.read_bytes()\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    records.append({'path':'h22-test-restart/'+name+suffix,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "record={'schema':'hala.h22.public_roundtrip.v1','index':args.index,'commit':args.commit,'verified':True,'files':records}\r"
+            }
+          ],
+          "dropped": 2
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-test-restart/profile-0-fp16-test-audit.json",
+    "h22-test-restart/profile-0-fp16-test-public-roundtrip.json",
+    "h22-test-restart/profile-0-fp16-test-review.md",
+    "h22-test-restart/retention-helpers-jev.json",
+    "h22-test-restart/retention-helpers-review.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-test-restart/retain-local-profile.py",
+      "name": "retain-local-profile.py",
+      "kind": "file",
+      "path": "h22-test-restart/retain-local-profile.py",
+      "span": "L1-L45",
+      "wholeFile": true
+    },
+    {
+      "id": "h22-test-restart/verify-public-retention.py",
+      "name": "verify-public-retention.py",
+      "kind": "file",
+      "path": "h22-test-restart/verify-public-retention.py",
+      "span": "L1-L27",
+      "wholeFile": true
+    }
+  ],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "retain-local-profile.py",
+      "labelSource": "symbol",
+      "key": "h22-test-restart/",
+      "files": [
+        "h22-test-restart/retain-local-profile.py",
+        "h22-test-restart/verify-public-retention.py"
+      ],
+      "seeds": 2,
+      "tests": "na",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 0,
+      "unreached": [],
+      "seedNames": [
+        "retain-local-profile.py",
+        "verify-public-retention.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
