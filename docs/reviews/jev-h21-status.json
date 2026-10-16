@@ -1,0 +1,91 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "docs/H21-measured-pilot-20261016.md",
+      "source_sha256": "4166ef5724e1f99cbf1523fc3b3e3309121e7e3a7ddcbee4f3c66a9af84cfef8",
+      "exit_code": 0,
+      "wall_seconds": 0.553345200009062,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.39,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 452,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2168,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "experiments/development/h21-pilot-checkpoint.json",
+      "source_sha256": "86a3fe2f5a5ba685415102b6f1a77d7647e9f585aa20594ac3eae9d8f123b77c",
+      "exit_code": 0,
+      "wall_seconds": 0.5514969000068959,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.38,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 439,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4310,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}
