@@ -1,0 +1,62 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "h22-attempt2/compare-dev-records.py",
+      "source_sha256": "2b73d7c475527d51a97fbc0da37d3342fc197f67ef2b89a027e097a172e17970",
+      "exit_code": 0,
+      "wall_seconds": 0.596576499985531,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.4,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.14,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 481,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1261,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}

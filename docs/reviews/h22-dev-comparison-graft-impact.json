@@ -1,0 +1,323 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "h22-attempt2/compare-dev-records.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 40
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 40,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Summarize retained actual DEV records; no model execution or adoption.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "w=Path(__file__).parent.parent"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "sys.path.insert(0,str(w/'work/Hala-model'))"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from evaluation.development_precision import paired"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "rows=[];results=[]"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "for index,mode in enumerate(('fp16','int8','nf4')):"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    path=w/f'outputs/h22-attempt2-profile-{index}-{mode}-dev-evidence/run/result.json'"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    raw=path.read_bytes();d=json.loads(raw);results.append(d)"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    assert d['status']=='measured' and d['gpu_uuid']=='GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    rows.append({'mode':mode,'result_sha256':hashlib.sha256(raw).hexdigest(),"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        'summary':d['summary'], 'wall_seconds':d['wall_seconds'],'load_seconds':d['load_seconds'],"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        'model_generation_seconds':d['model_generation_seconds'],"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        'memory_final':d['memory_final'],'residency_loaded':{k:v for k,v in d['residency_loaded'].items() if k!='tensors'},"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        'unique_physical_cache_bytes':d['unique_physical_cache_bytes'],"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        'calls':len(d['calls']),'quality_qualified':False,'adoption_qualified':False})"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "comparison={'schema':'hala.h22.actual_dev_comparison.v1','split':'dev',"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": " 'source_commit':'07591f109b6683c9302fcf890259ddf0bde91494','rows':rows,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": " 'runtime_secondary_pairs':{mode:paired(results[0],results[i]) for i,mode in ((1,'int8'),(2,'nf4'))},"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": " 'independent_audit_checks':[9114,10972,12537],"
+            }
+          ],
+          "dropped": 16
+        }
+      ]
+    },
+    {
+      "path": "h22-attempt2/dev-comparison.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 12760
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 12760,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.actual_dev_comparison.v1\",\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"split\": \"dev\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"source_commit\": \"07591f109b6683c9302fcf890259ddf0bde91494\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"rows\": [\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"mode\": \"fp16\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"result_sha256\": \"2536e446322228331b8b3dfd45002c363e8ab4a0144097c16b47ee0c638b61ce\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "      \"summary\": {\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "        \"all\": {\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "          \"action_calls\": 54,\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "          \"action_errors\": 42,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "          \"environment_errors\": 1,\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "          \"episodes\": 8,\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "          \"episodes_complete\": 1,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "          \"mind_calls\": 59,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          \"mind_case_exact_correct\": 3,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "          \"mind_cases\": 10,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "          \"mind_correct\": 26,\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "          \"mind_errors\": 33,\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "          \"mind_invalid\": 0,\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "          \"mind_semantic_accuracy\": 0.4406779661016949,\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "          \"model_calls\": 113,\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "          \"model_errors\": 5,\r"
+            }
+          ],
+          "dropped": 12736
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "h22-attempt2/dev-comparison.json"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "h22-attempt2/compare-dev-records.py",
+      "name": "compare-dev-records.py",
+      "kind": "file",
+      "path": "h22-attempt2/compare-dev-records.py",
+      "span": "L1-L41",
+      "wholeFile": true
+    }
+  ],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "compare-dev-records.py",
+      "labelSource": "symbol",
+      "key": "h22-attempt2/",
+      "files": [
+        "h22-attempt2/compare-dev-records.py"
+      ],
+      "seeds": 1,
+      "tests": "na",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 0,
+      "unreached": [],
+      "seedNames": [
+        "compare-dev-records.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}
