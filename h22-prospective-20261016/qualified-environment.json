@@ -1,0 +1,46 @@
+{
+  "actual_precision_quality_qualified": false,
+  "adapter_manifest_sha256": "7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d",
+  "cache_state": "Warm original unmodified base weights retrieved for H21, moved within remote /tmp",
+  "cuda": "12.8",
+  "device_sample": {
+    "cpu_process_seconds": 11.711667343,
+    "cpu_rss_bytes": 946798592,
+    "device": {
+      "free_mib": 14909,
+      "power_watts": 9.57,
+      "used_mib": 3,
+      "utilization_percent": 0
+    },
+    "device_uuid": "GPU-b280804f-ab1e-1dbc-11c2-fbf65a16aab3",
+    "monotonic_seconds": 1675.518512802
+  },
+  "font_sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+  "gpu": "Tesla T4",
+  "gpu_capability": [
+    7,
+    5
+  ],
+  "gpu_uuid": "GPU-b280804f-ab1e-1dbc-11c2-fbf65a16aab3",
+  "model_loaded": false,
+  "packages": {
+    "Pillow": "11.3.0",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.50.2",
+    "peft": "0.20.0",
+    "safetensors": "0.8.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1"
+  },
+  "provider": {
+    "inherited_colab_release_tag": "release-colab-external-images_20260917-060051_RC00",
+    "kernel_run_type": "Interactive",
+    "name": "kaggle",
+    "working_directory": "/kaggle/working"
+  },
+  "raqm": "0.10.1",
+  "schema": "hala.h22.remote_qualification.v1",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+  "unique_physical_cache_bytes": 4266757079
+}
