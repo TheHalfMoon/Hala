@@ -1,0 +1,67 @@
+{
+  "schema": "hala.h21.trained_actual_integrity_review.v1",
+  "passed": true,
+  "independent_signature_verification": "Unavailable: local gpg.ssh.allowedSignersFile is not configured; signed-retention attestation remains external to this review.",
+  "findings": [],
+  "manifest_sha256": "7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d",
+  "training_result_sha256": "905368e88c1734310142d0f69819cdca1df8ae0f217777418f4dc9f48f0b7db0",
+  "identity": {
+    "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+    "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "source_commit": "5b6eb4bf29acbaf21aa199f113f78af4f268b3b7",
+    "data_sha256": "af540e4db2289540fb8adecd0665439c4d6055ffc86673a3286e902c86c0340e",
+    "evaluation_sha256": "e9f98694089d5411d3a6c570c7de2ede8f82cbeb3132e47904d17301030c0768"
+  },
+  "artifact_commit_local_bytes_match": "274024e14699599a51fca2c948af40819532e18c",
+  "bundle_files": 4,
+  "model_bytes": 3227648,
+  "model_sha256": "7eb2f17df11151e5b77a5c715c59f56c854ca7b0d0da3ee591f394b501826fa7",
+  "training_script_sha256": "17f0270cb721d343aecb5dcab1d35b3c88fcdf3735e3cccf2e180189bd7790f1",
+  "metrics_steps": 116,
+  "authored_row_order_matches": true,
+  "schedule": {
+    "alpha": 8,
+    "batch_size": 1,
+    "dropout": 0,
+    "epochs": 1,
+    "gradient_accumulation": 1,
+    "initial_scale": 1.0,
+    "learning_rate": 5e-05,
+    "max_grad_norm": 1.0,
+    "optimizer": "AdamW",
+    "precision": "fp16",
+    "rank": 4,
+    "row_order": "authored",
+    "seed": 42,
+    "steps": 116
+  },
+  "changed_parameter_tensors": 112,
+  "changed_tensors_each_step": 112,
+  "tensor_count": 112,
+  "dtype": "F32",
+  "finite_scalar_count": 802816,
+  "nonzero_scalars": 802816,
+  "tensor_scalar_min": -0.02659039944410324,
+  "tensor_scalar_max": 0.0266516525298357,
+  "loss": {
+    "min": 0.000353157491190359,
+    "median": 0.6450596153736115,
+    "max": 2.0909383296966553
+  },
+  "gradient_norm": {
+    "min": 0.023051150143146515,
+    "max": 16.109512329101562
+  },
+  "wall_seconds": 116.09472512399998,
+  "historical_training_status": "trained_pending_durable_archive",
+  "peak_allocated_bytes": 5773505536,
+  "peak_reserved_bytes": 13035896832,
+  "max_sampled_device_used_bytes": 13238140928,
+  "quality_qualified": false,
+  "limitations": [
+    "Recorded finite loss/norm/update sequence and actual parameter bytes audited; discarded gradient tensors and before-step weights were not retained for independent replay.",
+    "Artifact finiteness and training loss do not establish task improvement, Arabic quality, native integration or safe routing.",
+    "Local Git-object comparison binds retained bytes; fresh public download/model reload/evaluation remain separate gates.",
+    "Historical pending-archive status is preserved as originally emitted, not rewritten after later publication."
+  ]
+}
