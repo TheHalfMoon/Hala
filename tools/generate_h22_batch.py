@@ -39,22 +39,24 @@ else:
         package = response.read(2 * 1024**2 + 1)
     assert len(package) <= 2 * 1024**2 and sha(package) == PACKAGE_SHA
     assert package.startswith(b"!<arch>\n")
-    cursor, found = 8, []
-    while cursor + 60 <= len(package):
-        hdr = package[cursor:cursor+60]
-        size = int(hdr[48:58].strip())
-        name = hdr[:16].decode("ascii").strip().rstrip("/")
-        assert 0 <= size <= len(package)-cursor-60
-        data = package[cursor+60:cursor+60+size]
-        if name.startswith("data.tar."):
-            with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
-                for member in tar.getmembers():
-                    if member.name.lstrip("./") == "usr/share/fonts/truetype/dejavu/DejaVuSans.ttf":
-                        assert member.isfile() and member.size == 759720
-                        payload = tar.extractfile(member).read(1024*1024)
-                        assert len(payload) == member.size and sha(payload) == FONT_SHA
-                        found.append(payload)
-        cursor += 60 + size + size % 2
+    # Ubuntu's hash-pinned .deb uses data.tar.zst; Python 3.13 tarfile cannot
+    # decompress Zstandard. Use the Linux system dpkg-deb to emit an ordinary
+    # tar archive; do NOT install the package or execute maintainer scripts.
+    import subprocess, tempfile
+    found = []
+    with tempfile.TemporaryDirectory(prefix="hala-h22-font-") as folder:
+        deb = Path(folder) / "font.deb"
+        deb.write_bytes(package)
+        unpacked = subprocess.run(["dpkg-deb", "--fsys-tarfile", str(deb)],
+                                  capture_output=True, check=True, timeout=45).stdout
+        assert 0 < len(unpacked) <= 16 * 1024**2
+        with tarfile.open(fileobj=io.BytesIO(unpacked), mode="r:") as tar:
+            for member in tar.getmembers():
+                if member.name.lstrip("./") == "usr/share/fonts/truetype/dejavu/DejaVuSans.ttf":
+                    assert member.isfile() and member.size == 759720
+                    payload = tar.extractfile(member).read(1024*1024)
+                    assert len(payload) == member.size and sha(payload) == FONT_SHA
+                    found.append(payload)
     assert len(found) == 1, "Exactly one pinned font asset required"
     target.parent.mkdir(parents=True, exist_ok=True)
     with target.open("xb") as output:

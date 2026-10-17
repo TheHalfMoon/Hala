@@ -34,15 +34,15 @@
       "file": "tools/h22_batch_operator.py",
       "sha256": "67c1f31b32f449ddf9d5f84e75ab406b224f33c82943ed8a99d1a8721174f952",
       "exit_code": 0,
-      "seconds": 1.1087,
+      "seconds": 1.2637,
       "response": {
         "answers": {
           "correctness_concern": {
-            "noul": 0.61,
+            "noul": 0.59,
             "type": "noul"
           },
           "evidence_concern": {
-            "noul": 0.26,
+            "noul": 0.23,
             "type": "noul"
           },
           "security_concern": {
@@ -50,7 +50,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 519,
+        "latency_ms": 720,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -61,9 +61,9 @@
     },
     {
       "file": "tools/generate_h22_batch.py",
-      "sha256": "0023852fde524c20f937245b14c88d59ad97eb95725e9c07b5ca65f51e4ed2a1",
+      "sha256": "10b7807a8a078f234b1149a8d51b76c92724a8c45c34c7dc1e3f898464f2dabc",
       "exit_code": 0,
-      "seconds": 0.6925,
+      "seconds": 0.6033,
       "response": {
         "answers": {
           "correctness_concern": {
@@ -75,15 +75,15 @@
             "type": "noul"
           },
           "security_concern": {
-            "noul": 0.12,
+            "noul": 0.13,
             "type": "noul"
           }
         },
-        "latency_ms": 628,
+        "latency_ms": 488,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 2694,
+          "input_tokens": 2748,
           "output_tokens": 62
         }
       }
@@ -92,11 +92,11 @@
       "file": "tools/verify_h22_batch.py",
       "sha256": "bf5f98f5085e45413e19b865f4e54aaab2d1e14aa40f69c835ad243dbade110d",
       "exit_code": 0,
-      "seconds": 0.5468,
+      "seconds": 0.6841,
       "response": {
         "answers": {
           "correctness_concern": {
-            "noul": 0.32,
+            "noul": 0.33,
             "type": "noul"
           },
           "evidence_concern": {
@@ -108,7 +108,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 481,
+        "latency_ms": 558,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -119,9 +119,9 @@
     },
     {
       "file": "tests/test_h22_batch_operator.py",
-      "sha256": "7b19015f091dab2cf236e845f4536827ffb47974eb7812f3bd977054c6feec77",
+      "sha256": "944e00d41b1cd1f5a085e7f21ca8547d5667b38a7f73cdf2e2a283b8b5c94941",
       "exit_code": 0,
-      "seconds": 0.458,
+      "seconds": 0.4859,
       "response": {
         "answers": {
           "correctness_concern": {
@@ -129,7 +129,7 @@
             "type": "noul"
           },
           "evidence_concern": {
-            "noul": 0.12,
+            "noul": 0.11,
             "type": "noul"
           },
           "security_concern": {
@@ -137,11 +137,11 @@
             "type": "noul"
           }
         },
-        "latency_ms": 419,
+        "latency_ms": 425,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 2195,
+          "input_tokens": 2244,
           "output_tokens": 62
         }
       }
@@ -150,23 +150,23 @@
       "file": "tests/test_h22_batch_verifier.py",
       "sha256": "b942cef7fb97032be104df2fa789e3a6cf4bc195b9afed4db9c782d976829d2c",
       "exit_code": 0,
-      "seconds": 0.5122,
+      "seconds": 0.5204,
       "response": {
         "answers": {
           "correctness_concern": {
-            "noul": 0.21,
+            "noul": 0.22,
             "type": "noul"
           },
           "evidence_concern": {
-            "noul": 0.15,
+            "noul": 0.16,
             "type": "noul"
           },
           "security_concern": {
-            "noul": 0.09,
+            "noul": 0.1,
             "type": "noul"
           }
         },
-        "latency_ms": 471,
+        "latency_ms": 417,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {

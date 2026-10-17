@@ -58,3 +58,17 @@ training data, prompts or precision order.
 The modified Notebook is still prospective until remote execution and independent
 Saved Version retrieval. No V1 measured test outcome is claimed. No paid resource
 was activated and no model weights were downloaded to the founder's PC.
+
+## Version 2: Zstandard compatibility failure
+
+Private Saved Version 2 completed ERROR **before invoking the H22 operator**.
+Actual Kaggle stderr shows Python 3.13 tarfile.ReadError when opening Ubuntu
+data.tar.zst. Python 3.14 on the preflight workstation had silently supported
+Zstandard, but Kaggle's Python 3.13 tarfile does not. No precision profile ran.
+
+Version 3 prospective preflight retains the exact same official URL, package
+digest, 759720-byte font, and TTF SHA256, but uses the standard Linux dpkg-deb
+--fsys-tarfile to decode the hash-pinned package contents as an ordinary tar
+archive in memory. It does NOT install .deb, execute maintainer scripts,
+change frozen media, or alter the pinned scientific operator, model or task
+settings. Actual remote qualification remains required; no results are inferred.
