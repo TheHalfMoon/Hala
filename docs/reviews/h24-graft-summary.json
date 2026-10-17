@@ -1,0 +1,23 @@
+{
+  "commands": [
+    "graft build .",
+    "graft check ."
+  ],
+  "deep_semantic_meaning_built": false,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "graph_nodes": 1009,
+  "independent_security_approval": false,
+  "local_log_sha256": {
+    "h24-graft-build.log": "7031f719651efe0a0d12ab7f0164a6a87e44de61c1508430d6356633fe58a863",
+    "h24-graft-check.log": "e2d501b13b748c62e6ab0fccc22f7d063e6b6f11ca57a2b318cf7a8aba7b5c8e"
+  },
+  "local_logs_published": false,
+  "reason": "raw PowerShell console logs may contain identifiable host paths and are not a qualified deep semantic review",
+  "schema": "hala.h24.graft_receipt.v1",
+  "tool": "graft",
+  "tool_version": "0.21.1",
+  "wiring_graph_in_sync": true
+}
