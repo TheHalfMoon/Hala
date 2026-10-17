@@ -176,6 +176,15 @@ def qualify(source, output):
              "safetensors": "0.8.0", "peft": "0.20.0"}.items():
         if importlib.metadata.version(package) != expected:
             raise RuntimeError("Unqualified environment package: " + package)
+    # PEFT 0.20.0 rejects the preinstalled torchao 0.10.0 at FP16 LoRA
+    # attachment; this optional accelerator is not part of frozen H22 science.
+    # Fail before GPU model allocation if the fresh batch environment differs.
+    try:
+        importlib.metadata.version("torchao")
+    except importlib.metadata.PackageNotFoundError:
+        pass
+    else:
+        raise RuntimeError("Unqualified optional torchao installation still present")
     import torch
     if not torch.cuda.is_available() or torch.cuda.get_device_name(0) != "Tesla T4":
         raise RuntimeError("Actual free Tesla T4 required")
@@ -193,6 +202,7 @@ def qualify(source, output):
               "earlier_fp16_replicated_not_overwritten": True,
               "earlier_int8_unknown": True, "earlier_nf4_not_started": True,
               "batch_profile_order": list(MODES),
+              "torchao_optional_runtime": "absent",
               "no_adoption": True, "training_runs": 0}
     atomic_json(output / "assigned-hardware.json", report)
     return report

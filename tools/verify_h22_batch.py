@@ -89,6 +89,7 @@ def verify(results):
             assigned.get("provider") != "kaggle" or
             assigned.get("gpu_name") != "Tesla T4" or
             assigned.get("kernel_run_type") != "Batch" or
+            assigned.get("torchao_optional_runtime") != "absent" or
             assigned.get("batch_profile_order") != list(MODES) or
             assigned.get("training_runs") != 0 or assigned.get("no_adoption") is not True):
         raise ValueError("Assigned hardware/identity evidence incomplete")

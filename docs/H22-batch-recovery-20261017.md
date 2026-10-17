@@ -72,3 +72,29 @@ digest, 759720-byte font, and TTF SHA256, but uses the standard Linux dpkg-deb
 archive in memory. It does NOT install .deb, execute maintainer scripts,
 change frozen media, or alter the pinned scientific operator, model or task
 settings. Actual remote qualification remains required; no results are inferred.
+
+## Version 3 verified partial outcomes and Version 4 prospective environment repair
+
+V3 private Kaggle notebook worker terminated COMPLETE, but its internal batch
+status was **completed_with_blockers**, NOT a qualified full-triplet. Same
+reported Tesla T4 UUID across three attempted profiles. The exact original raw
+data, signed partial evidence audit and three ZIPs are retained at
+https://github.com/TheHalfMoon/Hala/tree/ps/h22-v3-evidence/h22-kaggle-batch-v3
+(commit c2f0ad262836eaa9f8a346194f055501d77c6cf0).
+
+Measured H22 TEST V3: FP16 **BLOCKED, UNKNOWN** (not zero); INT8 0/8
+(EN 0/4, AR 0/4); NF4 2/8 (EN 2/4, AR 0/4).
+Actual FP16 stderr: preinstalled torchao 0.10.0 raises PEFT 0.20.0
+ImportError (requires torchao >0.16) while attaching the frozen H21 LoRA.
+The independent partial artifact verifier checked all three raw ZIP SHA256,
+CRC, model/adapter/source pins, exact GPU identifiers, statuses, and bilingual
+summary counts; it did not qualify the full TEST triplet or energy/cost.
+
+Version 4 prospectively removes ONLY the incompatible optional preinstalled
+torchao distribution in the fresh Kaggle environment *before* loading weights.
+The preflight fails closed unless torchao is absent and torch remains exactly
+the pinned version. This is not a model, data, prompt, tokenizer, frozen scientific
+source or evaluation-code change. It applies the same environment for all three
+freshly rerun FP16, INT8 and NF4 profiles; V3 cross-allocation comparisons are
+not treated as matched-cost measurements. Training remains disabled.
+Until observed and independently audited, V4 makes NO new inference claims.

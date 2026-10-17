@@ -95,10 +95,17 @@ def generate():
             cell("markdown", "Qualify all pinned packages before model allocation. "
                  "No paid plan, token, service credentials, quotas bypass or auto-upgrade. "
                  "Installed Torch must already match the reviewed GPU environment.\n"),
-            cell("code", "%pip install --quiet --no-deps transformers==5.16.1 accelerate==1.12.0 "
+            cell("code", "%pip uninstall --yes torchao\n"
+                 "%pip install --quiet --no-deps transformers==5.16.1 accelerate==1.12.0 "
                  "bitsandbytes==0.50.2 peft==0.20.0 safetensors==0.8.0 Pillow==11.3.0\n"
                  "import importlib.metadata\n"
-                 "assert importlib.metadata.version('torch') == '2.11.0+cu128'\n"),
+                  "assert importlib.metadata.version('torch') == '2.11.0+cu128'\n"
+                 "try:\n"
+                 "    importlib.metadata.version('torchao')\n"
+                 "except importlib.metadata.PackageNotFoundError:\n"
+                 "    print('HALA_TORCHAO_OPTIONAL_RUNTIME_ABSENT')\n"
+                 "else:\n"
+                 "    raise RuntimeError('Incompatible optional torchao present after uninstall')\n"),
             cell("code", FONT_PREFLIGHT),
             cell("code", "import hashlib, json, subprocess, sys\n"
                  "from pathlib import Path\n"

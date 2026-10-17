@@ -22,7 +22,8 @@ def write(root):
         "source_commit": batch.SOURCE, "source_freeze_sha256": batch.FREEZE,
         "h19_manifest_sha256": batch.H19_MANIFEST,
         "adapter_manifest_sha256": batch.ADAPTER_MANIFEST,
-        "batch_profile_order": list(batch.MODES), "training_runs": 0,
+        "batch_profile_order": list(batch.MODES), "torchao_optional_runtime": "absent",
+        "training_runs": 0,
         "no_adoption": True}
     raw_assigned = canonical(assigned)
     (root / "assigned-hardware.json").write_bytes(raw_assigned)

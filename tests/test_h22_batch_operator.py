@@ -72,6 +72,16 @@ class H22BatchTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 batch.prepare(Path(temp) / "fresh")
 
+    def test_batch_explicitly_excludes_optional_old_torchao(self):
+        notebook.generate()
+        data = json.loads(notebook.DESTINATION.read_text(encoding="utf-8"))
+        package_cell = "".join(data["cells"][3]["source"])
+        self.assertIn("%pip uninstall --yes torchao", package_cell)
+        self.assertIn("HALA_TORCHAO_OPTIONAL_RUNTIME_ABSENT", package_cell)
+        self.assertIn("raise RuntimeError('Incompatible optional torchao present", package_cell)
+        self.assertIn("Unqualified optional torchao installation still present",
+                      batch.qualify.__code__.co_consts)
+
     def test_h22_completion_count_schema(self):
         payload = {"status": "measured", "summary": {
             "all": {"episodes": 8, "episodes_complete": 2},
