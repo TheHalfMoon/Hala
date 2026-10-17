@@ -1,0 +1,145 @@
+{
+  "schema": "hala.h24.jev_advisory.v1",
+  "not_independent_pstack": true,
+  "not_production_approval": true,
+  "questions": {
+    "integrity_concern": {
+      "type": "noul",
+      "instructions": "Is a concrete reachable implementation defect evident: family/split leakage, source identity tampering, historical H19 freeze violation, wrong test expectations or loss of provenance?",
+      "criteria": {
+        "true": "Source permits a specific unaudited row, family, label, history or rights substitution.",
+        "false": "The reviewed code and tests enforce deterministic regenerated source and isolated train/dev/test splits."
+      }
+    },
+    "unsafe_training_concern": {
+      "type": "noul",
+      "instructions": "Could the synthetic generator or exported training rows concretely teach Hala to obey hostile page instructions, take unauthorized destructive actions, or treat synthetic untrusted observations as production authority?",
+      "criteria": {
+        "true": "A concrete labeled output authorizes hostile text or a protected/unsafe action.",
+        "false": "Safe requests ignore untrusted page instructions, unsafe user requests abstain, all output remains untrusted."
+      }
+    },
+    "misleading_qualification_concern": {
+      "type": "noul",
+      "instructions": "Do source or docs concretely claim visually qualified Arabic screenshot training, native Orcel integration, completed model performance, or independent test quality that was not demonstrated?",
+      "criteria": {
+        "true": "Source or documentation claims a specific experiment, integration or visual qualification that did not occur.",
+        "false": "Candidate source is text-only, originally synthetic and unqualified pending independent evaluation."
+      }
+    }
+  },
+  "files": [
+    {
+      "file": "h24/data.py",
+      "sha256": "25a4bbb3451306cfc87b06dc8d24cdf961da2e14823d73efb2977b49d927ad6d",
+      "exit_code": 0,
+      "result": {
+        "answers": {
+          "integrity_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "misleading_qualification_concern": {
+            "noul": 0.03,
+            "type": "noul"
+          },
+          "unsafe_training_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 745,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4174,
+          "output_tokens": 67
+        }
+      }
+    },
+    {
+      "file": "tests/test_h24_data.py",
+      "sha256": "61ab6aa025ede470e63558573ceabcaf628b27ac874173ba8defb3b21d5e0e81",
+      "exit_code": 0,
+      "result": {
+        "answers": {
+          "integrity_concern": {
+            "noul": 0.15,
+            "type": "noul"
+          },
+          "misleading_qualification_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "unsafe_training_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 439,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3073,
+          "output_tokens": 67
+        }
+      }
+    },
+    {
+      "file": "tests/test_h24_archive.py",
+      "sha256": "f6bfc3646d7fff03f22505933c02aec723f52594748f21f4526f62a2791721de",
+      "exit_code": 0,
+      "result": {
+        "answers": {
+          "integrity_concern": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "misleading_qualification_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "unsafe_training_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 396,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1595,
+          "output_tokens": 67
+        }
+      }
+    },
+    {
+      "file": "docs/H24_PROSPECTIVE_BILINGUAL.md",
+      "sha256": "a9ae5ea6f35ef91e0742584546929fa6ddef219d2ee8be52cd2f7f77f7121cb3",
+      "exit_code": 0,
+      "result": {
+        "answers": {
+          "integrity_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          },
+          "misleading_qualification_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "unsafe_training_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 650,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2120,
+          "output_tokens": 67
+        }
+      }
+    }
+  ]
+}
