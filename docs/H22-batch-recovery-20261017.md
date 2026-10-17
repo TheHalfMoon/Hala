@@ -21,3 +21,19 @@ Local scoped 8 tests pass; full 263 tests pass with one skipped. Graft build/che
 ## Bounded result integrity repair
 
 The first batch draft incorrectly read summary.complete, a field absent from the historical H22 result schema. The corrected operator validates measured summary.all/en/ar episodes and episodes_complete (8/4/4), rejects bool/fabricated/missing/mismatched counts, records per-language completions, and preserves raw ZIP evidence if result parsing fails. Two regression tests require these exact boundaries. This changes batch reporting/retention only, not the pinned scientific inference source, adapter, data or earlier results. Kaggle execution and PStack still UNQUALIFIED.
+
+## Independent Saved Version retrieval verifier
+
+The CPU-only command python -m tools.verify_h22_batch SAVED_VERSION_RESULTS --report NEW_REPORT.json
+takes the **downloaded** hala-h22-batch/results directory and fails closed unless
+all three FP16/int8/NF4 archives, per-profile raw JSON, SHA256 hashes, the
+reviewed operator source bytes, original historical-source/model/adapter identities,
+bilingual task summaries, exact saved assigned GPU UUID, and original loss labels
+are mutually consistent. A successful audit confirms record integrity **only**.
+It does not attest that Kaggle actually assigned the reported GPU, that a paid
+service was avoided, that model behavior generalizes, or that training/release is
+approved.
+
+The source audit and synthetic fault-injection tests can be completed **before**
+Kaggle use. At this writing there is no completed new Kaggle batch, saved-version
+retrieval, PStack qualification, or independent production/security release gate.

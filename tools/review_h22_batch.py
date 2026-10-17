@@ -10,7 +10,8 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ("tools/h22_batch_operator.py", "tools/generate_h22_batch.py",
-         "tests/test_h22_batch_operator.py")
+         "tools/verify_h22_batch.py", "tests/test_h22_batch_operator.py",
+         "tests/test_h22_batch_verifier.py")
 QUESTIONS = {
     "correctness_concern": {"type": "noul",
         "instructions": "Is a concrete reachable correctness defect, inconsistent hardware/data identity, or evidence retention bug evident in this source?",
