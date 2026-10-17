@@ -1,0 +1,121 @@
+{
+  "tool": "Jev genuine CLI",
+  "purpose": "advisory semantic review",
+  "billing": "Existing account; invoice/cost unverified; no credit purchase",
+  "pstack_status": "UNAVAILABLE; independent PStack gate remains blocked",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is a concrete reachable correctness defect, inconsistent hardware/data identity, or evidence retention bug evident in this source?",
+      "criteria": {
+        "true": "A demonstrated design path can mismatch results, overwrite evidence, or misattribute a batch.",
+        "false": "No evident reachable defect in this file's stated bounded scope."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does the implementation evidently bypass environment, source hashes, safe ZIP extraction, authentication, authority, or spending controls?",
+      "criteria": {
+        "true": "A concrete attacker-controlled input or authority path violates one of the named protections.",
+        "false": "Source contains bounded synthetic evaluation with reviewed external trust checks."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does the source conflate preflight, experimental batch outputs, real saved-version public retention, or release qualification?",
+      "criteria": {
+        "true": "It claims durable/qualified outcomes before immutable retrieval and independent audit.",
+        "false": "It distinguishes prepared, executed, retrieved, audited, and adopted states."
+      }
+    }
+  },
+  "files": [
+    {
+      "file": "tools/h22_batch_operator.py",
+      "sha256": "44ace0839973b1f308f4bcfc46e864e83074bed6c17805e79edf9a940e72f84e",
+      "exit_code": 0,
+      "seconds": 0.6051,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.63,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.29,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 547,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 5304,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tools/generate_h22_batch.py",
+      "sha256": "9bd478985ac19bd6e53a7d5bcd8e017496064afa7fb78e5153cba0c6be3c765b",
+      "exit_code": 0,
+      "seconds": 0.5277,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.58,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 465,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1881,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tests/test_h22_batch_operator.py",
+      "sha256": "bdc7fd12089e7caecb8f1d72600b78954a677224a1ab32de27f7dd1acef1e8ad",
+      "exit_code": 0,
+      "seconds": 0.5491,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.26,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 479,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1606,
+          "output_tokens": 62
+        }
+      }
+    }
+  ]
+}

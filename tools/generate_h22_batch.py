@@ -1,0 +1,85 @@
+"""Generate the exact H22 Kaggle Save & Run All notebook; never submit it.
+
+Outputs a *prospective* batch artifact. Execution requires review and a free GPU.
+"""
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+OPERATOR = ROOT / "tools/h22_batch_operator.py"
+DESTINATION = ROOT / "training/platforms/h22-kaggle-batch/h22-kaggle-batch.ipynb"
+METADATA = ROOT / "training/platforms/h22-kaggle-batch/kernel-metadata.json"
+
+
+def cell(kind, value):
+    result = {"cell_type": kind, "metadata": {},
+              "source": value.splitlines(keepends=True)}
+    if kind == "code":
+        result.update(execution_count=None, outputs=[])
+    return result
+
+
+def generate():
+    raw = OPERATOR.read_bytes()
+    source = raw.decode("utf-8")
+    sha = hashlib.sha256(raw).hexdigest()
+    marker = "HALA_H22_BATCH_OPERATOR_SHA256"
+    notebook = {
+        "nbformat": 4, "nbformat_minor": 5,
+        "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python",
+                                     "name": "python3"}, "accelerator": "GPU",
+                     "hala_batch_operator_sha256": sha,
+                     "hala_source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+                     "hala_source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+                     "hala_adoption_qualified": False},
+        "cells": [
+            cell("markdown", "# Hala H22 Ã¢â‚¬â€ prospective TEST batch replication\n\n"
+                 "One free Kaggle Save & Run All version. No training, no paid compute, "
+                 "no production serving and no change to previous published outcomes. "
+                 "The 2026-10-17 earlier FP16 TEST stays independent; prior INT8 is unknown. "
+                 "The actual assigned T4 is bound on the batch worker before inference. "
+                 "Saved outputs require later retrieval, hashes, independent audits and publication. "
+                 "This notebook is NOT release qualification.\n"),
+            cell("code", "import os\n"
+                 "from pathlib import Path\n"
+                 "assert os.name == 'posix' and Path('/kaggle/working').is_dir()\n"
+                 "assert os.environ.get('KAGGLE_KERNEL_RUN_TYPE') == 'Batch'\n"
+                 "assert not Path('/kaggle/working/hala-h22-batch').exists(), 'Do not overwrite a prior run'\n"
+                 "# No model weights downloaded or GPU model allocated in this cell.\n"),
+            cell("markdown", "Qualify all pinned packages before model allocation. "
+                 "No paid plan, token, service credentials, quotas bypass or auto-upgrade. "
+                 "Installed Torch must already match the reviewed GPU environment.\n"),
+            cell("code", "%pip install --quiet --no-deps transformers==5.16.1 accelerate==1.12.0 "
+                 "bitsandbytes==0.50.2 peft==0.20.0 safetensors==0.8.0 Pillow==11.3.0\n"
+                 "import importlib.metadata\n"
+                 "assert importlib.metadata.version('torch') == '2.11.0+cu128'\n"),
+            cell("code", "import hashlib, json, subprocess, sys\n"
+                 "from pathlib import Path\n"
+                 f"data = {json.dumps(source, ensure_ascii=False)}\n"
+                 f"expected = {json.dumps(sha)}\n"
+                 "assert hashlib.sha256(data.encode('utf-8')).hexdigest() == expected\n"
+                 "path = Path('/kaggle/working/hala-h22-operator.py')\n"
+                 "assert not path.exists(), 'Do not overwrite existing operator source'\n"
+                 "path.write_bytes(data.encode('utf-8'))\n"
+                 "print('OPERATOR_SHA256', expected)\n"
+                 "subprocess.run([sys.executable, '-u', str(path)], check=True,\n"
+                 "               timeout=3*3700+1800)\n"
+                 "print('NO PUBLIC RESULT CLAIM UNTIL VERSION OUTPUT RETRIEVAL AND INDEPENDENT AUDIT')\n")
+        ]}
+    DESTINATION.parent.mkdir(parents=True, exist_ok=True)
+    METADATA.parent.mkdir(parents=True, exist_ok=True)
+    DESTINATION.write_text(json.dumps(notebook, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    metadata = {"id": "abdulazizshehri/hala-h22-test-batch-20261017",
+                "title": "Hala H22 TEST batch replication 20261017",
+                "code_file": "h22-kaggle-batch.ipynb", "language": "python",
+                "kernel_type": "notebook", "is_private": True,
+                "enable_gpu": True, "enable_tpu": False, "enable_internet": True,
+                "dataset_sources": [], "competition_sources": [], "kernel_sources": [],
+                "model_sources": []}
+    METADATA.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    return sha
+
+
+if __name__ == "__main__":
+    print(generate())
