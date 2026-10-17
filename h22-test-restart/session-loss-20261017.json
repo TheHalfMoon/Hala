@@ -1,0 +1,20 @@
+{
+  "schema": "hala.h22.test_restart.session_loss.v1",
+  "observed_utc": "2026-10-17T01:36:58Z",
+  "last_observed_running_profile": "profile-1-int8-test",
+  "int8_outcome": "unknown_unretrieved",
+  "nf4_started": false,
+  "fp16_durably_retained": true,
+  "fp16_artifact_commit": "9568d58c74f3e1326b55b04d304f643e2bf1b99f",
+  "fp16_archive_sha256": "e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471",
+  "prior_gpu_uuid": "GPU-14ac1f01-0bec-e9da-d360-51d417657b16",
+  "post_prompt_gpu_uuid": "GPU-03aae395-31be-2f7f-cd7b-df37a93c6819",
+  "post_prompt_experiment_root_exists": false,
+  "post_prompt_int8_status_exists": false,
+  "post_prompt_int8_archive_exists": false,
+  "new_empty_allocation_stopped": true,
+  "h23_started": false,
+  "explanation": "Interactive inactivity prompt appeared after a multi-hour conversation pause. Continue editing created a fresh empty allocation. No int8 result was exported before expiry; completion or failure cannot be inferred.",
+  "next_retention_method": "Prepare independently reviewed Kaggle Save and Run All batch with saved version outputs, subject to explicit prospective amendment and actual retrieval verification.",
+  "qualification": false
+}
