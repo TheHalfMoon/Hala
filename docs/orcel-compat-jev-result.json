@@ -1,0 +1,26 @@
+{
+  "error": null,
+  "exit_code": 0,
+  "independent_pstack_judge": false,
+  "response": {
+    "answers": {
+      "contract_integrity": {
+        "noul": 0.02,
+        "type": "noul"
+      }
+    },
+    "latency_ms": 601,
+    "model": "jev-1.13.0",
+    "ok": true,
+    "usage": {
+      "input_tokens": 2231,
+      "output_tokens": 23
+    }
+  },
+  "source_files": {
+    "README.md": "b77c844b5d8090dbb0a68654e0974e8d395ddbef329014e493b6c78c2e7d4ceb",
+    "docs/ORCEL_INTEGRATION.md": "46fc20ef5398f11dbcfee01eae1f2139d2114eed41d98f8c9f775cd4640dad64"
+  },
+  "tool": "jev ask",
+  "type": "advisory"
+}
