@@ -1,4 +1,4 @@
-# H22 â€” prospective free Kaggle Save & Run All recovery
+# H22 Ã¢â‚¬â€ prospective free Kaggle Save & Run All recovery
 
 Status: PREPARED / NOT SUBMITTED / NOT INDEPENDENTLY QUALIFIED. Date 2026-10-17.
 
@@ -17,3 +17,7 @@ No Aladdin work was changed and no model/precision is adopted.
 ## Observed source checks, 2026-10-17
 
 Local scoped 8 tests pass; full 263 tests pass with one skipped. Graft build/check succeeded on a 991-node wiring graph; deep semantic layer unavailable and does not establish correctness. Real Jev 1.13.0 completed three file reviews, with advisory correctness-concern probabilities 0.63 (operator), 0.58 (generator), and 0.26 (tests), without blocking rationale. These values are not security approval. PStack executable/integration is unavailable in this session; mandatory independent review remains BLOCKED. No Kaggle batch submitted; no actual new assigned hardware, precision run, output retrieval, artifact publication, merge or production adoption has occurred.
+
+## Bounded result integrity repair
+
+The first batch draft incorrectly read summary.complete, a field absent from the historical H22 result schema. The corrected operator validates measured summary.all/en/ar episodes and episodes_complete (8/4/4), rejects bool/fabricated/missing/mismatched counts, records per-language completions, and preserves raw ZIP evidence if result parsing fails. Two regression tests require these exact boundaries. This changes batch reporting/retention only, not the pinned scientific inference source, adapter, data or earlier results. Kaggle execution and PStack still UNQUALIFIED.

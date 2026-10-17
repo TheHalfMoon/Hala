@@ -198,6 +198,28 @@ def qualify(source, output):
     return report
 
 
+
+def completion_counts(result):
+    """Independent schema guard for measured eight-episode bilingual H19 result."""
+    if type(result) is not dict or result.get("status") != "measured":
+        raise ValueError("Only fully measured results have completion counts")
+    summary = result.get("summary")
+    if type(summary) is not dict or not {"all", "en", "ar"}.issubset(summary):
+        raise ValueError("H19 language summary missing")
+    completed = {}
+    for language, total in (("all", 8), ("en", 4), ("ar", 4)):
+        section = summary[language]
+        if type(section) is not dict or type(section.get("episodes")) is not int or section["episodes"] != total:
+            raise ValueError("Unexpected H19 episode count")
+        value = section.get("episodes_complete")
+        if type(value) is not int or not 0 <= value <= total:
+            raise ValueError("Invalid independently verified completion count")
+        completed[language] = value
+    if completed["all"] != completed["en"] + completed["ar"]:
+        raise ValueError("Per-language verified completion counts disagree")
+    return completed
+
+
 def run(root=ROOT):
     source = prepare(root)
     results = root / "results"
@@ -253,13 +275,19 @@ def run(root=ROOT):
             record["error_type"] = type(error).__name__
         result = folder / "run" / "result.json"
         if result.is_file():
-            content = result.read_bytes()
-            record["result_sha256"] = digest(content)
-            measured = json.loads(content)
-            record["result_status"] = measured.get("status")
-            record["complete_tasks"] = measured.get("summary", {}).get("complete")
-            if measured.get("gpu_uuid") != assigned["gpu_uuid"]:
-                record["status"] = "physical_device_mismatch"
+            try:
+                content = result.read_bytes()
+                record["result_sha256"] = digest(content)
+                measured = json.loads(content)
+                record["result_status"] = measured.get("status")
+                record["completed_by_language"] = completion_counts(measured)
+                if measured.get("gpu_uuid") != assigned["gpu_uuid"]:
+                    record["status"] = "physical_device_mismatch"
+            except (OSError, ValueError, TypeError, KeyError) as error:
+                # Malformed/incomplete GPU output must NOT suppress archival of
+                # the raw file, stdout, exit status, and previous profiles.
+                record["status"] = "invalid_result"
+                record["result_record_error"] = type(error).__name__
         record["finished_unix"] = time.time()
         atomic_json(folder / "profile-status.json", record)
         archive = results / (name + "-evidence.zip")

@@ -72,6 +72,27 @@ class H22BatchTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 batch.prepare(Path(temp) / "fresh")
 
+    def test_h22_completion_count_schema(self):
+        payload = {"status": "measured", "summary": {
+            "all": {"episodes": 8, "episodes_complete": 2},
+            "en": {"episodes": 4, "episodes_complete": 2},
+            "ar": {"episodes": 4, "episodes_complete": 0}}}
+        self.assertEqual(batch.completion_counts(payload), {"all": 2, "en": 2, "ar": 0})
+        payload["summary"]["en"]["episodes_complete"] = 4
+        with self.assertRaises(ValueError):
+            batch.completion_counts(payload)
+
+    def test_h22_completion_missing_and_false_zero_rejected(self):
+        with self.assertRaises(ValueError):
+            batch.completion_counts({"status": "measured", "summary": {"complete": 2}})
+        with self.assertRaises(ValueError):
+            batch.completion_counts({"status": "blocked", "summary": {}})
+        with self.assertRaises(ValueError):
+            batch.completion_counts({"status": "measured", "summary": {
+                "all": {"episodes": 8, "episodes_complete": False},
+                "en": {"episodes": 4, "episodes_complete": 0},
+                "ar": {"episodes": 4, "episodes_complete": 0}}})
+
     def test_notebook_source_is_embedded_exactly(self):
         original = notebook.OPERATOR.read_bytes()
         digest = notebook.generate()
