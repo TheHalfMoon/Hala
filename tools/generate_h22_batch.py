@@ -20,6 +20,49 @@ def cell(kind, value):
     return result
 
 
+
+FONT_PREFLIGHT = r"""# Restore EXACT qualified font from hash-pinned official Ubuntu package.
+import hashlib, io, tarfile, urllib.request
+from pathlib import Path
+
+PACKAGE_URL = "https://archive.ubuntu.com/ubuntu/pool/main/f/fonts-dejavu/fonts-dejavu-core_2.37-8_all.deb"
+PACKAGE_SHA = "40049660c194f3b8a2541fc7369efebb10e9f94bdac836a2f38fafedd10fa73a"
+FONT_SHA = "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+target = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
+sha = lambda b: hashlib.sha256(b).hexdigest()
+if target.exists():
+    assert target.is_file() and not target.is_symlink()
+    assert sha(target.read_bytes()) == FONT_SHA, "Existing system font differs from frozen media"
+else:
+    with urllib.request.urlopen(PACKAGE_URL, timeout=45) as response:
+        assert response.geturl() == PACKAGE_URL, "Unexpected archive redirect"
+        package = response.read(2 * 1024**2 + 1)
+    assert len(package) <= 2 * 1024**2 and sha(package) == PACKAGE_SHA
+    assert package.startswith(b"!<arch>\n")
+    cursor, found = 8, []
+    while cursor + 60 <= len(package):
+        hdr = package[cursor:cursor+60]
+        size = int(hdr[48:58].strip())
+        name = hdr[:16].decode("ascii").strip().rstrip("/")
+        assert 0 <= size <= len(package)-cursor-60
+        data = package[cursor+60:cursor+60+size]
+        if name.startswith("data.tar."):
+            with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
+                for member in tar.getmembers():
+                    if member.name.lstrip("./") == "usr/share/fonts/truetype/dejavu/DejaVuSans.ttf":
+                        assert member.isfile() and member.size == 759720
+                        payload = tar.extractfile(member).read(1024*1024)
+                        assert len(payload) == member.size and sha(payload) == FONT_SHA
+                        found.append(payload)
+        cursor += 60 + size + size % 2
+    assert len(found) == 1, "Exactly one pinned font asset required"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with target.open("xb") as output:
+        output.write(found[0])
+assert sha(target.read_bytes()) == FONT_SHA, "Qualified font unavailable"
+print("HALA_H22_PINNED_FONT_QUALIFIED", FONT_SHA)
+"""
+
 def generate():
     raw = OPERATOR.read_bytes()
     source = raw.decode("utf-8")
@@ -34,7 +77,7 @@ def generate():
                      "hala_source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
                      "hala_adoption_qualified": False},
         "cells": [
-            cell("markdown", "# Hala H22 Ã¢â‚¬â€ prospective TEST batch replication\n\n"
+            cell("markdown", "# Hala H22 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â prospective TEST batch replication\n\n"
                  "One free Kaggle Save & Run All version. No training, no paid compute, "
                  "no production serving and no change to previous published outcomes. "
                  "The 2026-10-17 earlier FP16 TEST stays independent; prior INT8 is unknown. "
@@ -54,6 +97,7 @@ def generate():
                  "bitsandbytes==0.50.2 peft==0.20.0 safetensors==0.8.0 Pillow==11.3.0\n"
                  "import importlib.metadata\n"
                  "assert importlib.metadata.version('torch') == '2.11.0+cu128'\n"),
+            cell("code", FONT_PREFLIGHT),
             cell("code", "import hashlib, json, subprocess, sys\n"
                  "from pathlib import Path\n"
                  f"data = {json.dumps(source, ensure_ascii=False)}\n"
@@ -70,7 +114,7 @@ def generate():
     DESTINATION.parent.mkdir(parents=True, exist_ok=True)
     METADATA.parent.mkdir(parents=True, exist_ok=True)
     DESTINATION.write_text(json.dumps(notebook, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    metadata = {"id": "abdulazizshehri/hala-h22-test-batch-20261017",
+    metadata = {"id": "abdulazizshehri/hala-h22-test-batch-replication-20261017",
                 "title": "Hala H22 TEST batch replication 20261017",
                 "code_file": "h22-kaggle-batch.ipynb", "language": "python",
                 "kernel_type": "notebook", "is_private": True,

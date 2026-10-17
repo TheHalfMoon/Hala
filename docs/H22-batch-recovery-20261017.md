@@ -37,3 +37,24 @@ approved.
 The source audit and synthetic fault-injection tests can be completed **before**
 Kaggle use. At this writing there is no completed new Kaggle batch, saved-version
 retrieval, PStack qualification, or independent production/security release gate.
+
+## Kaggle Batch V1 — recorded infrastructure failure and bounded repair
+
+Version 1: https://www.kaggle.com/code/abdulazizshehri/hala-h22-test-batch-replication-20261017
+was submitted by Kaggle CLI and ended ERROR before any precision profile ran.
+Kaggle stderr reported FileNotFoundError during qualification for system font
+/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf. Retained batch-status.json is
+preparing with zero profiles. No real FP16/int8/NF4 results exist from V1.
+
+The exact original font SHA256 ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280
+was independently located in the official Ubuntu 2.37-8 fonts-dejavu-core package
+with archive SHA256 40049660c194f3b8a2541fc7369efebb10e9f94bdac836a2f38fafedd10fa73a.
+The Kaggle setup cell now retrieves this small pinned public package, extracts
+ONLY the matching font, checks both digests, and installs it in the original
+qualified system-font location BEFORE invoking the unchanged H22 operator.
+It does not replace the frozen task images, results, source, model, adapter,
+training data, prompts or precision order.
+
+The modified Notebook is still prospective until remote execution and independent
+Saved Version retrieval. No V1 measured test outcome is claimed. No paid resource
+was activated and no model weights were downloaded to the founder's PC.
