@@ -48,7 +48,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 745,
+        "latency_ms": 652,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -76,7 +76,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 439,
+        "latency_ms": 528,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -92,7 +92,7 @@
       "result": {
         "answers": {
           "integrity_concern": {
-            "noul": 0.11,
+            "noul": 0.12,
             "type": "noul"
           },
           "misleading_qualification_concern": {
@@ -104,7 +104,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 396,
+        "latency_ms": 465,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -115,7 +115,7 @@
     },
     {
       "file": "docs/H24_PROSPECTIVE_BILINGUAL.md",
-      "sha256": "a9ae5ea6f35ef91e0742584546929fa6ddef219d2ee8be52cd2f7f77f7121cb3",
+      "sha256": "bf826bd7c93ed28afe44ca78f3505ef58b09ff09f0d6b72a6fe1a38681a083a4",
       "exit_code": 0,
       "result": {
         "answers": {
@@ -132,11 +132,11 @@
             "type": "noul"
           }
         },
-        "latency_ms": 650,
+        "latency_ms": 601,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 2120,
+          "input_tokens": 2160,
           "output_tokens": 67
         }
       }

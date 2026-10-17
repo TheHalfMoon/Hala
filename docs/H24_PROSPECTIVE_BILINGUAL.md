@@ -1,4 +1,4 @@
-# H24 â€” independent bilingual synthetic development candidate
+# H24 - independent bilingual synthetic development candidate
 
 **Status:** H24 source and data-projection engineering only. Not model training,
 HalaType visual SFT, validated Arabic shaping, an actual HalaMind baseline,
