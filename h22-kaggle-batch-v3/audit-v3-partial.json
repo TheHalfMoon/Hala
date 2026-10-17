@@ -1,0 +1,46 @@
+{
+  "all_three_profiles_measured": false,
+  "batch_status": "completed_with_blockers",
+  "earlier_lost_int8_result": "unknown",
+  "foundation_or_release_qualified": false,
+  "full_triplet_qualified": false,
+  "gpu_uuid": "GPU-0712fe0b-f3ad-30ac-e420-9ad77e59fdbe",
+  "limitations": "Byte-verified downloaded raw ZIPs and identity/summary consistency only; no independent GPU attestation",
+  "pinned_source": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "previous_fp16_archive_preserved": "e098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471",
+  "profiles": [
+    {
+      "archive_sha256": "d2c0fec245d57af458383c0064b3d714c1d3b3b788082b72c75e40e732ce44f2",
+      "completed": null,
+      "precision": "fp16",
+      "record_status": "blocked",
+      "result_sha256": "210341c0c33622155d2b0e7bbde5c7f99b1f514d05b86a9aa09c1d30ad017391",
+      "status": "invalid_result"
+    },
+    {
+      "archive_sha256": "3c22036a2492230c7b33f3a79c0860dda5d636546866c6c6f710e143ad44ebcb",
+      "completed": {
+        "all": 0,
+        "ar": 0,
+        "en": 0
+      },
+      "precision": "int8",
+      "record_status": "measured",
+      "result_sha256": "15ef87bc7b8902de54d03cb72ebfa1e444368ae1a9ad1e44af4ad55c8bfd2341",
+      "status": "finished"
+    },
+    {
+      "archive_sha256": "06c11e85ed20e56c6ea45c33c1ab6d9012add30e474f0f88c4072b917697501f",
+      "completed": {
+        "all": 2,
+        "ar": 0,
+        "en": 2
+      },
+      "precision": "nf4",
+      "record_status": "measured",
+      "result_sha256": "d68f29e47f53b23d7ec99dd9cfac96f039b9888f45055a45cf5bee692512073c",
+      "status": "finished"
+    }
+  ],
+  "schema": "hala.h22.v3.partial_evidence_independent.v1"
+}
