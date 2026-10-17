@@ -1,0 +1,1251 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H21c-shared-quality-pilot.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 23
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 23,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# Shared Mind/Type pilot operation"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Implemented source is unexecuted against a model. CPU fixtures establish contract behavior only; training, archive retention, fresh-session reload, quality and native execution remain unqualified."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Before training, archive the genuine H21b measured development result and obtain its SHA256 independently. The baseline can use an earlier source commit if the loaded runtime file bytes and frozen H19 implementation/data/settings are identical. The baseline's own immutable source commit is recorded separately from the exact clean training commit. Training requires measured development episode failure or a development Mind semantic deficit; the standalone test Mind diagnostics cannot trigger training."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "After the baseline and final training source commit are known, construct the identity dictionary with `base_model`, `base_revision`, `source_commit`, `data_sha256` (H19 dataset file hash), and `evaluation_sha256` (actual baseline file hash). Call `training.adapter_archive.create_bundle` with an empty source directory and `kind='pretraining_roundtrip'`. Commit this harmless manifest to the authorized experimental artifact branch in `TheHalfMoon/Hala`, verify the signed immutable commit, download those exact public bytes into a different directory and externally verify the manifest SHA. Supply that downloaded directory to the trainer. The earlier legacy public probe has a different schema and is insufficient for this interface. A typed commit string alone cannot establish a network roundtrip: the coordinating operator must actually retrieve and independently inspect the pinned commit before invoking training."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "On approved free Linux Colab, with exact torch2.11.0 / transformers5.16.1 / peft0.20.0 / Pillow11.3.0 and explicit `HALA_REMOTE_DEVELOPMENT_ALLOWED=1` plus `HALA_REMOTE_TRAINING_ALLOWED=1`:"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "```text"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "python -m training.scripts.train_development --bundle H19_DIRECTORY --manifest-sha256 H19_EXTERNAL_SHA --baseline ACTUAL_BASELINE_JSON --baseline-sha256 BASELINE_EXTERNAL_SHA --source-commit CLEAN_TRAINING_COMMIT --probe DOWNLOADED_PROBE_DIRECTORY --probe-sha256 PROBE_EXTERNAL_SHA --probe-commit VERIFIED_ARTIFACT_COMMIT --repository TheHalfMoon/Hala --output NEW_OUTPUT_DIRECTORY"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "```"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "No flags vary the schedule. The output directory must be new. The single authored epoch derives 116 steps after excluding 20 Reliance examples from the independently reconstructed 136 rows. Each row's completion prefix is checked on actual expanded processor tokens before model allocation and again during training. Mind receives text only; Type receives the current SHA-verified 800x600 PNG. Raw audit state is removed by projection."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "`result.json` is atomically updated with each step's loss, norm, changed tensors, seconds and device memory samples. Memory telemetry is best effort: completed-step evidence is appended before sampling; failures produce null plus a bounded exception class and cannot prevent final persistence or replace the training error. The baseline is hashed and parsed from the same bounded16MiB read; Type PNG reads are bounded2MiB. A final immutable paired checkpoint uses the existing checkpoint publisher and records schedule/data/manifest identities. Its `resume.pt` is local trusted optimizer/RNG state and must never be exported; this pilot has no automatic resume or schedule modification. Failure remains recorded; do not present partial or failed runs as a trained adapter."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "`adapter-bundle/` contains only exact original PEFT safetensors/config plus bounded training metadata and the canonical archive manifest. The archive checker requires the full112-tensor inventory. The trainer never edits PEFT config to satisfy archive validation. If official saved bytes are unsupported, retain the failure and fix/review the validator separately. Transfer only this bounded bundle and bounded reports to the authorized signed artifact branch, then independently retrieve and verify the public immutable artifact commit and external SHA before resetting Colab. `trained_pending_durable_archive` explicitly means retention has not yet been established."
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "For fresh-session evaluation, call `verified_adapter_path(directory, expected_identity, external_manifest_sha256)` before `PeftModel.from_pretrained(base, validated_path, is_trainable=False, ...)`. The helper rejects harmless probes and verifies all archive files before returning a path. The evaluation runtime's adapter loading remains disabled until the coordinating integration wires this seam and passes independent review. Evaluate the retained bytes under identical frozen tasks/settings; preserve failure or no improvement, and keep held-out outputs separate."
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "CPU verification: ten new unit tests cover row reconstruction/projection, coherent relabeling after manifest rehash, text-only processor behavior, completion masking, Type media/path errors, actual baseline identity/summary/deficit gates, externally anchored roundtrip identity rejection, completed-step/final telemetry failures, and sparse oversized-baseline rejection before hashing. They use explicitly synthetic fixtures and perform no model work."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H21c-shared-quality-pilot.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 11
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 11,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H21c shared quality pilot"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: implemented CPU contracts; independent review and real remote execution pending."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Build a separate semantic training loader and one shared rank4 language q/v LoRA pilot, preserving the historical action loader and H18 audit. Require the external H19 manifest SHA, reconstruction of authored rows/labels and media, unchanged actual H21b baseline with matching model/runtime bytes/settings/data/source, a measured development deficit, and a verified harmless archival roundtrip before model allocation."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "The fixed schedule is seed42, authored row order, one epoch, batch1, accumulation1, FP16 scaler initial1.0, AdamW5e-5, rank4/alpha8/dropout0, gradient clipping1.0. Derive steps from selected authored Mind/Type rows: 116 of 136; exclude all 20 Reliance rows and all held-out episodes/Mind diagnostics. Mind is text only; Type uses its current verified PNG. No private simulator state reaches the processor. No held-out test selection, tuning, retries with changed schedules, or invented quality claims."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Acceptance: external identity mismatches, coherent label tampering, media drift, prefix-token drift and baseline/probe failures fail closed; only language adapter parameters train (112 tensors /802816 elements); nonfinite loss/gradients/updates and zero updates abort; use existing atomic checkpoint and identity helpers; archive exact original PEFT adapter bytes through reviewed bounded safetensors bundler; record losses, changes, timings, memory and identities. A fresh-session seam verifies the external manifest before returning a path for PEFT loading. The trainer does not upload or accept cloud credentials. Founder/root persistence and actual fresh-session evaluation remain required."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "No local weights, GPU execution, ML package installation or paid resources are part of this implementation. Required Jev, Graft, independent PStack correctness/security review, signed DCO commits and exact-source CI are owned by the coordinating session and remain incomplete here."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_training.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 215
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 215,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"CPU contract tests. Fixtures are synthetic; they claim no model execution.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "from development.data import build_dataset, canonical"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from development.freeze import freeze_bundle"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from development.media import FONT_SHA256"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from evaluation import development_runtime as runtime"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from training.adapter_archive import create_bundle"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "from training.development_data import encode_row, load_rows"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from training.scripts.train_development import (digest, preflight, SCHEDULE,"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "                                               validate_baseline, verified_adapter_path)"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "def fake_render(episode, state, path, font):"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    path = Path(path)"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "    path.parent.mkdir(parents=True, exist_ok=True)"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "    raw = b'\\x89PNG\\r\\n\\x1a\\nunit-fixture'"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "    path.write_bytes(raw)"
+            }
+          ],
+          "dropped": 191
+        }
+      ]
+    },
+    {
+      "path": "training/development_data.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 69
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 69,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Reviewed semantic Mind/Type training projection; historical action loader unchanged.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "from development.freeze import verify_bundle"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "from evaluation.development_runtime import check_settings"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from training.artifacts import artifact_path"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "from training.masking import completion_labels"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "def load_rows(bundle, manifest_sha256):"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    root = Path(bundle).resolve()"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    manifest = verify_bundle(root, require_media=True, expected_manifest_sha256=manifest_sha256)"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    check_settings(json.loads((root / 'settings.json').read_text(encoding='utf-8')))"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    # verify_bundle independently reconstructs ALL authored rows and deterministic"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    # labels, including family allocation and media identities, before projection."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    materialized = [json.loads(line) for line in (root / 'training-rows.jsonl').read_text(encoding='utf-8').splitlines()]"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "    selected = []"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "    for row in materialized:"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        if row['component'] == 'reliance':"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            continue"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        if row['split'] != 'train' or row['component'] not in ('mind', 'type'):"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            raise ValueError('Only authored train Mind/Type rows allowed')"
+            }
+          ],
+          "dropped": 45
+        }
+      ]
+    },
+    {
+      "path": "training/scripts/train_development.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 281
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 281,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"One predeclared shared Mind/Type epoch. Remote Colab only; no upload credentials.\"\"\""
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import shutil"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "from evaluation.development_runtime import (MODEL_ID, REVISION, SETTINGS, VERSIONS,"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "                                           check_digest, memory_sample, remote_guard, summarize)"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "from training.adapter_archive import create_bundle, verify_bundle, TARGET_PATTERN"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "from training.artifacts import strict_json"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from training.checkpoints import atomic_json, publish_checkpoint"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "from training.development_data import encode_row, load_rows"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "from training.scripts.train_adapter import create_training_scaler"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "SCHEDULE = {'seed': 42, 'epochs': 1, 'batch_size': 1, 'gradient_accumulation': 1,"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "            'learning_rate': 5e-5, 'rank': 4, 'alpha': 8, 'dropout': 0,"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "            'precision': 'fp16', 'initial_scale': 1.0, 'row_order': 'authored',"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "            'optimizer': 'AdamW', 'max_grad_norm': 1.0}"
+            }
+          ],
+          "dropped": 257
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H21c-shared-quality-pilot.md",
+    "specs/H21c-shared-quality-pilot.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.baseline_fixture",
+      "name": "baseline_fixture",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L61-L74",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.setUp",
+      "name": "setUp",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L52-L59",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_baseline_identity_summary_and_deficit_enforced",
+      "name": "test_baseline_identity_summary_and_deficit_enforced",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L120-L137",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_completed_step_persists_when_memory_sampling_raises.unavailable",
+      "name": "unavailable",
+      "kind": "function",
+      "path": "tests/test_development_training.py",
+      "span": "L172-L173",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_final_telemetry_failure_preserves_original_training_error.unavailable",
+      "name": "unavailable",
+      "kind": "function",
+      "path": "tests/test_development_training.py",
+      "span": "L188-L189",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_mind_processor_text_only_and_prefix_mask",
+      "name": "test_mind_processor_text_only_and_prefix_mask",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L102-L111",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_oversized_baseline_rejected_before_hash_read",
+      "name": "test_oversized_baseline_rejected_before_hash_read",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L203-L211",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_rederived_rows_exclude_reliance_and_private_state",
+      "name": "test_rederived_rows_exclude_reliance_and_private_state",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L76-L87",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_roundtrip_identity_and_training_seam",
+      "name": "test_roundtrip_identity_and_training_seam",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L139-L161",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_schedule_is_single_authored_epoch",
+      "name": "test_schedule_is_single_authored_epoch",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L163-L167",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_tampered_coherent_label_and_external_hash_rejected",
+      "name": "test_tampered_coherent_label_and_external_hash_rejected",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L89-L100",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_type_media_digest_and_path_rejected_before_processor",
+      "name": "test_type_media_digest_and_path_rejected_before_processor",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L113-L118",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#fake_render",
+      "name": "fake_render",
+      "kind": "function",
+      "path": "tests/test_development_training.py",
+      "span": "L20-L26",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#IDs.__getitem__",
+      "name": "__getitem__",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L33-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#IDs.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L31-L32",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#IDs.tolist",
+      "name": "tolist",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L35-L36",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#Processor.__call__",
+      "name": "__call__",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L45-L48",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#Processor.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L40-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_training.py#Processor.apply_chat_template",
+      "name": "apply_chat_template",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L42-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "training/development_data.py#encode_row",
+      "name": "encode_row",
+      "kind": "function",
+      "path": "training/development_data.py",
+      "span": "L33-L69",
+      "wholeFile": false
+    },
+    {
+      "id": "training/development_data.py#load_rows",
+      "name": "load_rows",
+      "kind": "function",
+      "path": "training/development_data.py",
+      "span": "L12-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#bounded_bytes",
+      "name": "bounded_bytes",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L55-L64",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#digest",
+      "name": "digest",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L67-L68",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#finalize_training_result",
+      "name": "finalize_training_result",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L44-L52",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L272-L277",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#preflight",
+      "name": "preflight",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L120-L135",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#read_json",
+      "name": "read_json",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L71-L75",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#record_completed_step",
+      "name": "record_completed_step",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L37-L41",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#record_memory",
+      "name": "record_memory",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L28-L34",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#train.writer",
+      "name": "writer",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L248-L252",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#validate_baseline",
+      "name": "validate_baseline",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L78-L109",
+      "wholeFile": false
+    },
+    {
+      "id": "training/scripts/train_development.py#verified_adapter_path",
+      "name": "verified_adapter_path",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L112-L117",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_mind_processor_text_only_and_prefix_mask",
+      "name": "test_mind_processor_text_only_and_prefix_mask",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L102-L111",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_type_media_digest_and_path_rejected_before_processor",
+      "name": "test_type_media_digest_and_path_rejected_before_processor",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L113-L118",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_development.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L138-L269",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_rederived_rows_exclude_reliance_and_private_state",
+      "name": "test_rederived_rows_exclude_reliance_and_private_state",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L76-L87",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_tampered_coherent_label_and_external_hash_rejected",
+      "name": "test_tampered_coherent_label_and_external_hash_rejected",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L89-L100",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_development.py#preflight",
+      "name": "preflight",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L120-L135",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_development.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "training/scripts/train_development.py",
+      "span": "L272-L277",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_oversized_baseline_rejected_before_hash_read",
+      "name": "test_oversized_baseline_rejected_before_hash_read",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L203-L211",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_roundtrip_identity_and_training_seam",
+      "name": "test_roundtrip_identity_and_training_seam",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L139-L161",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_final_telemetry_failure_preserves_original_training_error",
+      "name": "test_final_telemetry_failure_preserves_original_training_error",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L184-L201",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/scripts/train_development.py",
+      "name": "train_development.py",
+      "kind": "file",
+      "path": "training/scripts/train_development.py",
+      "span": "L1-L282",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_completed_step_persists_when_memory_sampling_raises",
+      "name": "test_completed_step_persists_when_memory_sampling_raises",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L169-L182",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "training/checkpoints.py#publish_checkpoint",
+      "name": "publish_checkpoint",
+      "kind": "function",
+      "path": "training/checkpoints.py",
+      "span": "L117-L150",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_training.py#DevelopmentTrainingTests.test_baseline_identity_summary_and_deficit_enforced",
+      "name": "test_baseline_identity_summary_and_deficit_enforced",
+      "kind": "method",
+      "path": "tests/test_development_training.py",
+      "span": "L120-L137",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_completed_resume_finalizes_with_previous_metrics_and_update_evidence",
+      "name": "test_completed_resume_finalizes_with_previous_metrics_and_update_evidence",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L160-L169",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_corruption_missing_extra_files_and_identity_change_reject_resume",
+      "name": "test_corruption_missing_extra_files_and_identity_change_reject_resume",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L137-L158",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_interrupted_write_preserves_previous_complete_checkpoint",
+      "name": "test_interrupted_write_preserves_previous_complete_checkpoint",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L106-L118",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_interruption_after_version_rename_before_pointer_preserves_old_pair",
+      "name": "test_interruption_after_version_rename_before_pointer_preserves_old_pair",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L120-L135",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+      "kind": "method",
+      "path": "tests/test_training_integrity.py",
+      "span": "L197-L214",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "training/scripts/train_adapter.py#train",
+      "name": "train",
+      "kind": "function",
+      "path": "training/scripts/train_adapter.py",
+      "span": "L83-L271",
+      "relation": "calls",
+      "depth": 2
+    }
+  ],
+  "modules": [
+    {
+      "label": "publish_checkpoint",
+      "labelSource": "symbol",
+      "key": "training/",
+      "files": [
+        "training/checkpoints.py"
+      ],
+      "symbols": [
+        {
+          "id": "training/checkpoints.py#publish_checkpoint",
+          "name": "publish_checkpoint",
+          "kind": "function",
+          "path": "training/checkpoints.py",
+          "span": "L117-L150",
+          "relation": "calls",
+          "depth": 1
+        }
+      ],
+      "from": [
+        "training/scripts/train_development.py"
+      ],
+      "owners": []
+    },
+    {
+      "label": "train",
+      "labelSource": "symbol",
+      "key": "training/scripts/",
+      "files": [
+        "training/scripts/train_adapter.py"
+      ],
+      "symbols": [
+        {
+          "id": "training/scripts/train_adapter.py#train",
+          "name": "train",
+          "kind": "function",
+          "path": "training/scripts/train_adapter.py",
+          "span": "L83-L271",
+          "relation": "calls",
+          "depth": 2
+        }
+      ],
+      "from": [
+        "training/scripts/train_development.py"
+      ],
+      "owners": []
+    }
+  ],
+  "testModules": [
+    {
+      "label": "test_completed_resume_finalize…",
+      "labelSource": "symbol",
+      "key": "tests/",
+      "files": [
+        "tests/test_training_integrity.py"
+      ],
+      "symbols": [
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_completed_resume_finalizes_with_previous_metrics_and_update_evidence",
+          "name": "test_completed_resume_finalizes_with_previous_metrics_and_update_evidence",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L160-L169",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_corruption_missing_extra_files_and_identity_change_reject_resume",
+          "name": "test_corruption_missing_extra_files_and_identity_change_reject_resume",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L137-L158",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_interrupted_write_preserves_previous_complete_checkpoint",
+          "name": "test_interrupted_write_preserves_previous_complete_checkpoint",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L106-L118",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_interruption_after_version_rename_before_pointer_preserves_old_pair",
+          "name": "test_interruption_after_version_rename_before_pointer_preserves_old_pair",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L120-L135",
+          "relation": "calls",
+          "depth": 2
+        },
+        {
+          "id": "tests/test_training_integrity.py#TrainingIntegrityTests.test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "name": "test_runner_completed_resume_finalizes_without_runtime_or_model_import",
+          "kind": "method",
+          "path": "tests/test_training_integrity.py",
+          "span": "L197-L214",
+          "relation": "calls",
+          "depth": 2
+        }
+      ],
+      "from": [
+        "training/scripts/train_development.py"
+      ]
+    }
+  ],
+  "areas": [
+    {
+      "label": "preflight",
+      "labelSource": "symbol",
+      "key": "training/scripts/",
+      "files": [
+        "training/scripts/train_development.py"
+      ],
+      "seeds": 11,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_development_training.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_development_training.py"
+      ],
+      "reached": 5,
+      "behavioural": 11,
+      "unreached": [
+        "bounded_bytes",
+        "digest",
+        "main",
+        "read_json",
+        "record_memory",
+        "writer"
+      ],
+      "seedNames": [
+        "preflight",
+        "record_memory",
+        "bounded_bytes",
+        "digest",
+        "finalize_training_result",
+        "record_completed_step",
+        "validate_baseline",
+        "verified_adapter_path",
+        "main",
+        "read_json",
+        "writer"
+      ],
+      "owners": []
+    },
+    {
+      "label": "load_rows",
+      "labelSource": "symbol",
+      "key": "training/",
+      "files": [
+        "training/development_data.py"
+      ],
+      "seeds": 2,
+      "tests": "changed",
+      "testFiles": [
+        "tests/test_development_training.py"
+      ],
+      "changedTestFiles": [
+        "tests/test_development_training.py"
+      ],
+      "reached": 2,
+      "behavioural": 2,
+      "unreached": [],
+      "seedNames": [
+        "load_rows",
+        "encode_row"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

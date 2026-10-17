@@ -1,0 +1,178 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "STATE.md",
+      "source_sha256": "e9926ee78b1cb8f4342d02b5cf295ee6a6ad266183cd6d31ccaf93a6bcd75777",
+      "exit_code": 0,
+      "wall_seconds": 1.055613300006371,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.24,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 446,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1840,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "docs/CURRENT_STATUS.md",
+      "source_sha256": "d2ab4774c807219f9f9b9bd771d84caa582966a51aed8228827c5ada5820218c",
+      "exit_code": 0,
+      "wall_seconds": 0.5697267000214197,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.41,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 408,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1865,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "docs/ROADMAP.md",
+      "source_sha256": "df85f5463f654d2d625c417e339a0fc1abef250e222e2a8d41470d2ceb17e89b",
+      "exit_code": 0,
+      "wall_seconds": 0.5826573999947868,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 418,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1263,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "docs/H22-measured-test-20261017.md",
+      "source_sha256": "ce63423e8762ff393a862fa64258a3d118c0c0b8c6c31666d352a3fe5a962450",
+      "exit_code": 0,
+      "wall_seconds": 0.6201704000122845,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.24,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 453,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2065,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "docs/adr/0009-retain-long-gpu-experiments-as-batch-versions.md",
+      "source_sha256": "e6d40672844183b089892b5294bb393cece7fae8dc2ae791e9cfe500248d0bf6",
+      "exit_code": 0,
+      "wall_seconds": 0.7138885000022128,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 547,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 892,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}

@@ -1,0 +1,103 @@
+{
+  "checked_at_utc": "2026-10-15T21:11:31.608109+00:00",
+  "compatibility": {
+    "official_requirement": "safetensors>=0.8.0",
+    "old_pin": "0.6.2",
+    "old_pin_satisfies": false,
+    "repaired_pin": "0.8.0",
+    "repaired_pin_satisfies": true
+  },
+  "limitations": [
+    "Metadata compatibility is not real GPU or quality qualification.",
+    "No ML imports, package installation or model weights were used by this probe.",
+    "Independent delta review and Jev/Graft remain root gates after this repair."
+  ],
+  "official_safetensors_wheel": {
+    "filename": "safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "matches_pypi_wheel_sha256": true,
+    "name": "safetensors",
+    "pypi_metadata_sha256": "b8d395b433d0319498c9192ed323b86a84d82b5f40b4adf1b97b3bf8963fafad",
+    "pypi_metadata_url": "https://pypi.org/pypi/safetensors/0.8.0/json",
+    "requires_dist": [
+      "safetensors[torch] ; extra == 'all'",
+      "safetensors[numpy] ; extra == 'all'",
+      "safetensors[jax] ; extra == 'all'",
+      "safetensors[paddlepaddle] ; extra == 'all'",
+      "safetensors[convert] ; extra == 'all'",
+      "safetensors[quality] ; extra == 'all'",
+      "safetensors[testing] ; extra == 'all'",
+      "safetensors[torch] ; extra == 'convert'",
+      "huggingface-hub>=1.4 ; extra == 'convert'",
+      "safetensors[all] ; extra == 'dev'",
+      "safetensors[pinned-tf] ; extra == 'dev'",
+      "safetensors[numpy] ; extra == 'jax'",
+      "flax>=0.6.3 ; extra == 'jax'",
+      "jax>=0.3.25 ; extra == 'jax'",
+      "jaxlib>=0.3.25 ; extra == 'jax'",
+      "mlx>=0.0.9 ; extra == 'mlx'",
+      "numpy>=1.24.6 ; extra == 'numpy'",
+      "safetensors[numpy] ; extra == 'paddlepaddle'",
+      "paddlepaddle>=2.4.1 ; extra == 'paddlepaddle'",
+      "safetensors[numpy] ; extra == 'pinned-tf'",
+      "tensorflow==2.18.0 ; extra == 'pinned-tf'",
+      "ruff ; extra == 'quality'",
+      "safetensors[numpy] ; extra == 'tensorflow'",
+      "tensorflow>=2.11.0 ; extra == 'tensorflow'",
+      "safetensors[numpy] ; extra == 'testing'",
+      "h5py>=3.7.0 ; extra == 'testing'",
+      "setuptools-rust>=1.12.0 ; extra == 'testing'",
+      "pytest>=9.0 ; extra == 'testing'",
+      "pytest-benchmark>=5.2 ; extra == 'testing'",
+      "hypothesis>=6.70.2 ; extra == 'testing'",
+      "fsspec>=2024.6.0 ; extra == 'testing'",
+      "s3fs>=2024.6.0 ; extra == 'testing'",
+      "safetensors[numpy] ; extra == 'tf-nightly'",
+      "tf-nightly ; extra == 'tf-nightly'",
+      "safetensors[numpy] ; extra == 'torch'",
+      "torch>=2.4 ; extra == 'torch'"
+    ],
+    "requires_python": ">=3.10",
+    "upload_time_iso_8601": "2026-06-09T07:52:16.290212Z",
+    "version": "0.8.0",
+    "wheel_bytes": 516040,
+    "wheel_sha256": "fd6f3f93c9a0a7cc2788ee63fb763353d4bd2e89b0751bc78fcf7dda00bea774",
+    "wheel_url": "https://files.pythonhosted.org/packages/28/50/f203ff3a3ddfe19308efc83c5a3a29ed02bf786732ec35e68bf9162f3365/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+  },
+  "official_transformers_wheel": {
+    "dependency_versions_check_sha256": "523dcce519f7f0c0e32e0e6af43033d931a739dbe4743a70ad2af11a356e9103",
+    "dependency_versions_table_sha256": "36f8c65a234f92de9a10b95b5535c2a04ebed148cd07dc00570306500166efaf",
+    "filename": "transformers-5.16.1-py3-none-any.whl",
+    "matches_pypi_wheel_sha256": true,
+    "name": "transformers",
+    "pypi_metadata_sha256": "255252b467aa3ed5e9748b8b0225ecb933bbd6be9ec4fa105fee7bec1082e454",
+    "pypi_metadata_url": "https://pypi.org/pypi/transformers/5.16.1/json",
+    "requires_python": ">=3.10.0",
+    "runtime_dependency_gate_call": "require_version_core(deps[pkg])",
+    "runtime_dependency_gate_includes_safetensors": true,
+    "safetensors_dependency_table_entry": "safetensors>=0.8.0",
+    "safetensors_requires_dist": [
+      "safetensors>=0.8.0"
+    ],
+    "upload_time_iso_8601": "2026-08-26T14:48:55.083127Z",
+    "version": "5.16.1",
+    "wheel_bytes": 12080592,
+    "wheel_sha256": "2f2d5b98a5ad3718713653734298fa620754ed683702a635ebb587df3ed29c7e",
+    "wheel_url": "https://files.pythonhosted.org/packages/0d/4d/ee3728674c0bbc637bb4af88ccf0be697f92e4e90b55f5dc110c44d61b61/transformers-5.16.1-py3-none-any.whl"
+  },
+  "schema": "hala.h21d.dependency_repair.v1",
+  "scoped_validation": {
+    "command": "python -m unittest tests.test_development_adapter tests.test_development_runtime -q",
+    "tests_run": 18,
+    "status": "passed",
+    "seconds": 1.250,
+    "diff_check": "git diff --check passed",
+    "full_suite_rerun": false
+  },
+  "scope": "H21d adapter safetensors pin and matching CPU fake module version only; runtime, SETTINGS, prompts, model pins and frozen data unchanged.",
+  "source_sha256": {
+    "evaluation/development_adapter.py": "d9d972a6af1758dddfd9061998e76ff336100a281a776f016ab7743856d7a622",
+    "evaluation/development_runtime.py": "da6622d6c5c5e32724d4caa8b523e4d3c9186984f5dff63e32cbf13b7d3a0a35",
+    "tests/test_development_adapter.py": "8fbc4d02a1c3058ddabd9a6fa691f47cf2da47e94787d3b43110588da72b93db"
+  },
+  "trigger": "Actual fresh Colab import rejected safetensors0.6.2 before model allocation or calls; root preserved outputs/h21-base-first-attempt-dom.txt."
+}

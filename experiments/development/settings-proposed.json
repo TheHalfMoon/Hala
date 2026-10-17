@@ -1,0 +1,1 @@
+{"schema":"hala.development.settings.v1","status":"proposed-not-run","model":"Qwen/Qwen3-VL-2B-Instruct","revision":"89644892e4d85e24eaac8bacfd4f463576704203","precision":"float16","attention":"sdpa","seed":42,"do_sample":false,"max_new_tokens":128,"max_time_seconds":20,"max_episode_model_calls":16,"max_episode_type_actions":8,"split":"test","training_enabled":false}

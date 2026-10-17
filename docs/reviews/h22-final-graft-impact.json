@@ -1,0 +1,1980 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H22_PRECISION.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 36
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 36,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 representative precision: operator handoff"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Source only, CPU tested; independent reviews, Jev/Graft, signed commit and actual remote qualification remain pending. No GPU run, weights download, installation, adapter selection, retraining or adoption was performed by this builder. Worktree: `work/Hala-precision`, branch `ps/h22-development-precision`, parent `11a3a5359afa896787198e0492ccd036d0b6f4f8`."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "The separate `evaluation.development_precision` entry point uses the exact existing QwenInfer callback and H19 simulator/prompt/parser/verifier. The optional private orchestration seam changes loading and observational telemetry only. Frozen FP16 SETTINGS remain unchanged; precision profile metadata is explicitly separate. H14/H17 files and every `development/*.py` file remain unchanged. ADR0007 records the shared-loader choice."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Prospective SHA256 identities, to be independently rechecked and externally pinned after source gates:"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| Artifact | SHA256 |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "|---|---|"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| `experiments/development-precision/source-freeze.json` | `98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b` |"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| `experiments/development-precision/config.json` | `a6a18c4336af7eda4bcf1aa805254fe545672faac6d14f1ad82410375480e470` |"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| `evaluation/development_runtime.py` | `20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895` |"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "| `evaluation/development_precision.py` | `1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5` |"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "Run each of fp16/int8/nf4 in a fresh admitted remote process, on the same provider/runtime/hardware and unchanged H19 bundle/split. Use exact Torch2.11.0, Transformers5.16.1, Pillow11.3.0 and RAQM0.10.1, plus historically executed H17 bitsandbytes0.50.2 and accelerate1.12.0. A retained adapter additionally requires existing PEFT0.20.0/safetensors0.8.0 pins and the identical external archive manifest/full identity across all three runs. All three modes require these precision dependencies so comparison package identities remain equal. Historical compatibility is a source choice, not new Kaggle qualification."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "H21's operator observed a preinstalled optional TorchAO0.10.0 interfering with PEFT0.20 dispatch before inference; its failed attempt is retained separately. TorchAO is not an H22 dependency. The operator must record genuine optional-package/environment state and any approved removal, without upgrading pinned Torch or adding a backend to force loading. Do not install/change packages while an H21 comparison is active. Actual H21 base/candidate quality and initial H22 base-versus-retained-adapter choice remain operator decisions from real evidence."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "Use explicit `--provider kaggle` only inside the genuinely admitted Linux Kaggle Interactive/Batch kernel with `/kaggle/working`, inherited image tag retained verbatim, and existing remote-development opt-in. Never create provider markers to satisfy admission. Colab remains the default. No local model loading or CPU/disk offload is allowed. The exact ephemeral `/tmp/hala-h22-cache` is enforced; existing cache environment aliases or symlinks escaping it reject before ML imports. Resetting optional backend/package state and process isolation must be reported as environmental differences, including CUDA wheel differences from historical Colab."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "After independent gates and a signed clean source commit, invoke on the admitted remote runtime, substituting externally retained identities:"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "```text"
+            }
+          ],
+          "dropped": 12
+        }
+      ]
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 29,
+          "end": 30
+        }
+      ],
+      "hunks": [
+        {
+          "start": 29,
+          "end": 30,
+          "lines": [
+            {
+              "n": 29,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 30,
+              "sign": "+",
+              "text": "- H22: [representative closed-loop precision/process cost](../specs/H22-development-precision.md) source CPU-tested on isolated branch; prospective freeze prepared, independent gates and actual matched GPU execution pending. H21 active execution remains unchanged.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/adr/0007-share-representative-precision-runtime.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 15
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 15,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# 0007. Share the representative closed-loop evaluation runtime"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: accepted (2026-10-16)"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Context"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "H17 measured three precisions on64 authored fixtures, which cannot decide representative closed-loop quality. H19/H21 already freeze the bilingual simulator, prompts, parser, verifier and FP16 inference callback. Copying that runtime for quantization would introduce divergent task and generation semantics."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## Decision"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Add a private optional concrete precision-profile seam to the existing evaluation orchestration. Keep public baseline run defaults, complete QwenInfer AST, SETTINGS and training guard unchanged. A separate H22 entry point requires prospective externally pinned source/config and exact historical bitsandbytes0.50.2/accelerate1.12.0. Reuse H17's quantization configuration and full-vision/quant-state residency check without editing historical files. An external bounded sampler observes cost independently of callback inputs."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "## Consequences"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "The three profiles use exactly the same H19 closed-loop execution and independent scores. H22 remains a distinct profile schema and needs fresh real package/model compatibility, independent source gates and GPU qualification. CPU tests cannot select a precision or adapter. Full-device observations include other processes and sampled maxima do not establish continuous peaks. The narrow optional orchestration branch adds maintenance responsibility without a second task runner."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_precision.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 294
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 294,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "\"\"\"Prospective H22 profiles over the unchanged H19 closed-loop callback."
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "One mode per fresh remote process. CPU checks do not qualify model quality."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "\"\"\""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import argparse"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import importlib.metadata"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import math"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "from pathlib import Path"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "import re"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "import threading"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "import time"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "from evaluation import development_runtime as runtime"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "from evaluation.quantization import quantization_config, residency"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "ROOT = Path(__file__).resolve().parents[1]"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "CONFIG = ROOT / 'experiments/development-precision/config.json'"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "FREEZE = ROOT / 'experiments/development-precision/source-freeze.json'"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "CACHE = '/tmp/hala-h22-cache'"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "PINS = {'accelerate': '1.12.0', 'bitsandbytes': '0.50.2'}"
+            }
+          ],
+          "dropped": 270
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_runtime.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 224,
+          "end": 224
+        },
+        {
+          "start": 226,
+          "end": 232
+        },
+        {
+          "start": 249,
+          "end": 251
+        },
+        {
+          "start": 258,
+          "end": 259
+        },
+        {
+          "start": 284,
+          "end": 286
+        },
+        {
+          "start": 291,
+          "end": 291
+        },
+        {
+          "start": 297,
+          "end": 304
+        },
+        {
+          "start": 317,
+          "end": 323
+        },
+        {
+          "start": 343,
+          "end": 350
+        },
+        {
+          "start": 354,
+          "end": 361
+        },
+        {
+          "start": 367,
+          "end": 368
+        },
+        {
+          "start": 375,
+          "end": 376
+        },
+        {
+          "start": 396,
+          "end": 406
+        }
+      ],
+      "hunks": [
+        {
+          "start": 224,
+          "end": 224,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab'):"
+            },
+            {
+              "n": 224,
+              "sign": "+",
+              "text": "def _run(bundle, manifest_sha256, output, font_path, source_commit, *, split, cache_dir, prepared_adapter, provider='colab', precision=None):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 226,
+          "end": 232,
+          "lines": [
+            {
+              "n": 226,
+              "sign": "+",
+              "text": "    if precision is not None:"
+            },
+            {
+              "n": 227,
+              "sign": "+",
+              "text": "        from evaluation import development_precision as precision_runtime"
+            },
+            {
+              "n": 228,
+              "sign": "+",
+              "text": "        selected = dict(precision)"
+            },
+            {
+              "n": 229,
+              "sign": "+",
+              "text": "        freeze_digest = selected.pop('source_freeze_sha256')"
+            },
+            {
+              "n": 230,
+              "sign": "+",
+              "text": "        precision_runtime.check_profile(selected)"
+            },
+            {
+              "n": 231,
+              "sign": "+",
+              "text": "        precision_runtime.verify_sources(freeze_digest)"
+            },
+            {
+              "n": 232,
+              "sign": "+",
+              "text": "        precision_runtime.check_cache(cache_dir)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 249,
+          "end": 251,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                            'training/adapter_archive.py'], cwd=root, capture_output=True, text=True, check=True).stdout"
+            },
+            {
+              "n": 249,
+              "sign": "+",
+              "text": "                            'training/adapter_archive.py', *(['evaluation/development_precision.py',"
+            },
+            {
+              "n": 250,
+              "sign": "+",
+              "text": "                            'evaluation/quantization.py', 'experiments/development-precision'] if precision is not None else [])],"
+            },
+            {
+              "n": 251,
+              "sign": "+",
+              "text": "                            cwd=root, capture_output=True, text=True, check=True).stdout"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 258,
+          "end": 259,
+          "lines": [
+            {
+              "n": 258,
+              "sign": "+",
+              "text": "    if precision is not None:"
+            },
+            {
+              "n": 259,
+              "sign": "+",
+              "text": "        pins.update(precision_runtime.PINS)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 284,
+          "end": 286,
+          "lines": [
+            {
+              "n": 284,
+              "sign": "+",
+              "text": "    if precision is not None:"
+            },
+            {
+              "n": 285,
+              "sign": "+",
+              "text": "        result.update(schema='hala.development.precision.v1', precision_profile=precision,"
+            },
+            {
+              "n": 286,
+              "sign": "+",
+              "text": "                      reference_schema=result['schema'], adoption_qualified=False)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 291,
+          "end": 291,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    torch = model = None"
+            },
+            {
+              "n": 291,
+              "sign": "+",
+              "text": "    torch = model = observer = None"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 297,
+          "end": 304,
+          "lines": [
+            {
+              "n": 297,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 298,
+              "sign": "+",
+              "text": "            try:"
+            },
+            {
+              "n": 299,
+              "sign": "+",
+              "text": "                observer = precision_runtime.CostSampler()"
+            },
+            {
+              "n": 300,
+              "sign": "+",
+              "text": "                observer.start()"
+            },
+            {
+              "n": 301,
+              "sign": "+",
+              "text": "            except Exception as error:"
+            },
+            {
+              "n": 302,
+              "sign": "+",
+              "text": "                result.setdefault('telemetry_errors', {})['process_cost_start'] = type(error).__name__"
+            },
+            {
+              "n": 303,
+              "sign": "+",
+              "text": "            for key in precision_runtime.CACHE_KEYS:"
+            },
+            {
+              "n": 304,
+              "sign": "+",
+              "text": "                os.environ[key] = str(cache)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 317,
+          "end": 323,
+          "lines": [
+            {
+              "n": 317,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 318,
+              "sign": "+",
+              "text": "            import accelerate"
+            },
+            {
+              "n": 319,
+              "sign": "+",
+              "text": "            import bitsandbytes"
+            },
+            {
+              "n": 320,
+              "sign": "+",
+              "text": "            actual_precision_packages = {'accelerate': accelerate.__version__, 'bitsandbytes': bitsandbytes.__version__}"
+            },
+            {
+              "n": 321,
+              "sign": "+",
+              "text": "            if actual_precision_packages != precision_runtime.PINS:"
+            },
+            {
+              "n": 322,
+              "sign": "+",
+              "text": "                raise ValueError('Imported precision dependencies differ from exact pins')"
+            },
+            {
+              "n": 323,
+              "sign": "+",
+              "text": "            result['imported_packages'].update(actual_precision_packages)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 343,
+          "end": 350,
+          "lines": [
+            {
+              "n": 343,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 344,
+              "sign": "+",
+              "text": "            try:"
+            },
+            {
+              "n": 345,
+              "sign": "+",
+              "text": "                result['gpu_uuid'] = precision_runtime.resolve_device_uuid(torch)"
+            },
+            {
+              "n": 346,
+              "sign": "+",
+              "text": "                if observer is not None:"
+            },
+            {
+              "n": 347,
+              "sign": "+",
+              "text": "                    observer.device_uuid = result['gpu_uuid']"
+            },
+            {
+              "n": 348,
+              "sign": "+",
+              "text": "            except Exception as error:"
+            },
+            {
+              "n": 349,
+              "sign": "+",
+              "text": "                result['gpu_uuid'] = None"
+            },
+            {
+              "n": 350,
+              "sign": "+",
+              "text": "                result.setdefault('telemetry_errors', {})['device_identity'] = type(error).__name__"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 354,
+          "end": 361,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION, trust_remote_code=False)"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "        model = Qwen3VLForConditionalGeneration.from_pretrained(MODEL_ID, revision=REVISION,"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                    trust_remote_code=False, dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()"
+            },
+            {
+              "n": 354,
+              "sign": "+",
+              "text": "        if precision is None:"
+            },
+            {
+              "n": 355,
+              "sign": "+",
+              "text": "            processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION, trust_remote_code=False)"
+            },
+            {
+              "n": 356,
+              "sign": "+",
+              "text": "            model = Qwen3VLForConditionalGeneration.from_pretrained(MODEL_ID, revision=REVISION,"
+            },
+            {
+              "n": 357,
+              "sign": "+",
+              "text": "                        trust_remote_code=False, dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()"
+            },
+            {
+              "n": 358,
+              "sign": "+",
+              "text": "        else:"
+            },
+            {
+              "n": 359,
+              "sign": "+",
+              "text": "            processor = AutoProcessor.from_pretrained(MODEL_ID, revision=REVISION,"
+            },
+            {
+              "n": 360,
+              "sign": "+",
+              "text": "                        trust_remote_code=False, cache_dir=str(cache))"
+            },
+            {
+              "n": 361,
+              "sign": "+",
+              "text": "            model = precision_runtime.load_model(torch, Qwen3VLForConditionalGeneration, precision, str(cache))"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 367,
+          "end": 368,
+          "lines": [
+            {
+              "n": 367,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 368,
+              "sign": "+",
+              "text": "            result['residency_loaded'] = precision_runtime.residency(model)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 375,
+          "end": 376,
+          "lines": [
+            {
+              "n": 375,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 376,
+              "sign": "+",
+              "text": "            result['comparison_identity'] = precision_runtime.identity(result, dataset, precision)"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 396,
+          "end": 406,
+          "lines": [
+            {
+              "n": 396,
+              "sign": "+",
+              "text": "        if precision is not None:"
+            },
+            {
+              "n": 397,
+              "sign": "+",
+              "text": "            if observer is not None:"
+            },
+            {
+              "n": 398,
+              "sign": "+",
+              "text": "                try:"
+            },
+            {
+              "n": 399,
+              "sign": "+",
+              "text": "                    result['process_cost'] = observer.stop()"
+            },
+            {
+              "n": 400,
+              "sign": "+",
+              "text": "                except Exception as error:"
+            },
+            {
+              "n": 401,
+              "sign": "+",
+              "text": "                    result.setdefault('telemetry_errors', {})['process_cost'] = type(error).__name__"
+            },
+            {
+              "n": 402,
+              "sign": "+",
+              "text": "            try:"
+            },
+            {
+              "n": 403,
+              "sign": "+",
+              "text": "                result['unique_physical_cache_bytes'] = precision_runtime.disk_bytes(cache)"
+            },
+            {
+              "n": 404,
+              "sign": "+",
+              "text": "            except Exception as error:"
+            },
+            {
+              "n": 405,
+              "sign": "+",
+              "text": "                result['unique_physical_cache_bytes'] = None"
+            },
+            {
+              "n": 406,
+              "sign": "+",
+              "text": "                result.setdefault('telemetry_errors', {})['cache_bytes'] = type(error).__name__"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/development-precision/builder-report.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 19
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 19,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.builder-report.v1\","
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"status\": \"source_cpu_tested_independent_delta_gates_pending\","
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"branch\": \"ps/h22-development-precision\","
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"base_commit\": \"11a3a5359afa896787198e0492ccd036d0b6f4f8\","
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "  \"commit_created\": false,"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "  \"initial_red\": \"Seven missing-module criterion tests failed before implementation.\","
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "  \"repair_red\": \"Three criteria failed before UUID attribution, traversal budgets and sample-wait reporting repairs.\","
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "  \"final_delta_red\": \"Admission entry/time budget and physical GPU pair-identity regressions failed before repair.\","
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "  \"scoped_green\": {\"tests\": 39, \"h22_tests\": 16, \"seconds\": 2.229},"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "  \"final_full_green\": {\"command\": \"python -m unittest discover -s tests -q\", \"tests\": 237, \"skipped\": 1, \"seconds\": 21.374},"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "  \"diff_check\": \"passed\","
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "  \"source_freeze_sha256\": \"98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b\","
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "  \"preserved\": [\"All development/*.py bytes\", \"Complete QwenInfer, SETTINGS and remote_guard AST\", \"Default FP16 loader behavior\", \"Historical H14/H17 source and artifacts\", \"Original retained adapter bytes\"],"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "  \"review_repairs\": [\"GPU telemetry uses the physical UUID resolved from logical cuda:0, never assumes physical GPU0\", \"Unresolved UUID and unsupported fields labelled with null values\", \"Sampler states minimum two-second wait plus query duration with actual timestamps\", \"Cache admission and measurement both incrementally cap100000 entries and check five-second elapsed budget\", \"Admission exhaustion rejects before dependency/model imports; finalization timeout preserves evidence\", \"Pair identity rejects different physical GPU UUIDs; unknown UUID pairs explicitly leave physical-device comparison unqualified\"],"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "  \"remaining_gates\": [\"Fresh delta independent review\", \"Jev/Graft\", \"Signed clean source commit\", \"Operator external freeze pin\", \"Initial base/candidate choice from actual H21 evidence\", \"Fresh remote dependency/model/quantized-adapter/residency qualification\", \"Actual matched bilingual closed-loop precision and cost runs\"],"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "  \"limitations\": [\"CPU ML seams are fake and establish no model quality or hardware measurements\", \"Sampled GPU maxima are not continuous peaks\", \"Whole-GPU observations include other processes\", \"Cache bytes measure unique stored file content, not allocated filesystem blocks\", \"Elapsed traversal checks do not preempt an OS filesystem operation that itself stalls\"],"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  \"actions_not_performed\": [\"GPU execution\", \"Model download\", \"ML package installation\", \"Judges\", \"Jev/Graft\", \"Training\", \"Precision adoption\", \"Main merge\", \"Commit\"]"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "experiments/development-precision/config.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 100
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 100,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"adoption_qualified\": false,\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "  \"execution\": \"one mode per fresh remote process\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "  \"initial_model_choice\": \"pending actual H21 quality; same base or identical verified retained adapter across all modes\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "  \"profiles\": [\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    {\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "      \"mode\": \"fp16\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "      \"packages\": {\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "        \"accelerate\": \"1.12.0\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "        \"bitsandbytes\": \"0.50.2\"\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "      },\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "      \"quantization\": null,\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "      \"reference_settings\": {\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "        \"attention\": \"sdpa\",\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "        \"deterministic_algorithms\": true,\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        \"do_sample\": false,\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "        \"max_calls_per_episode\": 16,\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "        \"max_input_tokens\": 4096,\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        \"max_new_tokens\": 128,\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "        \"max_time_seconds\": 20,\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "        \"max_type_actions_per_episode\": 8,\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        \"model_id\": \"Qwen/Qwen3-VL-2B-Instruct\",\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        \"model_revision\": \"89644892e4d85e24eaac8bacfd4f463576704203\",\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        \"num_beams\": 1,\r"
+            }
+          ],
+          "dropped": 76
+        }
+      ]
+    },
+    {
+      "path": "experiments/development-precision/source-freeze.json",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 22
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 22,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "{\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "  \"files\": {\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "    \"development/__init__.py\": \"33a0f7f3049ff72a76955d0996301dcde19026dbb4208748cbb1172d5511dd57\",\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "    \"development/data.py\": \"309f7281a6d65cbf31b122465a5f843a60fc364aed16101cb233c69c4b18b397\",\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "    \"development/freeze.py\": \"5e9108c5f076fb5ba1ce14a51944bf1080677775f419899cd91630d00f7f8c60\",\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "    \"development/media.py\": \"56db480232ab06a85e0b7b77d07038eb4e4fbba0aab1a8f6d3ecd755eb8c581d\",\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "    \"development/protocol.py\": \"bdc9cc5c419955dbe1c253474bdb2e8bff2ec5ddc4c7c01d52d664e35d7da1d8\",\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "    \"development/runner.py\": \"c2f491c731ff2656de9bfe8e3b7bbf15eeca677f41aebafd07514a13e2879fb1\",\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "    \"development/simulator.py\": \"461f8e931336cf6a3a28225ed815616034277b66dd266e2fdf768ddda34f4141\",\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "    \"development/verifier.py\": \"79cd886a0fc5f9f2022fe7d8b79687de7df53e84a25d2b4977b76e842a7c6ceb\",\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "    \"evaluation/development_adapter.py\": \"d9d972a6af1758dddfd9061998e76ff336100a281a776f016ab7743856d7a622\",\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "    \"evaluation/development_precision.py\": \"1fb95afef7254b73f7229ec0da5e6ad6d2e91b42f42e5b4e0476f56b75acd9f5\",\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "    \"evaluation/development_runtime.py\": \"20b3bf32ca37107ed05e9f2c3ed74413653b51107f5abf474f4a40b25ef58895\",\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "    \"evaluation/heldout_fixtures.py\": \"3458d012b8d90582e2528e9b08be928e393b925ff9f513fbef09de8b76ee8aae\",\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "    \"evaluation/quantization.py\": \"849fc490cf3c2e286e22981ed5e23c4877612d503a0594a10868f84f95efe154\",\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "    \"experiments/development-precision/config.json\": \"a6a18c4336af7eda4bcf1aa805254fe545672faac6d14f1ad82410375480e470\",\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "    \"training/adapter_archive.py\": \"95773e65224b6ee57c89f7edd61a3d7b247cd623eef3cca4637eed7cbc6abc55\"\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "  },\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "  \"note\": \"Prospective source/config freeze; operator must externally pin its SHA256 after independent gates before actual GPU execution. No result or adapter selection is qualified.\",\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "  \"quality_qualified\": false,\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "  \"schema\": \"hala.h22.source-freeze.v1\"\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "}\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H22-development-precision.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 22
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 22,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 — Representative closed-loop precision and process cost"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: source CPU-tested; independent gates and actual GPU qualification pending. Review: full."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Depends on: frozen H19, H21 verified base/adapter runtime. Surface: optional evaluation precision loader, observational cost sampler, pairing report, tests and prospective configuration/freeze. No training, serving, Aladdin or historical H14/H17 changes."
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "Compare fp16, int8 and nf4 on the exact frozen H19 bilingual closed-loop dev or test allocation, same stored order, prompts, parser, simulator and independent final-state/semantic verifier. Use Qwen revision 89644892e4d85e24eaac8bacfd4f463576704203, seed42, SDPA,128 output/4096 input tokens,20 second generation and existing episode/outer budgets. Standalone Mind diagnostics retain their existing allocation. Precision profiles are separate from frozen FP16 reference SETTINGS. Initial base versus retained adapter choice remains pending actual H21 quality; do not adopt or retrain."
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "Use explicit provider admission inherited from H21f, including genuine Kaggle context/inherited image tag; never spoof environment admission. No local weights, cache escape or CPU offload. Preserve existing exact package pins; bitsandbytes0.50.2 is the historically executed H17 version, requiring fresh actual compatibility qualification. Same externally verified complete retained adapter identity when selected. Publish prospective config/source hashes and require external freeze digest before GPU execution; do not self-qualify from CPU."
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "Acceptance criteria:"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "- [x] Frozen SETTINGS/QwenInfer/training guard/default FP16 behavior preserved; precision preimport admission/settings/source/adapter guards tested red then green."
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "- [ ] Shared runtime loads exact three profiles, enforces full model/vision/quant-state CUDA residency and records exact model/config/adapter/task identities."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "- [x] External bounded fail-open sampler source records process RSS/CPU time and best-effort device used/free/utilization/power; model storage, unique physical cache bytes, load/per-call latency and allocator/reserved/device distinctions remain explicit. Actual observations pending."
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "- [x] Pair report rejects duplicate/missing tasks or changed source/profile/prompt/model/adapter identities; independent final-state and semantic metrics retain en/ar groups. No quality/adoption claim from CPU or historical64 fixtures."
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "- [ ] Scoped red/green and full CPU gate, independent reviews/Jev/Graft and signed source before operator external freeze and actual execution."
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "Sampled maxima are observations, never continuous hardware peaks. Missing telemetry is null with an error label and must not remove inference evidence. Full cost refers to the evaluation process/device observations, not price or production service qualification. Actual GPU runs and artifact publication are operator work after review."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "Source handoff, exact hashes and operational limits: [H22_PRECISION](../docs/H22_PRECISION.md). Seven initial scoped criteria tests ran red before implementation; the reviewed source gate233 tests passed with one skip. Independent combined review then requested correct logical/physical GPU attribution; security review noted cache traversal bounds, and the combined reviewer noted unsupported-field labels and cadence wording. Three repair criteria tests ran red, then scoped38 tests passed, including15 H22 tests. The final repaired source gate is recorded in the builder report. No independent judges or Jev/Graft were run by the builder; no commit was made."
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "Final delta closes the remaining admission traversal bound and binds the resolved physical GPU UUID into pair identity. Admission rejects a scan budget overrun before dependency/model imports; unknown UUID pairs explicitly leave physical-device cost unqualified. Both regression surfaces ran red, then the scoped39 tests passed with16 H22 tests. Final full gate and refreshed freeze identity are in the builder report; earlier Jev/Graft hashes require conductor requalification."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_precision.py",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 313
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 313,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "import copy"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "import ast"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "from contextlib import ExitStack, nullcontext"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "import hashlib"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "import importlib"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "import json"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "import os"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "from pathlib import Path, PurePosixPath"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "import tempfile"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "import subprocess"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "import sys"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "from types import SimpleNamespace"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "import unittest"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "from unittest.mock import patch"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "class PrecisionTests(unittest.TestCase):"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "    def module(self):"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "        return importlib.import_module('evaluation.development_precision')"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "    def test_profiles_have_no_offload_and_preserve_reference(self):"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "        m = self.module()"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "        from evaluation.development_runtime import SETTINGS"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "        self.assertEqual(SETTINGS['precision'], 'fp16')"
+            }
+          ],
+          "dropped": 289
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H22_PRECISION.md",
+    "docs/ROADMAP.md",
+    "docs/adr/0007-share-representative-precision-runtime.md",
+    "experiments/development-precision/builder-report.json",
+    "experiments/development-precision/config.json",
+    "experiments/development-precision/source-freeze.json",
+    "specs/H22-development-precision.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_precision.py#check_cache",
+      "name": "check_cache",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L62-L71",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#check_profile",
+      "name": "check_profile",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L41-L44",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#CostSampler.__init__",
+      "name": "__init__",
+      "kind": "method",
+      "path": "evaluation/development_precision.py",
+      "span": "L143-L147",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#CostSampler.start.observe",
+      "name": "observe",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L157-L159",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#CostSampler.stop",
+      "name": "stop",
+      "kind": "method",
+      "path": "evaluation/development_precision.py",
+      "span": "L163-L169",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#CostSampler.tick",
+      "name": "tick",
+      "kind": "method",
+      "path": "evaluation/development_precision.py",
+      "span": "L149-L153",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#digest",
+      "name": "digest",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L29-L30",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#disk_bytes",
+      "name": "disk_bytes",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L74-L100",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#identity",
+      "name": "identity",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L189-L197",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#load_model",
+      "name": "load_model",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L172-L186",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L277-L290",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#paired.cost",
+      "name": "cost",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L237-L241",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#process_sample",
+      "name": "process_sample",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L112-L138",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#profile",
+      "name": "profile",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L33-L38",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#resolve_device_uuid",
+      "name": "resolve_device_uuid",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L103-L109",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L255-L274",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_precision.py#verify_sources",
+      "name": "verify_sources",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L47-L59",
+      "wholeFile": false
+    },
+    {
+      "id": "evaluation/development_runtime.py#_run",
+      "name": "_run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L224-L410",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.module",
+      "name": "module",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L18-L19",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_boolean_settings_profile_rejected",
+      "name": "test_boolean_settings_profile_rejected",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L206-L211",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_cache_admission_budget_exhaustion_rejects_before_ml",
+      "name": "test_cache_admission_budget_exhaustion_rejects_before_ml",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L68-L87",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_cache_measurement_has_entry_and_time_budgets",
+      "name": "test_cache_measurement_has_entry_and_time_budgets",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L56-L66",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_cache_rejects_aliases_symlinks_and_escape",
+      "name": "test_cache_rejects_aliases_symlinks_and_escape",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L39-L46",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_device_samples_follow_logical_cuda_uuid_and_label_missing_fields",
+      "name": "test_device_samples_follow_logical_cuda_uuid_and_label_missing_fields",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L89-L106",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_freeze_requires_external_digest",
+      "name": "test_freeze_requires_external_digest",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L213-L217",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_local_rejected_before_freeze_or_ml",
+      "name": "test_local_rejected_before_freeze_or_ml",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L31-L37",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_model_loader_exact_mode_configuration",
+      "name": "test_model_loader_exact_mode_configuration",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L167-L188",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_pair_rejects_identity_and_task_changes",
+      "name": "test_pair_rejects_identity_and_task_changes",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L127-L165",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_precision_adapter_identity_must_verify_before_execution",
+      "name": "test_precision_adapter_identity_must_verify_before_execution",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L293-L309",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_precision_runtime_keeps_callback_and_scores_when_sampler_fails.episode",
+      "name": "episode",
+      "kind": "function",
+      "path": "tests/test_development_precision.py",
+      "span": "L246-L249",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_profiles_have_no_offload_and_preserve_reference",
+      "name": "test_profiles_have_no_offload_and_preserve_reference",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L21-L29",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_reference_ast_and_h19_bytes_unchanged.selected",
+      "name": "selected",
+      "kind": "function",
+      "path": "tests/test_development_precision.py",
+      "span": "L196-L199",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_sampler_failure_is_bounded_and_preserves_evidence.broken",
+      "name": "broken",
+      "kind": "function",
+      "path": "tests/test_development_precision.py",
+      "span": "L118-L119",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_sampler_reports_wait_instead_of_fixed_cadence",
+      "name": "test_sampler_reports_wait_instead_of_fixed_cadence",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L108-L114",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_unique_physical_disk_bytes",
+      "name": "test_unique_physical_disk_bytes",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L48-L54",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/development_precision.py#paired",
+      "name": "paired",
+      "kind": "function",
+      "path": "evaluation/development_precision.py",
+      "span": "L200-L252",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_precision.py#CostSampler.start",
+      "name": "start",
+      "kind": "method",
+      "path": "evaluation/development_precision.py",
+      "span": "L155-L161",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_precision.py",
+      "name": "development_precision.py",
+      "kind": "file",
+      "path": "evaluation/development_precision.py",
+      "span": "L1-L295",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L209-L221",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L413-L436",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_precision_runtime_keeps_callback_and_scores_when_sampler_fails",
+      "name": "test_precision_runtime_keeps_callback_and_scores_when_sampler_fails",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L219-L291",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_reference_ast_and_h19_bytes_unchanged",
+      "name": "test_reference_ast_and_h19_bytes_unchanged",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L190-L204",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "tests/test_development_precision.py#PrecisionTests.test_sampler_failure_is_bounded_and_preserves_evidence",
+      "name": "test_sampler_failure_is_bounded_and_preserves_evidence",
+      "kind": "method",
+      "path": "tests/test_development_precision.py",
+      "span": "L116-L125",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "profile",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_precision.py",
+        "evaluation/development_runtime.py"
+      ],
+      "seeds": 18,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 18,
+      "unreached": [
+        "check_cache",
+        "check_profile",
+        "__init__",
+        "observe",
+        "stop",
+        "tick",
+        "digest",
+        "disk_bytes",
+        "identity",
+        "load_model",
+        "main",
+        "cost",
+        "process_sample",
+        "profile",
+        "resolve_device_uuid",
+        "run",
+        "verify_sources",
+        "_run"
+      ],
+      "seedNames": [
+        "profile",
+        "tick",
+        "_run",
+        "check_cache",
+        "check_profile",
+        "cost",
+        "digest",
+        "disk_bytes",
+        "main",
+        "process_sample",
+        "run",
+        "verify_sources",
+        "__init__",
+        "identity",
+        "load_model",
+        "observe",
+        "resolve_device_uuid",
+        "stop"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

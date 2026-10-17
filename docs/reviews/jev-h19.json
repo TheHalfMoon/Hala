@@ -1,0 +1,265 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "development/protocol.py",
+      "source_sha256": "bdc9cc5c419955dbe1c253474bdb2e8bff2ec5ddc4c7c01d52d664e35d7da1d8",
+      "exit_code": 0,
+      "wall_seconds": 0.5833063000027323,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.31,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 432,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1628,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/data.py",
+      "source_sha256": "309f7281a6d65cbf31b122465a5f843a60fc364aed16101cb233c69c4b18b397",
+      "exit_code": 0,
+      "wall_seconds": 0.5676275999867357,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.43,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 419,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2970,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/simulator.py",
+      "source_sha256": "461f8e931336cf6a3a28225ed815616034277b66dd266e2fdf768ddda34f4141",
+      "exit_code": 0,
+      "wall_seconds": 0.5638584999978775,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.72,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.15,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 425,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2039,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/verifier.py",
+      "source_sha256": "79cd886a0fc5f9f2022fe7d8b79687de7df53e84a25d2b4977b76e842a7c6ceb",
+      "exit_code": 0,
+      "wall_seconds": 0.9850294000061695,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.52,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 843,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1037,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/media.py",
+      "source_sha256": "56db480232ab06a85e0b7b77d07038eb4e4fbba0aab1a8f6d3ecd755eb8c581d",
+      "exit_code": 0,
+      "wall_seconds": 0.6796575000043958,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.56,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.26,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 432,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1413,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/runner.py",
+      "source_sha256": "c2f491c731ff2656de9bfe8e3b7bbf15eeca677f41aebafd07514a13e2879fb1",
+      "exit_code": 0,
+      "wall_seconds": 0.6372477999975672,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.52,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 439,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1765,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "development/freeze.py",
+      "source_sha256": "5e9108c5f076fb5ba1ce14a51944bf1080677775f419899cd91630d00f7f8c60",
+      "exit_code": 0,
+      "wall_seconds": 0.5999443999899086,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.67,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.22,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 412,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1977,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tools/build_development_data.py",
+      "source_sha256": "0167bc3976a2d84cbe836bedc37c1b376930fa3c49741b919b76f29228c7452d",
+      "exit_code": 0,
+      "wall_seconds": 0.6094836999982363,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.23,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.2,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 486,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 670,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}

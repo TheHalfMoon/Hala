@@ -1,0 +1,34 @@
+{
+  "schema": "hala.h22.ci_history_repair.v1",
+  "failed_head": "733fc7e11cfc147a463d388ee65559acd1fa847b",
+  "failed_run": 38867096208,
+  "failure": "Immutable git show11a3a535 returned128 because default checkout has shallow history;237 tests, one error, one platform skip",
+  "repair": "Full history on existing pinned checkout action; historical-reference assertions preserved",
+  "workflow_sha256": "946880181e04cc9058138ca75abe26b0926c6b11b246b9422edbe38bcb262aa9",
+  "source_freeze_sha256": "98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b",
+  "runtime_tests_freeze_changed": false,
+  "independent_reviews": [
+    "h22-ci-history-review.md",
+    "h22-ci-history-security-review.md"
+  ],
+  "jev": {
+    "file": "jev-h22-ci-history.json",
+    "model": "jev-1.13.0",
+    "role": "Actual typed advisory judgment"
+  },
+  "graft": {
+    "grain": "h22-ci-history",
+    "version": "0.21.1",
+    "build_exit": 0,
+    "check_exit": 0,
+    "impact_exit": 0,
+    "graph_ok": true,
+    "nodes": 882,
+    "deep_context_built": false,
+    "scope": "Working grain source freshness and actual staged/unstaged diff blast; not correctness or isolated execution",
+    "telemetry": "disabled"
+  },
+  "unchanged_reference_test_local": "1 passed,0.590s",
+  "actual_hosted_ci_green": false,
+  "next_gate": "Publish signed repair and verify four exact-head hosted jobs before H22 model execution"
+}

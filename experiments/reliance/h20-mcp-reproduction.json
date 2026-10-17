@@ -1,0 +1,60 @@
+{
+  "schema": "hala.reliance.mcp-reproduction.v1",
+  "date_utc": "2026-10-15T02:02:41.328Z",
+  "source": "actual_purpose_built_d1_mcp_tool_calls",
+  "records": [
+    {
+      "request": {
+        "state": "Select the unique Save button using a qualified structured tool.",
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose an advisory route: deterministic for an available structured tool; mind for planning; type for screenshot-only grounding; abstain for unsafe or ambiguous requests.",
+            "criteria": {
+              "deterministic": "Qualified structured tool",
+              "mind": "Planning",
+              "type": "Screenshot only",
+              "abstain": "Unsafe or ambiguous"
+            }
+          }
+        }
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"advisory_only\": true, \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"route\": {\"type\": \"choice\", \"choice\": \"deterministic\", \"probabilities\": {\"deterministic\": 0.9613781724509777, \"mind\": 0.005694960245380768, \"type\": 0.010296977081231768, \"abstain\": 0.02262989022240984}, \"confidence\": 0.9485042299346369}}, \"usage\": {\"input_tokens\": 83, \"output_tokens\": 0}}}"
+          }
+        ]
+      },
+      "tool_wall_ms": 833
+    },
+    {
+      "request": {
+        "state": "اختر زر الحفظ الوحيد باستخدام أداة منظمة مؤهلة.",
+        "questions": {
+          "route": {
+            "type": "choice",
+            "instructions": "Choose an advisory route: deterministic for an available structured tool; mind for planning; type for screenshot-only grounding; abstain for unsafe or ambiguous requests.",
+            "criteria": {
+              "deterministic": "Qualified structured tool",
+              "mind": "Planning",
+              "type": "Screenshot only",
+              "abstain": "Unsafe or ambiguous"
+            }
+          }
+        }
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTPError: HTTP Error 400: Bad Request"
+          }
+        ],
+        "isError": true
+      },
+      "tool_wall_ms": 42
+    }
+  ]
+}

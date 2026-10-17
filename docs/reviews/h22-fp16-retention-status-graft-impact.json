@@ -1,0 +1,525 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "STATE.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        },
+        {
+          "start": 11,
+          "end": 15
+        },
+        {
+          "start": 19,
+          "end": 19
+        },
+        {
+          "start": 23,
+          "end": 23
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Last updated: 2026-10-16 · Branch: ps/model-development\r"
+            },
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "Last updated: 2026-10-17 (Asia/Riyadh) · Branch: ps/model-development\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 15,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Kaggle inactivity expired the matched GPU before TEST started. New VM had no files/differentUUID and was stopped to conserve quota. Do not rerun completed DEV profiles or pretend new hardware is matched. Source H22 uses07591f109b6683c9302fcf890259ddf0bde91494. H23 prospective pland0e2115456be9f199841b6df44531b55467ccca0 remains unexecuted; outputs/h23-operator.py is a partial unreviewed draft after builder usage-limit failure.\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Ordinary review capacity reset; continuation resumed without a billing change. The completed DEV profiles were preserved. A separately qualified free T4 allocation started2026-10-16 20:52:40UTC with GPU-14ac1f01-0bec-e9da-d360-51d417657b16. Published TEST-only amendment9d055aeec6329909c91b91a5f144298365110819, SHA21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99, preserves source07591, fixed original adapter/data and TEST orderFP16/int8/NF4. No cross-allocation matched-cost claim.\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "FP16 TEST finished2/8 (English2/4, Arabic0/4), independently audited9048 checks with no errors/warnings. Raw archive SHAe098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471 and receipt were published at9568d58c74f3e1326b55b04d304f643e2bf1b99f and publicly round-trip verified. Int8 TEST started after that barrier at21:07UTC. A later multi-hour conversation pause outlasted Kaggle inactivity; at2026-10-17 01:36:58UTC the next VM had no experiment root/int8 status/archive and a different GPU03aae395.... Int8 outcome is unknown/unretrieved; NF4 never started. The new empty allocation was stopped. Journal outputs/h22-test-restart-session-loss-20261017.json preserves the observation.\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "H23 operatorfff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9 passed12 CPU tests and independent combined/security delta review after one operator repair cycle. Actual Jev/Graft source gates are retained. Artifactaac654643bb52a610c19ec1f23dd1be100f1500d publishes it and the explicit hardware amendment SHA882ccf1b5df14338e703db0c29f9ef8a777710f3bc9bd3034d434deed1c89852. H23 actual execution remains unstarted until all six public raw receipts and three current TEST-local records pass its barrier.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 19,
+          "end": 19,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "After ordinary capacity reset, resume existing serving_lifecycle_builder; finish operator/tests and independent review. Prepare a prospective hardware/order amendment for only the remaining TEST profiles, fresh free-GPU qualification and immediate verified exports. Keep H22/H23 actual source fixed, use durable prior results, then actual serving with frozen4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a. No TEST-driven tuning/retraining.\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "Prepare and independently review a clean Save & Run All batch notebook with explicit prospective assigned-hardware/retention amendment. Batch-version outputs replace ephemeral interactive polling, subject to actual retrieval/hash verification. Full fixed TEST triplet replication is necessary for a same-physical-GPU cost group; preserve the earlier FP16 result separately and lost int8 as unknown. Original scientific sources07591/H23 source18ad/freeze4c522 remain fixed. H23 integration requires a separately explicit batch retention contract; the published interactive operator cannot silently accept missing public/local barriers. No TEST-driven tuning/retraining or repeated DEV runs. ADR0009 records the operational decision. New notebook freeT4x2/internet configured, interactive session off; no batch submitted yet.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 23,
+          "end": 23,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Account review capacity unavailable (builder reported reset23:16 local); no billing/plan change. Remaining TEST/actual serving unqualified. Power readings exceed later observed limit and cannot support energy/price claims. Arabic quality, native integration and release remain open. No Aladdin edits, paid compute, large local weights or main merge. Founder retains merge/release; d1 remains advisory only.\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "Remaining TEST/actual serving unqualified. Power readings are uncalibrated and cannot support energy/price claims. Arabic quality, native integration and release remain open. No Aladdin edits, paid compute, large local weights or main merge. Founder retains merge/release; d1 remains advisory only.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/CURRENT_STATUS.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 4
+        },
+        {
+          "start": 11,
+          "end": 11
+        },
+        {
+          "start": 13,
+          "end": 13
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 4,
+          "lines": [
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Latest operational update2026-10-17: the separately qualified TEST restart retained FP16, but its int8 outcome is unknown after another multi-hour pause and interactive VM expiry. A fresh probe confirmed missing experiment/status/archive files and a different UUID; the empty allocation was stopped. NF4 and H23 have not started. A clean, independently reviewed Save & Run All batch plan is being prepared under ADR0009; no batch has been submitted or qualified yet.\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 11,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H22 actual DEV comparison completed on the same physical T4 with the same retained adapter and frozen inputs: FP16/int8/NF4 complete1/8,1/8,0/8; Arabic0/4 throughout. Independent audits passed9114/10972/12537 checks. Quantization lowered storage but did not establish useful task quality; power samples remain uncalibrated. Every raw ZIP and receipt was publicly retained and round-trip verified before proceeding. Kaggle expired that allocation before any attempt2 TEST profile started; a new VM has no files and a different UUID. No completed DEV rerun is needed. Remaining TEST profiles require a documented hardware/order amendment and reviewed operator; attempt1 outcomes remain unknown. See [actual DEV precision report](H22-measured-dev-20261016.md). No precision adopted.\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "H22 actual DEV comparison completed on the same physical T4 with the same retained adapter and frozen inputs: FP16/int8/NF4 complete1/8,1/8,0/8; Arabic0/4 throughout. Independent audits passed9114/10972/12537 checks. Quantization lowered storage but did not establish useful task quality; power samples remain uncalibrated. Every raw ZIP and receipt was publicly retained and round-trip verified before proceeding. Kaggle expired that allocation before any attempt2 TEST profile started. The completed DEV runs were preserved. A prospective TEST-only hardware/order amendment9d055aeec6329909c91b91a5f144298365110819 binds the separately qualified GPU14ac1f01-0bec-e9da-d360-51d417657b16 and unchanged source/data/adapter. FP16 TEST completed2/8 (English2/4, Arabic0/4), audit9048 checks passed, raw artifact9568d58c74f3e1326b55b04d304f643e2bf1b99f publicly verified. Subsequent int8 outcome is unknown after interactive session loss; NF4 TEST never started. Cross-allocation costs remain unpaired; attempt1 outcomes remain unknown. See [DEV precision report](H22-measured-dev-20261016.md) and [TEST restart report](H22-measured-test-20261017.md). No precision adopted.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 13,
+          "end": 13,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H23 expanded private serving lifecycle source has255 CPU tests run with one privilege-dependent skip. Independent combined/security source reviews pass after three repair cycles, including font-before-allocation, complete source binding, pending real-model CUDA event instrumentation, partial evidence retention, confirmed child reap and stale-response rejection. Genuine Jev and Graft evidence is retained; neither supplies actual GPU qualification. Actual remote testing, particularly cancellation while real CUDA work is pending at receipt, remains required. These source gates do not establish production/native qualification. The separate operational helper is incomplete/unreviewed after its builder hit the account usage limit; no actual H23 run started.\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "H23 expanded private serving lifecycle source has255 CPU tests run with one privilege-dependent skip. Independent combined/security source reviews pass after three repair cycles, including font-before-allocation, complete source binding, pending real-model CUDA event instrumentation, partial evidence retention, confirmed child reap and stale-response rejection. Genuine Jev and Graft evidence is retained; neither supplies actual GPU qualification. The separate operator completed12 CPU tests and independent combined/security delta review after one cleanup repair cycle; published operator and hardware amendment are bound at artifactaac654643bb52a610c19ec1f23dd1be100f1500d. It requires all six public H22 raw receipts and three current TEST-local records before H23 source/cache/model work. Actual H23 has not started. In particular, pending real-model CUDA cancellation, actual persisted tasks and restart evidence still require independent raw review; source gates do not establish production/native qualification. Ordinary review capacity reset without a paid plan or billing change.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H22-measured-dev-20261016.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 51,
+          "end": 52
+        }
+      ],
+      "hunks": [
+        {
+          "start": 51,
+          "end": 52,
+          "lines": [
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "Follow-up2026-10-17: ordinary review capacity reset, and the completed H23 operator passed independent delta review and12 CPU tests. A separate TEST-only hardware amendment was published; FP16 TEST completed2/8 and is durably retained with9048 independent checks. The subsequent int8 outcome is unknown after a later multi-hour pause and interactive VM expiry. NF4 and H23 remain unrun. A reviewed durable batch plan is now being prepared under ADR0009. These later observations supersede the temporary capacity/operator block above without changing any DEV result. See [TEST restart report](H22-measured-test-20261017.md).\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H22-measured-test-20261017.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 45
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 45,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 TEST precision comparison"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "The remaining TEST profiles use a separately qualified free Kaggle T4 allocation, UUID `GPU-14ac1f01-0bec-e9da-d360-51d417657b16`. Completed DEV profiles remain retained on the earlier allocation; none was rerun. The new prospective hardware/order amendment was published before TEST inference at `9d055aeec6329909c91b91a5f144298365110819`, path `h22-test-restart/experiment.json`, SHA256 `21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99`."
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Scientific source remains `07591f109b6683c9302fcf890259ddf0bde91494`, freeze `98ca7bba6fc16dd6cd737eaad6de1e425e30aef67116c379db36fbbb85b2af4b`. The original shared adapter manifest remains `7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d`; data, prompts, parsers, verifiers, package pins and budgets are unchanged. All120 original PNGs were restored byte-exactly. The same pinned remote base weights were verified before inference; no base weights were stored on the founder's PC."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Each profile runs in a fresh process, in fixed FP16/int8/NF4 order. Its raw evidence must be exported, published and publicly hash-verified before the next profile. TEST local indices0/1/2 correspond to the original planned TEST slots3/4/5. This explicit restart is separate from attempt1's unknown unretrieved outcomes and attempt2's completed DEV-only allocation."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| TEST measure | FP16 | int8 | NF4 |"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "|---|---:|---:|---:|"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Status |Completed|Unknown; session expired before export|Not started|"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| Persisted complete tasks |2/8|Pending|Pending|"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| English complete |2/4|Pending|Pending|"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "| Arabic complete |0/4|Pending|Pending|"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "| Semantically correct initial plans |8/8|Pending|Pending|"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "| Episode Mind correct |26/56|Pending|Pending|"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "| Action errors / calls |42/55|Pending|Pending|"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "| Recoveries |1|Pending|Pending|"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "| Unnecessary calls |0|Pending|Pending|"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "| Protocol-rejected visual proposals |0|Pending|Pending|"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "| Episode model errors |0|Pending|Pending|"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "| Repeated standalone probes correct |3/10|Pending|Pending|"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "| Global model calls |121|Pending|Pending|"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "| Wall seconds |231.873|Pending|Pending|"
+            }
+          ],
+          "dropped": 21
+        }
+      ]
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 12,
+          "end": 13
+        }
+      ],
+      "hunks": [
+        {
+          "start": 12,
+          "end": 13,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| H22 precision/process cost | Same-T4 actualDEV FP16/int8/NF4 complete1/8,1/8,0/8; all raw/audits public; no adoption | Remaining TEST profiles need new hardware/order amendment after VM expiry; power uncalibrated |\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| H23 serving lifecycle |255 CPU tests run, one skipped; independent combined/security, Jev/Graft source gates pass after three repair cycles | Actual GPU cancellation/lifecycle qualification; native/production release |\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| H22 precision/process cost | Same-T4 actualDEV1/8,1/8,0/8; separate TEST restart FP16 completed2/8,9048-check audit/public raw verified; later int8 outcome unknown after session expiry | Reviewed durable batch prospectus, assigned hardware/retention verification and matched TEST replication; power uncalibrated; no adoption |\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| H23 serving lifecycle |255 CPU tests run, one skipped; independent source gates after three repair cycles; separate operator12 CPU tests and combined/security deltas pass | Explicit batch operational amendment, actual GPU cancellation/lifecycle evidence; native/production release |\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/adr/0009-retain-long-gpu-experiments-as-batch-versions.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 19
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 19,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# 0009. Retain long GPU experiments as batch versions"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: accepted (2026-10-17)"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "## Context"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Multi-hour conversation pauses twice outlasted Kaggle interactive inactivity expiry. All three DEV profiles and the subsequent FP16 TEST archive were exported successfully; the later int8 TEST outcome is unknown because its VM disappeared before export. Interactive code edits did not keep that allocation available. Kaggle's Save Version dialog offers a fresh batch execution with saved outputs."
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## Decision"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Use a clean, independently reviewed Save & Run All notebook for long experiments. Publish a prospective retention/hardware amendment and exact operator bytes before execution. Record the actual assigned physical GPU and qualification before model calls; preserve bounded per-profile raw archives in the saved batch outputs. Verify the completed version and retrieve/hash/publish its raw evidence before claiming durable retention. Keep all prior outcomes and unknown runs distinct."
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "The scientific runtime, model, adapter, data, prompts and scoring remain fixed. If a full TEST triplet is replicated to obtain one physical GPU for cost comparison, declare that replication prospectively and preserve the earlier FP16 result separately. No TEST-driven tuning or automatic adoption follows. A batch submission or local ZIP alone does not prove platform durability."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "## Consequences"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "+ A running batch can finish independently of interactive browser activity and preserve results in a versioned output artifact."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "- Assigned hardware is unknown before scheduling; prospective admission and pre-inference hardware records must explicitly bind the actual allocation."
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "- Saved-version output retrieval and independent source/result audits remain mandatory. Failed or incomplete runs retain their evidence and stay unqualified. Free quota use and warm-cache/order confounding remain visible."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "STATE.md",
+    "docs/CURRENT_STATUS.md",
+    "docs/H22-measured-dev-20261016.md",
+    "docs/H22-measured-test-20261017.md",
+    "docs/ROADMAP.md",
+    "docs/adr/0009-retain-long-gpu-experiments-as-batch-versions.md"
+  ],
+  "deleted": [],
+  "seeds": [],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [],
+  "reviewers": []
+}

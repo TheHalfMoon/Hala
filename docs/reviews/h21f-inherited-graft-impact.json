@@ -1,0 +1,652 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/adr/0005-qualify-kaggle-evaluation-separately.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Status: accepted (2026-10-16)"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: Superseded by [0006](0006-recognize-inherited-kaggle-image-marker.md) for the mixed-marker assumption only; other decisions remain accepted."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/adr/0006-recognize-inherited-kaggle-image-marker.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 18
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 18,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# 0006. Recognize the inherited Kaggle image marker"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: accepted (2026-10-16)"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Supersedes [0005](0005-qualify-kaggle-evaluation-separately.md) only for its operational mixed-marker assumption; all other constraints remain in force."
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "## Context"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "The actual Kaggle Interactive runtime has `/kaggle/working` and `KAGGLE_KERNEL_RUN_TYPE=Interactive`, together with `COLAB_RELEASE_TAG=release-colab-external-images_20260917-060051_RC00`. A T4 is now live, with reported Python 3.13.15 and Torch 2.11/CUDA 12.8. The inherited Colab image tag caused the initial evaluation admission check to reject this genuine Kaggle runtime. Full dependency, font, model and matched evaluation qualification remain pending."
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "## Decision"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Explicit Kaggle evaluation may retain a Colab image tag only when all existing Kaggle checks pass: explicit provider selection, remote-development opt-in, Linux, an allowlisted Interactive/Batch kernel marker and `/kaggle/working` directory. Record the image tag verbatim as `inherited_colab_release_tag` in provider provenance when present; never delete or spoof environment markers. Colab evaluation continues to reject Kaggle context. The training guard, frozen inference/data/settings and exact package gates remain unchanged."
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "## Consequences"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": ""
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "+ Genuine Kaggle image inheritance no longer prevents bounded evaluation admission, and its provenance remains inspectable."
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "- Environment markers alone still do not qualify hardware, packages, model quality or execution authority. Unknown or incomplete Kaggle context remains rejected before ML imports; independent source gates and actual runtime qualification remain required."
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_runtime.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 54,
+          "end": 54
+        },
+        {
+          "start": 56,
+          "end": 60
+        }
+      ],
+      "hunks": [
+        {
+          "start": 54,
+          "end": 54,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            'COLAB_RELEASE_TAG' in os.environ or not Path('/kaggle/working').is_dir()):"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": "            not Path('/kaggle/working').is_dir()):"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 56,
+          "end": 60,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "    return {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            'working_directory': '/kaggle/working'}"
+            },
+            {
+              "n": 56,
+              "sign": "+",
+              "text": "    admitted = {'name': 'kaggle', 'kernel_run_type': os.environ['KAGGLE_KERNEL_RUN_TYPE'],"
+            },
+            {
+              "n": 57,
+              "sign": "+",
+              "text": "                'working_directory': '/kaggle/working'}"
+            },
+            {
+              "n": 58,
+              "sign": "+",
+              "text": "    if 'COLAB_RELEASE_TAG' in os.environ:"
+            },
+            {
+              "n": 59,
+              "sign": "+",
+              "text": "        admitted['inherited_colab_release_tag'] = os.environ['COLAB_RELEASE_TAG']"
+            },
+            {
+              "n": 60,
+              "sign": "+",
+              "text": "    return admitted"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H21f-kaggle-evaluation.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        },
+        {
+          "start": 7,
+          "end": 7
+        },
+        {
+          "start": 9,
+          "end": 9
+        },
+        {
+          "start": 15,
+          "end": 15
+        },
+        {
+          "start": 19,
+          "end": 22
+        },
+        {
+          "start": 25,
+          "end": 25
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Status: source implemented, CPU-tested and independently reviewed; actual provider qualification pending. Review: full. Depends on H21a/b/c/d source and retained pilot identity.\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: initial source independently reviewed; inherited-image compatibility repair CPU-tested, independent repair gates pending. Actual full runtime/model qualification pending. Review: full. Depends on H21a/b/c/d source and retained pilot identity.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 7,
+          "end": 7,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Retain the original remote_guard's Colab-only behavior for training callers. Add a distinct evaluation-only admission seam. Default evaluation remains Colab; Kaggle requires an explicit provider opt-in plus existing HALA_REMOTE_DEVELOPMENT_ALLOWED=1, Linux, a genuine known Kaggle kernel marker and /kaggle/working directory, and absence of conflicting Colab marker. Reject unknown providers, ambiguous/missing markers, unsupported platform/mode and lack of opt-in before ML imports/allocation. No generic Linux bypass or spoofed Colab marker. Record the admitted evaluation provider honestly in result metadata. Keep adapter external-identity validation before ML and no baseline fallback.\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "Retain the original remote_guard's Colab-only behavior for training callers. Add a distinct evaluation-only admission seam. Default evaluation remains Colab; Kaggle requires an explicit provider opt-in plus existing HALA_REMOTE_DEVELOPMENT_ALLOWED=1, Linux, a genuine known Kaggle kernel marker and /kaggle/working directory. A Colab image tag inherited within that complete Kaggle context is retained and recorded under ADR0006. Reject unknown providers, missing Kaggle context, unsupported platform/mode and lack of opt-in before ML imports/allocation. Colab evaluation still rejects Kaggle context. No generic Linux bypass or spoofed Colab marker. Record the admitted evaluation provider honestly in result metadata. Keep adapter external-identity validation before ML and no baseline fallback.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 9,
+          "end": 9,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Known Kaggle run types Interactive/Batch may be implemented as a strict allowlist, but actual Kaggle UI/runtime environment evidence must confirm the deployed marker before GPU execution. This is an explicit operational qualification spike, not proof from tests. Actual account verification/GPU availability remains unresolved in the UI; source work must not infer eligibility. No provisioning/billing/account creation, phone/OTP handling, secrets, telemetry or public service.\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "Known Kaggle run types Interactive/Batch use a strict allowlist. The actual Interactive runtime now has a live T4, `/kaggle/working`, and the inherited `COLAB_RELEASE_TAG=release-colab-external-images_20260917-060051_RC00`; Python 3.13.15 and Torch 2.11/CUDA 12.8 were reported from that runtime. These observations replace the earlier unresolved phone-verification/GPU UI state. Full dependency/font/model qualification and matched inference remain pending; CPU tests do not establish them. No provisioning/billing/account creation, phone/OTP handling, secrets, telemetry or public service.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 15,
+          "end": 15,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "`evaluation.development_runtime.run(..., provider='colab')` and CLI `--provider colab` retain the default. Kaggle requires `provider='kaggle'` or `--provider kaggle`; an environment marker alone cannot opt in. `evaluation_guard` admits only Linux, `HALA_REMOTE_DEVELOPMENT_ALLOWED=1`, `KAGGLE_KERNEL_RUN_TYPE` exactly `Interactive` or `Batch`, an existing `/kaggle/working` directory, and no `COLAB_RELEASE_TAG` key. Colab evaluation rejects any Kaggle marker key, including an empty value. The original `remote_guard` remains unchanged for training callers. No cache policy, package pin or inference setting was relaxed.\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "`evaluation.development_runtime.run(..., provider='colab')` and CLI `--provider colab` retain the default. Kaggle requires `provider='kaggle'` or `--provider kaggle`; an environment marker alone cannot opt in. `evaluation_guard` admits only Linux, `HALA_REMOTE_DEVELOPMENT_ALLOWED=1`, `KAGGLE_KERNEL_RUN_TYPE` exactly `Interactive` or `Batch`, and an existing `/kaggle/working` directory. An inherited `COLAB_RELEASE_TAG`, if present, is recorded verbatim as `inherited_colab_release_tag`. Colab evaluation rejects any Kaggle marker key, including an empty value. The original `remote_guard` remains unchanged for training callers. No cache policy, package pin or inference setting was relaxed.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 19,
+          "end": 22,
+          "lines": [
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "The inherited-image regression first reproduced the real rejection, then passed after removing only the Colab-tag exclusion from the strict Kaggle branch and preserving that tag in provenance. Missing/unknown Kaggle context, wrong OS/path and missing opt-in still reject before ML imports; Colab evaluation and training still reject the actual mixed context. The scoped runtime/provider/adapter suite passes 23 tests, including saved baseline/candidate inherited-image provenance.\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "Repair full CPU gate: `python -m unittest discover -s tests -q` ran 221 tests in 28.730 seconds, passed with one skip. AST comparison against the prior reviewed runtime preserves complete `SETTINGS`, `QwenInfer`, `remote_guard` and `VERSIONS`; independent repair gates remain pending.\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 25,
+          "end": 25,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Full CPU gate on Windows with bundled Python: `python -m unittest discover -s tests -q` ran 220 tests in 24.827 seconds, passed with one skip. `git diff --check` passed. These results do not satisfy the separate independent review or operational qualification gates.\r"
+            },
+            {
+              "n": 25,
+              "sign": "+",
+              "text": "Initial provider full CPU gate on Windows with bundled Python: `python -m unittest discover -s tests -q` ran 220 tests in 24.827 seconds, passed with one skip. `git diff --check` passed. These results do not satisfy the separate independent review or operational qualification gates.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 287,
+          "end": 288
+        }
+      ],
+      "hunks": [
+        {
+          "start": 287,
+          "end": 288,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                                'working_directory': '/kaggle/working'})"
+            },
+            {
+              "n": 287,
+              "sign": "+",
+              "text": "                                'working_directory': '/kaggle/working',"
+            },
+            {
+              "n": 288,
+              "sign": "+",
+              "text": "                                'inherited_colab_release_tag': 'release-colab-external-images_20260917-060051_RC00'})"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_provider.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 14,
+          "end": 15
+        },
+        {
+          "start": 38,
+          "end": 50
+        },
+        {
+          "start": 61,
+          "end": 65
+        }
+      ],
+      "hunks": [
+        {
+          "start": 14,
+          "end": 15,
+          "lines": [
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "KAGGLE_IMAGE_TAG = 'release-colab-external-images_20260917-060051_RC00'"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 38,
+          "end": 50,
+          "lines": [
+            {
+              "n": 38,
+              "sign": "+",
+              "text": "    def test_actual_kaggle_inherited_colab_image_tag_is_preserved_without_environment_spoofing(self):"
+            },
+            {
+              "n": 39,
+              "sign": "+",
+              "text": "        environment = {'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'KAGGLE_KERNEL_RUN_TYPE': 'Interactive',"
+            },
+            {
+              "n": 40,
+              "sign": "+",
+              "text": "                       'COLAB_RELEASE_TAG': KAGGLE_IMAGE_TAG}"
+            },
+            {
+              "n": 41,
+              "sign": "+",
+              "text": "        with self.environment(environment):"
+            },
+            {
+              "n": 42,
+              "sign": "+",
+              "text": "            self.assertEqual(runtime.evaluation_guard('kaggle'), {"
+            },
+            {
+              "n": 43,
+              "sign": "+",
+              "text": "                'name': 'kaggle', 'kernel_run_type': 'Interactive', 'working_directory': '/kaggle/working',"
+            },
+            {
+              "n": 44,
+              "sign": "+",
+              "text": "                'inherited_colab_release_tag': KAGGLE_IMAGE_TAG})"
+            },
+            {
+              "n": 45,
+              "sign": "+",
+              "text": "            self.assertEqual(dict(os.environ), environment)"
+            },
+            {
+              "n": 46,
+              "sign": "+",
+              "text": "            with self.assertRaises(ValueError):"
+            },
+            {
+              "n": 47,
+              "sign": "+",
+              "text": "                runtime.evaluation_guard('colab')"
+            },
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "            with self.assertRaises(ValueError):"
+            },
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "                runtime.remote_guard()"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": ""
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 61,
+          "end": 65,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG='release'), 'Linux', True),"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG=''), 'Linux', True),"
+            },
+            {
+              "n": 61,
+              "sign": "+",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG), 'Linux', False),"
+            },
+            {
+              "n": 62,
+              "sign": "+",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG), 'Windows', True),"
+            },
+            {
+              "n": 63,
+              "sign": "+",
+              "text": "            ('kaggle', {'HALA_REMOTE_DEVELOPMENT_ALLOWED': '1', 'COLAB_RELEASE_TAG': KAGGLE_IMAGE_TAG}, 'Linux', True),"
+            },
+            {
+              "n": 64,
+              "sign": "+",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG, KAGGLE_KERNEL_RUN_TYPE='Unknown'), 'Linux', True),"
+            },
+            {
+              "n": 65,
+              "sign": "+",
+              "text": "            ('kaggle', dict(valid, COLAB_RELEASE_TAG=KAGGLE_IMAGE_TAG, HALA_REMOTE_DEVELOPMENT_ALLOWED='0'), 'Linux', True),"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/adr/0005-qualify-kaggle-evaluation-separately.md",
+    "docs/adr/0006-recognize-inherited-kaggle-image-marker.md",
+    "specs/H21f-kaggle-evaluation.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_runtime.py#evaluation_guard",
+      "name": "evaluation_guard",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L44-L60",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.full_fake_runtime",
+      "name": "full_fake_runtime",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L219-L336",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_actual_kaggle_inherited_colab_image_tag_is_preserved_without_environment_spoofing",
+      "name": "test_actual_kaggle_inherited_colab_image_tag_is_preserved_without_environment_spoofing",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L38-L49",
+      "wholeFile": false
+    },
+    {
+      "id": "tests/test_development_provider.py#DevelopmentProviderTests.test_invalid_requests_fail_before_any_ml_import_or_adapter_validation",
+      "name": "test_invalid_requests_fail_before_any_ml_import_or_adapter_validation",
+      "kind": "method",
+      "path": "tests/test_development_provider.py",
+      "span": "L51-L93",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [
+    {
+      "id": "evaluation/development_runtime.py#_run",
+      "name": "_run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L224-L353",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#run",
+      "name": "run",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L209-L221",
+      "relation": "calls",
+      "depth": 1
+    },
+    {
+      "id": "evaluation/development_runtime.py#main",
+      "name": "main",
+      "kind": "function",
+      "path": "evaluation/development_runtime.py",
+      "span": "L356-L379",
+      "relation": "calls",
+      "depth": 2
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "name": "test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L213-L217",
+      "relation": "calls",
+      "depth": 1
+    }
+  ],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "evaluation_guard",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_runtime.py"
+      ],
+      "seeds": 1,
+      "tests": "none",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 1,
+      "unreached": [
+        "evaluation_guard"
+      ],
+      "seedNames": [
+        "evaluation_guard"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

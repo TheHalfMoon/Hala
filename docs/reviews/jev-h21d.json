@@ -1,0 +1,120 @@
+{
+  "cli_version": "2026.919.0",
+  "scope": "Actual advisory typed judgments; independent PStack prose review and tests remain required. No release approval.",
+  "questions": {
+    "correctness_concern": {
+      "type": "noul",
+      "instructions": "Is an evident reachable correctness defect present in this experimental source?",
+      "criteria": {
+        "true": "Concrete invariant violation, wrong labels/scoring, unsafe load, identity bypass or false qualification.",
+        "false": "No evident defect; unexecuted GPU behavior is unknown, not proven correct."
+      }
+    },
+    "security_concern": {
+      "type": "noul",
+      "instructions": "Does this source evidently cross its trust boundary?",
+      "criteria": {
+        "true": "Raw model code execution, authority grant, unsafe deserialization, path escape, credential disclosure, or accepting malformed artifacts.",
+        "false": "Bounded untrusted advice, deterministic checks, operator-controlled synthetic experiments."
+      }
+    },
+    "evidence_concern": {
+      "type": "noul",
+      "instructions": "Does this source claim synthetic or unexecuted work qualifies model quality or release?",
+      "criteria": {
+        "true": "Mocks or unexecuted experiments are presented as measured real quality or production qualification.",
+        "false": "Source, synthetic limits, measured records and remaining actual-runtime gates are distinguished."
+      }
+    }
+  },
+  "results": [
+    {
+      "file": "evaluation/development_adapter.py",
+      "source_sha256": "b78d84af1073369a3f8ef947b2bfce56e0fc41b2580f2dec5d0e54123132a248",
+      "exit_code": 0,
+      "wall_seconds": 0.6565292000013869,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.56,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.35,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 517,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1309,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "evaluation/development_runtime.py",
+      "source_sha256": "da6622d6c5c5e32724d4caa8b523e4d3c9186984f5dff63e32cbf13b7d3a0a35",
+      "exit_code": 0,
+      "wall_seconds": 0.6618136000033701,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.51,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.29,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 543,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 5338,
+          "output_tokens": 62
+        }
+      }
+    },
+    {
+      "file": "tests/test_development_adapter.py",
+      "source_sha256": "2b49e5fdcdf61f056808f637c4c2cae834bfc72a3dcc97f01c3db21eba10b040",
+      "exit_code": 0,
+      "wall_seconds": 0.6762487999949371,
+      "response": {
+        "answers": {
+          "correctness_concern": {
+            "noul": 0.28,
+            "type": "noul"
+          },
+          "evidence_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "security_concern": {
+            "noul": 0.13,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 478,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4940,
+          "output_tokens": 62
+        }
+      }
+    }
+  ],
+  "billing": "Existing authenticated tool used; no billing settings changed; charges not independently verified."
+}

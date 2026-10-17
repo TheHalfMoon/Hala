@@ -1,0 +1,62 @@
+{
+  "schema": "hala.h21f.inherited_image.source_gates.v1",
+  "review_base": "d9efb56",
+  "observed_runtime": {
+    "provider": "kaggle",
+    "kernel_run_type": "Interactive",
+    "inherited_colab_release_tag": "release-colab-external-images_20260917-060051_RC00",
+    "python": "3.13.15",
+    "torch": "2.11.0+cu128",
+    "gpu": "Tesla T4",
+    "fp16_small_matmul": true
+  },
+  "scope": "Evaluation admission/provenance compatibility only; no changed model, tasks, settings, inference or training guard",
+  "source_sha256": {
+    "evaluation/development_runtime.py": "cbc80167c80461a267a7232b0596ccf176c0c118dbf7772128a92798ee0fca2e",
+    "tests/test_development_provider.py": "1760812195638ac13ad03fd3ab8b405630539c88cbafc3ea7289b7443c42f3da",
+    "tests/test_development_adapter.py": "54b0cc1f797707b090920552f6c0a6dc3f8a8ac0ca68afb5cb66d64156ff4e8d",
+    "docs/H21f-kaggle-evaluation.md": "4381497d530c87bd57b9f0ff3e1414be9149ec6fe40158dca91baa8e48d545fb",
+    "specs/H21f-kaggle-evaluation.md": "b9bfb73c982a6913aa476b75ba01748cfaa623f1ee6765471c37c25ddad5c77f",
+    "docs/adr/0005-qualify-kaggle-evaluation-separately.md": "d107ac7735bdbbb08799b975c5de4eb1afbfd54eb164a01fbe36aa90e8389b2e",
+    "docs/adr/0006-recognize-inherited-kaggle-image-marker.md": "4e670032b6af5eb6527cda74a41fcde892a75565559c9db1fe54bb1341aa3076"
+  },
+  "red": "Actual inherited image context rejected by previous evaluation_guard",
+  "green": {
+    "focused_tests": 23,
+    "full_tests": 221,
+    "full_seconds": 28.73,
+    "skipped": 1,
+    "skip_reason": "Windows symlink privilege unavailable"
+  },
+  "independent_combined": "h21f-inherited-combined-review.md",
+  "independent_security": "h21f-inherited-security-review.md",
+  "unchanged_ast": [
+    "SETTINGS",
+    "QwenInfer",
+    "remote_guard",
+    "MODEL_ID",
+    "REVISION",
+    "VERSIONS"
+  ],
+  "jev": {
+    "file": "jev-h21f-inherited.json",
+    "model": "jev-1.13.0",
+    "role": "Actual advisory typed judgments, not independent approval or prose findings"
+  },
+  "graft": {
+    "grain": "h21f-inherited",
+    "version": "0.21.1",
+    "build_exit": 0,
+    "check_exit": 0,
+    "impact_exit": 0,
+    "graph_ok": true,
+    "nodes": 839,
+    "deep_context_built": false,
+    "scope": "Working grain source freshness and actual staged/unstaged diff blast; not correctness or isolated execution",
+    "telemetry": "disabled"
+  },
+  "actual_model_evaluation_qualified": false,
+  "native_qualified": false,
+  "billing_changes": false,
+  "retraining": false
+}

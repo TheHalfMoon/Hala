@@ -1,0 +1,412 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "STATE.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 5,
+          "end": 5
+        },
+        {
+          "start": 7,
+          "end": 7
+        },
+        {
+          "start": 11,
+          "end": 11
+        },
+        {
+          "start": 15,
+          "end": 15
+        },
+        {
+          "start": 19,
+          "end": 19
+        }
+      ],
+      "hunks": [
+        {
+          "start": 5,
+          "end": 5,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Published development source `07591f109b6683c9302fcf890259ddf0bde91494` has237 integrated CPU tests and four exact-head CI passes. Full-history checkout repaired the initial historical-source CI failure without weakening assertions. Foundation PR1 and stacked PR2 remain draft/unmerged; founder controls main/production.\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "Main00f6692383ca9e9cc147380b062676dd74932e83 and draft PR1 head0638137724eb9a5bde1e6133aef976020e11fae3 remain unchanged. Last integrated source18ad45deaa890c27c7250681e4bffe8b881e5690 passed255 CPU tests with one skip and four exact-head CI jobs; PR2 remains draft/unmerged. H23 source passed independent combined/security and genuine Jev/Graft after three repair cycles; actual lifecycle is unrun.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 7,
+          "end": 7,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "## Actual measured frontier\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H19 retains120 PNGs/136 rows. H20 Windows Arabic transport is repaired; d1 scored13/32 in the actual routing diagnostic, with no learned adoption. H21 original116-step shared adapter retains original manifest `7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d`. Fresh Kaggle T4 checked PEFT loading and frozen evaluation at immutable source `11a3a5359afa896787198e0492ccd036d0b6f4f8`: adapter DEV1/8 and TEST2/8 versus base0/8 each. All successes English; Arabic0/4 each. Independent record/geometry audits pass. Repeated standalone probes were exposed during DEV and cannot supply tuning feedback. See docs/H21-retained-candidate-20261016.md.\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "H21 original116-step shared adapter is durably retained and fresh-GPU loaded: DEV1/8, TEST2/8 versus base0/8 each, all successes English. H22 attempt2 DEV FP16/int8/NF4 actual completion1/8,1/8,0/8; Arabic0/4 each. Independent9114/10972/12537 checks pass. All raw archives/audits/public round trips retained under artifactc7f2e16244910c7b4246749b3186d49fca5ce7b4. Model and data bytes unchanged; no precision adopted.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 11,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H22 attempt1 session expired without retrieved precision results: outcomes unknown. Attempt2 restored fixed source/retained inputs; actual package/font/RAQM/provider/GPU checks and all120 byte-matched PNGs pass. Remote cache preparation and one-profile-at-a-time verified durable exports remain. No precision adoption or H22 outcome claim.\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H23 serving lifecycle source has255 tests run with one privilege skip; independent combined/security review and genuine Jev/Graft gates pass after three repair cycles. Frozen source SHA2564c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a. Actual remote GPU lifecycle qualification remains outstanding.\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "Kaggle inactivity expired the matched GPU before TEST started. New VM had no files/differentUUID and was stopped to conserve quota. Do not rerun completed DEV profiles or pretend new hardware is matched. Source H22 uses07591f109b6683c9302fcf890259ddf0bde91494. H23 prospective pland0e2115456be9f199841b6df44531b55467ccca0 remains unexecuted; outputs/h23-operator.py is a partial unreviewed draft after builder usage-limit failure.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 15,
+          "end": 15,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Export, independently audit and durably retain H22 FP16 DEV before the next fixed profile; prospective artifact6a5ac9c7400be06beec608c3aaecac67277e776f, experiment SHA25660a0986cc196041c2474314624e0f88c9c2986d75bc58cf0ddb44623ed294e02. Finish exact-head CI for integrated H23 source, then run actual lifecycle only after the precision study. No retraining or TEST-driven tuning. Founder retains merge/release decisions.\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "After ordinary capacity reset, resume existing serving_lifecycle_builder; finish operator/tests and independent review. Prepare a prospective hardware/order amendment for only the remaining TEST profiles, fresh free-GPU qualification and immediate verified exports. Keep H22/H23 actual source fixed, use durable prior results, then actual serving with frozen4c52241c1312648ae08d2530f709b45ed3fec41ae8924d2a03df5b431fcefc8a. No TEST-driven tuning/retraining.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 19,
+          "end": 19,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Arabic completion remains zero; small authored samples do not establish generalization. No model/precision adoption, actual expanded serving qualification, native integration or release. No Aladdin edits, paid compute/billing, large local weights or main merge. d1 remains advisory only.\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "Account review capacity unavailable (builder reported reset23:16 local); no billing/plan change. Remaining TEST/actual serving unqualified. Power readings exceed later observed limit and cannot support energy/price claims. Arabic quality, native integration and release remain open. No Aladdin edits, paid compute, large local weights or main merge. Founder retains merge/release; d1 remains advisory only.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/CURRENT_STATUS.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        },
+        {
+          "start": 9,
+          "end": 9
+        },
+        {
+          "start": 11,
+          "end": 11
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Updated 2026-10-16 (Asia/Riyadh). Main remains `00f6692383ca9e9cc147380b062676dd74932e83`; foundation PR1 remains fixed at `0638137724eb9a5bde1e6133aef976020e11fae3`. Current published development source is `07591f109b6683c9302fcf890259ddf0bde91494`: four exact-head CI jobs passed and the integrated CPU suite has 237 tests. The initial shallow-history CI failure was repaired by fetching full history, preserving the historical-source assertions. Foundation PR1 and stacked development PR2 remain draft/unmerged; founder merge/release decisions remain open.\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Updated 2026-10-16 (Asia/Riyadh). Main remains `00f6692383ca9e9cc147380b062676dd74932e83`; foundation PR1 remains fixed at `0638137724eb9a5bde1e6133aef976020e11fae3`. Last source integration `18ad45deaa890c27c7250681e4bffe8b881e5690` passed four exact-head CI jobs and255 integrated CPU tests with one skip. H22 uses immutable earlier runtime source07591f109b6683c9302fcf890259ddf0bde91494. The initial shallow-history CI failure was repaired by fetching full history, preserving the historical-source assertions. Foundation PR1 and stacked development PR2 remain draft/unmerged; founder merge/release decisions remain open.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 9,
+          "end": 9,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H22 representative FP16/int8/NF4 source is reviewed and CPU-tested. Attempt1's ephemeral session expired during a user/usage pause; zero result files were retrieved, so all its precision outcomes remain unknown. Attempt2 restored the fixed source and retained inputs: all120 PNGs match byte for byte, exact package/font/RAQM/provider and new T4 UUID checks pass. Remote-only pinned base cache preparation completed; its prospective plan and reviewed single-profile retention operator are retained at artifact6a5ac9c7400be06beec608c3aaecac67277e776f. FP16 DEV is running. Each later profile requires verified public raw evidence from the previous one. No H22 quality/cost outcome or precision adoption is established.\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "H22 actual DEV comparison completed on the same physical T4 with the same retained adapter and frozen inputs: FP16/int8/NF4 complete1/8,1/8,0/8; Arabic0/4 throughout. Independent audits passed9114/10972/12537 checks. Quantization lowered storage but did not establish useful task quality; power samples remain uncalibrated. Every raw ZIP and receipt was publicly retained and round-trip verified before proceeding. Kaggle expired that allocation before any attempt2 TEST profile started; a new VM has no files and a different UUID. No completed DEV rerun is needed. Remaining TEST profiles require a documented hardware/order amendment and reviewed operator; attempt1 outcomes remain unknown. See [actual DEV precision report](H22-measured-dev-20261016.md). No precision adopted.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 11,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H23 expanded private serving lifecycle source has255 CPU tests run with one privilege-dependent skip. Independent combined/security source reviews pass after three repair cycles, including font-before-allocation, complete source binding, pending real-model CUDA event instrumentation, partial evidence retention, confirmed child reap and stale-response rejection. Genuine Jev and Graft evidence is retained; neither supplies actual GPU qualification. Actual remote testing, particularly cancellation while real CUDA work is pending at receipt, remains required. These source gates do not establish production/native qualification.\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "H23 expanded private serving lifecycle source has255 CPU tests run with one privilege-dependent skip. Independent combined/security source reviews pass after three repair cycles, including font-before-allocation, complete source binding, pending real-model CUDA event instrumentation, partial evidence retention, confirmed child reap and stale-response rejection. Genuine Jev and Graft evidence is retained; neither supplies actual GPU qualification. Actual remote testing, particularly cancellation while real CUDA work is pending at receipt, remains required. These source gates do not establish production/native qualification. The separate operational helper is incomplete/unreviewed after its builder hit the account usage limit; no actual H23 run started.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H22-measured-dev-20261016.md",
+      "status": "added",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 50
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 50,
+          "lines": [
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# H22 actual DEV precision comparison\r"
+            },
+            {
+              "n": 2,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "All three prespecified DEV profiles completed with the same original retained shared adapter, frozen H19 inputs, runtime source `07591f109b6683c9302fcf890259ddf0bde91494`, exact package pins and physical T4 UUID `GPU-24febf58-cdfb-1208-90d1-a9b3b95c03c1`. Each raw archive was exported, published and independently hash-verified before the next profile. Independent saved-record audits passed 9,114 FP16, 10,972 int8 and 12,537 NF4 checks.\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 5,
+              "sign": "+",
+              "text": "| DEV measure | FP16 | int8 | NF4 |\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "|---|---:|---:|---:|\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "| Complete persisted tasks |1/8|1/8|0/8|\r"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "| English complete |1/4|1/4|0/4|\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "| Arabic complete |0/4|0/4|0/4|\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "| Semantically correct initial plans |8/8|8/8|0/8|\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| Episode Mind correct |26/59|14/59|40/64|\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| Action errors / calls |42/54|41/54|31/58|\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "| Unnecessary calls |0|0|17|\r"
+            },
+            {
+              "n": 14,
+              "sign": "+",
+              "text": "| Protocol-rejected proposals |0|0|7|\r"
+            },
+            {
+              "n": 15,
+              "sign": "+",
+              "text": "| Repeated standalone probes correct |3/10|2/10|0/10|\r"
+            },
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "| Global model calls |123|123|132|\r"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "| Run wall seconds |234.564|610.834|349.008|\r"
+            },
+            {
+              "n": 18,
+              "sign": "+",
+              "text": "| Warm load seconds |6.268|7.174|5.914|\r"
+            },
+            {
+              "n": 19,
+              "sign": "+",
+              "text": "| Model/state storage bytes |4,258,275,904|2,446,336,576|1,569,141,056|\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "| Vision subset storage bytes |813,914,176|411,260,992|216,331,840|\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "| Peak allocated CUDA bytes |4,517,451,776|2,725,797,376|1,839,384,064|\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "| Peak reserved CUDA bytes |4,674,551,808|3,223,322,624|1,941,962,752|\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "| CPU peak RSS bytes |9,685,237,760|5,498,396,672|5,541,400,576|\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "| Cache file-content bytes |4,266,814,970|4,266,814,970|4,266,814,970|\r"
+            }
+          ],
+          "dropped": 26
+        }
+      ]
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        },
+        {
+          "start": 12,
+          "end": 12
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Updated 2026-10-16. Implemented/tested source does not imply production qualification. Current published development source `07591f109b6683c9302fcf890259ddf0bde91494` has237 integrated CPU tests and four exact-head CI passes. PR1/PR2 remain draft/unmerged.\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Updated 2026-10-16. Implemented/tested source does not imply production qualification. Last integrated source `18ad45deaa890c27c7250681e4bffe8b881e5690` has255 tests run, one skipped and four exact-head CI passes. PR1/PR2 remain draft/unmerged.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 12,
+          "end": 12,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| H22 precision/process cost | Reviewed source; attempt1 lost with no retrieved outcomes; attempt2 restored inputs and actual environment qualified; remote cache preparation in progress | Sequential profile runs, verified durable exports; outcomes unknown |\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| H22 precision/process cost | Same-T4 actualDEV FP16/int8/NF4 complete1/8,1/8,0/8; all raw/audits public; no adoption | Remaining TEST profiles need new hardware/order amendment after VM expiry; power uncalibrated |\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "STATE.md",
+    "docs/CURRENT_STATUS.md",
+    "docs/H22-measured-dev-20261016.md",
+    "docs/ROADMAP.md"
+  ],
+  "deleted": [],
+  "seeds": [],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [],
+  "reviewers": []
+}

@@ -1,0 +1,60 @@
+{
+  "official_peft_wheel_sha256": "0fbba16ffebfad3de96e06f2da6860fd860292324b85b6141909fa1e26ea9233",
+  "api_signatures": {
+    "from_pretrained": "cls, model: torch.nn.Module, model_id: Union[str, os.PathLike], adapter_name: str='default', is_trainable: bool=False, config: Optional[PeftConfig]=None, autocast_adapter_dtype: bool=True, ephemeral_gpu_offload: bool=False, low_cpu_mem_usage: bool=False, key_mapping: Optional[dict[str, str]]=None, **kwargs: Any",
+    "load_adapter": "self, model_id: Union[str, os.PathLike], adapter_name: str, is_trainable: bool=False, torch_device: Optional[str]=None, autocast_adapter_dtype: bool=True, ephemeral_gpu_offload: bool=False, low_cpu_mem_usage: bool=False, key_mapping: Optional[dict[str, str]]=None, **kwargs: Any",
+    "get_peft_model_state_dict": "model, state_dict=None, adapter_name: str='default', unwrap_compiled: bool=False, save_embedding_layers: bool | Literal['auto']='auto'"
+  },
+  "implementation_seams": {
+    "peft/__init__.py": [],
+    "peft/peft_model.py": [
+      "if hasattr(self.base_model, \"_cast_adapter_dtype\"):",
+      "self.base_model._cast_adapter_dtype(",
+      "adapter_name=adapter_name, autocast_adapter_dtype=autocast_adapter_dtype",
+      "adapter_name=adapter_name,",
+      "autocast_adapter_dtype=autocast_adapter_dtype,",
+      "autocast_adapter_dtype=autocast_adapter_dtype,",
+      "autocast_adapter_dtype=autocast_adapter_dtype,",
+      "adapter_name=adapter_name,",
+      "adapter_name=adapter_name,",
+      "if hasattr(self.base_model, \"_cast_adapter_dtype\"):",
+      "self.base_model._cast_adapter_dtype(",
+      "adapter_name=adapter_name, autocast_adapter_dtype=autocast_adapter_dtype",
+      "self.base_model.delete_adapter(adapter_name=adapter_name)",
+      "autocast_adapter_dtype=autocast_adapter_dtype,",
+      "adapter_name=adapter_name,",
+      "if hasattr(self.base_model, \"_cast_adapter_dtype\"):",
+      "self.base_model._cast_adapter_dtype(",
+      "adapter_name=adapter_name, autocast_adapter_dtype=autocast_adapter_dtype"
+    ],
+    "peft/utils/save_and_load.py": [
+      "v.to(torch.float32) if platform.system() == \"Windows\" else v",
+      "adapter_name=adapter_name,",
+      "state_dict, adapter_name=adapter_name, parameter_prefix=parameter_prefix",
+      "hf_hub_download_kwargs.pop(\"local_files_only\", None)",
+      "filename = hf_hub_download(model_id, hub_filename, local_files_only=True, **hf_hub_download_kwargs)",
+      "filename = hf_hub_download(model_id, hub_filename, local_files_only=True, **hf_hub_download_kwargs)",
+      "adapters_weights = safe_load_file(filename, device=\"cpu\")",
+      "adapters_weights = safe_load_file(filename, device=device)"
+    ],
+    "peft/tuners/tuners_utils.py": [
+      "model=self.model, adapter_name=adapter_name, prefix=self.prefix, layer_cls=self.tuner_layer_cls",
+      "def _cast_adapter_dtype(self, adapter_name: str, autocast_adapter_dtype: bool = True) -> None:",
+      "cast_adapter_dtype(self.model, adapter_name=adapter_name, autocast_adapter_dtype=autocast_adapter_dtype)",
+      "peft_config=peft_config, model=model, adapter_name=adapter_name, low_cpu_mem_usage=low_cpu_mem_usage",
+      "adapter_name=adapter_name,",
+      "self.model, adapter_name=adapter_name, inference_mode=inference_mode, layer_cls=self.tuner_layer_cls",
+      "_delete_auxiliary_adapter(model, adapter_name=adapter_name, new_active_adapters=new_adapter)",
+      "dtypes_to_convert_to_fp32 = {torch.float16, torch.bfloat16}",
+      "submodule[adapter_name].data = submodule[adapter_name].data.to(torch.float32)",
+      "submodule[adapter_name] = submodule[adapter_name].to(torch.float32)",
+      "param.data = param.data.to(torch.float32)"
+    ]
+  },
+  "baseline_callback_and_SETTINGS_AST_unchanged": true,
+  "hashes": {
+    "evaluation/development_adapter.py": "b78d84af1073369a3f8ef947b2bfce56e0fc41b2580f2dec5d0e54123132a248",
+    "evaluation/development_runtime.py": "da6622d6c5c5e32724d4caa8b523e4d3c9186984f5dff63e32cbf13b7d3a0a35",
+    "tests/test_development_adapter.py": "2b49e5fdcdf61f056808f637c4c2cae834bfc72a3dcc97f01c3db21eba10b040"
+  }
+}

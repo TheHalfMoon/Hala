@@ -1,0 +1,26 @@
+{
+  "phase": "H21c",
+  "source_sha256": {
+    "training/development_data.py": "cc0fa09eedab538ba1ef3b412212fc16229ac9ecf93c97cdc3ff1b30a1b1845a",
+    "training/scripts/train_development.py": "17f0270cb721d343aecb5dcab1d35b3c88fcdf3735e3cccf2e180189bd7790f1"
+  },
+  "initial_red": "Missing module before implementation",
+  "integrated_before_final_repairs": {
+    "tests": 176,
+    "seconds": 32.078
+  },
+  "cycle1_red": "Two actual independent findings: failed telemetry could erase completed step/error evidence; oversized baseline hashing occurred before byte guard. Regressions failed before repair.",
+  "final_scoped_green": {
+    "tests": 10
+  },
+  "independent_reports": [
+    "h21c-combined-review.md",
+    "h21c-combined-delta.md",
+    "h21c-security-review.md",
+    "h21c-security-delta.md"
+  ],
+  "jev": "Actual genuine jev-1.13.0 judgments on both source files, concern probabilities retained as advisory, not approval",
+  "graft": "Actual0.21.1 build/check/blast exits0, graph794nodes, deep_context_built=false; not sandbox/correctnessproof",
+  "actual_remote_training": false,
+  "retained_trained_adapter": false
+}

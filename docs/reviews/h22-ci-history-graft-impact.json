@@ -1,0 +1,75 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 16,
+          "end": 17
+        }
+      ],
+      "hunks": [
+        {
+          "start": 16,
+          "end": 17,
+          "lines": [
+            {
+              "n": 16,
+              "sign": "+",
+              "text": "        with:"
+            },
+            {
+              "n": 17,
+              "sign": "+",
+              "text": "          fetch-depth: 0"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H22_PRECISION.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 37,
+          "end": 38
+        }
+      ],
+      "hunks": [
+        {
+          "start": 37,
+          "end": 38,
+          "lines": [
+            {
+              "n": 37,
+              "sign": "+",
+              "text": "\r"
+            },
+            {
+              "n": 38,
+              "sign": "+",
+              "text": "The published H22 CI run [38867096208](https://github.com/TheHalfMoon/Hala/actions/runs/38867096208) failed in `test_reference_ast_and_h19_bytes_unchanged`: `git show 11a3a5359afa896787198e0492ccd036d0b6f4f8:evaluation/development_runtime.py` exited128 because the default shallow checkout omitted the immutable historical reference. The run reached237 tests and reported one error/one skip; this was a checkout-history failure, not a model-runtime failure. The workflow now sets the existing pinned checkout action's `fetch-depth: 0`, making repository history available to the unchanged reference assertions. Runtime, tests and prospective freeze bytes remain unchanged. Actual rerun green is pending publication and CI execution; no YAML-mirror test substitutes for that evidence.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    ".github/workflows/ci.yml",
+    "docs/H22_PRECISION.md"
+  ],
+  "deleted": [],
+  "seeds": [],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [],
+  "reviewers": []
+}

@@ -1,0 +1,482 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "STATE.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 1
+        },
+        {
+          "start": 4,
+          "end": 4
+        },
+        {
+          "start": 6,
+          "end": 7
+        },
+        {
+          "start": 9,
+          "end": 10
+        },
+        {
+          "start": 12,
+          "end": 13
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 1,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Last updated: 2026-10-15 · Branch: ps/model-development\r"
+            },
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "Last updated: 2026-10-16 · Branch: ps/model-development\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 4,
+          "end": 4,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Foundation PR1 remains draft/unmerged at0638137724eb9a5bde1e6133aef976020e11fae3; main00f6692383ca9e9cc147380b062676dd74932e83. Final independent foundation review reran153tests and80boundary checks; all4exact-headCI pass, historicalDCOexception disclosed. New development is isolated here. H19 reviewed semantic data has136bilingual training turns,32episodes,10heldoutMinddecisions; fourtrain/twodev/twotest applicationfamilies.169CPUtests pass. Independent review repaired stale recovery observation and separated Mindsemantic errors from actual final task success. Genuine Jev8files and Graft653nodes/exits0 retained; deepcontextfalse. No actual H19 media/inference/training yet.\r"
+            },
+            {
+              "n": 4,
+              "sign": "+",
+              "text": "Main remains00f6692383ca9e9cc147380b062676dd74932e83. Foundation PR1 stays draft/unmerged at0638137724eb9a5bde1e6133aef976020e11fae3, independently qualified for founder review. Draft stacked PR2 development/training source5b6eb4bf29acbaf21aa199f113f78af4f268b3b7 has216-test integration evidence (one privilege skip),18-test dependency delta and four exact-head CI passes. Source updates to this status record do not change the immutable experiment source.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 6,
+          "end": 7,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "## In flight\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "H20 d1 Windows UTF8 repair and32case routing diagnostic await final parser-delta review; no learnedrouter adopted. H21a bounded small-adapter archive and H21b remote baseline source are being independently reviewed. Free Colab reconnected to a fresh T4; original cache gone, no new adapter existed. Immutable harmless archive probe roundtrip passed atab69e61; no trainedasset.\r"
+            },
+            {
+              "n": 6,
+              "sign": "+",
+              "text": "## Measured frontier\r"
+            },
+            {
+              "n": 7,
+              "sign": "+",
+              "text": "H19 original bilingual media freeze120PNGs/136rows is retained. H20 reproduced/repaired Windows UTF8 transport; d1 scored13/32 with unsafe route suggestions, no learned adoption. H21 unchanged-base strict dev0/8 and test0/8; episode Mind0/64 per allocation, standalone0/10 unique cases repeated. Independent actual audits1124/1084 pass; rejected-protocol counters are not harmful-action counts. One fixed116-step shared LoRA completed,112 F32 tensors/802816 finite scalars. Original small adapter is retained at signed archive274024e14699599a51fca2c948af40819532e18c, manifest7e46995aa694e5782a93d4beb6139cc5880b898a2038eb2d2ce2a2d8006a841d. Fresh CPU-session public retrieval/hash/payload verification passed after original Colab expired. See docs/H21-measured-pilot-20261016.md and experiments/development/h21-pilot-checkpoint.json.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 9,
+          "end": 10,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "## Next steps\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Publish reviewed development source separately from PR1, freeze qualified Arabic/English media and settings before inference, run unchanged-base Mind/closed-loop tasks, then implement/review one shared small LoRA pilot with durable hash-verified artifacts and fresh-session reload/evaluation. Preserve old H14/H17 results. Complete serving lifecycle/representative quantization later.\r"
+            },
+            {
+              "n": 9,
+              "sign": "+",
+              "text": "## In flight / next\r"
+            },
+            {
+              "n": 10,
+              "sign": "+",
+              "text": "Actual PEFT attachment and candidate quality remain unverified because Colab free GPU quota is exhausted. User authorized an existing Kaggle account and reports phone verification complete; its GPU/internet controls still appeared disabled at last check. H21f evaluation-only provider source is being prepared on ps/h21-kaggle-evaluation in ../Hala-kaggle; no provider qualification is inferred. Qualify actual free environment/pins/GPU/font, then matched unchanged-base/candidate evaluation. Keep source5b and trained bytes fixed; do not retrain or tune from test outputs.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 12,
+          "end": 13,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "## Blockers / open issues\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "No quality-improving retained adapter or native/production integration. Browser file-download path is not yet verified; do not train until small-artifact retrieval and durable upload are reliable. Review/provider pauses may delay fresh gates; never substitute d1/Jev for independent required reviews. Shared synthetic workflow templates limit generalization. Founder retains main merge/deployment.\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "## Limitations\r"
+            },
+            {
+              "n": 13,
+              "sign": "+",
+              "text": "Four train/two dev/two test families share workflow templates; no general/native capability claim. Historical H14/H17 FP16/int8/NF4 and H15/H16 evidence remain preserved. No precision adopted. Full serving lifecycle, representative quality/cost and integration/release remain incomplete. No Aladdin edits, main/production merge, billing activation or large local base weights. Independent reviews/Jev/Graft remain required for new source; d1 is advisory only. Founder retains merge/release decisions.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/H21c-shared-quality-pilot.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 23
+        }
+      ],
+      "hunks": [
+        {
+          "start": 1,
+          "end": 23,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "# Shared Mind/Type pilot operation"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Implemented source is unexecuted against a model. CPU fixtures establish contract behavior only; training, archive retention, fresh-session reload, quality and native execution remain unqualified."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Before training, archive the genuine H21b measured development result and obtain its SHA256 independently. The baseline can use an earlier source commit if the loaded runtime file bytes and frozen H19 implementation/data/settings are identical. The baseline's own immutable source commit is recorded separately from the exact clean training commit. Training requires measured development episode failure or a development Mind semantic deficit; the standalone test Mind diagnostics cannot trigger training."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "After the baseline and final training source commit are known, construct the identity dictionary with `base_model`, `base_revision`, `source_commit`, `data_sha256` (H19 dataset file hash), and `evaluation_sha256` (actual baseline file hash). Call `training.adapter_archive.create_bundle` with an empty source directory and `kind='pretraining_roundtrip'`. Commit this harmless manifest to the authorized experimental artifact branch in `TheHalfMoon/Hala`, verify the signed immutable commit, download those exact public bytes into a different directory and externally verify the manifest SHA. Supply that downloaded directory to the trainer. The earlier legacy public probe has a different schema and is insufficient for this interface. A typed commit string alone cannot establish a network roundtrip: the coordinating operator must actually retrieve and independently inspect the pinned commit before invoking training."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "On approved free Linux Colab, with exact torch2.11.0 / transformers5.16.1 / peft0.20.0 / Pillow11.3.0 and explicit `HALA_REMOTE_DEVELOPMENT_ALLOWED=1` plus `HALA_REMOTE_TRAINING_ALLOWED=1`:"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "```text"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "python -m training.scripts.train_development --bundle H19_DIRECTORY --manifest-sha256 H19_EXTERNAL_SHA --baseline ACTUAL_BASELINE_JSON --baseline-sha256 BASELINE_EXTERNAL_SHA --source-commit CLEAN_TRAINING_COMMIT --probe DOWNLOADED_PROBE_DIRECTORY --probe-sha256 PROBE_EXTERNAL_SHA --probe-commit VERIFIED_ARTIFACT_COMMIT --repository TheHalfMoon/Hala --output NEW_OUTPUT_DIRECTORY"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "```"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "No flags vary the schedule. The output directory must be new. The single authored epoch derives 116 steps after excluding 20 Reliance examples from the independently reconstructed 136 rows. Each row's completion prefix is checked on actual expanded processor tokens before model allocation and again during training. Mind receives text only; Type receives the current SHA-verified 800x600 PNG. Raw audit state is removed by projection."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "`result.json` is atomically updated with each step's loss, norm, changed tensors, seconds and device memory samples. Memory telemetry is best effort: completed-step evidence is appended before sampling; failures produce null plus a bounded exception class and cannot prevent final persistence or replace the training error. The baseline is hashed and parsed from the same bounded16MiB read; Type PNG reads are bounded2MiB. A final immutable paired checkpoint uses the existing checkpoint publisher and records schedule/data/manifest identities. Its `resume.pt` is local trusted optimizer/RNG state and must never be exported; this pilot has no automatic resume or schedule modification. Failure remains recorded; do not present partial or failed runs as a trained adapter."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "`adapter-bundle/` contains only exact original PEFT safetensors/config plus bounded training metadata and the canonical archive manifest. The archive checker requires the full112-tensor inventory. The trainer never edits PEFT config to satisfy archive validation. If official saved bytes are unsupported, retain the failure and fix/review the validator separately. Transfer only this bounded bundle and bounded reports to the authorized signed artifact branch, then independently retrieve and verify the public immutable artifact commit and external SHA before resetting Colab. `trained_pending_durable_archive` explicitly means retention has not yet been established."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "For fresh-session evaluation, call `verified_adapter_path(directory, expected_identity, external_manifest_sha256)` before `PeftModel.from_pretrained(base, validated_path, is_trainable=False, ...)`. The helper rejects harmless probes and verifies all archive files before returning a path. The evaluation runtime's adapter loading remains disabled until the coordinating integration wires this seam and passes independent review. Evaluate the retained bytes under identical frozen tasks/settings; preserve failure or no improvement, and keep held-out outputs separate."
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": ""
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "CPU verification: ten new unit tests cover row reconstruction/projection, coherent relabeling after manifest rehash, text-only processor behavior, completion masking, Type media/path errors, actual baseline identity/summary/deficit gates, externally anchored roundtrip identity rejection, completed-step/final telemetry failures, and sparse oversized-baseline rejection before hashing. They use explicitly synthetic fixtures and perform no model work."
+            },
+            {
+              "n": 1,
+              "sign": "+",
+              "text": "# Shared Mind/Type pilot operation\r"
+            }
+          ],
+          "dropped": 22
+        }
+      ]
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        },
+        {
+          "start": 11,
+          "end": 12
+        },
+        {
+          "start": 20,
+          "end": 26
+        },
+        {
+          "start": 28,
+          "end": 28
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Updated 2026-10-15. IMPLEMENTED/TESTED never implies production QUALIFIED.\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Updated 2026-10-16. IMPLEMENTED/TESTED never implies production QUALIFIED.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 11,
+          "end": 12,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| P5 / H18 adaptation | Reviewed pinned audit; disabled single-shared-model proposal | Compatible bilingual Mind/Type semantic data and dev/test; Mind baseline |\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "| P6 / H9 Reliance | Deterministic baseline; existing local d1 diagnostics; no adoption | Demonstrated task/reliability/cost improvement without policy override |\r"
+            },
+            {
+              "n": 11,
+              "sign": "+",
+              "text": "| P5 / H18–H21 adaptation | Original audit preserved; compatible bilingual data/media and actual strict base baseline; fixed116-step shared adapter retained | Actual fresh pinned-base PEFT load and independent candidate quality |\r"
+            },
+            {
+              "n": 12,
+              "sign": "+",
+              "text": "| P6 / H9–H20 Reliance | Windows Arabic transport repaired; actual32-case comparison, d1 scored13/32; deterministic baseline retained | Demonstrated task/reliability/cost improvement without policy override |\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 20,
+          "end": 26,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "- H19 source: implemented/reviewed,169CPUtests; actual RAQM media and real base evaluation pending.\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "- H20: actual Windows transport diagnosis/config repair and conservative routing comparison; parser delta/review gates pending.\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "- H21a: small adapter integrity/persistence source repaired; independent final deltas pending.\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "- H21b: actual Mind/closed-loop remote baseline candidate; source review pending, no model run yet.\r"
+            },
+            {
+              "n": null,
+              "sign": "-",
+              "text": "- H21 quality pilot: planned after data/base/persistence gates; one shared LoRA, fresh-session byte/load/evaluation required.\r"
+            },
+            {
+              "n": 20,
+              "sign": "+",
+              "text": "- H19: source/media frozen and retained;120PNGs/136rows; genuine Arabic shaping/RTL sampled QA.\r"
+            },
+            {
+              "n": 21,
+              "sign": "+",
+              "text": "- H20: actual Arabic HTTP400 transport repaired;32-case d1/CPU/deterministic diagnostic retained, no learned routing adoption.\r"
+            },
+            {
+              "n": 22,
+              "sign": "+",
+              "text": "- H21a: original bounded trained adapter retained and independently verified; fresh CPU public retrieval passes. Actual PEFT model loading remains pending.\r"
+            },
+            {
+              "n": 23,
+              "sign": "+",
+              "text": "- H21b: actual unchanged-base dev0/8 and test0/8; independent final-state/raw-call/media audits pass.\r"
+            },
+            {
+              "n": 24,
+              "sign": "+",
+              "text": "- H21c: fixed shared116-step pilot completed and retained; no candidate quality result yet.\r"
+            },
+            {
+              "n": 25,
+              "sign": "+",
+              "text": "- H21d: verified adapter-loading source reviewed, including actual dependency compatibility repair; actual fresh GPU load/comparison pending.\r"
+            },
+            {
+              "n": 26,
+              "sign": "+",
+              "text": "- H21f: separate evaluation-only Kaggle guard in progress; actual free GPU/provider/package/media qualification required, Colab quota exhausted.\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 28,
+          "end": 28,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Foundation PR1 stays fixed for founder review. These experiments use a separate stacked development PR and an isolated small-artifact archival branch; neither main nor Aladdin is modified.\r"
+            },
+            {
+              "n": 28,
+              "sign": "+",
+              "text": "Details: docs/H21-measured-pilot-20261016.md. Foundation PR1 remains fixed; PR2 is stacked/draft/unmerged, artifact branch isolated. No model/precision adoption or native/production qualification. Founder controls merge/release.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "specs/H21b-real-development-baseline.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 3,
+          "end": 3
+        }
+      ],
+      "hunks": [
+        {
+          "start": 3,
+          "end": 3,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "Status: source reviewed and CPU-tested; actual inference pending; depends on reviewed H19 source and qualified remote media. Review: full.\r"
+            },
+            {
+              "n": 3,
+              "sign": "+",
+              "text": "Status: actual unchanged-base dev/test inference measured and independently audited (strict0/8 each); depends on reviewed H19 source and qualified remote media. Review: full.\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "STATE.md",
+    "docs/H21c-shared-quality-pilot.md",
+    "docs/ROADMAP.md",
+    "specs/H21b-real-development-baseline.md"
+  ],
+  "deleted": [],
+  "seeds": [],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [],
+  "reviewers": []
+}

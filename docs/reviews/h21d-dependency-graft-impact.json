@@ -1,0 +1,196 @@
+﻿{
+  "basis": "working tree vs HEAD",
+  "depth": 2,
+  "changed": [
+    {
+      "path": "docs/H21d-verified-adapter-evaluation.md",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 37,
+          "end": 37
+        },
+        {
+          "start": 48,
+          "end": 56
+        }
+      ],
+      "hunks": [
+        {
+          "start": 37,
+          "end": 37,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "After the Colab and exact package gates, safetensors 0.6.2 decodes on CPU and\r"
+            },
+            {
+              "n": 37,
+              "sign": "+",
+              "text": "After the Colab and exact package gates, safetensors 0.8.0 decodes on CPU and\r"
+            }
+          ],
+          "dropped": 0
+        },
+        {
+          "start": 48,
+          "end": 56,
+          "lines": [
+            {
+              "n": 48,
+              "sign": "+",
+              "text": "The adapter path uses an FP16 base with PEFT's default adapter dtype promotion;\r"
+            },
+            {
+              "n": 49,
+              "sign": "+",
+              "text": "the trained F32 LoRA weights remain F32. The whole candidate is not claimed to\r"
+            },
+            {
+              "n": 50,
+              "sign": "+",
+              "text": "be FP16. A real fresh Colab import exposed that the original safetensors 0.6.2\r"
+            },
+            {
+              "n": 51,
+              "sign": "+",
+              "text": "pin conflicts with Transformers 5.16.1's required `safetensors>=0.8.0`, before\r"
+            },
+            {
+              "n": 52,
+              "sign": "+",
+              "text": "model allocation or calls. H21d now pins 0.8.0. Official wheel metadata and the\r"
+            },
+            {
+              "n": 53,
+              "sign": "+",
+              "text": "Transformers runtime dependency table/check are recorded in\r"
+            },
+            {
+              "n": 54,
+              "sign": "+",
+              "text": "`docs/reviews/h21d-dependency-repair.json`; this compatibility repair still needs\r"
+            },
+            {
+              "n": 55,
+              "sign": "+",
+              "text": "independent delta review and Jev/Graft qualification before adapter execution.\r"
+            },
+            {
+              "n": 56,
+              "sign": "+",
+              "text": "\r"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "evaluation/development_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 8,
+          "end": 8
+        }
+      ],
+      "hunks": [
+        {
+          "start": 8,
+          "end": 8,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "VERSIONS = {'peft': '0.20.0', 'safetensors': '0.6.2'}"
+            },
+            {
+              "n": 8,
+              "sign": "+",
+              "text": "VERSIONS = {'peft': '0.20.0', 'safetensors': '0.8.0'}"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    },
+    {
+      "path": "tests/test_development_adapter.py",
+      "status": "modified",
+      "ranges": [
+        {
+          "start": 273,
+          "end": 273
+        }
+      ],
+      "hunks": [
+        {
+          "start": 273,
+          "end": 273,
+          "lines": [
+            {
+              "n": null,
+              "sign": "-",
+              "text": "                'safetensors': SimpleNamespace(__version__='0.6.2'),"
+            },
+            {
+              "n": 273,
+              "sign": "+",
+              "text": "                'safetensors': SimpleNamespace(__version__='0.8.0'),"
+            }
+          ],
+          "dropped": 0
+        }
+      ]
+    }
+  ],
+  "unindexed": [
+    "docs/H21d-verified-adapter-evaluation.md"
+  ],
+  "deleted": [],
+  "seeds": [
+    {
+      "id": "evaluation/development_adapter.py",
+      "name": "development_adapter.py",
+      "kind": "file",
+      "path": "evaluation/development_adapter.py",
+      "span": "L1-L67",
+      "wholeFile": true
+    },
+    {
+      "id": "tests/test_development_adapter.py#DevelopmentAdapterTests.test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "name": "test_full_fake_runtime_load_order_same_tasks_and_honest_saved_results",
+      "kind": "method",
+      "path": "tests/test_development_adapter.py",
+      "span": "L213-L322",
+      "wholeFile": false
+    }
+  ],
+  "impacted": [],
+  "modules": [],
+  "testModules": [],
+  "areas": [
+    {
+      "label": "development_adapter.py",
+      "labelSource": "symbol",
+      "key": "evaluation/",
+      "files": [
+        "evaluation/development_adapter.py"
+      ],
+      "seeds": 1,
+      "tests": "na",
+      "testFiles": [],
+      "changedTestFiles": [],
+      "reached": 0,
+      "behavioural": 0,
+      "unreached": [],
+      "seedNames": [
+        "development_adapter.py"
+      ],
+      "owners": []
+    }
+  ],
+  "reviewers": []
+}

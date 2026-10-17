@@ -1,0 +1,27 @@
+# H21a small adapter archive
+
+Implemented CPU-only archival plumbing, not a trained asset or quality qualification. A bundle is a new flat directory containing canonical `manifest.json`, exactly `adapter_model.safetensors` and `adapter_config.json`, and optionally `training_metadata.json`. Pretraining roundtrip mode instead contains only its manifest and explicitly reports `contains_adapter: false`. Neither mode claims quality qualification.
+
+The base is fixed to Qwen/Qwen3-VL-2B-Instruct revision `89644892e4d85e24eaac8bacfd4f463576704203`. The caller supplies immutable source commit, data SHA256 and evaluation SHA256. Verification requires those independently expected identities and the exact manifest SHA256 from the signed archival commit. Reading the expected digest from the downloaded manifest itself would defeat this trust boundary. GitHub ownership, signatures, authorization and actual remote roundtrips are the conductor's separate responsibility; this tool has no credentials or network path.
+
+The adapter budget is 8 MiB, config 32 KiB, optional metadata 16 KiB, manifest 32 KiB and whole directory 16 MiB. Only regular exact allowlisted files are accepted; nesting, additional files, symlinks and reparse points fail closed. Parent directories must also be free of symlinks/reparse points. Windows junction rejection uses `lstat().st_file_attributes`, available on Python3.11, rather than the Python3.12-only `Path.is_junction` API. The caller must exclusively own directories while creating/verifying: this is a bounded artifact verifier, not an operating-system sandbox against concurrent filesystem mutation.
+
+Only the complete rank4, alpha8, dropout0 language q_proj/v_proj LoRA inventory is accepted: 112 tensors across 28 layers, with exactly 802816 elements. The pinned official text configuration has hidden size2048, 16 query heads, 8 value heads and head dimension128: A shapes are `[4,2048]`, q B shapes `[2048,4]`, v B shapes `[1024,4]`. Its checked-in config SHA256 is `bec4b3d446efa05807365c9e1cec03ac590836879d02f3a6da879971154bdd3b`; a regression derives the inventory from this evidence and checks the qualified producer target regex. Missing tensors, layer99, alternate names or incompatible shapes are rejected before loading.
+
+Safetensors JSON has duplicate-key/nonfinite rejection, a bounded header, bounded floating tensor dimensions, exact payload length and contiguous nonoverlapping offsets. Config accepts PEFT0.20.0 and exactly the qualified producer regex `.*language_model.*\.(q_proj|v_proj)$` or the explicit q/v list. Official0.20 serialized defaults including `peft_version`, `lora_ga_config`, `monteclora_config`, `use_bdlora` and `velora_config` are covered; these four variant configs must remain null. Broader regexes, different versions, nondefault initialization, auto mapping, extra learned modules and other unqualified variants are rejected. Producer config bytes are preserved exactly. The saved-config fixture is grounded in the official PEFT0.20 wheel, SHA256 `0fbba16ffebfad3de96e06f2da6860fd860292324b85b6141909fa1e26ea9233`; no optional package was installed or imported locally.
+
+No pickle, model import, tensor deserialization, execution or base-weight path exists. Exact tensor inventory checks do not prove tensor finiteness, actual training, successful runtime loading, quality, hardware behavior or safe downstream application; those require subsequent isolated remote loading and evaluation. Do not describe offline structural compatibility as a successful actual loader seam.
+
+Optional training metadata has exactly `training_run_id`, `steps`, `seed`, `training_script_sha256`; it is bounded evidence supplied by the producer, not independently attested training. Never include customer data, credentials, optimizer pickle or base weights. Preserve original config bytes; if an actual PEFT config has unsupported fields, reject and review a source change rather than silently dropping fields or changing archive expectations.
+
+Fresh-session local commands (Python 3.11+; no optional dependencies):
+
+```text
+python tools/archive_adapter.py create --source EMPTY_DIRECTORY --directory NEW_BUNDLE --kind pretraining_roundtrip --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256
+python tools/archive_adapter.py create --source ADAPTER_DIRECTORY --directory NEW_BUNDLE --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256
+python tools/archive_adapter.py verify --directory DOWNLOADED_BUNDLE --manifest-sha256 EXTERNALLY_PINNED_MANIFEST_SHA256 --source-commit SOURCE_COMMIT --data-sha256 DATA_SHA256 --evaluation-sha256 EVALUATION_SHA256
+```
+
+All create operations refuse an existing destination. A failed write may leave an incomplete directory; verification must succeed before archival publication. The emitted JSON includes exact per-file sizes/hashes and distinguishes pretraining bytes from an adapter. Fresh-session remote download/load/evaluation remains unperformed by this subphase.
+
+Review cycle1 reproduced an incompatible real producer config, accepted partial inventory and accepted real Windows junction when `Path.is_junction` was removed. Regressions failed before repair (three failures/one error across three targeted tests), then passed. The real symlink creation test still requires unavailable Windows account privilege; real junction regression and mocked symlink guard both execute locally.

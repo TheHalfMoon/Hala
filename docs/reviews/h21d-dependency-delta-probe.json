@@ -1,0 +1,14 @@
+{
+  "transformers": {
+    "version": "5.16.1",
+    "metadata_sha256": "255252b467aa3ed5e9748b8b0225ecb933bbd6be9ec4fa105fee7bec1082e454",
+    "wheel_sha256_matches_record": true
+  },
+  "safetensors": {
+    "version": "0.8.0",
+    "metadata_sha256": "b8d395b433d0319498c9192ed323b86a84d82b5f40b4adf1b97b3bf8963fafad",
+    "wheel_sha256_matches_record": true
+  },
+  "runtime_exact_bytes_unchanged": true,
+  "scope": "PyPI metadata and source hashes only; no ML imports/install/GPU or actual outputs"
+}

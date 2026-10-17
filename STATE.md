@@ -1,13 +1,23 @@
-Last updated: 2026-10-15 · Branch: ps/foundation
+Last updated: 2026-10-17 (Asia/Riyadh) · Branch: ps/model-development
 
 ## Current state
-Main00f6692383ca9e9cc147380b062676dd74932e83 unchanged; draftPR#1 unmerged. Source5b8c63c passed153 CPU tests/four CI. Frozen model precision runs FP16/int8/NF4 hit30/34/32 of64, schema 64/64 each; Arabic14/14/13 of32. Independent2048 checks passed. Genuine two-step English LoRA update/save/actualreload/resume matched uninterrupted tensors exactly; original ephemeral binaries expired, metadata retained. Real bilingual loopback smoke2/2 and five negative statuses tested; no native/release qualification. H18 shared-adaptation audit reviewed/repaired; configuration disabled, data incompatible. Jev/PStack/Graft evidence retained.
+
+Main00f6692383ca9e9cc147380b062676dd74932e83 and draft PR1 head0638137724eb9a5bde1e6133aef976020e11fae3 remain unchanged. Last integrated source18ad45deaa890c27c7250681e4bffe8b881e5690 passed255 CPU tests with one skip and four exact-head CI jobs; PR2 remains draft/unmerged. H23 source passed independent combined/security and genuine Jev/Graft after three repair cycles; actual lifecycle is unrun.
+
+H21 original116-step shared adapter is durably retained and fresh-GPU loaded: DEV1/8, TEST2/8 versus base0/8 each, all successes English. H22 attempt2 DEV FP16/int8/NF4 actual completion1/8,1/8,0/8; Arabic0/4 each. Independent9114/10972/12537 checks pass. All raw archives/audits/public round trips retained under artifactc7f2e16244910c7b4246749b3186d49fca5ce7b4. Model and data bytes unchanged; no precision adopted.
 
 ## In flight
-Final measured-result documentation/PR status publication; no model process or production server left running. Quantization paths tested, neither adopted. Phase worktrees retained for review; no unrelated work deleted.
+
+Ordinary review capacity reset; continuation resumed without a billing change. The completed DEV profiles were preserved. A separately qualified free T4 allocation started2026-10-16 20:52:40UTC with GPU-14ac1f01-0bec-e9da-d360-51d417657b16. Published TEST-only amendment9d055aeec6329909c91b91a5f144298365110819, SHA21cab7460e729b4f02190d03ba368a468a330477e902d11f694e3a3e8aaf6c99, preserves source07591, fixed original adapter/data and TEST orderFP16/int8/NF4. No cross-allocation matched-cost claim.
+
+FP16 TEST finished2/8 (English2/4, Arabic0/4), independently audited9048 checks with no errors/warnings. Raw archive SHAe098a7631708aa50609e56ba7701c01a1c5cc5804b87f9994b6dded181abf471 and receipt were published at9568d58c74f3e1326b55b04d304f643e2bf1b99f and publicly round-trip verified. Int8 TEST started after that barrier at21:07UTC. A later multi-hour conversation pause outlasted Kaggle inactivity; at2026-10-17 01:36:58UTC the next VM had no experiment root/int8 status/archive and a different GPU03aae395.... Int8 outcome is unknown/unretrieved; NF4 never started. The new empty allocation was stopped. Journal outputs/h22-test-restart-session-loss-20261017.json preserves the observation.
+
+H23 operatorfff4235e6e81ac325b0456805d1d7d18c59a1d41a450482db7c82f1b37b3f1a9 passed12 CPU tests and independent combined/security delta review after one operator repair cycle. Actual Jev/Graft source gates are retained. Artifactaac654643bb52a610c19ec1f23dd1be100f1500d publishes it and the explicit hardware amendment SHA882ccf1b5df14338e703db0c29f9ef8a777710f3bc9bd3034d434deed1c89852. H23 actual execution remains unstarted until all six public raw receipts and three current TEST-local records pass its barrier.
 
 ## Next steps
-Prepare and prospectively freeze compatible rights-cleared bilingual Mind-plan/normalized-Type semantic data and independent family splits; evaluate shared-model Mind baseline. Implement a separately reviewed bounded quality-training pilot after data gates. Keep H14 protected from training/tuning. Qualify representative closed-loop tasks and native frame/DPI/in-flight cancellation before release. Founder controls merge/deployment.
+
+Prepare and independently review a clean Save & Run All batch notebook with explicit prospective assigned-hardware/retention amendment. Batch-version outputs replace ephemeral interactive polling, subject to actual retrieval/hash verification. Full fixed TEST triplet replication is necessary for a same-physical-GPU cost group; preserve the earlier FP16 result separately and lost int8 as unknown. Original scientific sources07591/H23 source18ad/freeze4c522 remain fixed. H23 integration requires a separately explicit batch retention contract; the published interactive operator cannot silently accept missing public/local barriers. No TEST-driven tuning/retraining or repeated DEV runs. ADR0009 records the operational decision. New notebook freeT4x2/internet configured, interactive session off; no batch submitted yet.
 
 ## Blockers / open issues
-Grounding quality only46.9–53.1% on narrow dependent fixtures; no native/general task evidence, retained quality adapter or production cost. Existing58English rows are legacy actions, not prospective task schemas. Historical H15 merge omitted DCO text and has a signed attestation; preserve fact. No paid compute authorized, no Kaggle commercial model work or large weights on PC.
+
+Remaining TEST/actual serving unqualified. Power readings are uncalibrated and cannot support energy/price claims. Arabic quality, native integration and release remain open. No Aladdin edits, paid compute, large local weights or main merge. Founder retains merge/release; d1 remains advisory only.

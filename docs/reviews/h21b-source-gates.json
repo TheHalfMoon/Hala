@@ -1,0 +1,18 @@
+{
+  "phase": "H21b",
+  "source_sha256": "7c8f0edfede7bf40a375fc3fcc74043c852700dc0fe405566a93b04c8eafa616",
+  "initial_red": "Missing module before implementation",
+  "integrated_before_final_repairs": {
+    "tests": 160,
+    "seconds": 25.128
+  },
+  "cycle1_red": "Telemetry exception erased completed raw call and final blocked result; two regressions failed before fix",
+  "final_scoped_green": {
+    "tests": 10,
+    "seconds": 0.258
+  },
+  "independent": "Combined and separate security reviews plus both repair deltas passed",
+  "jev": "Genuine initial and repair source-hash records retained; advisory only",
+  "graft": "Initial and repair build/check/blast0; deep_context_built=false",
+  "actual_remote_inference": false
+}
