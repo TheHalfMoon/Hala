@@ -1,0 +1,48 @@
+{
+  "aladdin_qualified": false,
+  "all_three_profile_archives_verified": true,
+  "assigned_gpu_uuid": "GPU-a00cc5ee-b73b-753b-16e2-cdf6589573f1",
+  "general_task_quality_qualified": false,
+  "model_adopted": false,
+  "physical_hardware_truth_independently_verified": false,
+  "profiles": [
+    {
+      "archive_sha256": "c696c335b69d3c20fe81f54e9f8058384021a62d1322aa4777c68c994a82deb0",
+      "completed_by_language": {
+        "all": 2,
+        "ar": 0,
+        "en": 2
+      },
+      "gpu_uuid": "GPU-a00cc5ee-b73b-753b-16e2-cdf6589573f1",
+      "mode": "fp16",
+      "raw_result_sha256": "5b291ae49bf4b34e1191ac9a25090986186e5453b6599e5362929d690bfa1512"
+    },
+    {
+      "archive_sha256": "ff6927cca88c841ab02a737a335655a2562f52bcf84713fe53395c275b5978e5",
+      "completed_by_language": {
+        "all": 0,
+        "ar": 0,
+        "en": 0
+      },
+      "gpu_uuid": "GPU-a00cc5ee-b73b-753b-16e2-cdf6589573f1",
+      "mode": "int8",
+      "raw_result_sha256": "4f5771610d35524fca2cb9f3bffb61888ae1361ac52f5bdc67f19196f935aa6f"
+    },
+    {
+      "archive_sha256": "018490f7a68285b65dfccecb1b755d447408ee1a7203cea51a2d594cbdde4e70",
+      "completed_by_language": {
+        "all": 2,
+        "ar": 0,
+        "en": 2
+      },
+      "gpu_uuid": "GPU-a00cc5ee-b73b-753b-16e2-cdf6589573f1",
+      "mode": "nf4",
+      "raw_result_sha256": "572474ee996af4de7fce9d59e52b8146de4bbea2f09860f7e7d1e9624a0468c0"
+    }
+  ],
+  "saved_version_retrieval_verified": true,
+  "schema": "hala.h22.batch_retrieval_audit.v1",
+  "scope": "CPU hashes, retained raw result/metadata consistency; not source execution or hardware attestation",
+  "source_commit": "07591f109b6683c9302fcf890259ddf0bde91494",
+  "training_runs": 0
+}
