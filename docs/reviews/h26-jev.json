@@ -1,0 +1,314 @@
+{
+  "files": [
+    {
+      "exit_code": 0,
+      "file": "h26/choice.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 625,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2260,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "e55df758bc524cb880a9152415fb27fd12e6da5aff5e70c3577a753401acb20a"
+    },
+    {
+      "exit_code": 0,
+      "file": "h26/corpus.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 411,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3574,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "a9b4753728ed48abc8184988f0ba26b0712c938179485818b877c64b0ce12d92"
+    },
+    {
+      "exit_code": 0,
+      "file": "h26/runner.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.21,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.28,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 599,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3083,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "ab7e44f450f85feee738d3cb3ab1991f0a2cbdd64c1d8bde3f3aba50330a9780"
+    },
+    {
+      "exit_code": 0,
+      "file": "tools/build_h26_kaggle.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.22,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 412,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2062,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "e654a291b49de4b4fe8406e4bacab5d2d6235cb9dd965e91f492be7943a9ae8c"
+    },
+    {
+      "exit_code": 0,
+      "file": "tools/verify_h26_dev.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.26,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.23,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 398,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2081,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "e2ab0020c3c95b8893ce36a45e9b0fdd957bd379582f8552a2792d63182d0856"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h26_choice.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.15,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 527,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2324,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "bfff5f4babac5fdf967af6d0ceeccb05d3709682cec136f0207d804d30ccdf37"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h26_corpus.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.16,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 427,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1789,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "bc1a364a4118adc87323f4abccdaad7f55c4852d89c67c99304f583add48ecb4"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h26_runner.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.17,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.07,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 521,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1890,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "7d2a3933cce3b5b3853a5780f25b6f5a2e990140a777ba46b43b980da75eb705"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h26_kaggle_audit.py",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 548,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2289,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "d8786f458be0148fd89442c7d3a37ea441723b0dcecee5c42c4087eb8afcf7dd"
+    },
+    {
+      "exit_code": 0,
+      "file": "docs/H26_CHOICE_DEV_PROTOCOL.md",
+      "result": {
+        "answers": {
+          "false_qualification": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "source_label_or_scoring": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "unsafe_output_admission": {
+            "noul": 0.04,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 555,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2209,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "d73e163a3cf821458ce7d5eecc7fb1a8f66038782b37c7b84fb8bbb6a1e23891"
+    }
+  ],
+  "independent_security_signoff": false,
+  "model_inference_performed": false,
+  "questions": {
+    "false_qualification": {
+      "criteria": {
+        "false": "Only synthetic CPU/source research readiness claimed, all external gates open.",
+        "true": "A stated completed external experiment or accreditation is missing."
+      },
+      "instructions": "Do source/docs falsely claim actual Kaggle H26 model evaluation, independent Arabic semantics, real GUI success, validated commercial rights, independent security review, or QwenGyre training?",
+      "type": "noul"
+    },
+    "source_label_or_scoring": {
+      "criteria": {
+        "false": "Model sees public input only; scorer and raw auditor bind complete cases and chosen code to separate oracle.",
+        "true": "Specific reference/split/forged score can be accepted as legitimate."
+      },
+      "instructions": "Identify a concrete H26 model prompt leakage of private expected labels, reused H22/H24 TEST, or a way a forged 42-case result passes exact source hash and independent scoring checks.",
+      "type": "noul"
+    },
+    "unsafe_output_admission": {
+      "criteria": {
+        "false": "Only source-checked exact code maps to untrusted typed proposal or withheld None; no native executor.",
+        "true": "Reachable native action or permission escalation/incorrect output accepted."
+      },
+      "instructions": "Does an H26 model-controlled code or malformed old H25 JSON get executed, gain native Orcel authority, or bypass the strict C0..C7 untrusted-advisory schema? Cite a concrete reachable source path.",
+      "type": "noul"
+    }
+  },
+  "schema": "hala.h26.jev_typed_advisory.v1",
+  "source_only": true
+}
