@@ -6,10 +6,12 @@ from pathlib import Path
 import re
 
 from h24.mind_dev import (H24_CASES_SHA256, MODEL_ID, MODEL_REVISION,
-                          dev_cases, score, strict_json, summary)
+                          dev_cases, score, score_v2, strict_json, summary)
 
 
-def verify(path, expected_sha256, source_commit):
+def verify(path, expected_sha256, source_commit, protocol="v1"):
+    if protocol not in ("v1", "v2"):
+        raise ValueError("Unknown evaluator protocol")
     if not re.fullmatch(r"[a-f0-9]{64}",expected_sha256):
         raise ValueError("External raw result SHA256 required")
     if not re.fullmatch(r"[a-f0-9]{40}",source_commit):
@@ -22,13 +24,18 @@ def verify(path, expected_sha256, source_commit):
         raise ValueError("Downloaded result byte identity mismatch")
     value=strict_json(raw.decode("utf-8"))
     identity={
-        "schema":"hala.h24.mind_dev_baseline.v1","status":"measured_unqualified",
+        "schema":("hala.h24.mind_dev_baseline.v2" if protocol=="v2"
+                  else "hala.h24.mind_dev_baseline.v1"),"status":"measured_unqualified",
         "model_id":MODEL_ID,"model_revision":MODEL_REVISION,
         "source_commit":source_commit,"frozen_h24_sha256":H24_CASES_SHA256,
         "provider":"kaggle","precision":"fp16","split":"dev",
         "training_runs":0,"model_adopted":False,"native_qualified":False,
         "task_cases":20,"gpu_name":"Tesla T4",
     }
+    if protocol=="v2" and value.get("prompt_protocol")!="fixed_allowed_pairs_v2":
+        raise ValueError("Unqualified V2 prompt protocol identity")
+    if protocol=="v1" and "prompt_protocol" in value:
+        raise ValueError("Unexpected V1 prompt protocol marker")
     for k,wanted in identity.items():
         if type(value.get(k)) is not type(wanted) or value.get(k)!=wanted:
             raise ValueError("Unexpected H24 result provenance: "+k)
@@ -63,7 +70,8 @@ def verify(path, expected_sha256, source_commit):
         else:
             if type(record["raw"]) is not str or len(record["raw"])>16384:
                 raise ValueError("Unbounded or non-text model output")
-            expected=score(reference,record["raw"])
+            expected=(score_v2(reference,record["raw"]) if protocol=="v2"
+                      else score(reference,record["raw"]))
             if any(record.get(k)!=v for k,v in expected.items()):
                 raise ValueError("Raw response, independent label and scoring disagree")
         rows.append(record)
@@ -71,7 +79,9 @@ def verify(path, expected_sha256, source_commit):
     if value.get("summary")!=recomputed:
         raise ValueError("Final summary differs from independently scored raw answers")
     return {
-        "schema":"hala.h24.independent_dev_audit.v1",
+        "schema":("hala.h24.independent_dev_audit.v2" if protocol=="v2"
+                  else "hala.h24.independent_dev_audit.v1"),
+        **({"prompt_protocol": "fixed_allowed_pairs_v2"} if protocol=="v2" else {}),
         "source_commit":source_commit,"result_sha256":expected_sha256,
         "complete_dev_rows":20,"strata":recomputed,
         "raw_reply_scoring_verified":True,"external_hash_verified":True,
@@ -88,8 +98,10 @@ def main():
     p.add_argument("--expected-sha256",required=True)
     p.add_argument("--source-commit",required=True)
     p.add_argument("--output",required=True)
+    p.add_argument("--protocol",choices=("v1","v2"),default="v1")
     a=p.parse_args()
-    report=verify(a.downloaded_result,a.expected_sha256,a.source_commit)
+    report=verify(a.downloaded_result,a.expected_sha256,a.source_commit,
+                  protocol=a.protocol)
     output=Path(a.output)
     with output.open("x",encoding="utf-8") as f:
         json.dump(report,f,ensure_ascii=False,sort_keys=True,indent=2)

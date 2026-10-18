@@ -19,7 +19,9 @@ def cell(kind, source):
     return record
 
 
-def generate(source_commit, target):
+def generate(source_commit, target, protocol="v1"):
+    if protocol not in ("v1", "v2"):
+        raise ValueError("Unknown H24 protocol")
     if not SHA.fullmatch(source_commit):
         raise ValueError("Immutable reviewed full source SHA40 is required")
     target = Path(target)
@@ -27,7 +29,10 @@ def generate(source_commit, target):
         raise FileExistsError("New output directory; do not overwrite a saved version")
     target.mkdir(parents=True, exist_ok=False)
     output = target / "h24-mind-dev.ipynb"
-    metadata = {"id": KERNEL, "title": "Hala H24 Mind DEV baseline 20261017",
+    metadata = {"id": (KERNEL if protocol=="v1" else
+                      "abdulazizshehri/hala-h24-mind-dev-protocol-v2-20261018"),
+                "title": ("Hala H24 Mind DEV baseline 20261017" if protocol=="v1"
+                          else "Hala H24 Mind DEV protocol V2 20261018"),
                 "code_file": output.name, "language": "python", "kernel_type": "notebook",
                 "is_private": True, "enable_gpu": True, "enable_tpu": False,
                 "enable_internet": True, "dataset_sources": [], "competition_sources": [],
@@ -67,7 +72,8 @@ from pathlib import Path
 source=Path("/kaggle/working/hala-h24-src")
 args=[sys.executable,"-u","-m","h24.mind_dev",
       "--source-commit","{source_commit}",
-      "--output","/kaggle/working/hala-h24-mind-dev-output"]
+      "--output","/kaggle/working/hala-h24-mind-dev-output",
+      "--protocol","{protocol}"]
 subprocess.run(args, cwd=source, check=True, timeout=5400)
 print("H24_DEV_ONLY_RUN_TERMINATED; RETRIEVE RAW OUTPUT BEFORE CLAIMING QUALITY")
 """
@@ -76,7 +82,9 @@ print("H24_DEV_ONLY_RUN_TERMINATED; RETRIEVE RAW OUTPUT BEFORE CLAIMING QUALITY"
         "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python",
                                      "name": "python3"},
                      "hala_h24_source_commit": source_commit,
-                     "hala_h24_split": "dev", "hala_model_adopted": False},
+                     "hala_h24_split": "dev",
+                     **({"hala_h24_protocol": protocol} if protocol=="v2" else {}),
+                     "hala_model_adopted": False},
         "cells": [
             cell("markdown", "# Hala H24: unchanged base HalaMind on NEW bilingual DEV\n\n"
                  "Private personal-research Kaggle free T4 Save & Run All only. "
@@ -100,8 +108,10 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--source-commit",required=True)
     parser.add_argument("--output",required=True)
+    parser.add_argument("--protocol",choices=("v1","v2"),default="v1")
     args=parser.parse_args()
-    print(json.dumps(generate(args.source_commit,args.output),sort_keys=True))
+    print(json.dumps(generate(args.source_commit,args.output,
+                              protocol=args.protocol),sort_keys=True))
 
 
 if __name__=="__main__":

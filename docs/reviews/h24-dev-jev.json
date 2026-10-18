@@ -6,27 +6,27 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.18,
+            "noul": 0.17,
             "type": "noul"
           },
           "label_leakage": {
-            "noul": 0.08,
+            "noul": 0.09,
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.28,
+            "noul": 0.32,
             "type": "noul"
           }
         },
-        "latency_ms": 569,
+        "latency_ms": 553,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 3845,
+          "input_tokens": 4574,
           "output_tokens": 61
         }
       },
-      "sha256": "ecca6f0e70cd9fb48d9d561d33d031c34c3ad5759df59747c666f9a916d9926e"
+      "sha256": "a2e589de2e84edf154709e92f7ae158965702ff0f6b5c5fb145ca5296ad3f759"
     },
     {
       "exit_code": 0,
@@ -34,7 +34,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.38,
+            "noul": 0.42,
             "type": "noul"
           },
           "label_leakage": {
@@ -42,19 +42,19 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.25,
+            "noul": 0.27,
             "type": "noul"
           }
         },
-        "latency_ms": 434,
+        "latency_ms": 654,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 1978,
+          "input_tokens": 2225,
           "output_tokens": 61
         }
       },
-      "sha256": "6ac4167dd2c6e2a0c05becfd0e5976587311333a54df25f25a9146ff43f97eec"
+      "sha256": "6534cbf75d7348d6c97a6e34eb0b4bcf831bf02efaaceee08c7a9f26addd5f83"
     },
     {
       "exit_code": 0,
@@ -62,7 +62,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.09,
+            "noul": 0.08,
             "type": "noul"
           },
           "label_leakage": {
@@ -74,15 +74,15 @@
             "type": "noul"
           }
         },
-        "latency_ms": 407,
+        "latency_ms": 506,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 1991,
+          "input_tokens": 2207,
           "output_tokens": 61
         }
       },
-      "sha256": "2a56c83b28435403ca44a4ff7602907b0c4df72b4a603c15d4503c35e0e92869"
+      "sha256": "f50bdb2f338222a95e93eb2f3fc7cce67aa8386e275f86ca0a6dbb838123ec07"
     },
     {
       "exit_code": 0,
@@ -90,7 +90,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.07,
+            "noul": 0.08,
             "type": "noul"
           },
           "label_leakage": {
@@ -98,11 +98,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.1,
+            "noul": 0.11,
             "type": "noul"
           }
         },
-        "latency_ms": 421,
+        "latency_ms": 418,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -118,7 +118,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.15,
+            "noul": 0.16,
             "type": "noul"
           },
           "label_leakage": {
@@ -126,11 +126,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.11,
+            "noul": 0.1,
             "type": "noul"
           }
         },
-        "latency_ms": 524,
+        "latency_ms": 427,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -154,11 +154,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.14,
+            "noul": 0.13,
             "type": "noul"
           }
         },
-        "latency_ms": 456,
+        "latency_ms": 402,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -182,11 +182,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.15,
+            "noul": 0.16,
             "type": "noul"
           }
         },
-        "latency_ms": 412,
+        "latency_ms": 550,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -206,15 +206,15 @@
             "type": "noul"
           },
           "label_leakage": {
-            "noul": 0.16,
+            "noul": 0.15,
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.14,
+            "noul": 0.15,
             "type": "noul"
           }
         },
-        "latency_ms": 446,
+        "latency_ms": 573,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -223,6 +223,62 @@
         }
       },
       "sha256": "1c0fe7b1e4f295764dbe3aa118b0395b0d9160a2970fbe99d49b2f9384a6219f"
+    },
+    {
+      "exit_code": 0,
+      "path": "tests/test_h24_protocol_v2.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.24,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 562,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1900,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "40a966c698279f375f9d75adb43eb0f544bd01456bc3cec59935a173f18e1a13"
+    },
+    {
+      "exit_code": 0,
+      "path": "docs/H24_MIND_DEV_PROTOCOL_V2.md",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.1,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 414,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1613,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "1e6b078d14619740fe73270f1600f7818f611cb6a0332008948ce6322cad25f7"
     }
   ],
   "independent_pstack_review": false,

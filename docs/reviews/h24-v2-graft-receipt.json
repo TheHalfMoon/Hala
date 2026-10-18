@@ -1,0 +1,19 @@
+{
+  "commands": [
+    "graft build .",
+    "graft check ."
+  ],
+  "deep_semantic_graph_built": false,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "external_security_review_passed": false,
+  "log_sha256": {
+    "h24-v2-graft-build.log": "a1f292f86b9eb7dbfb080585547566b7f64ec0e3c79d36aa7c2b0853700a2536",
+    "h24-v2-graft-check.log": "09d64b6a3450d0fc33e5412de4f3bf755aee232b238dc731d02994d80cdbdd95"
+  },
+  "raw_host_logs_published": false,
+  "schema": "hala.h24.v2_graft_receipt.v1",
+  "wiring_graph_passed": true
+}
