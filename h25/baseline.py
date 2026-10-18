@@ -123,10 +123,15 @@ def summarize(outcomes):
             raise ValueError("Result source reference mismatched")
         if result["raw"] is None:
             correct = {"valid": False, "tool_correct": False, "exact_correct": False,
-                       "predicted_tool": None}
-            if result["error"] != "model_inference_error":
-                raise ValueError("Unknown missing response cause")
+                       "predicted_tool": None, "error": "model_inference_error"}
+            if (type(result.get("error_type")) is not str
+                    or not 0 < len(result["error_type"]) <= 100):
+                raise ValueError("Missing or unbounded model failure classification")
         else:
+            if type(result["raw"]) is not str or len(result["raw"]) > 16384:
+                raise ValueError("Invalid raw model response")
+            if result.get("error_type") is not None:
+                raise ValueError("Model exception falsely attached to available response")
             correct = evaluate_raw(expected, result["raw"])
         if any(result.get(key) != value for key, value in correct.items()):
             raise ValueError("Cannot reconcile result with independently scored answer")

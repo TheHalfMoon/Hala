@@ -116,6 +116,37 @@ class H25BaselineTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 b.summarize(changed)
 
+    def test_result_error_classification_is_consistent_with_raw_reply(self):
+        correct = perfect_outcomes()
+        wrong = copy.deepcopy(correct)
+        wrong[0]["error"] = "model_inference_error"
+        with self.assertRaises(ValueError):
+            b.summarize(wrong)
+        wrong = copy.deepcopy(correct)
+        wrong[0]["error_type"] = "RuntimeError"
+        with self.assertRaises(ValueError):
+            b.summarize(wrong)
+        wrong = copy.deepcopy(correct)
+        wrong[0]["raw"] = None
+        wrong[0].update(valid=False, tool_correct=False, exact_correct=False,
+                        predicted_tool=None, error="model_inference_error")
+        with self.assertRaises(ValueError):
+            b.summarize(wrong)
+        wrong[0]["error_type"] = "RuntimeError"
+        self.assertEqual(b.summarize(wrong)["all"]["inference_errors"],1)
+        wrong[0]["error_type"] = "x"*101
+        with self.assertRaises(ValueError):
+            b.summarize(wrong)
+
+    def test_free_text_json_failure_is_invalid_not_inference_error(self):
+        outcomes = perfect_outcomes()
+        first = outcomes[0]
+        first["raw"] = '{"kind":"abstain","tool":"abstain","subgoal":"reject_external_command"}'
+        first.update(b.evaluate_raw(self.paired[0][1],first["raw"]))
+        reported = b.summarize(outcomes)
+        self.assertEqual(reported["all"]["inference_errors"],0)
+        self.assertEqual(reported["all"]["typed_valid"],41)
+
     def test_missing_case_rejected(self):
         with self.assertRaises(ValueError):
             b.summarize(perfect_outcomes()[:-1])

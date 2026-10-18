@@ -13,6 +13,8 @@ FILES=(
     "tests/test_h25_audit.py",
     "docs/H25_BASELINE_PROTOCOL.md",
     "docs/QWENGYRE_RESEARCH_ADR.md",
+    "tools/build_h25_kaggle.py",
+    "tests/test_h25_kaggle_builder.py",
 )
 QUESTIONS={
     "model_input_label_leak":{

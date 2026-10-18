@@ -19,6 +19,21 @@ The original H25 V1 inputs were label-adjacent. H25 projection V2 removes explic
 - Native Arabic text is Unicode verified at the authored source, but **not independently validated for semantics or RAQM/Type screenshot shaping**.
 - `tools/verify_h25_dev.py` requires an **externally observed SHA256 for downloaded exact raw result bytes** and a pinned SHA40 Git source, checks fixed model/protocol/DEV-only identity, all 42 case labels/order/source, reported load and allocator values, and replays typed scoring from raw replies. This is CPU evidence-consistency checking, not physical-GPU attestation or independent semantic evaluator adjudication.
 
+## Private Kaggle Saved Version, prepared but NOT submitted
+
+- \`tools/build_h25_kaggle.py\` generates a **private** GPU+internet Kaggle Save & Run All notebook from an exact SHA40 review commit and a **new unused local output directory**.
+- It does not allocate GPU, fetch weights, execute inference, or use Kaggle credentials. Notebook execution requires a real free Kaggle Batch session, unmodified reviewed source HEAD, strict versions and the remote-only model gate.
+- Notebook code uses fail-closed explicit exceptions instead of optimizable \`assert\` guards. The exact-source pin is checked **before** model loading. It does not reuse H24 TEST or produce training gradients.
+- Verify independent security and bilingual label-adjudication gates and four exact-head CI checks before deciding on **any** free Kaggle submission. No paid tier/upgrade or cloud API permission is inferred.
+- An ephemeral saved-version run is not sufficient evidence: separately download raw 42-case results, hash them externally and recompute via \`tools/verify_h25_dev.py\`.
+- Source-runner now requires consistent \`error\` classification in its own summary, rejecting a falsely labeled inference error on a present response or a missing bounded \`error_type\`. CPU oracle fixtures only prove test machinery, never model success.
+
+After a reviewed exact SHA is published, *generation only*:
+
+\`\`\`bash
+python tools/build_h25_kaggle.py --source-commit FULL_REVIEWED_SHA40 --output NEW_LOCAL_NOTEBOOK_BUNDLE
+\`\`\`
+
 ## Necessary next gate before any free research GPU use
 
 1. Real fresh-context independent PStack/security review, bilingual expert semantic label audit, original-data rights assessment, and source-code provenance.
