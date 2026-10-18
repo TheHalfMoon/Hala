@@ -1,0 +1,19 @@
+{
+  "commands": [
+    "graft build .",
+    "graft check ."
+  ],
+  "deep_semantics_qualified": false,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "graph_check_passed": true,
+  "independent_pstack_approved": false,
+  "raw_log_sha256": {
+    "h24-dev-v1-diagnostic-graft-build.log": "68507eabdf6b077227fae3d1f239f1cafb6db7ea33012ea04a482d8ebd52edfe",
+    "h24-dev-v1-diagnostic-graft-check.log": "9aa75544e6cb1e5873d071199181426811e3471ebd4eff5e14bcff973042f35b"
+  },
+  "raw_logs_published": false,
+  "schema": "hala.h24.dev_diagnostic_graft_receipt.v1"
+}

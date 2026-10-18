@@ -1,0 +1,21 @@
+﻿# Files (7 reviewable / 15 total)
+
+- mode: workspace
+- total_insertions: 871
+- total_deletions: 0
+
+  - `development/h24-prospective/cases.json` [added] +1/-0
+  - `development/h24-prospective/manifest.json` [added] +1/-0
+~~- `development/h24-prospective/train-mind-prospective.jsonl` [added] +60/-0 (excluded: unsupported_ext)~~
+~~- `docs/H24_PROSPECTIVE_BILINGUAL.md` [added] +96/-0 (excluded: unsupported_ext)~~
+~~- `docs/reviews/h24-graft-build.log` [binary] +0/-0 (excluded: binary)~~
+~~- `docs/reviews/h24-graft-check.log` [binary] +0/-0 (excluded: binary)~~
+  - `h24/__init__.py` [added] +1/-0
+  - `h24/data.py` [added] +252/-0
+~~- `tests/test_h24_archive.py` [added] +66/-0 (excluded: default_path)~~
+~~- `tests/test_h24_data.py` [added] +160/-0 (excluded: default_path)~~
+  - `tools/review_h24_jev.py` [added] +54/-0
+  - `.ignore` [added] +5/-0
+  - `docs/reviews/h24-jev.json` [added] +145/-0
+~~- `docs/reviews/h24-ocr-preview.txt` [added] +0/-0 (excluded: unsupported_ext)~~
+~~- `docs/reviews/h24-pstack-panel.md` [added] +30/-0 (excluded: unsupported_ext)~~
