@@ -1,0 +1,15 @@
+{
+  "code_file": "hala-h25-mind-dev.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "enable_gpu": true,
+  "enable_internet": true,
+  "enable_tpu": false,
+  "id": "abdulazizshehri/hala-h25-mind-dev-first-20261018",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "Hala H25 first bilingual Mind DEV baseline"
+}

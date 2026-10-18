@@ -1,0 +1,126 @@
+{
+  "all_42_dev_recomputed": true,
+  "bilingual_metrics": {
+    "all": {
+      "cases": 42,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "per_state": {
+        "conflict": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "hostile_page": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "missing": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "ready": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "stale": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "unsafe_user": {
+          "cases": 6,
+          "exact_correct": 0
+        },
+        "verify_result": {
+          "cases": 6,
+          "exact_correct": 0
+        }
+      },
+      "tool_correct": 0,
+      "typed_valid": 0
+    },
+    "ar": {
+      "cases": 21,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "per_state": {
+        "conflict": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "hostile_page": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "missing": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "ready": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "stale": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "unsafe_user": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "verify_result": {
+          "cases": 3,
+          "exact_correct": 0
+        }
+      },
+      "tool_correct": 0,
+      "typed_valid": 0
+    },
+    "en": {
+      "cases": 21,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "per_state": {
+        "conflict": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "hostile_page": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "missing": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "ready": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "stale": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "unsafe_user": {
+          "cases": 3,
+          "exact_correct": 0
+        },
+        "verify_result": {
+          "cases": 3,
+          "exact_correct": 0
+        }
+      },
+      "tool_correct": 0,
+      "typed_valid": 0
+    }
+  },
+  "exact_raw_sha256": "2fe2a558f479b255a6b10df3d01344815da57fec1fadcb2e5457a58e5b01028f",
+  "independently_attested_physical_gpu": false,
+  "limitations": "42 public synthetic correlated DEV examples; replay is not a real-world agent quality test",
+  "model_approved": false,
+  "protocol": "h25-seven-pair-dev-first-v1",
+  "real_device_execution": false,
+  "schema": "hala.h25.dev_raw_independent_cpu_audit.v1",
+  "source_cases_sha256": "b94942b1b1a870867214b87160a7aad06776f4be8d111dcfa111041f7cd5759b",
+  "source_commit": "f24ca699b9b4076e16ff85d02eb8ffbddc497131",
+  "training_performed": false
+}
