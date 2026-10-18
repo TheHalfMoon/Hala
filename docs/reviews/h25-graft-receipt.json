@@ -1,0 +1,19 @@
+{
+  "commands": [
+    "graft build .",
+    "graft check ."
+  ],
+  "deep_semantic_meaning_qualified": false,
+  "exit_codes": [
+    0,
+    0
+  ],
+  "independent_security_review": false,
+  "log_sha256": {
+    "h25-graft-build-local.log": "8fbd1b5b7b5ea82fd92789241b09be44e38ffa7fe80fb8e00f34286da503d44e",
+    "h25-graft-check-local.log": "90d21d8b7e846a7b89312a2e4eea0095e6899c90b942c957ad8b54cedb4974da"
+  },
+  "raw_host_logs_published": false,
+  "schema": "hala.h25.graft_wiring_receipt.v1",
+  "wiring_graph_in_sync": true
+}

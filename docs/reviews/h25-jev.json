@@ -1,0 +1,147 @@
+{
+  "files": [
+    {
+      "exit_code": 0,
+      "file": "h25/corpus.py",
+      "result": {
+        "answers": {
+          "false_release_qualification": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "label_integrity": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "model_input_leakage": {
+            "noul": 0.16,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 550,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 6284,
+          "output_tokens": 64
+        }
+      },
+      "sha256": "867fc415a844825edf5a555625ba181ae1bfdeba52985953c57525ebed411e3d"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_corpus.py",
+      "result": {
+        "answers": {
+          "false_release_qualification": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "label_integrity": {
+            "noul": 0.18,
+            "type": "noul"
+          },
+          "model_input_leakage": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 403,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2825,
+          "output_tokens": 64
+        }
+      },
+      "sha256": "29ead9b140e4c97132dc1f2d496ccb71c99b7e710367058e351e14569dd30da3"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_frozen.py",
+      "result": {
+        "answers": {
+          "false_release_qualification": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "label_integrity": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "model_input_leakage": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 575,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1426,
+          "output_tokens": 64
+        }
+      },
+      "sha256": "1ea030e5e3b0e648ceede1bb258b7dbb3d94a9e556d051f783d772a969aca5d5"
+    },
+    {
+      "exit_code": 0,
+      "file": "docs/H25_BILINGUAL_SEMANTIC_CANDIDATE.md",
+      "result": {
+        "answers": {
+          "false_release_qualification": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "label_integrity": {
+            "noul": 0.15,
+            "type": "noul"
+          },
+          "model_input_leakage": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 522,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2022,
+          "output_tokens": 64
+        }
+      },
+      "sha256": "bf01cd30adeb9ef60471f049ec42a9d15adb4d4d7ac7051aba135522755b4ba2"
+    }
+  ],
+  "independent_pstack_approval": false,
+  "model_training_performed": false,
+  "native_orcel_executed": false,
+  "questions": {
+    "false_release_qualification": {
+      "criteria": {
+        "false": "Research dataset is labeled synthetic, not visually trained or safety certified, and rights require review.",
+        "true": "A concrete unperformed real-model validation or legally unqualified production claim appears."
+      },
+      "instructions": "Do code or docs falsely claim Hala training, Arabic visual/RAQM qualification, new TEST independence, deployment, production rights approval or native Orcel actions?",
+      "type": "noul"
+    },
+    "label_integrity": {
+      "criteria": {
+        "false": "Regeneration and source tests bind all case states, labels, families, languages and file hashes.",
+        "true": "A specific bad row, wrong expected output or unvalidated corruption can be admitted."
+      },
+      "instructions": "Does the prospective H25 frozen dataset contain a concrete source/case/label mismatch, cross-family leakage, fabricated Arabic correctness, or a path to silently alter expected task outcomes?",
+      "type": "noul"
+    },
+    "model_input_leakage": {
+      "criteria": {
+        "false": "The public DEV projection separates tracking from model input and keeps page text untrusted.",
+        "true": "A concrete exposed private oracle reference or authority escalation is present."
+      },
+      "instructions": "Can actual H25 DEV model_input records expose private answer/oracle labels or source_ref IDs as visible model instructions, or can a page-injected instruction be promoted to permission?",
+      "type": "noul"
+    }
+  },
+  "schema": "hala.h25.jev_advisory.v1",
+  "source_only": true
+}
