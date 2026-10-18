@@ -1,0 +1,201 @@
+{
+  "actual_gpu_results": false,
+  "files": [
+    {
+      "exit_code": 0,
+      "file": "h25/baseline.py",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.38,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 613,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 4013,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "6915087019640ea75c6660070c04fb932bd633eab7378730de79f0ed4db90da8"
+    },
+    {
+      "exit_code": 0,
+      "file": "tools/verify_h25_dev.py",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.17,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.09,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 556,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2161,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "09680f5545e70d3ca730357641d05ac3081b30ecf21ffa550d90a8697a8ca3b9"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_baseline.py",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.12,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 530,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2386,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "6e9a053a547fedb79629ee0e05bab1cece8799a6d52c5364e6fbaf69827dd09c"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_audit.py",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.7,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.11,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 456,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2164,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "29a81ba0c80c17b2be9e15b4059bafdf4e61f08747081f932315a45202135734"
+    },
+    {
+      "exit_code": 0,
+      "file": "docs/H25_BASELINE_PROTOCOL.md",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.22,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 431,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1779,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "8a0160cbbb4369abe570312d5acb861662514b0d28c8813b0e18a04af02b932a"
+    },
+    {
+      "exit_code": 0,
+      "file": "docs/QWENGYRE_RESEARCH_ADR.md",
+      "result": {
+        "answers": {
+          "audit_accepts_forgery": {
+            "noul": 0.22,
+            "type": "noul"
+          },
+          "false_scientific_claim": {
+            "noul": 0.05,
+            "type": "noul"
+          },
+          "model_input_label_leak": {
+            "noul": 0.08,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 397,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1687,
+          "output_tokens": 65
+        }
+      },
+      "sha256": "67f6353b5c57737e2728401f1a8556fd36cbd7172b74a0f3aa09541d0e100b34"
+    }
+  ],
+  "independent_security_approval": false,
+  "questions": {
+    "audit_accepts_forgery": {
+      "criteria": {
+        "false": "Exact source/model/protocol, all 42 raw rows, external digest and score replay required.",
+        "true": "Specific forged data, duplicate case or changed source/model state can pass."
+      },
+      "instructions": "Identify a reachable falsified/partial downloaded H25 raw result which the independent CPU replay falsely considers a complete same-model/same-source result.",
+      "type": "noul"
+    },
+    "false_scientific_claim": {
+      "criteria": {
+        "false": "Only local CPU source preparation is claimed, with research limitations exposed.",
+        "true": "An unperformed experiment/license/safety certification is stated as done."
+      },
+      "instructions": "Check whether source/documentation falsely implies H25 Kaggle GPU measured, QwenGyre RL performed, independent holdout Arabic/Type correctness, published Gyre code licensed, or native Orcel use.",
+      "type": "noul"
+    },
+    "model_input_label_leak": {
+      "criteria": {
+        "false": "Only the public model_input reaches HalaMind and all outputs remain untrusted.",
+        "true": "Concrete reachable reference leakage, held-out TEST reuse or native authorization occurs."
+      },
+      "instructions": "Find an actual path that sends H25 source_ref, oracle_private, H24/H22 TEST cases, supervised labels or action authorization into the 42 DEV-only model payload.",
+      "type": "noul"
+    }
+  },
+  "schema": "hala.h25.dev_baseline_jev_advisory.v1"
+}
