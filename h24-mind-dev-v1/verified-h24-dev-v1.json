@@ -1,0 +1,36 @@
+{
+  "complete_dev_rows": 20,
+  "external_hash_verified": true,
+  "limitations": "20 synthetic dependent DEV cases, not application-level quality or Orcel execution",
+  "model_qualified": false,
+  "native_orcel_qualified": false,
+  "physical_gpu_independently_attested": false,
+  "raw_reply_scoring_verified": true,
+  "result_sha256": "a047f7652b1a954c745ba139431299602961cd017ad547253acea1b5fc24ef4f",
+  "schema": "hala.h24.independent_dev_audit.v1",
+  "source_commit": "f9bd2b011fb2f7dceed340e52d994a247888e833",
+  "strata": {
+    "all": {
+      "cases": 20,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "tool_correct": 0,
+      "valid_json": 0
+    },
+    "ar": {
+      "cases": 10,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "tool_correct": 0,
+      "valid_json": 0
+    },
+    "en": {
+      "cases": 10,
+      "exact_correct": 0,
+      "inference_errors": 0,
+      "tool_correct": 0,
+      "valid_json": 0
+    }
+  },
+  "training_performed": false
+}
