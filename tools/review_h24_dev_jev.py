@@ -16,6 +16,8 @@ FILES = (
     "tests/test_h24_mind_dev.py",
     "tests/test_h24_dev_audit.py",
     "docs/H24_MIND_DEV_BASELINE.md",
+    "tools/diagnose_h24_dev.py",
+    "tests/test_h24_diagnostics.py",
 )
 QUESTIONS = {
     "label_leakage": {

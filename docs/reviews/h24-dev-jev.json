@@ -10,15 +10,15 @@
             "type": "noul"
           },
           "label_leakage": {
-            "noul": 0.09,
+            "noul": 0.08,
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.3,
+            "noul": 0.28,
             "type": "noul"
           }
         },
-        "latency_ms": 542,
+        "latency_ms": 569,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -34,7 +34,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.35,
+            "noul": 0.38,
             "type": "noul"
           },
           "label_leakage": {
@@ -42,11 +42,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.24,
+            "noul": 0.25,
             "type": "noul"
           }
         },
-        "latency_ms": 531,
+        "latency_ms": 434,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -62,7 +62,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.08,
+            "noul": 0.09,
             "type": "noul"
           },
           "label_leakage": {
@@ -70,11 +70,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.15,
+            "noul": 0.16,
             "type": "noul"
           }
         },
-        "latency_ms": 416,
+        "latency_ms": 407,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -90,7 +90,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.08,
+            "noul": 0.07,
             "type": "noul"
           },
           "label_leakage": {
@@ -98,11 +98,11 @@
             "type": "noul"
           },
           "misleading_results": {
-            "noul": 0.11,
+            "noul": 0.1,
             "type": "noul"
           }
         },
-        "latency_ms": 394,
+        "latency_ms": 421,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -118,7 +118,7 @@
       "result": {
         "answers": {
           "authority_bypass": {
-            "noul": 0.14,
+            "noul": 0.15,
             "type": "noul"
           },
           "label_leakage": {
@@ -130,7 +130,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 624,
+        "latency_ms": 524,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -150,7 +150,7 @@
             "type": "noul"
           },
           "label_leakage": {
-            "noul": 0.07,
+            "noul": 0.06,
             "type": "noul"
           },
           "misleading_results": {
@@ -158,7 +158,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 597,
+        "latency_ms": 456,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -167,6 +167,62 @@
         }
       },
       "sha256": "8943d31e81630f0c78c037d382ee08b83f37a063354444adfecb4b082717c742"
+    },
+    {
+      "exit_code": 0,
+      "path": "tools/diagnose_h24_dev.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.06,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.15,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 412,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1905,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "30988a87b04521372af482836898b856df8e6fa446db054e779c58423b772af9"
+    },
+    {
+      "exit_code": 0,
+      "path": "tests/test_h24_diagnostics.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.16,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.14,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 446,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1375,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "1c0fe7b1e4f295764dbe3aa118b0395b0d9160a2970fbe99d49b2f9384a6219f"
     }
   ],
   "independent_pstack_review": false,
