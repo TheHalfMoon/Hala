@@ -1,0 +1,145 @@
+{
+  "files": [
+    {
+      "exit_code": 0,
+      "file": "h25/projection_v2.py",
+      "result": {
+        "answers": {
+          "answer_leakage_concern": {
+            "noul": 0.17,
+            "type": "noul"
+          },
+          "source_identity_concern": {
+            "noul": 0.21,
+            "type": "noul"
+          },
+          "unsafe_qualification_concern": {
+            "noul": 0.06,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 627,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2339,
+          "output_tokens": 66
+        }
+      },
+      "sha256": "f98f6585501263e001fe3c6b57a3cfc0ac9bba43039c1c5d6f4eb861308673da"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_projection_v2.py",
+      "result": {
+        "answers": {
+          "answer_leakage_concern": {
+            "noul": 0.12,
+            "type": "noul"
+          },
+          "source_identity_concern": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "unsafe_qualification_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 531,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2107,
+          "output_tokens": 66
+        }
+      },
+      "sha256": "7d5fc998e41bb1b8c899406c2380fe720e66d67058c29264373928a117a7c8d2"
+    },
+    {
+      "exit_code": 0,
+      "file": "tests/test_h25_projection_pins.py",
+      "result": {
+        "answers": {
+          "answer_leakage_concern": {
+            "noul": 0.22,
+            "type": "noul"
+          },
+          "source_identity_concern": {
+            "noul": 0.3,
+            "type": "noul"
+          },
+          "unsafe_qualification_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 433,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1163,
+          "output_tokens": 66
+        }
+      },
+      "sha256": "6ba03621b2f186b24c49ccb9f4be16e2b933f77f12d3f305ad530c0a22e5b8ae"
+    },
+    {
+      "exit_code": 0,
+      "file": "docs/H25_PROJECTION_ADMISSION_REVIEW.md",
+      "result": {
+        "answers": {
+          "answer_leakage_concern": {
+            "noul": 0.15,
+            "type": "noul"
+          },
+          "source_identity_concern": {
+            "noul": 0.19,
+            "type": "noul"
+          },
+          "unsafe_qualification_concern": {
+            "noul": 0.05,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 577,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2036,
+          "output_tokens": 66
+        }
+      },
+      "sha256": "7a98fad626f6bb9a381416a431156338f59ed78b1dc5483f2e1bb40a6335ba04"
+    }
+  ],
+  "independent_review": false,
+  "model_inference": false,
+  "questions": {
+    "answer_leakage_concern": {
+      "criteria": {
+        "false": "Only natural-language goal, neutral UI/observations and legitimate frame equality are public.",
+        "true": "A reachable reference label or source case rank is included in the model prompt projection."
+      },
+      "instructions": "Find a concrete label, synthetic answer bit, partition/rank leak or private expected proposal in H25 V2 model_input. The source_ref envelope is never model input; inspect the actual exported payload.",
+      "type": "noul"
+    },
+    "source_identity_concern": {
+      "criteria": {
+        "false": "Candidate derives from exact pinned canonical frozen H25 source, and full reconstruction rejects change.",
+        "true": "A concrete mutating or source bypass path can be admitted."
+      },
+      "instructions": "Find a reachable way for an attacker to substitute a tampered source/family/Arabic goal, bypass immutable SHA256 verification, or silently relabel a DEV row.",
+      "type": "noul"
+    },
+    "unsafe_qualification_concern": {
+      "criteria": {
+        "false": "Only synthetic source projection is qualified; GPU, Arabic expert, TEST, native and release remain open.",
+        "true": "A specific unperformed scientific/security gate is claimed complete."
+      },
+      "instructions": "Does this code or documentation falsely claim independent Arabic review, held-out TEST performance, RAQM image qualification, native Orcel authorization, or a completed model run?",
+      "type": "noul"
+    }
+  },
+  "schema": "hala.h25.projection_v2_jev_advisory.v1"
+}
