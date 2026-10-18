@@ -65,6 +65,22 @@ class H25KaggleNotebookTests(unittest.TestCase):
                 notebook.generate(SHA,path)
             self.assertEqual((path/"hala-h25-mind-dev.ipynb").read_bytes(),original)
 
+    def test_documented_module_command_actually_executes(self):
+        import subprocess
+        import sys
+        with tempfile.TemporaryDirectory() as tmp:
+            output=Path(tmp)/"module-entrypoint"
+            repo=Path(__file__).resolve().parents[1]
+            proc=subprocess.run(
+                [sys.executable,"-m","tools.build_h25_kaggle",
+                 "--source-commit",SHA,"--output",str(output)],
+                cwd=repo,capture_output=True,text=True,timeout=30)
+            self.assertEqual(proc.returncode,0,proc.stderr)
+            self.assertTrue((output/"hala-h25-mind-dev.ipynb").is_file())
+            result=json.loads(proc.stdout.strip())
+            self.assertFalse(result["submitted"])
+            self.assertFalse(result["inference_run"])
+
     def test_no_raw_oracle_export_in_notebook(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/"n"

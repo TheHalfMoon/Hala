@@ -31,7 +31,7 @@ The original H25 V1 inputs were label-adjacent. H25 projection V2 removes explic
 After a reviewed exact SHA is published, *generation only*:
 
 \`\`\`bash
-python tools/build_h25_kaggle.py --source-commit FULL_REVIEWED_SHA40 --output NEW_LOCAL_NOTEBOOK_BUNDLE
+python -m tools.build_h25_kaggle --source-commit FULL_REVIEWED_SHA40 --output NEW_LOCAL_NOTEBOOK_BUNDLE
 \`\`\`
 
 ## Necessary next gate before any free research GPU use

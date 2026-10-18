@@ -7,11 +7,11 @@
       "result": {
         "answers": {
           "audit_accepts_forgery": {
-            "noul": 0.17,
+            "noul": 0.18,
             "type": "noul"
           },
           "false_scientific_claim": {
-            "noul": 0.43,
+            "noul": 0.42,
             "type": "noul"
           },
           "model_input_label_leak": {
@@ -19,7 +19,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 547,
+        "latency_ms": 550,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -43,11 +43,11 @@
             "type": "noul"
           },
           "model_input_label_leak": {
-            "noul": 0.09,
+            "noul": 0.1,
             "type": "noul"
           }
         },
-        "latency_ms": 417,
+        "latency_ms": 531,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -75,7 +75,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 445,
+        "latency_ms": 539,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -91,19 +91,19 @@
       "result": {
         "answers": {
           "audit_accepts_forgery": {
-            "noul": 0.18,
+            "noul": 0.2,
             "type": "noul"
           },
           "false_scientific_claim": {
-            "noul": 0.71,
+            "noul": 0.67,
             "type": "noul"
           },
           "model_input_label_leak": {
-            "noul": 0.12,
+            "noul": 0.13,
             "type": "noul"
           }
         },
-        "latency_ms": 463,
+        "latency_ms": 412,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -127,19 +127,19 @@
             "type": "noul"
           },
           "model_input_label_leak": {
-            "noul": 0.07,
+            "noul": 0.06,
             "type": "noul"
           }
         },
-        "latency_ms": 404,
+        "latency_ms": 487,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 2127,
+          "input_tokens": 2124,
           "output_tokens": 65
         }
       },
-      "sha256": "324ae92fd89aeda9331b480909c92b5a18b3b80090c64e3c19d3e7854e66b549"
+      "sha256": "c2274d7b4b12e082b70fffe894b1da829682857a6abcd145f6644de3b2200480"
     },
     {
       "exit_code": 0,
@@ -147,7 +147,7 @@
       "result": {
         "answers": {
           "audit_accepts_forgery": {
-            "noul": 0.21,
+            "noul": 0.23,
             "type": "noul"
           },
           "false_scientific_claim": {
@@ -159,7 +159,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 401,
+        "latency_ms": 535,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -175,11 +175,11 @@
       "result": {
         "answers": {
           "audit_accepts_forgery": {
-            "noul": 0.3,
+            "noul": 0.29,
             "type": "noul"
           },
           "false_scientific_claim": {
-            "noul": 0.19,
+            "noul": 0.22,
             "type": "noul"
           },
           "model_input_label_leak": {
@@ -187,7 +187,7 @@
             "type": "noul"
           }
         },
-        "latency_ms": 403,
+        "latency_ms": 537,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
@@ -203,11 +203,11 @@
       "result": {
         "answers": {
           "audit_accepts_forgery": {
-            "noul": 0.18,
+            "noul": 0.17,
             "type": "noul"
           },
           "false_scientific_claim": {
-            "noul": 0.26,
+            "noul": 0.18,
             "type": "noul"
           },
           "model_input_label_leak": {
@@ -215,15 +215,15 @@
             "type": "noul"
           }
         },
-        "latency_ms": 387,
+        "latency_ms": 509,
         "model": "jev-1.13.0",
         "ok": true,
         "usage": {
-          "input_tokens": 1596,
+          "input_tokens": 1785,
           "output_tokens": 65
         }
       },
-      "sha256": "389b758da06b7125759bb68a964421c0db60ee663c058e7f12ec34dcc24822e7"
+      "sha256": "9a328e03727447a70b1dfbdddb270b109cb3d4e50aa38f637ada4035a8bd529e"
     }
   ],
   "independent_security_approval": false,
