@@ -1,0 +1,203 @@
+{
+  "files": [
+    {
+      "exit_code": 0,
+      "path": "h24/mind_dev.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.18,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.3,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 542,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 3845,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "ecca6f0e70cd9fb48d9d561d33d031c34c3ad5759df59747c666f9a916d9926e"
+    },
+    {
+      "exit_code": 0,
+      "path": "tools/build_h24_kaggle.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.35,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.09,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.24,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 531,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1978,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "6ac4167dd2c6e2a0c05becfd0e5976587311333a54df25f25a9146ff43f97eec"
+    },
+    {
+      "exit_code": 0,
+      "path": "tools/verify_h24_dev.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.1,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.15,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 416,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1991,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "2a56c83b28435403ca44a4ff7602907b0c4df72b4a603c15d4503c35e0e92869"
+    },
+    {
+      "exit_code": 0,
+      "path": "tests/test_h24_mind_dev.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.08,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.11,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 394,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2239,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "b02adbcf2d2c50ecb781aaadc2bf941747c3aa18c114dbe0c397c305ab34a2cc"
+    },
+    {
+      "exit_code": 0,
+      "path": "tests/test_h24_dev_audit.py",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.14,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.16,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.11,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 624,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 2334,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "e0a461b9c6b0e8ed8b25d5416321898fd15bd43842eea0ae8d5332d6b6192739"
+    },
+    {
+      "exit_code": 0,
+      "path": "docs/H24_MIND_DEV_BASELINE.md",
+      "result": {
+        "answers": {
+          "authority_bypass": {
+            "noul": 0.11,
+            "type": "noul"
+          },
+          "label_leakage": {
+            "noul": 0.07,
+            "type": "noul"
+          },
+          "misleading_results": {
+            "noul": 0.14,
+            "type": "noul"
+          }
+        },
+        "latency_ms": 597,
+        "model": "jev-1.13.0",
+        "ok": true,
+        "usage": {
+          "input_tokens": 1790,
+          "output_tokens": 61
+        }
+      },
+      "sha256": "8943d31e81630f0c78c037d382ee08b83f37a063354444adfecb4b082717c742"
+    }
+  ],
+  "independent_pstack_review": false,
+  "model_gpu_qualified": false,
+  "production_approval": false,
+  "questions": {
+    "authority_bypass": {
+      "criteria": {
+        "false": "Runner checks remote free Kaggle conditions and never executes untrusted GUI actions.",
+        "true": "An unchecked local model download, OS execution path, or policy grant is present."
+      },
+      "instructions": "Is there a reachable path for local checkpoint download or unauthorized Orcel OS execution through this DEV-only source?",
+      "type": "noul"
+    },
+    "label_leakage": {
+      "criteria": {
+        "false": "Actual prompt projection excludes reference labels and restricted evaluator metadata; only DEV is used.",
+        "true": "A reachable reference answer or protected tag enters model input or frozen TEST is loaded for model selection."
+      },
+      "instructions": "Does a concrete path leak H24 expected labels, protected synthetic target tags, or reserved TEST examples to the remote HalaMind model prompt?",
+      "type": "noul"
+    },
+    "misleading_results": {
+      "criteria": {
+        "false": "Raw outputs are independently rescored with all 20 rows and no real model-quality claim.",
+        "true": "A concrete tampering or missing result is accepted as verified or the text asserts GPU execution without evidence."
+      },
+      "instructions": "Can a falsified or incomplete downloaded DEV result be accepted by the CPU auditor, or does the source falsely claim a real model run before one occurred?",
+      "type": "noul"
+    }
+  },
+  "schema": "hala.h24.dev_jev_advisory.v1",
+  "tool": "jev"
+}
