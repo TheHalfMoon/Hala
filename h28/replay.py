@@ -51,6 +51,8 @@ def audit(path, expected_sha256):
     by_instruction = Counter()
     by_rotation = Counter()
     by_state = Counter()
+    joint = {}
+    conditional = {}
     format_valid = 0
     correct = 0
     withheld = 0
@@ -73,16 +75,40 @@ def audit(path, expected_sha256):
             raise ValueError("Invalid or contradictory raw code/error")
         state = expected["source_ref"]["state"]
         verdict = protocol.score(raw, state, expected["rotation"])
+        rotation = expected["rotation"]
+        key_lang = expected["source_ref"]["language"]
+        instruction_lang = expected["instruction_locale"]
+        decoded = protocol.codebook(rotation).get(raw) if type(raw) is str else None
+        dimensions = (key_lang, state, rotation, instruction_lang)
+        cell = joint.setdefault(dimensions, {
+            "cases": 0, "valid_format": 0, "inference_errors": 0,
+            "semantic_correct": 0, "wire_distribution": Counter(),
+            "decoded_semantic_distribution": Counter(),
+        })
+        cell["cases"] += 1
+        cell["valid_format"] += int(verdict["format_valid"])
+        cell["inference_errors"] += int(raw is None)
+        cell["semantic_correct"] += int(verdict["semantic_correct"])
+        cell["wire_distribution"][raw if raw is not None else "INFERENCE_ERROR"] += 1
+        cell["decoded_semantic_distribution"][decoded or "INVALID"] += 1
+        cond = conditional.setdefault((state, rotation), {
+            "cases": 0, "valid_code_denominator": 0,
+            "wire_c1": 0, "semantic_c1": 0,
+        })
+        cond["cases"] += 1
+        if verdict["format_valid"]:
+            cond["valid_code_denominator"] += 1
+            cond["wire_c1"] += int(raw == "C1")
+            cond["semantic_c1"] += int(decoded == "C1")
         format_valid += int(verdict["format_valid"])
         correct += int(verdict["semantic_correct"])
         withheld += int(verdict["withheld"])
         canonical = protocol.codebook(expected["rotation"]).get(raw) if type(raw) is str else None
         codes[raw if raw is not None else "INFERENCE_ERROR"] += 1
         semantic[canonical if canonical is not None else "INVALID"] += 1
-        key_lang = expected["source_ref"]["language"]
         by_lang[(key_lang, bool(verdict["semantic_correct"]))] += 1
         by_instruction[(expected["instruction_locale"], bool(verdict["semantic_correct"]))] += 1
-        by_rotation[(expected["rotation"], bool(verdict["semantic_correct"]))] += 1
+        by_rotation[(rotation, bool(verdict["semantic_correct"]))] += 1
         by_state[(state, bool(verdict["semantic_correct"]))] += 1
         if state == "unsafe_user":
             explicit_refusals_on_danger += int(verdict["explicit_refusal"])
@@ -122,6 +148,25 @@ def audit(path, expected_sha256):
             "cases": sum(by_state[(state, b)] for b in (False, True)),
             "correct": by_state[(state, True)]}
             for state in corpus.STATES},
+        "joint_task_language_state_rotation_instruction_language": [
+            {"task_language": key[0], "state": key[1], "rotation": key[2],
+             "instruction_language": key[3], "cases": value["cases"],
+             "valid_format": value["valid_format"],
+             "inference_errors": value["inference_errors"],
+             "semantic_correct": value["semantic_correct"],
+             "wire_distribution": dict(sorted(value["wire_distribution"].items())),
+             "decoded_semantic_distribution": dict(sorted(
+                 value["decoded_semantic_distribution"].items()))}
+            for key, value in sorted(joint.items())],
+        "wire_vs_semantic_c1_by_reference_state_rotation": [
+            {"state": key[0], "rotation": key[1], **value,
+             "wire_c1_rate_over_valid_codes": (
+                 value["wire_c1"] / value["valid_code_denominator"]
+                 if value["valid_code_denominator"] else None),
+             "semantic_c1_rate_over_valid_codes": (
+                 value["semantic_c1"] / value["valid_code_denominator"]
+                 if value["valid_code_denominator"] else None)}
+            for key, value in sorted(conditional.items())],
         "independent_test": False,
         "external_hardware_or_model_attested": False,
         "causal_hypothesis_verified": False,

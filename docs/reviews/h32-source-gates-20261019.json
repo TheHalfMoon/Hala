@@ -1,0 +1,86 @@
+{
+  "schema": "hala.h32.engineering_source_gates.v1",
+  "base_commit": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "source_sha256": {
+    "h28/contrasts.py": "7f25f5a47786e55efe43706f88abdc16cf3857c0484a22915c97046584a0b271",
+    "h28/replay.py": "e817acb5320755f80ef1d7894ee135a44a47ada7ca80a772d9fddae96996c9fe",
+    "tests/test_h28_evidence_contrasts.py": "2efc9fa212a31ff98e4dc35ad039d7ad6b32625dd27717fe9153ea9efdc623f4",
+    "tests/test_h28_source_audit.py": "fd97ef51c95ae496b93d6449d6d35b2403e1ea7fe770acdc26bf3df4001eeea5",
+    "docs/H32_EVALUATION_METRIC_INTEGRITY.md": "1689c627c74b9f1638bd44ea7ec383fe0dbab846c50f0a80de0e517b0b64065f"
+  },
+  "root_unittest": {
+    "run": 459,
+    "passed": 458,
+    "skipped": 1,
+    "exit_code": 0,
+    "log": "h32-root-unittest-20261019.log"
+  },
+  "pstack": {
+    "combined": "pass after test/doc repair",
+    "final_independent_H28_tests_passed": 35,
+    "mutation": "Replacing decoded semantic C1 with raw wire C1 now fails:896 !=128",
+    "security": "No new authority/execution surface; offline source-audit changes only"
+  },
+  "semantic_advisory": {
+    "tool": "local D1",
+    "founder_override": "use D1 local instead of Jev",
+    "receipt": "h32-local-d1-advisory-20261019.json",
+    "advisory_only": true
+  },
+  "graft": {
+    "build_exit": 0,
+    "check_exit": 0,
+    "graph_ok": true,
+    "deep_context_missing": true,
+    "scope": "Wiring/source freshness only"
+  },
+  "alibaba_ocr": {
+    "receipt": "h32-alibaba-ocr-20261019.json",
+    "status": "complete",
+    "selected_files": [
+      "h28/contrasts.py",
+      "h28/replay.py"
+    ],
+    "findings": 0,
+    "tests_excluded_by_default": true
+  },
+  "original_plan_manifest": {
+    "schema": "hala.h28.prospective_dev_manifest.v1",
+    "source_sha256": "63f67ad16d23fe19c178c6dd35ef2d06ad548c691be514d2b694b8440bd5955c",
+    "public_dev_only": true,
+    "independent_holdout": false,
+    "independent_bilingual_oracles": false,
+    "real_visual_media": false,
+    "model_inferences_run": 0,
+    "gpu_calls": 0,
+    "native_operations": 0,
+    "cases": 64,
+    "rotations": 7,
+    "instruction_languages": [
+      "en",
+      "ar"
+    ],
+    "planned_prompt_count": 896,
+    "model_messages_sha256": "6027801cf42ab42529f085cea838b03ec4768185d10bfa383d28d2d9641748e3",
+    "evaluator_sha256": "6ab0f718d7495fd3f23934369746ac32fbea442fa4cb1a802394248afb525afa",
+    "warning": "The evaluator's private_reference is NOT a blind secret because source DEV is public; never pass evaluator file or metadata fields to model."
+  },
+  "matched_plan_manifest": {
+    "schema": "hala.h28.paired_evidence_plan.v1",
+    "source_sha256": "44982948d57f29e75f84ad7f5a439765cdd4235e5ab4e3a92c52d6cd03c8cdfa",
+    "source_public_dev": true,
+    "blind_test": false,
+    "independent_gold_review": false,
+    "real_gpu_inference_count": 0,
+    "paired_observations": 36,
+    "planned_messages": 72,
+    "model_messages_sha256": "bcba38b3e042cf2c6dbd56a3def289d20c5fb848145083de6e4384de1124f536",
+    "evaluator_only_sha256": "4e2958788f1461160f0e9a1668152fde8fcf26568fe3b6f3c1e21372949e59a0",
+    "warning": "Original cases and gold labels are public DEV; never send the evaluator sidecar or opaque request_key to the model."
+  },
+  "limits": {
+    "new_model_inference": false,
+    "independent_holdout_or_bilingual_qualification": false,
+    "founder_merge_release_required": true
+  }
+}

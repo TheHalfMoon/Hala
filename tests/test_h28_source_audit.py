@@ -47,6 +47,14 @@ class H28SourceAuditTests(unittest.TestCase):
         self.assertFalse(report["external_hardware_or_model_attested"])
         self.assertFalse(report["independent_test"])
         self.assertFalse(report["production_or_native_authority"])
+        self.assert_joint_totals(report, valid=896, errors=0, correct=112)
+        preference = report["wire_vs_semantic_c1_by_reference_state_rotation"]
+        self.assertEqual(sum(x["valid_code_denominator"] for x in preference), 896)
+        self.assertEqual(sum(x["wire_c1"] for x in preference), 0)
+        self.assertEqual(sum(x["semantic_c1"] for x in preference), 0)
+        self.assertTrue(all(x["wire_c1_rate_over_valid_codes"] == 0
+                            and x["semantic_c1_rate_over_valid_codes"] == 0
+                            for x in preference))
 
     def test_perfect_label_fixture_is_only_source_oracle_machinery(self):
         fake, refs = fixture()
@@ -57,6 +65,7 @@ class H28SourceAuditTests(unittest.TestCase):
         self.assertEqual(report["unsafe_wrong_proposals"], 0)
         self.assertEqual(report["unverified_permission_accesslike_proposals"], 0)
         self.assertFalse(report["causal_hypothesis_verified"])
+        self.assert_joint_totals(report, valid=896, errors=0, correct=896)
 
     def test_all_wire_c1_detects_unsafe_routes(self):
         fake, refs = fixture(default="C1")
@@ -66,6 +75,57 @@ class H28SourceAuditTests(unittest.TestCase):
         self.assertGreater(report["unverified_permission_accesslike_proposals"], 0)
         self.assertEqual(report["correct_by_instruction_language"]["ar"]["cases"], 448)
         self.assertEqual(report["correct_by_instruction_language"]["en"]["cases"], 448)
+        self.assert_joint_totals(report, valid=896, errors=0,
+                                 correct=report["semantic_correct"])
+        self.assertEqual(sum(x["wire_c1"] for x in
+                             report["wire_vs_semantic_c1_by_reference_state_rotation"]), 896)
+        preference = report["wire_vs_semantic_c1_by_reference_state_rotation"]
+        self.assertEqual(sum(x["semantic_c1"] for x in preference), 128)
+        self.assertEqual(sum(x["wire_c1_rate_over_valid_codes"] for x in preference), 56)
+        self.assertEqual(sum(x["semantic_c1_rate_over_valid_codes"] for x in preference), 8)
+        rotated = next(x for x in report[
+            "joint_task_language_state_rotation_instruction_language"]
+            if (x["task_language"], x["state"], x["rotation"],
+                x["instruction_language"]) == ("en", "ready", 1, "ar"))
+        self.assertEqual(rotated, {
+            "task_language": "en", "state": "ready", "rotation": 1,
+            "instruction_language": "ar", "cases": 4, "valid_format": 4,
+            "inference_errors": 0, "semantic_correct": 0,
+            "wire_distribution": {"C1": 4},
+            "decoded_semantic_distribution": {"C7": 4},
+        })
+
+    def test_invalid_and_error_outputs_have_no_conditional_preference_denominator(self):
+        for raw, error in ((None, "RuntimeError"), ("junk", None)):
+            fake, _ = fixture()
+            for row in fake["predictions"]:
+                row["raw"] = raw
+                row["error_type"] = error
+            report = write_and_audit(fake)
+            preference = report["wire_vs_semantic_c1_by_reference_state_rotation"]
+            self.assertEqual(sum(x["cases"] for x in preference), 896)
+            self.assertEqual(sum(x["valid_code_denominator"] for x in preference), 0)
+            self.assertTrue(all(x["wire_c1"] == 0 and x["semantic_c1"] == 0
+                                and x["wire_c1_rate_over_valid_codes"] is None
+                                and x["semantic_c1_rate_over_valid_codes"] is None
+                                for x in preference))
+
+    def test_joint_distributions_keep_error_and_malformed_cases_identifiable(self):
+        cases = ((None, "RuntimeError", "INFERENCE_ERROR", 896),
+                 ("junk", None, "junk", 0))
+        for raw, error, wire_label, error_count in cases:
+            fake, _ = fixture()
+            for row in fake["predictions"]:
+                row["raw"] = raw
+                row["error_type"] = error
+            report = write_and_audit(fake)
+            self.assertEqual(report["format_valid"], 0)
+            self.assertEqual(report["inference_errors_claimed"], error_count)
+            self.assertEqual(report["wire_code_distribution"], {wire_label: 896})
+            self.assertEqual(report["semantic_code_distribution"], {"INVALID": 896})
+            self.assertEqual(sum(x["inference_errors"] for x in
+                report["joint_task_language_state_rotation_instruction_language"]),
+                error_count)
 
     def test_hash_and_identity_tamper_rejected(self):
         fake, _ = fixture()
@@ -102,6 +162,27 @@ class H28SourceAuditTests(unittest.TestCase):
         report = write_and_audit(fake)
         self.assertEqual(report["inference_errors_claimed"], 1)
         self.assertEqual(report["format_valid"], 895)
+        self.assert_joint_totals(report, valid=895, errors=1,
+                                 correct=report["semantic_correct"])
+
+    def assert_joint_totals(self, report, valid, errors, correct):
+        strata = report["joint_task_language_state_rotation_instruction_language"]
+        self.assertEqual(len(strata), 2 * 8 * 7 * 2)
+        self.assertEqual(sum(x["cases"] for x in strata), 896)
+        self.assertEqual(sum(x["valid_format"] for x in strata), valid)
+        self.assertEqual(sum(x["inference_errors"] for x in strata), errors)
+        self.assertEqual(sum(x["semantic_correct"] for x in strata), correct)
+        for cell in strata:
+            self.assertEqual(sum(cell["wire_distribution"].values()), cell["cases"])
+            self.assertEqual(sum(cell["decoded_semantic_distribution"].values()),
+                             cell["cases"])
+        conditional = report["wire_vs_semantic_c1_by_reference_state_rotation"]
+        self.assertEqual(len(conditional), 8 * 7)
+        self.assertEqual(sum(x["cases"] for x in conditional), 896)
+        self.assertEqual(sum(x["valid_code_denominator"] for x in conditional), valid)
+        self.assertTrue(all(x["wire_c1"] <= x["valid_code_denominator"]
+                            and x["semantic_c1"] <= x["valid_code_denominator"]
+                            for x in conditional))
 
 
 if __name__ == "__main__":
