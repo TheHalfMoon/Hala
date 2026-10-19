@@ -1,0 +1,15 @@
+{
+  "schema": "hala.h32.local_d1_semantic_advisory.v1",
+  "founder_instruction": "use D1 local instead of Jev",
+  "source_range": "uncommitted H32 patch against 0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "advisory_only": true,
+  "independent_security_or_release_approval": false,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"advisory_only\": true, \"warning\": \"d1-600M produced a false low-risk answer for a sample authentication bypass; not a security release gate\", \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"security_risk\": {\"type\": \"choice\", \"choice\": \"medium\", \"probabilities\": {\"low\": 0.06566807166541168, \"medium\": 0.8104419073508201, \"high\": 0.12389002098376817}, \"confidence\": 0.7156628610262301}, \"needs_review\": {\"type\": \"noul\", \"noul\": 0.8827496969259656}, \"test_priority\": {\"type\": \"score\", \"score\": 1.314715479968601, \"legend\": {\"0\": \"Low\", \"1\": \"Medium\", \"2\": \"High\"}, \"probabilities\": {\"0\": 0.24946049878037105, \"1\": 0.186363522470657, \"2\": 0.564175978748972}, \"confidence\": 0.0}}, \"usage\": {\"input_tokens\": 6338, \"output_tokens\": 0}}}"
+      }
+    ]
+  }
+}

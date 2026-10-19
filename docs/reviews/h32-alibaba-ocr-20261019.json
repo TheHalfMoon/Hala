@@ -1,0 +1,90 @@
+{
+  "status": "complete",
+  "llm": {
+    "provider": "chatgpt",
+    "model": "gpt-6.1-sol"
+  },
+  "message": "Review complete: 0 finding(s) across 2 selected item(s).",
+  "summary": {
+    "files_reviewed": 2,
+    "comments": 0,
+    "total_tokens": 38809,
+    "input_tokens": 38591,
+    "output_tokens": 218,
+    "cache_read_tokens": 7680,
+    "elapsed": "18s"
+  },
+  "tool_calls": {
+    "total": 5,
+    "by_tool": {
+      "code_search": 1,
+      "file_read": 4
+    },
+    "failure": 0,
+    "failure_by_tool": {},
+    "failure_details": []
+  },
+  "comments": [],
+  "groups": [
+    {
+      "label": "small change set",
+      "files": [
+        "h28/contrasts.py",
+        "h28/replay.py"
+      ]
+    }
+  ],
+  "session_id": "1b348b86-5c58-4882-9756-1cc21c45af2e",
+  "manifest": {
+    "schema_version": "ocr.run-manifest/v1",
+    "run_id": "1b348b86-5c58-4882-9756-1cc21c45af2e",
+    "operation": "review",
+    "terminal_state": "complete",
+    "repository": {
+      "identity_sha256": "69f376c35a910371157a2dd8bc9d76df3e378119e4adc53f98e58c99a9a21804"
+    },
+    "input": {
+      "mode": "workspace",
+      "resolved_base": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+      "source_artifact_sha256": "44b62906227e2635ffc858ce093430c195839e1ea386b0cf9fcd3240ac397202"
+    },
+    "execution": {
+      "ocr_version": "v1.13.1",
+      "provider": "chatgpt",
+      "model": "gpt-6.1-sol",
+      "configured_concurrency": 1,
+      "rule_config_sha256": "d5e28d02ed5cdf85b533907db24b47f1be02847db764a4ded208dbaf54380ae1",
+      "runtime_config_sha256": "4b189796bb8d422b3339c58cb0c0337996562b23c30b302184bb2eee6c4fc630"
+    },
+    "coverage": {
+      "selected": [
+        {
+          "item_id": "b2f09ef4cda83bea8df58500a498bee216dec92f3aa556dfb9b6e32cd64c71ee",
+          "path": "h28/contrasts.py",
+          "fingerprint": "1a8d2182efaddeb44a70243af050b140024ae174f8cb069b53b4f39200c6454e"
+        },
+        {
+          "item_id": "bddcb9f13e4cbcdcf6492f6177d291496c21b424d150c81108fa487c3f080d8e",
+          "path": "h28/replay.py",
+          "fingerprint": "b72df46898c5bd7dcf5d7cfac011e5d4659d9b87f5dcd1afc91c02a3b3449187"
+        }
+      ],
+      "completed": [
+        {
+          "item_id": "b2f09ef4cda83bea8df58500a498bee216dec92f3aa556dfb9b6e32cd64c71ee",
+          "path": "h28/contrasts.py",
+          "fingerprint": "1a8d2182efaddeb44a70243af050b140024ae174f8cb069b53b4f39200c6454e"
+        },
+        {
+          "item_id": "bddcb9f13e4cbcdcf6492f6177d291496c21b424d150c81108fa487c3f080d8e",
+          "path": "h28/replay.py",
+          "fingerprint": "b72df46898c5bd7dcf5d7cfac011e5d4659d9b87f5dcd1afc91c02a3b3449187"
+        }
+      ],
+      "reused": [],
+      "failed": [],
+      "waived": []
+    },
+    "elapsed_ms": 17856
+  }
+}

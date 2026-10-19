@@ -79,6 +79,32 @@ class H28EvidenceContrastTests(unittest.TestCase):
         self.assertTrue(score["source_only_not_actual_inference"])
         self.assertFalse(score["native_authority"])
 
+    def test_pair_categories_require_two_valid_codes_and_partition_pairs(self):
+        for raw in ([None] * 72, ["junk"] * 72):
+            score = contrasts.score_fixture_codes(raw)
+            self.assertEqual(score["unresponsive_identical_code_pairs"], 0)
+        none = contrasts.score_fixture_codes([None] * 72)
+        junk = contrasts.score_fixture_codes(["junk"] * 72)
+        self.assertEqual(none["pair_categories"]["contains_inference_error"], 36)
+        self.assertEqual(junk["pair_categories"]["contains_invalid_output"], 36)
+        mixed = (["C1", "C2"] * 12 + ["C1", "junk"] * 12
+                 + [None, "C1"] * 12)
+        score = contrasts.score_fixture_codes(mixed)
+        self.assertEqual(score["pair_categories"], {
+            "both_valid_codes": 12,
+            "contains_inference_error": 12,
+            "contains_invalid_output": 12,
+        })
+        self.assertEqual(score["unresponsive_identical_code_pairs"], 0)
+        error_precedence = contrasts.score_fixture_codes([None, "junk"] * 36)
+        self.assertEqual(error_precedence["pair_categories"]["contains_inference_error"], 36)
+
+    def test_identical_valid_c0_and_c1_pairs_are_counted(self):
+        for raw in ("C0", "C1"):
+            score = contrasts.score_fixture_codes([raw] * 72)
+            self.assertEqual(score["pair_categories"]["both_valid_codes"], 36)
+            self.assertEqual(score["unresponsive_identical_code_pairs"], 36)
+
     def test_perfect_oracle_fixture_is_machinery_not_model_evidence(self):
         gold = [x["private_reference"]["code"] for x in self.data["records"]]
         score = contrasts.score_fixture_codes(gold)

@@ -182,11 +182,13 @@ def score_fixture_codes(codes):
     confusions = Counter()
     by_language = Counter()
     by_contrast = Counter()
+    valid = []
     for i, (row, code) in enumerate(zip(rows, codes)):
         if code is not None and type(code) is not str:
             raise ValueError("Invalid model raw output type")
         state = row["source_ref"]["state"]
         result = protocol.score(code, state, 0)
+        valid.append(bool(result["format_valid"]))
         hits[i] = bool(result["semantic_correct"])
         confusions[code if code is not None else "INFERENCE_ERROR"] += 1
         language = row["source_ref"]["language"]
@@ -194,12 +196,25 @@ def score_fixture_codes(codes):
         by_contrast[(row["source_ref"]["contrast"],
                      bool(result["semantic_correct"]))] += 1
     paired_hits = sum(hits[i] and hits[i + 1] for i in range(0, 72, 2))
-    same_code_pairs = sum(codes[i] == codes[i + 1] for i in range(0, 72, 2))
+    pair_categories = Counter()
+    same_code_pairs = 0
+    for i in range(0, 72, 2):
+        pair = codes[i:i + 2]
+        if any(code is None for code in pair):
+            category = "contains_inference_error"
+        elif not all(valid[i:i + 2]):
+            category = "contains_invalid_output"
+        else:
+            category = "both_valid_codes"
+            same_code_pairs += int(pair[0] == pair[1])
+        pair_categories[category] += 1
     return {
         "cases": 72, "pairs": 36,
         "semantic_correct": sum(hits.values()),
         "both_correct_pairs": paired_hits,
         "unresponsive_identical_code_pairs": same_code_pairs,
+        "pair_categories": {name: pair_categories[name] for name in (
+            "both_valid_codes", "contains_inference_error", "contains_invalid_output")},
         "wire_distribution": dict(sorted(confusions.items())),
         "by_language": {lang: {
             "cases": sum(by_language[(lang, x)] for x in (False, True)),
