@@ -1,0 +1,83 @@
+{
+  "status": "complete",
+  "llm": {
+    "provider": "chatgpt",
+    "model": "gpt-6.1-sol"
+  },
+  "message": "Review complete: 0 finding(s) across 1 selected item(s).",
+  "summary": {
+    "files_reviewed": 1,
+    "comments": 0,
+    "total_tokens": 23692,
+    "input_tokens": 23570,
+    "output_tokens": 122,
+    "cache_read_tokens": 5760,
+    "elapsed": "21s"
+  },
+  "tool_calls": {
+    "total": 3,
+    "by_tool": {
+      "code_search": 1,
+      "file_read": 2
+    },
+    "failure": 0,
+    "failure_by_tool": {},
+    "failure_details": []
+  },
+  "comments": [],
+  "groups": [
+    {
+      "label": "hala/inference/vision_candidate.py",
+      "files": [
+        "hala/inference/vision_candidate.py"
+      ]
+    }
+  ],
+  "session_id": "0b48985e-ef0a-46ee-a923-704982cbfbe2",
+  "manifest": {
+    "schema_version": "ocr.run-manifest/v1",
+    "run_id": "0b48985e-ef0a-46ee-a923-704982cbfbe2",
+    "operation": "review",
+    "terminal_state": "complete",
+    "repository": {
+      "identity_sha256": "69f376c35a910371157a2dd8bc9d76df3e378119e4adc53f98e58c99a9a21804"
+    },
+    "input": {
+      "mode": "range",
+      "requested_from": "3399b7fcb3637a058b38838bfcca2c004255a626",
+      "requested_head": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+      "resolved_base": "3399b7fcb3637a058b38838bfcca2c004255a626",
+      "resolved_head": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+      "exact_range": "3399b7fcb3637a058b38838bfcca2c004255a626..0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+      "source_artifact_sha256": "acca193c8a3ee08a2dff46555ed88feeb0fbd5788152af98bb518e0a9e7263c6"
+    },
+    "execution": {
+      "ocr_version": "v1.13.1",
+      "provider": "chatgpt",
+      "model": "gpt-6.1-sol",
+      "configured_concurrency": 1,
+      "rule_config_sha256": "d5e28d02ed5cdf85b533907db24b47f1be02847db764a4ded208dbaf54380ae1",
+      "runtime_config_sha256": "5661941e0dde21da8eb397b6a040baa54260316aa15079738b213c746d867214"
+    },
+    "coverage": {
+      "selected": [
+        {
+          "item_id": "25b895448c8a68cf9d73aee10541da858b2e21e1e8dc6d3923ef3cfd2d35390a",
+          "path": "hala/inference/vision_candidate.py",
+          "fingerprint": "4370eae4a1c3655ad7c8bfb742d8873fa5eab6b65eb1e28f34d70845009aa5c2"
+        }
+      ],
+      "completed": [
+        {
+          "item_id": "25b895448c8a68cf9d73aee10541da858b2e21e1e8dc6d3923ef3cfd2d35390a",
+          "path": "hala/inference/vision_candidate.py",
+          "fingerprint": "4370eae4a1c3655ad7c8bfb742d8873fa5eab6b65eb1e28f34d70845009aa5c2"
+        }
+      ],
+      "reused": [],
+      "failed": [],
+      "waived": []
+    },
+    "elapsed_ms": 20835
+  }
+}

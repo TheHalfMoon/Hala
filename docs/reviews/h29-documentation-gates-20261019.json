@@ -1,0 +1,26 @@
+{
+  "schema": "hala.h29.documentation_source_gates.v1",
+  "runtime_source_anchor": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "runtime_source_changed": false,
+  "files_sha256": {
+    ".delegate/config.json": "9932336694ba280bbcc4880840ec78907555000bf35fd22b2d64572b88dfad8b",
+    "docs/AUTONOMOUS_ENGINEERING_LEDGER.md": "8cb526195b660f654d1256ef7965a71e1e4345dc7868dd1e535207ed394d44d4",
+    "docs/reviews/h29-review-closure-20261019.json": "4643733f79d8cd472333636ab056ad652715dcd75d0d900db6caf2f2bec63f11",
+    "docs/reviews/hala-kaggle-admission-20261019/README.md": "239241481e36969c47bd0643b67674aa17ac21fcf421770893805072ff52604b"
+  },
+  "independent_pstack": {
+    "agent": "h29_ledger_review",
+    "correctness": "pass",
+    "parsimony": "pass",
+    "product": "pass",
+    "must_fix": 0,
+    "checks": "12 scoped JSON files, approved fleet exactness, source/blob hashes, nine byte-exact raw copies, all README digests, universal-newline source equality, local Markdown links, unchanged .ignore, scoped secret scan",
+    "optional_suggestion_applied": "Named original Kaggle receipt directory explicitly"
+  },
+  "local_d1_advisory": "h29-ledger-d1-advisory-20261019.json; summary triage only; never approval",
+  "graft": "Existing H29 wiring build/check confirms unchanged runtime source; graphOK1396nodes3645edges, deep missing. Docs/fleet introduce no Python wiring change.",
+  "tests": "No new low-impact documentation tests; retained H29 source baseline455run454pass1skip and independent candidate tests. Exact new-head CPU CI remains separately required.",
+  "source_readback": "Parent reloaded projectTrusted=true; approved fleet exact. .ignore hash preserved.",
+  "scientific_scope": "Kaggle evidence only small-tensor hardware probe; no model checkpoint training, model inference, task quality or adoption claims",
+  "merge_release": "Founder approval required"
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "hala.runtime.probe.v1",
+  "python": "3.13.15",
+  "platform": "Linux-6.18.48+-x86_64-with-glibc2.39",
+  "timestamp_unix": 1792408495.0351717,
+  "downloads_weights": false,
+  "trains_checkpoint": false,
+  "devices": [
+    {
+      "index": 0,
+      "name": "Tesla T4",
+      "vram_bytes": 15636037632,
+      "capability": [
+        7,
+        5
+      ],
+      "bf16_native_candidate": false,
+      "four_fp16_steps_seconds": 0.5737796739999794,
+      "tensor_gradient_changed": true,
+      "max_memory_allocated_bytes": 17146880,
+      "final_loss": 62.83631896972656,
+      "qualification_scope": "small_tensor_fp16_backward_only"
+    },
+    {
+      "index": 1,
+      "name": "Tesla T4",
+      "vram_bytes": 15636037632,
+      "capability": [
+        7,
+        5
+      ],
+      "bf16_native_candidate": false,
+      "four_fp16_steps_seconds": 0.05593676200001596,
+      "tensor_gradient_changed": true,
+      "max_memory_allocated_bytes": 17146880,
+      "final_loss": 62.83631896972656,
+      "qualification_scope": "small_tensor_fp16_backward_only"
+    }
+  ],
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "accelerate": "1.14.0",
+    "bitsandbytes": null
+  },
+  "cuda_build": "12.8",
+  "cuda_available": true,
+  "status": "tested",
+  "model_runtime_qualified": false
+}

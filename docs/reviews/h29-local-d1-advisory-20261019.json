@@ -1,0 +1,15 @@
+{
+  "schema": "hala.h29.local_d1_advisory.v1",
+  "source_head": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "base": "3399b7fcb3637a058b38838bfcca2c004255a626",
+  "purpose": "Routine review prioritization only; not independent PStack/Jev/security/release evidence",
+  "tool": "mcp__d1_local__d1_review_change",
+  "tool_result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"advisory_only\": true, \"warning\": \"d1-600M produced a false low-risk answer for a sample authentication bypass; not a security release gate\", \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"security_risk\": {\"type\": \"choice\", \"choice\": \"medium\", \"probabilities\": {\"low\": 0.10989401153812127, \"medium\": 0.7999412538688655, \"high\": 0.09016473459301325}, \"confidence\": 0.6999118808032982}, \"needs_review\": {\"type\": \"noul\", \"noul\": 0.9827817952928599}, \"test_priority\": {\"type\": \"score\", \"score\": 1.123842631875111, \"legend\": {\"0\": \"Low\", \"1\": \"Medium\", \"2\": \"High\"}, \"probabilities\": {\"0\": 0.31738579713523246, \"1\": 0.24138577385442408, \"2\": 0.4412284290103434}, \"confidence\": 0.0}}, \"usage\": {\"input_tokens\": 3635, \"output_tokens\": 0}}}"
+      }
+    ]
+  }
+}

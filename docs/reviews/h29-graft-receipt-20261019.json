@@ -1,0 +1,57 @@
+{
+  "schema": "hala.graft.source_receipt.v1",
+  "recorded_at": "2026-10-19",
+  "repository": "https://github.com/TheHalfMoon/Hala",
+  "source_range": "3399b7fcb3637a058b38838bfcca2c004255a626..0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "source_head": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "source_artifacts": [
+    {
+      "path": "hala/inference/vision_candidate.py",
+      "git_blob": "bfe7c3733f64d06248d1573e24d4b73b65760039",
+      "sha256": "d999fee1eba809b7a306f765a1e9a235b4b530a3230a8a2bb2d3d16c3d355adb"
+    },
+    {
+      "path": "tests/test_serving_v2.py",
+      "git_blob": "b6dfd39eeafbffa16b6426c41c24883077347c21",
+      "sha256": "ddf5f98ab0e2ca5943dc85778a5ffd577759dc9e2846db662870dbe7eb15606e"
+    },
+    {
+      "path": "docs/H29_VISUAL_TARGET_UNIQUENESS.md",
+      "git_blob": "cf9e6ae05a912f29c911aee94a4913bf2565c55c",
+      "sha256": "cbc91da9796a40a5470515fd9991ea31f4cccb598466da18b343df24bb5e027e"
+    }
+  ],
+  "build": {
+    "result": "success",
+    "kind": "wiring-only",
+    "nodes": 1396,
+    "edges": 3645,
+    "captured_graph_path": "C:/Users/Shehr/.codex/codex-background/briefs/hala-h29-graft-20261019/.graph/wiring.json",
+    "captured_graph_sha256": "bea1ec2cead29bd93b57e98a34ac7c98d2c7fc12394552d24cb3e5ed9433c014"
+  },
+  "check": {
+    "exit_code": 0,
+    "graph_ok": true,
+    "context_ok": false,
+    "deep_context_missing": true,
+    "telemetry": "off; no observed events",
+    "captured_path": "C:/Users/Shehr/.codex/codex-background/briefs/hala-h29-graft-check-20261019.json",
+    "sha256": "184cbf336259972e57522c220b4bcade59d36a52784efdfa63b370f184a59612"
+  },
+  "impact": {
+    "basis": "3399b7fcb3637a058b38838bfcca2c004255a626...HEAD",
+    "depth": 2,
+    "seed_ids": [
+      "hala/inference/vision_candidate.py#CandidateBackend.infer",
+      "tests/test_serving_v2.py#CandidateTests.test_redaction_excluded_element_cannot_make_point_ambiguously_valid",
+      "tests/test_serving_v2.py#CandidateTests.test_unrelated_redacted_element_not_under_point_can_still_qualify"
+    ],
+    "captured_path": "C:/Users/Shehr/.codex/codex-background/briefs/hala-h29-graft-impact-20261019.json",
+    "sha256": "bea12f3d50528fdfb667ab070792121511b8bc586c6becd7b9903e2ffdc9f694"
+  },
+  "limits": [
+    "Graph and check establish source wiring/freshness only, not correctness or sandboxing",
+    "Context/deep semantic tier was missing",
+    "Pending-node lists and generated graph are referenced by hash and are not copied into the repository"
+  ]
+}

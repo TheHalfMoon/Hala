@@ -1,0 +1,14 @@
+{
+  "schema": "hala.documentation.local_d1_advisory.v1",
+  "advisory_only": true,
+  "scope": "Dated ledger semantic-claim summary and Kaggle hardware-admission limitations; not whole-source or security review",
+  "founder_override": "use D1 local instead of Jev",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"advisory_only\": true, \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"claim_scope\": {\"type\": \"choice\", \"choice\": \"limited\", \"probabilities\": {\"limited\": 0.782514805676382, \"inflated\": 0.21748519432361801}, \"confidence\": 0.565029611352764}, \"needs_review\": {\"type\": \"noul\", \"noul\": 0.5143986712460408}}, \"usage\": {\"input_tokens\": 541, \"output_tokens\": 0}}}"
+      }
+    ]
+  }
+}
