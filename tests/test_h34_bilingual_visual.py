@@ -1,4 +1,5 @@
 import hashlib
+import builtins
 import json
 import os
 import shutil
@@ -313,10 +314,17 @@ class BootstrapBoundaryTests(unittest.TestCase):
 
     def execute_bootstrap(self, fixture):
         _, _, _, notebook, remote_path, fake_clone, fake_git, _ = fixture
-        with patch("pathlib.Path", side_effect=remote_path), patch("platform.system", return_value="Linux"), \
+        original_import = builtins.__import__
+        def bootstrap_import(name, globals=None, locals=None, fromlist=(), level=0):
+            if name == "pathlib" and "Path" in fromlist:
+                return SimpleNamespace(Path=remote_path)
+            return original_import(name, globals, locals, fromlist, level)
+        bootstrap_builtins = builtins.__dict__.copy()
+        bootstrap_builtins["__import__"] = bootstrap_import
+        with patch("platform.system", return_value="Linux"), \
              patch.dict(os.environ, {"KAGGLE_KERNEL_RUN_TYPE": "Batch"}, clear=False), \
              patch("subprocess.run", side_effect=fake_clone), patch("subprocess.check_output", side_effect=fake_git):
-            exec("".join(notebook["cells"][1]["source"]), {})
+            exec("".join(notebook["cells"][1]["source"]), {"__builtins__": bootstrap_builtins})
 
     def test_actual_bootstrap_admits_before_clone_and_has_exact_private_slug(self):
         with tempfile.TemporaryDirectory() as directory:
