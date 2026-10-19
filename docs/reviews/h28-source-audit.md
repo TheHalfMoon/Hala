@@ -22,3 +22,8 @@
 7. Founder controls Hala main merge and release. Keep PR Draft, and do not modify H24/H25/H26 evidence branches or any other repository.
 
 **Disposition:** H28 source/CPU tooling ready for review, but **NO-GO** on inference-quality, model adoption, deployment or merging without remaining gates.
+
+
+## H28b independent-looking controls are not independent model reviews
+
+A specific scientific leakage risk was confirmed: original 64 H28 DEV goal text sometimes directly describes the source-authored desired state. New additive `h28/contrasts.py` and `tools/build_h28_contrast_plan.py` supply 36 matched text-identical bilingual pairs (72 public DEV cases) with exactly one evidence field mutated, pinned source SHA `44982948d57f29e75f84ad7f5a439765cdd4235e5ab4e3a92c52d6cd03c8cdfa`, separated label sidecar, new-only output bundle, and fixture-only paired scoring. Unlike the original broad DEV cases, always selecting C1 yields 0 complete correct pairs in its simulated machinery test. No Qwen GPU inference, independent bilingual review, physical screenshots, production action or model success has been demonstrated. The dataset only improves discriminatory design, not a deployment safety gate.
