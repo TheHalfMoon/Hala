@@ -1,0 +1,27 @@
+{
+  "schema": "hala.h30.local_d1_semantic_advisory.v1",
+  "founder_instruction": "use D1 local instead of Jev",
+  "source": "..\\Hala-h30-image-binding-conformance\\tests\\test_visual_binding_integration.py",
+  "source_sha256": "65aad973dd8799643bfb3c115bc6d4ec71ddc2d49e8bc7cdc92e36527d6542b9",
+  "model_file_sha256": "cd94463f4cac9c700ec6750df8df005bb6846de410e159d1f5e985e1171693d3",
+  "advisory_only": true,
+  "independent_security_or_release_approval": false,
+  "parts": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"advisory_only\": true, \"warning\": \"d1-600M produced a false low-risk answer for a sample authentication bypass; not a security release gate\", \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"security_risk\": {\"type\": \"choice\", \"choice\": \"medium\", \"probabilities\": {\"low\": 0.3984580218541137, \"medium\": 0.527371049776183, \"high\": 0.07417092836970329}, \"confidence\": 0.2910565746642745}, \"needs_review\": {\"type\": \"noul\", \"noul\": 0.7492799559588641}, \"test_priority\": {\"type\": \"score\", \"score\": 1.2262529370598425, \"legend\": {\"0\": \"Low\", \"1\": \"Medium\", \"2\": \"High\"}, \"probabilities\": {\"0\": 0.18139331669547845, \"1\": 0.41096042954920065, \"2\": 0.40764625375532093}, \"confidence\": 0.11644064432380097}}, \"usage\": {\"input_tokens\": 5540, \"output_tokens\": 0}}}"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"advisory_only\": true, \"warning\": \"d1-600M produced a false low-risk answer for a sample authentication bypass; not a security release gate\", \"result\": {\"model\": \"C:\\\\Users\\\\Shehr\\\\AppData\\\\Local\\\\D1Local\\\\models\\\\d1-omni-600M-Q8_0.gguf\", \"answers\": {\"security_risk\": {\"type\": \"choice\", \"choice\": \"medium\", \"probabilities\": {\"low\": 0.11385645752599069, \"medium\": 0.8567847278886964, \"high\": 0.029358814585312976}, \"confidence\": 0.7851770918330446}, \"needs_review\": {\"type\": \"noul\", \"noul\": 0.766760800735094}, \"test_priority\": {\"type\": \"score\", \"score\": 0.8511474406068041, \"legend\": {\"0\": \"Low\", \"1\": \"Medium\", \"2\": \"High\"}, \"probabilities\": {\"0\": 0.359534850363499, \"1\": 0.4297828586661978, \"2\": 0.21068229097030317}, \"confidence\": 0.1446742879992967}}, \"usage\": {\"input_tokens\": 7856, \"output_tokens\": 0}}}"
+        }
+      ]
+    }
+  ]
+}
