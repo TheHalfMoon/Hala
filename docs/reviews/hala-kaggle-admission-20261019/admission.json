@@ -1,0 +1,27 @@
+{
+  "purpose": "Non-commercial Hala research hardware admission only",
+  "source_commit": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "probe_source_sha256": "dd25d7c1d025db0cff60c80bbab2afb1bd95119083bb605b61e07c95e7c50135",
+  "no_weights_download": true,
+  "no_model_training": true,
+  "private": true,
+  "internet": false,
+  "timeout_seconds": 300,
+  "paid_compute_authorized": false,
+  "quota_before": [
+    {
+      "resource": "GPU",
+      "used": "0.90h",
+      "remaining": "29.10h",
+      "total": "30.00h",
+      "refreshAt": "2026-10-24T00:00:00"
+    },
+    {
+      "resource": "TPU",
+      "used": "0.00h",
+      "remaining": "20.00h",
+      "total": "20.00h",
+      "refreshAt": "2026-10-24T00:00:00"
+    }
+  ]
+}

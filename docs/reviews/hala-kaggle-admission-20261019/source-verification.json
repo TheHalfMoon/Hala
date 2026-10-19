@@ -1,0 +1,11 @@
+{
+  "schema": "hala.kaggle.admission.receipt.v1",
+  "kernel": "abdulazizshehri/hala-noncommercial-gpu-admission-20261019",
+  "submitted_source_sha256": "dd25d7c1d025db0cff60c80bbab2afb1bd95119083bb605b61e07c95e7c50135",
+  "published_source_sha256": "bc309a3f07496a6edfc8e88d5b7e45594e63cc63939ae73d921ff49ba1cc1ce5",
+  "source_equal_after_universal_newline_normalization": true,
+  "submitted_crlf": 0,
+  "published_crlf": 77,
+  "runtime_probe_sha256": "2ec50e7e23fcdb158fa0778bf5d77901c16b293aaca31d9dd5a7e1bc282ef09a",
+  "scope": "Non-commercial research only. Small tensor GPU probe does not qualify model inference, training, quality, or release."
+}

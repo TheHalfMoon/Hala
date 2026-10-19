@@ -117,6 +117,33 @@ class CandidateTests(unittest.TestCase):
                  'bounds':[40,30,20,15], 'protected':protected})
             self.rejected('invalid_backend_output')
 
+    def test_redaction_excluded_element_cannot_make_point_ambiguously_valid(self):
+        # The selected point (50,35) lies in the valid Save target AND a
+        # second observed target which is ineligible due to a redaction
+        # elsewhere inside its bounds. Excluding that target from 'eligible'
+        # cannot make the point unambiguous.
+        self.raw = candidate_payload()
+        self.raw['policy_request']['observation']['accessibility'].append({
+            'element_ref': 'excluded-by-redaction', 'role': 'Button',
+            'name': 'Background target', 'bounds': [40, 30, 35, 30]})
+        self.raw['policy_request']['observation']['image']['redactions'] = [
+            [45, 55, 3, 3]]
+        self.rejected('invalid_backend_output')
+        self.assertEqual(self.engine.calls, 1)
+
+    def test_unrelated_redacted_element_not_under_point_can_still_qualify(self):
+        # Conservative ambiguity check should not reject unrelated off-target
+        # controls or turn redaction into an always-abstain policy.
+        self.raw = candidate_payload()
+        self.raw['policy_request']['observation']['accessibility'].append({
+            'element_ref': 'other-redacted', 'role': 'Button',
+            'name': 'Offscreen action', 'bounds': [160, 100, 35, 30]})
+        self.raw['policy_request']['observation']['image']['redactions'] = [
+            [165, 110, 3, 3]]
+        result = self.infer()
+        self.assertEqual(result['result']['actions'][0]['element_ref_hint'], 'save-1')
+        self.assertFalse(result['result']['execution_authorized'])
+
     def test_decoder_generalized_dimensions_and_axis_endpoints(self):
         from hala.inference.vision_candidate import decode_point
         self.assertEqual(decode_point('{"point":[500,250]}', 640, 480), (320,120))

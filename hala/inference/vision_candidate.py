@@ -121,9 +121,16 @@ class CandidateBackend:
         try:
             point = decode_point(output, image.width, image.height)
             matches = [target for target in eligible if contains(target.bounds, point)]
-            require(len(matches) == 1, 'Point must select exactly one eligible observed target')
-            require(not any(target.protected and contains(target.bounds, point)
-                            for target in request.observation.accessibility), 'Point intersects protected target')
+            # An excluded target may still geometrically cover the proposed
+            # point (e.g., its OTHER corner intersects a redaction). Reject
+            # ambiguity against the complete observed accessibility set, not
+            # just the eligible subset. No excluded/protected element can
+            # silently disappear from the uniqueness check.
+            observed_matches = [target for target in request.observation.accessibility
+                                if contains(target.bounds, point)]
+            require(len(matches) == 1 and len(observed_matches) == 1
+                    and observed_matches[0].element_ref == matches[0].element_ref,
+                    'Point must uniquely identify one eligible observed target')
             action = Action(type='click', point=point,
                             element_ref_hint=matches[0].element_ref,
                             coordinate_space=request.observation.image.coordinate_space, image_scale=1)

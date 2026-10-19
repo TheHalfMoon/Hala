@@ -1,0 +1,12 @@
+{
+  "scope": "User explicitly states current Hala Kaggle research/model development is non-commercial, authorizes own existing authenticated account, zero-cost quotas only.",
+  "terms_url": "https://www.kaggle.com/terms",
+  "usage_docs_url": "https://www.kaggle.com/docs/efficient-gpu-usage",
+  "reviewed_clause": "You will only use the Services for your own internal, personal, non-commercial use, and not on behalf of or for the benefit of any third party, and only in a manner that complies with all laws that apply to you.",
+  "access_limit": "Direct terms HTTP returned JavaScript shell; indexed official Kaggle terms excerpt reviewed. No account terms accepted or billing settings changed.",
+  "decision": "Proceed with bounded private non-commercial research under user scope; no commercial serving, quota bypass, billing or paid plan.",
+  "actual_gpu_probe": "COMPLETE; raw runtime-probe.json, published metadata and independently checked hashes retained.",
+  "model_qualification": false,
+  "remaining_free_gpu_hours_reported": 29.1,
+  "quota_rounding": "Before/after both report0.90h used; rounded display does not establish zero quota consumption."
+}
