@@ -1,0 +1,47 @@
+{
+  "schema": "hala.h30.engineering_source_gates.v1",
+  "base_commit": "0d51fb68830c7011726f4e1b70aabbe0231d64d4",
+  "source_sha256": {
+    "tests/test_visual_binding_integration.py": "65aad973dd8799643bfb3c115bc6d4ec71ddc2d49e8bc7cdc92e36527d6542b9",
+    "docs/H30_IMAGE_BINDING_CONFORMANCE.md": "268bf69ed548ce60f39537305409c9afca78b440649e6664a667098a958f01df"
+  },
+  "root_unittest": {
+    "command": "python -B -m unittest discover -s tests",
+    "run": 460,
+    "passed": 459,
+    "skipped": 1,
+    "exit_code": 0,
+    "log": "h30-root-unittest-20261019.log"
+  },
+  "targeted": {
+    "root_and_independent_delta_tests_passed": 24
+  },
+  "pstack": {
+    "combined": "pass after one bounded repair",
+    "closed_finding": "Overlapping consecutive-frame fixtures allowed stale point; now disjoint with exact point/identity/pixel/call assertions",
+    "mutation": "Same stale-output mutation passed before repair and fails afterward with invalid_backend_output",
+    "security": "No new reachable production surface; H29 has separate scoped security pass",
+    "release_approval": false
+  },
+  "semantic_advisory": {
+    "tool": "local D1",
+    "founder_override": "use D1 local instead of Jev",
+    "source_hash_bound": true,
+    "receipt": "h30-local-d1-advisory-20261019.json",
+    "advisory_only": true
+  },
+  "graft": {
+    "build_exit": 0,
+    "check_exit": 0,
+    "graph_ok": true,
+    "deep_context_missing": true,
+    "scope": "Wiring/source freshness only; not correctness or isolated execution"
+  },
+  "limits": {
+    "actual_model_inference": false,
+    "real_screenshot_qualification": false,
+    "arabic_typography_qualified": false,
+    "native_actions": false,
+    "founder_merge_release_required": true
+  }
+}
