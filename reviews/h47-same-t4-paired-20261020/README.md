@@ -11,3 +11,13 @@ Notebook archive (byte-verified unchanged from clean source generator):
 - **Not an independent blind test**, external real-app or OSWorld/ScreenSpot comparison, and does not qualify model/production despite any potential improvement. Preserve all negative attempts. No separate H41 experiment or other repo changes.
 
 Before provider submission: exact signed source SHA and notebook bytes, upstream source PR exact-head Python 3.11/3.12 GitHub CI PASS, this original archive in signed GitHub, authenticated Kaggle free GPU quota and absence of prior H47 notebook, then one private kernel version 1 only. Retain full terminal provider evidence, raw SHA, CPU external pairwise replay and correct per-language denominators even if all sixteen fail. Do not resubmit in response to errors without a new separately authorized protocol.
+
+## Provider accepted original version 1 despite CLI client error
+
+Original single `kaggle kernels push -p` produced a **client-side JSON decoding error** (`Expecting value: line 1 column 1 (char 0)`, exit 1 after 152.36s). The first client failure has been preserved, but is **not evidence that Kaggle rejected the submission**.
+
+Subsequent authenticated read-only provider checks revealed the exact intended slug in the user's Kaggle notebook list page 2 and `kaggle kernels status abdulazizshehri/hala-h47-paired-prompt-dev-eight` returned **`KernelWorkerStatus.QUEUED`** exit 0. The original provider response receipt is `provider-accepted-status-v1.txt` SHA256 `1d7b5a2fb8a41404909dd2e5de154a2dedcc0ab5c52e51ec4331a7e6ca3adea0`. No second `push` occurred. The first CLI error is retained separately in `provider-first-push-error-v1.txt` SHA256 `4f8933891f78c81142502b48ed705fa4425c7650100324317e03bd2c5b8b045c`.
+
+Provider notebook URL: [https://www.kaggle.com/code/abdulazizshehri/hala-h47-paired-prompt-dev-eight](https://www.kaggle.com/code/abdulazizshehri/hala-h47-paired-prompt-dev-eight).
+
+**QUEUED does not mean inference happened**, nor that real model accuracy improved. Wait for original terminal v1, preserve all 16 raw trials including errors, then independent paired scoring; do not resubmit just because Kaggle client returned a decoding error.
