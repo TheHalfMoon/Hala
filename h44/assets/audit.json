@@ -1,0 +1,16 @@
+{
+  "actual_chromium_screenshots": 24,
+  "all_controls_unique_visible_no_overlap": true,
+  "arabic": 12,
+  "english": 12,
+  "h43_manifest_sha256": "fbcf271e8c65637f2a69e7dbc5966d7ffdad29c7061d93684bf9a705e7f4c2c8",
+  "h44_capture_sha256": "ba87f75f412ba235903ec72e119fc8fb021455a646f8a0c9becb5adc455cd14c",
+  "h44_source_plan_sha256": "2f3d180ab9ca0b0a68a4775d7cc801dc2be0b908f030821700c0ca78cff448f1",
+  "independent_test": false,
+  "model_inference": false,
+  "native_actions": false,
+  "network_requests": false,
+  "public_authoring": 16,
+  "public_dev": 8,
+  "schema": "hala.h44.browser-evidence-audit.v1"
+}
