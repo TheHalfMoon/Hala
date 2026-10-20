@@ -120,6 +120,60 @@ class H36ProtocolTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 audit(root, digest)
 
+    def test_actual_sha_bound_private_kaggle_trial_stays_unqualified(self):
+        from h34.protocol import parse_raw, score_attempt
+        evidence = Path("reviews/h36-kaggle-run-20261020")
+        raw = evidence / "raw_attempts.jsonl"
+        sha = "761cceef06f588a67286093580e6f1a1cfe3d3d7605c2b650bf3c9e7c815355e"
+        self.assertEqual(hashlib.sha256(raw.read_bytes()).hexdigest(), sha)
+        report = audit(evidence, sha)
+        self.assertTrue(report["complete"])
+        self.assertEqual(report["attempted_records"], 64)
+        self.assertEqual(report["source_commit_observed"],
+                         "ae3f684580c5cd3fba63442738b945de88ad1085")
+        self.assertEqual([report["arms"][a]["target_hit"] for a in ARMS], [8, 6])
+        self.assertEqual([report["arms"][a]["parse_valid"] for a in ARMS], [32, 22])
+        self.assertEqual([report["arms"][a]["wrong_target"] for a in ARMS], [2, 5])
+        self.assertEqual(report["paired"], {
+            "denominator": 32, "both_attempted": 32, "both_correct": 3,
+            "only_numeric_correct": 5, "only_no_numeric_correct": 3,
+            "neither_correct": 21})
+        self.assertFalse(report["model_qualified"])
+        self.assertFalse(report["independent_test_qualified"])
+        canonical = (json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2)+"\n")
+        self.assertEqual((evidence/"audit.json").read_bytes(), canonical.encode("utf-8"))
+        rows = [json.loads(line) for line in raw.read_text(encoding="utf-8").splitlines()]
+        h34_rows = {r["case_id"]: r for r in
+                    (json.loads(line) for line in
+                     (H34_V2/"raw_attempts.jsonl").read_text(encoding="utf-8").splitlines())}
+        control = [r for r in rows if r["arm"] == ARMS[0]]
+        self.assertEqual(len(control), 32)
+        for row in control:
+            previous = h34_rows[row["case_id"]]
+            self.assertEqual((row["raw"], row["error"]),
+                             (previous["raw"], previous["error"]))
+        previous_images = {x["case_id"]: x["sha256"] for x in
+                           json.loads((H34_V2/"image_manifest.json").read_text("utf-8"))}
+        current_images = {x["case_id"]: x["sha256"] for x in
+                          json.loads((evidence/"image_manifest.json").read_text("utf-8"))}
+        self.assertEqual(current_images, previous_images)
+        invalid = [r for r in rows if r["arm"] == ARMS[1] and
+                   not score_attempt(next(c for c in build_cases() if c["id"] == r["case_id"]),
+                                     r["raw"], r["error"])["parse_valid"]]
+        self.assertEqual(len(invalid), 10)
+        self.assertTrue(all(r["raw"].count('"point"') == 2 for r in invalid))
+        lookup = {c["id"]: c for c in build_cases()}
+        examples = []
+        for row in rows:
+            if row["arm"] != ARMS[0]:
+                continue
+            case = lookup[row["case_id"]]
+            px = parse_raw(row["raw"], case["width"], case["height"])
+            if px and abs(px[1] / case["height"] - 0.75) < 0.0001:
+                examples.append(score_attempt(case, row["raw"], row["error"]))
+        self.assertEqual(len(examples), 8)
+        self.assertTrue(all(not x.get("gate_valid_unique", False) for x in examples))
+
     def test_billing_and_platform_fail_closed(self):
         with patch("platform.system", return_value="Windows"):
             with self.assertRaises(RuntimeError):
