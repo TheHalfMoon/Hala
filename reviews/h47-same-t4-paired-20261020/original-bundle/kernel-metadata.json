@@ -1,0 +1,15 @@
+{
+  "code_file": "hala-h47-paired-original-vs-no-number.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "enable_gpu": true,
+  "enable_internet": true,
+  "enable_tpu": false,
+  "id": "abdulazizshehri/hala-h47-paired-prompt-dev-eight",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "hala h47 paired prompt dev eight"
+}
