@@ -102,8 +102,12 @@ def parse_request(raw, tenant):
 
 class CandidateBackend:
     """Explicit server-owned experimental seam; never changes production readiness."""
-    def __init__(self, engine=None):
+    def __init__(self, engine=None, *, require_explicit_label=False):
+        if type(require_explicit_label) is not bool:
+            raise ValueError('require_explicit_label must be a boolean')
         self.engine = engine
+        # Explicit opt-in only: unqualified research seam, never host authority.
+        self.require_explicit_label = require_explicit_label
 
     def metadata(self):
         return {'name': 'vision_candidate_v2', 'ready': False, 'qualified': False,
@@ -131,6 +135,15 @@ class CandidateBackend:
             require(len(matches) == 1 and len(observed_matches) == 1
                     and observed_matches[0].element_ref == matches[0].element_ref,
                     'Point must uniquely identify one eligible observed target')
+            if self.require_explicit_label:
+                # A partial accessibility snapshot cannot establish global
+                # name uniqueness: an omitted target may share this label.
+                require(request.observation.truncation.elements_omitted == 0,
+                        'Exact-label policy requires a complete accessibility observation')
+                from hala.inference.explicit_label_guard import unique_exact_label_match
+                all_names = [target.name for target in request.observation.accessibility]
+                require(unique_exact_label_match(request.task.goal, matches[0].name, all_names),
+                        'Selected target label must uniquely match explicit user intent')
             action = Action(type='click', point=point,
                             element_ref_hint=matches[0].element_ref,
                             coordinate_space=request.observation.image.coordinate_space, image_scale=1)
