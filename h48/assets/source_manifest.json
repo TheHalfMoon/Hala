@@ -1,0 +1,881 @@
+{
+  "actual_model_result": false,
+  "authoring_count": 64,
+  "count": 96,
+  "independent_blind_test": false,
+  "provenance": {
+    "benchmark_trajectories": false,
+    "external_images": false,
+    "license": "CC0-1.0",
+    "origin": "original_first_party_fictional",
+    "personal_data": false
+  },
+  "public_dev_count": 32,
+  "rows": [
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-021 only.",
+      "html_sha256": "c4c812c4fa15ef588a499afbbcc491c3b57801635b0ccc42f737a204425c5a59",
+      "id": "h48-modal_approval-00-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-022 فقط.",
+      "html_sha256": "a4f1215ec9cf2bb0cb28e4ec07d4df6bdcd2e888acf156fc442cdb564991d553",
+      "id": "h48-modal_approval-01-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-023 only.",
+      "html_sha256": "c3fe16643cc07fe503a39f8500f1dea2c94fb31352bd81cf2aadd25fdf12d309",
+      "id": "h48-modal_approval-02-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-024 فقط.",
+      "html_sha256": "5e261cefb57933f1f46481df3ea06427f178f9964ef9b702cc6bdd3a3013dcaa",
+      "id": "h48-modal_approval-03-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-025 only.",
+      "html_sha256": "98d79820113635a0d926c3b2b169e93707b3e2433aea25967a87a248372bce54",
+      "id": "h48-modal_approval-04-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-026 فقط.",
+      "html_sha256": "6547c91a9a6bbb533f3eef4de27c80ad728677cb6a6551bac057e3b58d87e3ce",
+      "id": "h48-modal_approval-05-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-027 only.",
+      "html_sha256": "6ad6702eae3ad62d406babff5b2f1385a045544ac5c01d8a5b4f47f063c71554",
+      "id": "h48-modal_approval-06-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-028 فقط.",
+      "html_sha256": "fba514376c658a1e2b62a62282ab5a677a6232263a60e610468f288b8216e760",
+      "id": "h48-modal_approval-07-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-029 only.",
+      "html_sha256": "06efee1fdc0538e63ee6e1557cebafaccccc0845c4bbc5d3e9e794564bc06988",
+      "id": "h48-modal_approval-08-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-030 فقط.",
+      "html_sha256": "aec5008c21a7d5136cf44d40ea60505f700f459655f16f46268b7f9da5dc0d8d",
+      "id": "h48-modal_approval-09-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-031 only.",
+      "html_sha256": "40fcbb338f412d57662c149e4325501d909b35b7db6d5265a95f6f22f45162d2",
+      "id": "h48-modal_approval-10-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-032 فقط.",
+      "html_sha256": "21e7d6dac4d5db40a2132bbaca18c67102c9ff4cf2227fd92ef217a04fdfec8d",
+      "id": "h48-modal_approval-11-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-033 only.",
+      "html_sha256": "df23e1cbe0e6de10547a7e3edfa276e4ce454c98f1eb7bc3d3407ee59e58d5ab",
+      "id": "h48-modal_approval-12-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-034 فقط.",
+      "html_sha256": "10e8e2a92e680e95f0b9d13f2aeb87940e42cb20eb65e016c66e4ae3cc4eca03",
+      "id": "h48-modal_approval-13-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-035 only.",
+      "html_sha256": "7f99de76aea6c7cd3c1177bf894e71bea63870d333d733fc2d4160b8451f54e3",
+      "id": "h48-modal_approval-14-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-036 فقط.",
+      "html_sha256": "7de19c698db1a9007ef24f16122684ec36756219a8f1e26595c76aad3c9cb811",
+      "id": "h48-modal_approval-15-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-021 only.",
+      "html_sha256": "902a25909edfabecc895f99d78666c3802a33d504e6208f7f89e3070c549e531",
+      "id": "h48-inbox_triage-00-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-022 فقط.",
+      "html_sha256": "377841d1eee8ef9d57c08882756ea52a4d338bd07d01ca4249b0301a65d2aa6c",
+      "id": "h48-inbox_triage-01-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-023 only.",
+      "html_sha256": "580fb347b029b19a89128455b997f6cc558d6514dd74374f3f13e6d0627dbd17",
+      "id": "h48-inbox_triage-02-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-024 فقط.",
+      "html_sha256": "d6de85d8bf9d3b724be7d73283243820a63c0e6310806cdda17e8e6964609f32",
+      "id": "h48-inbox_triage-03-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-025 only.",
+      "html_sha256": "31f59a7f3bff4101dab232866f9c9fd5afb0a5594b485b4064aa544f8e089ba7",
+      "id": "h48-inbox_triage-04-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-026 فقط.",
+      "html_sha256": "597a05c89faa58ec6f8c2214a748d17e113206aff0993665d785a7e28595256b",
+      "id": "h48-inbox_triage-05-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-027 only.",
+      "html_sha256": "65092a9aea3309366176e7d947000278ee08cf89a6fb994246bc108a04b7db3f",
+      "id": "h48-inbox_triage-06-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-028 فقط.",
+      "html_sha256": "c1aa2b8041e7532cefc7c711256567dcb2b8d884cdd469f5b5571dfe6d5bc5b7",
+      "id": "h48-inbox_triage-07-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-029 only.",
+      "html_sha256": "695ff568ed744dbac21096edbb296f12620362bf4d348c6e40ea3420b5ea86e5",
+      "id": "h48-inbox_triage-08-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-030 فقط.",
+      "html_sha256": "bb96e4098f3984d520f295c01793696249ea171683b3d918fc7e931c14638b59",
+      "id": "h48-inbox_triage-09-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-031 only.",
+      "html_sha256": "394eadc121af3f1f9fa55d56acdd6c0404e0fb26a28265d5b55e559f5f14dd8e",
+      "id": "h48-inbox_triage-10-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-032 فقط.",
+      "html_sha256": "800970d164aaf2a3d975f6429cc5cd0790850c39b03d691720872ae6ab391d8b",
+      "id": "h48-inbox_triage-11-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-033 only.",
+      "html_sha256": "a6bce47f8051d12feb6f81d1ee39a6d1523e75edcef14d57feba6dc1b680449c",
+      "id": "h48-inbox_triage-12-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-034 فقط.",
+      "html_sha256": "830f5b1451dc9a1be640e183554002a403c91e09066428e651cb269a0b5aa083",
+      "id": "h48-inbox_triage-13-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-035 only.",
+      "html_sha256": "6c7d57e445af1ff4fbc596369f0028bdd0449daa9cf933e3cdf95db809cd8869",
+      "id": "h48-inbox_triage-14-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-036 فقط.",
+      "html_sha256": "196bef8003c9c6a276cbd1d64b7f6ed6d93a99ed02a5370f214a3b6b177994e9",
+      "id": "h48-inbox_triage-15-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-021 only.",
+      "html_sha256": "656bb0519eaa889092023e7ecb7f903c1307194acde46107a2001a4b52163e45",
+      "id": "h48-settings_access-00-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-022 فقط.",
+      "html_sha256": "58cbfe99cc11fa56e0a45f25e115a27d8f578b9f0b166dbce149ced0ea4a1273",
+      "id": "h48-settings_access-01-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-023 only.",
+      "html_sha256": "cb02e100e249297b547670d95f7d6a374571e93703ef9a7a68e4177a17cd37af",
+      "id": "h48-settings_access-02-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-024 فقط.",
+      "html_sha256": "3fba03cd6f63835f800ecd7d5bdf4d6908cf94882df52cc370c9811e5ba9c501",
+      "id": "h48-settings_access-03-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-025 only.",
+      "html_sha256": "0bf4dabad613f997bf12ce2541031d35bb6501d9ffa8705180e901301ec0a61b",
+      "id": "h48-settings_access-04-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-026 فقط.",
+      "html_sha256": "4a10c9d9debb0944e305e8d298b9681f9c7ccce25aa9d9068bdee3593f5b1952",
+      "id": "h48-settings_access-05-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-027 only.",
+      "html_sha256": "e82367aee84013c639b28495662212cacc7118efe0a541376683b6605a8de31c",
+      "id": "h48-settings_access-06-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-028 فقط.",
+      "html_sha256": "863d4ee644a3e96bf116d4567b545bd81c1ece7dad5555530c8a59c443839215",
+      "id": "h48-settings_access-07-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-029 only.",
+      "html_sha256": "6597588024187cc9ca54c0530988a0a4bf1105a7016a68ad2f3024a0f5068550",
+      "id": "h48-settings_access-08-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-030 فقط.",
+      "html_sha256": "56228ddee2953eb53fa560735392d83b5585b8a441e86b2b86d22b13b6af9513",
+      "id": "h48-settings_access-09-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-031 only.",
+      "html_sha256": "5eca3c65ad29d83246af45f426e877cd4314cf42d9649560669b4377c93fe492",
+      "id": "h48-settings_access-10-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-032 فقط.",
+      "html_sha256": "993266b75ff7f01c7fd10bb6580a91c622c0465c59964b37784a08d6cc0096da",
+      "id": "h48-settings_access-11-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-033 only.",
+      "html_sha256": "bf8288fea373e5c95f93548b87b0ff9d8cc39e70e147f525d10217a63043fea4",
+      "id": "h48-settings_access-12-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-034 فقط.",
+      "html_sha256": "583ef41d7e28ef3df45f53c71c0f095dbea8da112020e9acc8a73323bf87681b",
+      "id": "h48-settings_access-13-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-035 only.",
+      "html_sha256": "f6d72ad1b29fce31e88ebe528e8879a11e7aba250abbb16fff625a4c7eaa8be1",
+      "id": "h48-settings_access-14-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-036 فقط.",
+      "html_sha256": "34e4ddd3b0eec5c1732258c9247cabeb1464e70d716280718f2984ffe0e60dd7",
+      "id": "h48-settings_access-15-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-021 only.",
+      "html_sha256": "b34519719aca3ff828202bf9e2efb96dd836bf9cb94c33d74bf1608da04524ec",
+      "id": "h48-ticket_board-00-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-022 فقط.",
+      "html_sha256": "4f37ba35f9afefb39ba80c2e11fa32eaf7ea28a52731b6abd82fc569e2a1c829",
+      "id": "h48-ticket_board-01-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-023 only.",
+      "html_sha256": "9b8df2a047a9e6d97d719eca6a98531f86a36cc726096473ee727c9ae5feb4cd",
+      "id": "h48-ticket_board-02-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-024 فقط.",
+      "html_sha256": "4cd0084e91958aa2dea51778fab3951dc0e5fd951e3e4add82ddfe13c9571520",
+      "id": "h48-ticket_board-03-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-025 only.",
+      "html_sha256": "63ddbb438a2b5af5a092153a4a3a821d8c12e2d2df7d4a60186d320a44d5b327",
+      "id": "h48-ticket_board-04-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-026 فقط.",
+      "html_sha256": "7a54192e62ba4a11455f9faf7b4ee6a057c4f5111670e4bffddd6fb5d2350ea4",
+      "id": "h48-ticket_board-05-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-027 only.",
+      "html_sha256": "14d2ec5b255c137a806f2d0e055512dd00fd36922e8bba7aa15ecb606524cf22",
+      "id": "h48-ticket_board-06-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-028 فقط.",
+      "html_sha256": "a7c0750ffcaa9794c53c9ad4ca37377266ef2a7b77efb0fd15283bf0dbb079be",
+      "id": "h48-ticket_board-07-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-029 only.",
+      "html_sha256": "0fb685d7cab91e51047eaba76a88c87e0982bf8d1fc6e3dd69e44ca176cf9746",
+      "id": "h48-ticket_board-08-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-030 فقط.",
+      "html_sha256": "525b690b28f8b9e60f3903ed91bb917292d9ec052f12589377d710a2569a24f6",
+      "id": "h48-ticket_board-09-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-031 only.",
+      "html_sha256": "67d20d1bc73ad20c58f3e7c605204ac3a89989ad2d0ad097423d1098cf9e5b39",
+      "id": "h48-ticket_board-10-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 5
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-032 فقط.",
+      "html_sha256": "4bbc24fef9f531e0d363d6c342b2efddc034133848fc6e5723c1ca30239d9607",
+      "id": "h48-ticket_board-11-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 4
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-033 only.",
+      "html_sha256": "eacf1fc458436b1e8ac5f7a6d4a2f3596a44565d0ca887792425c5c94f9e5def",
+      "id": "h48-ticket_board-12-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 3
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-034 فقط.",
+      "html_sha256": "eff7ffb4201ff544ddde35cf606c761aa5fc5b8309c5c4659d96d07c39f326b5",
+      "id": "h48-ticket_board-13-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 2
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-035 only.",
+      "html_sha256": "65fdb9373020829d3ef11e5a94765a6d488527789abc35fe131c337b0aabfb6b",
+      "id": "h48-ticket_board-14-en",
+      "language": "en",
+      "split": "authoring",
+      "target_index": 1
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-036 فقط.",
+      "html_sha256": "e1699b3672854e156eb23260a9fd0c7d75e8c096d964da7f014c2be114101c43",
+      "id": "h48-ticket_board-15-ar",
+      "language": "ar",
+      "split": "authoring",
+      "target_index": 0
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-021 only.",
+      "html_sha256": "ffbe8d021a94e3bbe8c290672ba9df1c3ccc66efc61013584b090fb88bff3fee",
+      "id": "h48-calendar_slots-00-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-022 فقط.",
+      "html_sha256": "dadca810950e99f6a9e0d8a99fe97ab862d676126a9a920b8fa2c00ecd7ebb8e",
+      "id": "h48-calendar_slots-01-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-023 only.",
+      "html_sha256": "340306acb63062435fc4c24caaec6b521f31d395a75a092ade3848703167c925",
+      "id": "h48-calendar_slots-02-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 4
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-024 فقط.",
+      "html_sha256": "b4a904a2951ace2ec01d1cce9b780c57401f72627f262053b2220aa23b4ea735",
+      "id": "h48-calendar_slots-03-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-025 only.",
+      "html_sha256": "ed1f922957c1ba8234671cb90612250ac162f6bdd1f9a8c4077890457cd6e0cf",
+      "id": "h48-calendar_slots-04-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 2
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-026 فقط.",
+      "html_sha256": "f344a9141430e208b0a99eab791252c4a4422dcfa295a390434fdea89648fd96",
+      "id": "h48-calendar_slots-05-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 1
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-027 only.",
+      "html_sha256": "94b0fcc27c2ee2f80718bbd3cf2e657f5effa826c040940ba6dc7baa1d84a165",
+      "id": "h48-calendar_slots-06-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-028 فقط.",
+      "html_sha256": "06c02bf59a169575a727b7208507a3aa2a623bb152313677093521b7b1f21b71",
+      "id": "h48-calendar_slots-07-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-029 only.",
+      "html_sha256": "8a7aa1fd4d008f39965a0bd2f5b3191fb600d84b9d278461a33f178b84567adb",
+      "id": "h48-calendar_slots-08-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 4
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-030 فقط.",
+      "html_sha256": "11a65398d2d5e8dc54254b1b5efede02331ff6b4dd668986f1deed8d57b50938",
+      "id": "h48-calendar_slots-09-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-031 only.",
+      "html_sha256": "feb3aebecf867d0933b8385c2e54f79bc1abd371547473cbeef942e73eed6ab2",
+      "id": "h48-calendar_slots-10-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 2
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-032 فقط.",
+      "html_sha256": "e0b4990a217a67aab775d66fd21fc72603dfc9a6cec97424683bd42a11982d76",
+      "id": "h48-calendar_slots-11-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 1
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-033 only.",
+      "html_sha256": "773ad89785fa2f04d9c783213b02034c65583e8f104feb2f461c6565a3d82786",
+      "id": "h48-calendar_slots-12-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-034 فقط.",
+      "html_sha256": "25932fe020438fb102d4f24056eda5616463e597adf1a67c588b6917f38b2b13",
+      "id": "h48-calendar_slots-13-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "In Session calendar, press 'Reserve' for item MILO-035 only.",
+      "html_sha256": "3f98efbe07041795d0595098358e6d00c6b8e4b6547d23de67501df995e7ab4f",
+      "id": "h48-calendar_slots-14-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 4
+    },
+    {
+      "family": "calendar_slots",
+      "goal": "في تقويم الجلسات، اضغط «حجز» للعنصر MILO-036 فقط.",
+      "html_sha256": "9b8b318a01d0153092030fdd5d00eedb05162d7d0b084995ed00a3487207f5a7",
+      "id": "h48-calendar_slots-15-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-021 only.",
+      "html_sha256": "d0638615064bf1091e2431b877f6cd85c699a16b465388fb2e95c311fc6b213e",
+      "id": "h48-expense_review-00-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-022 فقط.",
+      "html_sha256": "d6aec58ce692900b8dc3850b95a5f093690506d460925ffac58adae8a9a30c3d",
+      "id": "h48-expense_review-01-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-023 only.",
+      "html_sha256": "57c7a078dbde091ae890232469adc0b6d3ba37b0a40b578cc086ba4e54037b9a",
+      "id": "h48-expense_review-02-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-024 فقط.",
+      "html_sha256": "c07e73c414bbaf7538e253f2b83442fa8cdaa00169da8d08b7393a837337a718",
+      "id": "h48-expense_review-03-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 0
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-025 only.",
+      "html_sha256": "cc1217f64cd63c8424d817505c1654516d5e9e2ca7e2d3adb7c710c1767f3ddf",
+      "id": "h48-expense_review-04-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-026 فقط.",
+      "html_sha256": "1bf11145858d79b8fa877efe03528c578d838035ffe9f94c37d21ef0568fca1d",
+      "id": "h48-expense_review-05-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 4
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-027 only.",
+      "html_sha256": "606a99e5ab8c5cf3dc3b6a4157d0b6872956afab923448348da23bcef75fa0c9",
+      "id": "h48-expense_review-06-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-028 فقط.",
+      "html_sha256": "276e02e5964ef6bb481593d99b3826f3c9973c28b7cf5f398b6955808c2097dd",
+      "id": "h48-expense_review-07-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-029 only.",
+      "html_sha256": "fbff695d02ac85625a37e963ed2bcfcc481b3d7bd1d33e1bf21b37b43122174e",
+      "id": "h48-expense_review-08-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-030 فقط.",
+      "html_sha256": "22fdd843a3d565db664ac1641eede59544b106453cc65be6aa61a7ae80c84cb3",
+      "id": "h48-expense_review-09-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 0
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-031 only.",
+      "html_sha256": "f787551484421e02b5da964b5f77b9c3c2e2bb2028f99b5310d1b6b702598365",
+      "id": "h48-expense_review-10-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-032 فقط.",
+      "html_sha256": "2851e579ddf3eff4d2bd4d1ec2abc00ff1470315a48437e26de15cd042c39c6f",
+      "id": "h48-expense_review-11-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 4
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-033 only.",
+      "html_sha256": "7b03612809e53f95aa94a62ccd6226385822c885cf9f02a7671eb82821cad890",
+      "id": "h48-expense_review-12-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 3
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-034 فقط.",
+      "html_sha256": "5ca7aea654e38ea8d62a9b659db033c1c0391444de264541bba263a0b3a22477",
+      "id": "h48-expense_review-13-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2
+    },
+    {
+      "family": "expense_review",
+      "goal": "In Expense review, press 'Accept' for item TARO-035 only.",
+      "html_sha256": "0ce062035780f3dacc3b8299e164efa5de3261646b173f50307921f053ec09fd",
+      "id": "h48-expense_review-14-en",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1
+    },
+    {
+      "family": "expense_review",
+      "goal": "في مراجعة المصروفات، اضغط «اعتماد» للعنصر TARO-036 فقط.",
+      "html_sha256": "d8ac5bc71b82c9bce9ebde149ce92187e168571ffd778ecc589978b23ded9c53",
+      "id": "h48-expense_review-15-ar",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 0
+    }
+  ],
+  "schema": "hala.h48.diverse-first-party-visual-grounding.v1"
+}
