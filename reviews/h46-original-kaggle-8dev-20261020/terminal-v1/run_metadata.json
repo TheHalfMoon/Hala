@@ -1,0 +1,50 @@
+{
+  "attempted": 8,
+  "capture_sha256": "ba87f75f412ba235903ec72e119fc8fb021455a646f8a0c9becb5adc455cd14c",
+  "cases": 8,
+  "elapsed_s": 70.003661344,
+  "exit_code": 0,
+  "external_benchmark": false,
+  "gpu": {
+    "name": "Tesla T4",
+    "vram": 15636037632
+  },
+  "independent_blind_test": false,
+  "input_sha256": "f432747051c5fc2b6741db1a8c9b4b58f04d0dd7248c77546baa191bcdc29193",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_qualified": false,
+  "native_actions": false,
+  "oracle_sha256_not_read": "974b6ce6a51d272437e67471c10ee07f03b9303427bac9ec66e0391fe254ee22",
+  "prompt_sha256": "b257f61644912ae5f2a57b448063579af6477acda614df93338d3782de931555",
+  "protocol": "hala.h46.qwen3vl_2b_firstframe_public_dev.v1",
+  "raw_sha256": "a23923be51fddfb4e6b876e5cdf842e5827a507147c640d3370767d9cfe45a2c",
+  "retries": 0,
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "runtime_versions": {
+    "Pillow": "12.3.0",
+    "accelerate": "1.14.0",
+    "safetensors": "0.8.0",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1"
+  },
+  "source_commit": "eb049f489524ff188d4d326ab7efe3b6f9ce6b65",
+  "source_inventory": {
+    "h34/protocol.py": "274bb4d3694771288b2777731867f5ebfc13bae47c939f72d1d63b097e27869c",
+    "h34/runner.py": "155ca719d01da7a00dc6f8b7886d48105b83e79f17684848ac7c6670bcb55e0c",
+    "h44/assets/model_inputs.json": "f432747051c5fc2b6741db1a8c9b4b58f04d0dd7248c77546baa191bcdc29193",
+    "h44/assets/screenshots/h43-harbor_inventory-00-en.png": "c33c71b2cf4b1308a41341f2f4ba04840eb06539130de143fa7068fa9748cc8c",
+    "h44/assets/screenshots/h43-harbor_inventory-01-ar.png": "ea96c19d439ae434709923cd3db33b3136728565ce02039c63beff72b05f305e",
+    "h44/assets/screenshots/h43-harbor_inventory-02-en.png": "a9144cb1ffed9efd1c76d99b74e057a12246b0b47e84e1c1b52ddc7104f50f8b",
+    "h44/assets/screenshots/h43-harbor_inventory-03-ar.png": "348c124efbef88e986eda2dca7a295abd0e38ebf522d76def242ffe8dd2ebbfe",
+    "h44/assets/screenshots/h43-summit_scheduling-00-en.png": "2343aff31352301bc592edee4bbcd1622f02aa1923eb70f7ba4bab082d45b8ef",
+    "h44/assets/screenshots/h43-summit_scheduling-01-ar.png": "8ce4f4cad7e9dc43780866076b5c7786f7e5ab2179c98fd46610df2ceae9943c",
+    "h44/assets/screenshots/h43-summit_scheduling-02-en.png": "11c40da6fc2bca402e89e4da74d201491c2836ea07cb02b97b54b4216ef43ed7",
+    "h44/assets/screenshots/h43-summit_scheduling-03-ar.png": "55b0a67f28970b65585b88609c1b0417b75a7a9baa23dd79291b75c0d5c7a466",
+    "h46/__init__.py": "24e4619d61933730704f906733665d47b31074655101f5a02692ac18cfae5945",
+    "h46/experiment.py": "7f473e06de4705f4cdf058d1442891971b1de153d01e84b42abdd24da84bd424",
+    "tools/build_h46_kaggle.py": "fcea325acdb5b59641c6d9d1301a10f618394ab1b55e3e5a2066b56923059549"
+  },
+  "state": "completed",
+  "supervisor_error": null,
+  "timeout": false
+}

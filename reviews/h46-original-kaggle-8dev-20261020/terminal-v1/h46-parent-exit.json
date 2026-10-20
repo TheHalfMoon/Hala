@@ -1,0 +1,12 @@
+{
+  "blind_benchmark": false,
+  "completed_unqualified": false,
+  "elapsed_seconds": 71.783,
+  "model_qualified": false,
+  "native_actions": false,
+  "raw_journal_present": true,
+  "raw_metadata_present": true,
+  "schema": "hala.h46.batch-parent.v1",
+  "source_commit": "eb049f489524ff188d4d326ab7efe3b6f9ce6b65",
+  "worker_exit": 0
+}
