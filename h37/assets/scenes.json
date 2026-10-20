@@ -1,0 +1,1282 @@
+[
+  {
+    "expected_control_id": "control-0",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Reserve soldering station' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-toolbar-v0",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Reserve soldering station",
+      "Book 3D printer",
+      "Request laser cutter",
+      "Join safety class"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Request laser cutter' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-toolbar-v1",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Book 3D printer",
+      "Request laser cutter",
+      "Join safety class",
+      "Reserve soldering station"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Join safety class' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-sidebar-v0",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Book 3D printer",
+      "Request laser cutter",
+      "Join safety class",
+      "Reserve soldering station"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Book 3D printer' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-sidebar-v1",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Request laser cutter",
+      "Join safety class",
+      "Reserve soldering station",
+      "Book 3D printer"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Request laser cutter' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-grid-v0",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Request laser cutter",
+      "Join safety class",
+      "Reserve soldering station",
+      "Book 3D printer"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Reserve soldering station' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-grid-v1",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Join safety class",
+      "Reserve soldering station",
+      "Book 3D printer",
+      "Request laser cutter"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Book 3D printer' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-table-v0",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Join safety class",
+      "Reserve soldering station",
+      "Book 3D printer",
+      "Request laser cutter"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "makerspace",
+    "goal": "Select the action labeled 'Join safety class' on the page.",
+    "height": 540,
+    "id": "h37-makerspace-en-table-v1",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Reserve soldering station",
+      "Book 3D printer",
+      "Request laser cutter",
+      "Join safety class"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "Makerspace bookings",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «احجز الطابعة ثلاثية الأبعاد» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-toolbar-v0",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لدورة السلامة» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-toolbar-v1",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «احجز محطة اللحام» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-sidebar-v0",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب آلة القطع بالليزر» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-sidebar-v1",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لدورة السلامة» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-grid-v0",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «احجز الطابعة ثلاثية الأبعاد» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-grid-v1",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب آلة القطع بالليزر» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-table-v0",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "انضم لدورة السلامة",
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "makerspace",
+    "goal": "اختر الإجراء المكتوب عليه «احجز محطة اللحام» في الصفحة.",
+    "height": 540,
+    "id": "h37-makerspace-ar-table-v1",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "احجز محطة اللحام",
+      "احجز الطابعة ثلاثية الأبعاد",
+      "اطلب آلة القطع بالليزر",
+      "انضم لدورة السلامة"
+    ],
+    "palette": "#2d7190",
+    "split": "dev",
+    "title": "حجوزات ورشة الابتكار",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Book lighting desk' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-toolbar-v0",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Request costume fitting",
+      "Book lighting desk",
+      "Schedule sound check",
+      "Reserve stage rehearsal"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Reserve stage rehearsal' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-toolbar-v1",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Book lighting desk",
+      "Schedule sound check",
+      "Reserve stage rehearsal",
+      "Request costume fitting"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Request costume fitting' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-sidebar-v0",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Book lighting desk",
+      "Schedule sound check",
+      "Reserve stage rehearsal",
+      "Request costume fitting"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Schedule sound check' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-sidebar-v1",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Schedule sound check",
+      "Reserve stage rehearsal",
+      "Request costume fitting",
+      "Book lighting desk"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Reserve stage rehearsal' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-grid-v0",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Schedule sound check",
+      "Reserve stage rehearsal",
+      "Request costume fitting",
+      "Book lighting desk"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Book lighting desk' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-grid-v1",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Reserve stage rehearsal",
+      "Request costume fitting",
+      "Book lighting desk",
+      "Schedule sound check"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Schedule sound check' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-table-v0",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Reserve stage rehearsal",
+      "Request costume fitting",
+      "Book lighting desk",
+      "Schedule sound check"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "community_theater",
+    "goal": "Select the action labeled 'Request costume fitting' on the page.",
+    "height": 540,
+    "id": "h37-community_theater-en-table-v1",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Request costume fitting",
+      "Book lighting desk",
+      "Schedule sound check",
+      "Reserve stage rehearsal"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "Community theater",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «حدد فحص الصوت» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-toolbar-v0",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب تجربة الأزياء» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-toolbar-v1",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «احجز طاولة الإضاءة» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-sidebar-v0",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «احجز تدريب المسرح» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-sidebar-v1",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب تجربة الأزياء» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-grid-v0",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «حدد فحص الصوت» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-grid-v1",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «احجز تدريب المسرح» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-table-v0",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "احجز تدريب المسرح",
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "community_theater",
+    "goal": "اختر الإجراء المكتوب عليه «احجز طاولة الإضاءة» في الصفحة.",
+    "height": 540,
+    "id": "h37-community_theater-ar-table-v1",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "اطلب تجربة الأزياء",
+      "احجز طاولة الإضاءة",
+      "حدد فحص الصوت",
+      "احجز تدريب المسرح"
+    ],
+    "palette": "#7157a3",
+    "split": "dev",
+    "title": "المسرح المجتمعي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Report fallen branch' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-toolbar-v0",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Schedule bridge check",
+      "Join cleanup shift",
+      "Report fallen branch",
+      "Request trail map"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Schedule bridge check' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-toolbar-v1",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Join cleanup shift",
+      "Report fallen branch",
+      "Request trail map",
+      "Schedule bridge check"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Join cleanup shift' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-sidebar-v0",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Join cleanup shift",
+      "Report fallen branch",
+      "Request trail map",
+      "Schedule bridge check"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Request trail map' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-sidebar-v1",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Report fallen branch",
+      "Request trail map",
+      "Schedule bridge check",
+      "Join cleanup shift"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Schedule bridge check' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-grid-v0",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Report fallen branch",
+      "Request trail map",
+      "Schedule bridge check",
+      "Join cleanup shift"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Report fallen branch' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-grid-v1",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Request trail map",
+      "Schedule bridge check",
+      "Join cleanup shift",
+      "Report fallen branch"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Request trail map' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-table-v0",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Request trail map",
+      "Schedule bridge check",
+      "Join cleanup shift",
+      "Report fallen branch"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "trail_maintenance",
+    "goal": "Select the action labeled 'Join cleanup shift' on the page.",
+    "height": 540,
+    "id": "h37-trail_maintenance-en-table-v1",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Schedule bridge check",
+      "Join cleanup shift",
+      "Report fallen branch",
+      "Request trail map"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "Trail stewardship",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب خريطة المسار» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-toolbar-v0",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لفريق التنظيف» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-toolbar-v1",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «أبلغ عن غصن ساقط» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-sidebar-v0",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «حدد فحص الجسر» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-sidebar-v1",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لفريق التنظيف» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-grid-v0",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «اطلب خريطة المسار» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-grid-v1",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «حدد فحص الجسر» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-table-v0",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "اطلب خريطة المسار",
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "trail_maintenance",
+    "goal": "اختر الإجراء المكتوب عليه «أبلغ عن غصن ساقط» في الصفحة.",
+    "height": 540,
+    "id": "h37-trail_maintenance-ar-table-v1",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "حدد فحص الجسر",
+      "انضم لفريق التنظيف",
+      "أبلغ عن غصن ساقط",
+      "اطلب خريطة المسار"
+    ],
+    "palette": "#567d44",
+    "split": "test",
+    "title": "صيانة مسارات المشي",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Join reading circle' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-toolbar-v0",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Book archive orientation",
+      "Register for writing lab",
+      "Reserve study room",
+      "Join reading circle"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Register for writing lab' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-toolbar-v1",
+    "language": "en",
+    "layout": "toolbar",
+    "options": [
+      "Register for writing lab",
+      "Reserve study room",
+      "Join reading circle",
+      "Book archive orientation"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Reserve study room' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-sidebar-v0",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Register for writing lab",
+      "Reserve study room",
+      "Join reading circle",
+      "Book archive orientation"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Book archive orientation' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-sidebar-v1",
+    "language": "en",
+    "layout": "sidebar",
+    "options": [
+      "Reserve study room",
+      "Join reading circle",
+      "Book archive orientation",
+      "Register for writing lab"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Register for writing lab' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-grid-v0",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Reserve study room",
+      "Join reading circle",
+      "Book archive orientation",
+      "Register for writing lab"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Join reading circle' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-grid-v1",
+    "language": "en",
+    "layout": "grid",
+    "options": [
+      "Join reading circle",
+      "Book archive orientation",
+      "Register for writing lab",
+      "Reserve study room"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Book archive orientation' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-table-v0",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Join reading circle",
+      "Book archive orientation",
+      "Register for writing lab",
+      "Reserve study room"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "library_workshops",
+    "goal": "Select the action labeled 'Reserve study room' on the page.",
+    "height": 540,
+    "id": "h37-library_workshops-en-table-v1",
+    "language": "en",
+    "layout": "table",
+    "options": [
+      "Book archive orientation",
+      "Register for writing lab",
+      "Reserve study room",
+      "Join reading circle"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "Library learning",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «احجز تعريف الأرشيف» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-toolbar-v0",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «احجز غرفة الدراسة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-toolbar-v1",
+    "language": "ar",
+    "layout": "toolbar",
+    "options": [
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لحلقة القراءة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-sidebar-v0",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «سجل في ورشة الكتابة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-sidebar-v1",
+    "language": "ar",
+    "layout": "sidebar",
+    "options": [
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-0",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «احجز غرفة الدراسة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-grid-v0",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-1",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «احجز تعريف الأرشيف» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-grid-v1",
+    "language": "ar",
+    "layout": "grid",
+    "options": [
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 1,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-2",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «سجل في ورشة الكتابة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-table-v0",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "انضم لحلقة القراءة",
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 0,
+    "width": 960
+  },
+  {
+    "expected_control_id": "control-3",
+    "family": "library_workshops",
+    "goal": "اختر الإجراء المكتوب عليه «انضم لحلقة القراءة» في الصفحة.",
+    "height": 540,
+    "id": "h37-library_workshops-ar-table-v1",
+    "language": "ar",
+    "layout": "table",
+    "options": [
+      "احجز تعريف الأرشيف",
+      "سجل في ورشة الكتابة",
+      "احجز غرفة الدراسة",
+      "انضم لحلقة القراءة"
+    ],
+    "palette": "#ad6642",
+    "split": "test",
+    "title": "برامج المكتبة التعليمية",
+    "variant": 1,
+    "width": 960
+  }
+]
