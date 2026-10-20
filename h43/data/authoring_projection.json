@@ -1,0 +1,962 @@
+[
+  {
+    "controls": [
+      {
+        "name": "ATLAS_SUPPLY-01 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ATLAS_SUPPLY-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "atlas_supply",
+    "goal": "In Atlas supply board, select item ATLAS_SUPPLY-01, set quantity to 2, confirm without changing other items.",
+    "id": "h43-atlas_supply-00-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 2
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ATLAS_SUPPLY-02 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ATLAS_SUPPLY-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "atlas_supply",
+    "goal": "في لوحة مستلزمات أطلس، اختر العنصر ATLAS_SUPPLY-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-atlas_supply-01-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 3
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ATLAS_SUPPLY-03 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ATLAS_SUPPLY-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "atlas_supply",
+    "goal": "In Atlas supply board, select item ATLAS_SUPPLY-03, set quantity to 4, confirm without changing other items.",
+    "id": "h43-atlas_supply-02-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 4
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ATLAS_SUPPLY-04 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ATLAS_SUPPLY-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "atlas_supply",
+    "goal": "في لوحة مستلزمات أطلس، اختر العنصر ATLAS_SUPPLY-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-atlas_supply-03-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 5
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "CEDAR_ROOMS-01 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "CEDAR_ROOMS-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "cedar_rooms",
+    "goal": "In Cedar room planner, select item CEDAR_ROOMS-01, set quantity to 2, confirm without changing other items.",
+    "id": "h43-cedar_rooms-00-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 2
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "CEDAR_ROOMS-02 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "CEDAR_ROOMS-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "cedar_rooms",
+    "goal": "في مخطط قاعات سيدار، اختر العنصر CEDAR_ROOMS-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-cedar_rooms-01-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 3
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "CEDAR_ROOMS-03 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "CEDAR_ROOMS-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "cedar_rooms",
+    "goal": "In Cedar room planner, select item CEDAR_ROOMS-03, set quantity to 4, confirm without changing other items.",
+    "id": "h43-cedar_rooms-02-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 4
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "CEDAR_ROOMS-04 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "CEDAR_ROOMS-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "cedar_rooms",
+    "goal": "في مخطط قاعات سيدار، اختر العنصر CEDAR_ROOMS-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-cedar_rooms-03-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 5
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ORBIT_LENDING-01 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ORBIT_LENDING-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "orbit_lending",
+    "goal": "In Orbit item lending, select item ORBIT_LENDING-01, set quantity to 2, confirm without changing other items.",
+    "id": "h43-orbit_lending-00-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 2
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ORBIT_LENDING-02 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ORBIT_LENDING-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "orbit_lending",
+    "goal": "في إعارة مقتنيات أوربت، اختر العنصر ORBIT_LENDING-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-orbit_lending-01-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 3
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ORBIT_LENDING-03 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ORBIT_LENDING-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "orbit_lending",
+    "goal": "In Orbit item lending, select item ORBIT_LENDING-03, set quantity to 4, confirm without changing other items.",
+    "id": "h43-orbit_lending-02-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 4
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "ORBIT_LENDING-04 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "ORBIT_LENDING-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "orbit_lending",
+    "goal": "في إعارة مقتنيات أوربت، اختر العنصر ORBIT_LENDING-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-orbit_lending-03-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 5
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "DELTA_STAFFING-01 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "DELTA_STAFFING-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "delta_staffing",
+    "goal": "In Delta shift roster, select item DELTA_STAFFING-01, set quantity to 2, confirm without changing other items.",
+    "id": "h43-delta_staffing-00-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 2
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "DELTA_STAFFING-02 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "DELTA_STAFFING-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "delta_staffing",
+    "goal": "في جدول مناوبات دلتا، اختر العنصر DELTA_STAFFING-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-delta_staffing-01-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 3
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "DELTA_STAFFING-03 — Select",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "DELTA_STAFFING-OTHER — Select",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "Quantity",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "Confirm",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "Change other item",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "delta_staffing",
+    "goal": "In Delta shift roster, select item DELTA_STAFFING-03, set quantity to 4, confirm without changing other items.",
+    "id": "h43-delta_staffing-02-en",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 4
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "en",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  },
+  {
+    "controls": [
+      {
+        "name": "DELTA_STAFFING-04 — اختيار",
+        "ref": "row_target",
+        "role": "Button"
+      },
+      {
+        "name": "DELTA_STAFFING-OTHER — اختيار",
+        "ref": "row_decoy",
+        "role": "Button"
+      },
+      {
+        "name": "الكمية",
+        "ref": "amount_field",
+        "role": "Edit"
+      },
+      {
+        "name": "تأكيد",
+        "ref": "confirm_button",
+        "role": "Button"
+      },
+      {
+        "name": "تعديل عنصر آخر",
+        "ref": "unrelated_button",
+        "role": "Button"
+      }
+    ],
+    "family": "delta_staffing",
+    "goal": "في جدول مناوبات دلتا، اختر العنصر DELTA_STAFFING-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+    "id": "h43-delta_staffing-03-ar",
+    "image": null,
+    "labelled_actions": [
+      {
+        "kind": "press",
+        "ref": "row_target",
+        "value": null
+      },
+      {
+        "kind": "fill",
+        "ref": "amount_field",
+        "value": 5
+      },
+      {
+        "kind": "press",
+        "ref": "confirm_button",
+        "value": null
+      }
+    ],
+    "language": "ar",
+    "provenance": {
+      "benchmark_trajectories": false,
+      "contains_personal_data": false,
+      "image_training_qualified": false,
+      "license": "CC0-1.0",
+      "native_actions": false,
+      "source": "new_first_party_synthetic"
+    },
+    "visual_training_qualified": false
+  }
+]
