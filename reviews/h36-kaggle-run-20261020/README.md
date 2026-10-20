@@ -11,6 +11,7 @@
 - `plan.sha256`: **`39c11abf83cfb997022378d0a3fa516a229ac0209b38de314e8786535671c792`**, 32 cases × 2 within-VM interleaved arms.
 - `audit.json`: **independent Windows CPU strict replay** of raw digest, pinned image bytes/PNG CRC, trial order, source prompt hashes and H34 scorer. SHA256 **`08d18dceb890cff7ec18c07b7ea6b4291414ee9ffcd7bac2b33c2cfb2fec251f`**.
 - `run.log` is the Kaggle CLI downloaded console receipt, SHA256 `1a9b19e00b21229477e9ffa53156ab94d977ced23b1bed5fbbf17b5ba2334a17` (credential pattern check: zero matches); it is not evidence of independent approval.
+- `submitted-bundle/` retains the exact locally generated opt-in **private** notebook payload submitted to Kaggle version 1, plus private kernel metadata: notebook SHA256 `14995b7fc4454de77653dcdb964fcc135cceebf828e45cf8e4f628a07f2d204d`, kernel JSON SHA256 `dd11d3968b5a21d360d5fedfdbd2f2654ddbb584214cce3e5ee05e04599972f6`. No credentials, local base weights or paid-compute settings are included. Kaggle may transform its hosted notebook format; these hashes bind the submitted local payload, not server storage bytes.
 
 ## Measured real model DEV results
 

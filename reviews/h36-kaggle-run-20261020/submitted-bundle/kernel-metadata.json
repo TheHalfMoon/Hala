@@ -1,0 +1,15 @@
+{
+  "code_file": "hala-h36-paired-prompt-dev.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "enable_gpu": true,
+  "enable_internet": true,
+  "enable_tpu": false,
+  "id": "abdulazizshehri/hala-h36-paired-prompt-dev-20261020",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "hala-h36-paired-prompt-dev-20261020"
+}
