@@ -1,0 +1,1747 @@
+{
+  "schema": "hala.h44.edge-browser-capture.v1",
+  "playwright_core": null,
+  "puppeteer_core": "25.12.0",
+  "browser_version": "Edg/155.0.4283.62",
+  "viewport": {
+    "width": 960,
+    "height": 540,
+    "device_scale_factor": 1
+  },
+  "original_h43_manifest_sha256": "fbcf271e8c65637f2a69e7dbc5966d7ffdad29c7061d93684bf9a705e7f4c2c8",
+  "scene_plan_sha256": "2f3d180ab9ca0b0a68a4775d7cc801dc2be0b908f030821700c0ca78cff448f1",
+  "no_external_network": true,
+  "model_inference": false,
+  "native_actions": false,
+  "model_oracle_exposure": false,
+  "rendered_records": [
+    {
+      "id": "h43-atlas_supply-00-en",
+      "language": "en",
+      "layout": "list",
+      "split": "authoring",
+      "family": "atlas_supply",
+      "image_sha256": "98199d44f5761626b79611abad1e15ce0f03d8fcc9748cfd92828e3c3ea78970",
+      "image_bytes": 27425,
+      "page_sha256": "9fdb21340d54c2f9b0116b0ae500a5c71901213f36d591d2fc066178877d8879",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ATLAS_SUPPLY-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ATLAS_SUPPLY-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            221,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            285,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            342,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            397,
+            810,
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-atlas_supply-01-ar",
+      "language": "ar",
+      "layout": "list",
+      "split": "authoring",
+      "family": "atlas_supply",
+      "image_sha256": "4f85885d65750a45618614595b9574ee1f8581c7f84bb10594f9cdefb4761267",
+      "image_bytes": 26049,
+      "page_sha256": "e2dd0c13562b775e474a48c6736b66c4f755c5f147f9e2c2521d4dfd88efa3b3",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ATLAS_SUPPLY-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ATLAS_SUPPLY-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            221,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            285,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            342,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            397,
+            810,
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-atlas_supply-02-en",
+      "language": "en",
+      "layout": "list",
+      "split": "authoring",
+      "family": "atlas_supply",
+      "image_sha256": "2cce4b937c870ef2ce4b1e1fb2a8d93e4c3f9572c84214278544ea41c50a05c6",
+      "image_bytes": 27472,
+      "page_sha256": "d350ca3e034fe49501845989d24944b01f10f55b3dbeb941f916016c7e224bac",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ATLAS_SUPPLY-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ATLAS_SUPPLY-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            221,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            285,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            342,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            397,
+            810,
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-atlas_supply-03-ar",
+      "language": "ar",
+      "layout": "list",
+      "split": "authoring",
+      "family": "atlas_supply",
+      "image_sha256": "345e51e25399b1c072772fd93b9605c21baebe72c0272f14ddaa88da49cb51f7",
+      "image_bytes": 26111,
+      "page_sha256": "aa57147ed1cd2d877ff3a9d237d7443ff560ec9e1418161f0de94c93365046d1",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ATLAS_SUPPLY-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ATLAS_SUPPLY-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            221,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            285,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            342,
+            810,
+            43
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            397,
+            810,
+            43
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-cedar_rooms-00-en",
+      "language": "en",
+      "layout": "grid",
+      "split": "authoring",
+      "family": "cedar_rooms",
+      "image_sha256": "977a9d6ce3b3b215f0e0e9f97f7b37dc8ac91544847ed0a8d8a96185c5a28866",
+      "image_bytes": 26264,
+      "page_sha256": "b82f71f327153e2615a2c7717d86c4070441e0fcbf2fc4126ea1074249a1a1e0",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "CEDAR_ROOMS-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "CEDAR_ROOMS-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            343,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-cedar_rooms-01-ar",
+      "language": "ar",
+      "layout": "grid",
+      "split": "authoring",
+      "family": "cedar_rooms",
+      "image_sha256": "27837f8a0a1a919436b324a7eafb2cdabad68fbf5e2ed66e34bc04cb4f45fe23",
+      "image_bytes": 24975,
+      "page_sha256": "5f97fb8ae8239a50d21002e22524a93b2818a61f809c70396d92338786ad1da1",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "CEDAR_ROOMS-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "CEDAR_ROOMS-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            502,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-cedar_rooms-02-en",
+      "language": "en",
+      "layout": "grid",
+      "split": "authoring",
+      "family": "cedar_rooms",
+      "image_sha256": "af5712bcbfd30e325f3bd8ce095866042d397f69fe57cae9d290e2284700263f",
+      "image_bytes": 26281,
+      "page_sha256": "47b8b21f72926dd27e66d591981dbfe749539f276cd357060f3c1f56ae4aa4d1",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "CEDAR_ROOMS-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "CEDAR_ROOMS-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            343,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-cedar_rooms-03-ar",
+      "language": "ar",
+      "layout": "grid",
+      "split": "authoring",
+      "family": "cedar_rooms",
+      "image_sha256": "3b7c682dc788d72bedf9fa25cd6e4aa108d4a1cf3e53edd896733556a34a3479",
+      "image_bytes": 25046,
+      "page_sha256": "240d71b53fb7367ad1ab25a84a393b68672e3da07f18c23cc44a2cb7c22a08e8",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "CEDAR_ROOMS-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "CEDAR_ROOMS-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            502,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-orbit_lending-00-en",
+      "language": "en",
+      "layout": "table",
+      "split": "authoring",
+      "family": "orbit_lending",
+      "image_sha256": "97da0a74ab5e09adf8621562c0fd447b404a5e2bbd05ee19087bb703322ca4f2",
+      "image_bytes": 27344,
+      "page_sha256": "dce7ea78aeff86e976d5760d5b57c09406170dbf6a76b9567ec615410ceab3ca",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ORBIT_LENDING-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ORBIT_LENDING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-orbit_lending-01-ar",
+      "language": "ar",
+      "layout": "table",
+      "split": "authoring",
+      "family": "orbit_lending",
+      "image_sha256": "b4c9bd4148ea40554340648bda6e2290ac4d3d7b849f0c5ea6343b8da40802c6",
+      "image_bytes": 25611,
+      "page_sha256": "a89aa50402d8a72615deab95e7e3d75f584b2355bd728b5bb5174846d1a2a10d",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ORBIT_LENDING-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ORBIT_LENDING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-orbit_lending-02-en",
+      "language": "en",
+      "layout": "table",
+      "split": "authoring",
+      "family": "orbit_lending",
+      "image_sha256": "ab8b521eca4a1ab6a27699282d4de9d625a42d80b4b970c4108081048e45974f",
+      "image_bytes": 27401,
+      "page_sha256": "b29aa94a88cf32342fe95553717b3293c8278a548493f4239fb4d51b251f5c46",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ORBIT_LENDING-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ORBIT_LENDING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-orbit_lending-03-ar",
+      "language": "ar",
+      "layout": "table",
+      "split": "authoring",
+      "family": "orbit_lending",
+      "image_sha256": "693c33c2c5a7252cf1a3891c3193ae884e251f0153ee18878be0737f08e8f0ca",
+      "image_bytes": 25579,
+      "page_sha256": "78f446bca9fa61b740142ed059970fb5c40017dbd176c335bb5b80ea6fc0652c",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "ORBIT_LENDING-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "ORBIT_LENDING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-delta_staffing-00-en",
+      "language": "en",
+      "layout": "sidebar",
+      "split": "authoring",
+      "family": "delta_staffing",
+      "image_sha256": "01fca03441736bf78b78abf7c3a2e0a50f0db67d62876303d2c0d45cfa11252f",
+      "image_bytes": 26582,
+      "page_sha256": "054adccc2a4855aae0cce6555a455b9aebbca96a2a2af9ee73587f60cc94aacd",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "DELTA_STAFFING-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            250,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "DELTA_STAFFING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            337,
+            166,
+            548,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            194,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            337,
+            264.65625,
+            548,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            250,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-delta_staffing-01-ar",
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "authoring",
+      "family": "delta_staffing",
+      "image_sha256": "4b7583fa9f649552fb8dea0c26ab5b00d0ba28c0887a095105611ef063ca2b17",
+      "image_bytes": 25082,
+      "page_sha256": "94ccc4623a1c6b1fbdb006a376afd0490d1528d485f614c4adf09bdc354fe34d",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "DELTA_STAFFING-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            635,
+            166,
+            250,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "DELTA_STAFFING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            548,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            651,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            548,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            635,
+            363.328125,
+            250,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-delta_staffing-02-en",
+      "language": "en",
+      "layout": "sidebar",
+      "split": "authoring",
+      "family": "delta_staffing",
+      "image_sha256": "5a200f08da7dd5c5a5447e28ecab9ea930df6b29e10d848dcfa0960b3cae441e",
+      "image_bytes": 26598,
+      "page_sha256": "e4e5ddf2188f82242020c48bbb185abf6b7fb13405928cc3e71c9ce2bbb0d1bf",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "DELTA_STAFFING-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            250,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "DELTA_STAFFING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            337,
+            166,
+            548,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            194,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            337,
+            264.65625,
+            548,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            250,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-delta_staffing-03-ar",
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "authoring",
+      "family": "delta_staffing",
+      "image_sha256": "0b27f9392b7b9fe061f80442925a3a1e540635d05310d57a95802e3bac184373",
+      "image_bytes": 25147,
+      "page_sha256": "d730a76c7458b113ceae8e60ceca0863228381bec4986728448fd4fe49cec1e6",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "DELTA_STAFFING-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            635,
+            166,
+            250,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "DELTA_STAFFING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            548,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            651,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            548,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            635,
+            363.328125,
+            250,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-harbor_inventory-00-en",
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "family": "harbor_inventory",
+      "image_sha256": "c33c71b2cf4b1308a41341f2f4ba04840eb06539130de143fa7068fa9748cc8c",
+      "image_bytes": 26225,
+      "page_sha256": "f233bbcb4832996dfe7f87f35de20539412de7aff4ddcbab6d6552e0e8b06d00",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "HARBOR_INVENTORY-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "HARBOR_INVENTORY-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            343,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-harbor_inventory-01-ar",
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "family": "harbor_inventory",
+      "image_sha256": "ea96c19d439ae434709923cd3db33b3136728565ce02039c63beff72b05f305e",
+      "image_bytes": 25294,
+      "page_sha256": "cb450c4c5810035287057f4fcba62aaf246b6f1582bb456af5159703257a5a3a",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "HARBOR_INVENTORY-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "HARBOR_INVENTORY-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            502,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-harbor_inventory-02-en",
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "family": "harbor_inventory",
+      "image_sha256": "a9144cb1ffed9efd1c76d99b74e057a12246b0b47e84e1c1b52ddc7104f50f8b",
+      "image_bytes": 26220,
+      "page_sha256": "82924a8a5b6ce3e361be7c4da76d5ab0ea1c77d449c497d1511c21826f6adaa4",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "HARBOR_INVENTORY-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "HARBOR_INVENTORY-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            343,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-harbor_inventory-03-ar",
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "family": "harbor_inventory",
+      "image_sha256": "348c124efbef88e986eda2dca7a295abd0e38ebf522d76def242ffe8dd2ebbfe",
+      "image_bytes": 25365,
+      "page_sha256": "ce72c69080650b7fbe93bb0c66d0157544af6a42c2fc57ddcda40cc92ef8681d",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "HARBOR_INVENTORY-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "HARBOR_INVENTORY-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            399,
+            86.65625
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            502,
+            289.984375,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            264.65625,
+            399,
+            86.671875
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            486,
+            363.328125,
+            399,
+            86.65625
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-summit_scheduling-00-en",
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "family": "summit_scheduling",
+      "image_sha256": "2343aff31352301bc592edee4bbcd1622f02aa1923eb70f7ba4bab082d45b8ef",
+      "image_bytes": 28920,
+      "page_sha256": "b24c265871b56eb69e5037cdda870e256e7e029a5333f0498b3ea096a290af2f",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "SUMMIT_SCHEDULING-01 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "SUMMIT_SCHEDULING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-summit_scheduling-01-ar",
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "family": "summit_scheduling",
+      "image_sha256": "8ce4f4cad7e9dc43780866076b5c7786f7e5ab2179c98fd46610df2ceae9943c",
+      "image_bytes": 26083,
+      "page_sha256": "299001f30ab221540267748d474c484a2f263fa47386edd5187bf59c13899926",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "SUMMIT_SCHEDULING-02 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "SUMMIT_SCHEDULING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-summit_scheduling-02-en",
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "family": "summit_scheduling",
+      "image_sha256": "11c40da6fc2bca402e89e4da74d201491c2836ea07cb02b97b54b4216ef43ed7",
+      "image_bytes": 28949,
+      "page_sha256": "849238702d1b57d9f48574e61ecddab3b1c5cf5bb4c0bec1bcb6e6bbeab89d82",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "SUMMIT_SCHEDULING-03 — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "SUMMIT_SCHEDULING-OTHER — Select",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "Quantity",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            754,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "Confirm",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "Change other item",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h43-summit_scheduling-03-ar",
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "family": "summit_scheduling",
+      "image_sha256": "55b0a67f28970b65585b88609c1b0417b75a7a9baa23dd79291b75c0d5c7a466",
+      "image_bytes": 26096,
+      "page_sha256": "66a4add8e1cdb29bd64206ee693a5c49bb67cc83cb040726d7b24428462e20d8",
+      "controls": [
+        {
+          "ref": "row_target",
+          "name": "SUMMIT_SCHEDULING-04 — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            166,
+            810,
+            47.1875
+          ]
+        },
+        {
+          "ref": "row_decoy",
+          "name": "SUMMIT_SCHEDULING-OTHER — اختيار",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            225.1875,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "amount_field",
+          "name": "الكمية",
+          "role": "Edit",
+          "visible": true,
+          "bounds": [
+            91,
+            290,
+            115,
+            36
+          ]
+        },
+        {
+          "ref": "confirm_button",
+          "name": "تأكيد",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            343.59375,
+            810,
+            47.203125
+          ]
+        },
+        {
+          "ref": "unrelated_button",
+          "name": "تعديل عنصر آخر",
+          "role": "Button",
+          "visible": true,
+          "bounds": [
+            75,
+            402.796875,
+            810,
+            47.203125
+          ]
+        }
+      ]
+    }
+  ]
+}
