@@ -1,0 +1,402 @@
+{
+  "browser_version_observed": "155.0.4283.62",
+  "capture_sha256": "f8cb6b6a3b7093b7ce26fdb8ef18fdd50e87a269c25a9b5a8657e62372e956f9",
+  "count": 64,
+  "dev": 32,
+  "evaluator_sha256": "80983a038e9b58191c99ba6254103fda622c5a1224f11348f9895f7c8bde3cd0",
+  "images": [
+    {
+      "bytes": 21290,
+      "id": "h37-makerspace-en-toolbar-v0",
+      "image_sha256": "fc8be4f1b5fcf58f51ad87d745f77f6e7f936c03c2d70b59885a5b69481ad876",
+      "page_sha256": "33227da4849ffb6f82b7dc409cdbb52ec7858712125701f28ddc438ba3d65e12"
+    },
+    {
+      "bytes": 21286,
+      "id": "h37-makerspace-en-toolbar-v1",
+      "image_sha256": "6624b26be9b0987d2d248dd3b59d9774ec149a73e2881d36ce72c9498ef843a2",
+      "page_sha256": "f3fa0aa6e951db22b6bf2cb1bb1e6082d13151e437c13fd3bfd6610563df339a"
+    },
+    {
+      "bytes": 26344,
+      "id": "h37-makerspace-en-sidebar-v0",
+      "image_sha256": "aa6a8559bceeb352dbd65c6e7927d39c77b6101fb69a5730073f4b8a5e555ff4",
+      "page_sha256": "eafd67f8c25b1809905765fc95a55ebe656760c8d8270646490d276e8c86c0f8"
+    },
+    {
+      "bytes": 26344,
+      "id": "h37-makerspace-en-sidebar-v1",
+      "image_sha256": "44c734eeaf11f5a47a4ab274b84b017570172b79f109775fdec9520e1695dc57",
+      "page_sha256": "01b03f017ee854939a552c134ba210df61d42d7033f9d79fcc85615dea49f175"
+    },
+    {
+      "bytes": 24329,
+      "id": "h37-makerspace-en-grid-v0",
+      "image_sha256": "5c064d8d8590f486070537ffc396151b81221c501f4bdf0c2c25c2befd73b9f8",
+      "page_sha256": "931ff0b980928ed45df1c814f325ae9e1c7443927e2794122ec5c2accd7d0b8e"
+    },
+    {
+      "bytes": 24531,
+      "id": "h37-makerspace-en-grid-v1",
+      "image_sha256": "4ae93ba8b960503078dd74da784df516706ec5633d63483aa958cf6319e4a4fb",
+      "page_sha256": "ef80f91828f8d294118c7a3c347ebe951fd321d0d4eaf2afdec5037d701fdfa0"
+    },
+    {
+      "bytes": 24306,
+      "id": "h37-makerspace-en-table-v0",
+      "image_sha256": "c5fc65b44a46697d03b76076887b023359fd9c4925ed6324d11c745034b8e0db",
+      "page_sha256": "13f24a09a1e5bcb8efb21cb69a03378078643e9d6f1ee6e5a3058931111b2a2a"
+    },
+    {
+      "bytes": 24306,
+      "id": "h37-makerspace-en-table-v1",
+      "image_sha256": "344ebb5d057027dfd1de19865baabb25e2f1f45c2bdb6830595d4dafedf730b1",
+      "page_sha256": "fb4fdf5ab80e087bd648861adc50857b68a31b8cc27910b19d2e8df55bff0a58"
+    },
+    {
+      "bytes": 17887,
+      "id": "h37-makerspace-ar-toolbar-v0",
+      "image_sha256": "20d3b11f5bfcc080d9ad8f52ca5990c278a576cb29078a0af3b9ec1ea96ac1e0",
+      "page_sha256": "96a341788956afacab5a6cd05fbd0188c2e7807afbfe8a588640303cab8e030d"
+    },
+    {
+      "bytes": 17876,
+      "id": "h37-makerspace-ar-toolbar-v1",
+      "image_sha256": "78c7e0416915dbc98b34c935dc5af7ab5a20f07191dc054e778853ff33eeaf40",
+      "page_sha256": "492adc9aae3fa68fff21d1e5abb31f06e91d42327803e77e7c8097a63cd6f363"
+    },
+    {
+      "bytes": 21863,
+      "id": "h37-makerspace-ar-sidebar-v0",
+      "image_sha256": "f64be0df9df1c72c16388ecb66900d6bc33f9742874d329abcad341f41e16b24",
+      "page_sha256": "e41ea7d3b1f0029a018f7ea8d43e1aef3f5f541ca2cd0d97e38e5f6af28d14a2"
+    },
+    {
+      "bytes": 21863,
+      "id": "h37-makerspace-ar-sidebar-v1",
+      "image_sha256": "5ea4707429ecf4f4808cbc48473b90aa778217177ac5d1e8ddaaea9b8742defe",
+      "page_sha256": "efaa594c4541966c8f12984ec412f13d02a36ea99aabe0bc3fdeed3adb31bfb6"
+    },
+    {
+      "bytes": 20465,
+      "id": "h37-makerspace-ar-grid-v0",
+      "image_sha256": "699a40094375c0b2c958c1129f2e47076d5c3c48139f1b59e707433dae5dddfa",
+      "page_sha256": "ca4c5341e87fad071455076229287d4999a0e0e71398f6b402afdc248ec6b94a"
+    },
+    {
+      "bytes": 20180,
+      "id": "h37-makerspace-ar-grid-v1",
+      "image_sha256": "e5329d39ff8e50fc72c329b6a72416ad1fc760675163b7cd3cc4d6ec58511d63",
+      "page_sha256": "99186fe527fe4b20d26003ecd6d701e02ab693a94766af810e9f734b6508a2ad"
+    },
+    {
+      "bytes": 19805,
+      "id": "h37-makerspace-ar-table-v0",
+      "image_sha256": "6235ad082e741d3aff4623128b9e05cb972f2d7da655672e4c840980b770234a",
+      "page_sha256": "a365edc62cd88c20cab7ec5319033d574468d3af8778fdaad85a053df0e878ca"
+    },
+    {
+      "bytes": 19802,
+      "id": "h37-makerspace-ar-table-v1",
+      "image_sha256": "3da69b12426436fcedb8db81e2f42baa3d17fe5e1a027208f12ea35305855ca8",
+      "page_sha256": "1803a2917c2d1030947eab11744037cc649c7cc8735b7ff15a9c63fa7bf55d18"
+    },
+    {
+      "bytes": 20858,
+      "id": "h37-community_theater-en-toolbar-v0",
+      "image_sha256": "5e0ac9eafa8d8f87d2d5beabfee64f6ee9b98c5bf49b80cba7abb7756b4a5228",
+      "page_sha256": "c12db111dd0d5d556ac9453b2c8826fe6441ded04dbc4676a02501f376032d35"
+    },
+    {
+      "bytes": 20876,
+      "id": "h37-community_theater-en-toolbar-v1",
+      "image_sha256": "7258be6ba463bfcf74d26f2293ee4a7ae4b395a31adbacb4b13e2231ccccee7c",
+      "page_sha256": "06a7f4729911c560a3438327f30e712714d133ea61a87975ab011012fdf47531"
+    },
+    {
+      "bytes": 26535,
+      "id": "h37-community_theater-en-sidebar-v0",
+      "image_sha256": "dbaddd33df16441133f370f7ce850cbee062b2a8ffab472e273e79a1c6def3a4",
+      "page_sha256": "da752bff917c4b9daff8c4d9614fc7b95e63131b86cb8f6aef131aab88a54de9"
+    },
+    {
+      "bytes": 26535,
+      "id": "h37-community_theater-en-sidebar-v1",
+      "image_sha256": "e120d357e35ed5d17c6313d04c158510a74eb540308fd8bf8272c17530c1a87d",
+      "page_sha256": "1d5886b364ce9aeeffe8b39e6534b773711545c856a92a1857ea43af7a5e3f3e"
+    },
+    {
+      "bytes": 24053,
+      "id": "h37-community_theater-en-grid-v0",
+      "image_sha256": "757290c342ac63e620ccae2748a39ac1ee642db60429274ede5b393989a3eab6",
+      "page_sha256": "6862cfeb9a574d88a2853daf2639a43e1c2e3eed64f4f8214d2e6b7e16331fa4"
+    },
+    {
+      "bytes": 24510,
+      "id": "h37-community_theater-en-grid-v1",
+      "image_sha256": "0114f8bf1984215b815fad29df5ba21f96c0c094036d4baac6c8c48d4184477d",
+      "page_sha256": "ddeda30e2d0f086c9828f87cc3d67ce020919498db450ee0be25ad6e480d73ce"
+    },
+    {
+      "bytes": 24468,
+      "id": "h37-community_theater-en-table-v0",
+      "image_sha256": "2f7ca539ac1577aefa36327d8731161c1fa00051d0a3d5d10fd9a860fee249d6",
+      "page_sha256": "d113a8d2bc41e3ba524193e57059267502ecd2db4fb273c45bca3be485d1abd5"
+    },
+    {
+      "bytes": 24468,
+      "id": "h37-community_theater-en-table-v1",
+      "image_sha256": "1f5cfc6142c23d1d5f417a6e44c76166752580d950207483665654769ddccf99",
+      "page_sha256": "74a8ab6a51f00e2cfa76813b0bf6ecd06c400144cd26517c4e672131744e4844"
+    },
+    {
+      "bytes": 17098,
+      "id": "h37-community_theater-ar-toolbar-v0",
+      "image_sha256": "376020191d4b3162657de61a823dc939f7db07d9f963cf4ebc51f3ad3841762b",
+      "page_sha256": "9c41c8125e8fe1b0b3cc58479c13d1a3253e9da95f141547614ef28d292c83f6"
+    },
+    {
+      "bytes": 17156,
+      "id": "h37-community_theater-ar-toolbar-v1",
+      "image_sha256": "cb318286dae44c25a2252bdd366f2e55f3eda3c8222799d8682268794ed806b6",
+      "page_sha256": "178b65d25868da4f82cdd1367c0a9eff029dd2003ffe4039cf4b5d3871a247f0"
+    },
+    {
+      "bytes": 20551,
+      "id": "h37-community_theater-ar-sidebar-v0",
+      "image_sha256": "16c67efb35e11e084dc48a0e8a6a1720b9e83d25c7c9f0adfe4c425236f3cb88",
+      "page_sha256": "06b642bf394ac98940fc45c7a69c2122a2b6fdc36dfb25e5f225eceb46c6d03f"
+    },
+    {
+      "bytes": 20554,
+      "id": "h37-community_theater-ar-sidebar-v1",
+      "image_sha256": "9b3e76cb49e04d3bbc8fef63b0ad9eacc2c25ae045c572cf44de991efb87fe1b",
+      "page_sha256": "bd4cd91e5d3eb25a40d393efa6cc018eae44e0042a608e9ce6d83d6526e5e286"
+    },
+    {
+      "bytes": 18998,
+      "id": "h37-community_theater-ar-grid-v0",
+      "image_sha256": "15fe46c6de128d2fd36bac5aa5905775cf778a41cd54f72eb8d665bcdf31dacc",
+      "page_sha256": "700832d07b5ef9840774c8f5eab3a39272d8004dadc86e9921757009dd480a7f"
+    },
+    {
+      "bytes": 19015,
+      "id": "h37-community_theater-ar-grid-v1",
+      "image_sha256": "d93428682b5391e2a4a8a04d19b469f79615140b502ff9a7b1020a8467fb39c4",
+      "page_sha256": "c8270cd99afc8916aa5ddbff3c3b38c5c0f350d52d24a3bc7009db24d40b58c4"
+    },
+    {
+      "bytes": 18567,
+      "id": "h37-community_theater-ar-table-v0",
+      "image_sha256": "6b72af2a968e699d07d874353ae1370951a4f0038bc86afd8b9fe3d10ca1f6a3",
+      "page_sha256": "7ee189c0e6b766213dc60e978c569a6cbf6db0e750b20f56a6c816b529edec1e"
+    },
+    {
+      "bytes": 18560,
+      "id": "h37-community_theater-ar-table-v1",
+      "image_sha256": "c852251f907542a56d1abe7db7f202a88bc229672e775a26f373d95e09d2aaf6",
+      "page_sha256": "a0755e5e90f56e4bd6500ce832a819d5ab77938e9549c5349248f2dc301408bd"
+    },
+    {
+      "bytes": 19740,
+      "id": "h37-trail_maintenance-en-toolbar-v0",
+      "image_sha256": "f4be69c22e48e7912b8b29c2ca5123eee1ce20346028a3ac209c5b0495f38c3c",
+      "page_sha256": "6715be166f515758bb6793f78a47c36905577fbcc2fed7ff1616815a3357ef45"
+    },
+    {
+      "bytes": 19734,
+      "id": "h37-trail_maintenance-en-toolbar-v1",
+      "image_sha256": "8c7736c870850f20060ec747a7f6912ce5a49c61027794374487cdf4e2775232",
+      "page_sha256": "a4ebd354c02f25237726d094c604fc68ebdf09f795f572ce13a16972be43f0f8"
+    },
+    {
+      "bytes": 24940,
+      "id": "h37-trail_maintenance-en-sidebar-v0",
+      "image_sha256": "d6c5630c690c00060db3107e1021e4dcd3830d2f21a77a9f9c8c8ba65927c096",
+      "page_sha256": "6168ae33c9ffc37c31e302ad2b813b26e7b53c03d2586abe04fefa893c321a9e"
+    },
+    {
+      "bytes": 24940,
+      "id": "h37-trail_maintenance-en-sidebar-v1",
+      "image_sha256": "2a9040674815ef959b5929b5343517ac754f5880945e73f45e159e394057f904",
+      "page_sha256": "f2a47362d463350e8b074bee1ed02bfe43f51ef04a93fa1e18a02976b99aa0cb"
+    },
+    {
+      "bytes": 22900,
+      "id": "h37-trail_maintenance-en-grid-v0",
+      "image_sha256": "b327110f1d9b0f6872d6526fe9d81b39695848c113d8d873bed2356ad11187cf",
+      "page_sha256": "329b1537efad53f709634956d91ecf67f96bdb06b05ae5e6bd5d89632ffe8a88"
+    },
+    {
+      "bytes": 23308,
+      "id": "h37-trail_maintenance-en-grid-v1",
+      "image_sha256": "dd8040fe0e799ae4d20b9474cfa802cdc16a9a757298dc4062fd894acbca4838",
+      "page_sha256": "ea2569af4e3477b2862cad7ce7d46bc5e3a9823f0cab97fc02f3ae2940ed32e1"
+    },
+    {
+      "bytes": 22885,
+      "id": "h37-trail_maintenance-en-table-v0",
+      "image_sha256": "e6b1fa46bc3acbf63651b53929acfe6c4fb38bb68b780c7c0411c44e398564be",
+      "page_sha256": "2ddcccbf2b32f63bd823efd1da249ed424139595bf439a74f31fa520bf400425"
+    },
+    {
+      "bytes": 22885,
+      "id": "h37-trail_maintenance-en-table-v1",
+      "image_sha256": "d31b4e0d0dfbc742d7f2ec80e01f9fdf5fb8b80de5cf8f1bc58fa86a08be4f22",
+      "page_sha256": "41efd98e6c0670a7c67ccc9d7f884afac7d4795537492ddc46371d0264cb37ec"
+    },
+    {
+      "bytes": 17169,
+      "id": "h37-trail_maintenance-ar-toolbar-v0",
+      "image_sha256": "932dfa0872b0899bac1303025756b8b52cbf621b42676e7a01a99e8424aef554",
+      "page_sha256": "6425986ce024e69dba6929d2854f0b52baef9142b061a00179b1d2a72655ae50"
+    },
+    {
+      "bytes": 17149,
+      "id": "h37-trail_maintenance-ar-toolbar-v1",
+      "image_sha256": "e8c67c07fa805d48865dd0b0b99614ecf999fe885041bbcd2046106f98300b8c",
+      "page_sha256": "8547e0c74c1838fcff98bce5420ec5de49eb73045d25e87d4cb9e47a7f2736ec"
+    },
+    {
+      "bytes": 20536,
+      "id": "h37-trail_maintenance-ar-sidebar-v0",
+      "image_sha256": "34abd765cf4408541cadaa8b2a0aefde8131a923df49b6d277c673c76797c312",
+      "page_sha256": "038dc1190ae70d30eb6ca174dd11dbf073f48f8464244f19acc6ce2f854984a7"
+    },
+    {
+      "bytes": 20536,
+      "id": "h37-trail_maintenance-ar-sidebar-v1",
+      "image_sha256": "b9cff35a15b820743517894c83c8c6df8a6eb039a1d86a22fd850fafb45a6faa",
+      "page_sha256": "829f4c3ab6deb89d5c1cbf4b60358d94073d3606034cf3a79e8211434a22152e"
+    },
+    {
+      "bytes": 19137,
+      "id": "h37-trail_maintenance-ar-grid-v0",
+      "image_sha256": "ebe0dc5fed47977c3b6172bc1b212eb695a7dad9241ad70a37cfe09c22ffd2f5",
+      "page_sha256": "3a5340de31e90c084093232e9169d51729504256d11061e38e68716cb160eced"
+    },
+    {
+      "bytes": 19249,
+      "id": "h37-trail_maintenance-ar-grid-v1",
+      "image_sha256": "42bd7eec482e6f8cb3ee842d80b7cfbba8227caf9ae617c5a64ac906008b4e5e",
+      "page_sha256": "9da0804d8691fa49246899ee6ce1ac2e9ed9eca418af94262e90111678711f17"
+    },
+    {
+      "bytes": 18497,
+      "id": "h37-trail_maintenance-ar-table-v0",
+      "image_sha256": "bc88c1a19ed8886bc6ccb811facade1becc26bb6aa6e2f9b930b4006dc195712",
+      "page_sha256": "a067dc6ba9bc46f3aea180f0facc829031b84d4697c6124ca0f1ef514c556be6"
+    },
+    {
+      "bytes": 18497,
+      "id": "h37-trail_maintenance-ar-table-v1",
+      "image_sha256": "6c9cbc5379d311e2ccef5718554347ad625c229218a697d29a3d0030332b7270",
+      "page_sha256": "bcf45987ccfc9ea0d780bc6dfb71e5d5cb4ce50eaf30efea3b36b1da53b614dd"
+    },
+    {
+      "bytes": 20411,
+      "id": "h37-library_workshops-en-toolbar-v0",
+      "image_sha256": "90757b2414d150aee5b5b496c7ffbc277de9d262b2ecb62a5dc2ac83dd3ef0a7",
+      "page_sha256": "21aab19439ca80e0194830c65097182d17975d5447234cd30bf60b058cf01d40"
+    },
+    {
+      "bytes": 20419,
+      "id": "h37-library_workshops-en-toolbar-v1",
+      "image_sha256": "422c0a60a58bcd218e6ae03e64903dd282c6d5957f390ebf61f24e0e9e23e70a",
+      "page_sha256": "52035c58c45a96f82a5a7d0ef6d40ba73047a1a34fd2f7643132641a5aaf8cb6"
+    },
+    {
+      "bytes": 25604,
+      "id": "h37-library_workshops-en-sidebar-v0",
+      "image_sha256": "de4f924ad2d0fc6e96e9b2b60f17f1e76ebe0f10092734221fd09db8c30dfef4",
+      "page_sha256": "3ed6e3dfce16fb26ac646cca73efa4d77ebfdeb4ccf395eea7c671ac29a59c1a"
+    },
+    {
+      "bytes": 25604,
+      "id": "h37-library_workshops-en-sidebar-v1",
+      "image_sha256": "1f9648f3d84b6e235108669e1c3a30a0d0916df84107a802ddf438a8d61cf1c6",
+      "page_sha256": "3d3f4b2d409ca479fc1c5e775d202c98ed7c4018702480ef7696086306702cf6"
+    },
+    {
+      "bytes": 23588,
+      "id": "h37-library_workshops-en-grid-v0",
+      "image_sha256": "0954e08464391a503ee6522b6076fc4b3e82ce9d1ad3e4895482c4e14d110a7e",
+      "page_sha256": "93c7cc6792a16a2ccb752409f5d187af840e19051303b34fb41b3c8dc59c451f"
+    },
+    {
+      "bytes": 23765,
+      "id": "h37-library_workshops-en-grid-v1",
+      "image_sha256": "3679b28e46d8c508d1a438a09fa821164f0ff8df62d0a7d7d5d25a306a54d854",
+      "page_sha256": "9ef781111311ca5dc152c61419f62ffd395ccdd0c9cbcfc144242cfa76624f0e"
+    },
+    {
+      "bytes": 23562,
+      "id": "h37-library_workshops-en-table-v0",
+      "image_sha256": "b64574f949981b2916a4d26da329e2452d76515907dba5203ca2294be2ecae7d",
+      "page_sha256": "748c9b57c3f3e57be0945e92db87bb18e5e5ce1d6181f6f9e78c7490dfcdc543"
+    },
+    {
+      "bytes": 23562,
+      "id": "h37-library_workshops-en-table-v1",
+      "image_sha256": "b696e4eb80973088cd0fc5c4e3d5be1fe21c0e1479b5faaf0a605c7de850c71f",
+      "page_sha256": "b9bc3e94a458c45c961d2c9d148d0c8e232fb608ee2f2edba43a2fdbc5202bb5"
+    },
+    {
+      "bytes": 18117,
+      "id": "h37-library_workshops-ar-toolbar-v0",
+      "image_sha256": "7e5815f029a644c85dad43287afebe2acf723b32564ba05330ad82a0bc98beaa",
+      "page_sha256": "94fff98f3d98be5704fe9a7e5dc1db12bbd2c10a4dac61c966608b3c455cf067"
+    },
+    {
+      "bytes": 18111,
+      "id": "h37-library_workshops-ar-toolbar-v1",
+      "image_sha256": "d63888c120db1647c3d0337094c4707f954719cd7ea264f04988e3fe5e12060a",
+      "page_sha256": "3a7ba977cf4f6d567108c027ca5b8a18f1b0daf9d8119553d8482aea5582e179"
+    },
+    {
+      "bytes": 22007,
+      "id": "h37-library_workshops-ar-sidebar-v0",
+      "image_sha256": "44c9329bbe36fa710d108947ac3c96e66e595457efee4a953d6c204297c17955",
+      "page_sha256": "3498a69285db886b1a3b2f217c1e557682c59482bd240af6b0f7eb8b53269e1d"
+    },
+    {
+      "bytes": 22007,
+      "id": "h37-library_workshops-ar-sidebar-v1",
+      "image_sha256": "ac1bf30c8c4886df449f8c48d056549fb1bf66188b878ac588d0109d3bf5869b",
+      "page_sha256": "5a1125e04cec3a34a0fac69d4a57548b5f7316f7f0070264995a2e5c82ed0312"
+    },
+    {
+      "bytes": 20498,
+      "id": "h37-library_workshops-ar-grid-v0",
+      "image_sha256": "ae8c6d4a879abb910901ece4d87e0daad48022e5880959385dd2715c5f367cb2",
+      "page_sha256": "08534701089d7bf7c5f882ac4ed43b93f048dfbb6b05234d915b9945a7edc924"
+    },
+    {
+      "bytes": 20288,
+      "id": "h37-library_workshops-ar-grid-v1",
+      "image_sha256": "ec50fad1721670fdf4e1739cb284ff4cc140ccca2240586bc502844760887d31",
+      "page_sha256": "f2fc022d0e341f3bdd9f0f9dde837a4e4659c12a57181c84c33d0fb05df1fdb2"
+    },
+    {
+      "bytes": 19962,
+      "id": "h37-library_workshops-ar-table-v0",
+      "image_sha256": "2a11e6591f72c212024a31ef11b728941253e62c535354c3f001cf86e2d00ec4",
+      "page_sha256": "0bc236055dab87ebf8b68b30c0bd58cbac6d61cd98aa5ecdcab7173779fc2e71"
+    },
+    {
+      "bytes": 19962,
+      "id": "h37-library_workshops-ar-table-v1",
+      "image_sha256": "e6c408212e92bfa72eb1e229e0ba6c4ef43b22f36f1ddf274599e07755f17a12",
+      "page_sha256": "17144a1033c2c4c85573657a5f436a5a2b8770812c23923ba5b121df26a9d429"
+    }
+  ],
+  "independently_blinded_test": false,
+  "model_evaluated": false,
+  "model_inputs_sha256": "12f4b4615b2da5da5513dab51ffba434d5ccfd9a726ba978d4ed1f50ba7ff00d",
+  "native_actions_executed": false,
+  "playwright_core": "1.56.1",
+  "real_external_apps": false,
+  "scenes_sha256": "8064af96a3fd4c2389e1c494829a56549bacd5a21ea2cc20f9fef987be5634d2",
+  "schema": "hala.h37.browser_rendered_dev_test.v1",
+  "test": 32
+}
