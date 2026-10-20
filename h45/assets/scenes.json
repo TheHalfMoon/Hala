@@ -1,0 +1,250 @@
+{
+  "external_app": false,
+  "h43_manifest_sha256": "fbcf271e8c65637f2a69e7dbc5966d7ffdad29c7061d93684bf9a705e7f4c2c8",
+  "h44_first_frame_source_only": true,
+  "model_inference": false,
+  "native_actions": false,
+  "scenes": [
+    {
+      "expected_trajectory_actions": 3,
+      "family": "atlas_supply",
+      "goal": "In Atlas supply board, select item ATLAS_SUPPLY-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-atlas_supply-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "1d8541f671202fb730fe4e2b6b05bb73606be793dacd3d637fb5bc10c5a2d490",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "atlas_supply",
+      "goal": "في لوحة مستلزمات أطلس، اختر العنصر ATLAS_SUPPLY-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-atlas_supply-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "bc0dd37eed7c30edf099db63ef68c7b9c58d018c0dec2ebb9c53bf2585db5338",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "atlas_supply",
+      "goal": "In Atlas supply board, select item ATLAS_SUPPLY-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-atlas_supply-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "c0b4faf28df3fe8edefc9f3b5cb48ccd0628cb35381c6812c8c7012f268ebbfe",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "atlas_supply",
+      "goal": "في لوحة مستلزمات أطلس، اختر العنصر ATLAS_SUPPLY-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-atlas_supply-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "d22a552a4128184f3ac1dfcaa9ffbbb2ea2d809224b22b2e64ba0dbb35ee782f",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "cedar_rooms",
+      "goal": "In Cedar room planner, select item CEDAR_ROOMS-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-cedar_rooms-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "7f8f77f01ab59ece103ee8cd8ccd281f0d864ed07d186b64f95ba60bf1df5b43",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "cedar_rooms",
+      "goal": "في مخطط قاعات سيدار، اختر العنصر CEDAR_ROOMS-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-cedar_rooms-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "c747a1f0082308495fefb757cbad9064cb2e880e4a33f6509f5349543567b6da",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "cedar_rooms",
+      "goal": "In Cedar room planner, select item CEDAR_ROOMS-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-cedar_rooms-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "d3d185d913d4f5d28bddf8656c7c24799d8fcb01742796351969eed374376f8b",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "cedar_rooms",
+      "goal": "في مخطط قاعات سيدار، اختر العنصر CEDAR_ROOMS-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-cedar_rooms-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "4f9dbc2a63c54783deb3332f5389bc0a88077ebfef3d4e68b422f9521b1141ab",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "orbit_lending",
+      "goal": "In Orbit item lending, select item ORBIT_LENDING-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-orbit_lending-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "5ef88c4912752ffaa036a7eacf942a232963337b476c81d1896ade858d26a724",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "orbit_lending",
+      "goal": "في إعارة مقتنيات أوربت، اختر العنصر ORBIT_LENDING-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-orbit_lending-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "144c575a19c236f22f01856fa346e77459b4009d6c9a8558d3a6039a4cb61f7f",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "orbit_lending",
+      "goal": "In Orbit item lending, select item ORBIT_LENDING-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-orbit_lending-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "c2fb912aab49ef8b44172edb5ad947ad182c16675dda55dbd8b8aef4c5367555",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "orbit_lending",
+      "goal": "في إعارة مقتنيات أوربت، اختر العنصر ORBIT_LENDING-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-orbit_lending-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "23d69b9fc7bb339f6e59e1d98f115bf7f62503c1a0ffd4fbf174fadbbe0b3709",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "delta_staffing",
+      "goal": "In Delta shift roster, select item DELTA_STAFFING-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-delta_staffing-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "8ef73b489c7f3364326a71ec4bb8831f85755493e2f18316505689f45c65bc76",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "delta_staffing",
+      "goal": "في جدول مناوبات دلتا، اختر العنصر DELTA_STAFFING-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-delta_staffing-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "c301b2f3d630200ff6136b4513998d2ccf2d4435a812281c28c38c1c1cd1c3a0",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "delta_staffing",
+      "goal": "In Delta shift roster, select item DELTA_STAFFING-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-delta_staffing-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "34923748fe24277ec2b67333d835f165a7098b887c81f76c24870ffc12fec5a0",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "delta_staffing",
+      "goal": "في جدول مناوبات دلتا، اختر العنصر DELTA_STAFFING-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-delta_staffing-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "db8c774486c294e1e082bf131c9e4bae6688a3ac9167fb6dc75202b9ec198dd8",
+      "split": "authoring"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "harbor_inventory",
+      "goal": "In Harbor inventory, select item HARBOR_INVENTORY-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-harbor_inventory-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "42ecd492133dd0275d37c4d8544f43967cbdf1e53fdd834e408390866fe849e3",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "harbor_inventory",
+      "goal": "في مخزون هاربر، اختر العنصر HARBOR_INVENTORY-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-harbor_inventory-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "a546f414cfb086d468b8f29ac49a440f2eea66886190247a7102f5b4564c8a0f",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "harbor_inventory",
+      "goal": "In Harbor inventory, select item HARBOR_INVENTORY-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-harbor_inventory-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "b46bb50628c94e75279a581f0e37603b9324e7b6e2bf5d7697706a189c7a6323",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "harbor_inventory",
+      "goal": "في مخزون هاربر، اختر العنصر HARBOR_INVENTORY-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-harbor_inventory-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "7118389b92786e2401a234c845b0130e45c538e36772448bd6d23d09eee09539",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "summit_scheduling",
+      "goal": "In Summit session planner, select item SUMMIT_SCHEDULING-01, set quantity to 2, confirm without changing other items.",
+      "id": "h43-summit_scheduling-00-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "011a63cefe39f1c2d45c0ded119eb9ecb95b1e95517423aad579b7436a6439b0",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "summit_scheduling",
+      "goal": "في مخطط جلسات سامت، اختر العنصر SUMMIT_SCHEDULING-02، واضبط الكمية على 3، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-summit_scheduling-01-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "927c61642ebae3edcfb50793cd932b55c2d4f0218c1354f81462912db5fd3241",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "summit_scheduling",
+      "goal": "In Summit session planner, select item SUMMIT_SCHEDULING-03, set quantity to 4, confirm without changing other items.",
+      "id": "h43-summit_scheduling-02-en",
+      "language": "en",
+      "max_actions": 5,
+      "original_html_sha256": "4309b9a732b962c9d2b1561aadba48f5c012689999eb1685ca951428e4cc6e74",
+      "split": "dev"
+    },
+    {
+      "expected_trajectory_actions": 3,
+      "family": "summit_scheduling",
+      "goal": "في مخطط جلسات سامت، اختر العنصر SUMMIT_SCHEDULING-04، واضبط الكمية على 5، ثم أكّد دون تعديل العناصر الأخرى.",
+      "id": "h43-summit_scheduling-03-ar",
+      "language": "ar",
+      "max_actions": 5,
+      "original_html_sha256": "120960922b93ed5e125f65cfa19b3bb6da91d77ed82ca117fe99a1578b662774",
+      "split": "dev"
+    }
+  ],
+  "schema": "hala.h45.original-browser-workflows.v1"
+}

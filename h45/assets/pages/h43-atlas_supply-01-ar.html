@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html,body{width:960px;height:540px;overflow:hidden;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#15243b;background:#eef3f9}
+main{margin:24px auto;width:902px;height:492px;background:white;border:1px solid #d9e1eb;border-radius:18px;padding:20px 28px;box-shadow:0 8px 35px #172b4522}
+small{letter-spacing:.035em;color:#536b8a;font-size:13px}
+h1{font-size:25px;margin:5px 0 3px;font-weight:700}
+p{font-size:14px;color:#52667f;margin:4px 0 22px}
+section{height:318px;padding:16px;background:#f8fafe;border:1px solid #d5dfed;border-radius:12px;gap:12px}
+section.columns{display:flex;flex-direction:column}
+section.rows{display:grid;grid-template-columns:1fr;grid-template-rows:repeat(5,1fr)}
+section.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,1fr)}
+section.rail{display:grid;grid-template-columns:250px 1fr;grid-template-rows:repeat(3,1fr)}
+button,.control{display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:43px;min-width:0;width:100%;
+ border:1px solid #c4d2e3;border-radius:10px;background:white;color:#263e60;padding:8px 15px;
+ text-align:start;font-size:14px;font-weight:600;line-height:1.2}
+button{cursor:default}
+button[data-ref="confirm_button"]{background:#1e628c;color:#fff;border-color:#1e628c}
+button[data-ref="unrelated_button"]{color:#935042;background:#fff8f4;border-color:#e9d1c9}
+.control{justify-content:space-between}
+.control span{white-space:nowrap}
+input{font:inherit;min-height:36px;width:115px;border:1px solid #a9bed7;border-radius:6px;padding:4px 8px}
+.rail button[data-ref="row_target"],.rail button[data-ref="row_decoy"]{background:#ecf3fa}
+</style></head>
+<body><main><small>مهمة تجريبية · بدون اتصال · h43-atlas_supply-01-ar</small>
+<h1>لوحة مستلزمات أطلس — لوحة المهام</h1>
+<p>اختر العنصر الصحيح ثم أدخل الكمية المطلوبة وأكّد الإجراء.</p><section class="columns"><button type="button" data-ref="row_target" aria-label="ATLAS_SUPPLY-02 — اختيار">ATLAS_SUPPLY-02 — اختيار</button><button type="button" data-ref="row_decoy" aria-label="ATLAS_SUPPLY-OTHER — اختيار">ATLAS_SUPPLY-OTHER — اختيار</button><label class="control"><span>الكمية</span><input type="number" value="" data-ref="amount_field" aria-label="الكمية" placeholder="الكمية"></label><button type="button" data-ref="confirm_button" aria-label="تأكيد">تأكيد</button><button type="button" data-ref="unrelated_button" aria-label="تعديل عنصر آخر">تعديل عنصر آخر</button></section></main>
+<style>
+#h45-status{position:fixed;bottom:6px;left:16px;right:16px;min-height:30px;
+ color:#203a56;background:#e3eefb;border:1px solid #9aafc9;border-radius:7px;
+ font:600 13px 'Segoe UI',Tahoma,Arial,sans-serif;padding:5px 10px;direction:ltr}
+</style>
+<output id="h45-status" aria-live="polite">الحالة: idle</output>
+<script>
+"use strict";
+(() => {
+  const target="ATLAS_SUPPLY-02";
+  const desired=3;
+  const state={selected:null,amount:null,confirmed:false,unrelated_changed:false};
+  const status=document.getElementById("h45-status");
+  function render() {
+     document.body.dataset.h45Selected=state.selected===null?"null":state.selected;
+     document.body.dataset.h45Amount=state.amount===null?"null":String(state.amount);
+     document.body.dataset.h45Confirmed=String(state.confirmed);
+     document.body.dataset.h45UnrelatedChanged=String(state.unrelated_changed);
+     status.textContent="Selected: "+(state.selected===null?"none":state.selected)+
+                        " | Quantity: "+(state.amount===null?"none":state.amount)+
+                        " | Confirmed: "+(state.confirmed?"yes":"no")+
+                        " | Other changed: "+(state.unrelated_changed?"yes":"no");
+  }
+  for(const el of document.querySelectorAll("[data-ref]")) {
+    const ref=el.dataset.ref;
+    if(el.tagName==="BUTTON") {
+       el.addEventListener("click",() => {
+         if(ref==="row_target") state.selected=target;
+         else if(ref==="row_decoy") state.selected=target+"-WRONG";
+         else if(ref==="unrelated_button") state.unrelated_changed=true;
+         else if(ref==="confirm_button") {
+           if(state.selected===target && state.amount===desired) state.confirmed=true;
+         }
+         render();
+       });
+    } else if(el.tagName==="INPUT") {
+       el.addEventListener("input",() => {
+          const raw=el.value;
+          const parsed=Number(raw);
+          state.amount=raw.length>0 && Number.isInteger(parsed) && parsed>=0 &&
+                       parsed<=100 ? parsed : null;
+          render();
+       });
+    }
+  }
+  render();
+})();
+</script>
+</body></html>
