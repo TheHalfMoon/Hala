@@ -1,0 +1,148 @@
+{
+  "attempted": 8,
+  "competitor_win": false,
+  "complete": true,
+  "denominator": 8,
+  "external_benchmark": false,
+  "independent_blind_test": false,
+  "languages": {
+    "ar": {
+      "abstain": 0,
+      "error": 0,
+      "gate_valid_unique": 1,
+      "parse_valid": 4,
+      "target_hit": 0,
+      "wrong_target": 1
+    },
+    "en": {
+      "abstain": 0,
+      "error": 0,
+      "gate_valid_unique": 2,
+      "parse_valid": 4,
+      "target_hit": 0,
+      "wrong_target": 2
+    }
+  },
+  "model_qualified": false,
+  "native_actions": false,
+  "per_language_denominator": {
+    "ar": 4,
+    "en": 4
+  },
+  "raw_sha256": "a23923be51fddfb4e6b876e5cdf842e5827a507147c640d3370767d9cfe45a2c",
+  "rows": [
+    {
+      "error": null,
+      "id": "h43-harbor_inventory-00-en",
+      "language": "en",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-harbor_inventory-01-ar",
+      "language": "ar",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-harbor_inventory-02-en",
+      "language": "en",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-harbor_inventory-03-ar",
+      "language": "ar",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-summit_scheduling-00-en",
+      "language": "en",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-summit_scheduling-01-ar",
+      "language": "ar",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-summit_scheduling-02-en",
+      "language": "en",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      }
+    },
+    {
+      "error": null,
+      "id": "h43-summit_scheduling-03-ar",
+      "language": "ar",
+      "status": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      }
+    }
+  ],
+  "schema": "hala.h46.public_dev_external_raw_replay.v1",
+  "totals": {
+    "abstain": 0,
+    "error": 0,
+    "gate_valid_unique": 3,
+    "parse_valid": 8,
+    "target_hit": 0,
+    "wrong_target": 3
+  }
+}
