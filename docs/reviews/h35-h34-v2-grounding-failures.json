@@ -1,0 +1,704 @@
+{
+  "attempted_records": 32,
+  "case_sha256": "4b7f849a624caac23dd857adb19ed4293d93d0693dbdbd2921d4423b666a6a3a",
+  "cases": [
+    {
+      "case_id": "h34-mail-en-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        8.8,
+        56.8
+      ],
+      "distance_to_target_box_px": 24.8,
+      "domain": "mail",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "row",
+      "point_px": [
+        172.8,
+        388.8
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-mail-en-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -182.4,
+        52.8
+      ],
+      "distance_to_target_box_px": 85.4962,
+      "domain": "mail",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "column",
+      "point_px": [
+        297.6,
+        334.8
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-mail-en-rtl_row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -63.2,
+        56.8
+      ],
+      "distance_to_target_box_px": 24.8,
+      "domain": "mail",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "rtl_row",
+      "point_px": [
+        316.8,
+        388.8
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-mail-en-scattered",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -39.2,
+        6.8
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "mail",
+      "gate_valid_unique": true,
+      "language": "en",
+      "layout": "scattered",
+      "point_px": [
+        652.8,
+        388.8
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-mail-ar-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        76.0,
+        73.0
+      ],
+      "distance_to_target_box_px": 41.0,
+      "domain": "mail",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "row",
+      "point_px": [
+        240.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-mail-ar-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        0.0,
+        31.2
+      ],
+      "distance_to_target_box_px": 1.2,
+      "domain": "mail",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "column",
+      "point_px": [
+        480.0,
+        313.2
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-mail-ar-rtl_row",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -15.2,
+        -18.8
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "mail",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "rtl_row",
+      "point_px": [
+        364.8,
+        313.2
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-mail-ar-scattered",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -20.0,
+        -9.4
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "mail",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "scattered",
+      "point_px": [
+        672.0,
+        372.6
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-calendar-en-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -116.0,
+        73.0
+      ],
+      "distance_to_target_box_px": 47.5079,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "row",
+      "point_px": [
+        480.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-en-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -240.0,
+        -41.0
+      ],
+      "distance_to_target_box_px": 140.4315,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "column",
+      "point_px": [
+        240.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-en-rtl_row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -92.0,
+        73.0
+      ],
+      "distance_to_target_box_px": 41.0,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "rtl_row",
+      "point_px": [
+        720.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-en-scattered",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -69.2,
+        52.6
+      ],
+      "distance_to_target_box_px": 20.6,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "scattered",
+      "point_px": [
+        652.8,
+        264.6
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-ar-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -116.0,
+        24.4
+      ],
+      "distance_to_target_box_px": 24.0,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "row",
+      "point_px": [
+        480.0,
+        356.4
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-ar-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        0.0,
+        -41.0
+      ],
+      "distance_to_target_box_px": 11.0,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "column",
+      "point_px": [
+        480.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-calendar-ar-rtl_row",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -92.0,
+        24.4
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "calendar",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "rtl_row",
+      "point_px": [
+        720.0,
+        356.4
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-calendar-ar-scattered",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -50.0,
+        36.4
+      ],
+      "distance_to_target_box_px": 4.4,
+      "domain": "calendar",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "scattered",
+      "point_px": [
+        672.0,
+        248.4
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-en-row",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        8.8,
+        24.4
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "files",
+      "gate_valid_unique": true,
+      "language": "en",
+      "layout": "row",
+      "point_px": [
+        172.8,
+        356.4
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-files-en-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -172.8,
+        52.8
+      ],
+      "distance_to_target_box_px": 76.2868,
+      "domain": "files",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "column",
+      "point_px": [
+        307.2,
+        334.8
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-en-rtl_row",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -15.2,
+        24.4
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "files",
+      "gate_valid_unique": true,
+      "language": "en",
+      "layout": "rtl_row",
+      "point_px": [
+        364.8,
+        356.4
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-files-en-scattered",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -116.0,
+        6.8
+      ],
+      "distance_to_target_box_px": 24.0,
+      "domain": "files",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "scattered",
+      "point_px": [
+        576.0,
+        388.8
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-ar-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        76.0,
+        73.0
+      ],
+      "distance_to_target_box_px": 41.0,
+      "domain": "files",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "row",
+      "point_px": [
+        240.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-ar-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        0.0,
+        31.2
+      ],
+      "distance_to_target_box_px": 1.2,
+      "domain": "files",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "column",
+      "point_px": [
+        480.0,
+        313.2
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-ar-rtl_row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        100.0,
+        24.4
+      ],
+      "distance_to_target_box_px": 8.0,
+      "domain": "files",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "rtl_row",
+      "point_px": [
+        480.0,
+        356.4
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-files-ar-scattered",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -20.0,
+        -25.6
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "files",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "scattered",
+      "point_px": [
+        672.0,
+        356.4
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-shop-en-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -116.0,
+        73.0
+      ],
+      "distance_to_target_box_px": 47.5079,
+      "domain": "shop",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "row",
+      "point_px": [
+        480.0,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-en-column",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -163.2,
+        -41.0
+      ],
+      "distance_to_target_box_px": 64.1501,
+      "domain": "shop",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "column",
+      "point_px": [
+        316.8,
+        405.0
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-en-rtl_row",
+      "class": "wrong_control",
+      "delta_to_target_center_px": [
+        -188.0,
+        24.4
+      ],
+      "distance_to_target_box_px": 96.0,
+      "domain": "shop",
+      "gate_valid_unique": true,
+      "language": "en",
+      "layout": "rtl_row",
+      "point_px": [
+        624.0,
+        356.4
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-en-scattered",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -69.2,
+        106.6
+      ],
+      "distance_to_target_box_px": 74.6,
+      "domain": "shop",
+      "gate_valid_unique": false,
+      "language": "en",
+      "layout": "scattered",
+      "point_px": [
+        652.8,
+        318.6
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-ar-row",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -116.0,
+        -18.8
+      ],
+      "distance_to_target_box_px": 24.0,
+      "domain": "shop",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "row",
+      "point_px": [
+        480.0,
+        313.2
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-ar-column",
+      "class": "wrong_control",
+      "delta_to_target_center_px": [
+        0.0,
+        -73.4
+      ],
+      "distance_to_target_box_px": 43.4,
+      "domain": "shop",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "column",
+      "point_px": [
+        480.0,
+        372.6
+      ],
+      "target_hit": false
+    },
+    {
+      "case_id": "h34-shop-ar-rtl_row",
+      "class": "hit",
+      "delta_to_target_center_px": [
+        -92.0,
+        24.4
+      ],
+      "distance_to_target_box_px": 0.0,
+      "domain": "shop",
+      "gate_valid_unique": true,
+      "language": "ar",
+      "layout": "rtl_row",
+      "point_px": [
+        720.0,
+        356.4
+      ],
+      "target_hit": true
+    },
+    {
+      "case_id": "h34-shop-ar-scattered",
+      "class": "off_controls",
+      "delta_to_target_center_px": [
+        -50.0,
+        36.4
+      ],
+      "distance_to_target_box_px": 4.4,
+      "domain": "shop",
+      "gate_valid_unique": false,
+      "language": "ar",
+      "layout": "scattered",
+      "point_px": [
+        672.0,
+        248.4
+      ],
+      "target_hit": false
+    }
+  ],
+  "class_counts": {
+    "hit": 8,
+    "off_controls": 22,
+    "wrong_control": 2
+  },
+  "denominator": 32,
+  "groups": {
+    "domain": {
+      "calendar": {
+        "abstain": 0,
+        "hit": 1,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 7,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 0
+      },
+      "files": {
+        "abstain": 0,
+        "hit": 3,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 5,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 0
+      },
+      "mail": {
+        "abstain": 0,
+        "hit": 3,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 5,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 0
+      },
+      "shop": {
+        "abstain": 0,
+        "hit": 1,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 5,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 2
+      }
+    },
+    "language": {
+      "ar": {
+        "abstain": 0,
+        "hit": 5,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 10,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 1
+      },
+      "en": {
+        "abstain": 0,
+        "hit": 3,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 12,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 1
+      }
+    },
+    "layout": {
+      "column": {
+        "abstain": 0,
+        "hit": 0,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 7,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 1
+      },
+      "row": {
+        "abstain": 0,
+        "hit": 1,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 7,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 0
+      },
+      "rtl_row": {
+        "abstain": 0,
+        "hit": 4,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 3,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 1
+      },
+      "scattered": {
+        "abstain": 0,
+        "hit": 3,
+        "inference_error": 0,
+        "not_attempted": 0,
+        "off_controls": 5,
+        "overlapping_controls": 0,
+        "parse_invalid": 0,
+        "wrong_control": 0
+      }
+    }
+  },
+  "independent_test_qualified": false,
+  "model_qualified": false,
+  "native_actions_executed": false,
+  "new_model_inference": false,
+  "raw_sha256": "f9dfbba4a4d8adee149caa0f5b2c18def8b9383f472c0fc1207d171996809bcf",
+  "replayed_h34_integrity": true,
+  "retrospective_dev_only": true,
+  "schema": "hala.h35.h34_retained_failure_forensics.v1"
+}
