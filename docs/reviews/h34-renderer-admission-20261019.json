@@ -1,0 +1,20 @@
+{
+  "default_font_sha256": null,
+  "model_inference_performed": false,
+  "packages": {
+    "Pillow": "12.3.0",
+    "accelerate": "1.14.0",
+    "huggingface-hub": "1.29.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.1",
+    "torch": "2.11.0+cpu",
+    "transformers": "5.16.1"
+  },
+  "packages_installed": false,
+  "platform": "Linux-6.18.48+-x86_64-with-glibc2.39",
+  "python": "3.13.15",
+  "raqm": "0.10.5",
+  "schema": "hala.kaggle.renderer_admission.v1",
+  "timestamp_unix": 1792424240.986981,
+  "weights_downloaded": false
+}

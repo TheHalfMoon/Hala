@@ -1,0 +1,7 @@
+# H34 private Kaggle DEV run — prompt revision, 2026-10-20
+
+This retained Kaggle Batch run used source commit `8e6bd55e918787d980fbd5b2775e4a1a856bcaa4`, model `Qwen/Qwen3-VL-2B-Instruct` at revision `89644892e4d85e24eaac8bacfd4f463576704203`, and a private kernel. Two Tesla T4 devices were visible; the runner placed inference on `cuda:0`. It completed all 32 cases in 100.43 seconds, with worker exit code 0 and no deadline overrun.
+
+The raw journal SHA-256 is `f9dfbba4a4d8adee149caa0f5b2c18def8b9383f472c0fc1207d171996809bcf`. `audit.json` is the independent local replay against this digest. All 32 responses satisfy the strict bare-JSON protocol, fixing the formatting failure in the previous run. Only 10/32 points uniquely landed on a visible control and **8/32 hit the intended target**: English 3/16; Arabic 5/16. There were two unique wrong-control points. The remaining 22 points did not bind to exactly one observed control. These are first-party synthetic DEV cases, not real screenshots or blind TEST; the result does not establish model qualification, usability, production quality, Arabic linguistic quality, or adoption.
+
+`run_metadata.json` records source, package, renderer, model, and hardware observations; it explicitly marks observations as non-attestation. `image_manifest.json`, all 32 PNGs, the frozen case digest, raw journal, and audit are retained for replay. Kaggle notebook: https://www.kaggle.com/code/abdulazizshehri/hala-h34-bilingual-visual-dev-20261019
