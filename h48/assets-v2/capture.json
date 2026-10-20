@@ -1,0 +1,6799 @@
+{
+  "schema": "hala.h48.actual-chromium-128-train-images.v1",
+  "chromium_version": "Edg/155.0.4283.62",
+  "puppeteer_core": "25.12.0",
+  "source_manifest_sha256": "c8cc31061031c2f3310515e8d248fcee2b74f58707c7f19bb1b5cf098189d4b8",
+  "width": 960,
+  "height": 540,
+  "train_only": true,
+  "benchmark": false,
+  "model_inference": false,
+  "external_network_requests": false,
+  "native_actions": false,
+  "records": [
+    {
+      "id": "h48-cobalt_dispatch-00-en",
+      "image_sha256": "73cdce27614ee4c5cd6a4a4fceb7b22040d9b72ead38fef84083326d613ce70b",
+      "image_bytes": 24211,
+      "source_sha256": "63f047007f7ee9cce488b25142c8698437f382dddc6f34c7696cd86fd8ae7685",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Overview",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "History",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Templates",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Workflows",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-01-ar",
+      "image_sha256": "ab1c6bca4ef53bf3b695ea74b31b10fe027f385fd3f037b2a2498c1ff85cf7aa",
+      "image_bytes": 19834,
+      "source_sha256": "803b5c57811804bc0860fc4b281a0d394106eed50f8f691a46c064a7b83b733a",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الرسائل",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التصدير",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التفضيلات",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الإيصالات",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-02-en",
+      "image_sha256": "1883b41b1d36baf544273c4eba83fd48718dad346e422100ecd4bdf5e2b3c6cc",
+      "image_bytes": 23491,
+      "source_sha256": "b1d697f77d320925db34e457df52d334dc953451f558d6d3960ffb155c13fdb1",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Invoices",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Approvals",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Queues",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Inventory",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-03-ar",
+      "image_sha256": "b66c26881d49f18f2b8d8889b8f4af8c0c93c356d4c9569be0a2a2a4b820d071",
+      "image_bytes": 19572,
+      "source_sha256": "efc7cf08918b29450add2ce492382367c59ca8ec87e5888bbd245af5f66de8b6",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المستندات",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الملفات",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التنبيهات",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الرئيسية",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-04-en",
+      "image_sha256": "a4f57e72588740b2d79e3fa8387c3afc159f2ef7851e8622bc8146fd6ca39f30",
+      "image_bytes": 24086,
+      "source_sha256": "5ec0b17383d46059e65a2580ab563a6b7e2bc72004fb2facb0fa8a53c13f5e0c",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Projects",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Members",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Reviews",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Messages",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-05-ar",
+      "image_sha256": "87b1a77f7f329cc38ba23c322f00aa66ebb5b177047f7770071933eb381aa2d8",
+      "image_bytes": 19830,
+      "source_sha256": "9889b987545e727b884fdce841c4eb438e4b26336184ff227f8a4d89264f0201",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التقويم",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المسودات",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الحملات",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الفواتير",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-06-en",
+      "image_sha256": "9120c5a073c6ccb37f069814e9603ed0a76dda7fd2f18a411b723bab7de7b781",
+      "image_bytes": 23672,
+      "source_sha256": "6a19dd4915d373332c6a8c46e05a64e1234383cce1036c5f7980707e4155a654",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Analytics",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Archive",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Reports",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Documents",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-07-ar",
+      "image_sha256": "6b3ff6ac9fa9a2832b8fc24f92e5879c1a10e548bdf4f48cff7294f8468c2d9d",
+      "image_bytes": 19393,
+      "source_sha256": "bb1e1e8f493a66f7d5875c02e0383c64c1d308be70d142f5272f2a555c417c5d",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "السجل",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "القوالب",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المهام",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المشاريع",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-08-en",
+      "image_sha256": "353902c0e6157251ba88a15e9020da74687880a3782e8522f0351260152299d6",
+      "image_bytes": 23378,
+      "source_sha256": "6318b257c3348588d5ad3901b9bb5e01bc642bc4973c731a8d15b43a98b7d7c0",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Exports",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Preferences",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Receipts",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Calendar",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-09-ar",
+      "image_sha256": "7f43da5798651604e75f3ba3e8617a068f3fd5f5ee66d0d69691923ac5630f1d",
+      "image_bytes": 20117,
+      "source_sha256": "42ebab56f61f918a4b3aff7dd74ac4441ef08b442156b4bfd8323658a28ddb48",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الموافقات",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الطوابير",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المخزون",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التحليلات",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-10-en",
+      "image_sha256": "ec0ceed0f5d61a75f3bb1b95130b2e94c50377d35b5ec4bef96d5809cfab9aa5",
+      "image_bytes": 23180,
+      "source_sha256": "4230db22fdad9ce1ba61708754972a91640e42dbed1728ad174806eb387a289d",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Assets",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Alerts",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Overview",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "History",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-11-ar",
+      "image_sha256": "ab1d7a49e731c961b963229d2cbf4222dbd739c09dabf264e25fe2ed91aae20c",
+      "image_bytes": 19622,
+      "source_sha256": "c233093a8b5d34f0f06b5be32e47c5ce79454b8fe9aa14dd2df0425173dc6bf6",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأعضاء",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المراجعات",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرسائل",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التصدير",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-12-en",
+      "image_sha256": "e08382fb38e9a24549bd5d6a90874d590c5c95d2968b1bab923f5628e537526b",
+      "image_bytes": 23737,
+      "source_sha256": "c6fd11af0afb15098fadd400d32eb15c15a4e08da4da709a32ca1462e80b8ace",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Drafts",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Invoices",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Approvals",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-13-ar",
+      "image_sha256": "642b8647810b3af6b536b065b9c311681660cf4b794f54c60af00e0e9726ae0e",
+      "image_bytes": 19640,
+      "source_sha256": "98a2fb1e6f2f6566860bb918d67fd4017baeddbcc36459ef3f18d8d2b13ea5b9",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأرشيف",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التقارير",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المستندات",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الملفات",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-14-en",
+      "image_sha256": "c8f36d65d1cfea04d870fe90c35901169c69e693ff5225feadd9e1bae8ffeca5",
+      "image_bytes": 24207,
+      "source_sha256": "f39fc85d56cce4e4f30e87f3b3a007dda36598e21611521241f480a958d47861",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Templates",
+          "rect": [
+            79,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Workflows",
+          "rect": [
+            79,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Projects",
+          "rect": [
+            79,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Members",
+          "rect": [
+            79,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cobalt_dispatch-15-ar",
+      "image_sha256": "884eee140fff40cda177d39b74878fa45e58cc1fa8ff6b72987113968ed153b7",
+      "image_bytes": 20092,
+      "source_sha256": "65f4eac351c403cc5159c63dddeacc9614b8cf765a9814b5651dd743d037c803",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التفضيلات",
+          "rect": [
+            603,
+            183,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الإيصالات",
+          "rect": [
+            603,
+            261,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقويم",
+          "rect": [
+            603,
+            339,
+            278,
+            66
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المسودات",
+          "rect": [
+            603,
+            417,
+            278,
+            66
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-00-en",
+      "image_sha256": "adc2a6ab09a59cea63ae5120c4d1374ddc7fa18d65ba1df080f562896a0b9570",
+      "image_bytes": 22311,
+      "source_sha256": "9226f1afdbf5c873d606d10ee896e29fd1b3b6ca79bfbfa52b0044ca9b9d78a8",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Calendar",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Drafts",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Invoices",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-01-ar",
+      "image_sha256": "b1d09a92042281e4e01620381f8f553fa8bc985fc9cbe63bddd38c333ee62296",
+      "image_bytes": 19930,
+      "source_sha256": "e7a8828b405d6d49529b491cb87f8f97d8ba6700a5690da80bcef1461f276b00",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التحليلات",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الأرشيف",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقارير",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المستندات",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-02-en",
+      "image_sha256": "f13f9768dbe3bf10960eecedaf7df4e80c173969d59630ee0d035cbd6c455151",
+      "image_bytes": 22898,
+      "source_sha256": "242994fd718f77df530713eff98bd2acaf411f84eeb9f9559c07bc13e210284d",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "History",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Templates",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Workflows",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Projects",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-03-ar",
+      "image_sha256": "96e8d2fe7a15ca85b72fa416c0d9af2f319564518e51d8a743f97a3ed3664572",
+      "image_bytes": 20271,
+      "source_sha256": "51f15f9c2bb73bcb9c761221064bc82e99e2ff97ae61660796d4c179dbb95fcc",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التصدير",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التفضيلات",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الإيصالات",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التقويم",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-04-en",
+      "image_sha256": "14629fa4a0ea7bd2abdc9cf430ce24f3e1d321f7f7a5341f8aba009c71128fd0",
+      "image_bytes": 22777,
+      "source_sha256": "54f852362e83700e9f209c93c7bc7d7b2adedc50497951aa66360841a6b5c448",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Approvals",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Queues",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Inventory",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Analytics",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-05-ar",
+      "image_sha256": "42a00a3daa6ab23ed705f7ebfebd80ad2e344c2a0cd22c0c0d02dd48b89da68d",
+      "image_bytes": 19532,
+      "source_sha256": "2a34f0fbda818e5a6c18fe9ac11e5fc337f9b509e4585995b449f0c65f23a221",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الملفات",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التنبيهات",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرئيسية",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "السجل",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-06-en",
+      "image_sha256": "0b94578bcf61c8706001f6900aa92e51a71dd9df2b145ce7bfb98b8a99f625d4",
+      "image_bytes": 22944,
+      "source_sha256": "5160467e058a64dce8e5cdedb48393b5c3f18d39f1dee636c56c963386f6c119",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Members",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reviews",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Messages",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Exports",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-07-ar",
+      "image_sha256": "82004c553c858ea103774e4398b89a2bd9a90a54eab6e8cd26057cdb6299d587",
+      "image_bytes": 20111,
+      "source_sha256": "93b670537bd49eafa0f04fbbf61c1b38e87eebce02b47cbb656a45c70c78610b",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المسودات",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الحملات",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الفواتير",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الموافقات",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-08-en",
+      "image_sha256": "349284b569f886e6065bc34a937ecada3f62a03a118248e293675abf57d78741",
+      "image_bytes": 22442,
+      "source_sha256": "41ee4833fbebe2a7710c127044d2fbc33e76071a515ea5059a90d311a2bdb8a6",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Archive",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reports",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Documents",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Assets",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-09-ar",
+      "image_sha256": "7e9c11698d4206db4f74eb29e8d81675423ba8cd22c5083e8e3e5295e4d9a217",
+      "image_bytes": 19858,
+      "source_sha256": "e491e11819cab10f2d37d5ff855f4333b5c2a71f5eb26d8ad1a9633b1eeab088",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "القوالب",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المهام",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المشاريع",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأعضاء",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-10-en",
+      "image_sha256": "92cbb2be5f7d17049c3aa642a93dc542dbb5bd752b8df3b17bdb3bc9262b33e6",
+      "image_bytes": 22164,
+      "source_sha256": "aad28d4d0b06797a714bf2fdf85b8c29ef0e089338a12a281dd5c4d9b7e6e58f",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Preferences",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Receipts",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Calendar",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Drafts",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-11-ar",
+      "image_sha256": "e5f0fb8eaaa09a59bbf9f99c16d8e42a17a513e595b7ba66815f43e8b4f9014a",
+      "image_bytes": 20162,
+      "source_sha256": "8551b8b05d6b506708550e73751fb1ad71002f66e57ccbeded14ba876530dbda",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الطوابير",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المخزون",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التحليلات",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأرشيف",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-12-en",
+      "image_sha256": "98ac6fcac480daf71a3f1c47d5833a8b738b2d4beb52f83510123a4b23899d60",
+      "image_bytes": 22364,
+      "source_sha256": "968e383c2053ce1984363c80518ffa2075eb7ce4617c60782e8ac24b6203aead",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Alerts",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Overview",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "History",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Templates",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-13-ar",
+      "image_sha256": "56aba38f17a47a2027a6b4b459d863ce6f162d756c93dfe34a1a6cd055758284",
+      "image_bytes": 20008,
+      "source_sha256": "b94a86764eadbc7591ec1ceb0475c96d0e246fd6fc9f283f2ed7142910fc8022",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المراجعات",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الرسائل",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التصدير",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التفضيلات",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-14-en",
+      "image_sha256": "b34c8b45703862758b95da6e90fa8303690023ed01ed19594e2f2ae96ca242a9",
+      "image_bytes": 22653,
+      "source_sha256": "1931c6a566c23b7b4013998abc1087467413c7390eb3a192fafa0b279a22b151",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Invoices",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Approvals",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Queues",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-lumen_archive-15-ar",
+      "image_sha256": "aef20dbb633e75ce153aebbb1af8212c76521d9a38af8856f6f80bd4e8801abd",
+      "image_bytes": 19549,
+      "source_sha256": "1f922364d2b0e4b3cb2fffe47c972274829e281883c2292b93844b886bab7408",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التقارير",
+          "rect": [
+            79,
+            183,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المستندات",
+          "rect": [
+            79,
+            258,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الملفات",
+          "rect": [
+            79,
+            333,
+            802,
+            63
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التنبيهات",
+          "rect": [
+            79,
+            408,
+            802,
+            63
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-00-en",
+      "image_sha256": "fdcceb336a72328ac22fb1a61191b94fb0b662869611664b9f4f1cfd1d8887d6",
+      "image_bytes": 20489,
+      "source_sha256": "ae31501d919e44f587dae6e476bcd0d0fce32dc62cdb531ee375ed7e65d0e07e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Assets",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Alerts",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Overview",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "History",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-01-ar",
+      "image_sha256": "68c3561ac86c752575862eb86893519401546888f1451f86299e819f4c82abd8",
+      "image_bytes": 18109,
+      "source_sha256": "e09c1bddf47725a11232de2f0664aa4baec988cb8f2ec5fcd4b00ca15b092cbf",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأعضاء",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المراجعات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرسائل",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التصدير",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-02-en",
+      "image_sha256": "ff98920368b2d955ef8d3415c2b8945032ef0357bb2900bd111bf5b138bba89f",
+      "image_bytes": 20982,
+      "source_sha256": "79a77f1db4ae98700acf78fef678a4e80a08dbf311b34bc93624079989cb7707",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Drafts",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Campaigns",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Invoices",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Approvals",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-03-ar",
+      "image_sha256": "902aba01769fe123005ae8ca50d9e4bcd2867db59bed753cf2901322e3e6bbcb",
+      "image_bytes": 17919,
+      "source_sha256": "046cbffd0249c920d95073da1d1ca867899207be10f87dc6854bca2ed65c6923",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأرشيف",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التقارير",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المستندات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الملفات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-04-en",
+      "image_sha256": "9db41c710ba049816c2df8cbb63add503a43d94a3933460ebb7a7e9b43205fd5",
+      "image_bytes": 21550,
+      "source_sha256": "084fc10530c0f0b7f905976bc6b3919a3a126b5e6b4a57ab74d7ba57e58c8513",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Templates",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Workflows",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Projects",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Members",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-05-ar",
+      "image_sha256": "c5afd2ae0ebaee552111b4385e00923cf816e507782a13de7a20a79f9ace8ddc",
+      "image_bytes": 18130,
+      "source_sha256": "0bd6b9edb51910bfaaaefe01c82ed0e8915cb4a2d9734dc7c71722b5ab544d6b",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التفضيلات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الإيصالات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقويم",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المسودات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-06-en",
+      "image_sha256": "6e0543550f211473c5a6a39ab16584d3e67f31f423255126b4d68023f39bc004",
+      "image_bytes": 20988,
+      "source_sha256": "be63e1de5a063cf619bbf32e5ecf73f1d8c47d871015a7b7fed3cc2496a3ce62",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Queues",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Inventory",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Analytics",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Archive",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-07-ar",
+      "image_sha256": "f6f34d82bb649f4f2f2d29abea48d7823c61dd3bb3125e777347b90e95c208f3",
+      "image_bytes": 17831,
+      "source_sha256": "06709d8c0046ff5f53987ce11904b2b95f28c5a0b91c0d43145b735136010583",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التنبيهات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الرئيسية",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "السجل",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "القوالب",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-08-en",
+      "image_sha256": "db0a57db2876ca0be9c178bc722ba9c2c6b87ec6db129e97b8fe798d47d3c6d6",
+      "image_bytes": 21407,
+      "source_sha256": "08c24952ed70b592b3869e497d5bb7855493ca100f12d6a8f0edea67a850b52d",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Reviews",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Messages",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Exports",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Preferences",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-09-ar",
+      "image_sha256": "b0b1b0ebeeccdcac7abaad1986b21b3d2129a65ee61ce2886539bc9711ef60ee",
+      "image_bytes": 18180,
+      "source_sha256": "c3aa998237ee4ad83f51b96eb4af6e2de66d3659d9b053110696b4bdd80f6327",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الحملات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الفواتير",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الموافقات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الطوابير",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-10-en",
+      "image_sha256": "e7a958d6e31afe458aef3f1264b83d6b8c004ccdc862a9d97bcf7c30f7786b0c",
+      "image_bytes": 21046,
+      "source_sha256": "c3d741d19c413e13ea69aa4b1a09f9d8710b689d8609500c07c03813e8a9a300",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Reports",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Documents",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Assets",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Alerts",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-11-ar",
+      "image_sha256": "ab1b1cdce84fa6efb0292989dd03ad28d51d4ff3e1fbebc156a1dae4652793e8",
+      "image_bytes": 18262,
+      "source_sha256": "aca27541047da0949c097ba88b8d7662ea5a37b0f268ab08b04da840b6735925",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المهام",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المشاريع",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الأعضاء",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المراجعات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-12-en",
+      "image_sha256": "e2569ea8c73667312bf8830a4a8873fbf31139164a029fbbfb2211881f1cfb51",
+      "image_bytes": 20426,
+      "source_sha256": "c09282a74b59e302cce014ffe4fa7b24ff33a8b51b8533e19ecc3d10c3af113a",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Receipts",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Calendar",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Drafts",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Campaigns",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-13-ar",
+      "image_sha256": "cd087000dab984f27a4fb2bfe78cacc7a3334604d64f9532a3878378ad86054c",
+      "image_bytes": 18147,
+      "source_sha256": "44c6c56d8fef3abb66d960e9c611cc6d8880332bae73fb7d4eba704a154f3694",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المخزون",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التحليلات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الأرشيف",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التقارير",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-14-en",
+      "image_sha256": "bac2669c7fb03ec2b69c8d003c07785187924b75878e0fb11c0318063cb33f9f",
+      "image_bytes": 21409,
+      "source_sha256": "957eda7572331b3352e0a6f2576b71ab336578cb65a5897621d2e4256f7f2bd7",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Overview",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "History",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Templates",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Workflows",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-sunrise_ops-15-ar",
+      "image_sha256": "cfbde77107a818bd0f81e136b96426f4292e15406527c5bf2eee0192697663e2",
+      "image_bytes": 17902,
+      "source_sha256": "31f20444b251ef10e00e9e4101f50fec02da9af24c44ae20d64142bb794ae6f0",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الرسائل",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التصدير",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التفضيلات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الإيصالات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-00-en",
+      "image_sha256": "a833d19f2d971726568262e82badba4e81fe203003cd9e8458a67ca4fc86d05c",
+      "image_bytes": 21891,
+      "source_sha256": "f09c5628ebcc42b8efd70dadeebc81a5eeaa0c7f32c58a9b193759082c1beaf1",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Preferences",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Receipts",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Calendar",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Drafts",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-01-ar",
+      "image_sha256": "39fdff2c839080d85f4052a8a2b53828226d28eeac14b3a650aed4814efa7428",
+      "image_bytes": 19244,
+      "source_sha256": "ab62e1f453497224979f765f8817157918b8e792cc44ca327c89488eb590d37f",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الطوابير",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المخزون",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التحليلات",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأرشيف",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-02-en",
+      "image_sha256": "4ee9b7ad6c928ada196c8c8608ad4dd562608ccf4ba68b8c905408129b322fc8",
+      "image_bytes": 22497,
+      "source_sha256": "20c7fd2c0e85b2b2259dee055d3ae5149a1a3059509421afa5dda4577469187c",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Alerts",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Overview",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "History",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Templates",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-03-ar",
+      "image_sha256": "e2e1db0781201c134b92e0ef43cb3cae83ccdf2bd76bf1b27f15cc7b50d5ce70",
+      "image_bytes": 18931,
+      "source_sha256": "5aba351b34887eaa29bf8807d0a8fbc342d8968a7733164c571dc72147489a8e",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المراجعات",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الرسائل",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التصدير",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التفضيلات",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-04-en",
+      "image_sha256": "06e9f6d3ba2425eae79bfb122fef8be02a122870cee71af5f7cbe2f09ed0c2e4",
+      "image_bytes": 22473,
+      "source_sha256": "07afc99ad26caeb99d7e32c7624e73d5ecfc9db776d2b6899c3a267f213e52f4",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Invoices",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Approvals",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Queues",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-05-ar",
+      "image_sha256": "1313222c5c933014e81dd88c086345f87cc8f0cf12fefaf0d8cc3d7a0ebf5203",
+      "image_bytes": 18611,
+      "source_sha256": "a558739e16070cdbface5d251633034f466c479a42856d73c6500f1b3db4d8e2",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التقارير",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المستندات",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الملفات",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التنبيهات",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-06-en",
+      "image_sha256": "ef65649fb61264b99939abad92e031f14c5bbd55a341d9119bbc36daecb47d73",
+      "image_bytes": 22862,
+      "source_sha256": "6073be2585a795da9ccfd4e35b34259f651f550e430db4bca6091c1cb858de3f",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Workflows",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Projects",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Members",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Reviews",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-07-ar",
+      "image_sha256": "b4e857171b989cf179f7e83f0e929c7b8702fcfb2d594935fafde84dadf5c7ba",
+      "image_bytes": 19167,
+      "source_sha256": "78d5b02e9f3b0a3963171060a1635e10306dd92c47f9a40ed911ef4c4d787c8e",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الإيصالات",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التقويم",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المسودات",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الحملات",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-08-en",
+      "image_sha256": "e4630c90ae453f9a5439ca9f0b45092a9f1b0a8c70341fa73fd8027ffaad36ba",
+      "image_bytes": 22548,
+      "source_sha256": "2c2cbde9ac6f686e8b339d78359deca9b3e020d156caa5944778c0a0101f9718",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Inventory",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Analytics",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Archive",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Reports",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-09-ar",
+      "image_sha256": "826a3e9246a1007f7e08fe406afe178886de9bc10d70a29829a2a5c48e0b0205",
+      "image_bytes": 18375,
+      "source_sha256": "4d3c547b3c5be520241ea23ec9d9a912cbe36189c9438466a19e3e2dc8dfca0b",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الرئيسية",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "السجل",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "القوالب",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المهام",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-10-en",
+      "image_sha256": "24ad6c07dc7d8b77f4dab6440e2a7aa87193730857b25f219ca706fb16d8d537",
+      "image_bytes": 22585,
+      "source_sha256": "d90f73d4d9df8200512035780cc2cfd6fe0922f94995e7493e1d50c77f29bf08",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Messages",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Exports",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Preferences",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Receipts",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-11-ar",
+      "image_sha256": "fab00d0629f95d7eaa70bfae1bb93de12a2e54154e4e5f9726c621d53b951de4",
+      "image_bytes": 19358,
+      "source_sha256": "b2596798ccaf3749de0a2dd7cb671b7ace25efd6c8741d314da2bb59431a8def",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الفواتير",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الموافقات",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الطوابير",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المخزون",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-12-en",
+      "image_sha256": "d7b1641f71939c4680a15b3bb2d852b1d397994296f8e74dac19c192b596e4da",
+      "image_bytes": 22697,
+      "source_sha256": "6ca33ee1020629a7acb1de713abd34c35317e88b2a41a9eaef2377e0dfa76271",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Documents",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Assets",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Alerts",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Overview",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-13-ar",
+      "image_sha256": "25de28400fc2c6ef8b147762dddd23bedd47cc804c35c7d73c5c3f5eb169dba6",
+      "image_bytes": 19041,
+      "source_sha256": "6486b85f079a860ea316b66aeba6b4399710dfc21a90e8d65397f363803ccdf6",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المشاريع",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الأعضاء",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المراجعات",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الرسائل",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-14-en",
+      "image_sha256": "cd18ac3a735d9e83117ae233862b16899af1937c9ce8a04a06e41a422adaadf7",
+      "image_bytes": 22112,
+      "source_sha256": "eb8e916d86a60107161f75340373efaa9d4484023dfa1e02a5cbe8af3c8e53c3",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Calendar",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Drafts",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Invoices",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-marble_settings-15-ar",
+      "image_sha256": "48bf5e6792c57ab552f7bf221cdd57d723e1a9e2ce1d23865779c9d7ca887d69",
+      "image_bytes": 19065,
+      "source_sha256": "01a1a2e8bdacf3e760bafcdd91a4771014baf6d4ee8eb0bacbb33b31aa07e109",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التحليلات",
+          "rect": [
+            486,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الأرشيف",
+          "rect": [
+            79,
+            183,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقارير",
+          "rect": [
+            486,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المستندات",
+          "rect": [
+            79,
+            315.5,
+            395,
+            120.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-00-en",
+      "image_sha256": "3eeeacae4ab151e52356638a7aed9c67f12ebfa29d899e39ec097d3ed2c7d68e",
+      "image_bytes": 21222,
+      "source_sha256": "877c5b45c4b2a00cbacd378321d68a632f2e2301a4171384ca784feb5f014328",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Reports",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Documents",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Assets",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Alerts",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-01-ar",
+      "image_sha256": "d0062d6fcf5718c75aa28baec2f5edc686163352fd4117272457e18afb1ff9d3",
+      "image_bytes": 19285,
+      "source_sha256": "ef1f6d39584e056e69675014be06383e1297dd70e82bd7887387849b9a6b8e71",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المهام",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المشاريع",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الأعضاء",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المراجعات",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-02-en",
+      "image_sha256": "1b42c899ce3e951d5b7f9db31aa66986f8a9b360243addca3d7368692e35dd3a",
+      "image_bytes": 21861,
+      "source_sha256": "22cd87c6c4d8ebb307dc1be2bf14f21f82556044bf598f96a0bd8c1085ee178a",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Receipts",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Calendar",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Drafts",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Campaigns",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-03-ar",
+      "image_sha256": "166f86368a2d90d4796862ee023d579efd5aa69d4e8256a23757c8794bd3808f",
+      "image_bytes": 19253,
+      "source_sha256": "6590ca6deb9344e61fc9c69f50cf89f1e2c28b71e27ce86abcdbd2dce3631a34",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المخزون",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التحليلات",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الأرشيف",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التقارير",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-04-en",
+      "image_sha256": "5298fdf99e0fbc43b03bc8727423b8ad3b83dc36e40773a36b6491b6ea0fad20",
+      "image_bytes": 22844,
+      "source_sha256": "5fda55c70ec0ef1b44ee2277f87441e9608d3e5e3eafbf7d3032486e4d1c31fe",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Overview",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "History",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Templates",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Workflows",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-05-ar",
+      "image_sha256": "571ae94f3514c2280c96b22b04cc313c4e2bca9df36f172f753871721b4bff46",
+      "image_bytes": 19091,
+      "source_sha256": "1b949866f74c473e18f5d17e7fcfa711430f6828f396fb86aeec0707c8cd43ea",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الرسائل",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التصدير",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التفضيلات",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الإيصالات",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-06-en",
+      "image_sha256": "e8591ceb3e5bdc8eb05dc918f0b1df6fb371ae87de9e7fef8edeca7b2ff32817",
+      "image_bytes": 22099,
+      "source_sha256": "b2276d7a74a39d82f7d1a224b00f00a099adb41eb622090934c250b68d22c791",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Invoices",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Approvals",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Queues",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Inventory",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-07-ar",
+      "image_sha256": "06692b25dd3899914ae937fe2780de67986a1bf015b662a8b21c853c98cde417",
+      "image_bytes": 18709,
+      "source_sha256": "0503c3e86b22c8ed0ca1afdb77efdcb69956c53c2ab0dec14f4364d4f78db20f",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المستندات",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الملفات",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التنبيهات",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الرئيسية",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-08-en",
+      "image_sha256": "c827ae43f0ff359c33b8d6ccf2bf33082ffa56b4d736bb191b0cdec3c9311624",
+      "image_bytes": 22372,
+      "source_sha256": "0589b8674f037e226a7cf02d67f785760745f468a4675288f153c83db8acdf0e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Projects",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Members",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Reviews",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Messages",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-09-ar",
+      "image_sha256": "16a5e7e499b2d7ba6222c7ece582e786b3d56d19eafe675faadbaafc77561f61",
+      "image_bytes": 19082,
+      "source_sha256": "25e0ba70580487feb808b0f81081a89345832c7f5cfa51c92df5df03633aa7da",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التقويم",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المسودات",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الحملات",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الفواتير",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-10-en",
+      "image_sha256": "8a0dc995af08ce3743cc9369cd31ba540d918486721b1b1f8aec1910155ef6f5",
+      "image_bytes": 21648,
+      "source_sha256": "363a64e22249e3ee3c41de005251ff4186a18658f01c35e3e8f82a09ac9ac5e7",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Analytics",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Archive",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Reports",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Documents",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-11-ar",
+      "image_sha256": "857f0e776920f36174a8b696a50df5b79cad930e22210ca94bf97ad0faa34fe3",
+      "image_bytes": 18731,
+      "source_sha256": "ee87c4efa4b7cfe346256a36fb1430a2ab2de7ea05645b565b37d85c1309a2f4",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "السجل",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "القوالب",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المهام",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المشاريع",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-12-en",
+      "image_sha256": "20efd25cab6907fe319443157b21f40f97ffec439a6deaa8628ba4ccc252f79c",
+      "image_bytes": 22069,
+      "source_sha256": "56e80c907c61dca6eb35e4701ef091fe0815f55ffbe236b3b62958bb9ac69364",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Exports",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Preferences",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Receipts",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Calendar",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-13-ar",
+      "image_sha256": "6c159e1dbdb0fc7a2a2b7af8e8638946754c363dfe73ebf5934d89bdd1b99401",
+      "image_bytes": 19524,
+      "source_sha256": "aad40512123016ec4c9077bd63bb30b939f32b461ef874c6277092e078d397a7",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الموافقات",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الطوابير",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المخزون",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التحليلات",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-14-en",
+      "image_sha256": "8ae5aef9c2ebee39216e3bb1377828b40473dbc68fa15c09035b2b481d520d4e",
+      "image_bytes": 21527,
+      "source_sha256": "e0a42b99c17f14ea64a778fb77153063983825bca92d3f64cefe5dc5d5391043",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Assets",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Alerts",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Overview",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "History",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ember_catalog-15-ar",
+      "image_sha256": "14f3bafa91eea7491169c6ff8896c3d8ad90cedde4f68889a2fa1cad433999b8",
+      "image_bytes": 18947,
+      "source_sha256": "02ec1caf60f42075943c25037d0fc030db68e2d977febed4ddf845f005e9380b",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأعضاء",
+          "rect": [
+            486,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المراجعات",
+          "rect": [
+            79,
+            183,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرسائل",
+          "rect": [
+            486,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التصدير",
+          "rect": [
+            79,
+            332.5,
+            395,
+            137.5
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-00-en",
+      "image_sha256": "cbaf5ba042bc480134fb02c79fa29727d417343b6b29f5361a02b72e2cb9d81b",
+      "image_bytes": 28698,
+      "source_sha256": "2f77ad108e5b6a709f79ae8d5f7a7033ca3cdaa1da2647b0223778836c3c59ac",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Messages",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Exports",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Preferences",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Receipts",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-01-ar",
+      "image_sha256": "9557faf2a39c3e240994dfff032635810332300b0bfe1895fba1ce169a33f44f",
+      "image_bytes": 26467,
+      "source_sha256": "f65439e3310a6ccc94f790d13a189c195d7342c392c73a00083e03c1f44e069b",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الفواتير",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الموافقات",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الطوابير",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المخزون",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-02-en",
+      "image_sha256": "42238919aa4d385afdd38b0999667295328a9d24096702538cf034fa8053d6bd",
+      "image_bytes": 28789,
+      "source_sha256": "e86db4eb55d39de8e1a0093285a1be2b72347fa46802ff794e97f2ff461db96e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Documents",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Assets",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Alerts",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Overview",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-03-ar",
+      "image_sha256": "f019bdffd2bcc6214c1126a90da8920d5109aa448014c76320bb5a9aeced71bf",
+      "image_bytes": 26103,
+      "source_sha256": "aa9f6658ee5717114c231aef6887ba847a928b24163221f0592042f4e705c378",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المشاريع",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الأعضاء",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المراجعات",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الرسائل",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-04-en",
+      "image_sha256": "1c9869f48b5b286dc6d4d0382235c7a951d4992d7e1aa2721ec393dc72157a0c",
+      "image_bytes": 28242,
+      "source_sha256": "ca6b21434a256996e8766389afdc84699eb0fb5aed86de6765287adcfb965284",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Calendar",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Drafts",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Campaigns",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Invoices",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-05-ar",
+      "image_sha256": "0669e0ceeee19f1ecd6409fc58ceaf4f2715546ac68f1b33300647d2e39a204e",
+      "image_bytes": 26088,
+      "source_sha256": "471e09d7d444c0368200016f693d02ee23b9810a2097c33c6d3c800e52d3cbba",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التحليلات",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الأرشيف",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقارير",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المستندات",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-06-en",
+      "image_sha256": "a47d4a37220394bddb1a014f1da5b561df189db4dfdddb50dad0213de5591850",
+      "image_bytes": 28786,
+      "source_sha256": "7953db5b1aa99db75bdbb01d22278eece64c7092b73bd2f2c3c50b3d7133a2c3",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "History",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Templates",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Workflows",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Projects",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-07-ar",
+      "image_sha256": "bccf81f5859f6b5a871f2af0100ae45bcd01bba72ead300c718c1cc6d75228d8",
+      "image_bytes": 26265,
+      "source_sha256": "bb1fc6051b7a5a21a122825dc6def2ce2c61e18443a5d4f4072b5d68c7caa33e",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التصدير",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التفضيلات",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الإيصالات",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التقويم",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-08-en",
+      "image_sha256": "8999ed65d2ec79e8909b525c263b61c1458876f56146e30e0f1f8559bedc08aa",
+      "image_bytes": 28817,
+      "source_sha256": "00fb3c84e97022b5193c584676892a11574f11aa91720b08f84c4860cf0bcd94",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Approvals",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Queues",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Inventory",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Analytics",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-09-ar",
+      "image_sha256": "e203c7147d064b774ba8de68e4cbd12e9fc51ad42620546ad6a8c079a4685d25",
+      "image_bytes": 25339,
+      "source_sha256": "df7729e13138e8848a1a97c4ae662b635830bd5c1832645fc9cc7cd83b854971",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الملفات",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التنبيهات",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرئيسية",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "السجل",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-10-en",
+      "image_sha256": "4b1641789b4759a77baee4ec137d184091a5ae0f518d7bc7bceb70c389cd5592",
+      "image_bytes": 29230,
+      "source_sha256": "835e1a35cf9c28b10dfd21c2a1fb819fb70bf48f23cb3f6ec4ea99b3aa043989",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Members",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reviews",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Messages",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Exports",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-11-ar",
+      "image_sha256": "66956177d34cc3e0a476cb7ffa5e0af5c585115661aa8a19b5b9fb83dd8582c6",
+      "image_bytes": 26180,
+      "source_sha256": "2dee030621b47222cfbe3e52157603f75d50b7ed01db97c7a8835c99fef174ca",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المسودات",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الحملات",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الفواتير",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الموافقات",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-12-en",
+      "image_sha256": "f118dc842fce707c5f5705365dc1e592a280b7ae2cf2dc8c066663fefb79eac7",
+      "image_bytes": 28674,
+      "source_sha256": "aafbaebf9664e4d83260973e9a0949d299e674fd6b9d3a9c427fe564707b614e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Archive",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reports",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Documents",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Assets",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-13-ar",
+      "image_sha256": "4456de28fa72dc6b1ad142b4d56b26c25a7ec273bbfde88ac464a57c99a16ecb",
+      "image_bytes": 26104,
+      "source_sha256": "1dbe369f27337efca7b3ccdb06fae02778064b9ceb8f62220381995df80e32a0",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "القوالب",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المهام",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المشاريع",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأعضاء",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-14-en",
+      "image_sha256": "75ee85bff6a731d0fc58ff5dd321ab83172bdfd4bf2c0c18cfc71eb84da7f188",
+      "image_bytes": 28026,
+      "source_sha256": "ba31611ca99b023e0c3bb0eda0a44a4d1f01f8b720b5e9c8be22d7865e1b6635",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Preferences",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Receipts",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Calendar",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Drafts",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-cedrus_notices-15-ar",
+      "image_sha256": "498275c9a7cf085533ac13700f7858eeaec873507dcdc8a20871372e02da5f5f",
+      "image_bytes": 26327,
+      "source_sha256": "561e4b7ecb8b5d30600eddd7e39962bd63e3c2e7ca40216f6552b3c778a248ad",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الطوابير",
+          "rect": [
+            486,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المخزون",
+          "rect": [
+            191,
+            183,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التحليلات",
+          "rect": [
+            486,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأرشيف",
+          "rect": [
+            191,
+            323,
+            283,
+            128
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-00-en",
+      "image_sha256": "39944fe9ab5e5ad98da8f7a37455e80b6b3316860aee03b88d0ec5b4a4653cbc",
+      "image_bytes": 20426,
+      "source_sha256": "d83fb7757b7dde250141c154a6eb531d8f2a57fd4515ef931102ed3005cbb59b",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Analytics",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Archive",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Reports",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Documents",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-01-ar",
+      "image_sha256": "f953b22a110bce3b76e4902ef73fce39a847867e1b0d9df31af8fd2c5623488b",
+      "image_bytes": 18485,
+      "source_sha256": "775ff8280f536284f7e53bc7f0623756558e5a0b1855e7ccb01ee6346b5c828e",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "السجل",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "القوالب",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المهام",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المشاريع",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-02-en",
+      "image_sha256": "b7b8be251494ae716984096499528b5284d52a34e6672308b1748896ec40a3ec",
+      "image_bytes": 20017,
+      "source_sha256": "cd574f2f70d418bbb4a929e3f5d3c3a2a2f2b936955c9b62130247759d36914d",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Exports",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Preferences",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Receipts",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Calendar",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-03-ar",
+      "image_sha256": "f245469f223762ea33508965cfa676cfc4b9a68ce5d795dc58aeb8c07311d5e9",
+      "image_bytes": 18668,
+      "source_sha256": "8c7272c06bc23d7e5e1b8bdc9c09d1622a22240a9fcd563f934a2c93e200ce05",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الموافقات",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الطوابير",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المخزون",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التحليلات",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-04-en",
+      "image_sha256": "e1debc1006d944c6777fe04bc5cf8eaa19e0696f7feb5848d0dad9fb5a2fc5be",
+      "image_bytes": 19471,
+      "source_sha256": "7104f31cd72d6b81eb34cba2a0bc65562227f8ffadfd25a642390f2c4066d81c",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Assets",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Alerts",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Overview",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "History",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-05-ar",
+      "image_sha256": "b09824b6b817128013c2d155c2dd609be1c91bf4bae2a493a3566c6c72411d99",
+      "image_bytes": 18694,
+      "source_sha256": "48a5c7d3228d6030211c44d945555a8de402c12d088633255b6fc770606c5d54",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأعضاء",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المراجعات",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الرسائل",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التصدير",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-06-en",
+      "image_sha256": "98cb8d7e6204aec60cd3fdf45ad30292bf10353154a6642a2c5f1b359b77e107",
+      "image_bytes": 20158,
+      "source_sha256": "ff0293ad5aa81724a21820ce0fb3dedea0248ed126291237bf4cb2fabda2f232",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Drafts",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Campaigns",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Invoices",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Approvals",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-07-ar",
+      "image_sha256": "05f5ec0e031bd089147d8abd93ceca0c3c9724b5d523a17df226d630abaed3a0",
+      "image_bytes": 18481,
+      "source_sha256": "d9fdebbdc57671538172ff2db3ec0098657e4ce7175e3cd97422812ba1d5afbf",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الأرشيف",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التقارير",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المستندات",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الملفات",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-08-en",
+      "image_sha256": "130a5b01ca07c4f0266b10b0061fbaa63e5ea356e90ebea7b84608e7fe13f177",
+      "image_bytes": 20246,
+      "source_sha256": "445444815f346d1022cff598c7aadddbdc215868336a47d635feca815cb9c23d",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Templates",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Workflows",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Projects",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Members",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-09-ar",
+      "image_sha256": "ef4bb4bc430d5a52a977d8ebbea4bc08d0d4ae70ce7cdb5a366c501d6db04cff",
+      "image_bytes": 18720,
+      "source_sha256": "1410910e21bad45ca4e9ecb1b158a3e08645d48ada1a462a3899dcf0b5829025",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التفضيلات",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الإيصالات",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التقويم",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المسودات",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-10-en",
+      "image_sha256": "77ad4d7eb7fa28bb8c83ba31cebc72b521a5bf3b52eabeaffd0db86b987ec79d",
+      "image_bytes": 19566,
+      "source_sha256": "f1a57fbe20895ad02c46f139319f12ba1c3df27806871810347644dc09635149",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Queues",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Inventory",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Analytics",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Archive",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-11-ar",
+      "image_sha256": "5b05be2478e140a202a236ed1435c6acb38f340929686fd13433aa3086a3f0ca",
+      "image_bytes": 18177,
+      "source_sha256": "d44a50133d6d5988795a7b66953ba4ea058b9db6b50fb205020f9d4f4c4e38ff",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التنبيهات",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الرئيسية",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "السجل",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "القوالب",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-12-en",
+      "image_sha256": "1258b0a3579b57b0de333218dda38f6a32a6685efc837847455aa8a3b4859b69",
+      "image_bytes": 20090,
+      "source_sha256": "ce60f7e5418d0f1152d6526bbb229b271e270a572782bebb46444c668e02834e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Reviews",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Messages",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Exports",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Preferences",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-13-ar",
+      "image_sha256": "1c32d73e9eadefa9c08e15cad28e613bb6970b6e877b074f623272cf8f1001a4",
+      "image_bytes": 18232,
+      "source_sha256": "ed7209dd34d7e345d95c9174106fdce1872c2d9e5614827b612633ab174f784c",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الحملات",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الفواتير",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الموافقات",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الطوابير",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-14-en",
+      "image_sha256": "fe4b084655f27dcc95fd34b83734fd96564d0f1c12387971559f1c7f4671e5ac",
+      "image_bytes": 19633,
+      "source_sha256": "8219facd07dcac548eb4a29ca18c41919741d98d46968e715dec34a0cca8641e",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Reports",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Documents",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Assets",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Alerts",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-falcon_tasks-15-ar",
+      "image_sha256": "ca1d3444a87c978f1dbad4d1719a06d7e7ffd178f0d79dcbb33fe78ded4ef723",
+      "image_bytes": 18902,
+      "source_sha256": "a89325a6c6b40deb2a081cf90742c4903a57c8afe541fe11ead34b51a2720f1e",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المهام",
+          "rect": [
+            689.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المشاريع",
+          "rect": [
+            486,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الأعضاء",
+          "rect": [
+            282.5,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المراجعات",
+          "rect": [
+            79,
+            199.5,
+            191.5,
+            220
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-00-en",
+      "image_sha256": "29f566fe2a9e022c98d40092589e8d9e70efe3bd54020227d8931aafb4346476",
+      "image_bytes": 20109,
+      "source_sha256": "5fe1c81574ad9df4504e2a8309e8a236fca569ae118839ec58cbcc7204278727",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Members",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reviews",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Messages",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Exports",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-01-ar",
+      "image_sha256": "64755bde8ad48f5196ba6c18e987db0e238a49fb589ce29547de49cf4f387099",
+      "image_bytes": 17766,
+      "source_sha256": "f465a434ddcab1fc6a28e32d1c2fa0e9e2ba61ffa9104dc2d576b8254aeb2c1a",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المسودات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الحملات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الفواتير",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الموافقات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-02-en",
+      "image_sha256": "c11970d48728fd1ecd2985d622e8fd962fbab0659d9a3d7b802e0fdac4130e1b",
+      "image_bytes": 20270,
+      "source_sha256": "49c163695a9328a5f6075c329aee02cdac3793308b68861373e93d39ce1cc306",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Archive",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Reports",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Documents",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Assets",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-03-ar",
+      "image_sha256": "581f710783a0ac7f366db37baf5b0b61cccafd63e018ddb28d7b8ac38e1f0826",
+      "image_bytes": 17742,
+      "source_sha256": "043640c0a3d0f60a405cf68c4d64d3d690d54281fc438bf533dcbb0067590351",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "القوالب",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المهام",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المشاريع",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأعضاء",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-04-en",
+      "image_sha256": "3a0386da970273226e1fd98605ac7f96b4afbe3b04c3e9d9f512a788025aa858",
+      "image_bytes": 20030,
+      "source_sha256": "8f205ce3557bd471ae97009a60ba14fc0b44b38b2ea00dda541f162e2b9692f7",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Preferences",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Receipts",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Calendar",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Drafts",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-05-ar",
+      "image_sha256": "72b990dce18d06b9fa7f0fc4372e1a0162342c26fb2f4bd71677651ecda28bcb",
+      "image_bytes": 17823,
+      "source_sha256": "8ed28c7c5d42a55667b61ddb832eb5a4dacc68cf889c844cf7d721d82dac6b98",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الطوابير",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المخزون",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التحليلات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الأرشيف",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-06-en",
+      "image_sha256": "fed05b4a73beac58dea90ad5dc20bf000beafe1dde05357193f753aee1cbdf53",
+      "image_bytes": 19865,
+      "source_sha256": "fc278ea962518a0017b62074c22ec25ece67532a11b35a59e65ac1eabdc9a3ba",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Alerts",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Overview",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "History",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Templates",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-07-ar",
+      "image_sha256": "3a1a774ef9b2286184da2918ecbf724c1143c8ffa062e52adda777d750b70f31",
+      "image_bytes": 17760,
+      "source_sha256": "2648ecbabb165e06ae4603cb5a6105cff4e03484a6d36105802873579f2d4b16",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "المراجعات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الرسائل",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "التصدير",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التفضيلات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-08-en",
+      "image_sha256": "db2c2db465e35bf1f82043715ad7c76767592fe25827596bd77f282f38b2ba25",
+      "image_bytes": 20214,
+      "source_sha256": "72b898274bd14cceb66e78d7c1d801207c095eb55b20e0df27d707002f4f4f15",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Campaigns",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Invoices",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Approvals",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Queues",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-09-ar",
+      "image_sha256": "2f22a212d6325fd03201fd27a922fdcb008c157b82dfc714e1d136fdbde2d358",
+      "image_bytes": 17318,
+      "source_sha256": "91aca39fea2c07542b848b08a2acdde1d8701c26b7ef5135571cc6df41f05640",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "التقارير",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "المستندات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الملفات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "التنبيهات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-10-en",
+      "image_sha256": "181d9a7a6c9f7317025e6b7ad2e273cc38e75d9bdeaaf380d1002a9eb24633d7",
+      "image_bytes": 20666,
+      "source_sha256": "779ffef6843a0f909e8fb0d0c5ae6aec7986688c7c6a6e9469ad8ab87a4dab57",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Workflows",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Projects",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Members",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Reviews",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-11-ar",
+      "image_sha256": "0f9e6e9febac17a7a8a4c28f69b9877db8342a5258076f5ab0b9886e63d13072",
+      "image_bytes": 17756,
+      "source_sha256": "a84b53c9145a1d257bd9980aa0c62fd58bb5948b35d7d1b5299466c0125492d6",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الإيصالات",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "التقويم",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "المسودات",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "الحملات",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-12-en",
+      "image_sha256": "35694b17393fb02b68e64e16a74b466e4ccd95e12aeee00fe08486df1201b2d1",
+      "image_bytes": 20040,
+      "source_sha256": "a78b529ef31fe85e8dcd9dfd124c3c53dd9b8087d8b4559ea7aeb8d07c4780f1",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Inventory",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Analytics",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Archive",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Reports",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-13-ar",
+      "image_sha256": "e960771e900e96e85f6a126e652742ba13f5e7c279a0bcc4781b5ace6f7bc61b",
+      "image_bytes": 17317,
+      "source_sha256": "e66fc2379c701567596c1b0924f25e3c1b03d925f37fd162ddee69e4d8a408eb",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الرئيسية",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "السجل",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "القوالب",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المهام",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-14-en",
+      "image_sha256": "1c2a1d5651510a95530725363672b530548af48a10a8f4f9226dc968906b30c8",
+      "image_bytes": 20392,
+      "source_sha256": "24a19070c918bd8220c0ae11a30cee81218bf057247a3ed7b735ee366d628fb4",
+      "language": "en",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "Messages",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "Exports",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "Preferences",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "Receipts",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ribbon_reports-15-ar",
+      "image_sha256": "434b6a74d340bd0420421a5f54a750a7d2c5e28f401cc7596aac3e41e32d9c24",
+      "image_bytes": 17689,
+      "source_sha256": "a1cbf2a2eae6add1e39b077d3bfc12a92d4845319217a1708bca9e4c65d900f3",
+      "language": "ar",
+      "controls": [
+        {
+          "option_index": 0,
+          "name": "الفواتير",
+          "rect": [
+            689.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 1,
+          "name": "الموافقات",
+          "rect": [
+            486,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 2,
+          "name": "الطوابير",
+          "rect": [
+            282.5,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        },
+        {
+          "option_index": 3,
+          "name": "المخزون",
+          "rect": [
+            79,
+            183,
+            191.5,
+            57
+          ],
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

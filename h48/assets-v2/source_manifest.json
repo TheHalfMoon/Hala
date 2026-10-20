@@ -1,0 +1,1930 @@
+{
+  "all_original_cc0": true,
+  "blind_holdout": false,
+  "external_benchmark": false,
+  "model_qualified": false,
+  "schema": "hala.h48.original-train-only-visual-scenes.v2",
+  "sources": [
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Open Overview in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-00-en",
+      "labels": [
+        "Overview",
+        "History",
+        "Templates",
+        "Workflows"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "63f047007f7ee9cce488b25142c8698437f382dddc6f34c7696cd86fd8ae7685",
+      "target_option_index": 0
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "اختر الإيصالات من إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-01-ar",
+      "labels": [
+        "الرسائل",
+        "التصدير",
+        "التفضيلات",
+        "الإيصالات"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "803b5c57811804bc0860fc4b281a0d394106eed50f8f691a46c064a7b83b733a",
+      "target_option_index": 3
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Navigate to Queues in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-02-en",
+      "labels": [
+        "Invoices",
+        "Approvals",
+        "Queues",
+        "Inventory"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "b1d697f77d320925db34e457df52d334dc953451f558d6d3960ffb155c13fdb1",
+      "target_option_index": 2
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "حدد الملفات في إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-03-ar",
+      "labels": [
+        "المستندات",
+        "الملفات",
+        "التنبيهات",
+        "الرئيسية"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "efc7cf08918b29450add2ce492382367c59ca8ec87e5888bbd245af5f66de8b6",
+      "target_option_index": 1
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Open Projects in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-04-en",
+      "labels": [
+        "Projects",
+        "Members",
+        "Reviews",
+        "Messages"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "5ec0b17383d46059e65a2580ab563a6b7e2bc72004fb2facb0fa8a53c13f5e0c",
+      "target_option_index": 0
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "اختر الفواتير من إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-05-ar",
+      "labels": [
+        "التقويم",
+        "المسودات",
+        "الحملات",
+        "الفواتير"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "9889b987545e727b884fdce841c4eb438e4b26336184ff227f8a4d89264f0201",
+      "target_option_index": 3
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Navigate to Reports in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-06-en",
+      "labels": [
+        "Analytics",
+        "Archive",
+        "Reports",
+        "Documents"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "6a19dd4915d373332c6a8c46e05a64e1234383cce1036c5f7980707e4155a654",
+      "target_option_index": 2
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "حدد القوالب في إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-07-ar",
+      "labels": [
+        "السجل",
+        "القوالب",
+        "المهام",
+        "المشاريع"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "bb1e1e8f493a66f7d5875c02e0383c64c1d308be70d142f5272f2a555c417c5d",
+      "target_option_index": 1
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Open Exports in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-08-en",
+      "labels": [
+        "Exports",
+        "Preferences",
+        "Receipts",
+        "Calendar"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "6318b257c3348588d5ad3901b9bb5e01bc642bc4973c731a8d15b43a98b7d7c0",
+      "target_option_index": 0
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "اختر التحليلات من إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-09-ar",
+      "labels": [
+        "الموافقات",
+        "الطوابير",
+        "المخزون",
+        "التحليلات"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "42ebab56f61f918a4b3aff7dd74ac4441ef08b442156b4bfd8323658a28ddb48",
+      "target_option_index": 3
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Navigate to Overview in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-10-en",
+      "labels": [
+        "Assets",
+        "Alerts",
+        "Overview",
+        "History"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "4230db22fdad9ce1ba61708754972a91640e42dbed1728ad174806eb387a289d",
+      "target_option_index": 2
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "حدد المراجعات في إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-11-ar",
+      "labels": [
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل",
+        "التصدير"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "c233093a8b5d34f0f06b5be32e47c5ce79454b8fe9aa14dd2df0425173dc6bf6",
+      "target_option_index": 1
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Open Drafts in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-12-en",
+      "labels": [
+        "Drafts",
+        "Campaigns",
+        "Invoices",
+        "Approvals"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "c6fd11af0afb15098fadd400d32eb15c15a4e08da4da709a32ca1462e80b8ace",
+      "target_option_index": 0
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "اختر الملفات من إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-13-ar",
+      "labels": [
+        "الأرشيف",
+        "التقارير",
+        "المستندات",
+        "الملفات"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "98a2fb1e6f2f6566860bb918d67fd4017baeddbcc36459ef3f18d8d2b13ea5b9",
+      "target_option_index": 3
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "Navigate to Projects in Cobalt Dispatch.",
+      "id": "h48-cobalt_dispatch-14-en",
+      "labels": [
+        "Templates",
+        "Workflows",
+        "Projects",
+        "Members"
+      ],
+      "language": "en",
+      "layout": "sidebar",
+      "source_sha256": "f39fc85d56cce4e4f30e87f3b3a007dda36598e21611521241f480a958d47861",
+      "target_option_index": 2
+    },
+    {
+      "family": "cobalt_dispatch",
+      "goal": "حدد الإيصالات في إرسال كوبالت.",
+      "id": "h48-cobalt_dispatch-15-ar",
+      "labels": [
+        "التفضيلات",
+        "الإيصالات",
+        "التقويم",
+        "المسودات"
+      ],
+      "language": "ar",
+      "layout": "sidebar",
+      "source_sha256": "65f4eac351c403cc5159c63dddeacc9614b8cf765a9814b5651dd743d037c803",
+      "target_option_index": 1
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Open Drafts in Lumen Archive.",
+      "id": "h48-lumen_archive-00-en",
+      "labels": [
+        "Calendar",
+        "Drafts",
+        "Campaigns",
+        "Invoices"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "9226f1afdbf5c873d606d10ee896e29fd1b3b6ca79bfbfa52b0044ca9b9d78a8",
+      "target_option_index": 1
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "اختر التحليلات من أرشيف لومين.",
+      "id": "h48-lumen_archive-01-ar",
+      "labels": [
+        "التحليلات",
+        "الأرشيف",
+        "التقارير",
+        "المستندات"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "e7a8828b405d6d49529b491cb87f8f97d8ba6700a5690da80bcef1461f276b00",
+      "target_option_index": 0
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Navigate to Projects in Lumen Archive.",
+      "id": "h48-lumen_archive-02-en",
+      "labels": [
+        "History",
+        "Templates",
+        "Workflows",
+        "Projects"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "242994fd718f77df530713eff98bd2acaf411f84eeb9f9559c07bc13e210284d",
+      "target_option_index": 3
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "حدد الإيصالات في أرشيف لومين.",
+      "id": "h48-lumen_archive-03-ar",
+      "labels": [
+        "التصدير",
+        "التفضيلات",
+        "الإيصالات",
+        "التقويم"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "51f15f9c2bb73bcb9c761221064bc82e99e2ff97ae61660796d4c179dbb95fcc",
+      "target_option_index": 2
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Open Queues in Lumen Archive.",
+      "id": "h48-lumen_archive-04-en",
+      "labels": [
+        "Approvals",
+        "Queues",
+        "Inventory",
+        "Analytics"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "54f852362e83700e9f209c93c7bc7d7b2adedc50497951aa66360841a6b5c448",
+      "target_option_index": 1
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "اختر الملفات من أرشيف لومين.",
+      "id": "h48-lumen_archive-05-ar",
+      "labels": [
+        "الملفات",
+        "التنبيهات",
+        "الرئيسية",
+        "السجل"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "2a34f0fbda818e5a6c18fe9ac11e5fc337f9b509e4585995b449f0c65f23a221",
+      "target_option_index": 0
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Navigate to Exports in Lumen Archive.",
+      "id": "h48-lumen_archive-06-en",
+      "labels": [
+        "Members",
+        "Reviews",
+        "Messages",
+        "Exports"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "5160467e058a64dce8e5cdedb48393b5c3f18d39f1dee636c56c963386f6c119",
+      "target_option_index": 3
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "حدد الفواتير في أرشيف لومين.",
+      "id": "h48-lumen_archive-07-ar",
+      "labels": [
+        "المسودات",
+        "الحملات",
+        "الفواتير",
+        "الموافقات"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "93b670537bd49eafa0f04fbbf61c1b38e87eebce02b47cbb656a45c70c78610b",
+      "target_option_index": 2
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Open Reports in Lumen Archive.",
+      "id": "h48-lumen_archive-08-en",
+      "labels": [
+        "Archive",
+        "Reports",
+        "Documents",
+        "Assets"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "41ee4833fbebe2a7710c127044d2fbc33e76071a515ea5059a90d311a2bdb8a6",
+      "target_option_index": 1
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "اختر القوالب من أرشيف لومين.",
+      "id": "h48-lumen_archive-09-ar",
+      "labels": [
+        "القوالب",
+        "المهام",
+        "المشاريع",
+        "الأعضاء"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "e491e11819cab10f2d37d5ff855f4333b5c2a71f5eb26d8ad1a9633b1eeab088",
+      "target_option_index": 0
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Navigate to Drafts in Lumen Archive.",
+      "id": "h48-lumen_archive-10-en",
+      "labels": [
+        "Preferences",
+        "Receipts",
+        "Calendar",
+        "Drafts"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "aad28d4d0b06797a714bf2fdf85b8c29ef0e089338a12a281dd5c4d9b7e6e58f",
+      "target_option_index": 3
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "حدد التحليلات في أرشيف لومين.",
+      "id": "h48-lumen_archive-11-ar",
+      "labels": [
+        "الطوابير",
+        "المخزون",
+        "التحليلات",
+        "الأرشيف"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "8551b8b05d6b506708550e73751fb1ad71002f66e57ccbeded14ba876530dbda",
+      "target_option_index": 2
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Open Overview in Lumen Archive.",
+      "id": "h48-lumen_archive-12-en",
+      "labels": [
+        "Alerts",
+        "Overview",
+        "History",
+        "Templates"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "968e383c2053ce1984363c80518ffa2075eb7ce4617c60782e8ac24b6203aead",
+      "target_option_index": 1
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "اختر المراجعات من أرشيف لومين.",
+      "id": "h48-lumen_archive-13-ar",
+      "labels": [
+        "المراجعات",
+        "الرسائل",
+        "التصدير",
+        "التفضيلات"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "b94a86764eadbc7591ec1ceb0475c96d0e246fd6fc9f283f2ed7142910fc8022",
+      "target_option_index": 0
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "Navigate to Queues in Lumen Archive.",
+      "id": "h48-lumen_archive-14-en",
+      "labels": [
+        "Campaigns",
+        "Invoices",
+        "Approvals",
+        "Queues"
+      ],
+      "language": "en",
+      "layout": "table",
+      "source_sha256": "1931c6a566c23b7b4013998abc1087467413c7390eb3a192fafa0b279a22b151",
+      "target_option_index": 3
+    },
+    {
+      "family": "lumen_archive",
+      "goal": "حدد الملفات في أرشيف لومين.",
+      "id": "h48-lumen_archive-15-ar",
+      "labels": [
+        "التقارير",
+        "المستندات",
+        "الملفات",
+        "التنبيهات"
+      ],
+      "language": "ar",
+      "layout": "table",
+      "source_sha256": "1f922364d2b0e4b3cb2fffe47c972274829e281883c2292b93844b886bab7408",
+      "target_option_index": 2
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Open Overview in Sunrise Operations.",
+      "id": "h48-sunrise_ops-00-en",
+      "labels": [
+        "Assets",
+        "Alerts",
+        "Overview",
+        "History"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "ae31501d919e44f587dae6e476bcd0d0fce32dc62cdb531ee375ed7e65d0e07e",
+      "target_option_index": 2
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "اختر المراجعات من عمليات شروق.",
+      "id": "h48-sunrise_ops-01-ar",
+      "labels": [
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل",
+        "التصدير"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "e09c1bddf47725a11232de2f0664aa4baec988cb8f2ec5fcd4b00ca15b092cbf",
+      "target_option_index": 1
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Navigate to Drafts in Sunrise Operations.",
+      "id": "h48-sunrise_ops-02-en",
+      "labels": [
+        "Drafts",
+        "Campaigns",
+        "Invoices",
+        "Approvals"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "79a77f1db4ae98700acf78fef678a4e80a08dbf311b34bc93624079989cb7707",
+      "target_option_index": 0
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "حدد الملفات في عمليات شروق.",
+      "id": "h48-sunrise_ops-03-ar",
+      "labels": [
+        "الأرشيف",
+        "التقارير",
+        "المستندات",
+        "الملفات"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "046cbffd0249c920d95073da1d1ca867899207be10f87dc6854bca2ed65c6923",
+      "target_option_index": 3
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Open Projects in Sunrise Operations.",
+      "id": "h48-sunrise_ops-04-en",
+      "labels": [
+        "Templates",
+        "Workflows",
+        "Projects",
+        "Members"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "084fc10530c0f0b7f905976bc6b3919a3a126b5e6b4a57ab74d7ba57e58c8513",
+      "target_option_index": 2
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "اختر الإيصالات من عمليات شروق.",
+      "id": "h48-sunrise_ops-05-ar",
+      "labels": [
+        "التفضيلات",
+        "الإيصالات",
+        "التقويم",
+        "المسودات"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "0bd6b9edb51910bfaaaefe01c82ed0e8915cb4a2d9734dc7c71722b5ab544d6b",
+      "target_option_index": 1
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Navigate to Queues in Sunrise Operations.",
+      "id": "h48-sunrise_ops-06-en",
+      "labels": [
+        "Queues",
+        "Inventory",
+        "Analytics",
+        "Archive"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "be63e1de5a063cf619bbf32e5ecf73f1d8c47d871015a7b7fed3cc2496a3ce62",
+      "target_option_index": 0
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "حدد القوالب في عمليات شروق.",
+      "id": "h48-sunrise_ops-07-ar",
+      "labels": [
+        "التنبيهات",
+        "الرئيسية",
+        "السجل",
+        "القوالب"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "06709d8c0046ff5f53987ce11904b2b95f28c5a0b91c0d43145b735136010583",
+      "target_option_index": 3
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Open Exports in Sunrise Operations.",
+      "id": "h48-sunrise_ops-08-en",
+      "labels": [
+        "Reviews",
+        "Messages",
+        "Exports",
+        "Preferences"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "08c24952ed70b592b3869e497d5bb7855493ca100f12d6a8f0edea67a850b52d",
+      "target_option_index": 2
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "اختر الفواتير من عمليات شروق.",
+      "id": "h48-sunrise_ops-09-ar",
+      "labels": [
+        "الحملات",
+        "الفواتير",
+        "الموافقات",
+        "الطوابير"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "c3aa998237ee4ad83f51b96eb4af6e2de66d3659d9b053110696b4bdd80f6327",
+      "target_option_index": 1
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Navigate to Reports in Sunrise Operations.",
+      "id": "h48-sunrise_ops-10-en",
+      "labels": [
+        "Reports",
+        "Documents",
+        "Assets",
+        "Alerts"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "c3d741d19c413e13ea69aa4b1a09f9d8710b689d8609500c07c03813e8a9a300",
+      "target_option_index": 0
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "حدد المراجعات في عمليات شروق.",
+      "id": "h48-sunrise_ops-11-ar",
+      "labels": [
+        "المهام",
+        "المشاريع",
+        "الأعضاء",
+        "المراجعات"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "aca27541047da0949c097ba88b8d7662ea5a37b0f268ab08b04da840b6735925",
+      "target_option_index": 3
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Open Drafts in Sunrise Operations.",
+      "id": "h48-sunrise_ops-12-en",
+      "labels": [
+        "Receipts",
+        "Calendar",
+        "Drafts",
+        "Campaigns"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "c09282a74b59e302cce014ffe4fa7b24ff33a8b51b8533e19ecc3d10c3af113a",
+      "target_option_index": 2
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "اختر التحليلات من عمليات شروق.",
+      "id": "h48-sunrise_ops-13-ar",
+      "labels": [
+        "المخزون",
+        "التحليلات",
+        "الأرشيف",
+        "التقارير"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "44c6c56d8fef3abb66d960e9c611cc6d8880332bae73fb7d4eba704a154f3694",
+      "target_option_index": 1
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "Navigate to Overview in Sunrise Operations.",
+      "id": "h48-sunrise_ops-14-en",
+      "labels": [
+        "Overview",
+        "History",
+        "Templates",
+        "Workflows"
+      ],
+      "language": "en",
+      "layout": "toolbar",
+      "source_sha256": "957eda7572331b3352e0a6f2576b71ab336578cb65a5897621d2e4256f7f2bd7",
+      "target_option_index": 0
+    },
+    {
+      "family": "sunrise_ops",
+      "goal": "حدد الإيصالات في عمليات شروق.",
+      "id": "h48-sunrise_ops-15-ar",
+      "labels": [
+        "الرسائل",
+        "التصدير",
+        "التفضيلات",
+        "الإيصالات"
+      ],
+      "language": "ar",
+      "layout": "toolbar",
+      "source_sha256": "31f20444b251ef10e00e9e4101f50fec02da9af24c44ae20d64142bb794ae6f0",
+      "target_option_index": 3
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Open Drafts in Marble Settings.",
+      "id": "h48-marble_settings-00-en",
+      "labels": [
+        "Preferences",
+        "Receipts",
+        "Calendar",
+        "Drafts"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "f09c5628ebcc42b8efd70dadeebc81a5eeaa0c7f32c58a9b193759082c1beaf1",
+      "target_option_index": 3
+    },
+    {
+      "family": "marble_settings",
+      "goal": "اختر التحليلات من إعدادات ماربل.",
+      "id": "h48-marble_settings-01-ar",
+      "labels": [
+        "الطوابير",
+        "المخزون",
+        "التحليلات",
+        "الأرشيف"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "ab62e1f453497224979f765f8817157918b8e792cc44ca327c89488eb590d37f",
+      "target_option_index": 2
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Navigate to Overview in Marble Settings.",
+      "id": "h48-marble_settings-02-en",
+      "labels": [
+        "Alerts",
+        "Overview",
+        "History",
+        "Templates"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "20c7fd2c0e85b2b2259dee055d3ae5149a1a3059509421afa5dda4577469187c",
+      "target_option_index": 1
+    },
+    {
+      "family": "marble_settings",
+      "goal": "حدد المراجعات في إعدادات ماربل.",
+      "id": "h48-marble_settings-03-ar",
+      "labels": [
+        "المراجعات",
+        "الرسائل",
+        "التصدير",
+        "التفضيلات"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "5aba351b34887eaa29bf8807d0a8fbc342d8968a7733164c571dc72147489a8e",
+      "target_option_index": 0
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Open Queues in Marble Settings.",
+      "id": "h48-marble_settings-04-en",
+      "labels": [
+        "Campaigns",
+        "Invoices",
+        "Approvals",
+        "Queues"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "07afc99ad26caeb99d7e32c7624e73d5ecfc9db776d2b6899c3a267f213e52f4",
+      "target_option_index": 3
+    },
+    {
+      "family": "marble_settings",
+      "goal": "اختر الملفات من إعدادات ماربل.",
+      "id": "h48-marble_settings-05-ar",
+      "labels": [
+        "التقارير",
+        "المستندات",
+        "الملفات",
+        "التنبيهات"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "a558739e16070cdbface5d251633034f466c479a42856d73c6500f1b3db4d8e2",
+      "target_option_index": 2
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Navigate to Projects in Marble Settings.",
+      "id": "h48-marble_settings-06-en",
+      "labels": [
+        "Workflows",
+        "Projects",
+        "Members",
+        "Reviews"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "6073be2585a795da9ccfd4e35b34259f651f550e430db4bca6091c1cb858de3f",
+      "target_option_index": 1
+    },
+    {
+      "family": "marble_settings",
+      "goal": "حدد الإيصالات في إعدادات ماربل.",
+      "id": "h48-marble_settings-07-ar",
+      "labels": [
+        "الإيصالات",
+        "التقويم",
+        "المسودات",
+        "الحملات"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "78d5b02e9f3b0a3963171060a1635e10306dd92c47f9a40ed911ef4c4d787c8e",
+      "target_option_index": 0
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Open Reports in Marble Settings.",
+      "id": "h48-marble_settings-08-en",
+      "labels": [
+        "Inventory",
+        "Analytics",
+        "Archive",
+        "Reports"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "2c2cbde9ac6f686e8b339d78359deca9b3e020d156caa5944778c0a0101f9718",
+      "target_option_index": 3
+    },
+    {
+      "family": "marble_settings",
+      "goal": "اختر القوالب من إعدادات ماربل.",
+      "id": "h48-marble_settings-09-ar",
+      "labels": [
+        "الرئيسية",
+        "السجل",
+        "القوالب",
+        "المهام"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "4d3c547b3c5be520241ea23ec9d9a912cbe36189c9438466a19e3e2dc8dfca0b",
+      "target_option_index": 2
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Navigate to Exports in Marble Settings.",
+      "id": "h48-marble_settings-10-en",
+      "labels": [
+        "Messages",
+        "Exports",
+        "Preferences",
+        "Receipts"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "d90f73d4d9df8200512035780cc2cfd6fe0922f94995e7493e1d50c77f29bf08",
+      "target_option_index": 1
+    },
+    {
+      "family": "marble_settings",
+      "goal": "حدد الفواتير في إعدادات ماربل.",
+      "id": "h48-marble_settings-11-ar",
+      "labels": [
+        "الفواتير",
+        "الموافقات",
+        "الطوابير",
+        "المخزون"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "b2596798ccaf3749de0a2dd7cb671b7ace25efd6c8741d314da2bb59431a8def",
+      "target_option_index": 0
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Open Overview in Marble Settings.",
+      "id": "h48-marble_settings-12-en",
+      "labels": [
+        "Documents",
+        "Assets",
+        "Alerts",
+        "Overview"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "6ca33ee1020629a7acb1de713abd34c35317e88b2a41a9eaef2377e0dfa76271",
+      "target_option_index": 3
+    },
+    {
+      "family": "marble_settings",
+      "goal": "اختر المراجعات من إعدادات ماربل.",
+      "id": "h48-marble_settings-13-ar",
+      "labels": [
+        "المشاريع",
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "6486b85f079a860ea316b66aeba6b4399710dfc21a90e8d65397f363803ccdf6",
+      "target_option_index": 2
+    },
+    {
+      "family": "marble_settings",
+      "goal": "Navigate to Drafts in Marble Settings.",
+      "id": "h48-marble_settings-14-en",
+      "labels": [
+        "Calendar",
+        "Drafts",
+        "Campaigns",
+        "Invoices"
+      ],
+      "language": "en",
+      "layout": "settings",
+      "source_sha256": "eb8e916d86a60107161f75340373efaa9d4484023dfa1e02a5cbe8af3c8e53c3",
+      "target_option_index": 1
+    },
+    {
+      "family": "marble_settings",
+      "goal": "حدد التحليلات في إعدادات ماربل.",
+      "id": "h48-marble_settings-15-ar",
+      "labels": [
+        "التحليلات",
+        "الأرشيف",
+        "التقارير",
+        "المستندات"
+      ],
+      "language": "ar",
+      "layout": "settings",
+      "source_sha256": "01a1a2e8bdacf3e760bafcdd91a4771014baf6d4ee8eb0bacbb33b31aa07e109",
+      "target_option_index": 0
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Open Reports in Ember Catalog.",
+      "id": "h48-ember_catalog-00-en",
+      "labels": [
+        "Reports",
+        "Documents",
+        "Assets",
+        "Alerts"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "877c5b45c4b2a00cbacd378321d68a632f2e2301a4171384ca784feb5f014328",
+      "target_option_index": 0
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "اختر المراجعات من كتالوج إمبر.",
+      "id": "h48-ember_catalog-01-ar",
+      "labels": [
+        "المهام",
+        "المشاريع",
+        "الأعضاء",
+        "المراجعات"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "ef1f6d39584e056e69675014be06383e1297dd70e82bd7887387849b9a6b8e71",
+      "target_option_index": 3
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Navigate to Drafts in Ember Catalog.",
+      "id": "h48-ember_catalog-02-en",
+      "labels": [
+        "Receipts",
+        "Calendar",
+        "Drafts",
+        "Campaigns"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "22cd87c6c4d8ebb307dc1be2bf14f21f82556044bf598f96a0bd8c1085ee178a",
+      "target_option_index": 2
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "حدد التحليلات في كتالوج إمبر.",
+      "id": "h48-ember_catalog-03-ar",
+      "labels": [
+        "المخزون",
+        "التحليلات",
+        "الأرشيف",
+        "التقارير"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "6590ca6deb9344e61fc9c69f50cf89f1e2c28b71e27ce86abcdbd2dce3631a34",
+      "target_option_index": 1
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Open Overview in Ember Catalog.",
+      "id": "h48-ember_catalog-04-en",
+      "labels": [
+        "Overview",
+        "History",
+        "Templates",
+        "Workflows"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "5fda55c70ec0ef1b44ee2277f87441e9608d3e5e3eafbf7d3032486e4d1c31fe",
+      "target_option_index": 0
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "اختر الإيصالات من كتالوج إمبر.",
+      "id": "h48-ember_catalog-05-ar",
+      "labels": [
+        "الرسائل",
+        "التصدير",
+        "التفضيلات",
+        "الإيصالات"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "1b949866f74c473e18f5d17e7fcfa711430f6828f396fb86aeec0707c8cd43ea",
+      "target_option_index": 3
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Navigate to Queues in Ember Catalog.",
+      "id": "h48-ember_catalog-06-en",
+      "labels": [
+        "Invoices",
+        "Approvals",
+        "Queues",
+        "Inventory"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "b2276d7a74a39d82f7d1a224b00f00a099adb41eb622090934c250b68d22c791",
+      "target_option_index": 2
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "حدد الملفات في كتالوج إمبر.",
+      "id": "h48-ember_catalog-07-ar",
+      "labels": [
+        "المستندات",
+        "الملفات",
+        "التنبيهات",
+        "الرئيسية"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "0503c3e86b22c8ed0ca1afdb77efdcb69956c53c2ab0dec14f4364d4f78db20f",
+      "target_option_index": 1
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Open Projects in Ember Catalog.",
+      "id": "h48-ember_catalog-08-en",
+      "labels": [
+        "Projects",
+        "Members",
+        "Reviews",
+        "Messages"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "0589b8674f037e226a7cf02d67f785760745f468a4675288f153c83db8acdf0e",
+      "target_option_index": 0
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "اختر الفواتير من كتالوج إمبر.",
+      "id": "h48-ember_catalog-09-ar",
+      "labels": [
+        "التقويم",
+        "المسودات",
+        "الحملات",
+        "الفواتير"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "25e0ba70580487feb808b0f81081a89345832c7f5cfa51c92df5df03633aa7da",
+      "target_option_index": 3
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Navigate to Reports in Ember Catalog.",
+      "id": "h48-ember_catalog-10-en",
+      "labels": [
+        "Analytics",
+        "Archive",
+        "Reports",
+        "Documents"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "363a64e22249e3ee3c41de005251ff4186a18658f01c35e3e8f82a09ac9ac5e7",
+      "target_option_index": 2
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "حدد القوالب في كتالوج إمبر.",
+      "id": "h48-ember_catalog-11-ar",
+      "labels": [
+        "السجل",
+        "القوالب",
+        "المهام",
+        "المشاريع"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "ee87c4efa4b7cfe346256a36fb1430a2ab2de7ea05645b565b37d85c1309a2f4",
+      "target_option_index": 1
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Open Exports in Ember Catalog.",
+      "id": "h48-ember_catalog-12-en",
+      "labels": [
+        "Exports",
+        "Preferences",
+        "Receipts",
+        "Calendar"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "56e80c907c61dca6eb35e4701ef091fe0815f55ffbe236b3b62958bb9ac69364",
+      "target_option_index": 0
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "اختر التحليلات من كتالوج إمبر.",
+      "id": "h48-ember_catalog-13-ar",
+      "labels": [
+        "الموافقات",
+        "الطوابير",
+        "المخزون",
+        "التحليلات"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "aad40512123016ec4c9077bd63bb30b939f32b461ef874c6277092e078d397a7",
+      "target_option_index": 3
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "Navigate to Overview in Ember Catalog.",
+      "id": "h48-ember_catalog-14-en",
+      "labels": [
+        "Assets",
+        "Alerts",
+        "Overview",
+        "History"
+      ],
+      "language": "en",
+      "layout": "grid",
+      "source_sha256": "e0a42b99c17f14ea64a778fb77153063983825bca92d3f64cefe5dc5d5391043",
+      "target_option_index": 2
+    },
+    {
+      "family": "ember_catalog",
+      "goal": "حدد المراجعات في كتالوج إمبر.",
+      "id": "h48-ember_catalog-15-ar",
+      "labels": [
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل",
+        "التصدير"
+      ],
+      "language": "ar",
+      "layout": "grid",
+      "source_sha256": "02ec1caf60f42075943c25037d0fc030db68e2d977febed4ddf845f005e9380b",
+      "target_option_index": 1
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Open Exports in Cedrus Notices.",
+      "id": "h48-cedrus_notices-00-en",
+      "labels": [
+        "Messages",
+        "Exports",
+        "Preferences",
+        "Receipts"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "2f77ad108e5b6a709f79ae8d5f7a7033ca3cdaa1da2647b0223778836c3c59ac",
+      "target_option_index": 1
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "اختر الفواتير من إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-01-ar",
+      "labels": [
+        "الفواتير",
+        "الموافقات",
+        "الطوابير",
+        "المخزون"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "f65439e3310a6ccc94f790d13a189c195d7342c392c73a00083e03c1f44e069b",
+      "target_option_index": 0
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Navigate to Overview in Cedrus Notices.",
+      "id": "h48-cedrus_notices-02-en",
+      "labels": [
+        "Documents",
+        "Assets",
+        "Alerts",
+        "Overview"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "e86db4eb55d39de8e1a0093285a1be2b72347fa46802ff794e97f2ff461db96e",
+      "target_option_index": 3
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "حدد المراجعات في إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-03-ar",
+      "labels": [
+        "المشاريع",
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "aa9f6658ee5717114c231aef6887ba847a928b24163221f0592042f4e705c378",
+      "target_option_index": 2
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Open Drafts in Cedrus Notices.",
+      "id": "h48-cedrus_notices-04-en",
+      "labels": [
+        "Calendar",
+        "Drafts",
+        "Campaigns",
+        "Invoices"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "ca6b21434a256996e8766389afdc84699eb0fb5aed86de6765287adcfb965284",
+      "target_option_index": 1
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "اختر التحليلات من إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-05-ar",
+      "labels": [
+        "التحليلات",
+        "الأرشيف",
+        "التقارير",
+        "المستندات"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "471e09d7d444c0368200016f693d02ee23b9810a2097c33c6d3c800e52d3cbba",
+      "target_option_index": 0
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Navigate to Projects in Cedrus Notices.",
+      "id": "h48-cedrus_notices-06-en",
+      "labels": [
+        "History",
+        "Templates",
+        "Workflows",
+        "Projects"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "7953db5b1aa99db75bdbb01d22278eece64c7092b73bd2f2c3c50b3d7133a2c3",
+      "target_option_index": 3
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "حدد الإيصالات في إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-07-ar",
+      "labels": [
+        "التصدير",
+        "التفضيلات",
+        "الإيصالات",
+        "التقويم"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "bb1fc6051b7a5a21a122825dc6def2ce2c61e18443a5d4f4072b5d68c7caa33e",
+      "target_option_index": 2
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Open Queues in Cedrus Notices.",
+      "id": "h48-cedrus_notices-08-en",
+      "labels": [
+        "Approvals",
+        "Queues",
+        "Inventory",
+        "Analytics"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "00fb3c84e97022b5193c584676892a11574f11aa91720b08f84c4860cf0bcd94",
+      "target_option_index": 1
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "اختر الملفات من إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-09-ar",
+      "labels": [
+        "الملفات",
+        "التنبيهات",
+        "الرئيسية",
+        "السجل"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "df7729e13138e8848a1a97c4ae662b635830bd5c1832645fc9cc7cd83b854971",
+      "target_option_index": 0
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Navigate to Exports in Cedrus Notices.",
+      "id": "h48-cedrus_notices-10-en",
+      "labels": [
+        "Members",
+        "Reviews",
+        "Messages",
+        "Exports"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "835e1a35cf9c28b10dfd21c2a1fb819fb70bf48f23cb3f6ec4ea99b3aa043989",
+      "target_option_index": 3
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "حدد الفواتير في إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-11-ar",
+      "labels": [
+        "المسودات",
+        "الحملات",
+        "الفواتير",
+        "الموافقات"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "2dee030621b47222cfbe3e52157603f75d50b7ed01db97c7a8835c99fef174ca",
+      "target_option_index": 2
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Open Reports in Cedrus Notices.",
+      "id": "h48-cedrus_notices-12-en",
+      "labels": [
+        "Archive",
+        "Reports",
+        "Documents",
+        "Assets"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "aafbaebf9664e4d83260973e9a0949d299e674fd6b9d3a9c427fe564707b614e",
+      "target_option_index": 1
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "اختر القوالب من إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-13-ar",
+      "labels": [
+        "القوالب",
+        "المهام",
+        "المشاريع",
+        "الأعضاء"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "1dbe369f27337efca7b3ccdb06fae02778064b9ceb8f62220381995df80e32a0",
+      "target_option_index": 0
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "Navigate to Drafts in Cedrus Notices.",
+      "id": "h48-cedrus_notices-14-en",
+      "labels": [
+        "Preferences",
+        "Receipts",
+        "Calendar",
+        "Drafts"
+      ],
+      "language": "en",
+      "layout": "dialog",
+      "source_sha256": "ba31611ca99b023e0c3bb0eda0a44a4d1f01f8b720b5e9c8be22d7865e1b6635",
+      "target_option_index": 3
+    },
+    {
+      "family": "cedrus_notices",
+      "goal": "حدد التحليلات في إشعارات سيدروس.",
+      "id": "h48-cedrus_notices-15-ar",
+      "labels": [
+        "الطوابير",
+        "المخزون",
+        "التحليلات",
+        "الأرشيف"
+      ],
+      "language": "ar",
+      "layout": "dialog",
+      "source_sha256": "561e4b7ecb8b5d30600eddd7e39962bd63e3c2e7ca40216f6552b3c778a248ad",
+      "target_option_index": 2
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Open Reports in Falcon Tasks.",
+      "id": "h48-falcon_tasks-00-en",
+      "labels": [
+        "Analytics",
+        "Archive",
+        "Reports",
+        "Documents"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "d83fb7757b7dde250141c154a6eb531d8f2a57fd4515ef931102ed3005cbb59b",
+      "target_option_index": 2
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "اختر القوالب من مهام فالكون.",
+      "id": "h48-falcon_tasks-01-ar",
+      "labels": [
+        "السجل",
+        "القوالب",
+        "المهام",
+        "المشاريع"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "775ff8280f536284f7e53bc7f0623756558e5a0b1855e7ccb01ee6346b5c828e",
+      "target_option_index": 1
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Navigate to Exports in Falcon Tasks.",
+      "id": "h48-falcon_tasks-02-en",
+      "labels": [
+        "Exports",
+        "Preferences",
+        "Receipts",
+        "Calendar"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "cd574f2f70d418bbb4a929e3f5d3c3a2a2f2b936955c9b62130247759d36914d",
+      "target_option_index": 0
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "حدد التحليلات في مهام فالكون.",
+      "id": "h48-falcon_tasks-03-ar",
+      "labels": [
+        "الموافقات",
+        "الطوابير",
+        "المخزون",
+        "التحليلات"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "8c7272c06bc23d7e5e1b8bdc9c09d1622a22240a9fcd563f934a2c93e200ce05",
+      "target_option_index": 3
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Open Overview in Falcon Tasks.",
+      "id": "h48-falcon_tasks-04-en",
+      "labels": [
+        "Assets",
+        "Alerts",
+        "Overview",
+        "History"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "7104f31cd72d6b81eb34cba2a0bc65562227f8ffadfd25a642390f2c4066d81c",
+      "target_option_index": 2
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "اختر المراجعات من مهام فالكون.",
+      "id": "h48-falcon_tasks-05-ar",
+      "labels": [
+        "الأعضاء",
+        "المراجعات",
+        "الرسائل",
+        "التصدير"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "48a5c7d3228d6030211c44d945555a8de402c12d088633255b6fc770606c5d54",
+      "target_option_index": 1
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Navigate to Drafts in Falcon Tasks.",
+      "id": "h48-falcon_tasks-06-en",
+      "labels": [
+        "Drafts",
+        "Campaigns",
+        "Invoices",
+        "Approvals"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "ff0293ad5aa81724a21820ce0fb3dedea0248ed126291237bf4cb2fabda2f232",
+      "target_option_index": 0
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "حدد الملفات في مهام فالكون.",
+      "id": "h48-falcon_tasks-07-ar",
+      "labels": [
+        "الأرشيف",
+        "التقارير",
+        "المستندات",
+        "الملفات"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "d9fdebbdc57671538172ff2db3ec0098657e4ce7175e3cd97422812ba1d5afbf",
+      "target_option_index": 3
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Open Projects in Falcon Tasks.",
+      "id": "h48-falcon_tasks-08-en",
+      "labels": [
+        "Templates",
+        "Workflows",
+        "Projects",
+        "Members"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "445444815f346d1022cff598c7aadddbdc215868336a47d635feca815cb9c23d",
+      "target_option_index": 2
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "اختر الإيصالات من مهام فالكون.",
+      "id": "h48-falcon_tasks-09-ar",
+      "labels": [
+        "التفضيلات",
+        "الإيصالات",
+        "التقويم",
+        "المسودات"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "1410910e21bad45ca4e9ecb1b158a3e08645d48ada1a462a3899dcf0b5829025",
+      "target_option_index": 1
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Navigate to Queues in Falcon Tasks.",
+      "id": "h48-falcon_tasks-10-en",
+      "labels": [
+        "Queues",
+        "Inventory",
+        "Analytics",
+        "Archive"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "f1a57fbe20895ad02c46f139319f12ba1c3df27806871810347644dc09635149",
+      "target_option_index": 0
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "حدد القوالب في مهام فالكون.",
+      "id": "h48-falcon_tasks-11-ar",
+      "labels": [
+        "التنبيهات",
+        "الرئيسية",
+        "السجل",
+        "القوالب"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "d44a50133d6d5988795a7b66953ba4ea058b9db6b50fb205020f9d4f4c4e38ff",
+      "target_option_index": 3
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Open Exports in Falcon Tasks.",
+      "id": "h48-falcon_tasks-12-en",
+      "labels": [
+        "Reviews",
+        "Messages",
+        "Exports",
+        "Preferences"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "ce60f7e5418d0f1152d6526bbb229b271e270a572782bebb46444c668e02834e",
+      "target_option_index": 2
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "اختر الفواتير من مهام فالكون.",
+      "id": "h48-falcon_tasks-13-ar",
+      "labels": [
+        "الحملات",
+        "الفواتير",
+        "الموافقات",
+        "الطوابير"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "ed7209dd34d7e345d95c9174106fdce1872c2d9e5614827b612633ab174f784c",
+      "target_option_index": 1
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "Navigate to Reports in Falcon Tasks.",
+      "id": "h48-falcon_tasks-14-en",
+      "labels": [
+        "Reports",
+        "Documents",
+        "Assets",
+        "Alerts"
+      ],
+      "language": "en",
+      "layout": "kanban",
+      "source_sha256": "8219facd07dcac548eb4a29ca18c41919741d98d46968e715dec34a0cca8641e",
+      "target_option_index": 0
+    },
+    {
+      "family": "falcon_tasks",
+      "goal": "حدد المراجعات في مهام فالكون.",
+      "id": "h48-falcon_tasks-15-ar",
+      "labels": [
+        "المهام",
+        "المشاريع",
+        "الأعضاء",
+        "المراجعات"
+      ],
+      "language": "ar",
+      "layout": "kanban",
+      "source_sha256": "a89325a6c6b40deb2a081cf90742c4903a57c8afe541fe11ead34b51a2720f1e",
+      "target_option_index": 3
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Open Exports in Ribbon Reports.",
+      "id": "h48-ribbon_reports-00-en",
+      "labels": [
+        "Members",
+        "Reviews",
+        "Messages",
+        "Exports"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "5fe1c81574ad9df4504e2a8309e8a236fca569ae118839ec58cbcc7204278727",
+      "target_option_index": 3
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "اختر الفواتير من تقارير ريبون.",
+      "id": "h48-ribbon_reports-01-ar",
+      "labels": [
+        "المسودات",
+        "الحملات",
+        "الفواتير",
+        "الموافقات"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "f465a434ddcab1fc6a28e32d1c2fa0e9e2ba61ffa9104dc2d576b8254aeb2c1a",
+      "target_option_index": 2
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Navigate to Reports in Ribbon Reports.",
+      "id": "h48-ribbon_reports-02-en",
+      "labels": [
+        "Archive",
+        "Reports",
+        "Documents",
+        "Assets"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "49c163695a9328a5f6075c329aee02cdac3793308b68861373e93d39ce1cc306",
+      "target_option_index": 1
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "حدد القوالب في تقارير ريبون.",
+      "id": "h48-ribbon_reports-03-ar",
+      "labels": [
+        "القوالب",
+        "المهام",
+        "المشاريع",
+        "الأعضاء"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "043640c0a3d0f60a405cf68c4d64d3d690d54281fc438bf533dcbb0067590351",
+      "target_option_index": 0
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Open Drafts in Ribbon Reports.",
+      "id": "h48-ribbon_reports-04-en",
+      "labels": [
+        "Preferences",
+        "Receipts",
+        "Calendar",
+        "Drafts"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "8f205ce3557bd471ae97009a60ba14fc0b44b38b2ea00dda541f162e2b9692f7",
+      "target_option_index": 3
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "اختر التحليلات من تقارير ريبون.",
+      "id": "h48-ribbon_reports-05-ar",
+      "labels": [
+        "الطوابير",
+        "المخزون",
+        "التحليلات",
+        "الأرشيف"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "8ed28c7c5d42a55667b61ddb832eb5a4dacc68cf889c844cf7d721d82dac6b98",
+      "target_option_index": 2
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Navigate to Overview in Ribbon Reports.",
+      "id": "h48-ribbon_reports-06-en",
+      "labels": [
+        "Alerts",
+        "Overview",
+        "History",
+        "Templates"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "fc278ea962518a0017b62074c22ec25ece67532a11b35a59e65ac1eabdc9a3ba",
+      "target_option_index": 1
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "حدد المراجعات في تقارير ريبون.",
+      "id": "h48-ribbon_reports-07-ar",
+      "labels": [
+        "المراجعات",
+        "الرسائل",
+        "التصدير",
+        "التفضيلات"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "2648ecbabb165e06ae4603cb5a6105cff4e03484a6d36105802873579f2d4b16",
+      "target_option_index": 0
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Open Queues in Ribbon Reports.",
+      "id": "h48-ribbon_reports-08-en",
+      "labels": [
+        "Campaigns",
+        "Invoices",
+        "Approvals",
+        "Queues"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "72b898274bd14cceb66e78d7c1d801207c095eb55b20e0df27d707002f4f4f15",
+      "target_option_index": 3
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "اختر الملفات من تقارير ريبون.",
+      "id": "h48-ribbon_reports-09-ar",
+      "labels": [
+        "التقارير",
+        "المستندات",
+        "الملفات",
+        "التنبيهات"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "91aca39fea2c07542b848b08a2acdde1d8701c26b7ef5135571cc6df41f05640",
+      "target_option_index": 2
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Navigate to Projects in Ribbon Reports.",
+      "id": "h48-ribbon_reports-10-en",
+      "labels": [
+        "Workflows",
+        "Projects",
+        "Members",
+        "Reviews"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "779ffef6843a0f909e8fb0d0c5ae6aec7986688c7c6a6e9469ad8ab87a4dab57",
+      "target_option_index": 1
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "حدد الإيصالات في تقارير ريبون.",
+      "id": "h48-ribbon_reports-11-ar",
+      "labels": [
+        "الإيصالات",
+        "التقويم",
+        "المسودات",
+        "الحملات"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "a84b53c9145a1d257bd9980aa0c62fd58bb5948b35d7d1b5299466c0125492d6",
+      "target_option_index": 0
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Open Reports in Ribbon Reports.",
+      "id": "h48-ribbon_reports-12-en",
+      "labels": [
+        "Inventory",
+        "Analytics",
+        "Archive",
+        "Reports"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "a78b529ef31fe85e8dcd9dfd124c3c53dd9b8087d8b4559ea7aeb8d07c4780f1",
+      "target_option_index": 3
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "اختر القوالب من تقارير ريبون.",
+      "id": "h48-ribbon_reports-13-ar",
+      "labels": [
+        "الرئيسية",
+        "السجل",
+        "القوالب",
+        "المهام"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "e66fc2379c701567596c1b0924f25e3c1b03d925f37fd162ddee69e4d8a408eb",
+      "target_option_index": 2
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "Navigate to Exports in Ribbon Reports.",
+      "id": "h48-ribbon_reports-14-en",
+      "labels": [
+        "Messages",
+        "Exports",
+        "Preferences",
+        "Receipts"
+      ],
+      "language": "en",
+      "layout": "tabs",
+      "source_sha256": "24a19070c918bd8220c0ae11a30cee81218bf057247a3ed7b735ee366d628fb4",
+      "target_option_index": 1
+    },
+    {
+      "family": "ribbon_reports",
+      "goal": "حدد الفواتير في تقارير ريبون.",
+      "id": "h48-ribbon_reports-15-ar",
+      "labels": [
+        "الفواتير",
+        "الموافقات",
+        "الطوابير",
+        "المخزون"
+      ],
+      "language": "ar",
+      "layout": "tabs",
+      "source_sha256": "a1cbf2a2eae6add1e39b077d3bfc12a92d4845319217a1708bca9e4c65d900f3",
+      "target_option_index": 0
+    }
+  ],
+  "train_only": true
+}

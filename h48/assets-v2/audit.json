@@ -1,0 +1,23 @@
+{
+  "arabic": 64,
+  "browser_capture_sha256": "a0cd0f7b39d7985765d4d7416c032d9d4b6ccc9f4ce81cab4c5990182f57378d",
+  "control_boxes_checked": 512,
+  "english": 64,
+  "genuine_training_samples": 128,
+  "independent_blind_test": false,
+  "model_trained": false,
+  "original_chromium_pngs": 128,
+  "original_families": [
+    "cedrus_notices",
+    "cobalt_dispatch",
+    "ember_catalog",
+    "falcon_tasks",
+    "lumen_archive",
+    "marble_settings",
+    "ribbon_reports",
+    "sunrise_ops"
+  ],
+  "real_app_or_benchmark_results": false,
+  "schema": "hala.h48.actual-browser-training-audit.v1",
+  "source_manifest_sha256": "c8cc31061031c2f3310515e8d248fcee2b74f58707c7f19bb1b5cf098189d4b8"
+}
