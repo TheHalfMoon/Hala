@@ -1,0 +1,690 @@
+{
+  "cases": [
+    {
+      "case_id": "h37-makerspace-en-toolbar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-en-toolbar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-en-sidebar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-en-sidebar-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-en-grid-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-en-grid-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-en-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-en-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-ar-toolbar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-ar-toolbar-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-ar-sidebar-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-ar-sidebar-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-ar-grid-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-ar-grid-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-makerspace-ar-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-makerspace-ar-table-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-en-toolbar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-en-toolbar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-en-sidebar-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-en-sidebar-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-en-grid-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-en-grid-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-en-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-en-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-ar-toolbar-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-ar-toolbar-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-ar-sidebar-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-ar-sidebar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-ar-grid-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-ar-grid-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "grid",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-community_theater-ar-table-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-community_theater-ar-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "dev",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-toolbar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-toolbar-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-sidebar-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-sidebar-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-grid-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-grid-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-en-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-toolbar-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-toolbar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-sidebar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-sidebar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-grid-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-grid-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-trail_maintenance-ar-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-en-toolbar-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-en-toolbar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-en-sidebar-v0",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-en-sidebar-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-en-grid-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-en-grid-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "en",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-en-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-en-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "en",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-ar-toolbar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-ar-toolbar-v1",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "toolbar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-ar-sidebar-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-ar-sidebar-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "sidebar",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-ar-grid-v0",
+      "category": "unbound_rejected",
+      "geometry_valid": false,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-ar-grid-v1",
+      "category": "wrong_unique_rejected",
+      "geometry_valid": true,
+      "guard_proposed": false,
+      "language": "ar",
+      "layout": "grid",
+      "split": "test",
+      "target_hit": false
+    },
+    {
+      "case_id": "h37-library_workshops-ar-table-v0",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    },
+    {
+      "case_id": "h37-library_workshops-ar-table-v1",
+      "category": "correct_retained",
+      "geometry_valid": true,
+      "guard_proposed": true,
+      "language": "ar",
+      "layout": "table",
+      "split": "test",
+      "target_hit": true
+    }
+  ],
+  "counts": {
+    "correct_retained": 32,
+    "unbound_rejected": 16,
+    "wrong_unique_rejected": 16
+  },
+  "denominator": 64,
+  "execution_authorized": false,
+  "h37_audit_sha256": "987c8338342faaf8d2718288623a9f485d058acdde0f21f5f3133befaa1451f2",
+  "h37_model_source_sha": "4c061e9c2e15df0306062b5a5666c6e0d7697502",
+  "h37_raw_sha256": "40b88ceb592446630817b9562238b40765b371fac61ccb4c06b427fab92cef1d",
+  "independent_blind_test": false,
+  "languages": {
+    "ar": {
+      "correct_retained": 14,
+      "unbound_rejected": 10,
+      "wrong_unique_rejected": 8
+    },
+    "en": {
+      "correct_retained": 18,
+      "unbound_rejected": 6,
+      "wrong_unique_rejected": 8
+    }
+  },
+  "layouts": {
+    "grid": {
+      "correct_retained": 3,
+      "unbound_rejected": 9,
+      "wrong_unique_rejected": 4
+    },
+    "sidebar": {
+      "correct_retained": 6,
+      "wrong_unique_rejected": 10
+    },
+    "table": {
+      "correct_retained": 14,
+      "wrong_unique_rejected": 2
+    },
+    "toolbar": {
+      "correct_retained": 9,
+      "unbound_rejected": 7
+    }
+  },
+  "model_improved": false,
+  "native_actions": false,
+  "retrospective_public_authored_synthetic": true,
+  "schema": "hala.h38.exact_label_guard_h37_retrospective.v1"
+}
