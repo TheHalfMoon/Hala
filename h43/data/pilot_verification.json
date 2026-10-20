@@ -1,0 +1,422 @@
+{
+  "cases": [
+    {
+      "baseline_rejected": true,
+      "family": "atlas_supply",
+      "golden_reaches_goal": true,
+      "id": "h43-atlas_supply-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "atlas_supply",
+      "golden_reaches_goal": true,
+      "id": "h43-atlas_supply-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "atlas_supply",
+      "golden_reaches_goal": true,
+      "id": "h43-atlas_supply-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "atlas_supply",
+      "golden_reaches_goal": true,
+      "id": "h43-atlas_supply-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "cedar_rooms",
+      "golden_reaches_goal": true,
+      "id": "h43-cedar_rooms-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "cedar_rooms",
+      "golden_reaches_goal": true,
+      "id": "h43-cedar_rooms-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "cedar_rooms",
+      "golden_reaches_goal": true,
+      "id": "h43-cedar_rooms-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "cedar_rooms",
+      "golden_reaches_goal": true,
+      "id": "h43-cedar_rooms-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "orbit_lending",
+      "golden_reaches_goal": true,
+      "id": "h43-orbit_lending-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "orbit_lending",
+      "golden_reaches_goal": true,
+      "id": "h43-orbit_lending-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "orbit_lending",
+      "golden_reaches_goal": true,
+      "id": "h43-orbit_lending-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "orbit_lending",
+      "golden_reaches_goal": true,
+      "id": "h43-orbit_lending-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "delta_staffing",
+      "golden_reaches_goal": true,
+      "id": "h43-delta_staffing-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "delta_staffing",
+      "golden_reaches_goal": true,
+      "id": "h43-delta_staffing-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "delta_staffing",
+      "golden_reaches_goal": true,
+      "id": "h43-delta_staffing-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "delta_staffing",
+      "golden_reaches_goal": true,
+      "id": "h43-delta_staffing-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "authoring"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "harbor_inventory",
+      "golden_reaches_goal": true,
+      "id": "h43-harbor_inventory-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "harbor_inventory",
+      "golden_reaches_goal": true,
+      "id": "h43-harbor_inventory-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "harbor_inventory",
+      "golden_reaches_goal": true,
+      "id": "h43-harbor_inventory-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "harbor_inventory",
+      "golden_reaches_goal": true,
+      "id": "h43-harbor_inventory-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "summit_scheduling",
+      "golden_reaches_goal": true,
+      "id": "h43-summit_scheduling-00-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "summit_scheduling",
+      "golden_reaches_goal": true,
+      "id": "h43-summit_scheduling-01-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "summit_scheduling",
+      "golden_reaches_goal": true,
+      "id": "h43-summit_scheduling-02-en",
+      "language": "en",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    },
+    {
+      "baseline_rejected": true,
+      "family": "summit_scheduling",
+      "golden_reaches_goal": true,
+      "id": "h43-summit_scheduling-03-ar",
+      "language": "ar",
+      "native_actions": false,
+      "near_misses_rejected": [
+        "premature_confirmation",
+        "skip_confirmation",
+        "unrelated_mutation",
+        "wrong_item",
+        "wrong_item_after_selection",
+        "wrong_quantity"
+      ],
+      "split": "dev"
+    }
+  ],
+  "gui_images": false,
+  "independent_holdout_qualified": false,
+  "model_trained": false,
+  "native_actions": false,
+  "negative_replays": 168,
+  "positive_replays": 24,
+  "public_authoring_count": 16,
+  "public_dev_count": 8,
+  "schema": "hala.h43.state-verifier-report.v1",
+  "source_case_count": 24
+}
