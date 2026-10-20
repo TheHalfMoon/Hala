@@ -1,0 +1,165 @@
+[{"stream_name":"stderr","time":6.708688191,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":6.708731996,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":7.666989173,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.667012763,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.667023209,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.667035808,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.282488995,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.282521503,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.282526577,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.282530632,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":10.776491173,"data":"H37_SOURCE_CONFIRMED 4c061e9c2e15df0306062b5a5666c6e0d7697502 FILES 152\n"}
+,{"stream_name":"stderr","time":44.367737632,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":44.571165407,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":44.571189408,"data":"\n"}
+,{"stream_name":"stderr","time":44.571193082,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":80.004059606,"data":"\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\n"}
+,{"stream_name":"stderr","time":80.780687557,"data":"\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 1/625 [00:00\u003c08:10,  1.27it/s]\rLoading weights:  25%|██▍       | 154/625 [00:00\u003c00:02, 235.39it/s]\rLoading weights:   0%|          | 1/625 [00:00\u003c08:10,  1.27it/s]\rLoading weights:  25%|██▍       | 154/625 [00:00\u003c00:02, 235.39it/s]\n"}
+,{"stream_name":"stderr","time":81.232632644,"data":"\rLoading weights:   0%|          | 1/625 [00:00\u003c08:10,  1.27it/s]\rLoading weights:  25%|██▍       | 154/625 [00:00\u003c00:02, 235.39it/s]\rLoading weights:  39%|███▊      | 242/625 [00:01\u003c00:01, 242.36it/s]\rLoading weights:  39%|███▊      | 242/625 [00:01\u003c00:01, 242.36it/s]\n"}
+,{"stream_name":"stderr","time":81.473307587,"data":"\rLoading weights:  39%|███▊      | 242/625 [00:01\u003c00:01, 242.36it/s]\rLoading weights:  48%|████▊     | 302/625 [00:01\u003c00:01, 244.31it/s]\rLoading weights:  64%|██████▍   | 402/625 [00:01\u003c00:00, 356.33it/s]\rLoading weights:  48%|████▊     | 302/625 [00:01\u003c00:01, 244.31it/s]\rLoading weights:  64%|██████▍   | 402/625 [00:01\u003c00:00, 356.33it/s]\n"}
+,{"stream_name":"stderr","time":81.637277176,"data":"\rLoading weights:  48%|████▊     | 302/625 [00:01\u003c00:01, 244.31it/s]\rLoading weights:  64%|██████▍   | 402/625 [00:01\u003c00:00, 356.33it/s]\rLoading weights:  84%|████████▎ | 522/625 [00:01\u003c00:00, 502.48it/s]\rLoading weights:  97%|█████████▋| 604/625 [00:01\u003c00:00, 559.76it/s]\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 338.31it/s]\n"}
+,{"stream_name":"stderr","time":81.678312048,"data":"\rLoading weights:  84%|████████▎ | 522/625 [00:01\u003c00:00, 502.48it/s]\rLoading weights:  97%|█████████▋| 604/625 [00:01\u003c00:00, 559.76it/s]\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 338.31it/s]\n"}
+,{"stream_name":"stderr","time":81.678343848,"data":"\n"}
+,{"stream_name":"stderr","time":81.678349156,"data":"\rLoading weights:  84%|████████▎ | 522/625 [00:01\u003c00:00, 502.48it/s]\rLoading weights:  97%|█████████▋| 604/625 [00:01\u003c00:00, 559.76it/s]\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 338.31it/s]\n"}
+,{"stream_name":"stdout","time":86.31603766,"data":"H37_BROWSER 1 h37-makerspace-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":86.518323767,"data":"H37_BROWSER 1 h37-makerspace-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":87.176755958,"data":"H37_BROWSER 2 h37-makerspace-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":87.379521788,"data":"H37_BROWSER 2 h37-makerspace-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":88.019040695,"data":"H37_BROWSER 3 h37-makerspace-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":88.22185545,"data":"H37_BROWSER 3 h37-makerspace-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":88.868922181,"data":"H37_BROWSER 4 h37-makerspace-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":89.071548747,"data":"H37_BROWSER 4 h37-makerspace-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":89.717865425,"data":"H37_BROWSER 5 h37-makerspace-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":89.920598483,"data":"H37_BROWSER 5 h37-makerspace-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":90.561889034,"data":"H37_BROWSER 6 h37-makerspace-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":90.764887173,"data":"H37_BROWSER 6 h37-makerspace-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":91.393925894,"data":"H37_BROWSER 7 h37-makerspace-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":91.596725733,"data":"H37_BROWSER 7 h37-makerspace-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":92.240038048,"data":"H37_BROWSER 8 h37-makerspace-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":92.44277355,"data":"H37_BROWSER 8 h37-makerspace-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":93.128374665,"data":"H37_BROWSER 9 h37-makerspace-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":93.331338887,"data":"H37_BROWSER 9 h37-makerspace-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":93.984851235,"data":"H37_BROWSER 10 h37-makerspace-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":94.187759471,"data":"H37_BROWSER 10 h37-makerspace-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":94.842597094,"data":"H37_BROWSER 11 h37-makerspace-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":95.044365548,"data":"H37_BROWSER 11 h37-makerspace-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":95.706077903,"data":"H37_BROWSER 12 h37-makerspace-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":95.908130342,"data":"H37_BROWSER 12 h37-makerspace-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":96.58861236,"data":"H37_BROWSER 13 h37-makerspace-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":96.791023258,"data":"H37_BROWSER 13 h37-makerspace-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":97.438626295,"data":"H37_BROWSER 14 h37-makerspace-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":97.640933537,"data":"H37_BROWSER 14 h37-makerspace-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":98.258862783,"data":"H37_BROWSER 15 h37-makerspace-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":98.46111739,"data":"H37_BROWSER 15 h37-makerspace-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":99.085767197,"data":"H37_BROWSER 16 h37-makerspace-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":99.288187221,"data":"H37_BROWSER 16 h37-makerspace-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":99.964117388,"data":"H37_BROWSER 17 h37-community_theater-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":100.166081876,"data":"H37_BROWSER 17 h37-community_theater-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":100.842799834,"data":"H37_BROWSER 18 h37-community_theater-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":101.045015344,"data":"H37_BROWSER 18 h37-community_theater-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":101.698184399,"data":"H37_BROWSER 19 h37-community_theater-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":101.900449265,"data":"H37_BROWSER 19 h37-community_theater-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":102.550485784,"data":"H37_BROWSER 20 h37-community_theater-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":102.752865421,"data":"H37_BROWSER 20 h37-community_theater-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":103.39440025,"data":"H37_BROWSER 21 h37-community_theater-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":103.59687814,"data":"H37_BROWSER 21 h37-community_theater-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":104.258569651,"data":"H37_BROWSER 22 h37-community_theater-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":104.460692565,"data":"H37_BROWSER 22 h37-community_theater-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":105.117932599,"data":"H37_BROWSER 23 h37-community_theater-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":105.320776716,"data":"H37_BROWSER 23 h37-community_theater-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":105.985947545,"data":"H37_BROWSER 24 h37-community_theater-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":106.188711604,"data":"H37_BROWSER 24 h37-community_theater-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":106.844933334,"data":"H37_BROWSER 25 h37-community_theater-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":107.047177148,"data":"H37_BROWSER 25 h37-community_theater-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":107.697051347,"data":"H37_BROWSER 26 h37-community_theater-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":107.899776418,"data":"H37_BROWSER 26 h37-community_theater-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":108.570685616,"data":"H37_BROWSER 27 h37-community_theater-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":108.773718355,"data":"H37_BROWSER 27 h37-community_theater-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":109.43251705,"data":"H37_BROWSER 28 h37-community_theater-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":109.63554313,"data":"H37_BROWSER 28 h37-community_theater-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":110.26427482,"data":"H37_BROWSER 29 h37-community_theater-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":110.470827623,"data":"H37_BROWSER 29 h37-community_theater-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":111.164950018,"data":"H37_BROWSER 30 h37-community_theater-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":111.367896243,"data":"H37_BROWSER 30 h37-community_theater-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":111.99805629,"data":"H37_BROWSER 31 h37-community_theater-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":112.201070143,"data":"H37_BROWSER 31 h37-community_theater-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":112.823778734,"data":"H37_BROWSER 32 h37-community_theater-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":113.026637188,"data":"H37_BROWSER 32 h37-community_theater-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":113.681589285,"data":"H37_BROWSER 33 h37-trail_maintenance-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":113.884471333,"data":"H37_BROWSER 33 h37-trail_maintenance-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":114.534520412,"data":"H37_BROWSER 34 h37-trail_maintenance-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":114.737328768,"data":"H37_BROWSER 34 h37-trail_maintenance-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":115.391266224,"data":"H37_BROWSER 35 h37-trail_maintenance-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":115.594135691,"data":"H37_BROWSER 35 h37-trail_maintenance-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":116.249795384,"data":"H37_BROWSER 36 h37-trail_maintenance-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":116.452667118,"data":"H37_BROWSER 36 h37-trail_maintenance-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":117.105684312,"data":"H37_BROWSER 37 h37-trail_maintenance-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":117.308588932,"data":"H37_BROWSER 37 h37-trail_maintenance-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":117.964708011,"data":"H37_BROWSER 38 h37-trail_maintenance-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":118.167467081,"data":"H37_BROWSER 38 h37-trail_maintenance-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":118.818586216,"data":"H37_BROWSER 39 h37-trail_maintenance-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":119.021290081,"data":"H37_BROWSER 39 h37-trail_maintenance-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":119.684223256,"data":"H37_BROWSER 40 h37-trail_maintenance-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":119.88696824,"data":"H37_BROWSER 40 h37-trail_maintenance-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":120.548775931,"data":"H37_BROWSER 41 h37-trail_maintenance-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":120.751862934,"data":"H37_BROWSER 41 h37-trail_maintenance-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":121.466121165,"data":"H37_BROWSER 42 h37-trail_maintenance-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":121.668653181,"data":"H37_BROWSER 42 h37-trail_maintenance-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":122.325879944,"data":"H37_BROWSER 43 h37-trail_maintenance-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":122.52860451,"data":"H37_BROWSER 43 h37-trail_maintenance-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":123.183845811,"data":"H37_BROWSER 44 h37-trail_maintenance-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":123.386965822,"data":"H37_BROWSER 44 h37-trail_maintenance-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":124.020488592,"data":"H37_BROWSER 45 h37-trail_maintenance-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":124.22339138,"data":"H37_BROWSER 45 h37-trail_maintenance-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":124.8306219,"data":"H37_BROWSER 46 h37-trail_maintenance-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":125.033193692,"data":"H37_BROWSER 46 h37-trail_maintenance-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":125.657884086,"data":"H37_BROWSER 47 h37-trail_maintenance-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":125.860845542,"data":"H37_BROWSER 47 h37-trail_maintenance-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":126.486805399,"data":"H37_BROWSER 48 h37-trail_maintenance-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":126.689679122,"data":"H37_BROWSER 48 h37-trail_maintenance-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":127.307307622,"data":"H37_BROWSER 49 h37-library_workshops-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":127.509219209,"data":"H37_BROWSER 49 h37-library_workshops-en-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":128.176367738,"data":"H37_BROWSER 50 h37-library_workshops-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":128.379069874,"data":"H37_BROWSER 50 h37-library_workshops-en-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":129.047238161,"data":"H37_BROWSER 51 h37-library_workshops-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":129.250141405,"data":"H37_BROWSER 51 h37-library_workshops-en-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":129.925791437,"data":"H37_BROWSER 52 h37-library_workshops-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":130.128685452,"data":"H37_BROWSER 52 h37-library_workshops-en-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":130.814530545,"data":"H37_BROWSER 53 h37-library_workshops-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":131.017132672,"data":"H37_BROWSER 53 h37-library_workshops-en-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":131.6919831,"data":"H37_BROWSER 54 h37-library_workshops-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":131.89453778,"data":"H37_BROWSER 54 h37-library_workshops-en-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":132.528985483,"data":"H37_BROWSER 55 h37-library_workshops-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":132.732092336,"data":"H37_BROWSER 55 h37-library_workshops-en-table-v0 retained\n"}
+,{"stream_name":"stdout","time":133.368196871,"data":"H37_BROWSER 56 h37-library_workshops-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":133.571009147,"data":"H37_BROWSER 56 h37-library_workshops-en-table-v1 retained\n"}
+,{"stream_name":"stdout","time":134.249700448,"data":"H37_BROWSER 57 h37-library_workshops-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":134.452637405,"data":"H37_BROWSER 57 h37-library_workshops-ar-toolbar-v0 retained\n"}
+,{"stream_name":"stdout","time":135.132568888,"data":"H37_BROWSER 58 h37-library_workshops-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":135.335358299,"data":"H37_BROWSER 58 h37-library_workshops-ar-toolbar-v1 retained\n"}
+,{"stream_name":"stdout","time":136.02973259,"data":"H37_BROWSER 59 h37-library_workshops-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":136.232523225,"data":"H37_BROWSER 59 h37-library_workshops-ar-sidebar-v0 retained\n"}
+,{"stream_name":"stdout","time":136.94772734,"data":"H37_BROWSER 60 h37-library_workshops-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":137.15044138,"data":"H37_BROWSER 60 h37-library_workshops-ar-sidebar-v1 retained\n"}
+,{"stream_name":"stdout","time":137.817041529,"data":"H37_BROWSER 61 h37-library_workshops-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":138.019869818,"data":"H37_BROWSER 61 h37-library_workshops-ar-grid-v0 retained\n"}
+,{"stream_name":"stdout","time":138.708632868,"data":"H37_BROWSER 62 h37-library_workshops-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":138.911249784,"data":"H37_BROWSER 62 h37-library_workshops-ar-grid-v1 retained\n"}
+,{"stream_name":"stdout","time":139.553302375,"data":"H37_BROWSER 63 h37-library_workshops-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":139.756007328,"data":"H37_BROWSER 63 h37-library_workshops-ar-table-v0 retained\n"}
+,{"stream_name":"stdout","time":140.397514544,"data":"H37_BROWSER 64 h37-library_workshops-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":140.604396645,"data":"H37_BROWSER 64 h37-library_workshops-ar-table-v1 retained\n"}
+,{"stream_name":"stdout","time":145.253039569,"data":"H37_EXTERNAL_RAW_SHA256 40b88ceb592446630817b9562238b40765b371fac61ccb4c06b427fab92cef1d\n"}
+,{"stream_name":"stdout","time":145.253066392,"data":"H37_INDEPENDENT_REPLAY_REQUIRED; MODEL_NOT_QUALIFIED\n"}
+,{"stream_name":"stdout","time":145.280635895,"data":"H37_EXTERNAL_RAW_SHA256 40b88ceb592446630817b9562238b40765b371fac61ccb4c06b427fab92cef1d\n"}
+,{"stream_name":"stdout","time":145.280658914,"data":"H37_INDEPENDENT_REPLAY_REQUIRED; MODEL_NOT_QUALIFIED\n"}
+,{"stream_name":"stdout","time":145.280664612,"data":"H37_NOTEBOOK_FINISHED_UNQUALIFIED; VERIFY_RAW_EXTERNALLY\n"}
+,{"stream_name":"stderr","time":147.622275347,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":147.622303184,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":147.796826393,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":147.796853277,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":148.5499312,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":148.63539111,"data":"[NbConvertApp] Writing 30484 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":151.061925956,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":151.549547249,"data":"[NbConvertApp] Writing 309229 bytes to __results__.html\n"}
+]

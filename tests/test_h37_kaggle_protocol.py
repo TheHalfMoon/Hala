@@ -90,6 +90,51 @@ class H37KaggleTests(unittest.TestCase):
             self.assertEqual(result["totals"]["parse_valid"],63)
             self.assertEqual(result["totals"]["target_hit"],63)
 
+    def test_actual_h37_kaggle_results_are_sha_bound_and_unqualified(self):
+        evidence=Path("reviews/h37-kaggle-run-20261020")
+        raw=evidence/"raw_attempts.jsonl"
+        sha="40b88ceb592446630817b9562238b40765b371fac61ccb4c06b427fab92cef1d"
+        self.assertEqual(hashlib.sha256(raw.read_bytes()).hexdigest(),sha)
+        result=audit(evidence,sha)
+        self.assertTrue(result["complete"])
+        self.assertEqual(result["attempts"],64)
+        self.assertEqual(result["source_commit_observed"],
+                         "4c061e9c2e15df0306062b5a5666c6e0d7697502")
+        self.assertEqual(result["totals"]["parse_valid"],64)
+        self.assertEqual(result["totals"]["target_hit"],32)
+        self.assertEqual(result["totals"]["wrong_target"],16)
+        self.assertEqual(result["totals"]["gate_valid_unique"],48)
+        self.assertEqual(result["split"]["dev"]["target_hit"],14)
+        self.assertEqual(result["split"]["test"]["target_hit"],18)
+        self.assertEqual(result["languages"]["ar"]["target_hit"],14)
+        self.assertEqual(result["languages"]["en"]["target_hit"],18)
+        self.assertEqual(result["layouts"]["grid"]["target_hit"],3)
+        self.assertEqual(result["layouts"]["table"]["target_hit"],14)
+        self.assertFalse(result["model_qualified"])
+        self.assertFalse(result["blind_test_qualified"])
+        self.assertFalse(result["external_app_captured"])
+        self.assertFalse(result["native_actions_executed"])
+        expected=(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+"\n").encode("utf-8")
+        audit_bytes=(evidence/"audit.json").read_bytes()
+        self.assertEqual(audit_bytes,expected)
+        self.assertEqual(hashlib.sha256(audit_bytes).hexdigest(),
+                         "987c8338342faaf8d2718288623a9f485d058acdde0f21f5f3133befaa1451f2")
+        metadata=json.loads((evidence/"run_metadata.json").read_text(encoding="utf-8"))
+        self.assertEqual(metadata["state"],"completed")
+        self.assertEqual(metadata["attempted_count"],64)
+        self.assertEqual(metadata["worker_exit_code"],0)
+        self.assertFalse(metadata["deadline_exceeded"])
+        self.assertFalse(metadata["actions_executed"])
+        self.assertEqual(metadata["raw_sha256"],sha)
+        notebook=(evidence/"submitted-bundle/hala-h37-browser-grounding-dev.ipynb").read_bytes()
+        self.assertEqual(hashlib.sha256(notebook).hexdigest(),
+                         "5062e90d12a5231638b8d2982b886b87fb7a0b2ef8e26c2b0d1dfafb81e35206")
+        nb=json.loads(notebook)
+        self.assertTrue(nb["metadata"]["hala_research_opt_in"])
+        self.assertEqual(nb["metadata"]["hala_source_commit"],
+                         "4c061e9c2e15df0306062b5a5666c6e0d7697502")
+        self.assertFalse(nb["metadata"]["hala_model_qualified"])
+
     def test_non_kaggle_and_no_explicit_optin_rejected(self):
         with patch("platform.system",return_value="Windows"):
             with self.assertRaises(RuntimeError):

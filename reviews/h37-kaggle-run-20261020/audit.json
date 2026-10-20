@@ -1,0 +1,1163 @@
+{
+  "attempts": 64,
+  "blind_test_qualified": false,
+  "browser_rendered": true,
+  "complete": true,
+  "domains": {
+    "community_theater": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 12,
+      "parse_valid": 16,
+      "target_hit": 7,
+      "wrong_target": 5
+    },
+    "library_workshops": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 12,
+      "parse_valid": 16,
+      "target_hit": 9,
+      "wrong_target": 3
+    },
+    "makerspace": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 13,
+      "parse_valid": 16,
+      "target_hit": 7,
+      "wrong_target": 6
+    },
+    "trail_maintenance": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 11,
+      "parse_valid": 16,
+      "target_hit": 9,
+      "wrong_target": 2
+    }
+  },
+  "external_app_captured": false,
+  "languages": {
+    "ar": {
+      "abstain": 0,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 22,
+      "parse_valid": 32,
+      "target_hit": 14,
+      "wrong_target": 8
+    },
+    "en": {
+      "abstain": 0,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 26,
+      "parse_valid": 32,
+      "target_hit": 18,
+      "wrong_target": 8
+    }
+  },
+  "layouts": {
+    "grid": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 7,
+      "parse_valid": 16,
+      "target_hit": 3,
+      "wrong_target": 4
+    },
+    "sidebar": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 16,
+      "parse_valid": 16,
+      "target_hit": 6,
+      "wrong_target": 10
+    },
+    "table": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 16,
+      "parse_valid": 16,
+      "target_hit": 14,
+      "wrong_target": 2
+    },
+    "toolbar": {
+      "abstain": 0,
+      "denominator": 16,
+      "error": 0,
+      "gate_valid_unique": 9,
+      "parse_valid": 16,
+      "target_hit": 9,
+      "wrong_target": 0
+    }
+  },
+  "model_qualified": false,
+  "native_actions_executed": false,
+  "raw_sha256": "40b88ceb592446630817b9562238b40765b371fac61ccb4c06b427fab92cef1d",
+  "rows": [
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-toolbar-v0",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-toolbar-v1",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-sidebar-v0",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-sidebar-v1",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-grid-v0",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-grid-v1",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-table-v0",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-en-table-v1",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-toolbar-v0",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-toolbar-v1",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-sidebar-v0",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-sidebar-v1",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-grid-v0",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-grid-v1",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-table-v0",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "makerspace",
+      "id": "h37-makerspace-ar-table-v1",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-toolbar-v0",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-toolbar-v1",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-sidebar-v0",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-sidebar-v1",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-grid-v0",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-grid-v1",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-table-v0",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-en-table-v1",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-toolbar-v0",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-toolbar-v1",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-sidebar-v0",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-sidebar-v1",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-grid-v0",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-grid-v1",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-table-v0",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "community_theater",
+      "id": "h37-community_theater-ar-table-v1",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "dev"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-toolbar-v0",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-toolbar-v1",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-sidebar-v0",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-sidebar-v1",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-grid-v0",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-grid-v1",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-table-v0",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-en-table-v1",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-toolbar-v0",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-toolbar-v1",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-sidebar-v0",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-sidebar-v1",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-grid-v0",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-grid-v1",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-table-v0",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "trail_maintenance",
+      "id": "h37-trail_maintenance-ar-table-v1",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-toolbar-v0",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-toolbar-v1",
+      "lang": "en",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-sidebar-v0",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-sidebar-v1",
+      "lang": "en",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-grid-v0",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-grid-v1",
+      "lang": "en",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-table-v0",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-en-table-v1",
+      "lang": "en",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-toolbar-v0",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-toolbar-v1",
+      "lang": "ar",
+      "layout": "toolbar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-sidebar-v0",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-sidebar-v1",
+      "lang": "ar",
+      "layout": "sidebar",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-grid-v0",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 0,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-grid-v1",
+      "lang": "ar",
+      "layout": "grid",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 0,
+        "wrong_target": 1
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-table-v0",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    },
+    {
+      "error_type": null,
+      "family": "library_workshops",
+      "id": "h37-library_workshops-ar-table-v1",
+      "lang": "ar",
+      "layout": "table",
+      "scored": {
+        "abstain": 0,
+        "error": 0,
+        "gate_valid_unique": 1,
+        "parse_valid": 1,
+        "target_hit": 1,
+        "wrong_target": 0
+      },
+      "split": "test"
+    }
+  ],
+  "schema": "hala.h37.browser_grounding_model_replay.v1",
+  "source_commit_observed": "4c061e9c2e15df0306062b5a5666c6e0d7697502",
+  "split": {
+    "dev": {
+      "abstain": 0,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 25,
+      "parse_valid": 32,
+      "target_hit": 14,
+      "wrong_target": 11
+    },
+    "test": {
+      "abstain": 0,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 23,
+      "parse_valid": 32,
+      "target_hit": 18,
+      "wrong_target": 5
+    }
+  },
+  "totals": {
+    "abstain": 0,
+    "error": 0,
+    "gate_valid_unique": 48,
+    "parse_valid": 64,
+    "target_hit": 32,
+    "wrong_target": 16
+  },
+  "unconditional_denominator": 64
+}
