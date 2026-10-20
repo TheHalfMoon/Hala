@@ -1,0 +1,7982 @@
+{
+  "schema": "hala.h48.original-edge-pixels.v1",
+  "browser_version": "Edg/155.0.4283.62",
+  "puppeteer_core": "25.12.0",
+  "width": 1024,
+  "height": 640,
+  "source_manifest_sha256": "70278a175a331222ad2e54890020a07849980addf0ec1bb77be9c9441f15e139",
+  "screenshots": 96,
+  "network_used": false,
+  "native_actions": false,
+  "model_inference": false,
+  "records": [
+    {
+      "id": "h48-modal_approval-00-en",
+      "source_sha256": "c4c812c4fa15ef588a499afbbcc491c3b57801635b0ccc42f737a204425c5a59",
+      "png_sha256": "d20ed5ea1ded6434f31fe475561801a7884b397e4976ea99720bbec796c02959",
+      "png_bytes": 33672,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-021",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-117",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-134",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-151",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-168",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-185",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-01-ar",
+      "source_sha256": "a4f1215ec9cf2bb0cb28e4ec07d4df6bdcd2e888acf156fc442cdb564991d553",
+      "png_sha256": "4d0650585ae00613d819282979d1f7c9ae3f7f6897fad46a1961f962bc748d32",
+      "png_bytes": 31880,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-101",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-118",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-135",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-152",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-169",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-022",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-02-en",
+      "source_sha256": "c3fe16643cc07fe503a39f8500f1dea2c94fb31352bd81cf2aadd25fdf12d309",
+      "png_sha256": "d053805558f0417cd79d40242bba0d33b52db789c8a78f60b5e40928e974f6d2",
+      "png_bytes": 33591,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-102",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-119",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-136",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-153",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-023",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-187",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-03-ar",
+      "source_sha256": "5e261cefb57933f1f46481df3ea06427f178f9964ef9b702cc6bdd3a3013dcaa",
+      "png_sha256": "ab1596ed5fcdae23132acbdfe11b2db7436817e268ba69030af4eb7f05b1547c",
+      "png_bytes": 32044,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-103",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-120",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-137",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-024",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-171",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-188",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-04-en",
+      "source_sha256": "98d79820113635a0d926c3b2b169e93707b3e2433aea25967a87a248372bce54",
+      "png_sha256": "c8cb6b4b0f1e3b460a7620652b009cfba8a09956a47df371b431066e4478a0d3",
+      "png_bytes": 33748,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-104",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-121",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-025",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-155",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-172",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-189",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-05-ar",
+      "source_sha256": "6547c91a9a6bbb533f3eef4de27c80ad728677cb6a6551bac057e3b58d87e3ce",
+      "png_sha256": "71244e024ffe57b157b996636506bb65224a17470c31c0beb213412ed220289a",
+      "png_bytes": 32020,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-105",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-026",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-139",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-156",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-173",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-190",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-06-en",
+      "source_sha256": "6ad6702eae3ad62d406babff5b2f1385a045544ac5c01d8a5b4f47f063c71554",
+      "png_sha256": "11e36a45d61e022cbc397e6ba03d8a58731828ba48dbd5eae59d75a02daf2106",
+      "png_bytes": 33527,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-027",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-123",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-140",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-157",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-174",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-191",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-07-ar",
+      "source_sha256": "fba514376c658a1e2b62a62282ab5a677a6232263a60e610468f288b8216e760",
+      "png_sha256": "4487163fe9e368adc7c93cf74111b7c8f35267bee51bc2a10ef0a52bd8e5e060",
+      "png_bytes": 32113,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-107",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-124",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-141",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-158",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-175",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-028",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-08-en",
+      "source_sha256": "06efee1fdc0538e63ee6e1557cebafaccccc0845c4bbc5d3e9e794564bc06988",
+      "png_sha256": "662439ba44723439158be1d90e9463af22831baec2af7466ef4cdc89fe3b2cd8",
+      "png_bytes": 33932,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-108",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-125",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-142",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-159",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-029",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-193",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-09-ar",
+      "source_sha256": "aec5008c21a7d5136cf44d40ea60505f700f459655f16f46268b7f9da5dc0d8d",
+      "png_sha256": "cfb8eb62255409f06df5acfbbc9db26c69f561457284dcdd69f43e4d57aba240",
+      "png_bytes": 31947,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-109",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-126",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-143",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-030",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-177",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-194",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-10-en",
+      "source_sha256": "40fcbb338f412d57662c149e4325501d909b35b7db6d5265a95f6f22f45162d2",
+      "png_sha256": "659b23e602a14d1b7cba3b192e32b9286a7244f1ae50d69d0c6e997823628423",
+      "png_bytes": 33495,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-110",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-127",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-031",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-161",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-178",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-195",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-11-ar",
+      "source_sha256": "21e7d6dac4d5db40a2132bbaca18c67102c9ff4cf2227fd92ef217a04fdfec8d",
+      "png_sha256": "2979f728fcd766d4d1400e91d115214b962d552acefe99b7991bd4276eeb8801",
+      "png_bytes": 32032,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-111",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-032",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-145",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-162",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-179",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-196",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-12-en",
+      "source_sha256": "df23e1cbe0e6de10547a7e3edfa276e4ce454c98f1eb7bc3d3407ee59e58d5ab",
+      "png_sha256": "fd108cda4a2e30cf1258915449a2ab23909909ba3209c713c4a419af5b16a7da",
+      "png_bytes": 33894,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-033",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-129",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-146",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-163",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-180",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-197",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-13-ar",
+      "source_sha256": "10e8e2a92e680e95f0b9d13f2aeb87940e42cb20eb65e016c66e4ae3cc4eca03",
+      "png_sha256": "3493aae4767e331f0888df9c8e55df9febccba6643234315570d1c49d9671e45",
+      "png_bytes": 31845,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-113",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-130",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-147",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-164",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-181",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-034",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-14-en",
+      "source_sha256": "7f99de76aea6c7cd3c1177bf894e71bea63870d333d733fc2d4160b8451f54e3",
+      "png_sha256": "6d53483773a9445628aae9eebaf3e1917185181e884f44bb23a3a5aa0a91d151",
+      "png_bytes": 33427,
+      "language": "en",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Approve KITO-114",
+          "text": "Approve",
+          "bounds": [
+            395,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Approve KITO-131",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Approve KITO-148",
+          "text": "Approve",
+          "bounds": [
+            395,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Approve KITO-165",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Approve KITO-035",
+          "text": "Approve",
+          "bounds": [
+            395,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Approve KITO-199",
+          "text": "Approve",
+          "bounds": [
+            706.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-modal_approval-15-ar",
+      "source_sha256": "7de19c698db1a9007ef24f16122684ec36756219a8f1e26595c76aad3c9cb811",
+      "png_sha256": "7f5e502e6975c49ee79ce11a7b88db3a0d98fbe74b0a2e43c4ebe15efb2f0950",
+      "png_bytes": 32086,
+      "language": "ar",
+      "split": "authoring",
+      "family": "modal_approval",
+      "controls": [
+        {
+          "index": 0,
+          "name": "موافقة KITO-115",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "موافقة KITO-132",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            298,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "موافقة KITO-149",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "موافقة KITO-036",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            371,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "موافقة KITO-183",
+          "text": "موافقة",
+          "bounds": [
+            527,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "موافقة KITO-200",
+          "text": "موافقة",
+          "bounds": [
+            215.5,
+            444,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-00-en",
+      "source_sha256": "902a25909edfabecc895f99d78666c3802a33d504e6208f7f89e3070c549e531",
+      "png_sha256": "abdcbf7f96525373a06dc38a8ff332e6a8bcae6afc3cbfd7564fa458ebef2bc4",
+      "png_bytes": 33210,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-100",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-117",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-134",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-021",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-168",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-185",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-01-ar",
+      "source_sha256": "377841d1eee8ef9d57c08882756ea52a4d338bd07d01ca4249b0301a65d2aa6c",
+      "png_sha256": "96273ac7ff2f620e51eb60b345a5d1add1ebc83a60ed9f134bea047a0b697f5f",
+      "png_bytes": 31498,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-101",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-118",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-022",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-152",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-169",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-186",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-02-en",
+      "source_sha256": "580fb347b029b19a89128455b997f6cc558d6514dd74374f3f13e6d0627dbd17",
+      "png_sha256": "16c0b0157158e66ba358f817921ea92de00c685d207e38bf3893206df955135f",
+      "png_bytes": 33373,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-102",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-023",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-136",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-153",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-170",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-187",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-03-ar",
+      "source_sha256": "d6de85d8bf9d3b724be7d73283243820a63c0e6310806cdda17e8e6964609f32",
+      "png_sha256": "95e4f91ecc088755a3d698138c25a54fa9570abc7dc1abe6ff518abde593d1f3",
+      "png_bytes": 31640,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-024",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-120",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-137",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-154",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-171",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-188",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-04-en",
+      "source_sha256": "31f59a7f3bff4101dab232866f9c9fd5afb0a5594b485b4064aa544f8e089ba7",
+      "png_sha256": "7ab7d19b84161d7361f1984bc7c348e51ce7506591b3a4e1545dc80f6bfca58d",
+      "png_bytes": 33301,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-104",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-121",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-138",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-155",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-172",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-025",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-05-ar",
+      "source_sha256": "597a05c89faa58ec6f8c2214a748d17e113206aff0993665d785a7e28595256b",
+      "png_sha256": "a42879601af5b5a2619f3ffb44feda23e10a8f320314717ffa069b34cae2b349",
+      "png_bytes": 31567,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-105",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-122",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-139",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-156",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-026",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-190",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-06-en",
+      "source_sha256": "65092a9aea3309366176e7d947000278ee08cf89a6fb994246bc108a04b7db3f",
+      "png_sha256": "1f2e59232951342fa2d7853345644e38339613477c7752d6b06c3ad650660108",
+      "png_bytes": 33364,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-106",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-123",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-140",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-027",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-174",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-191",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-07-ar",
+      "source_sha256": "c1aa2b8041e7532cefc7c711256567dcb2b8d884cdd469f5b5571dfe6d5bc5b7",
+      "png_sha256": "f00163a1cdc7d8a91e1f485f15efdeba64bad3b1a12c25b38aa7a817a921473e",
+      "png_bytes": 31813,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-107",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-124",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-028",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-158",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-175",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-192",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-08-en",
+      "source_sha256": "695ff568ed744dbac21096edbb296f12620362bf4d348c6e40ea3420b5ea86e5",
+      "png_sha256": "145b5892a3e53655a219f6281826a39d81339c6f3ad6189418c833b071befeb5",
+      "png_bytes": 33439,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-108",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-029",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-142",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-159",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-176",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-193",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-09-ar",
+      "source_sha256": "bb96e4098f3984d520f295c01793696249ea171683b3d918fc7e931c14638b59",
+      "png_sha256": "0d008c7ef52cf14f351688305aba29ccb572439481114aa68ecfdb815356237c",
+      "png_bytes": 31537,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-030",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-126",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-143",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-160",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-177",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-194",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-10-en",
+      "source_sha256": "394eadc121af3f1f9fa55d56acdd6c0404e0fb26a28265d5b55e559f5f14dd8e",
+      "png_sha256": "13b9671a6385354b056e398b1f499b4cd18d1fb794b0444002c3573e4cb28d23",
+      "png_bytes": 33162,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-110",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-127",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-144",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-161",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-178",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-031",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-11-ar",
+      "source_sha256": "800970d164aaf2a3d975f6429cc5cd0790850c39b03d691720872ae6ab391d8b",
+      "png_sha256": "442df81e4f7b8b9fcf4ec3efc3d28df7183e9cfeaf370139516414a8d0dcab9b",
+      "png_bytes": 31626,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-111",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-128",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-145",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-162",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-032",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-196",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-12-en",
+      "source_sha256": "a6bce47f8051d12feb6f81d1ee39a6d1523e75edcef14d57feba6dc1b680449c",
+      "png_sha256": "dcb4a065a8b0633f2b28af7580cd7ffa4df319933682fa2bd3be26b2124f8cde",
+      "png_bytes": 33299,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-112",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-129",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-146",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-033",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-180",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-197",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-13-ar",
+      "source_sha256": "830f5b1451dc9a1be640e183554002a403c91e09066428e651cb269a0b5aa083",
+      "png_sha256": "dda253e812336045dd4f8b446045ae1abf5257ca545e1b3fba7a870968720364",
+      "png_bytes": 31486,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-113",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-130",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-034",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-164",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-181",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-198",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-14-en",
+      "source_sha256": "6c7d57e445af1ff4fbc596369f0028bdd0449daa9cf933e3cdf95db809cd8869",
+      "png_sha256": "a05bba6ecf48edaf9ca0d5d3f2933d78bde5c5ba7131edbdc41476908ebee999",
+      "png_bytes": 33285,
+      "language": "en",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Archive VENA-114",
+          "text": "Archive",
+          "bounds": [
+            841,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Archive VENA-035",
+          "text": "Archive",
+          "bounds": [
+            841,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Archive VENA-148",
+          "text": "Archive",
+          "bounds": [
+            841,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Archive VENA-165",
+          "text": "Archive",
+          "bounds": [
+            841,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Archive VENA-182",
+          "text": "Archive",
+          "bounds": [
+            841,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Archive VENA-199",
+          "text": "Archive",
+          "bounds": [
+            841,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-inbox_triage-15-ar",
+      "source_sha256": "196bef8003c9c6a276cbd1d64b7f6ed6d93a99ed02a5370f214a3b6b177994e9",
+      "png_sha256": "f02570b2333650d3bc91ca94e390b39d5c6c78483ce003689137584e363391db",
+      "png_bytes": 31696,
+      "language": "ar",
+      "split": "authoring",
+      "family": "inbox_triage",
+      "controls": [
+        {
+          "index": 0,
+          "name": "أرشفة VENA-036",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            173,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "أرشفة VENA-132",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            245,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "أرشفة VENA-149",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            317,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "أرشفة VENA-166",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            389,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "أرشفة VENA-183",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            461,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "أرشفة VENA-200",
+          "text": "أرشفة",
+          "bounds": [
+            81,
+            533,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-00-en",
+      "source_sha256": "656bb0519eaa889092023e7ecb7f903c1307194acde46107a2001a4b52163e45",
+      "png_sha256": "85139a8936d0b3bc61030bdd645c41a6d409fe6b6e9dabf11fe29d7467a4413a",
+      "png_bytes": 26365,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-021",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-117",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-134",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-151",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-168",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-185",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-01-ar",
+      "source_sha256": "58cbfe99cc11fa56e0a45f25e115a27d8f578b9f0b166dbce149ced0ea4a1273",
+      "png_sha256": "4a19ddb3fc1e59f8b7caa6716500ec0bb417a4223eb15e27f430f0515b622b90",
+      "png_bytes": 25427,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-101",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-118",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-135",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-152",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-169",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-022",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-02-en",
+      "source_sha256": "cb02e100e249297b547670d95f7d6a374571e93703ef9a7a68e4177a17cd37af",
+      "png_sha256": "bdf46fc2a8894658d8bb0ea5d233463fe92707bc2d0bbb7866b58512edd4f8bb",
+      "png_bytes": 26509,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-102",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-119",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-136",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-153",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-023",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-187",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-03-ar",
+      "source_sha256": "3fba03cd6f63835f800ecd7d5bdf4d6908cf94882df52cc370c9811e5ba9c501",
+      "png_sha256": "8bafa9bd7d80a23eaaab8ec858e846d50892fb0709bb4303c279a493d9d268c0",
+      "png_bytes": 25493,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-103",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-120",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-137",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-024",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-171",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-188",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-04-en",
+      "source_sha256": "0bf4dabad613f997bf12ce2541031d35bb6501d9ffa8705180e901301ec0a61b",
+      "png_sha256": "98a02d1941c24e4b896e74d242030ca052d7e2a29337947cbae569c844f9cd76",
+      "png_bytes": 26457,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-104",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-121",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-025",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-155",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-172",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-189",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-05-ar",
+      "source_sha256": "4a10c9d9debb0944e305e8d298b9681f9c7ccce25aa9d9068bdee3593f5b1952",
+      "png_sha256": "1dab53505c6124482f5b83d651f81aaea8778f25ed186c3b610948a23e16804e",
+      "png_bytes": 25605,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-105",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-026",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-139",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-156",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-173",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-190",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-06-en",
+      "source_sha256": "e82367aee84013c639b28495662212cacc7118efe0a541376683b6605a8de31c",
+      "png_sha256": "031766a675864d6f15eb6b55f06624229f9062331f4eaa9c97485df5d4139e71",
+      "png_bytes": 26391,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-027",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-123",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-140",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-157",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-174",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-191",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-07-ar",
+      "source_sha256": "863d4ee644a3e96bf116d4567b545bd81c1ece7dad5555530c8a59c443839215",
+      "png_sha256": "190c6b33fa5976c486abbb1a41bf1784356fbc8ea7e54e58130fa6e3a1d6350d",
+      "png_bytes": 25457,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-107",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-124",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-141",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-158",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-175",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-028",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-08-en",
+      "source_sha256": "6597588024187cc9ca54c0530988a0a4bf1105a7016a68ad2f3024a0f5068550",
+      "png_sha256": "902a6da11ec40d43d53e547d0aaee268f43752c13d92ef9ebe720d91c016b0fd",
+      "png_bytes": 26624,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-108",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-125",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-142",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-159",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-029",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-193",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-09-ar",
+      "source_sha256": "56228ddee2953eb53fa560735392d83b5585b8a441e86b2b86d22b13b6af9513",
+      "png_sha256": "9b3ed14c62aa729b74d8a938a624ecbbe449252367340728fa4cbd875d674926",
+      "png_bytes": 25575,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-109",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-126",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-143",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-030",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-177",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-194",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-10-en",
+      "source_sha256": "5eca3c65ad29d83246af45f426e877cd4314cf42d9649560669b4377c93fe492",
+      "png_sha256": "123a5696d91a6a57f9d568e34ddc198fe72cffe0d0863f4b8a63c81830532c8f",
+      "png_bytes": 26401,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-110",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-127",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-031",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-161",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-178",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-195",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-11-ar",
+      "source_sha256": "993266b75ff7f01c7fd10bb6580a91c622c0465c59964b37784a08d6cc0096da",
+      "png_sha256": "df471ee441e392ce145378952a5325b0b3c2692f7e1720653a6c7098c1023f69",
+      "png_bytes": 25457,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-111",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-032",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-145",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-162",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-179",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-196",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-12-en",
+      "source_sha256": "bf8288fea373e5c95f93548b87b0ff9d8cc39e70e147f525d10217a63043fea4",
+      "png_sha256": "fd08045a0f9f57ec70c6f581670194a777a243cf03861f559ba2054fcd75511d",
+      "png_bytes": 26652,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-033",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-129",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-146",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-163",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-180",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-197",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-13-ar",
+      "source_sha256": "583ef41d7e28ef3df45f53c71c0f095dbea8da112020e9acc8a73323bf87681b",
+      "png_sha256": "7229009e4bd597559581027115fae10fba121ed983ed3ca23ef522139d522d9d",
+      "png_bytes": 25365,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-113",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-130",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-147",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-164",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-181",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-034",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-14-en",
+      "source_sha256": "f6d72ad1b29fce31e88ebe528e8879a11e7aba250abbb16fff625a4c7eaa8be1",
+      "png_sha256": "41eac565a428be894a4eb2eb64d82d195b225ecbffaa16a6c0b82301c2538e60",
+      "png_bytes": 26461,
+      "language": "en",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Enable NORI-114",
+          "text": "Enable",
+          "bounds": [
+            389,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Enable NORI-131",
+          "text": "Enable",
+          "bounds": [
+            843,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Enable NORI-148",
+          "text": "Enable",
+          "bounds": [
+            389,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Enable NORI-165",
+          "text": "Enable",
+          "bounds": [
+            843,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Enable NORI-035",
+          "text": "Enable",
+          "bounds": [
+            389,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Enable NORI-199",
+          "text": "Enable",
+          "bounds": [
+            843,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-settings_access-15-ar",
+      "source_sha256": "34e4ddd3b0eec5c1732258c9247cabeb1464e70d716280718f2984ffe0e60dd7",
+      "png_sha256": "7d49bcc2113b4ab973b160ba2d2402e5b1acade4833d22898de3ef2c5a9cc2e3",
+      "png_bytes": 25614,
+      "language": "ar",
+      "split": "authoring",
+      "family": "settings_access",
+      "controls": [
+        {
+          "index": 0,
+          "name": "تفعيل NORI-115",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "تفعيل NORI-132",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            197.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "تفعيل NORI-149",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "تفعيل NORI-036",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            325.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "تفعيل NORI-183",
+          "text": "تفعيل",
+          "bounds": [
+            533,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "تفعيل NORI-200",
+          "text": "تفعيل",
+          "bounds": [
+            79,
+            453.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-00-en",
+      "source_sha256": "b34519719aca3ff828202bf9e2efb96dd836bf9cb94c33d74bf1608da04524ec",
+      "png_sha256": "9fada211100cf4089c21136a3bc32398b899e28a32e8b3cd94ead731c787364f",
+      "png_bytes": 25082,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-100",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-117",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-134",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-021",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-168",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-185",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-01-ar",
+      "source_sha256": "4f37ba35f9afefb39ba80c2e11fa32eaf7ea28a52731b6abd82fc569e2a1c829",
+      "png_sha256": "b19e0126128a59d3038bd2552bc3a34eab8c6d0d61c192f9e8ccc9c21e708c0e",
+      "png_bytes": 24278,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-101",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-118",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-022",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-152",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-169",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-186",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-02-en",
+      "source_sha256": "9b8df2a047a9e6d97d719eca6a98531f86a36cc726096473ee727c9ae5feb4cd",
+      "png_sha256": "3ddaa4e89a26a495d85d2ff19ab98967c443ad174d5ceb2911bd39599174827e",
+      "png_bytes": 25186,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-102",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-023",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-136",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-153",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-170",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-187",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-03-ar",
+      "source_sha256": "4cd0084e91958aa2dea51778fab3951dc0e5fd951e3e4add82ddfe13c9571520",
+      "png_sha256": "716d4849ff5f9415667f98581954a5828db75a611913bf309655d292e27dc615",
+      "png_bytes": 24319,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-024",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-120",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-137",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-154",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-171",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-188",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-04-en",
+      "source_sha256": "63ddbb438a2b5af5a092153a4a3a821d8c12e2d2df7d4a60186d320a44d5b327",
+      "png_sha256": "4632dd98a9b068f0975957fa96d85412769a39c113572d95a02a3e20d367ed62",
+      "png_bytes": 24995,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-104",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-121",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-138",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-155",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-172",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-025",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-05-ar",
+      "source_sha256": "7a54192e62ba4a11455f9faf7b4ee6a057c4f5111670e4bffddd6fb5d2350ea4",
+      "png_sha256": "1f5d53519d13832dc8d8ebf55940af5a81bafb6eeeab99fa62f435784349dbf0",
+      "png_bytes": 24304,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-105",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-122",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-139",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-156",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-026",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-190",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-06-en",
+      "source_sha256": "14d2ec5b255c137a806f2d0e055512dd00fd36922e8bba7aa15ecb606524cf22",
+      "png_sha256": "7f92739cb4068d7d7b621a693e2b18a419ca5f6793178d1079f693ade1495b31",
+      "png_bytes": 25150,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-106",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-123",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-140",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-027",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-174",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-191",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-07-ar",
+      "source_sha256": "a7c0750ffcaa9794c53c9ad4ca37377266ef2a7b77efb0fd15283bf0dbb079be",
+      "png_sha256": "60767299de59cc748a5e22a0ee0752def292319f1e1deccbbf633d88967e6320",
+      "png_bytes": 24361,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-107",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-124",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-028",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-158",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-175",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-192",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-08-en",
+      "source_sha256": "0fb685d7cab91e51047eaba76a88c87e0982bf8d1fc6e3dd69e44ca176cf9746",
+      "png_sha256": "a9ce47ff813f2d2ac596dc21456f5a6a4999aea0f761ab233a081c87f1d324f5",
+      "png_bytes": 25170,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-108",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-029",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-142",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-159",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-176",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-193",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-09-ar",
+      "source_sha256": "525b690b28f8b9e60f3903ed91bb917292d9ec052f12589377d710a2569a24f6",
+      "png_sha256": "e07321fd4ffe1d569161fd907498f7a826c413c452176cd54647844fa9628c2e",
+      "png_bytes": 24336,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-030",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-126",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-143",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-160",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-177",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-194",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-10-en",
+      "source_sha256": "67d20d1bc73ad20c58f3e7c605204ac3a89989ad2d0ad097423d1098cf9e5b39",
+      "png_sha256": "fb82959c35488a61806cc0b7ecb2b15b9a82047b4d90556c06bed22f096a75fb",
+      "png_bytes": 24957,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-110",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-127",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-144",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-161",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-178",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-031",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-11-ar",
+      "source_sha256": "4bbc24fef9f531e0d363d6c342b2efddc034133848fc6e5723c1ca30239d9607",
+      "png_sha256": "86fe1db2dab26e66ae2c2e83a126da0d5610940f44680378e073a910c0d98b92",
+      "png_bytes": 24267,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-111",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-128",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-145",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-162",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-032",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-196",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-12-en",
+      "source_sha256": "eacf1fc458436b1e8ac5f7a6d4a2f3596a44565d0ca887792425c5c94f9e5def",
+      "png_sha256": "a02ba6a75c99783176dec12838ec0f13004360d0fd7236ce47021d0d217d05b9",
+      "png_bytes": 25104,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-112",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-129",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-146",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-033",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-180",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-197",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-13-ar",
+      "source_sha256": "eff7ffb4201ff544ddde35cf606c761aa5fc5b8309c5c4659d96d07c39f326b5",
+      "png_sha256": "3f342d7c8cf0be6ce3a84c5a2e6349a835d3f26642fbe12d0ae1993000556967",
+      "png_bytes": 24198,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-113",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-130",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-034",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-164",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-181",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-198",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-14-en",
+      "source_sha256": "65fdb9373020829d3ef11e5a94765a6d488527789abc35fe131c337b0aabfb6b",
+      "png_sha256": "3227328ce330df0de76068948ec3e14674941013b43d78a06fa03d01c8ed05ff",
+      "png_bytes": 25206,
+      "language": "en",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Open SERA-114",
+          "text": "Open",
+          "bounds": [
+            56,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Open SERA-035",
+          "text": "Open",
+          "bounds": [
+            376,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Open SERA-148",
+          "text": "Open",
+          "bounds": [
+            696,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Open SERA-165",
+          "text": "Open",
+          "bounds": [
+            56,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Open SERA-182",
+          "text": "Open",
+          "bounds": [
+            376,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Open SERA-199",
+          "text": "Open",
+          "bounds": [
+            696,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-ticket_board-15-ar",
+      "source_sha256": "e1699b3672854e156eb23260a9fd0c7d75e8c096d964da7f014c2be114101c43",
+      "png_sha256": "83a813a6c1a1b1853ad39e87b913026614751b502b441af6fb73a3433e515d31",
+      "png_bytes": 24632,
+      "language": "ar",
+      "split": "authoring",
+      "family": "ticket_board",
+      "controls": [
+        {
+          "index": 0,
+          "name": "فتح SERA-036",
+          "text": "فتح",
+          "bounds": [
+            866,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "فتح SERA-132",
+          "text": "فتح",
+          "bounds": [
+            546,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "فتح SERA-149",
+          "text": "فتح",
+          "bounds": [
+            226,
+            277,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "فتح SERA-166",
+          "text": "فتح",
+          "bounds": [
+            866,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "فتح SERA-183",
+          "text": "فتح",
+          "bounds": [
+            546,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "فتح SERA-200",
+          "text": "فتح",
+          "bounds": [
+            226,
+            487,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-00-en",
+      "source_sha256": "ffbe8d021a94e3bbe8c290672ba9df1c3ccc66efc61013584b090fb88bff3fee",
+      "png_sha256": "bf82f6f6770b9afdf659d137e468f16e8787ccbdfe70e03daaa77a3e6452ff06",
+      "png_bytes": 28012,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-021",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-117",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-134",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-151",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-168",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-185",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-01-ar",
+      "source_sha256": "dadca810950e99f6a9e0d8a99fe97ab862d676126a9a920b8fa2c00ecd7ebb8e",
+      "png_sha256": "98cdf27bcdd776b07fff2aca79da9fd8236a2d421db43f4038476fa53583a81e",
+      "png_bytes": 25053,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-101",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-118",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-135",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-152",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-169",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-022",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-02-en",
+      "source_sha256": "340306acb63062435fc4c24caaec6b521f31d395a75a092ade3848703167c925",
+      "png_sha256": "d7e284f9e8ded67d153f1d920f633f2ef12fed0d3e874e07d340aa5018bd765b",
+      "png_bytes": 28100,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-102",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-119",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-136",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-153",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-023",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-187",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-03-ar",
+      "source_sha256": "b4a904a2951ace2ec01d1cce9b780c57401f72627f262053b2220aa23b4ea735",
+      "png_sha256": "853d3e6ef9312a7778a8766e07c33a7eb05fda4e18d128620d778522e9634737",
+      "png_bytes": 25249,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-103",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-120",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-137",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-024",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-171",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-188",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-04-en",
+      "source_sha256": "ed1f922957c1ba8234671cb90612250ac162f6bdd1f9a8c4077890457cd6e0cf",
+      "png_sha256": "59f831ba28d3f22a81871bb3b725d55d3b1e61ca56b1001840bcf5b4710c8043",
+      "png_bytes": 28156,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-104",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-121",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-025",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-155",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-172",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-189",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-05-ar",
+      "source_sha256": "f344a9141430e208b0a99eab791252c4a4422dcfa295a390434fdea89648fd96",
+      "png_sha256": "19dcbeb2d3241972ae1f3c4ae80fc7e276a8042c18c0955cf0f6db6253d12f02",
+      "png_bytes": 25189,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-105",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-026",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-139",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-156",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-173",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-190",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-06-en",
+      "source_sha256": "94b0fcc27c2ee2f80718bbd3cf2e657f5effa826c040940ba6dc7baa1d84a165",
+      "png_sha256": "2134725058a9b7de7e305aa7a7105622377e25538b49e66e8ce90fee912453d0",
+      "png_bytes": 27901,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-027",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-123",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-140",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-157",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-174",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-191",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-07-ar",
+      "source_sha256": "06c02bf59a169575a727b7208507a3aa2a623bb152313677093521b7b1f21b71",
+      "png_sha256": "152f753f0dd78a767262f3d9a57058973161d775f5eaf586efc8541099e99750",
+      "png_bytes": 25222,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-107",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-124",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-141",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-158",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-175",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-028",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-08-en",
+      "source_sha256": "8a7aa1fd4d008f39965a0bd2f5b3191fb600d84b9d278461a33f178b84567adb",
+      "png_sha256": "d06b85205b42d30a07b7e3983bb2edc9134b33d6153e40097151d2a58b0a957f",
+      "png_bytes": 28252,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-108",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-125",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-142",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-159",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-029",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-193",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-09-ar",
+      "source_sha256": "11a65398d2d5e8dc54254b1b5efede02331ff6b4dd668986f1deed8d57b50938",
+      "png_sha256": "61e42aac38dc8c55cb1aca6f99c0de239a89d5e50f7af6213bdb6cfc8734c89b",
+      "png_bytes": 25120,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-109",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-126",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-143",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-030",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-177",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-194",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-10-en",
+      "source_sha256": "feb3aebecf867d0933b8385c2e54f79bc1abd371547473cbeef942e73eed6ab2",
+      "png_sha256": "8ad3f27c747804af10fe2eb16a8f8adfce96178a1b152bbcee5b703a95b69c3e",
+      "png_bytes": 27957,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-110",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-127",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-031",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-161",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-178",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-195",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-11-ar",
+      "source_sha256": "e0b4990a217a67aab775d66fd21fc72603dfc9a6cec97424683bd42a11982d76",
+      "png_sha256": "714efd9d93b52b6d4ed525df47e117c7cbf92154eee03e3fb3a966a1d1b8c726",
+      "png_bytes": 25133,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-111",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-032",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-145",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-162",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-179",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-196",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-12-en",
+      "source_sha256": "773ad89785fa2f04d9c783213b02034c65583e8f104feb2f461c6565a3d82786",
+      "png_sha256": "00f4eee50f534f3968afdc6b13ce273cc130427007abf721cc13c1d05476ae15",
+      "png_bytes": 28263,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-033",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-129",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-146",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-163",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-180",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-197",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-13-ar",
+      "source_sha256": "25932fe020438fb102d4f24056eda5616463e597adf1a67c588b6917f38b2b13",
+      "png_sha256": "0ed1ac2b8d358b6288b791a072981c90a2880e8b1a683dd298312a8b6873290d",
+      "png_bytes": 24961,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-113",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-130",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-147",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-164",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-181",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-034",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-14-en",
+      "source_sha256": "3f98efbe07041795d0595098358e6d00c6b8e4b6547d23de67501df995e7ab4f",
+      "png_sha256": "97e16db816134a3cc6472c636c1b52a7071c543fbcbf776cc9c103fbec603cd6",
+      "png_bytes": 27930,
+      "language": "en",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Reserve MILO-114",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Reserve MILO-131",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Reserve MILO-148",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Reserve MILO-165",
+          "text": "Reserve",
+          "bounds": [
+            158.328125,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Reserve MILO-035",
+          "text": "Reserve",
+          "bounds": [
+            460.984375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Reserve MILO-199",
+          "text": "Reserve",
+          "bounds": [
+            763.65625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-calendar_slots-15-ar",
+      "source_sha256": "9b8b318a01d0153092030fdd5d00eedb05162d7d0b084995ed00a3487207f5a7",
+      "png_sha256": "c7a8b9d66fd2105ebb822e9c1b21f402aa37a37adaf301f5b274911bc60296dc",
+      "png_bytes": 25295,
+      "language": "ar",
+      "split": "dev",
+      "family": "calendar_slots",
+      "controls": [
+        {
+          "index": 0,
+          "name": "حجز MILO-115",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "حجز MILO-132",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "حجز MILO-149",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            256.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "حجز MILO-036",
+          "text": "حجز",
+          "bounds": [
+            763.671875,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "حجز MILO-183",
+          "text": "حجز",
+          "bounds": [
+            461.015625,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "حجز MILO-200",
+          "text": "حجز",
+          "bounds": [
+            158.34375,
+            438.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-00-en",
+      "source_sha256": "d0638615064bf1091e2431b877f6cd85c699a16b465388fb2e95c311fc6b213e",
+      "png_sha256": "c2dc032ae775f3c9865c6764d2624c0af73c15cf0e5613fbe0297a9ed93e4065",
+      "png_bytes": 35909,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-100",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-117",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-134",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-021",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-168",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-185",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-01-ar",
+      "source_sha256": "d6aec58ce692900b8dc3850b95a5f093690506d460925ffac58adae8a9a30c3d",
+      "png_sha256": "ff3b13d054220bcd37baa51e6d3fde41420258de103006b1b35aeda15dd90c9b",
+      "png_bytes": 33686,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-101",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-118",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-022",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-152",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-169",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-186",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-02-en",
+      "source_sha256": "57c7a078dbde091ae890232469adc0b6d3ba37b0a40b578cc086ba4e54037b9a",
+      "png_sha256": "60673c92dac0f47d9440dbf3a41f96db04fc10caafb2718f8799ac4ecf502563",
+      "png_bytes": 36132,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-102",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-023",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-136",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-153",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-170",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-187",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-03-ar",
+      "source_sha256": "c07e73c414bbaf7538e253f2b83442fa8cdaa00169da8d08b7393a837337a718",
+      "png_sha256": "534b05dcef7e32bb06205ef5437f44d72d635022bef703d9a9ecaae67fb1db9c",
+      "png_bytes": 33738,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-024",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-120",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-137",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-154",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-171",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-188",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-04-en",
+      "source_sha256": "cc1217f64cd63c8424d817505c1654516d5e9e2ca7e2d3adb7c710c1767f3ddf",
+      "png_sha256": "a6e82d6ff9d62d2aaf3adc9a99a6fecc0f1dd3de7fce0ebc3e8cd2dd680ce00a",
+      "png_bytes": 35853,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-104",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-121",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-138",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-155",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-172",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-025",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-05-ar",
+      "source_sha256": "1bf11145858d79b8fa877efe03528c578d838035ffe9f94c37d21ef0568fca1d",
+      "png_sha256": "83a3b3370c2f1676f9c7c9f2aef44da4f43c3f660a1a25b664ec70bffdd672f5",
+      "png_bytes": 33871,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-105",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-122",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-139",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-156",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-026",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-190",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-06-en",
+      "source_sha256": "606a99e5ab8c5cf3dc3b6a4157d0b6872956afab923448348da23bcef75fa0c9",
+      "png_sha256": "8efeeb6e62ce07e2785d583eaace236d08975d42e93505a781a78da9d31e5a61",
+      "png_bytes": 36017,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-106",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-123",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-140",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-027",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-174",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-191",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-07-ar",
+      "source_sha256": "276e02e5964ef6bb481593d99b3826f3c9973c28b7cf5f398b6955808c2097dd",
+      "png_sha256": "e860fd1a113fdc8d880c3b0cf2028fc34dcaf2887e1ba6cb565ac4063c525b3b",
+      "png_bytes": 33877,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-107",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-124",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-028",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-158",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-175",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-192",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-08-en",
+      "source_sha256": "fbff695d02ac85625a37e963ed2bcfcc481b3d7bd1d33e1bf21b37b43122174e",
+      "png_sha256": "52fa772ee883006d3bb1fd9b247c3f5736862db6b779dc0e09862da544adceed",
+      "png_bytes": 36073,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-108",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-029",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-142",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-159",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-176",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-193",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-09-ar",
+      "source_sha256": "22fdd843a3d565db664ac1641eede59544b106453cc65be6aa61a7ae80c84cb3",
+      "png_sha256": "fa1df574ea4eee40f02230eb1506909372550b28ad24be72b97b635a05dca3aa",
+      "png_bytes": 33896,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-030",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-126",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-143",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-160",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-177",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-194",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-10-en",
+      "source_sha256": "f787551484421e02b5da964b5f77b9c3c2e2bb2028f99b5310d1b6b702598365",
+      "png_sha256": "1d7937e0904e742b5e024e79201173b7824a94ed2dec0b4bd8ca1dda1c38b12b",
+      "png_bytes": 35771,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-110",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-127",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-144",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-161",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-178",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-031",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-11-ar",
+      "source_sha256": "2851e579ddf3eff4d2bd4d1ec2abc00ff1470315a48437e26de15cd042c39c6f",
+      "png_sha256": "f08a76d62e9b6df19ec14b87e0c9fe4252c1fb32debf74c6c828fec19a9c77f1",
+      "png_bytes": 33787,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-111",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-128",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-145",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-162",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-032",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-196",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-12-en",
+      "source_sha256": "7b03612809e53f95aa94a62ccd6226385822c885cf9f02a7671eb82821cad890",
+      "png_sha256": "57a045d729a6e0c1da965f49c58fe414c14f688d396f6850bcf6b9e0c56a42ea",
+      "png_bytes": 35942,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-112",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-129",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-146",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-033",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-180",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-197",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-13-ar",
+      "source_sha256": "5ca7aea654e38ea8d62a9b659db033c1c0391444de264541bba263a0b3a22477",
+      "png_sha256": "3f0f263c6fa4de852573ea342d651bdefa9ad7bc0e5de70c450106105e4ee3f1",
+      "png_bytes": 33813,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-113",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-130",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-034",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-164",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-181",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-198",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-14-en",
+      "source_sha256": "0ce062035780f3dacc3b8299e164efa5de3261646b173f50307921f053ec09fd",
+      "png_sha256": "be2c7bc7afa26a5143e7761dfacbe20477332977594a56c6c8b27ddcd9d90885",
+      "png_bytes": 36041,
+      "language": "en",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "Accept TARO-114",
+          "text": "Accept",
+          "bounds": [
+            842,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "Accept TARO-035",
+          "text": "Accept",
+          "bounds": [
+            842,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "Accept TARO-148",
+          "text": "Accept",
+          "bounds": [
+            842,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "Accept TARO-165",
+          "text": "Accept",
+          "bounds": [
+            842,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "Accept TARO-182",
+          "text": "Accept",
+          "bounds": [
+            842,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "Accept TARO-199",
+          "text": "Accept",
+          "bounds": [
+            842,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": "h48-expense_review-15-ar",
+      "source_sha256": "d8ac5bc71b82c9bce9ebde149ce92187e168571ffd778ecc589978b23ded9c53",
+      "png_sha256": "c1d9c2ca0408a2c6c75c82d7d9ca034d1102a176ff73dad72fab0ea796c54692",
+      "png_bytes": 34056,
+      "language": "ar",
+      "split": "dev",
+      "family": "expense_review",
+      "controls": [
+        {
+          "index": 0,
+          "name": "اعتماد TARO-036",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            209.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 1,
+          "name": "اعتماد TARO-132",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            274.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 2,
+          "name": "اعتماد TARO-149",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            339.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 3,
+          "name": "اعتماد TARO-166",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            404.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 4,
+          "name": "اعتماد TARO-183",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            469.5,
+            102,
+            43
+          ],
+          "visible": true
+        },
+        {
+          "index": 5,
+          "name": "اعتماد TARO-200",
+          "text": "اعتماد",
+          "bounds": [
+            80,
+            534.5,
+            102,
+            43
+          ],
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

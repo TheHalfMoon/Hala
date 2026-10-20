@@ -1,0 +1,1549 @@
+{
+  "examples": [
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-021 only.",
+      "height": 640,
+      "id": "h48-modal_approval-00-en",
+      "image": "png/h48-modal_approval-00-en.png",
+      "image_sha256": "d20ed5ea1ded6434f31fe475561801a7884b397e4976ea99720bbec796c02959",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.49921875
+      ],
+      "labelled_target_code": "KITO-021",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-022 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-01-ar",
+      "image": "png/h48-modal_approval-01-ar.png",
+      "image_sha256": "4d0650585ae00613d819282979d1f7c9ae3f7f6897fad46a1961f962bc748d32",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-022",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-023 only.",
+      "height": 640,
+      "id": "h48-modal_approval-02-en",
+      "image": "png/h48-modal_approval-02-en.png",
+      "image_sha256": "d053805558f0417cd79d40242bba0d33b52db789c8a78f60b5e40928e974f6d2",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-023",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-024 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-03-ar",
+      "image": "png/h48-modal_approval-03-ar.png",
+      "image_sha256": "ab1596ed5fcdae23132acbdfe11b2db7436817e268ba69030af4eb7f05b1547c",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.61328125
+      ],
+      "labelled_target_code": "KITO-024",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-025 only.",
+      "height": 640,
+      "id": "h48-modal_approval-04-en",
+      "image": "png/h48-modal_approval-04-en.png",
+      "image_sha256": "c8cb6b4b0f1e3b460a7620652b009cfba8a09956a47df371b431066e4478a0d3",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.61328125
+      ],
+      "labelled_target_code": "KITO-025",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-026 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-05-ar",
+      "image": "png/h48-modal_approval-05-ar.png",
+      "image_sha256": "71244e024ffe57b157b996636506bb65224a17470c31c0beb213412ed220289a",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.49921875
+      ],
+      "labelled_target_code": "KITO-026",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-027 only.",
+      "height": 640,
+      "id": "h48-modal_approval-06-en",
+      "image": "png/h48-modal_approval-06-en.png",
+      "image_sha256": "11e36a45d61e022cbc397e6ba03d8a58731828ba48dbd5eae59d75a02daf2106",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.49921875
+      ],
+      "labelled_target_code": "KITO-027",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-028 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-07-ar",
+      "image": "png/h48-modal_approval-07-ar.png",
+      "image_sha256": "4487163fe9e368adc7c93cf74111b7c8f35267bee51bc2a10ef0a52bd8e5e060",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-028",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-029 only.",
+      "height": 640,
+      "id": "h48-modal_approval-08-en",
+      "image": "png/h48-modal_approval-08-en.png",
+      "image_sha256": "662439ba44723439158be1d90e9463af22831baec2af7466ef4cdc89fe3b2cd8",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-029",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-030 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-09-ar",
+      "image": "png/h48-modal_approval-09-ar.png",
+      "image_sha256": "cfb8eb62255409f06df5acfbbc9db26c69f561457284dcdd69f43e4d57aba240",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.61328125
+      ],
+      "labelled_target_code": "KITO-030",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-031 only.",
+      "height": 640,
+      "id": "h48-modal_approval-10-en",
+      "image": "png/h48-modal_approval-10-en.png",
+      "image_sha256": "659b23e602a14d1b7cba3b192e32b9286a7244f1ae50d69d0c6e997823628423",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.61328125
+      ],
+      "labelled_target_code": "KITO-031",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-032 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-11-ar",
+      "image": "png/h48-modal_approval-11-ar.png",
+      "image_sha256": "2979f728fcd766d4d1400e91d115214b962d552acefe99b7991bd4276eeb8801",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.49921875
+      ],
+      "labelled_target_code": "KITO-032",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-033 only.",
+      "height": 640,
+      "id": "h48-modal_approval-12-en",
+      "image": "png/h48-modal_approval-12-en.png",
+      "image_sha256": "fd108cda4a2e30cf1258915449a2ab23909909ba3209c713c4a419af5b16a7da",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.49921875
+      ],
+      "labelled_target_code": "KITO-033",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-034 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-13-ar",
+      "image": "png/h48-modal_approval-13-ar.png",
+      "image_sha256": "3493aae4767e331f0888df9c8e55df9febccba6643234315570d1c49d9671e45",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-034",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "In Review a request, press 'Approve' for item KITO-035 only.",
+      "height": 640,
+      "id": "h48-modal_approval-14-en",
+      "image": "png/h48-modal_approval-14-en.png",
+      "image_sha256": "6d53483773a9445628aae9eebaf3e1917185181e884f44bb23a3a5aa0a91d151",
+      "independent_test": false,
+      "labelled_point": [
+        0.43554688,
+        0.72734375
+      ],
+      "labelled_target_code": "KITO-035",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "modal_approval",
+      "goal": "في مراجعة طلب، اضغط «موافقة» للعنصر KITO-036 فقط.",
+      "height": 640,
+      "id": "h48-modal_approval-15-ar",
+      "image": "png/h48-modal_approval-15-ar.png",
+      "image_sha256": "7f5e502e6975c49ee79ce11a7b88db3a0d98fbe74b0a2e43c4ebe15efb2f0950",
+      "independent_test": false,
+      "labelled_point": [
+        0.26025391,
+        0.61328125
+      ],
+      "labelled_target_code": "KITO-036",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-021 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-00-en",
+      "image": "png/h48-inbox_triage-00-en.png",
+      "image_sha256": "abdcbf7f96525373a06dc38a8ff332e6a8bcae6afc3cbfd7564fa458ebef2bc4",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.64140625
+      ],
+      "labelled_target_code": "VENA-021",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-022 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-01-ar",
+      "image": "png/h48-inbox_triage-01-ar.png",
+      "image_sha256": "96273ac7ff2f620e51eb60b345a5d1add1ebc83a60ed9f134bea047a0b697f5f",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.52890625
+      ],
+      "labelled_target_code": "VENA-022",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-023 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-02-en",
+      "image": "png/h48-inbox_triage-02-en.png",
+      "image_sha256": "16c0b0157158e66ba358f817921ea92de00c685d207e38bf3893206df955135f",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.41640625
+      ],
+      "labelled_target_code": "VENA-023",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-024 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-03-ar",
+      "image": "png/h48-inbox_triage-03-ar.png",
+      "image_sha256": "95e4f91ecc088755a3d698138c25a54fa9570abc7dc1abe6ff518abde593d1f3",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.30390625
+      ],
+      "labelled_target_code": "VENA-024",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-025 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-04-en",
+      "image": "png/h48-inbox_triage-04-en.png",
+      "image_sha256": "7ab7d19b84161d7361f1984bc7c348e51ce7506591b3a4e1545dc80f6bfca58d",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.86640625
+      ],
+      "labelled_target_code": "VENA-025",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-026 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-05-ar",
+      "image": "png/h48-inbox_triage-05-ar.png",
+      "image_sha256": "a42879601af5b5a2619f3ffb44feda23e10a8f320314717ffa069b34cae2b349",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.75390625
+      ],
+      "labelled_target_code": "VENA-026",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-027 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-06-en",
+      "image": "png/h48-inbox_triage-06-en.png",
+      "image_sha256": "1f2e59232951342fa2d7853345644e38339613477c7752d6b06c3ad650660108",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.64140625
+      ],
+      "labelled_target_code": "VENA-027",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-028 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-07-ar",
+      "image": "png/h48-inbox_triage-07-ar.png",
+      "image_sha256": "f00163a1cdc7d8a91e1f485f15efdeba64bad3b1a12c25b38aa7a817a921473e",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.52890625
+      ],
+      "labelled_target_code": "VENA-028",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-029 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-08-en",
+      "image": "png/h48-inbox_triage-08-en.png",
+      "image_sha256": "145b5892a3e53655a219f6281826a39d81339c6f3ad6189418c833b071befeb5",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.41640625
+      ],
+      "labelled_target_code": "VENA-029",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-030 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-09-ar",
+      "image": "png/h48-inbox_triage-09-ar.png",
+      "image_sha256": "0d008c7ef52cf14f351688305aba29ccb572439481114aa68ecfdb815356237c",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.30390625
+      ],
+      "labelled_target_code": "VENA-030",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-031 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-10-en",
+      "image": "png/h48-inbox_triage-10-en.png",
+      "image_sha256": "13b9671a6385354b056e398b1f499b4cd18d1fb794b0444002c3573e4cb28d23",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.86640625
+      ],
+      "labelled_target_code": "VENA-031",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-032 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-11-ar",
+      "image": "png/h48-inbox_triage-11-ar.png",
+      "image_sha256": "442df81e4f7b8b9fcf4ec3efc3d28df7183e9cfeaf370139516414a8d0dcab9b",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.75390625
+      ],
+      "labelled_target_code": "VENA-032",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-033 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-12-en",
+      "image": "png/h48-inbox_triage-12-en.png",
+      "image_sha256": "dcb4a065a8b0633f2b28af7580cd7ffa4df319933682fa2bd3be26b2124f8cde",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.64140625
+      ],
+      "labelled_target_code": "VENA-033",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-034 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-13-ar",
+      "image": "png/h48-inbox_triage-13-ar.png",
+      "image_sha256": "dda253e812336045dd4f8b446045ae1abf5257ca545e1b3fba7a870968720364",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.52890625
+      ],
+      "labelled_target_code": "VENA-034",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "In Inbox actions, press 'Archive' for item VENA-035 only.",
+      "height": 640,
+      "id": "h48-inbox_triage-14-en",
+      "image": "png/h48-inbox_triage-14-en.png",
+      "image_sha256": "a05bba6ecf48edaf9ca0d5d3f2933d78bde5c5ba7131edbdc41476908ebee999",
+      "independent_test": false,
+      "labelled_point": [
+        0.87109375,
+        0.41640625
+      ],
+      "labelled_target_code": "VENA-035",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "inbox_triage",
+      "goal": "في إجراءات البريد، اضغط «أرشفة» للعنصر VENA-036 فقط.",
+      "height": 640,
+      "id": "h48-inbox_triage-15-ar",
+      "image": "png/h48-inbox_triage-15-ar.png",
+      "image_sha256": "f02570b2333650d3bc91ca94e390b39d5c6c78483ce003689137584e363391db",
+      "independent_test": false,
+      "labelled_point": [
+        0.12890625,
+        0.30390625
+      ],
+      "labelled_target_code": "VENA-036",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-021 only.",
+      "height": 640,
+      "id": "h48-settings_access-00-en",
+      "image": "png/h48-settings_access-00-en.png",
+      "image_sha256": "85139a8936d0b3bc61030bdd645c41a6d409fe6b6e9dabf11fe29d7467a4413a",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.3421875
+      ],
+      "labelled_target_code": "NORI-021",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-022 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-01-ar",
+      "image": "png/h48-settings_access-01-ar.png",
+      "image_sha256": "4a19ddb3fc1e59f8b7caa6716500ec0bb417a4223eb15e27f430f0515b622b90",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-022",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-023 only.",
+      "height": 640,
+      "id": "h48-settings_access-02-en",
+      "image": "png/h48-settings_access-02-en.png",
+      "image_sha256": "bdf46fc2a8894658d8bb0ea5d233463fe92707bc2d0bbb7866b58512edd4f8bb",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-023",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-024 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-03-ar",
+      "image": "png/h48-settings_access-03-ar.png",
+      "image_sha256": "8bafa9bd7d80a23eaaab8ec858e846d50892fb0709bb4303c279a493d9d268c0",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.5421875
+      ],
+      "labelled_target_code": "NORI-024",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-025 only.",
+      "height": 640,
+      "id": "h48-settings_access-04-en",
+      "image": "png/h48-settings_access-04-en.png",
+      "image_sha256": "98a02d1941c24e4b896e74d242030ca052d7e2a29337947cbae569c844f9cd76",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.5421875
+      ],
+      "labelled_target_code": "NORI-025",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-026 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-05-ar",
+      "image": "png/h48-settings_access-05-ar.png",
+      "image_sha256": "1dab53505c6124482f5b83d651f81aaea8778f25ed186c3b610948a23e16804e",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.3421875
+      ],
+      "labelled_target_code": "NORI-026",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-027 only.",
+      "height": 640,
+      "id": "h48-settings_access-06-en",
+      "image": "png/h48-settings_access-06-en.png",
+      "image_sha256": "031766a675864d6f15eb6b55f06624229f9062331f4eaa9c97485df5d4139e71",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.3421875
+      ],
+      "labelled_target_code": "NORI-027",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-028 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-07-ar",
+      "image": "png/h48-settings_access-07-ar.png",
+      "image_sha256": "190c6b33fa5976c486abbb1a41bf1784356fbc8ea7e54e58130fa6e3a1d6350d",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-028",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-029 only.",
+      "height": 640,
+      "id": "h48-settings_access-08-en",
+      "image": "png/h48-settings_access-08-en.png",
+      "image_sha256": "902a6da11ec40d43d53e547d0aaee268f43752c13d92ef9ebe720d91c016b0fd",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-029",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-030 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-09-ar",
+      "image": "png/h48-settings_access-09-ar.png",
+      "image_sha256": "9b3ed14c62aa729b74d8a938a624ecbbe449252367340728fa4cbd875d674926",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.5421875
+      ],
+      "labelled_target_code": "NORI-030",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-031 only.",
+      "height": 640,
+      "id": "h48-settings_access-10-en",
+      "image": "png/h48-settings_access-10-en.png",
+      "image_sha256": "123a5696d91a6a57f9d568e34ddc198fe72cffe0d0863f4b8a63c81830532c8f",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.5421875
+      ],
+      "labelled_target_code": "NORI-031",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-032 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-11-ar",
+      "image": "png/h48-settings_access-11-ar.png",
+      "image_sha256": "df471ee441e392ce145378952a5325b0b3c2692f7e1720653a6c7098c1023f69",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.3421875
+      ],
+      "labelled_target_code": "NORI-032",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-033 only.",
+      "height": 640,
+      "id": "h48-settings_access-12-en",
+      "image": "png/h48-settings_access-12-en.png",
+      "image_sha256": "fd08045a0f9f57ec70c6f581670194a777a243cf03861f559ba2054fcd75511d",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.3421875
+      ],
+      "labelled_target_code": "NORI-033",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-034 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-13-ar",
+      "image": "png/h48-settings_access-13-ar.png",
+      "image_sha256": "7229009e4bd597559581027115fae10fba121ed983ed3ca23ef522139d522d9d",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-034",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "In Access preferences, press 'Enable' for item NORI-035 only.",
+      "height": 640,
+      "id": "h48-settings_access-14-en",
+      "image": "png/h48-settings_access-14-en.png",
+      "image_sha256": "41eac565a428be894a4eb2eb64d82d195b225ecbffaa16a6c0b82301c2538e60",
+      "independent_test": false,
+      "labelled_point": [
+        0.4296875,
+        0.7421875
+      ],
+      "labelled_target_code": "NORI-035",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "settings_access",
+      "goal": "في إعدادات الوصول، اضغط «تفعيل» للعنصر NORI-036 فقط.",
+      "height": 640,
+      "id": "h48-settings_access-15-ar",
+      "image": "png/h48-settings_access-15-ar.png",
+      "image_sha256": "7d49bcc2113b4ab973b160ba2d2402e5b1acade4833d22898de3ef2c5a9cc2e3",
+      "independent_test": false,
+      "labelled_point": [
+        0.12695312,
+        0.5421875
+      ],
+      "labelled_target_code": "NORI-036",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-021 only.",
+      "height": 640,
+      "id": "h48-ticket_board-00-en",
+      "image": "png/h48-ticket_board-00-en.png",
+      "image_sha256": "9fada211100cf4089c21136a3bc32398b899e28a32e8b3cd94ead731c787364f",
+      "independent_test": false,
+      "labelled_point": [
+        0.10449219,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-021",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-022 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-01-ar",
+      "image": "png/h48-ticket_board-01-ar.png",
+      "image_sha256": "b19e0126128a59d3038bd2552bc3a34eab8c6d0d61c192f9e8ccc9c21e708c0e",
+      "independent_test": false,
+      "labelled_point": [
+        0.27050781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-022",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-023 only.",
+      "height": 640,
+      "id": "h48-ticket_board-02-en",
+      "image": "png/h48-ticket_board-02-en.png",
+      "image_sha256": "3ddaa4e89a26a495d85d2ff19ab98967c443ad174d5ceb2911bd39599174827e",
+      "independent_test": false,
+      "labelled_point": [
+        0.41699219,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-023",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-024 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-03-ar",
+      "image": "png/h48-ticket_board-03-ar.png",
+      "image_sha256": "716d4849ff5f9415667f98581954a5828db75a611913bf309655d292e27dc615",
+      "independent_test": false,
+      "labelled_point": [
+        0.89550781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-024",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-025 only.",
+      "height": 640,
+      "id": "h48-ticket_board-04-en",
+      "image": "png/h48-ticket_board-04-en.png",
+      "image_sha256": "4632dd98a9b068f0975957fa96d85412769a39c113572d95a02a3e20d367ed62",
+      "independent_test": false,
+      "labelled_point": [
+        0.72949219,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-025",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-026 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-05-ar",
+      "image": "png/h48-ticket_board-05-ar.png",
+      "image_sha256": "1f5d53519d13832dc8d8ebf55940af5a81bafb6eeeab99fa62f435784349dbf0",
+      "independent_test": false,
+      "labelled_point": [
+        0.58300781,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-026",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-027 only.",
+      "height": 640,
+      "id": "h48-ticket_board-06-en",
+      "image": "png/h48-ticket_board-06-en.png",
+      "image_sha256": "7f92739cb4068d7d7b621a693e2b18a419ca5f6793178d1079f693ade1495b31",
+      "independent_test": false,
+      "labelled_point": [
+        0.10449219,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-027",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-028 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-07-ar",
+      "image": "png/h48-ticket_board-07-ar.png",
+      "image_sha256": "60767299de59cc748a5e22a0ee0752def292319f1e1deccbbf633d88967e6320",
+      "independent_test": false,
+      "labelled_point": [
+        0.27050781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-028",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-029 only.",
+      "height": 640,
+      "id": "h48-ticket_board-08-en",
+      "image": "png/h48-ticket_board-08-en.png",
+      "image_sha256": "a9ce47ff813f2d2ac596dc21456f5a6a4999aea0f761ab233a081c87f1d324f5",
+      "independent_test": false,
+      "labelled_point": [
+        0.41699219,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-029",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-030 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-09-ar",
+      "image": "png/h48-ticket_board-09-ar.png",
+      "image_sha256": "e07321fd4ffe1d569161fd907498f7a826c413c452176cd54647844fa9628c2e",
+      "independent_test": false,
+      "labelled_point": [
+        0.89550781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-030",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-031 only.",
+      "height": 640,
+      "id": "h48-ticket_board-10-en",
+      "image": "png/h48-ticket_board-10-en.png",
+      "image_sha256": "fb82959c35488a61806cc0b7ecb2b15b9a82047b4d90556c06bed22f096a75fb",
+      "independent_test": false,
+      "labelled_point": [
+        0.72949219,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-031",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-032 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-11-ar",
+      "image": "png/h48-ticket_board-11-ar.png",
+      "image_sha256": "86fe1db2dab26e66ae2c2e83a126da0d5610940f44680378e073a910c0d98b92",
+      "independent_test": false,
+      "labelled_point": [
+        0.58300781,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-032",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-033 only.",
+      "height": 640,
+      "id": "h48-ticket_board-12-en",
+      "image": "png/h48-ticket_board-12-en.png",
+      "image_sha256": "a02ba6a75c99783176dec12838ec0f13004360d0fd7236ce47021d0d217d05b9",
+      "independent_test": false,
+      "labelled_point": [
+        0.10449219,
+        0.79453125
+      ],
+      "labelled_target_code": "SERA-033",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-034 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-13-ar",
+      "image": "png/h48-ticket_board-13-ar.png",
+      "image_sha256": "3f342d7c8cf0be6ce3a84c5a2e6349a835d3f26642fbe12d0ae1993000556967",
+      "independent_test": false,
+      "labelled_point": [
+        0.27050781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-034",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "In Ticket board, press 'Open' for item SERA-035 only.",
+      "height": 640,
+      "id": "h48-ticket_board-14-en",
+      "image": "png/h48-ticket_board-14-en.png",
+      "image_sha256": "3227328ce330df0de76068948ec3e14674941013b43d78a06fa03d01c8ed05ff",
+      "independent_test": false,
+      "labelled_point": [
+        0.41699219,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-035",
+      "language": "en",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    },
+    {
+      "family": "ticket_board",
+      "goal": "في لوحة التذاكر، اضغط «فتح» للعنصر SERA-036 فقط.",
+      "height": 640,
+      "id": "h48-ticket_board-15-ar",
+      "image": "png/h48-ticket_board-15-ar.png",
+      "image_sha256": "83a813a6c1a1b1853ad39e87b913026614751b502b441af6fb73a3433e515d31",
+      "independent_test": false,
+      "labelled_point": [
+        0.89550781,
+        0.46640625
+      ],
+      "labelled_target_code": "SERA-036",
+      "language": "ar",
+      "source_rights": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "split": "authoring",
+      "width": 1024
+    }
+  ],
+  "independent_blind_test": false,
+  "provenance": {
+    "benchmark_trajectories": false,
+    "external_images": false,
+    "license": "CC0-1.0",
+    "origin": "original_first_party_fictional",
+    "personal_data": false
+  },
+  "schema": "hala.h48.authoring-labelled.v1"
+}

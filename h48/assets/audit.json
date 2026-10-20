@@ -1,0 +1,16 @@
+{
+  "actual_model_results": false,
+  "arabic": 48,
+  "capture_sha256": "a01db14518f6ce7a2bf7fa89212eae4a78edbd69ea2fbc5b8bd5ccaa8dc3f127",
+  "english": 48,
+  "external_benchmark": false,
+  "independent_blind_test": false,
+  "model_trained": false,
+  "native_actions": false,
+  "original_authoring": 64,
+  "original_browser_screenshots": 96,
+  "public_dev": 32,
+  "schema": "hala.h48.browser-original-integrity-audit.v1",
+  "source_sha256": "70278a175a331222ad2e54890020a07849980addf0ec1bb77be9c9441f15e139",
+  "visible_controls_verified": 576
+}
