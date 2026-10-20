@@ -1,0 +1,19 @@
+{
+  "actual_model": false,
+  "attempts": 40,
+  "completed": true,
+  "cuda": false,
+  "elapsed_ms": 9829.777,
+  "fake_child_sha256": "8b59038d2abf19cde764d4c20c860a81b99a39ba4a80097c504a60017480b031",
+  "journal_sha256": "dc56315b4950192d4ead5006d65b3b6dd37057dbc0883abdd1733a525494b419",
+  "model_qualified": false,
+  "native_actions": false,
+  "passed": 40,
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.14.7",
+  "retries": false,
+  "rounds": 8,
+  "schema": "hala.h40.cpu_child_stress.v1",
+  "source_head": "15017fcfd7c8e4155959c5db609982e1f2ec46df",
+  "timeout_s": 2.0
+}
