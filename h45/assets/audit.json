@@ -1,0 +1,15 @@
+{
+  "capture_sha256": "0d0b4d4f430d3d26eb7b4ce71318523e053bdd2293909a0fe73224a0b9ad2dd0",
+  "correct_golden_trajectories": 24,
+  "independent_benchmark": false,
+  "model_inference": false,
+  "model_only_steps": 96,
+  "native_desktop_actions": false,
+  "original_h43_manifest_sha256": "fbcf271e8c65637f2a69e7dbc5966d7ffdad29c7061d93684bf9a705e7f4c2c8",
+  "real_edge_screen_pngs": 144,
+  "schema": "hala.h45.actual-browser-audit.v1",
+  "source_html_sha256": "3d2661d3d15d56d467a66708dda00574f419d9b0d6f4d696c89586bfc327aff8",
+  "source_tasks": 24,
+  "unrelated_mutation_refused": 24,
+  "wrong_target_refused": 24
+}
