@@ -414,6 +414,10 @@ class WorkerBoundaryTests(unittest.TestCase):
     def test_real_worker_pipeline_binds_images_excludes_oracle_and_retains_inference_error_hash(self):
         # All ML/renderer objects are offline engineering fakes, never qualification.
         import h34.runner as runner
+        self.assertIn("bare JSON object as raw text", runner.PROMPT)
+        self.assertIn("Do not use Markdown", runner.PROMPT)
+        self.assertIn("first output character must be {", runner.PROMPT)
+        self.assertIn("last must be }", runner.PROMPT)
         pin = load_font_pin()
         captured = []
         pixel_marker = object()

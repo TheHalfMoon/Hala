@@ -25,9 +25,11 @@ REVISION = "89644892e4d85e24eaac8bacfd4f463576704203"
 PINS = {"torch": "2.11.0+cu128", "transformers": "5.16.1", "accelerate": "1.14.0",
         "safetensors": "0.8.0", "Pillow": "12.3.0"}
 PROMPT = ("Identify the button whose visible label best matches the user's task. "
-          "Return exactly one JSON object with normalized center coordinates: "
-          '{"point":[x,y]} where each number is from 0 to 1. If no single button can be identified, '
-          'return exactly {"abstain":true}. Do not output labels, explanations, or other fields.')
+          "Output only one bare JSON object as raw text. Do not use Markdown, a code block, or ``` fences. "
+          "The first output character must be { and the last must be }. "
+          "For a choice, use exactly this form: {\"point\":[0.25,0.75]} with normalized center coordinates "
+          "from 0 to 1. If no single button can be identified, output exactly {\"abstain\":true}. "
+          "Do not add labels, explanations, or other fields.")
 
 
 def admit():

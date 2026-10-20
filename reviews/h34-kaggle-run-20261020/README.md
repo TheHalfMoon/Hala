@@ -1,0 +1,7 @@
+# H34 private Kaggle DEV run — 2026-10-20
+
+This retained run used source commit `65b8710b7f4dd3eae7624ee79956e6ef5a40168c` and model `Qwen/Qwen3-VL-2B-Instruct` at revision `89644892e4d85e24eaac8bacfd4f463576704203`. Two Tesla T4 devices were visible; the runner places inference on `cuda:0`. The Kaggle kernel was private and ran as a retained Batch job. The runner reports 32 attempted cases, 114.25 seconds elapsed, worker exit code 0, and no deadline overrun.
+
+The complete raw journal SHA-256 is `6141780732186bb4503467dc27a44169576cbf5ab2a3f1c41ee163669da6956c`. `audit.json` is the local independent replay using that digest. All 32 image-bound rows are present and pass the audit's structural checks, but **0/32 responses are parse-valid**: every response is wrapped in a Markdown `json` code fence, which violates the protocol's requirement for one bare JSON object. Consequently there are zero gate-valid points or target hits. This is a strict-format failure, not evidence of model accuracy. The model remains unqualified; these synthetic DEV results do not support adoption, usability, or quality claims.
+
+`run_metadata.json` records source, package, renderer, model, and hardware observations; the metadata itself explicitly says observations are not attestation. `image_manifest.json`, the 32 PNGs, frozen case digest, raw journal, and audit output are retained so the result can be independently replayed. Kaggle notebook: https://www.kaggle.com/code/abdulazizshehri/hala-h34-bilingual-visual-dev-20261019
