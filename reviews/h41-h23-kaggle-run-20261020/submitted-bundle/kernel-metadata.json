@@ -1,0 +1,15 @@
+{
+  "code_file": "hala-h41-original-h23-cuda.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [],
+  "enable_gpu": true,
+  "enable_internet": true,
+  "enable_tpu": false,
+  "id": "abdulazizshehri/hala-h41-original-h23-cuda-lifecycle-20261020",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "model_sources": [],
+  "title": "Hala H41 Original H23 CUDA Lifecycle"
+}
