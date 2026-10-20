@@ -1,0 +1,167 @@
+[{"stream_name":"stderr","time":6.548393089,"data":"/usr/local/lib/python3.13/dist-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":6.548434819,"data":"  _validate(nbdict, ref, version, version_minor, relax_add_props)\n"}
+,{"stream_name":"stderr","time":7.495898467,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.495932034,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.495936547,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.495940313,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.10977689,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.109803963,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.109808753,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.109812404,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":10.470232003,"data":"H36_SHA_BOUND_SOURCE ae3f684580c5cd3fba63442738b945de88ad1085 FILES_SHA256 1a859e5874baeba4cf8c14de1fae8df74bf806ac56688b032a8f54296ef5b48b\n"}
+,{"stream_name":"stdout","time":10.491324554,"data":"H36_PINNED_DEPS {'torch': '2.11.0+cu128', 'transformers': '5.16.1', 'accelerate': '1.14.0', 'safetensors': '0.8.0', 'Pillow': '12.3.0'}\n"}
+,{"stream_name":"stderr","time":44.140282913,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":44.343275577,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":44.343297578,"data":"\n"}
+,{"stream_name":"stderr","time":44.343303058,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":73.674069679,"data":"\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\n"}
+,{"stream_name":"stderr","time":74.42888952,"data":"\rLoading weights:   0%|          | 0/625 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 1/625 [00:00\u003c07:53,  1.32it/s]\rLoading weights:  24%|██▎       | 148/625 [00:00\u003c00:02, 231.03it/s]\rLoading weights:   0%|          | 1/625 [00:00\u003c07:53,  1.32it/s]\rLoading weights:  24%|██▎       | 148/625 [00:00\u003c00:02, 231.03it/s]\n"}
+,{"stream_name":"stderr","time":74.802121039,"data":"\rLoading weights:   0%|          | 1/625 [00:00\u003c07:53,  1.32it/s]\rLoading weights:  24%|██▎       | 148/625 [00:00\u003c00:02, 231.03it/s]\rLoading weights:  36%|███▋      | 228/625 [00:01\u003c00:01, 255.92it/s]\rLoading weights:  36%|███▋      | 228/625 [00:01\u003c00:01, 255.92it/s]\n"}
+,{"stream_name":"stderr","time":75.01654771,"data":"\rLoading weights:  36%|███▋      | 228/625 [00:01\u003c00:01, 255.92it/s]\rLoading weights:  46%|████▌     | 285/625 [00:01\u003c00:01, 259.27it/s]\rLoading weights:  55%|█████▍    | 342/625 [00:01\u003c00:00, 309.89it/s]\rLoading weights:  74%|███████▎  | 460/625 [00:01\u003c00:00, 476.45it/s]\rLoading weights:  46%|████▌     | 285/625 [00:01\u003c00:01, 259.27it/s]\rLoading weights:  55%|█████▍    | 342/625 [00:01\u003c00:00, 309.89it/s]\n"}
+,{"stream_name":"stderr","time":75.218457983,"data":"\rLoading weights:  46%|████▌     | 285/625 [00:01\u003c00:01, 259.27it/s]\rLoading weights:  55%|█████▍    | 342/625 [00:01\u003c00:00, 309.89it/s]\rLoading weights:  89%|████████▉ | 558/625 [00:01\u003c00:00, 581.30it/s]\rLoading weights:  74%|███████▎  | 460/625 [00:01\u003c00:00, 476.45it/s]\rLoading weights:  89%|████████▉ | 558/625 [00:01\u003c00:00, 581.30it/s]\n"}
+,{"stream_name":"stderr","time":75.253067561,"data":"\rLoading weights:  74%|███████▎  | 460/625 [00:01\u003c00:00, 476.45it/s]\rLoading weights:  89%|████████▉ | 558/625 [00:01\u003c00:00, 581.30it/s]\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 349.28it/s]\n"}
+,{"stream_name":"stderr","time":75.455265626,"data":"\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 349.28it/s]\n"}
+,{"stream_name":"stderr","time":75.45529748,"data":"\n"}
+,{"stream_name":"stderr","time":75.45530249,"data":"\rLoading weights: 100%|██████████| 625/625 [00:01\u003c00:00, 349.28it/s]\n"}
+,{"stream_name":"stdout","time":79.824404939,"data":"H36_PAIR 1 h34-mail-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":80.026707071,"data":"H36_PAIR 1 h34-mail-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":81.425321854,"data":"H36_PAIR 2 h34-mail-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":81.628244079,"data":"H36_PAIR 2 h34-mail-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":82.962606707,"data":"H36_PAIR 3 h34-mail-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":83.165493998,"data":"H36_PAIR 3 h34-mail-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":83.815203932,"data":"H36_PAIR 4 h34-mail-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":84.018113732,"data":"H36_PAIR 4 h34-mail-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":84.661175538,"data":"H36_PAIR 5 h34-mail-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":84.864124528,"data":"H36_PAIR 5 h34-mail-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":86.164376766,"data":"H36_PAIR 6 h34-mail-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":86.367380992,"data":"H36_PAIR 6 h34-mail-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":87.079415162,"data":"H36_PAIR 7 h34-mail-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":87.282357906,"data":"H36_PAIR 7 h34-mail-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":87.931257477,"data":"H36_PAIR 8 h34-mail-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":88.134045472,"data":"H36_PAIR 8 h34-mail-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":88.792835231,"data":"H36_PAIR 9 h34-mail-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":88.995625612,"data":"H36_PAIR 9 h34-mail-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":89.732787635,"data":"H36_PAIR 10 h34-mail-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":89.935907911,"data":"H36_PAIR 10 h34-mail-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":91.331838267,"data":"H36_PAIR 11 h34-mail-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":91.534751772,"data":"H36_PAIR 11 h34-mail-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":92.16439563,"data":"H36_PAIR 12 h34-mail-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":92.367508529,"data":"H36_PAIR 12 h34-mail-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":93.02961238,"data":"H36_PAIR 13 h34-mail-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":93.232510263,"data":"H36_PAIR 13 h34-mail-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":93.930148732,"data":"H36_PAIR 14 h34-mail-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":94.132940901,"data":"H36_PAIR 14 h34-mail-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":94.867486816,"data":"H36_PAIR 15 h34-mail-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":95.070449348,"data":"H36_PAIR 15 h34-mail-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":95.689361078,"data":"H36_PAIR 16 h34-mail-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":95.892240397,"data":"H36_PAIR 16 h34-mail-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":96.519813647,"data":"H36_PAIR 17 h34-calendar-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":96.721948875,"data":"H36_PAIR 17 h34-calendar-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":97.364127638,"data":"H36_PAIR 18 h34-calendar-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":97.566368324,"data":"H36_PAIR 18 h34-calendar-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":98.906920791,"data":"H36_PAIR 19 h34-calendar-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":99.109235131,"data":"H36_PAIR 19 h34-calendar-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":99.754440961,"data":"H36_PAIR 20 h34-calendar-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":99.956663839,"data":"H36_PAIR 20 h34-calendar-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":100.619687585,"data":"H36_PAIR 21 h34-calendar-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":100.822069237,"data":"H36_PAIR 21 h34-calendar-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":101.5314277,"data":"H36_PAIR 22 h34-calendar-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":101.733594568,"data":"H36_PAIR 22 h34-calendar-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":102.448299516,"data":"H36_PAIR 23 h34-calendar-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":102.6504771,"data":"H36_PAIR 23 h34-calendar-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":103.337479568,"data":"H36_PAIR 24 h34-calendar-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":103.539685667,"data":"H36_PAIR 24 h34-calendar-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":104.163130744,"data":"H36_PAIR 25 h34-calendar-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":104.365448648,"data":"H36_PAIR 25 h34-calendar-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":105.035982819,"data":"H36_PAIR 26 h34-calendar-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":105.240008167,"data":"H36_PAIR 26 h34-calendar-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":106.595722701,"data":"H36_PAIR 27 h34-calendar-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":106.798397918,"data":"H36_PAIR 27 h34-calendar-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":107.421274484,"data":"H36_PAIR 28 h34-calendar-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":107.623990782,"data":"H36_PAIR 28 h34-calendar-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":108.291423749,"data":"H36_PAIR 29 h34-calendar-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":108.494090507,"data":"H36_PAIR 29 h34-calendar-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":109.200718248,"data":"H36_PAIR 30 h34-calendar-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":109.40358486,"data":"H36_PAIR 30 h34-calendar-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":110.137280169,"data":"H36_PAIR 31 h34-calendar-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":110.339549865,"data":"H36_PAIR 31 h34-calendar-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":110.985622404,"data":"H36_PAIR 32 h34-calendar-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":111.188281539,"data":"H36_PAIR 32 h34-calendar-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":111.849182152,"data":"H36_PAIR 33 h34-files-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":112.051555613,"data":"H36_PAIR 33 h34-files-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":113.361399065,"data":"H36_PAIR 34 h34-files-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":113.563855124,"data":"H36_PAIR 34 h34-files-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":114.9262877,"data":"H36_PAIR 35 h34-files-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":115.128604596,"data":"H36_PAIR 35 h34-files-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":115.80316277,"data":"H36_PAIR 36 h34-files-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":116.005565662,"data":"H36_PAIR 36 h34-files-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":116.682332463,"data":"H36_PAIR 37 h34-files-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":116.884692632,"data":"H36_PAIR 37 h34-files-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":117.620895845,"data":"H36_PAIR 38 h34-files-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":117.823330866,"data":"H36_PAIR 38 h34-files-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":118.481311773,"data":"H36_PAIR 39 h34-files-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":118.683579541,"data":"H36_PAIR 39 h34-files-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":119.319370187,"data":"H36_PAIR 40 h34-files-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":119.521674414,"data":"H36_PAIR 40 h34-files-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":120.203271613,"data":"H36_PAIR 41 h34-files-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":120.40562067,"data":"H36_PAIR 41 h34-files-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":121.227212162,"data":"H36_PAIR 42 h34-files-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":121.429503135,"data":"H36_PAIR 42 h34-files-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":122.787479124,"data":"H36_PAIR 43 h34-files-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":122.989734704,"data":"H36_PAIR 43 h34-files-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":123.621342396,"data":"H36_PAIR 44 h34-files-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":123.823506226,"data":"H36_PAIR 44 h34-files-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":124.461283766,"data":"H36_PAIR 45 h34-files-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":124.663576226,"data":"H36_PAIR 45 h34-files-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":125.428451375,"data":"H36_PAIR 46 h34-files-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":125.630782794,"data":"H36_PAIR 46 h34-files-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":126.395125009,"data":"H36_PAIR 47 h34-files-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":126.597482433,"data":"H36_PAIR 47 h34-files-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":127.270491063,"data":"H36_PAIR 48 h34-files-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":127.472915357,"data":"H36_PAIR 48 h34-files-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":128.144522751,"data":"H36_PAIR 49 h34-shop-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":128.346886168,"data":"H36_PAIR 49 h34-shop-en-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":129.091200048,"data":"H36_PAIR 50 h34-shop-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":129.293518417,"data":"H36_PAIR 50 h34-shop-en-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":130.682697421,"data":"H36_PAIR 51 h34-shop-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":130.88476783,"data":"H36_PAIR 51 h34-shop-en-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":131.62851728,"data":"H36_PAIR 52 h34-shop-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":131.830682443,"data":"H36_PAIR 52 h34-shop-en-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":132.510547737,"data":"H36_PAIR 53 h34-shop-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":132.712745793,"data":"H36_PAIR 53 h34-shop-en-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":133.405953098,"data":"H36_PAIR 54 h34-shop-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":133.608009811,"data":"H36_PAIR 54 h34-shop-en-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":134.34645407,"data":"H36_PAIR 55 h34-shop-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":134.548744476,"data":"H36_PAIR 55 h34-shop-en-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":135.240612435,"data":"H36_PAIR 56 h34-shop-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":135.447727752,"data":"H36_PAIR 56 h34-shop-en-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":136.089653314,"data":"H36_PAIR 57 h34-shop-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":136.292211861,"data":"H36_PAIR 57 h34-shop-ar-row numeric_example retained\n"}
+,{"stream_name":"stdout","time":136.977999445,"data":"H36_PAIR 58 h34-shop-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":137.180705607,"data":"H36_PAIR 58 h34-shop-ar-row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":137.91199302,"data":"H36_PAIR 59 h34-shop-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":138.114553345,"data":"H36_PAIR 59 h34-shop-ar-column no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":138.768037995,"data":"H36_PAIR 60 h34-shop-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":138.970731279,"data":"H36_PAIR 60 h34-shop-ar-column numeric_example retained\n"}
+,{"stream_name":"stdout","time":139.642279717,"data":"H36_PAIR 61 h34-shop-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":139.844923422,"data":"H36_PAIR 61 h34-shop-ar-rtl_row numeric_example retained\n"}
+,{"stream_name":"stdout","time":140.584710984,"data":"H36_PAIR 62 h34-shop-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":140.787220673,"data":"H36_PAIR 62 h34-shop-ar-rtl_row no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":141.593172939,"data":"H36_PAIR 63 h34-shop-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":141.795796805,"data":"H36_PAIR 63 h34-shop-ar-scattered no_numeric_example retained\n"}
+,{"stream_name":"stdout","time":142.460810158,"data":"H36_PAIR 64 h34-shop-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":142.663299339,"data":"H36_PAIR 64 h34-shop-ar-scattered numeric_example retained\n"}
+,{"stream_name":"stdout","time":147.180899039,"data":"H36_EXTERNAL_RAW_SHA256 761cceef06f588a67286093580e6f1a1cfe3d3d7605c2b650bf3c9e7c815355e\n"}
+,{"stream_name":"stdout","time":147.180927057,"data":"H36_REQUIRED_INDEPENDENT_AUDIT; NO_MODEL_QUALIFICATION\n"}
+,{"stream_name":"stdout","time":147.226497108,"data":"H36_EXTERNAL_RAW_SHA256 761cceef06f588a67286093580e6f1a1cfe3d3d7605c2b650bf3c9e7c815355e\n"}
+,{"stream_name":"stdout","time":147.226521468,"data":"H36_REQUIRED_INDEPENDENT_AUDIT; NO_MODEL_QUALIFICATION\n"}
+,{"stream_name":"stdout","time":147.226526624,"data":"H36_REAL_RAW_REQUIRES_SEPARATE_SHA_BOUND_AUDIT\n"}
+,{"stream_name":"stderr","time":149.46610907,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":149.466138362,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":149.624539066,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":149.624568537,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":150.350590324,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":150.430094937,"data":"[NbConvertApp] Writing 14674 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":152.863654402,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":153.368919872,"data":"[NbConvertApp] Writing 294724 bytes to __results__.html\n"}
+]

@@ -1,0 +1,71 @@
+{
+  "arms": {
+    "no_numeric_example": {
+      "abstain": 0,
+      "attempted": 32,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 11,
+      "parse_valid": 22,
+      "target_hit": 6,
+      "wrong_target": 5
+    },
+    "numeric_example": {
+      "abstain": 0,
+      "attempted": 32,
+      "denominator": 32,
+      "error": 0,
+      "gate_valid_unique": 10,
+      "parse_valid": 32,
+      "target_hit": 8,
+      "wrong_target": 2
+    }
+  },
+  "attempted_records": 64,
+  "case_sha256": "4b7f849a624caac23dd857adb19ed4293d93d0693dbdbd2921d4423b666a6a3a",
+  "complete": true,
+  "exposed_dev_only": true,
+  "gpu_observations_not_attestation": true,
+  "independent_test_qualified": false,
+  "languages": {
+    "no_numeric_example": {
+      "ar": {
+        "denominator": 16,
+        "gate_valid_unique": 7,
+        "target_hit": 4
+      },
+      "en": {
+        "denominator": 16,
+        "gate_valid_unique": 4,
+        "target_hit": 2
+      }
+    },
+    "numeric_example": {
+      "ar": {
+        "denominator": 16,
+        "gate_valid_unique": 6,
+        "target_hit": 5
+      },
+      "en": {
+        "denominator": 16,
+        "gate_valid_unique": 4,
+        "target_hit": 3
+      }
+    }
+  },
+  "model_qualified": false,
+  "native_actions_executed": false,
+  "paired": {
+    "both_attempted": 32,
+    "both_correct": 3,
+    "denominator": 32,
+    "neither_correct": 21,
+    "only_no_numeric_correct": 3,
+    "only_numeric_correct": 5
+  },
+  "plan_sha256": "39c11abf83cfb997022378d0a3fa516a229ac0209b38de314e8786535671c792",
+  "raw_sha256": "761cceef06f588a67286093580e6f1a1cfe3d3d7605c2b650bf3c9e7c815355e",
+  "real_screenshot_qualified": false,
+  "schema": "hala.h36.paired_dev_replay.v1",
+  "source_commit_observed": "ae3f684580c5cd3fba63442738b945de88ad1085"
+}
