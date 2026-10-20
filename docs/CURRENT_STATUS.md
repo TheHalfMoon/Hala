@@ -1,5 +1,9 @@
 # Hala current status
 
+## H36 matched paired-prompt intervention — 2026-10-20 (prospective source; NOT a model result)
+
+H36 builds an **opt-in, private, zero-cost-only Kaggle Batch research bundle** for 64 bounded image/model inference attempts on the *same already exposed* 32 H34 bilingual synthetic DEV cases. Each original image and goal receives both `numeric_example` (byte-exact H34 model prompt) and `no_numeric_example` (no sample coordinate pair); paired order alternates within EN and AR. The true model revision, package/font/GPU admission, source commit inventory, trial/image/prompt SHA bindings, bounded process ownership, raw journaling and independent replay use fail-closed checks. The source-scored comparison does **not** imply a blind holdout, trained model, actual visual correctness, or native execution. H36 preregistered plan SHA256 `39c11abf83cfb997022378d0a3fa516a229ac0209b38de314e8786535671c792`. **No actual H36 model run or improvement is claimed until signed exact-source Kaggle raw evidence is retained and audited.** See [H36 study](H36_PAIRED_PROMPT_INTERVENTION.md). H34 and H35 results/evidence remain unchanged.
+
 ## H35 SHA-bound H34 visual-target failure localization — 2026-10-20 (Draft)
 
 A new standalone, CPU-only, **post-hoc** forensic analyzer replays both genuine retained Kaggle H34 raw receipts through the original SHA-verified audit before computing any new classification. Original run: 32/32 `parse_invalid` due to Markdown fences; revised-prompt run: 32/32 parse valid, 8/32 intended-target hits, 2/32 uniquely bound to **wrong** controls, **22/32 outside all observed controls**. On the same 32 previously exposed synthetic DEV cases, layout counts are row 1/8, column **0/8**, rtl_row 4/8, scattered 3/8. These are **descriptive failure categories**, not new inference, independent TEST, neural accuracy improvements, hardware qualification, real screenshot validation or model adoption.
