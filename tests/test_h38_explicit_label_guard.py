@@ -101,6 +101,20 @@ class ExactLabelGuardTests(unittest.TestCase):
         self.assertEqual(caught.exception.code,"invalid_backend_output")
         self.assertEqual(engine.calls,1)
 
+    def test_opt_in_rejects_incomplete_observed_accessibility_tree(self):
+        # With elements omitted, an unseen same-label button might exist.
+        # Exact-label uniqueness must not be inferred from a partial tree.
+        request = candidate_payload()
+        request["policy_request"]["task"]["goal"] = "Select the action labeled 'Save' on the page."
+        request["policy_request"]["observation"]["truncation"]["elements_omitted"] = 1
+        engine = FakeEngine()
+        strict = Service(Config(TOKEN, "tenant-1"),
+                         candidate_backend=CandidateBackend(engine, require_explicit_label=True))
+        with self.assertRaises(ServiceError) as caught:
+            strict.infer("v2_action", request, RequestContext(time.monotonic()+2))
+        self.assertEqual(caught.exception.code, "invalid_backend_output")
+        self.assertEqual(engine.calls, 1)
+
     def test_opt_in_refuses_freeform_goals(self):
         request=candidate_payload()
         strict=Service(Config(TOKEN,"tenant-1"),candidate_backend=CandidateBackend(

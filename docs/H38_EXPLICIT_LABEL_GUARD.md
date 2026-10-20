@@ -6,7 +6,7 @@ Status: experimental, opt-in, unqualified; no native computer actions or model-t
 
 H37's actual 64 publicly authored browser-rendered synthetic cases gave 32 correct button hits, 16 wrong yet uniquely bound button hits and 16 points without unique control binding. The existing geometry gate rejects the last 16 but cannot determine that a uniquely selected button is the *intended* button.
 
-H38 adds a simple optional filter to the experimental CandidateBackend. It supports only whole-sentence English or Arabic goals that explicitly quote the target label. The selected accessibility name must exactly match that label, and the full observed accessibility snapshot must have exactly one matching name. Unicode NFC is allowed, but not fuzzy matching or diacritic stripping. Unknown goals, duplicated names, inconsistent or malformed names are rejected.
+H38 adds a simple optional filter to the experimental CandidateBackend. It supports only whole-sentence English or Arabic goals that explicitly quote the target label. The selected accessibility name must exactly match that label, and the full observed accessibility snapshot must have exactly one matching name. Unicode NFC is allowed, but not fuzzy matching or diacritic stripping. Unknown goals, duplicated names, inconsistent or malformed names are rejected. **Any declared omitted accessibility elements cause rejection**: a partial observation cannot establish label uniqueness across the actual screen.
 
 The option is `CandidateBackend(engine, require_explicit_label=True)`; its default is `False` so historic candidate behavior is unchanged. A rejected proposal raises `invalid_backend_output`. An accepted proposal still has `execution_authorized=false` and `qualified=false`. The filter does NOT authorize a click or replace independent host permission and freshness checks.
 
@@ -30,8 +30,8 @@ Run offline: `python -m unittest tests.test_h38_explicit_label_guard tests.test_
 
 ## Actual local source qualification on Windows — 2026-10-20
 
-- H38 focused **11/11** CPU tests passed. One observed red test exposed ignoring a malformed bidi-spoofed observed name; code fixed to reject the full invalid snapshot, then red/green rerun passed.
-- Full Hala regression **519 tests run / 517 passed / 2 skipped**. `python -m compileall` passed.
-- Genuine Graft **wiring-only** build/check passed **1,616 nodes / 4,329 edges**. Deep meaning tier was **not run**.
+- H38 initially focused **11/11** CPU tests passed; a subsequent explicit incomplete-observation red regression reproduced an incorrectly accepted proposal, then was corrected to fail closed (focused **12/12** after fix). One observed red test exposed ignoring a malformed bidi-spoofed observed name; code fixed to reject the full invalid snapshot, then red/green rerun passed.
+- Full Hala regression after the incomplete-observation fix **520 tests run / 518 passed / 2 skipped**; `compileall` PASS. `python -m compileall` passed.
+- Genuine Graft **wiring-only** build/check after the incomplete-observation fix passed **1,617 nodes / 4,337 edges**. Deep meaning tier was **not run**.
 - Independent PStack / Alibaba LLM / Jev / D1 security review is not claimed. Alibaba OpenCodeReview preview was unavailable in this specific H38 terminal path; no paid API review was launched.
 - Source stage CI must be verified at its **exact published head** after pushing. Neither this filter nor the H37 scorer validates trusted user/task provenance, genuine native click execution, or real UI performance.

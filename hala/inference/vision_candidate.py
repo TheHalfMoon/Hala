@@ -136,6 +136,10 @@ class CandidateBackend:
                     and observed_matches[0].element_ref == matches[0].element_ref,
                     'Point must uniquely identify one eligible observed target')
             if self.require_explicit_label:
+                # A partial accessibility snapshot cannot establish global
+                # name uniqueness: an omitted target may share this label.
+                require(request.observation.truncation.elements_omitted == 0,
+                        'Exact-label policy requires a complete accessibility observation')
                 from hala.inference.explicit_label_guard import unique_exact_label_match
                 all_names = [target.name for target in request.observation.accessibility]
                 require(unique_exact_label_match(request.task.goal, matches[0].name, all_names),
