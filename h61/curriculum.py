@@ -24,6 +24,7 @@ ROWS_FILE = "h61_drag_curriculum.jsonl"
 MANIFEST_FILE = "h61_drag_curriculum_manifest.json"
 SOURCE_SCHEMA = "hala.h60.dragon-train-shard.v1"
 EXPORT_SCHEMA = "hala.h61.source-export.v1"
+FIRSTPARTY_SCHEMA = "hala.h61.firstparty-bilingual-drag.v1"
 PINNED_REVISION = "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5"
 DOMAINS = ("sheet", "slide_resize", "slider", "text_highlight")
 MAX_ROWS = 500_000
@@ -140,6 +141,8 @@ def read_shard(shard: Path) -> tuple[list[dict], dict]:
         normalised["manifest_schema"] = SOURCE_SCHEMA
     else:
         receipt = strict_json(read_member(shard, "receipt.json").decode("utf8"))
+        if receipt.get("schema") == FIRSTPARTY_SCHEMA:
+            return _read_firstparty(shard, receipt)
         if (
             receipt.get("schema") != EXPORT_SCHEMA
             or receipt.get("split") != "train"
@@ -168,7 +171,83 @@ def read_shard(shard: Path) -> tuple[list[dict], dict]:
     return rows, normalised
 
 
-def select(rows: list[dict], target_rows: int, max_rows_per_image: int) -> tuple[list[dict], dict]:
+def _read_firstparty(shard: Path, receipt: dict) -> tuple[list[dict], dict]:
+    """Read the first-party bilingual drag corpus into the common row shape.
+
+    The first-party corpus is authored by this project, captured in the
+    genuine installed headless Edge and audited pixel by pixel against the
+    recorded boxes, so it is a TRAIN source like any other. Its rows are
+    normalised into the same shape as the original rows; nothing is invented
+    and the original ordered flag is preserved.
+    """
+    if (
+        receipt.get("split") != "train only"
+        or receipt.get("public_dev_families_used") is not False
+        or receipt.get("benchmark_answer_leakage") is not False
+    ):
+        raise ValueError("The first-party corpus is not a verified TRAIN-only corpus")
+    rows = []
+    for line in read_member(shard, "labels.jsonl").decode("utf8").splitlines():
+        if not line.strip():
+            continue
+        record = strict_json(line)
+        start_box = record["start_bbox"]
+        end_box = record["end_bbox"]
+        rows.append(
+            {
+                "id": record["id"],
+                "split": "train",
+                "domain": record["kind"],
+                "subtype": None,
+                "language": record["language"],
+                "family": record["family"],
+                "image_id": record["id"],
+                "image_path": record["image_path"],
+                "image_sha256": record["image_sha256"],
+                "image_width": record["image_width"],
+                "image_height": record["image_height"],
+                "source_task_json_path": record["html_path"],
+                "source_task_sha256": record["html_sha256"],
+                "source_task_index": 0,
+                "intent": record["instruction"],
+                "action_type": "drag",
+                "ordered": bool(record["ordered"]),
+                "start_bbox": start_box,
+                "end_bbox": end_box,
+                "completion": {
+                    "type": "drag",
+                    "start_point": [
+                        (start_box[0] + start_box[2]) // 2,
+                        (start_box[1] + start_box[3]) // 2,
+                    ],
+                    "end_point": [
+                        (end_box[0] + end_box[2]) // 2,
+                        (end_box[1] + end_box[3]) // 2,
+                    ],
+                    "coordinate_space": "source_image_pixels",
+                    "ordered": bool(record["ordered"]),
+                },
+            }
+        )
+    normalised = {
+        "shard_id": "h61-firstparty-bilingual-drag",
+        "source_domain": "firstparty",
+        "split": "train",
+        "source_commit_sha": None,
+        "labels_sha256": receipt.get("labels_sha256"),
+        "original_images": receipt.get("scenes_accepted"),
+        "native_drag_actions": receipt.get("scenes_accepted"),
+        "upstream_full_tar_lfs_sha256": None,
+        "whole_tar_sha256_verified": None,
+        "manifest_schema": FIRSTPARTY_SCHEMA,
+        "by_language": receipt.get("by_language"),
+        "by_kind": receipt.get("by_kind"),
+    }
+    return rows, normalised
+
+
+def select(rows: list[dict], target_rows: int, max_rows_per_image: int,
+           family_targets: dict | None = None) -> tuple[list[dict], dict]:
     """Capability-balanced, screenshot-deduplicated selection.
 
     Rows are grouped by capability, ordered deterministically inside a
@@ -176,17 +255,34 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int) -> tuple
     contributes until the target is reached. One screenshot may contribute at
     most `max_rows_per_image` rows, so a dense screenshot cannot saturate the
     mixture.
+
+    `family_targets` bounds how many rows one source family may contribute.
+    Without it a large family would silently dominate the mixture, which is
+    exactly how a corpus that has no Arabic supervision produces an adapter
+    that does not move the Arabic scenes.
     """
     if type(target_rows) is not int or not 1 <= target_rows <= MAX_ROWS:
         raise ValueError("Bounded curriculum target required")
     if (type(max_rows_per_image) is not int or
             not 1 <= max_rows_per_image <= MAX_ROWS_PER_IMAGE):
         raise ValueError("Bounded per-screenshot row cap required")
+    family_targets = family_targets or {}
+    for family, limit in family_targets.items():
+        if type(limit) is not int or limit < 0:
+            raise ValueError("Bounded family target required")
     grouped: dict[str, list[dict]] = {}
     for row in rows:
         grouped.setdefault(capability_of(row), []).append(row)
+    families = sorted({row.get("family", FAMILY_PREFIX + "unknown") for row in rows})
+    rank = {family: index for index, family in enumerate(families)}
     for capability in grouped:
-        grouped[capability].sort(key=lambda item: (item["image_id"], item["source_task_index"]))
+        grouped[capability].sort(
+            key=lambda item: (
+                rank.get(item.get("family", FAMILY_PREFIX + "unknown"), len(families)),
+                item["image_id"],
+                item["source_task_index"],
+            )
+        )
     per_image: dict[str, int] = {}
     taken: dict[str, list[dict]] = {}
     for capability in grouped:
@@ -199,6 +295,7 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int) -> tuple
             kept.append(row)
         taken[capability] = kept
     ordered_capabilities = sorted(taken)
+    family_counts: dict[str, int] = {}
     selected: list[dict] = []
     position = 0
     while len(selected) < target_rows:
@@ -206,7 +303,13 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int) -> tuple
         for capability in ordered_capabilities:
             bucket = taken[capability]
             if position < len(bucket):
-                selected.append(bucket[position])
+                row = bucket[position]
+                family = row.get("family", FAMILY_PREFIX + "unknown")
+                limit = family_targets.get(family)
+                if limit is not None and family_counts.get(family, 0) >= limit:
+                    continue
+                selected.append(row)
+                family_counts[family] = family_counts.get(family, 0) + 1
                 progressed = True
                 if len(selected) == target_rows:
                     break
@@ -219,11 +322,13 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int) -> tuple
         "available_rows": sum(len(value) for value in taken.values()),
         "selected_rows": len(selected),
         "unique_screenshots": len({row["image_id"] for row in selected}),
+        "selected_by_family": dict(sorted(family_counts.items())),
     }
 
 
 def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
-          max_rows_per_image: int = 2, domain_receipts: dict | None = None) -> tuple[bytes, dict, list[dict]]:
+          max_rows_per_image: int = 2, domain_receipts: dict | None = None,
+          family_targets: dict | None = None) -> tuple[bytes, dict, list[dict]]:
     """Build the curriculum rows, the manifest and the decoded rows."""
     root = Path(root)
     shards = shard_roots(root)
@@ -245,7 +350,7 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
         )
     if not all_rows:
         raise ValueError("No original TRAIN rows were found")
-    selected, balance = select(all_rows, target_rows, max_rows_per_image)
+    selected, balance = select(all_rows, target_rows, max_rows_per_image, family_targets)
     if not selected:
         raise ValueError("The curriculum selection is empty")
     domain_receipts = domain_receipts or {}
@@ -288,7 +393,7 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
         else:
             ordered_false += 1
         screenshots.add(row["image_id"])
-        family = FAMILY_PREFIX + row["domain"] + "_train"
+        family = row.get("family") or (FAMILY_PREFIX + row["domain"] + "_train")
         families.add(family)
         out_rows.append(
             {
@@ -343,6 +448,9 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
         "domain_counts": dict(sorted(domain_counts.items())),
         "max_rows_per_image": max_rows_per_image,
         "target_rows": target_rows,
+        "family_targets": dict(sorted((family_targets or {}).items())),
+        "selected_by_family": balance["selected_by_family"],
+        "available_capabilities": balance["available_capabilities"],
         "prompt_revision": PROMPT_REVISION,
         "verified_source_shards": shard_receipts,
         "domain_verification_receipts": {
@@ -368,6 +476,7 @@ def load_export(examples_path, manifest):
         target_rows=manifest["target_rows"],
         max_rows_per_image=manifest["max_rows_per_image"],
         domain_receipts=manifest.get("domain_verification_receipts") or {},
+        family_targets=manifest.get("family_targets") or {},
     )
     if manifest != expected or examples_path.read_bytes() != blob:
         raise ValueError("H61 curriculum labels/media/derived SFT were modified")
@@ -375,7 +484,7 @@ def load_export(examples_path, manifest):
 
 
 def export(root, *, target_rows: int = DEFAULT_TARGET_ROWS, max_rows_per_image: int = 2,
-           domain_receipts: dict | None = None) -> dict:
+           domain_receipts: dict | None = None, family_targets: dict | None = None) -> dict:
     """Create-only export of the H61 curriculum rows and manifest."""
     root = Path(root)
     rows_path = root / ROWS_FILE
@@ -384,7 +493,7 @@ def export(root, *, target_rows: int = DEFAULT_TARGET_ROWS, max_rows_per_image: 
         raise FileExistsError("The H61 curriculum export must be create-only")
     blob, manifest, rows = build(
         root, target_rows=target_rows, max_rows_per_image=max_rows_per_image,
-        domain_receipts=domain_receipts,
+        domain_receipts=domain_receipts, family_targets=family_targets,
     )
     with rows_path.open("xb") as handle:
         handle.write(blob)
@@ -417,13 +526,20 @@ if __name__ == "__main__":
     parser.add_argument("--source", required=True)
     parser.add_argument("--target-rows", type=int, default=DEFAULT_TARGET_ROWS)
     parser.add_argument("--max-rows-per-image", type=int, default=2)
+    parser.add_argument("--family-targets", default=None,
+                        help="JSON object of family to maximum row count")
     args = parser.parse_args()
+    targets = json.loads(args.family_targets) if args.family_targets else None
     if args.command == "export":
         print(json.dumps(export(args.source, target_rows=args.target_rows,
-                                max_rows_per_image=args.max_rows_per_image), sort_keys=True))
+                                max_rows_per_image=args.max_rows_per_image,
+                                family_targets=targets), sort_keys=True))
     else:
         blob, manifest, rows = build(args.source, target_rows=args.target_rows,
-                                     max_rows_per_image=args.max_rows_per_image)
+                                     max_rows_per_image=args.max_rows_per_image,
+                                     family_targets=targets)
         print(json.dumps({"rows": len(rows), "images": manifest["unique_source_images"],
                           "capabilities": manifest["capability_counts"],
+                          "languages": manifest["language_counts"],
+                          "families": manifest["selected_by_family"],
                           "dataset_sha256": manifest["dataset_sha256"]}, sort_keys=True))

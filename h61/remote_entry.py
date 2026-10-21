@@ -90,7 +90,7 @@ def main() -> int:
 
         steps = os.environ.get(
             "H61_STEPS",
-            "export,curriculum,baseline,official_base,train,evaluate,official_adapter",
+            "export,firstparty,curriculum,baseline,official_base,train,evaluate,official_adapter",
         )
         images = os.environ.get(
             "H61_IMAGES",
@@ -98,6 +98,10 @@ def main() -> int:
         )
         max_steps = os.environ.get("H61_MAX_STEPS", "600")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
+        family_targets = os.environ.get(
+            "H61_FAMILY_TARGETS",
+            '{"h61_firstparty_bilingual_drag_train": 2000}',
+        )
         command = [
             sys.executable, "-m", "h61.colab_run",
             "--repo", str(repo),
@@ -106,6 +110,7 @@ def main() -> int:
             "--images", images,
             "--max-steps", max_steps,
             "--official-limit", official_limit,
+            "--family-targets", family_targets,
         ]
         environment = dict(os.environ)
         environment["PYTHONPATH"] = str(repo)

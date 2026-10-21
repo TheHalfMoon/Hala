@@ -83,7 +83,8 @@ def step_export(work: Path, domains: dict, chunk_bytes: int) -> dict:
     return {"domains": receipts}
 
 
-def step_curriculum(work: Path, target_rows: int, max_rows_per_image: int) -> dict:
+def step_curriculum(work: Path, target_rows: int, max_rows_per_image: int,
+                    family_targets: dict | None = None) -> dict:
     """Build the capability-balanced curriculum from the exported originals."""
     from h61.curriculum import export as export_curriculum
 
@@ -97,10 +98,13 @@ def step_curriculum(work: Path, target_rows: int, max_rows_per_image: int) -> di
             "curriculum_rows": manifest["train_rows"],
             "unique_source_images": manifest["unique_source_images"],
             "capability_counts": manifest["capability_counts"],
+            "language_counts": manifest["language_counts"],
+            "selected_by_family": manifest.get("selected_by_family"),
             "dataset_sha256": manifest["dataset_sha256"],
         }
     result = export_curriculum(
-        source, target_rows=target_rows, max_rows_per_image=max_rows_per_image
+        source, target_rows=target_rows, max_rows_per_image=max_rows_per_image,
+        family_targets=family_targets,
     )
     print(f"H61_STEP curriculum done rows={result['curriculum_rows']}", flush=True)
     return result
@@ -172,6 +176,36 @@ def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], l
     return receipt["domains"]
 
 
+def step_firstparty(work: Path, repo: Path) -> dict:
+    """Install the first-party bilingual drag corpus into the export root.
+
+    The corpus is captured in the genuine installed headless Microsoft Edge on
+    the authoring host and committed with the repository, so the remote
+    session trains on exactly the same bytes and the same audited boxes.
+    """
+    import shutil
+
+    source = repo / "h61" / "firstparty-assets"
+    target = work / "export" / "firstparty"
+    if not source.exists():
+        raise ValueError("The committed first-party bilingual corpus is missing")
+    if (target / "receipt.json").exists():
+        receipt = json.loads((target / "receipt.json").read_text("utf8"))
+        print("H61_STEP firstparty already complete", flush=True)
+        return receipt
+    if target.exists():
+        shutil.rmtree(target, ignore_errors=True)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(source, target)
+    receipt = json.loads((target / "receipt.json").read_text("utf8"))
+    print(
+        f"H61_STEP firstparty done scenes={receipt.get('scenes_accepted')} "
+        f"languages={receipt.get('by_language')}",
+        flush=True,
+    )
+    return receipt
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", required=True)
@@ -181,6 +215,8 @@ def main() -> int:
     parser.add_argument("--chunk-bytes", type=int, default=16 * 1024 * 1024)
     parser.add_argument("--target-rows", type=int, default=10000)
     parser.add_argument("--max-rows-per-image", type=int, default=1)
+    parser.add_argument("--family-targets", default=None,
+                        help="JSON object of family to maximum row count")
     parser.add_argument("--max-steps", type=int, default=600)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dev-sets", default="h55,h58")
@@ -200,6 +236,7 @@ def main() -> int:
     for item in args.images.split(","):
         name, _, count = item.partition("=")
         domains[name] = int(count)
+    family_targets = json.loads(args.family_targets) if args.family_targets else None
     steps = [step.strip() for step in args.steps.split(",") if step.strip()]
     receipt = {
         "schema": SCHEMA,
@@ -209,6 +246,7 @@ def main() -> int:
         "domains": domains,
         "target_rows": args.target_rows,
         "max_rows_per_image": args.max_rows_per_image,
+        "family_targets": family_targets,
         "max_steps": args.max_steps,
         "resume": args.resume,
         "provider": "interactive_approved_free_colab",
@@ -224,8 +262,10 @@ def main() -> int:
                 receipt["results"]["export"] = step_export(work, domains, args.chunk_bytes)
             elif step == "curriculum":
                 receipt["results"]["curriculum"] = step_curriculum(
-                    work, args.target_rows, args.max_rows_per_image
+                    work, args.target_rows, args.max_rows_per_image, family_targets
                 )
+            elif step == "firstparty":
+                receipt["results"]["firstparty"] = step_firstparty(work, repo)
             elif step == "baseline":
                 from h61.baseline import build_baseline_receipt
 
