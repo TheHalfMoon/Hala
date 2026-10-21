@@ -3,9 +3,9 @@
   "updated_utc": "2026-10-21",
   "principle": "A discovered dataset is not a Kaggle-stored or trained dataset; each stage has evidence",
   "storage": {
-    "kaggle_dataset": "abdulazizshehri/hala-gui-training-library",
-    "kaggle_url": "https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library",
-    "kaggle_dataset_id": 12748399,
+    "kaggle_dataset": "abdulazizshehri/hala-gui-training-library-private",
+    "kaggle_url": "https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library-private",
+    "kaggle_dataset_id": 12752110,
     "kaggle_private_verified": true,
     "kaggle_metadata_readback_verified": true,
     "remote_training_jsonl_sha256": "cb1a8529eaf0f82272d75a459c1634766ee5ec7694f6b21affa2045b11d02dd6",
@@ -19,7 +19,13 @@
     "h52_remote_v2_manifest_sha256": "dfd7a0133ce892ad95db55a2de48ddd38db3857e56a7b7289fcdb40e4e08072a",
     "h52_uploaded_archive_sha256": "37d7514538d51fd76ca8edf56c14ecacb80235e6ad1a0a3835e307f455ad113b",
     "h52_private_kaggle_version_verified": true,
-    "original_v1_preserved_in_v2": true
+    "original_v1_preserved_in_v2": true,
+    "h53_dragon_train_kaggle_shard_sha256": "6176dfe2641f76b50759b38c7f8973625850fdc254e9111730ac50abf4cab959",
+    "h53_drag_train_jsonl_sha256": "9abab62624b45ead5db1ed0c1fdb5d7123f7c761c0a32b8a35f9ecfdebc96c09",
+    "kaggle_dataset_mixed_licenses": "H50/H52 CC0-1.0; H53 Hcompany DragOn Apache-2.0; Kaggle dataset label apache-2.0",
+    "kaggle_latest_metadata_privacy_flag_available": true,
+    "kaggle_public_previous_slug_deleted": true,
+    "kaggle_license_label": "apache-2.0"
   },
   "datasets": [
     {
@@ -74,16 +80,23 @@
       "split": "train only",
       "progress": {
         "discovered": true,
-        "upstream_pinned": false,
+        "upstream_pinned": true,
         "quality_reviewed": false,
-        "stored_kaggle": false,
+        "stored_kaggle": true,
         "training_completed": false,
         "independent_evaluation_completed": false
       },
       "upstream_url": "https://huggingface.co/datasets/Hcompany/DragOn",
-      "remote_data_imported": false,
+      "remote_data_imported": true,
       "trained_model_checkpoint": null,
-      "notes": null
+      "notes": null,
+      "imported_subset": "official train/slider.tar ONLY, 87 original JPEG, 760 original drag tasks",
+      "imported_original_images": 87,
+      "imported_train_drag_actions": 760,
+      "imported_train_labels_sha256": "9abab62624b45ead5db1ed0c1fdb5d7123f7c761c0a32b8a35f9ecfdebc96c09",
+      "unreviewed_remaining_training_images": 285925,
+      "training_model_output": null,
+      "raw_external_screenshot_redistributed_publicly": false
     },
     {
       "id": "xlang-agentnet",
