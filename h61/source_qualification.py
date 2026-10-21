@@ -168,13 +168,20 @@ def review(record: dict) -> dict:
             review_notes["published_splits"] = [
                 dataset_rows(repo, "default", "train")
             ]
-            record["independent_task_records"] = "23,000 desktop trajectories "
-            record["verdict"] = "QUALIFIED_AS_TRAINING_SOURCE"
+            record["independent_task_records"] = (
+                "not measured: the published viewer does not serve this file-based "
+                "dataset. The published annotation files are named "
+                "agentnet_ubuntu_5k.jsonl and agentnet_win_mac_18k.jsonl, which "
+                "declare about 23,000 desktop trajectories, and that declaration "
+                "is not a measured row count."
+            )
+            record["verdict"] = "QUALIFIED_AS_TRAINING_SOURCE_PENDING_ROW_COUNT"
             record["reason"] = (
                 "MIT, open access, one JSONL record per desktop trajectory with a "
-                "task_completed outcome flag and an alignment/efficiency score, "
-                "plus the original screenshot archive. The record count is a "
-                "trajectory count, not a frame count."
+                "task_completed outcome flag and an alignment and efficiency "
+                "score, plus the original screenshot archive. The declared "
+                "trajectory count is a declaration, not a measured row count, and "
+                "a frame count is never a task count."
             )
         elif repo == "hflqf88888/GUIOdyssey":
             review_notes["split_files"] = split_files(repo, revision, "splits")
@@ -187,8 +194,9 @@ def review(record: dict) -> dict:
                 "CC-BY-4.0, open access, one record per multistep mobile episode "
                 "with the original apps, the device and the step count, and four "
                 "official train/test splits including an application-disjoint and "
-                "a device-disjoint split. The evaluation split must stay out of "
-                "training."
+                "a device-disjoint split. The 8,334 record count is the measured "
+                "published row count of the source. The evaluation split must stay "
+                "out of training."
             )
         elif repo == "ServiceNow/VideoCUA":
             review_notes["application_archives"] = len(record.get("split_files") or [])

@@ -20,6 +20,12 @@ from pathlib import Path
 REPO_URL = "https://github.com/TheHalfMoon/Hala.git"
 BRANCH = "ps/h61-complete-corpus-and-curriculum"
 REQUIREMENTS = ("torch==2.11.0", "transformers==5.16.1", "peft==0.20.0", "Pillow==11.3.0")
+MODULE_FOR_REQUIREMENT = {
+    "torch": "torch",
+    "transformers": "transformers",
+    "peft": "peft",
+    "pillow": "PIL",
+}
 RECEIPT_SCHEMA = "hala.h61.remote-entry.v1"
 
 
@@ -68,17 +74,13 @@ def main() -> int:
         ).stdout.strip()
 
         versions = package_versions()
-        missing = [
-            requirement
-            for requirement in REQUIREMENTS
-            if requirement.split("==")[0].lower() not in
-            {"torch": "torch", "transformers": "transformers", "peft": "peft",
-             "pillow": "pil"}[requirement.split("==")[0].lower()]
-            or requirement.split("==")[1] not in versions.get(
-                {"torch": "torch", "transformers": "transformers", "peft": "peft",
-                 "pillow": "pil"}[requirement.split("==")[0].lower()], ""
-            )
-        ]
+        missing = []
+        for requirement in REQUIREMENTS:
+            name, _, wanted = requirement.partition("==")
+            module = MODULE_FOR_REQUIREMENT.get(name.lower())
+            actual = versions.get(module, "") if module else ""
+            if actual.split("+")[0] != wanted:
+                missing.append(requirement)
         if missing:
             print(f"H61_INSTALL {missing}", flush=True)
             run([sys.executable, "-m", "pip", "install", "--quiet", *missing])

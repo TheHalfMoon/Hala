@@ -20,7 +20,7 @@ class HalaDataLibraryTests(unittest.TestCase):
         original=ROOT/"h50/assets/authoring_sft.jsonl"
         self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),
                          storage["remote_training_jsonl_sha256"])
-        self.assertEqual(len(v["datasets"]),14)
+        self.assertEqual(len(v["datasets"]),15)
 
     def test_no_other_data_is_claimed_uploaded_or_trained(self):
         v=json.loads(CATALOG.read_text("utf-8"))

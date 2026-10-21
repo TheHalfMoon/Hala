@@ -167,12 +167,13 @@ class RangeReader:
     """Bounded, resumable reader over one contiguous range of the pinned source."""
 
     def __init__(self, domain: str, start: int, end: int, total: int, receipt_dir: Path,
-                 chunk_bytes: int = DEFAULT_CHUNK):
+                 chunk_bytes: int = DEFAULT_CHUNK, label: str = "range"):
         self.domain = domain
         self.start = start
         self.end = end
         self.total = total
         self.chunk_bytes = chunk_bytes
+        self.label = label
         self.receipt_dir = Path(receipt_dir)
         self.receipt_dir.mkdir(parents=True, exist_ok=True)
         self.url = source_url(domain)
@@ -233,8 +234,7 @@ class RangeReader:
                     "http_status": 206,
                 }
                 self.receipt_dir.joinpath(
-                    f"{self.domain}-{'image' if span_start < self.total // 2 else 'task'}-"
-                    f"{order:05d}.receipt.json"
+                    f"{self.domain}-{self.label}-{order:05d}.receipt.json"
                 ).write_text(_canonical(receipt).decode("utf8"), encoding="utf8")
                 self.receipts.append(receipt)
                 index += 1
@@ -400,7 +400,8 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
             "tasks": [],
         }
 
-    image_reader = RangeReader(domain, 0, total_bytes - 1, total_bytes, receipt_dir, chunk_bytes)
+    image_reader = RangeReader(domain, 0, total_bytes - 1, total_bytes, receipt_dir, chunk_bytes,
+                              label="image")
     reader = TarStreamReader(keep_image, sink_image)
     for payload in image_reader.chunks():
         reader.feed(payload)
@@ -411,7 +412,7 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
         key for key, entry in wanted.items() if entry["tasks"]
     }
     task_reader = RangeReader(domain, task_start, total_bytes - 1, total_bytes, receipt_dir,
-                              max(chunk_bytes, TASK_CHUNK))
+                              max(chunk_bytes, TASK_CHUNK), label="task")
 
     def keep_task(member) -> bool:
         name = member.name

@@ -310,6 +310,14 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
                    allow_nan=False).encode("utf8") + b"\n"
         for row in out_rows
     )
+    media_entries = {
+            row["image_path"]: {
+                "path": row["image_path"],
+                "family": row["family"],
+                "sha256": row["image_sha256"],
+            }
+            for row in out_rows
+        }
     manifest = {
         "schema": "hala.training.manifest.v1",
         "source_schema": SCHEMA,
@@ -325,17 +333,7 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
         "families": sorted(families),
         "held_out_families": [RESERVED_DEV_FAMILY],
         "independent_mixed_drag_dev_available": False,
-        "media": sorted(
-            [
-                {
-                    "path": row["image_path"],
-                    "family": row["family"],
-                    "sha256": row["image_sha256"],
-                }
-                for row in out_rows
-            ],
-            key=lambda item: (item["path"], item["sha256"]),
-        ),
+        "media": [media_entries[key] for key in sorted(media_entries)],
         "unique_source_images": len(screenshots),
         "train_rows": len(out_rows),
         "ordered_true": ordered_true,
