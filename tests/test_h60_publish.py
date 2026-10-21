@@ -175,6 +175,73 @@ class H60PublishReceiptTests(unittest.TestCase):
             self.assertEqual(calls["created"], [], "a verified shard must not be uploaded twice")
             self.assertFalse(shard.exists())
 
+    def test_an_uploaded_but_unverified_shard_is_never_uploaded_again(self) -> None:
+        """A provider dataset that already holds the body is reused, not rebuilt."""
+        with tempfile.TemporaryDirectory() as temporary:
+            staging = Path(temporary) / "staging"
+            staging.mkdir()
+            shard = staging / "h60-dragon-train-slider-0000.zip"
+            _write_shard(shard)
+            calls: dict[str, list] = {"created": [], "deleted": []}
+            with mock.patch.multiple(
+                publish,
+                create_private_dataset=lambda *a, **k: calls["created"].append(a),
+                delete_dataset=lambda ref: calls["deleted"].append(ref),
+                wait_until_visible=lambda ref, token: {},
+                verify_private=lambda ref, token: {
+                    "provider_is_private": True,
+                    "provider_view_total_bytes": 10 ** 9,
+                    "provider_version": 1,
+                    "anonymous_view_http_status": 403,
+                },
+                verify_readback=lambda ref, token, sizes, shas, work: {
+                    "provider_readback_members_checked": len(sizes),
+                    "provider_readback_bytes_mismatched": 0,
+                },
+                reusable_private_dataset=lambda ref, token, expected_bytes: True,
+            ):
+                receipt = ingest.publish_shard(
+                    "h60-dragon-train-slider-0000", "slider", shard, staging, "token", _manifest()
+                )
+            self.assertTrue(receipt["provider_reused_existing_dataset"])
+            self.assertEqual(calls["created"], [], "an uploaded body must not be uploaded twice")
+            self.assertTrue(receipt["provider_readback_verified"])
+
+    def test_a_failed_readback_keeps_an_uploaded_body_for_the_next_retry(self) -> None:
+        def failing_readback(ref, token, sizes, shas, work):
+            raise publish.ProviderNotReady("provider did not serve the content")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            staging = Path(temporary) / "staging"
+            staging.mkdir()
+            shard = staging / "h60-dragon-train-slider-0000.zip"
+            _write_shard(shard)
+            deleted: list[str] = []
+            with mock.patch.multiple(
+                publish,
+                create_private_dataset=lambda *a, **k: None,
+                delete_dataset=lambda ref: deleted.append(ref),
+                wait_until_visible=lambda ref, token: {},
+                verify_private=lambda ref, token: {
+                    "provider_is_private": True,
+                    "provider_view_total_bytes": 10 ** 9,
+                    "provider_version": 1,
+                    "anonymous_view_http_status": 403,
+                },
+                verify_readback=failing_readback,
+                reusable_private_dataset=lambda ref, token, expected_bytes: True,
+            ):
+                with self.assertRaises(publish.ProviderNotReady):
+                    ingest.publish_shard(
+                        "h60-dragon-train-slider-0000", "slider", shard, staging, "token", _manifest()
+                    )
+            self.assertEqual(deleted, [], "a correctly uploaded body must not be discarded")
+            receipt = json.loads(
+                (staging / "shard-receipts" / "slider" / "h60-dragon-train-slider-0000.json").read_text("utf8")
+            )
+            self.assertTrue(receipt["provider_retained_for_retry"])
+            self.assertFalse(receipt["provider_readback_verified"])
+
 
 class H60ProviderReadbackTests(unittest.TestCase):
     def _provider_archive(self, directory: Path, members: dict[str, bytes]) -> Path:

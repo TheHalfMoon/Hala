@@ -185,12 +185,25 @@ def create_private_dataset(upload_dir: Path, ref: str, title: str, subtitle: str
     _kaggle("datasets", "create", "-p", str(upload_dir), "-r", "skip")
 
 
-def download_dataset(ref: str, destination: Path, token: str) -> Path:
-    """Stream the provider dataset archive to disk with backoff."""
+class ProviderNotReady(RuntimeError):
+    """The provider holds the dataset but cannot serve its content yet."""
+
+
+def download_dataset(ref: str, destination: Path, token: str, timeout: float = 3600.0) -> Path:
+    """Stream the provider dataset archive to disk with backoff.
+
+    A freshly published dataset becomes *visible* before its expanded content
+    becomes *downloadable*: the provider still has to index every unpacked
+    member. A read that is refused with HTTP 404 during that window is a
+    provider readiness signal, not a missing dataset, so it is retried until
+    the provider serves the content or the window closes.
+    """
     destination.mkdir(parents=True, exist_ok=True)
     target = destination / "provider-dataset.zip"
+    deadline = time.time() + timeout
+    attempt = 0
     last: Exception | None = None
-    for attempt in range(MAX_ATTEMPTS):
+    while time.time() < deadline:
         try:
             request = urllib.request.Request(
                 f"{KAGGLE_API}/datasets/download/{ref}",
@@ -208,12 +221,15 @@ def download_dataset(ref: str, destination: Path, token: str) -> Path:
             return target
         except urllib.error.HTTPError as error:
             last = error
-            if error.code not in RETRYABLE_STATUS:
+            if error.code not in RETRYABLE_STATUS and error.code != 404:
                 raise
         except Exception as error:  # noqa: BLE001
             last = error
-        time.sleep(min(90.0, 10.0 * (attempt + 1)))
-    raise RuntimeError(f"provider download failed for {ref}: {last}")
+        attempt += 1
+        time.sleep(min(120.0, 15.0 * attempt))
+    raise ProviderNotReady(
+        f"provider did not serve the content of {ref} within {timeout:.0f}s: {last}"
+    )
 
 
 def verify_private(ref: str, token: str) -> dict:
@@ -327,3 +343,29 @@ def dataset_exists(ref: str, token: str) -> bool:
         if error.code in (403, 404):
             return False
         raise
+
+
+def reusable_private_dataset(ref: str, token: str, expected_bytes: int) -> bool:
+    """True when the provider already holds this exact private shard body.
+
+    A shard body is byte-reproducible, so a provider dataset that already
+    reports the same private status and the same published size is the same
+    body. The upload is the expensive part of the pipeline and must never be
+    repeated for a verification that can simply be re-run.
+    """
+    try:
+        view = api_get(f"/datasets/view/{ref}", token)
+    except urllib.error.HTTPError as error:
+        if error.code in (403, 404):
+            return False
+        raise
+    except Exception:  # noqa: BLE001
+        return False
+    if not view.get("isPrivate"):
+        return False
+    total = view.get("totalBytes")
+    if not isinstance(total, int) or total <= 0:
+        return False
+    # The provider reports the size of the uploaded archive, which is at least
+    # the sum of the published member sizes.
+    return total >= int(expected_bytes)

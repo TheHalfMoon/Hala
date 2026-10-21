@@ -351,16 +351,25 @@ def publish_shard(
     except OSError:
         shutil.copy2(zip_path, linked)
     try:
-        if publish.dataset_exists(ref, token):
-            # A previous attempt left this shard slug behind. It is not a
-            # verified copy, so it is removed before the shard is rebuilt.
-            publish.delete_dataset(ref)
-        publish.create_private_dataset(
-            upload_dir,
-            ref,
-            f"Hala H60 DragOn TRAIN {domain} {shard_id.rsplit('-', 1)[-1]} PRIVATE",
-            "Original Hcompany DragOn TRAIN images and drag labels, private verified shard",
+        # A shard body is byte-reproducible, so a provider dataset that already
+        # holds exactly these bytes is reused instead of uploaded again. The
+        # upload is the expensive part and must never be repeated for a
+        # verification that can simply be re-run.
+        reused = publish.reusable_private_dataset(
+            ref, token, expected_bytes=receipt["published_bytes"]
         )
+        receipt["provider_reused_existing_dataset"] = bool(reused)
+        if not reused:
+            if publish.dataset_exists(ref, token):
+                # A previous attempt left this shard slug behind. It is not a
+                # verified copy, so it is removed before the shard is rebuilt.
+                publish.delete_dataset(ref)
+            publish.create_private_dataset(
+                upload_dir,
+                ref,
+                f"Hala H60 DragOn TRAIN {domain} {shard_id.rsplit('-', 1)[-1]} PRIVATE",
+                "Original Hcompany DragOn TRAIN images and drag labels, private verified shard",
+            )
         publish.wait_until_visible(ref, token)
         privacy = publish.verify_private(ref, token)
         receipt["provider_is_private"] = privacy["provider_is_private"]
@@ -378,10 +387,18 @@ def publish_shard(
         receipt["provider_published"] = True
         receipt["provider_readback_verified"] = True
     except Exception as error:  # noqa: BLE001
-        # A half-published provider dataset is not a stored shard. Remove it so
-        # a retry cannot mistake it for a verified private copy.
-        publish.delete_dataset(ref)
-        receipt["provider_deleted_after_failure"] = True
+        # A provider dataset that already holds exactly the published bytes is
+        # kept: the upload is correct and only its verification was not
+        # finished. It is never presented as a stored shard until the byte
+        # proof succeeds. Anything else is removed so a retry cannot mistake
+        # it for a verified private copy.
+        if publish.reusable_private_dataset(
+            ref, token, expected_bytes=receipt["published_bytes"]
+        ):
+            receipt["provider_retained_for_retry"] = True
+        else:
+            publish.delete_dataset(ref)
+            receipt["provider_deleted_after_failure"] = True
         receipt["failure"] = f"{type(error).__name__}: {error}"[:400]
         receipt_path.write_text(
             json.dumps(receipt, sort_keys=True, indent=2) + "\n", encoding="utf8"
