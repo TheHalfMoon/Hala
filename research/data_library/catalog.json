@@ -1,0 +1,293 @@
+{
+  "schema": "hala.training-data-library-progress.v1",
+  "updated_utc": "2026-10-21",
+  "principle": "A discovered dataset is not a Kaggle-stored or trained dataset; each stage has evidence",
+  "storage": {
+    "kaggle_dataset": "abdulazizshehri/hala-gui-training-library",
+    "kaggle_url": "https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library",
+    "kaggle_dataset_id": 12748399,
+    "kaggle_private_verified": true,
+    "kaggle_metadata_readback_verified": true,
+    "remote_training_jsonl_sha256": "cb1a8529eaf0f82272d75a459c1634766ee5ec7694f6b21affa2045b11d02dd6",
+    "remote_archive_manifest_sha256": "1748d1fe26cdc5218c595cf2839884a3f6b780a363b4517da69ca0c38faa67af",
+    "upload_archive_sha256": "783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c",
+    "huggingface_connected_user": "MedScale",
+    "huggingface_write_scope_available": false,
+    "github": "TheHalfMoon/Hala"
+  },
+  "datasets": [
+    {
+      "id": "hala-h50-original",
+      "kind": "original-first-party",
+      "license_declared": "CC0-1.0",
+      "skills": "bilingual single-click visual grounding",
+      "unique_images": 64,
+      "examples_or_episodes": 384,
+      "split": "train",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": true,
+        "quality_reviewed": true,
+        "stored_kaggle": true,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://github.com/TheHalfMoon/Hala/tree/68614e1df29a2af62f5b5eb00c021831accdf518/h50/assets",
+      "remote_data_imported": true,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "hcompany-dragon",
+      "kind": "external-training",
+      "license_declared": "Apache-2.0",
+      "skills": "drag/drop, slider, resize, selection",
+      "unique_images": 286012,
+      "examples_or_episodes": 3560142,
+      "split": "train only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/Hcompany/DragOn",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "xlang-agentnet",
+      "kind": "external-training",
+      "license_declared": "MIT",
+      "skills": "real desktop multi-step trajectories",
+      "unique_images": null,
+      "examples_or_episodes": 22600,
+      "split": "train only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/xlangai/AgentNet",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "servicenow-videocua",
+      "kind": "external-training",
+      "license_declared": "MIT",
+      "skills": "video action/temporal alignment",
+      "unique_images": null,
+      "examples_or_episodes": 10000,
+      "split": "train only after audit",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/ServiceNow/VideoCUA",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "gui-odyssey",
+      "kind": "external-training",
+      "license_declared": "CC-BY-4.0",
+      "skills": "mobile multistep interactions",
+      "unique_images": null,
+      "examples_or_episodes": 8334,
+      "split": "official app-disjoint train",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/hflqf88888/GUIOdyssey",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "microsoft-synthetic-computers",
+      "kind": "original-world-seed-candidate",
+      "license_declared": "MIT",
+      "skills": "synthetic long-horizon fictional workspace/world generation",
+      "unique_images": null,
+      "examples_or_episodes": 98,
+      "split": "only own derived TRAIN worlds (not official test)",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/microsoft/synthetic-computers-at-scale",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "osunlp-multimodal-mind2web",
+      "kind": "external-training",
+      "license_declared": "OpenRAIL",
+      "skills": "visual web step/action alignment",
+      "unique_images": null,
+      "examples_or_episodes": 7775,
+      "split": "official train only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "mcgill-weblinx",
+      "kind": "research-limited",
+      "license_declared": "CC-BY-NC-SA-4.0",
+      "skills": "multi-turn browser tool use",
+      "unique_images": null,
+      "examples_or_episodes": null,
+      "split": "official TRAIN only, license scope restricted",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/McGill-NLP/WebLINX",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "hcompany-holo4-benchmark-rollouts",
+      "kind": "evaluation-only",
+      "license_declared": "mixed upstream benchmark",
+      "skills": "analysis of errors and run structure; not unbiased model training",
+      "unique_images": null,
+      "examples_or_episodes": 7366,
+      "split": "benchmark EVAL only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/Hcompany/trajectories",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": "Reserved benchmark runs; train contamination would invalidate related leaderboard comparisons"
+    },
+    {
+      "id": "microsoft-echoverse",
+      "kind": "evaluation-only",
+      "license_declared": "MIT metadata",
+      "skills": "synthetic computer-use benchmark",
+      "unique_images": null,
+      "examples_or_episodes": null,
+      "split": "TEST/evaluation only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/microsoft/Echoverse",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "prentis-screenref",
+      "kind": "research-limited",
+      "license_declared": "restricted research-only",
+      "skills": "text, spatial reasoning, absent-target grounding",
+      "unique_images": null,
+      "examples_or_episodes": null,
+      "split": "requires explicit applicable release terms, no benchmark train leakage",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/PrentisAI/ScreenRef",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "hcompany-task-factory",
+      "kind": "method/tooling",
+      "license_declared": "owner-permission-asserted; no public corpus",
+      "skills": "original synthetic task generation and environment curriculum",
+      "unique_images": null,
+      "examples_or_episodes": null,
+      "split": "original generated tasks only until underlying corpus available",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/blog/hcompany/holo4",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    },
+    {
+      "id": "showui-web",
+      "kind": "external-candidate-unverified",
+      "license_declared": "upstream per-asset review",
+      "skills": "web grounding and screenshot elements",
+      "unique_images": null,
+      "examples_or_episodes": 21988,
+      "split": "candidate train only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": false,
+        "quality_reviewed": false,
+        "stored_kaggle": false,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://huggingface.co/datasets/ZhuOnR/ShowUI_Web",
+      "remote_data_imported": false,
+      "trained_model_checkpoint": null,
+      "notes": null
+    }
+  ]
+}

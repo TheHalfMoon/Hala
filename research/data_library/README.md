@@ -1,0 +1,58 @@
+# Hala Training Data Library — living progress tracker
+**Last verified: 2026-10-21. English code/docs/tools; updates to founder in Arabic.**
+
+## Where everything is stored
+
+- **PRIVATE Kaggle library:** https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library — dataset ID `12748399`; authenticated as `abdulazizshehri`. Kaggle's metadata API returned `isPrivate: true`, then a source JSONL was downloaded again and its SHA256 matched the original H50 GitHub bytes.
+- **GitHub source registry and historical source/experiment evidence:** `research/competitor_data/2026-10-21/`, `h49/`, `h50/`, this folder and `reviews/`. Dataset/version state machine: `catalog.json`. No paid hosting or new model weights.
+- **Hugging Face:** Existing OAuth connection is authenticated as `MedScale`, but has only read-oriented repository scopes (no dataset-write scope). A **new account is unnecessary**; a future write-enabled connection may simplify storing large private dataset shards if Kaggle private quotas are insufficient.
+- **Storage architecture:** Kaggle private for versioned curated *small training shards*, upstream Hugging Face source repos for huge official archives, GitHub for source pins/hashes/rights evidence/tasks/replay scripts. Do not clone 200GB of AgentNet, 61GB of DragOn or all video frames onto the Windows machine. No HCompany benchmark/test trajectories included in a training archive.
+- **Reproduce the first Kaggle stage:** `python -m research.data_library.build_kaggle_bundle --output NEW_NONEXISTENT_TEMP_DIR`; verify `library-manifest.json` against the original H50 source. Kaggle upload needs Kaggle API auth and is explicitly **private** (no `--public` flag). It does not run a model.
+
+## Completion checklist — mark DONE only with real receipts
+
+| Data source | Discovered | Source pinned & reviewed | Uploaded to Kaggle | Used in real training | Independent model eval |
+|---|---|---|---|---|---|
+| Original H50 bilingual train (64 unique screenshots, 384 labels) | ✅ | ✅ | ✅ **v1 private; remote SHA verified** | ☐ | ☐ |
+| Original H49 DEV (32 screenshots) | ✅ | ✅ stored GitHub **not training** | — reserved DEV | — | ☐ |
+| OpenCUA / AgentNet (human desktop trajectories, ~22.6k tasks) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| Hcompany DragOn (286,012 train images, ~3.56m drag labels) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| ServiceNow VideoCUA (~10k human tasks, video supervision) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| GUI Odyssey (~8.3k mobile trajectories) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| Microsoft Synthetic Computers at Scale (98 *fictional worlds*) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| Multimodal-Mind2Web (~7,775 train actions) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| WebLINX (multi-turn website interactions) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| GroundGUI / ScreenRef (restricted training data) | ✅ | ☐ release-scope decision | ☐ | ☐ | ☐ |
+| ShowUI/Web (source imagery/rights unresolved) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| Holo4 evaluation rollouts (7,366) | ✅ | benchmark-only | **NOT TRAIN** | **NOT TRAIN** | reference only |
+| Hcompany Agentic Task Factory | ✅ methodology | ☐ actual source access | ☐ original generated tasks | ☐ | ☐ |
+
+**Mark a source fully DONE only after its actual source hash, train split, privacy/right review, Kaggle/HF storage verification, real model checkpoint/training-log hash and held-out evaluation receipts exist.** The checkboxes reflect exact observed stages, not the number of references found. The machine-readable `catalog.json` uses the same six stage flags and deliberately has **zero sources marked `training_completed`**.
+
+## Evidence of Kaggle v1 upload and remote verification
+
+Kaggle private dataset creation succeeded with Kaggle CLI 2.2.4. The Kaggle metadata API readback returned `isPrivate: true` and dataset ID `12748399`. The downloaded `library-manifest.json` was **byte-identical** to the staged copy, SHA256 `1748d1fe26cdc5218c595cf2839884a3f6b780a363b4517da69ca0c38faa67af`. The archived original upload `hala-h50-train-original.zip` SHA256 was `783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c`. Kaggle unpacked the archive into a directory under `hala-h50-train-original/h50-train/`; it lists the label JSONL plus original PNG files. Download of `authoring_sft.jsonl` from Kaggle returned 240,656 bytes and original SHA256 `cb1a8529eaf0f82272d75a459c1634766ee5ec7694f6b21affa2045b11d02dd6`. **This establishes actual private remote storage for the first-party H50 TRAIN data. It does not establish training or model improvement.**
+
+Only 64 original first-party synthetic train images, 384 source-bound counterfactual click labels, and original mock-browser provenance were uploaded. No H49 DEV, benchmark TEST answers, PHI, real government accounts, competitor images, private grants, trained weights or other user files were uploaded. Stage files under Windows %TEMP% may be cleaned **after** confirming the remote readback; do not delete the GitHub original repository artifacts.
+
+## Data acquisition waves — why quality and action diversity matter more than raw count
+
+1. **W1: original grounding (stored):** H49/H50 Arabic justice and traffic + English FHIR synthetic train. Checkpoint: private H50 Kaggle v1 remote verified; LoRA and model evaluation remain undone.
+2. **W2: real desktop control + drag (next):** pin MIT OpenCUA AgentNet and Apache-2.0 Hcompany DragOn upstream commits and exact TRAIN partitions; inspect representative source media for identity/copyright/credentials. Add genuinely new app layouts, drag boxes and correct drag action start/end, not fake clicks. Preserve episode boundaries. Upload bounded *curated training shards* with immutable SHA and attribution to **private** Kaggle. No bulk 200GB local downloads.
+3. **W3: long-horizon video/cross-app:** ServiceNow VideoCUA; GUI Odyssey true app-disjoint train; Microsoft synthetic 98 fictional computer worlds as a starting point to produce **new original task worlds**, not official evaluation answers. Align trajectory state, action, expected next observation, wrong-target recovery, and multi-step success rather than single-click rates.
+4. **W4: broad web/visual language:** official `osunlp/Multimodal-Mind2Web` train only, license OpenRAIL, and WebLINX train only (CC BY-NC-SA restrictions or separately evidenced author rights). GroundGUI/ScreenRef and ShowUI remain separate pending specific source-scope/PII review; public benchmark sets are reserved for evaluation.
+5. **W5: Hcompany Agentic Task Factory analogue:** derive a first-party tool that procedurally synthesizes novel bilingual task *scenes + success verifier + tool/natively executable trajectory*, with controlled difficulty, text/icon/spatial/drag/refusal/recovery strata, multiple GUIs and tools, realistic anti-shortcut evaluation and source/version seeds. Hcompany internal factory/corpus is NOT established as publicly obtainable merely because Holo4 evaluation rollouts are public. Founder's assertion of direct private permission is noted, but no sensitive documents are requested.
+6. **W6: actual neural training:** start with real frozen unchanged-model grounding baseline and H49 vs H50 controlled adapters; expand to data mixtures with domain-balanced sampling, duplicate and near-duplicate filtering, confidence weights, SFT then lawful preference/RL training only on genuinely verifiable simulations and outcomes. Keep model-specific architecture (Holo4 35B-A3B final direction vs 2B pilot qualification) and GPU/free-tier limits explicit. Run separate GUI-only and GUI+tool evaluations.
+7. **W7: reproducible competitiveness:** independent sealed Arabic/English novel app TEST and version-matched OSWorld 2.1, ScreenSpot-Pro/ScreenSpot-V2, drag benchmarks. Reserve those screenshots/tasks/answer trajectories from all training, self-training, teacher rewards and prompt optimization. Report successful end-to-end tasks, grounding hit, false clicks, recovery, abstain, latency, VRAM and **cost per successful task**. Never infer that more training labels alone beat competitors.
+
+## Data sourcing notes
+
+Primary source links and license/split details live in `research/competitor_data/2026-10-21/registry.json`, plus this folder's machine catalog. New sources verified on Hugging Face:
+
+- https://huggingface.co/datasets/ServiceNow/VideoCUA — MIT; ~10K video tasks, 55 hours, 6M frames from 87 desktop applications.
+- https://huggingface.co/datasets/microsoft/synthetic-computers-at-scale — MIT; 98 fictional workspace environments, useful for procedural scenario generation, not 98 ready-made GUI screenshots.
+- https://huggingface.co/datasets/osunlp/Multimodal-Mind2Web — OpenRAIL; official train/test splits (7,775 TRAIN actions).
+- https://huggingface.co/datasets/McGill-NLP/WebLINX — CC BY-NC-SA-4.0, explicitly noncommercial/share-alike by default.
+- https://huggingface.co/datasets/microsoft/Echoverse — synthetic *evaluation* environments with shipped test tasks; **not train**.
+
+Kaggle's broad search returned weak/mismatched public results for general `computer use` and no direct AgentNet Kaggle copy, so **the original, version-pinned HF/GitHub author sources are preferable to random Kaggle mirrors**. The user stated broad Hcompany reuse permission; record it as an owner assertion and seek minimal source-level identity checks rather than requesting sensitive private legal files. Keep official TEST rollouts out of training regardless of permission, to make future accuracy claims credible.
