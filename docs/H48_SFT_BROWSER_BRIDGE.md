@@ -35,3 +35,17 @@ Existing `training/scripts/train_adapter.py` is a candidate remote FP16 LoRA imp
 Before any actual H48 adapter experiment: establish platform/research eligibility and checkpoint/processor licenses, free GPU availability, loader and output-head compatibility, measured Arabic preprocessing, a newly independently sealed family-disjoint held-out evaluation set, and a frozen same-harness baseline. Capture genuine adapter parameter updates, source/media/checkpoint hashes, every failure, memory/latency/time consumption and per-language task outcomes. Do not use benchmark TEST trajectories or benchmark privileged answers in training.
 
 The H48 pilot labels a **single next-click only**, not full OSWorld tasks or long-horizon completion. Neither the 64 training annotations nor the public 32 DEV examples qualify Hala as production ready or better than Holo4, OpenCUA or UI-TARS.
+
+## Exact-head repair and negative evidence
+
+The initial signed head `0cfee3484a04f579fbb6f15d324947d3b8da2c10` changed `training/artifacts.py`, one of the byte-frozen H14 original-source files. GitHub's **original** [push CI run 39519594251](https://github.com/TheHalfMoon/Hala/actions/runs/39519594251) and PR run 39519684842 correctly failed the original H14 frozen source/specification tests. This is a **real regression**; do not discard or describe those runs as passing.
+
+A long local initial suite against that head also failed: **577 tests, 2 errors in H14 source-freeze verification and 1 timeout-sensitive pre-existing serving test assertion**, 2 skips. The serving timeout assertion was not proven a newly introduced functional regression; an isolated identical test subsequently passed. The original failure transcript is archived without correction as `reviews/h48-sft-full-suite-20261021.log` SHA256 `517fa1e1375dbba11a8bcad78eaeb1888619cdf1431cf4187c0a7e90508c8656`.
+
+The forward-only source fix on signed head `352dfbf470725a53b660596992f49a4232bb0d74` restored the exact original H14-frozen `training/artifacts.py` bytes and moved H48-only admission to `h48.sft_bridge.load_export`, with explicit dispatch from the otherwise-unfrozen `training/scripts/train_adapter.py`. A new test checks that the H14 frozen file digest matches its original manifest.
+
+Post-repair focused actual Windows test suite: **9/9 PASS**, including both original H14 freeze checks, six H48 source/forgery/frozen-asset tests and the earlier timeout-sensitive serving test. Original evidence retained `reviews/h48-sft-repair-focused-20261021.log` SHA256 `1ccebd38677c41c83b37f3ba2e92b53ce7e5281d712bdcd6148c2c2a9bc36bf4`.
+
+Post-repair actual Graft **wiring-only** build/check: **PASS 1,815 nodes, 4,916 edges across 221 source files**, deep semantic meaning tier NOT RUN. Retained `reviews/h48-sft-repair-graft-20261021.log` SHA256 `0f0c4e56efeee96e6b37626a3ccf5b8c0ee943afd5719454211820b99dc7d235` and `reviews/h48-sft-repair-graft-check-20261021.log` SHA256 `f534fb1e8a5f392b5ddca429038f9a73300652eb28988c368c28cf4bef118443`.
+
+**Final GitHub exact-head Python 3.11/3.12 CI must be read live for the final signed evidence commit**. A failed/queued older run never qualifies a new commit. Local D1/PStack/Alibaba standalone CLI semantic reviews remain unavailable/unperformed; do not fabricate their approval. No H47 Kaggle resubmission, adapter training, new GPU model run or third-party benchmark occurred.
