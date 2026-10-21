@@ -336,5 +336,32 @@
       "trained_model_checkpoint": null,
       "notes": null
     }
+  ],
+  "evaluation_sources": [
+    {
+      "id": "hala-h55-bilingual-public-drag-dev",
+      "split": "dev",
+      "license": "CC0-1.0",
+      "source": "first-party fictional original Edge UI",
+      "authored_screenshots": 24,
+      "arabic_screenshots": 12,
+      "english_screenshots": 12,
+      "distinct_app_families": 6,
+      "live_browser_correct_drags": 24,
+      "live_browser_wrong_origin_rejections": 24,
+      "live_browser_wrong_endpoint_rejections": 24,
+      "public_dev_only": true,
+      "training_allowed": false,
+      "stored_kaggle": false,
+      "independently_blinded": false,
+      "model_inference_evaluated": false,
+      "genuine_neural_task_success_count": null,
+      "model_fine_tuning_completed": false,
+      "original_public_source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+      "original_edge_capture_sha256": "cbff4d7d4db896b4a378435ffe69118c5a3d1f11e982391b934d5ad6a798d85a",
+      "source_qualified": true,
+      "real_edge_unit_replays_verified": true,
+      "independent_model_test_qualified": false
+    }
   ]
 }

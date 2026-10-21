@@ -1,0 +1,976 @@
+{
+  "schema": "hala.h55.real-edge-native-drag-public-dev-replay.v1",
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+  "scenes": 24,
+  "arabic": 12,
+  "english": 12,
+  "real_browser_correct_drags": 24,
+  "real_browser_wrong_endpoint_rejections": 24,
+  "real_browser_wrong_origin_rejections": 24,
+  "source_train": 0,
+  "real_model_inference": false,
+  "blind_benchmark_test": false,
+  "external_requests_blocked": 0,
+  "cases": [
+    {
+      "id": "h55-ar_civic-00",
+      "family": "ar_civic",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 27%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_civic-00.png",
+      "image_sha256": "7a2868afeddd08a13e8e614f785ce79438cddf7ec0fde717aa50550c737bdc3a",
+      "source_html_sha256": "37228bef663b782880a8f9c3ea552a360d1f91ad914d9deffa92b89e22a4323c",
+      "start_point": [
+        241,
+        321
+      ],
+      "end_point": [
+        344,
+        321
+      ],
+      "track_bbox": [
+        179,
+        309,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_civic-01",
+      "family": "ar_civic",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 27%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_civic-01.png",
+      "image_sha256": "478f5dd897e88b63fad5351fb8ed6bf9cfa69349e85531cd066c9345bdf6d096",
+      "source_html_sha256": "306df8bdfe9e5d2fda3c9b7727d7b8c611b6e353082c3c3f2c4c655d32f60115",
+      "start_point": [
+        268,
+        339
+      ],
+      "end_point": [
+        367,
+        339
+      ],
+      "track_bbox": [
+        209,
+        327,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_civic-02",
+      "family": "ar_civic",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 27%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_civic-02.png",
+      "image_sha256": "a0b04bff9b2298f87ef295462e7652843d74b2c3da57833ffe80d504282b5e06",
+      "source_html_sha256": "bd625f8f85961d13fd515dfec54ce9ffd1ae2c3a274d56e67f113e5c6fa0a45a",
+      "start_point": [
+        296,
+        357
+      ],
+      "end_point": [
+        390,
+        357
+      ],
+      "track_bbox": [
+        239,
+        345,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_civic-03",
+      "family": "ar_civic",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 27%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_civic-03.png",
+      "image_sha256": "9eebdf50c648242b5083cc58b1a9fc557c9d6b438c6a9038e06494d9c3290d7b",
+      "source_html_sha256": "a6460bc07fb715f72734d0e71acd94bd97da0ecdf97533dbc9cbea2eb55ca5b9",
+      "start_point": [
+        323,
+        321
+      ],
+      "end_point": [
+        413,
+        321
+      ],
+      "track_bbox": [
+        269,
+        309,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_records-00",
+      "family": "ar_records",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 49%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_records-00.png",
+      "image_sha256": "67922a83ecc82b5f00de9c1ed4f07559f1d021452db3733ef36b4e97e7d45727",
+      "source_html_sha256": "624b5acf251bf9e723efea20131c256fa621d91e9d3641553d432b26de817527",
+      "start_point": [
+        241,
+        339
+      ],
+      "end_point": [
+        478,
+        339
+      ],
+      "track_bbox": [
+        179,
+        327,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_records-01",
+      "family": "ar_records",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 49%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_records-01.png",
+      "image_sha256": "708fce0e62e0855f632de46fe6a170a6fb56af6ec28039af8197c7f18997c28f",
+      "source_html_sha256": "bd0abc6d6312a691f828601a5f3699c30263e27fa782d62c99b0a954dea09019",
+      "start_point": [
+        268,
+        357
+      ],
+      "end_point": [
+        496,
+        357
+      ],
+      "track_bbox": [
+        209,
+        345,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_records-02",
+      "family": "ar_records",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 49%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_records-02.png",
+      "image_sha256": "01ebcdd086a2e382edd869d5cddd213563353cc7439f83b3dc9f6cd3f16f1164",
+      "source_html_sha256": "41fd4e8481acbdd0dc7a205ae1d633abf5dc0650ced29f0f005072f7925d7445",
+      "start_point": [
+        296,
+        321
+      ],
+      "end_point": [
+        513,
+        321
+      ],
+      "track_bbox": [
+        239,
+        309,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_records-03",
+      "family": "ar_records",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 49%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_records-03.png",
+      "image_sha256": "928177444fff939351bc70edd3a0d4c67e3e706f40d9f65e38c270dee5343117",
+      "source_html_sha256": "02c4547be390e14c2040759829e8650ef55e26cda22492e1f3f3e394adc62faf",
+      "start_point": [
+        323,
+        339
+      ],
+      "end_point": [
+        531,
+        339
+      ],
+      "track_bbox": [
+        269,
+        327,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_logistics-00",
+      "family": "ar_logistics",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 74%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_logistics-00.png",
+      "image_sha256": "1e3096613755be37471e8fdc4077af62d95404fb011205c81019f29acf9e78e1",
+      "source_html_sha256": "1dc498a18d5dba1939df70da568dd7bedefd7e020841f8ae8628dc2c34f2add0",
+      "start_point": [
+        241,
+        357
+      ],
+      "end_point": [
+        630,
+        357
+      ],
+      "track_bbox": [
+        179,
+        345,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_logistics-01",
+      "family": "ar_logistics",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 74%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_logistics-01.png",
+      "image_sha256": "4a6676b3583d5616505703bf2295275887cf83538576a36f4df76aab4691c950",
+      "source_html_sha256": "1ef49ae878a6674e22e2e067c202bd1f9f295c58c059a8da61dace5c8451640b",
+      "start_point": [
+        268,
+        321
+      ],
+      "end_point": [
+        642,
+        321
+      ],
+      "track_bbox": [
+        209,
+        309,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_logistics-02",
+      "family": "ar_logistics",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 74%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_logistics-02.png",
+      "image_sha256": "fbc82f2df0c766b9d0edec7358ed6a5c8b6340e5bd87564508dec55a4685f2e1",
+      "source_html_sha256": "a39ae646a8b84d581981f785e8598f33a218d868b39bb30374da91572621cc1c",
+      "start_point": [
+        296,
+        339
+      ],
+      "end_point": [
+        653,
+        339
+      ],
+      "track_bbox": [
+        239,
+        327,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-ar_logistics-03",
+      "family": "ar_logistics",
+      "language": "ar",
+      "split": "dev",
+      "prompt": "اسحب مؤشر الواجهة الخيالية إلى 74%. أعد فقط فعل السحب بإحداثيات الصورة الأصلية. Screenshot 1024x640.",
+      "image_path": "png/h55-ar_logistics-03.png",
+      "image_sha256": "829fdde188aa0d325153dd43d849afcd949522eb429a1386f0e1fcaa185fa543",
+      "source_html_sha256": "9df98b0c671797122b321dff9b150a986de0aeb25117cb81f4e04bc2368fa9fd",
+      "start_point": [
+        323,
+        357
+      ],
+      "end_point": [
+        665,
+        357
+      ],
+      "track_bbox": [
+        269,
+        345,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_fhir-00",
+      "family": "en_fhir",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 27%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_fhir-00.png",
+      "image_sha256": "a6f03ec897ad41e503ea83b85f55901cb151140adb38b416ca25116ea877d2e0",
+      "source_html_sha256": "d3ae0cb8f58a9529212920b650dd2b73ec427a3ab67adc76d634ce4f3ccbb7c9",
+      "start_point": [
+        241,
+        321
+      ],
+      "end_point": [
+        344,
+        321
+      ],
+      "track_bbox": [
+        179,
+        309,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_fhir-01",
+      "family": "en_fhir",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 27%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_fhir-01.png",
+      "image_sha256": "df6409a316ee613fc4ae8a7e3d7814f25186b054aac5c6cf5068af363181b05a",
+      "source_html_sha256": "efbbf6f91a94cd89610c91e2f2f80590298544631243626b13f93ffdbb75f037",
+      "start_point": [
+        268,
+        339
+      ],
+      "end_point": [
+        367,
+        339
+      ],
+      "track_bbox": [
+        209,
+        327,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_fhir-02",
+      "family": "en_fhir",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 27%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_fhir-02.png",
+      "image_sha256": "7641262114bfffec509e1bc28fdaf15241506c0561ed4c65ff5b0b108a191386",
+      "source_html_sha256": "bb5388ac5cd68e9d0368fe30378fc5e77d82329b3dc7a9f86ff104e2f8e1de4b",
+      "start_point": [
+        296,
+        357
+      ],
+      "end_point": [
+        390,
+        357
+      ],
+      "track_bbox": [
+        239,
+        345,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_fhir-03",
+      "family": "en_fhir",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 27%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_fhir-03.png",
+      "image_sha256": "d5f6a28f7028e71f92bd695c888f6216c78535ac682ad682231a083c96f1af7a",
+      "source_html_sha256": "e05ead4ff8fb40d81a647d6342fc1425c409880d03183f622f11664716091d61",
+      "start_point": [
+        323,
+        321
+      ],
+      "end_point": [
+        413,
+        321
+      ],
+      "track_bbox": [
+        269,
+        309,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 27,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_design-00",
+      "family": "en_design",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 49%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_design-00.png",
+      "image_sha256": "d7abd51691594f43029f980e9bd5cf214d6e97a13897162ecb14580bbb5274c9",
+      "source_html_sha256": "88b131bed3c1a18196c5c35ac35676a856837c4b72e2795324220d3739572b02",
+      "start_point": [
+        241,
+        339
+      ],
+      "end_point": [
+        478,
+        339
+      ],
+      "track_bbox": [
+        179,
+        327,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_design-01",
+      "family": "en_design",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 49%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_design-01.png",
+      "image_sha256": "8941fb0147a763ec775359645f5573153ebcdc7aa5dd09c6d2805e845589762b",
+      "source_html_sha256": "0c715826b82e82a417e86f15c21263f99df4de3d0157778086883e032a9acac3",
+      "start_point": [
+        268,
+        357
+      ],
+      "end_point": [
+        496,
+        357
+      ],
+      "track_bbox": [
+        209,
+        345,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_design-02",
+      "family": "en_design",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 49%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_design-02.png",
+      "image_sha256": "e6ff73b958aa98a6fd3961922417abeecc6d446a4b2c2a63356ac8388139556a",
+      "source_html_sha256": "df1baf781384aa5a126d1b796bb90600192d501bbdbb3fbddde9fa0769dcf411",
+      "start_point": [
+        296,
+        321
+      ],
+      "end_point": [
+        513,
+        321
+      ],
+      "track_bbox": [
+        239,
+        309,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_design-03",
+      "family": "en_design",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 49%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_design-03.png",
+      "image_sha256": "77778b0848c60c369e05dee3b6c8f3b2ec90bda0ee1f0a6d63175a46cf8f8b08",
+      "source_html_sha256": "8df60cd5176736904b227c5abc48c40e4f272a2d433c37d2688ee1944a78ae6c",
+      "start_point": [
+        323,
+        339
+      ],
+      "end_point": [
+        531,
+        339
+      ],
+      "track_bbox": [
+        269,
+        327,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 49,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_inventory-00",
+      "family": "en_inventory",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 74%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_inventory-00.png",
+      "image_sha256": "7eaf331c77d918bd99120ba32d511c1a2d36277459dba3de1428acfa1f83fb85",
+      "source_html_sha256": "d6ee2d8faeccce4ba52d595927638a452222af48ad3f607b2c0e0e6e91cbb53b",
+      "start_point": [
+        241,
+        357
+      ],
+      "end_point": [
+        630,
+        357
+      ],
+      "track_bbox": [
+        179,
+        345,
+        610,
+        22
+      ],
+      "handle_bbox": [
+        219.796875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_inventory-01",
+      "family": "en_inventory",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 74%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_inventory-01.png",
+      "image_sha256": "3676367f0d7b2cc60d6fdfd0f46ae7e129ae61b28e175aefc1066184796b02d9",
+      "source_html_sha256": "07b96cf4ac8bc3d98aa5414df9569e7f4d07992c7864472a436cbf7167fdb533",
+      "start_point": [
+        268,
+        321
+      ],
+      "end_point": [
+        642,
+        321
+      ],
+      "track_bbox": [
+        209,
+        309,
+        585,
+        22
+      ],
+      "handle_bbox": [
+        247.296875,
+        294,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_inventory-02",
+      "family": "en_inventory",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 74%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_inventory-02.png",
+      "image_sha256": "51d57c9e5e861384eeba63aeca96559ec0c550f2c310840732ca8ae1413c197c",
+      "source_html_sha256": "2902e1238be0b383c879dd0608dff3fd63846fd73ae70caf90a9676a5ed7eb9d",
+      "start_point": [
+        296,
+        339
+      ],
+      "end_point": [
+        653,
+        339
+      ],
+      "track_bbox": [
+        239,
+        327,
+        560,
+        22
+      ],
+      "handle_bbox": [
+        274.796875,
+        312,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    },
+    {
+      "id": "h55-en_inventory-03",
+      "family": "en_inventory",
+      "language": "en",
+      "split": "dev",
+      "prompt": "Drag the fictional interface slider to 74%. Return ONLY one native drag action with original-image pixel coordinates. Screenshot 1024x640.",
+      "image_path": "png/h55-en_inventory-03.png",
+      "image_sha256": "b15e9e1996dfd68481f37b088bd28179513e3b19b32d5332b28ca573e104046f",
+      "source_html_sha256": "1e88d55cd61e490948d587a9690636b0fc55042bc1dbc2027bec9da59ad30af7",
+      "start_point": [
+        323,
+        357
+      ],
+      "end_point": [
+        665,
+        357
+      ],
+      "track_bbox": [
+        269,
+        345,
+        535,
+        22
+      ],
+      "handle_bbox": [
+        302.296875,
+        330,
+        42,
+        54
+      ],
+      "goal_percent": 74,
+      "source_image_dimensions": [
+        1024,
+        640
+      ],
+      "wrong_origin_rejected": true,
+      "wrong_endpoint_rejected": true,
+      "correct_drag_completed": true,
+      "original_browser": "Microsoft Edge real pointerdown/move/up",
+      "model_inference": false
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+{
+  "schema_version": "1",
+  "mode": "workspace",
+  "repository": "C:/Users/Shehr/Documents/Codex/2026-10-14/files-pasted-by-the-user-hala/work/Hala-h54-native-drag-lora",
+  "total_files": 68,
+  "reviewable_count": 35,
+  "excluded_count": 33,
+  "total_insertions": 3454,
+  "total_deletions": 0,
+  "reviewable_files": [
+    {
+      "path": "h55/assets/capture.json",
+      "status": "added",
+      "insertions": 976,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_civic-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_civic-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_civic-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_civic-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_logistics-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_logistics-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_logistics-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_logistics-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_records-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_records-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_records-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-ar_records-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_design-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_design-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_design-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_design-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_fhir-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_fhir-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_fhir-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_fhir-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_inventory-00.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_inventory-01.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_inventory-02.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/html/h55-en_inventory-03.html",
+      "status": "added",
+      "insertions": 30,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/plans.json",
+      "status": "added",
+      "insertions": 458,
+      "deletions": 0
+    },
+    {
+      "path": "h55/assets/source.json",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0
+    },
+    {
+      "path": "h55/audit.py",
+      "status": "added",
+      "insertions": 80,
+      "deletions": 0
+    },
+    {
+      "path": "h55/evidence/oracle-replay.json",
+      "status": "added",
+      "insertions": 291,
+      "deletions": 0
+    },
+    {
+      "path": "h55/evidence/wrong-replay.json",
+      "status": "added",
+      "insertions": 291,
+      "deletions": 0
+    },
+    {
+      "path": "h55/public_drag_dev.js",
+      "status": "added",
+      "insertions": 147,
+      "deletions": 0
+    },
+    {
+      "path": "h55/replay_predictions.js",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0
+    },
+    {
+      "path": "h55/score.py",
+      "status": "added",
+      "insertions": 86,
+      "deletions": 0
+    },
+    {
+      "path": "research/data_library/catalog.json",
+      "status": "modified",
+      "insertions": 27,
+      "deletions": 0
+    },
+    {
+      "path": "reviews/h55-ocr-local-delegate-preview-20261021.json",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": "h55/README.md",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_civic-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_civic-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_civic-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_civic-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_logistics-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_logistics-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_logistics-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_logistics-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_records-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_records-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_records-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-ar_records-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_design-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_design-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_design-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_design-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_fhir-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_fhir-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_fhir-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_fhir-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_inventory-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_inventory-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_inventory-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h55/assets/png/h55-en_inventory-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "research/data_library/README.md",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": "reviews/h55-final-ledger-focused-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h55-public-dev-focused-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h55-public-dev-full-suite-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h55-public-dev-graft-build-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h55-public-dev-graft-check-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "tests/test_h55_public_drag_dev.py",
+      "status": "added",
+      "insertions": 82,
+      "deletions": 0,
+      "exclude_reason": "default_path"
+    },
+    {
+      "path": ".ignore",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    }
+  ]
+}
