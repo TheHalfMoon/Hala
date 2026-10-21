@@ -23,8 +23,9 @@ All counts below are measured, not advertised. "DONE" always carries a receipt.
 | **Correct the upstream advertised slider count** | **DONE** | the advertised 65,000 images / 571,350 actions undercount the pinned archive; the archive itself holds **100,000 / 877,709** |
 | Recover the other three original TRAIN archives | **IN PROGRESS** | `sheet`, `slide_resize`, `text_highlight`; see `h60/MINIMAX_PROGRESS.md` below |
 | Publish private provider shards with byte-level readback | **IN PROGRESS** | one NEW private dataset per bounded shard; authenticated `is_private`, anonymous HTTP 403, exact provider listing and per-member SHA readback |
-| **Real frozen Qwen3-VL-2B inference on first-party PUBLIC DEV** | **DONE** | 24/24 H55 + 24/24 H58 cases on a real Tesla T4 at revision `89644892e4d85e24eaac8bacfd4f463576704203`; raw model strings preserved verbatim |
+| **Real frozen Qwen3-VL-2B inference on first-party PUBLIC DEV** | **DONE** | 24/24 H55 + 24/24 H58 cases on a real Tesla T4 at revision `89644892e4d85e24eaac8bacfd4f463576704203`; raw model strings preserved verbatim in `h60/evidence/` |
 | Measured baseline GUI drag task success | **DONE (negative)** | **0/24** geometrically correct on H55 and **0/24** on H58; strict bare-JSON validity 0/24 and 0/24 |
+| **Real Microsoft Edge GUI task-success measurement** | **DONE (negative)** | the genuine installed Edge executed the pointer actions for all 48 cases; **0/48** real GUI task success. Receipts `h60/evidence/h55-edge-replay.json` and `h60/evidence/h58-edge-replay.json` |
 | **Real gradient-bearing LoRA on authentic private DragOn TRAIN** | **RUNNING** | `training/scripts/train_adapter.py`, FP16 rank-8 LoRA on the unchanged pinned model, free Colab T4 |
 | Recoverable checkpoint and resume | **PENDING** | must save optimizer/scaler/RNG state and prove a resumed run matches |
 | Genuinely private app-disjoint **blind** TEST | **NOT DONE** | the honest held-out source is first-party PUBLIC DEV: source-disjoint, but not blind and not app-disjoint from a third party |
@@ -32,14 +33,17 @@ All counts below are measured, not advertised. "DONE" always carries a receipt.
 
 ## Measured baseline detail (real, unchanged model, no adapter)
 
-| Set | Cases | Strict bare-JSON valid | Tolerant parse | Ordered semantics valid | Geometrically correct | Degenerate start==end | Out-of-range points |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| H55 bilingual drag PUBLIC DEV | 24 | 0 | 24 | 24 | **0** | 21 | 0 |
-| H58 mixed-domain PUBLIC DEV | 24 | 0 | 16 | 16 | **0** | 6 | 8 |
+| Set | Cases | Strict bare-JSON valid | Tolerant parse | Ordered semantics valid | Geometrically correct | Degenerate start==end | Out-of-range points | Real Edge GUI success |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| H55 bilingual drag PUBLIC DEV | 24 | 0 | 24 | 24 | **0** | 21 | 0 | **0** |
+| H58 mixed-domain PUBLIC DEV | 24 | 0 | 16 | 16 | **0** | 6 | 8 | **0** |
+| **Total** | **48** | **0** | **40** | **40** | **0** | **27** | **8** | **0/48** |
 
 The frozen 2B model emits markdown-fenced JSON instead of the requested bare
 object, frequently returns an identical start and end point, and never lands a
-drag endpoint. That is the measured deficit the LoRA curriculum must attack.
+drag endpoint. The real Microsoft Edge replay executed the pointer actions for
+every case and accepted none, so the honest real GUI task success is **0 of
+48**. That is the measured deficit the LoRA curriculum must attack.
 
 ## Provider publication path: measured corrections (2026-10-21, later in the same session)
 
