@@ -128,6 +128,21 @@ class OfficialFrameTests(unittest.TestCase):
             self.assertEqual(framed[0]["original_image_width"], 1280)
             self.assertIn("The image is 1024x640 pixels.", framed[0]["prompt"])
 
+    def test_a_different_aspect_ratio_is_never_distorted(self):
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            image = root / "images" / "x.jpg"
+            image.parent.mkdir(parents=True)
+            Image.new("RGB", (1280, 720), (200, 200, 200)).save(image)
+            scenes = [scene("a", [666, 232, 688, 254], [527, 238, 537, 248], width=1280, height=720)]
+            scenes[0]["image_path"] = str(image)
+            framed = apply_frame(scenes, root, (1024, 640))
+            self.assertEqual(framed[0]["image_width"], 1024)
+            self.assertEqual(framed[0]["image_height"], 576)
+            self.assertIn("The image is 1024x576 pixels.", framed[0]["prompt"])
+
 
 if __name__ == "__main__":
     unittest.main()

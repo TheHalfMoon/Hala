@@ -53,6 +53,24 @@ MAX_RECEIPTS = 4096
 DEFAULT_FRAME = (1024, 640)
 
 
+def frame_target(original_width: int, original_height: int, frame=(1024, 640)):
+    """The training frame of one original screenshot, aspect ratio preserved.
+
+    A uniform scale is used, so the original boxes and the original screenshot
+    are always scaled by the same factor and the screenshot is never
+    distorted. A screenshot whose aspect ratio differs from the frame keeps
+    its own aspect ratio and is simply smaller, and the prompt states the size
+    that the model actually sees.
+    """
+    frame_width, frame_height = frame
+    if original_width <= 0 or original_height <= 0:
+        raise ValueError("Original screenshot dimensions required")
+    scale = min(frame_width / original_width, frame_height / original_height)
+    new_width = max(1, int(round(original_width * scale)))
+    new_height = max(1, int(round(original_height * scale)))
+    return new_width, new_height, scale
+
+
 def scale_row_to_frame(row: dict, width: int, height: int) -> dict:
     """Scale one original row into the training frame, boxes and points alike.
 
@@ -64,10 +82,9 @@ def scale_row_to_frame(row: dict, width: int, height: int) -> dict:
     original_height = row["image_height"]
     if (original_width, original_height) == (width, height):
         return row
-    scale_x = width / original_width
-    scale_y = height / original_height
-    if abs((original_width / original_height) - (width / height)) > 0.02:
-        raise ValueError("Refusing to distort a screenshot whose aspect ratio differs")
+    new_width, new_height, scale = frame_target(original_width, original_height, (width, height))
+    scale_x = new_width / original_width
+    scale_y = new_height / original_height
     scaled = dict(row)
     for box_key in ("start_bbox", "end_bbox"):
         box = row[box_key]
@@ -85,12 +102,13 @@ def scale_row_to_frame(row: dict, width: int, height: int) -> dict:
             int(round(point[1] * scale_y)),
         ]
     scaled["completion"] = completion
-    scaled["image_width"] = width
-    scaled["image_height"] = height
+    scaled["image_width"] = new_width
+    scaled["image_height"] = new_height
     scaled["original_image_width"] = original_width
     scaled["original_image_height"] = original_height
     scaled["frame_scale_x"] = round(scale_x, 6)
     scaled["frame_scale_y"] = round(scale_y, 6)
+    scaled["frame_uniform_scale"] = round(scale, 6)
     return scaled
 
 
@@ -355,14 +373,15 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
             from PIL import Image
             import io
 
+            target_width, target_height, _ = frame_target(width, height, frame)
             with Image.open(io.BytesIO(payload)) as picture:
                 resized = picture.convert("RGB").resize(
-                    (frame_width, frame_height), Image.LANCZOS
+                    (target_width, target_height), Image.LANCZOS
                 )
                 buffer = io.BytesIO()
                 resized.save(buffer, format="JPEG", quality=95, subsampling=0)
                 stored = buffer.getvalue()
-            stored_width, stored_height = frame_width, frame_height
+            stored_width, stored_height = target_width, target_height
         target = out_dir / "images" / domain / f"{key}.jpg"
         target.write_bytes(stored)
         wanted[key] = {

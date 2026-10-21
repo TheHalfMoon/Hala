@@ -304,6 +304,8 @@ def apply_frame(scenes: list[dict], out_dir, frame=(1024, 640)) -> list[dict]:
     """
     from PIL import Image
 
+    from h61.source_export import frame_target
+
     out_dir = Path(out_dir)
     (out_dir / "framed").mkdir(parents=True, exist_ok=True)
     frame_width, frame_height = frame
@@ -311,20 +313,19 @@ def apply_frame(scenes: list[dict], out_dir, frame=(1024, 640)) -> list[dict]:
     for scene in scenes:
         with Image.open(scene["image_path"]) as picture:
             original_width, original_height = picture.size
-            if (original_width, original_height) == (frame_width, frame_height):
+            target_width, target_height, _ = frame_target(
+                original_width, original_height, (frame_width, frame_height)
+            )
+            if (target_width, target_height) == (original_width, original_height):
                 framed = picture.convert("RGB")
             else:
-                if abs(
-                    (original_width / original_height) - (frame_width / frame_height)
-                ) > 0.02:
-                    raise ValueError("Refusing to distort an official evaluation screenshot")
                 framed = picture.convert("RGB").resize(
-                    (frame_width, frame_height), Image.LANCZOS
+                    (target_width, target_height), Image.LANCZOS
                 )
             target = out_dir / "framed" / f"{scene['id']}.jpg"
             framed.save(target, format="JPEG", quality=95, subsampling=0)
-        scale_x = frame_width / original_width
-        scale_y = frame_height / original_height
+        scale_x = target_width / original_width
+        scale_y = target_height / original_height
         task = dict(scene["task"])
         for box_key in ("start_bbox", "end_bbox"):
             box = task[box_key]
@@ -336,8 +337,8 @@ def apply_frame(scenes: list[dict], out_dir, frame=(1024, 640)) -> list[dict]:
             ]
         framed_scene = dict(scene)
         framed_scene["image_path"] = str(target)
-        framed_scene["image_width"] = frame_width
-        framed_scene["image_height"] = frame_height
+        framed_scene["image_width"] = target_width
+        framed_scene["image_height"] = target_height
         framed_scene["image_sha256"] = sha(target.read_bytes())
         framed_scene["original_image_sha256"] = scene["image_sha256"]
         framed_scene["original_image_width"] = original_width

@@ -60,9 +60,22 @@ class FrameTests(unittest.TestCase):
         self.assertEqual(scaled["original_image_width"], 1280)
         self.assertEqual(scaled["original_image_height"], 800)
 
-    def test_a_distorted_aspect_ratio_is_refused(self):
-        with self.assertRaises(ValueError):
-            scale_row_to_frame(row(1280, 800), 1024, 600)
+    def test_a_different_aspect_ratio_is_scaled_uniformly_and_never_distorted(self):
+        scaled = scale_row_to_frame(row(1280, 720), 1024, 640)
+        self.assertEqual(scaled["image_width"], 1024)
+        self.assertEqual(scaled["image_height"], 576)
+        self.assertEqual(scaled["frame_scale_x"], scaled["frame_scale_y"])
+        self.assertEqual(scaled["frame_uniform_scale"], 0.8)
+        self.assertEqual(scaled["completion"]["start_point"], [477, 201])
+
+    def test_the_frame_target_never_distorts_a_screenshot(self):
+        from h61.source_export import frame_target
+
+        width, height, scale = frame_target(1280, 720, (1024, 640))
+        self.assertEqual((width, height), (1024, 576))
+        self.assertAlmostEqual(scale, 0.8)
+        width, height, scale = frame_target(960, 600, (1024, 640))
+        self.assertEqual((width, height), (1024, 640))
 
     def test_the_row_is_not_mutated_in_place(self):
         original = row()
