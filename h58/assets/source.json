@@ -1,0 +1,114 @@
+{
+  "schema": "hala.h58.original-multidomain-public-dev.v1",
+  "split": "dev",
+  "source": "first-party-original-fictional",
+  "rights": {
+    "license": "CC0-1.0",
+    "external_images": false,
+    "live_services": false,
+    "training_allowed": false,
+    "official_benchmark": false
+  },
+  "public_dev_only": true,
+  "blind_test": false,
+  "trained_models_evaluated": 0,
+  "plans_sha256": "5c8f0aa7c35f955e7e0222121ba92f37fffedc21317a3ee02728e99e6dcbd8bf",
+  "scenes": [
+    {
+      "id": "h58-sheet-00",
+      "html_sha256": "284ba23cb1fb8cb49fb7f829ac085f751bbbc8ef54e4caaec1a0d45bc25301de"
+    },
+    {
+      "id": "h58-sheet-01",
+      "html_sha256": "dd83feacef8cc7493ce2aa6fc9e6623848cef76795428a26317df75089e9faac"
+    },
+    {
+      "id": "h58-sheet-02",
+      "html_sha256": "0ec3e9e54264fee9a049d75d0cc0972026462bc5c12b5e6b04b881ad75a5e461"
+    },
+    {
+      "id": "h58-sheet-03",
+      "html_sha256": "22b57a51b709607524a94f8863af7a9fc9cfb65551ee97eabc7f279884b7b0f4"
+    },
+    {
+      "id": "h58-sheet-04",
+      "html_sha256": "93a37d260acf84d566c19629c1a5acdf55a7237c04a54db0b6473338073e8804"
+    },
+    {
+      "id": "h58-sheet-05",
+      "html_sha256": "be8b0620fc6702a5b1f84474a06ca926d67aa55055d121a8815def0e9679143c"
+    },
+    {
+      "id": "h58-sheet-06",
+      "html_sha256": "ccdebe89aeb49f611fda1a9812d9f0e7a321f4470e319138cc1b7b5f4c677fbb"
+    },
+    {
+      "id": "h58-sheet-07",
+      "html_sha256": "1eb2269dabaeb252c720f22cd2ba169d686737e85523ec5f83c60f485d878ea6"
+    },
+    {
+      "id": "h58-slide_resize-00",
+      "html_sha256": "b55e9d7b562f339cde32a556a26f53bf05ee8e9aed21549813d969636042f9e7"
+    },
+    {
+      "id": "h58-slide_resize-01",
+      "html_sha256": "640d47df5710f7710494b1aaf31a41b72cadc76b458483714973641d341060cf"
+    },
+    {
+      "id": "h58-slide_resize-02",
+      "html_sha256": "d4745c943b6ddf84e1f9e3c9d322999d6b6b4389ee304f7e52319d7cb57ccae1"
+    },
+    {
+      "id": "h58-slide_resize-03",
+      "html_sha256": "ebb31e27bfbca4691248be997d2773a1a171d02252822145a1036b4af73cad08"
+    },
+    {
+      "id": "h58-slide_resize-04",
+      "html_sha256": "a7759c23e7f671b97c04f58b4ca8f537c0d86ae7870d3ca44559f2920496eb65"
+    },
+    {
+      "id": "h58-slide_resize-05",
+      "html_sha256": "7eefddfd29196cdec6a28b0c415a3ac27507ff0a83870600a732c8e3ed334446"
+    },
+    {
+      "id": "h58-slide_resize-06",
+      "html_sha256": "7f312b82e3b6fea164b7315d01662812830e60d01e901e2e2ea0fdd5e1d3f8ce"
+    },
+    {
+      "id": "h58-slide_resize-07",
+      "html_sha256": "54b22a057924f1589c2f7ff08a9506b242fc48dea3bb9646ecbcb085ae9d5839"
+    },
+    {
+      "id": "h58-text_highlight-00",
+      "html_sha256": "13065a1bff92d55bb0a39aec5ceec06454556547ef8e7bb2c96324ad2dbaab6a"
+    },
+    {
+      "id": "h58-text_highlight-01",
+      "html_sha256": "1ac06c6c736f9ecfa260227501060a9e278017c9a670d889adbdf8186af704e6"
+    },
+    {
+      "id": "h58-text_highlight-02",
+      "html_sha256": "1344f715314e2c350861dacf2c83162df110c241a584cf1211b6132b8a990278"
+    },
+    {
+      "id": "h58-text_highlight-03",
+      "html_sha256": "e4bf6a42a3a734154eb1cbedfa293b3f172fd2fc2d49568cdaabd41bd2dc873b"
+    },
+    {
+      "id": "h58-text_highlight-04",
+      "html_sha256": "aeaa42404abda92f27a52f591c7f72dbd7781ab0530ea3b316241800b4345866"
+    },
+    {
+      "id": "h58-text_highlight-05",
+      "html_sha256": "5d2badba9eb3d8e4ee64b17c5769e62425d93cf87751b38071a259e62d156486"
+    },
+    {
+      "id": "h58-text_highlight-06",
+      "html_sha256": "567103a06a86728087f52266078ac9d3165eb4479ffce58869311b44d85b56da"
+    },
+    {
+      "id": "h58-text_highlight-07",
+      "html_sha256": "dd3cead8326fe7c1eddeeeb7ea0664f8c3a45dc6760a68a8480f7116060d0790"
+    }
+  ]
+}

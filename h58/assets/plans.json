@@ -1,0 +1,746 @@
+[
+  {
+    "id": "h58-sheet-00",
+    "kind": "sheet",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "جدول المخزون الافتراضي",
+    "instruction": "حدد الخلايا من البداية إلى النهاية",
+    "start": [
+      185,
+      275
+    ],
+    "end": [
+      440,
+      317
+    ],
+    "bad_start": [
+      185,
+      371
+    ],
+    "bad_end": [
+      440,
+      412
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-sheet-01",
+    "kind": "sheet",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "Original Inventory Sheet",
+    "instruction": "Select the cells from START to END",
+    "start": [
+      220,
+      299
+    ],
+    "end": [
+      515,
+      341
+    ],
+    "bad_start": [
+      220,
+      395
+    ],
+    "bad_end": [
+      515,
+      436
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-sheet-02",
+    "kind": "sheet",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "جدول المخزون الافتراضي",
+    "instruction": "حدد الخلايا من البداية إلى النهاية",
+    "start": [
+      255,
+      323
+    ],
+    "end": [
+      510,
+      365
+    ],
+    "bad_start": [
+      255,
+      419
+    ],
+    "bad_end": [
+      510,
+      460
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-sheet-03",
+    "kind": "sheet",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "Original Inventory Sheet",
+    "instruction": "Select the cells from START to END",
+    "start": [
+      185,
+      347
+    ],
+    "end": [
+      480,
+      389
+    ],
+    "bad_start": [
+      185,
+      443
+    ],
+    "bad_end": [
+      480,
+      484
+    ],
+    "color": "#ad6a50"
+  },
+  {
+    "id": "h58-sheet-04",
+    "kind": "sheet",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "جدول المخزون الافتراضي",
+    "instruction": "حدد الخلايا من البداية إلى النهاية",
+    "start": [
+      220,
+      275
+    ],
+    "end": [
+      475,
+      317
+    ],
+    "bad_start": [
+      220,
+      371
+    ],
+    "bad_end": [
+      475,
+      412
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-sheet-05",
+    "kind": "sheet",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "Original Inventory Sheet",
+    "instruction": "Select the cells from START to END",
+    "start": [
+      255,
+      299
+    ],
+    "end": [
+      550,
+      341
+    ],
+    "bad_start": [
+      255,
+      395
+    ],
+    "bad_end": [
+      550,
+      436
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-sheet-06",
+    "kind": "sheet",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "جدول المخزون الافتراضي",
+    "instruction": "حدد الخلايا من البداية إلى النهاية",
+    "start": [
+      185,
+      323
+    ],
+    "end": [
+      440,
+      365
+    ],
+    "bad_start": [
+      185,
+      419
+    ],
+    "bad_end": [
+      440,
+      460
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-sheet-07",
+    "kind": "sheet",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_sheet",
+    "title": "Original Inventory Sheet",
+    "instruction": "Select the cells from START to END",
+    "start": [
+      220,
+      347
+    ],
+    "end": [
+      515,
+      389
+    ],
+    "bad_start": [
+      220,
+      443
+    ],
+    "bad_end": [
+      515,
+      484
+    ],
+    "color": "#ad6a50"
+  },
+  {
+    "id": "h58-slide_resize-00",
+    "kind": "slide_resize",
+    "language": "ar",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "استوديو الشرائح الافتراضي",
+    "instruction": "اسحب مقبض الحجم إلى الهدف",
+    "start": [
+      185,
+      275
+    ],
+    "end": [
+      345,
+      275
+    ],
+    "bad_start": [
+      185,
+      371
+    ],
+    "bad_end": [
+      345,
+      370
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-slide_resize-01",
+    "kind": "slide_resize",
+    "language": "en",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "Original Slide Editor",
+    "instruction": "Drag the right size handle to TARGET",
+    "start": [
+      220,
+      299
+    ],
+    "end": [
+      420,
+      299
+    ],
+    "bad_start": [
+      220,
+      395
+    ],
+    "bad_end": [
+      420,
+      394
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-slide_resize-02",
+    "kind": "slide_resize",
+    "language": "ar",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "استوديو الشرائح الافتراضي",
+    "instruction": "اسحب مقبض الحجم إلى الهدف",
+    "start": [
+      255,
+      323
+    ],
+    "end": [
+      415,
+      323
+    ],
+    "bad_start": [
+      255,
+      419
+    ],
+    "bad_end": [
+      415,
+      418
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-slide_resize-03",
+    "kind": "slide_resize",
+    "language": "en",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "Original Slide Editor",
+    "instruction": "Drag the right size handle to TARGET",
+    "start": [
+      185,
+      347
+    ],
+    "end": [
+      385,
+      347
+    ],
+    "bad_start": [
+      185,
+      443
+    ],
+    "bad_end": [
+      385,
+      442
+    ],
+    "color": "#ad6a50"
+  },
+  {
+    "id": "h58-slide_resize-04",
+    "kind": "slide_resize",
+    "language": "ar",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "استوديو الشرائح الافتراضي",
+    "instruction": "اسحب مقبض الحجم إلى الهدف",
+    "start": [
+      220,
+      275
+    ],
+    "end": [
+      380,
+      275
+    ],
+    "bad_start": [
+      220,
+      371
+    ],
+    "bad_end": [
+      380,
+      370
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-slide_resize-05",
+    "kind": "slide_resize",
+    "language": "en",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "Original Slide Editor",
+    "instruction": "Drag the right size handle to TARGET",
+    "start": [
+      255,
+      299
+    ],
+    "end": [
+      455,
+      299
+    ],
+    "bad_start": [
+      255,
+      395
+    ],
+    "bad_end": [
+      455,
+      394
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-slide_resize-06",
+    "kind": "slide_resize",
+    "language": "ar",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "استوديو الشرائح الافتراضي",
+    "instruction": "اسحب مقبض الحجم إلى الهدف",
+    "start": [
+      185,
+      323
+    ],
+    "end": [
+      345,
+      323
+    ],
+    "bad_start": [
+      185,
+      419
+    ],
+    "bad_end": [
+      345,
+      418
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-slide_resize-07",
+    "kind": "slide_resize",
+    "language": "en",
+    "ordered": true,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_slide_resize",
+    "title": "Original Slide Editor",
+    "instruction": "Drag the right size handle to TARGET",
+    "start": [
+      220,
+      347
+    ],
+    "end": [
+      420,
+      347
+    ],
+    "bad_start": [
+      220,
+      443
+    ],
+    "bad_end": [
+      420,
+      442
+    ],
+    "color": "#ad6a50"
+  },
+  {
+    "id": "h58-text_highlight-00",
+    "kind": "text_highlight",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "ملاحظات البحث الافتراضية",
+    "instruction": "ظلل الكلمات من البداية إلى النهاية",
+    "start": [
+      185,
+      275
+    ],
+    "end": [
+      440,
+      292
+    ],
+    "bad_start": [
+      185,
+      371
+    ],
+    "bad_end": [
+      440,
+      387
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-text_highlight-01",
+    "kind": "text_highlight",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "Original Research Notes",
+    "instruction": "Highlight from START to END",
+    "start": [
+      220,
+      299
+    ],
+    "end": [
+      515,
+      316
+    ],
+    "bad_start": [
+      220,
+      395
+    ],
+    "bad_end": [
+      515,
+      411
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-text_highlight-02",
+    "kind": "text_highlight",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "ملاحظات البحث الافتراضية",
+    "instruction": "ظلل الكلمات من البداية إلى النهاية",
+    "start": [
+      255,
+      323
+    ],
+    "end": [
+      510,
+      340
+    ],
+    "bad_start": [
+      255,
+      419
+    ],
+    "bad_end": [
+      510,
+      435
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-text_highlight-03",
+    "kind": "text_highlight",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "Original Research Notes",
+    "instruction": "Highlight from START to END",
+    "start": [
+      185,
+      347
+    ],
+    "end": [
+      480,
+      364
+    ],
+    "bad_start": [
+      185,
+      443
+    ],
+    "bad_end": [
+      480,
+      459
+    ],
+    "color": "#ad6a50"
+  },
+  {
+    "id": "h58-text_highlight-04",
+    "kind": "text_highlight",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "ملاحظات البحث الافتراضية",
+    "instruction": "ظلل الكلمات من البداية إلى النهاية",
+    "start": [
+      220,
+      275
+    ],
+    "end": [
+      475,
+      292
+    ],
+    "bad_start": [
+      220,
+      371
+    ],
+    "bad_end": [
+      475,
+      387
+    ],
+    "color": "#226c84"
+  },
+  {
+    "id": "h58-text_highlight-05",
+    "kind": "text_highlight",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "Original Research Notes",
+    "instruction": "Highlight from START to END",
+    "start": [
+      255,
+      299
+    ],
+    "end": [
+      550,
+      316
+    ],
+    "bad_start": [
+      255,
+      395
+    ],
+    "bad_end": [
+      550,
+      411
+    ],
+    "color": "#765c94"
+  },
+  {
+    "id": "h58-text_highlight-06",
+    "kind": "text_highlight",
+    "language": "ar",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "ملاحظات البحث الافتراضية",
+    "instruction": "ظلل الكلمات من البداية إلى النهاية",
+    "start": [
+      185,
+      323
+    ],
+    "end": [
+      440,
+      340
+    ],
+    "bad_start": [
+      185,
+      419
+    ],
+    "bad_end": [
+      440,
+      435
+    ],
+    "color": "#3c856c"
+  },
+  {
+    "id": "h58-text_highlight-07",
+    "kind": "text_highlight",
+    "language": "en",
+    "ordered": false,
+    "split": "dev",
+    "image_size": [
+      1024,
+      640
+    ],
+    "family": "fictional_firstparty_text_highlight",
+    "title": "Original Research Notes",
+    "instruction": "Highlight from START to END",
+    "start": [
+      220,
+      347
+    ],
+    "end": [
+      515,
+      364
+    ],
+    "bad_start": [
+      220,
+      443
+    ],
+    "bad_end": [
+      515,
+      459
+    ],
+    "color": "#ad6a50"
+  }
+]

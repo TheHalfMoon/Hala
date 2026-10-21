@@ -1,0 +1,25 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1024,initial-scale=1">
+<style>*{box-sizing:border-box}body{margin:0;background:#eff5f8;color:#253b4b;font:17px Segoe UI,Tahoma,Arial,sans-serif}
+header{height:74px;background:#fff;padding:18px 35px;border-bottom:2px solid #d2dfe8}main{position:relative;width:1024px;height:566px}
+h1{margin:19px 50px;font-size:24px}.instruction{margin:10px 50px;color:#765c94;font-size:21px;font-weight:700}
+.scene{position:absolute;left:120px;width:780px;height:340px;border-radius:14px;padding:25px;top:155px;color:#5e7485;font-size:16px;background:#fff;border:1px solid #cedce5}
+.scene p{border-bottom:1px solid #e0e9ed;padding-bottom:4px}.drag-point{z-index:5;position:absolute;width:65px;height:43px;display:flex;align-items:center;justify-content:center;
+color:#fff;border:3px solid #fff;border-radius:9px;font-weight:700;font-size:12px;cursor:crosshair;touch-action:none;user-select:none;box-shadow:0 2px 6px #879fae}
+footer{position:absolute;bottom:22px;left:42px;font-size:13px;color:#7890a0}</style></head>
+<body><header><strong>Original Research Notes</strong><small style="float:right">H58 FIRST-PARTY PUBLIC DEV</small></header>
+<main><h1>text highlight</h1><div class="instruction">Highlight from START to END</div>
+<div class="scene" style="top:153px"><b>Research summary</b><p>These entirely fictional words are available for selection.</p><p>Research notes and document editing demo.</p></div>
+<div class="drag-point" id="start" style="left:195px;top:280px;background:#765c94">START</div>
+<div class="drag-point" id="end" style="left:490px;top:297px;background:#ac5839">END</div>
+<footer>No real users, services, external application screenshots or Hcompany benchmark labels</footer></main>
+<script>(()=>{const A=[220,299],B=[515,316],ORDERED=false;
+let start=null,active=false,moves=0;const near=(x,y)=>Math.hypot(x[0]-y[0],x[1]-y[1])<22;
+document.body.dataset.completed="0";document.body.dataset.accepted="false";document.body.dataset.rejected="0";
+document.addEventListener("pointerdown",e=>{start=[e.clientX,e.clientY];active=true;moves=0;e.preventDefault();});
+document.addEventListener("pointermove",()=>{if(active)moves++;});
+document.addEventListener("pointerup",e=>{if(!active)return;active=false;const end=[e.clientX,e.clientY];
+const good=moves>=3&&((near(start,A)&&near(end,B))||(!ORDERED&&near(start,B)&&near(end,A)));
+if(good){document.body.dataset.completed="1";document.body.dataset.accepted="true";}
+else document.body.dataset.rejected=String(Number(document.body.dataset.rejected)+1);});
+document.addEventListener("pointercancel",()=>{active=false;});})();</script></body></html>
