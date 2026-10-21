@@ -553,7 +553,23 @@
       "real_lora_checkpoint_sha256": "c166d318fcf8a5f996aab8b453aa358b8d8d48ba714a5e6c27311c5f280397b4",
       "real_lora_first_step_loss": 2.4252646565437317,
       "real_lora_last_step_loss": 0.5489906892180443,
+      "real_lora_resume_comparison_components": [
+        "adapter",
+        "optimizer",
+        "scaler",
+        "torch_rng",
+        "cuda_rng",
+        "loss_trajectory",
+        "step",
+        "config_sha256",
+        "dataset_sha256",
+        "manifest_sha256"
+      ],
+      "real_lora_resume_equivalence_exact": true,
+      "real_lora_resume_equivalence_qualified": true,
+      "real_lora_resume_interrupt_step": 3,
       "real_lora_resume_state_sha256": "1dce7035026e3b74cfc4d58c427249336001028c0b5a70b37f3e657cd10e4674",
+      "real_lora_resume_trajectory_steps": 6,
       "real_lora_training_executed": true,
       "remaining_domains_in_progress": [
         "sheet",

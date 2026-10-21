@@ -1,0 +1,959 @@
+{
+  "adapter_quality_qualified": false,
+  "comparison": {
+    "components": {
+      "adapter": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "config_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "cuda_rng": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "dataset_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "loss_trajectory": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "manifest_sha256": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "optimizer": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "scaler": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "step": {
+        "atol": 1e-06,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 1e-05,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      },
+      "torch_rng": {
+        "atol": 0,
+        "exact": true,
+        "max_absolute_difference": 0,
+        "mismatch_paths": [],
+        "rtol": 0,
+        "tolerance_paths": [],
+        "within_tolerance": true
+      }
+    },
+    "exact": true,
+    "within_tolerance": true
+  },
+  "consumed_microbatches_per_trajectory": 6,
+  "continuous": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "e6ef532e21e688eac1e58345ab3aaf73c3261a5f383e117e4b339b55016de119",
+      "adapter/adapter_model.safetensors": "0eb571f700423acfee292cc48b3c23be8f2371a1a061c64865859158b38485dc",
+      "resume.pt": "9e9d2bc5baa49dc9eb449a9efaa798cc367e530256d836b2a279be88421c69bf"
+    },
+    "checkpoint_sha256": "fc08759b356024f2ada923e5113cd746711ee816adcf4aeeb39bbe158c348795",
+    "metrics": [
+      {
+        "loss": 2.108689308166504,
+        "seconds": 11.770425554000212,
+        "step": 1
+      },
+      {
+        "loss": 2.657360792160034,
+        "seconds": 9.413475072000438,
+        "step": 2
+      },
+      {
+        "loss": 2.194076657295227,
+        "seconds": 9.29613205700025,
+        "step": 3
+      },
+      {
+        "loss": 2.1291418075561523,
+        "seconds": 9.426998652999828,
+        "step": 4
+      },
+      {
+        "loss": 1.9169367551803589,
+        "seconds": 9.498586085999705,
+        "step": 5
+      },
+      {
+        "loss": 1.8892510533332825,
+        "seconds": 9.537351820999902,
+        "step": 6
+      }
+    ],
+    "runtime": {
+      "actual_reload": false,
+      "audited_records": 1586,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.44593536899992614,
+          "index": 0,
+          "max_memory_allocated_bytes": 17146880,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 1605632,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4368506880,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1279066112,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.373501777648926,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task01"
+            }
+          ],
+          "peak_allocated_bytes": 8607868928,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14206107648,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.4207353591918945,
+          "max_parameter_update": 5.00678361277096e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task03"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 2
+        },
+        {
+          "allocated_bytes": 4368465920,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.50316047668457,
+          "max_parameter_update": 5.0180395192001015e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task05"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 3
+        },
+        {
+          "allocated_bytes": 4368498688,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.0224175453186035,
+          "max_parameter_update": 5.033738852944225e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task06"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task07"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 4
+        },
+        {
+          "allocated_bytes": 4368637952,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.010218620300293,
+          "max_parameter_update": 5.053603672422469e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task08"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2205,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task09"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 5
+        },
+        {
+          "allocated_bytes": 4368482304,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 6.212469577789307,
+          "max_parameter_update": 5.077567766420543e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task11"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 6
+        }
+      ],
+      "resumed_from_step": 0,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792600552.1807816,
+      "trainable_parameter_elements": 1605632,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 6,
+    "version": "step-00000006-da24e6e7c7504875806744dd2821009b"
+  },
+  "elapsed_seconds": 884.2621478849996,
+  "evidence": "real_gpu_engineering_qualification",
+  "first_partial_snapshot": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "e6ef532e21e688eac1e58345ab3aaf73c3261a5f383e117e4b339b55016de119",
+      "adapter/adapter_model.safetensors": "69b5de6e6d2f66ee35bd69e5934ffbaa38a3c5a6d327c1c56f0fd5b9b5b6dd07",
+      "resume.pt": "732681553a5027807bf465a96bbcd88a06c9e1dd0184b5677163f7a8cb838a5e"
+    },
+    "checkpoint_sha256": "88316310237add24eebdf09caa6eb558b30d82446aec16057f526de1a8b412aa",
+    "metrics": [
+      {
+        "loss": 2.108689308166504,
+        "seconds": 9.455699776999609,
+        "step": 1
+      },
+      {
+        "loss": 2.657360792160034,
+        "seconds": 9.829417007000302,
+        "step": 2
+      },
+      {
+        "loss": 2.194076657295227,
+        "seconds": 9.728527166000276,
+        "step": 3
+      }
+    ],
+    "runtime": {
+      "actual_reload": false,
+      "audited_records": 1586,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.0044733639997502905,
+          "index": 0,
+          "max_memory_allocated_bytes": 18195456,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 1605632,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4368506880,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1279066112,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.373501777648926,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task01"
+            }
+          ],
+          "peak_allocated_bytes": 8607868928,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14206107648,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.4207353591918945,
+          "max_parameter_update": 5.00678361277096e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task03"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 2
+        },
+        {
+          "allocated_bytes": 4368465920,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.50316047668457,
+          "max_parameter_update": 5.0180395192001015e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task05"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 3
+        }
+      ],
+      "resumed_from_step": 0,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792600877.1021938,
+      "trainable_parameter_elements": 1605632,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 3,
+    "version": "step-00000003-07402a84c0c14c8980ae1b9f1ffa14be"
+  },
+  "independent_blind_test_completed": false,
+  "inputs": {
+    "baseline": "753946392e1217f29d0d39be61aed560d708057de6e0ee77a2ed272c818d6c29",
+    "config": "8bf072ad5992a92a5f13a5a57ca8a0b13048808262922eb04aea0c25f2fefce0",
+    "examples": "10cdcee91ae219e45f74850a165cb1ce1228d7fd45f8b1b2274b5e69f934f99a",
+    "manifest": "9f99676c27e33a5d50c9ce1d418a768a7968d2ffcfed47b4acb114fcbe319548"
+  },
+  "interrupt_step": 3,
+  "official_benchmark_comparison_qualified": false,
+  "resumed": {
+    "artifacts": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "e6ef532e21e688eac1e58345ab3aaf73c3261a5f383e117e4b339b55016de119",
+      "adapter/adapter_model.safetensors": "0eb571f700423acfee292cc48b3c23be8f2371a1a061c64865859158b38485dc",
+      "resume.pt": "b83516e6b300463aa707a721bce4f4c5b55933171fc6dc53545b5735044c6c48"
+    },
+    "checkpoint_sha256": "fcc2844eea1d5c525a5be4136fe4723ed0142f99b9f785a7d44ce28c3d1710e4",
+    "metrics": [
+      {
+        "loss": 2.108689308166504,
+        "seconds": 9.455699776999609,
+        "step": 1
+      },
+      {
+        "loss": 2.657360792160034,
+        "seconds": 9.829417007000302,
+        "step": 2
+      },
+      {
+        "loss": 2.194076657295227,
+        "seconds": 9.728527166000276,
+        "step": 3
+      },
+      {
+        "loss": 2.1291418075561523,
+        "seconds": 9.491391925999778,
+        "step": 4
+      },
+      {
+        "loss": 1.9169367551803589,
+        "seconds": 9.815424424999946,
+        "step": 5
+      },
+      {
+        "loss": 1.8892510533332825,
+        "seconds": 9.70139812599973,
+        "step": 6
+      }
+    ],
+    "runtime": {
+      "actual_reload": true,
+      "audited_records": 1586,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.0053959759998178924,
+          "index": 0,
+          "max_memory_allocated_bytes": 18195456,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 1605632,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4368506880,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1279066112,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.373501777648926,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task01"
+            }
+          ],
+          "peak_allocated_bytes": 8607868928,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14206107648,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.4207353591918945,
+          "max_parameter_update": 5.00678361277096e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task03"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 2
+        },
+        {
+          "allocated_bytes": 4368465920,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.50316047668457,
+          "max_parameter_update": 5.0180395192001015e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task05"
+            }
+          ],
+          "peak_allocated_bytes": 8648024064,
+          "peak_reserved_bytes": 14206107648,
+          "reserved_bytes": 14145290240,
+          "step": 3
+        },
+        {
+          "allocated_bytes": 4368498688,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5255266304,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.0224175453186035,
+          "max_parameter_update": 5.033738852944225e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task06"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task07"
+            }
+          ],
+          "peak_allocated_bytes": 8618762752,
+          "peak_reserved_bytes": 10229907456,
+          "reserved_bytes": 10229907456,
+          "step": 4
+        },
+        {
+          "allocated_bytes": 4368637952,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5370609664,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.010218620300293,
+          "max_parameter_update": 5.053603672422469e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task08"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2205,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task09"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14231273472,
+          "reserved_bytes": 10114564096,
+          "step": 5
+        },
+        {
+          "allocated_bytes": 4368515072,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5370609664,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 6.212469577789307,
+          "max_parameter_update": 5.077567766420543e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task11"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14231273472,
+          "reserved_bytes": 10114564096,
+          "step": 6
+        }
+      ],
+      "resumed_from_step": 3,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792601167.2685795,
+      "trainable_parameter_elements": 1605632,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "step": 6,
+    "version": "step-00000006-5fe9eee6bac24daa844f458973057ba7"
+  },
+  "runtime_qualified": true,
+  "schema": "hala.h60.real-dragon-lora-resume-qualification.v1",
+  "source": "authentic private original Hcompany DragOn TRAIN (H57 verified shard)",
+  "total_steps": 6,
+  "trajectories": 2
+}
