@@ -64,11 +64,11 @@
       "upstream_url": "https://github.com/TheHalfMoon/Hala/tree/ps/h52-original-task-factory/h52"
     },
     {
-      "examples_or_episodes": 9887,
+      "examples_or_episodes": 10000,
       "id": "hala-h61-original-dragon-curriculum",
       "kind": "original-third-party",
       "license_declared": "Apache-2.0",
-      "notes": "Original upstream DragOn TRAIN material read directly from the pinned immutable revision with HTTP 206 byte ranges and a per-range SHA-256 receipt; the screenshots are moved into the H61 evaluation frame and the original boxes are scaled with the original screenshot. sheet: 2044 images / 53105 actions, slide_resize: 2085 images / 21940 actions, slider: 3220 images / 28355 actions, text_highlight: 2538 images / 25370 actions",
+      "notes": "Original upstream DragOn TRAIN material read directly from the pinned immutable revision with HTTP 206 byte ranges and a per-range SHA-256 receipt; the screenshots are moved into the H61 evaluation frame and the original boxes are scaled with the original screenshot. firstparty: None images / None actions, sheet: 2044 images / 53105 actions, slide_resize: 2085 images / 21940 actions, slider: 3220 images / 28355 actions, text_highlight: 2538 images / 25370 actions",
       "progress": {
         "discovered": true,
         "independent_evaluation_completed": false,
@@ -81,7 +81,7 @@
       "skills": "native GUI drag grounding: ordered and unordered drag, text and cell selection, element resizing",
       "split": "train only; the upstream eval and hidden test splits are never trained on",
       "trained_model_checkpoint": null,
-      "unique_images": 9887,
+      "unique_images": 10000,
       "upstream_url": "https://huggingface.co/datasets/Hcompany/DragOn/tree/3451c1fc3543c18fc3361a32bfe1f12cc69b64b5/train"
     },
     {
@@ -626,21 +626,24 @@
     "h57_second_independent_private_kaggle_dataset": "abdulazizshehri/hala-dragon-multidomain-train-private",
     "h57_uploaded_full_zip_download_independently_verified": false,
     "h61_curriculum_capability_counts": {
+      "sheet/ordered": 500,
       "sheet/ordered/column_resize": 2009,
       "sheet/ordered/row_resize": 35,
-      "slide_resize/ordered": 2085,
-      "slider/ordered": 3220,
-      "text_highlight/unordered": 2538
+      "slide_resize/ordered": 2486,
+      "slider/ordered": 2485,
+      "text_highlight/unordered": 2485
     },
-    "h61_curriculum_dataset_sha256": "d9d0e2e39014cbb8de0ca33ed28cc5a8b562da3a0a84f975f55d27f34a45cb46",
-    "h61_curriculum_rows": 9887,
+    "h61_curriculum_dataset_sha256": "0988d73e69d00dd7ec46dfc5ce3b8a62c677f1132c3a6015097350a810758ffc",
+    "h61_curriculum_rows": 10000,
     "h61_export_domains": [
+      "firstparty",
       "sheet",
       "slide_resize",
       "slider",
       "text_highlight"
     ],
     "h61_export_labels_sha256": {
+      "firstparty": "94c9b943f79264ceccf5d04a2daf8278e7cb02589ce5edbddee8a3e557daa4e6",
       "sheet": "0706ea35ff3566e845b2564b3f1c270baa894271017b568b6121d1c7bf9f0c01",
       "slide_resize": "ad03acfd26f3350ef497daefba8ab5074b092a8882766b22a68f59adfecd34c0",
       "slider": "fb81ec160c5e977ede509b1e095d65876602a7b2a62c3cdc731a915cd4fa61c1",
@@ -649,12 +652,14 @@
     "h61_export_native_drag_actions": 128770,
     "h61_export_original_images": 9887,
     "h61_export_range_receipts": {
+      "firstparty": null,
       "sheet": 58,
       "slide_resize": 32,
       "slider": 40,
       "text_highlight": 64
     },
     "h61_export_task_region_start": {
+      "firstparty": null,
       "sheet": 13804214784,
       "slide_resize": 9329426944,
       "slider": 6231426560,
@@ -678,5 +683,5 @@
     "remote_training_jsonl_sha256": "cb1a8529eaf0f82272d75a459c1634766ee5ec7694f6b21affa2045b11d02dd6",
     "upload_archive_sha256": "783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c"
   },
-  "updated_utc": "2026-10-21T18:39:42Z"
+  "updated_utc": "2026-10-21T19:13:29Z"
 }

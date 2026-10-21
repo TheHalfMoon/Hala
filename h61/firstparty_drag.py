@@ -100,10 +100,14 @@ def scene_html(scene: dict) -> str:
     handle_left, handle_top = scene["handle"]
     target_left, target_top = scene["target"]
     handle = (
-        f'<div class="handle" id="handle" style="left:{handle_left}px;top:{handle_top}px"></div>'
+        f'<div class="handle" id="handle" style="left:{handle_left}px;top:{handle_top}px;'
+        f'background:rgb({scene["handle_color"][0]},{scene["handle_color"][1]},'
+        f'{scene["handle_color"][2]})"></div>'
     )
     target = (
-        f'<div class="target" id="target" style="left:{target_left}px;top:{target_top}px"></div>'
+        f'<div class="target" id="target" style="left:{target_left}px;top:{target_top}px;'
+        f'background:rgb({scene["target_color"][0]},{scene["target_color"][1]},'
+        f'{scene["target_color"][2]})"></div>'
     )
     if kind == "slider":
         track = (
@@ -148,41 +152,67 @@ def scene_html(scene: dict) -> str:
     )
 
 
+def _sequence(index: int):
+    """A deterministic pseudo-random sequence for one scene index.
+
+    The corpus is reproducible from the code alone: the same index always
+    produces the same scene, and the sequence is not a global random source.
+    """
+    state = (index * 6364136223846793005 + 1442695040888963407) & ((1 << 64) - 1)
+
+    def nxt(modulus: int) -> int:
+        nonlocal state
+        state = (state * 6364136223846793005 + 1442695040888963407) & ((1 << 64) - 1)
+        return (state >> 33) % modulus
+
+    return nxt
+
+
 def build_scenes(count: int) -> list[dict]:
-    """Author the scenes deterministically, with the recorded drag boxes."""
+    """Author the scenes deterministically, with the recorded drag boxes.
+
+    The layout parameters, the colours and the written values all vary, so a
+    few thousand scenes are genuinely distinct and the model cannot learn a
+    single constant answer for the family.
+    """
     scenes = []
     for index in range(count):
+        nxt = _sequence(index)
         kind = KINDS[index % len(KINDS)]
         language = LANGUAGES[(index // len(KINDS)) % len(LANGUAGES)]
         arabic = language == "ar"
-        slot = index % 24
-        handle_left = 190 + (slot % 5) * 46
-        handle_top = 268 + (slot % 4) * 34
+        handle_left = 150 + nxt(420)
+        handle_top = 236 + nxt(150)
+        handle_color = (30 + nxt(70), 80 + nxt(90), 110 + nxt(90))
+        target_color = (150 + nxt(70), 80 + nxt(80), 60 + nxt(80))
         if kind == "slider":
-            target_left = handle_left + 120 + (slot % 3) * 90
+            target_left = handle_left + 110 + nxt(220)
             target_top = handle_top
-            value = 20 + (slot % 4) * 20
+            value = 10 + nxt(80)
         elif kind == "sheet":
-            target_left = handle_left + 240 + (slot % 2) * 120
-            target_top = handle_top + 42
+            target_left = handle_left + 190 + nxt(140)
+            target_top = handle_top + 30 + nxt(50)
             value = 0
         elif kind == "slide_resize":
-            target_left = handle_left + 300 + (slot % 2) * 80
+            target_left = handle_left + 240 + nxt(160)
             target_top = handle_top
-            value = 320 + (slot % 3) * 60
+            value = 240 + nxt(360)
         else:
-            target_left = handle_left + 300 + (slot % 2) * 150
+            target_left = handle_left + 200 + nxt(220)
             target_top = handle_top
             value = 0
+        # Every box has to stay inside the captured frame.
+        target_left = min(target_left, FRAME[0] - 46)
+        target_top = min(target_top, FRAME[1] - HEADER_HEIGHT - 46)
         template = TEXT[kind][language]
         instruction = template["instruction"].format(
             value=value,
-            start="B12" if language == "en" else "ب١٢",
-            end="F34" if language == "en" else "ف٣٤",
+            start=f"B{10 + nxt(80)}" if language == "en" else f"ب{10 + nxt(80)}",
+            end=f"F{10 + nxt(80)}" if language == "en" else f"ف{10 + nxt(80)}",
         )
         scenes.append(
             {
-                "id": f"h61-{kind}-{index:04d}",
+                "id": f"h61-{kind}-{index:05d}",
                 "kind": kind,
                 "family": "h61_firstparty_bilingual_drag_train",
                 "split": "train",
@@ -193,6 +223,8 @@ def build_scenes(count: int) -> list[dict]:
                 "body": BODY_AR[kind] if arabic else BODY[kind],
                 "handle": [handle_left, handle_top],
                 "target": [target_left, target_top],
+                "handle_color": list(handle_color),
+                "target_color": list(target_color),
                 # The recorded boxes are PAGE coordinates, because that is the
                 # frame the model sees. The page header pushes the scene down
                 # by a fixed amount, so the page box is the local box plus
@@ -249,13 +281,60 @@ def audit_scene(png_path: Path, scene: dict) -> list[str]:
             (scene["end_bbox"][1] + scene["end_bbox"][3]) // 2,
         )
         for name, centre, expected in (
-            ("handle", handle_centre, HANDLE_COLOR),
-            ("target", target_centre, TARGET_COLOR),
+            ("handle", handle_centre, tuple(scene["handle_color"])),
+            ("target", target_centre, tuple(scene["target_color"])),
         ):
+            if not (0 <= centre[0] < picture.size[0] and 0 <= centre[1] < picture.size[1]):
+                problems.append(f"the {name} box leaves the captured frame: {centre}")
+                continue
             pixel = picture.getpixel(centre)
             if max(abs(pixel[index] - expected[index]) for index in range(3)) > 60:
                 problems.append(f"the {name} is not visible at {centre}: {pixel}")
     return problems
+
+
+def browser_path() -> str:
+    """The genuine browser used for the capture.
+
+    The authoring host uses the installed Microsoft Edge. A remote Linux
+    session uses the browser that is installed there. The capture is always a
+    real browser rendering the authored page; nothing is drawn by this module.
+    """
+    override = os.environ.get("H61_BROWSER")
+    if override:
+        return override
+    for candidate in (
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        "/usr/bin/google-chrome-stable",
+        "/usr/bin/chromium-browser",
+        "/usr/bin/chromium",
+    ):
+        if Path(candidate).exists():
+            return candidate
+    raise FileNotFoundError("No genuine browser is available for the capture")
+
+
+def capture_batch(html_paths: list[Path], png_dir: Path) -> None:
+    """Capture every page in one browser through the DevTools protocol.
+
+    One browser launch for the whole corpus is the difference between a
+    capture that finishes and a capture that does not. The pixels are the
+    genuine rendered pixels of the genuine installed browser. The page list
+    is passed in a manifest file, so the corpus size is not bounded by the
+    operating system command line length.
+    """
+    script = Path(__file__).resolve().parent / "capture_browser.js"
+    manifest = png_dir.parent / "capture-manifest.txt"
+    manifest.write_text(
+        "\n".join(str(path) for path in html_paths) + "\n", encoding="utf8"
+    )
+    result = subprocess.run(
+        ["node", str(script), browser_path(), str(png_dir), str(manifest)],
+        capture_output=True, text=True, timeout=3600,
+    )
+    if result.returncode != 0:
+        raise IOError(f"the batch browser capture failed: {result.stderr[-400:]}")
 
 
 def build(out_dir, count: int, *, capture_scenes: bool = True) -> dict:
@@ -265,21 +344,26 @@ def build(out_dir, count: int, *, capture_scenes: bool = True) -> dict:
     scenes = build_scenes(count)
     rows = []
     rejections = []
+    html_paths = []
     for scene in scenes:
         html_path = out_dir / "html" / f"{scene['id']}.html"
-        png_path = out_dir / "png" / f"{scene['id']}.png"
         html_path.write_text(scene_html(scene), encoding="utf8")
-        if capture_scenes:
-            try:
-                capture(html_path, png_path)
-            except Exception as error:  # noqa: BLE001
-                rejections.append({"id": scene["id"], "reason": f"capture: {error}"[:200]})
-                continue
-            problems = audit_scene(png_path, scene)
-            if problems:
-                rejections.append({"id": scene["id"], "reason": "; ".join(problems)[:200]})
-                png_path.unlink(missing_ok=True)
-                continue
+        html_paths.append(html_path)
+    if capture_scenes:
+        try:
+            capture_batch(html_paths, out_dir / "png")
+        except Exception as error:  # noqa: BLE001
+            rejections.append({"id": "*", "reason": f"capture: {error}"[:200]})
+    for scene in scenes:
+        png_path = out_dir / "png" / f"{scene['id']}.png"
+        if not png_path.exists():
+            rejections.append({"id": scene["id"], "reason": "the browser produced no screenshot"})
+            continue
+        problems = audit_scene(png_path, scene)
+        if problems:
+            rejections.append({"id": scene["id"], "reason": "; ".join(problems)[:200]})
+            png_path.unlink(missing_ok=True)
+            continue
         rows.append(
             {
                 "id": scene["id"],
@@ -291,13 +375,13 @@ def build(out_dir, count: int, *, capture_scenes: bool = True) -> dict:
                 "title": scene["title"],
                 "instruction": scene["instruction"],
                 "image_path": f"png/{scene['id']}.png",
-                "image_sha256": sha(png_path.read_bytes()) if png_path.exists() else None,
+                "image_sha256": sha(png_path.read_bytes()),
                 "image_width": FRAME[0],
                 "image_height": FRAME[1],
                 "start_bbox": scene["start_bbox"],
                 "end_bbox": scene["end_bbox"],
                 "html_path": f"html/{scene['id']}.html",
-                "html_sha256": sha(html_path.read_bytes()),
+                "html_sha256": sha((out_dir / "html" / f"{scene['id']}.html").read_bytes()),
             }
         )
     labels = b"".join(

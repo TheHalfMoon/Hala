@@ -1,0 +1,32 @@
+{
+  "benchmark_answer_leakage": false,
+  "by_kind": {
+    "sheet": 500,
+    "slide_resize": 500,
+    "slider": 500,
+    "text_highlight": 500
+  },
+  "by_language": {
+    "ar": 1000,
+    "en": 1000
+  },
+  "capture": "genuine installed headless Microsoft Edge",
+  "created_utc": "2026-10-21T19:08:45Z",
+  "frame": [
+    1024,
+    640
+  ],
+  "kind": "original-first-party",
+  "labels_sha256": "94c9b943f79264ceccf5d04a2daf8278e7cb02589ce5edbddee8a3e557daa4e6",
+  "language": "ar,en",
+  "model_gpu_steps": 0,
+  "ordered_false": 500,
+  "ordered_true": 1500,
+  "public_dev_families_used": false,
+  "rejections": [],
+  "scenes_accepted": 2000,
+  "scenes_authored": 2000,
+  "scenes_rejected": 0,
+  "schema": "hala.h61.firstparty-bilingual-drag.v1",
+  "split": "train only"
+}

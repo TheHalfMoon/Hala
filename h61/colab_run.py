@@ -32,6 +32,7 @@ import time
 from pathlib import Path
 
 SCHEMA = "hala.h61.colab-run.v1"
+FIRSTPARTY_SCENES = 2000
 DOMAIN_BYTES = {
     "slider": 7146830848,
     "slide_resize": 9915637248,
@@ -177,27 +178,22 @@ def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], l
 
 
 def step_firstparty(work: Path, repo: Path) -> dict:
-    """Install the first-party bilingual drag corpus into the export root.
+    """Build the first-party bilingual drag corpus on the remote session.
 
-    The corpus is captured in the genuine installed headless Microsoft Edge on
-    the authoring host and committed with the repository, so the remote
-    session trains on exactly the same bytes and the same audited boxes.
+    The corpus is authored by the committed generator and the committed pages,
+    and the pixels are rendered by the genuine browser of the session that
+    trains on them. Every rendered screenshot is audited pixel by pixel
+    against the recorded handle and target boxes, so a scene that did not
+    render where it was authored is rejected with a reason.
     """
-    import shutil
+    from h61.firstparty_drag import build as build_firstparty
 
-    source = repo / "h61" / "firstparty-assets"
     target = work / "export" / "firstparty"
-    if not source.exists():
-        raise ValueError("The committed first-party bilingual corpus is missing")
     if (target / "receipt.json").exists():
         receipt = json.loads((target / "receipt.json").read_text("utf8"))
         print("H61_STEP firstparty already complete", flush=True)
         return receipt
-    if target.exists():
-        shutil.rmtree(target, ignore_errors=True)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, target)
-    receipt = json.loads((target / "receipt.json").read_text("utf8"))
+    receipt = build_firstparty(target, FIRSTPARTY_SCENES)
     print(
         f"H61_STEP firstparty done scenes={receipt.get('scenes_accepted')} "
         f"languages={receipt.get('by_language')}",

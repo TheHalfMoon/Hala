@@ -528,8 +528,16 @@ if __name__ == "__main__":
     parser.add_argument("--max-rows-per-image", type=int, default=2)
     parser.add_argument("--family-targets", default=None,
                         help="JSON object of family to maximum row count")
+    parser.add_argument("--family-targets-file", default=None,
+                        help="file holding the JSON object of family to maximum row count")
     args = parser.parse_args()
-    targets = json.loads(args.family_targets) if args.family_targets else None
+    targets = None
+    if args.family_targets_file:
+        targets = strict_json(
+            Path(args.family_targets_file).read_text("utf-8-sig")
+        )
+    elif args.family_targets:
+        targets = strict_json(args.family_targets)
     if args.command == "export":
         print(json.dumps(export(args.source, target_rows=args.target_rows,
                                 max_rows_per_image=args.max_rows_per_image,
