@@ -14,6 +14,7 @@
 | Data source | Discovered | Source pinned & reviewed | Uploaded to Kaggle | Used in real training | Independent model eval |
 |---|---|---|---|---|---|
 | Original H50 bilingual train (64 unique screenshots, 384 labels) | ✅ | ✅ | ✅ **v1 private; remote SHA verified** | ☐ | ☐ |
+| H52 three-step task factory (96 workflows, 288 distinct screenshots, 144 Arabic / 144 English) | ✅ | ✅ first-party source/Edge audit | ✅ **private Kaggle v2, remote SHA verified** | ☐ | ☐ |
 | Original H49 DEV (32 screenshots) | ✅ | ✅ stored GitHub **not training** | — reserved DEV | — | ☐ |
 | OpenCUA / AgentNet (human desktop trajectories, ~22.6k tasks) | ✅ | ☐ | ☐ | ☐ | ☐ |
 | Hcompany DragOn (286,012 train images, ~3.56m drag labels) | ✅ | ☐ | ☐ | ☐ | ☐ |
@@ -62,3 +63,10 @@ Kaggle's broad search returned weak/mismatched public results for general `compu
 Initial signed library commit `1800b6f6ddc0feaee52dfbcb896e251cccaef594` passed 3/3 local Windows tests but **FAILED** hosted Ubuntu Python 3.12 job [119065965983](https://github.com/TheHalfMoon/Hala/actions/runs/39552922307/job/119065965983); the companion Python 3.11 job was cancelled and both PR jobs initially queued. The **exact** failed test `test_builder_is_train_only_and_create_only` assumed locally rebuilt ZIP compressed bytes would be identical across operating systems; GitHub Linux `zlib` compressed the identical original entries differently (archive SHA256 `c73797bc4f00f42341eb90210c16a322db9a1b9a04473e73fa05eaac082ad788` versus original Windows archive SHA256 `783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c`). That is a *test assumption error* not lost training media.
 
 Repair verifies every original PNG and annotation **per-file SHA256**, the rebuilt ZIP's *own* calculated SHA256, and the remote-retrieved Kaggle annotation receipt separately. The immutable original Kaggle upload SHA remains preserved as its own original remote archive evidence. It does **not** change the original H50 rows, Kaggle data, source bytes, legal scope or model results. Post-fix Windows targeted 3/3 PASS, raw `reviews/hala-kaggle-library-linux-ci-repair-focused-20261021.log`; require **new exact signed-head hosted CI 3.11/3.12** success before claiming this fix qualified. Preserve historical failure without suppressing tests.
+
+## H52 source-to-trainer admission update (2026-10-21)
+
+- **[DONE]** First-party H52 source and 96 three-step browser replay verified; Kaggle private version 2 screenshot/annotation/manifest source bytes read back.
+- **[DONE]** Bounded **source-only** H52 -> Qwen3-VL LoRA `load_authoring_records` admission through `h52/training_bridge.py` + new `h52/remote_training_manifest.json`, without changing original H52 or H50 data. Windows focused 16/16 PASS; full source 638 total, 636 PASS and 2 SKIP; Graft wiring graph clean. Receipts under `reviews/h52-training-bridge-*` and `h52/README.md`.
+- **[NOT DONE]** Full Kaggle dataset single-call download/extraction: authenticated Kaggle `DownloadDataset` returned **404**; single-file original H52 PNG/JSONL downloads did pass independent SHA256 verification. No single-call full provider download qualification.
+- **[NOT DONE]** Real H52 neural finetune, actual GPU allocation, trained model checkpoint, blind bilingual 3-step end-to-end task success or competitor-leading benchmark results. Source-bridge qualification is not learned-model qualification.

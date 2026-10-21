@@ -1,0 +1,6434 @@
+[
+  {
+    "accent": 0,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-00",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        5,
+        7,
+        4,
+        2,
+        0,
+        6,
+        1,
+        3
+      ],
+      [
+        3,
+        1,
+        4,
+        7,
+        5,
+        0,
+        6,
+        2
+      ],
+      [
+        3,
+        4,
+        0,
+        5,
+        7,
+        2,
+        1,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-100",
+    "split": "train",
+    "targets": [
+      2,
+      6,
+      0
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-01",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        4,
+        3,
+        6,
+        7,
+        5,
+        0,
+        2,
+        1
+      ],
+      [
+        1,
+        5,
+        7,
+        0,
+        2,
+        3,
+        6,
+        4
+      ],
+      [
+        1,
+        4,
+        0,
+        7,
+        6,
+        5,
+        3,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-101",
+    "split": "train",
+    "targets": [
+      7,
+      6,
+      4
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-02",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        1,
+        0,
+        5,
+        4,
+        6,
+        7,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        3,
+        5,
+        7,
+        6,
+        4,
+        0
+      ],
+      [
+        5,
+        3,
+        4,
+        7,
+        2,
+        6,
+        1,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-102",
+    "split": "train",
+    "targets": [
+      6,
+      3,
+      0
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-03",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        2,
+        7,
+        4,
+        6,
+        5,
+        3,
+        1,
+        0
+      ],
+      [
+        6,
+        3,
+        1,
+        2,
+        5,
+        4,
+        0,
+        7
+      ],
+      [
+        1,
+        0,
+        2,
+        7,
+        6,
+        5,
+        3,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-103",
+    "split": "train",
+    "targets": [
+      5,
+      7,
+      6
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-04",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        6,
+        7,
+        4,
+        2,
+        3,
+        5,
+        1,
+        0
+      ],
+      [
+        4,
+        1,
+        6,
+        7,
+        3,
+        2,
+        5,
+        0
+      ],
+      [
+        7,
+        6,
+        5,
+        3,
+        1,
+        4,
+        2,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-104",
+    "split": "train",
+    "targets": [
+      0,
+      3,
+      4
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-05",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        5,
+        3,
+        1,
+        6,
+        2,
+        7,
+        4,
+        0
+      ],
+      [
+        0,
+        5,
+        7,
+        6,
+        4,
+        3,
+        2,
+        1
+      ],
+      [
+        5,
+        0,
+        2,
+        7,
+        3,
+        4,
+        6,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-105",
+    "split": "train",
+    "targets": [
+      0,
+      4,
+      3
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-06",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        7,
+        4,
+        3,
+        1,
+        2,
+        0,
+        6,
+        5
+      ],
+      [
+        5,
+        0,
+        2,
+        1,
+        6,
+        4,
+        7,
+        3
+      ],
+      [
+        5,
+        3,
+        4,
+        0,
+        6,
+        2,
+        7,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-106",
+    "split": "train",
+    "targets": [
+      1,
+      4,
+      7
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-07",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        7,
+        2,
+        0,
+        3,
+        1,
+        5,
+        4,
+        6
+      ],
+      [
+        3,
+        1,
+        7,
+        6,
+        2,
+        4,
+        5,
+        0
+      ],
+      [
+        1,
+        2,
+        3,
+        0,
+        5,
+        6,
+        7,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-107",
+    "split": "train",
+    "targets": [
+      7,
+      0,
+      2
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-08",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        0,
+        3,
+        4,
+        1,
+        7,
+        2,
+        6,
+        5
+      ],
+      [
+        5,
+        1,
+        3,
+        0,
+        4,
+        6,
+        2,
+        7
+      ],
+      [
+        5,
+        3,
+        2,
+        7,
+        1,
+        0,
+        6,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-108",
+    "split": "train",
+    "targets": [
+      3,
+      6,
+      5
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-09",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        5,
+        0,
+        2,
+        6,
+        3,
+        4,
+        1,
+        7
+      ],
+      [
+        3,
+        2,
+        7,
+        1,
+        0,
+        5,
+        4,
+        6
+      ],
+      [
+        2,
+        0,
+        4,
+        7,
+        6,
+        5,
+        1,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-109",
+    "split": "train",
+    "targets": [
+      2,
+      0,
+      3
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-10",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        4,
+        7,
+        5,
+        0,
+        6,
+        2,
+        3,
+        1
+      ],
+      [
+        5,
+        3,
+        7,
+        6,
+        1,
+        0,
+        2,
+        4
+      ],
+      [
+        5,
+        0,
+        2,
+        1,
+        4,
+        6,
+        7,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-110",
+    "split": "train",
+    "targets": [
+      5,
+      7,
+      1
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-11",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        5,
+        4,
+        7,
+        6,
+        0,
+        1,
+        3,
+        2
+      ],
+      [
+        2,
+        4,
+        6,
+        7,
+        3,
+        5,
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        0,
+        7,
+        3,
+        6,
+        4,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-111",
+    "split": "train",
+    "targets": [
+      0,
+      1,
+      7
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-12",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        2,
+        4,
+        5,
+        7,
+        3,
+        6,
+        1,
+        0
+      ],
+      [
+        1,
+        5,
+        7,
+        2,
+        4,
+        6,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        7,
+        6,
+        5,
+        4,
+        1,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-112",
+    "split": "train",
+    "targets": [
+      4,
+      1,
+      2
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-13",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        7,
+        3,
+        2,
+        5,
+        6,
+        1,
+        0,
+        4
+      ],
+      [
+        5,
+        1,
+        7,
+        2,
+        6,
+        4,
+        3,
+        0
+      ],
+      [
+        3,
+        2,
+        1,
+        0,
+        7,
+        6,
+        4,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-113",
+    "split": "train",
+    "targets": [
+      5,
+      4,
+      7
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-14",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        3,
+        5,
+        4,
+        2,
+        1,
+        6,
+        0,
+        7
+      ],
+      [
+        7,
+        6,
+        1,
+        5,
+        4,
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        4,
+        6,
+        2,
+        7,
+        1,
+        5,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-114",
+    "split": "train",
+    "targets": [
+      5,
+      7,
+      2
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-15",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        1,
+        5,
+        0,
+        2,
+        7,
+        6,
+        3,
+        4
+      ],
+      [
+        7,
+        2,
+        0,
+        4,
+        1,
+        6,
+        3,
+        5
+      ],
+      [
+        3,
+        7,
+        1,
+        2,
+        0,
+        4,
+        6,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-115",
+    "split": "train",
+    "targets": [
+      6,
+      4,
+      0
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-16",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        7,
+        2,
+        6,
+        4,
+        0,
+        3,
+        1,
+        5
+      ],
+      [
+        3,
+        2,
+        7,
+        0,
+        1,
+        5,
+        4,
+        6
+      ],
+      [
+        7,
+        5,
+        2,
+        4,
+        3,
+        6,
+        1,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-116",
+    "split": "train",
+    "targets": [
+      7,
+      4,
+      3
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-17",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        1,
+        3,
+        5,
+        7,
+        0,
+        2,
+        4,
+        6
+      ],
+      [
+        4,
+        1,
+        3,
+        0,
+        6,
+        7,
+        2,
+        5
+      ],
+      [
+        5,
+        1,
+        7,
+        3,
+        4,
+        0,
+        2,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-117",
+    "split": "train",
+    "targets": [
+      2,
+      1,
+      0
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-18",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        4,
+        2,
+        0,
+        3,
+        6,
+        1,
+        7,
+        5
+      ],
+      [
+        6,
+        7,
+        1,
+        5,
+        0,
+        3,
+        4,
+        2
+      ],
+      [
+        3,
+        5,
+        0,
+        4,
+        6,
+        7,
+        2,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-118",
+    "split": "train",
+    "targets": [
+      6,
+      5,
+      2
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-19",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        1,
+        6,
+        4,
+        3,
+        7,
+        0,
+        2,
+        5
+      ],
+      [
+        7,
+        4,
+        2,
+        5,
+        3,
+        0,
+        6,
+        1
+      ],
+      [
+        1,
+        4,
+        6,
+        0,
+        2,
+        5,
+        3,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-119",
+    "split": "train",
+    "targets": [
+      3,
+      5,
+      4
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-20",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        7,
+        1,
+        0,
+        2,
+        5,
+        4,
+        3,
+        6
+      ],
+      [
+        5,
+        4,
+        0,
+        2,
+        6,
+        3,
+        1,
+        7
+      ],
+      [
+        1,
+        4,
+        7,
+        6,
+        0,
+        3,
+        2,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-120",
+    "split": "train",
+    "targets": [
+      1,
+      6,
+      7
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-21",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        5,
+        4,
+        6,
+        3,
+        0,
+        2,
+        1,
+        7
+      ],
+      [
+        6,
+        1,
+        2,
+        7,
+        0,
+        5,
+        4,
+        3
+      ],
+      [
+        2,
+        7,
+        1,
+        5,
+        0,
+        6,
+        4,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-121",
+    "split": "train",
+    "targets": [
+      3,
+      5,
+      7
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-22",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        1,
+        2,
+        4,
+        3,
+        7,
+        6,
+        0,
+        5
+      ],
+      [
+        6,
+        0,
+        3,
+        1,
+        2,
+        7,
+        4,
+        5
+      ],
+      [
+        6,
+        3,
+        4,
+        7,
+        1,
+        2,
+        5,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-122",
+    "split": "train",
+    "targets": [
+      4,
+      7,
+      2
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_judicial_office",
+    "id": "h52-ar_judicial_office-23",
+    "labels": [
+      "طلب تنفيذ تجريبي",
+      "مراجعة مستند",
+      "إشعار استلام",
+      "تحديث حالة",
+      "عرض قائمة",
+      "حفظ مسودة",
+      "فتح طلب",
+      "التدقيق النهائي"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "نظام تدريبي خيالي",
+    "orders": [
+      [
+        2,
+        7,
+        1,
+        4,
+        6,
+        5,
+        0,
+        3
+      ],
+      [
+        1,
+        4,
+        5,
+        6,
+        3,
+        2,
+        7,
+        0
+      ],
+      [
+        7,
+        6,
+        4,
+        0,
+        2,
+        5,
+        1,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_JUDICIAL_OFFICE-123",
+    "split": "train",
+    "targets": [
+      3,
+      1,
+      5
+    ],
+    "title": "مكتب الإجراءات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-00",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        4,
+        7,
+        6,
+        0,
+        1,
+        5,
+        3,
+        2
+      ],
+      [
+        1,
+        6,
+        0,
+        7,
+        4,
+        3,
+        5,
+        2
+      ],
+      [
+        7,
+        2,
+        4,
+        1,
+        3,
+        6,
+        0,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-100",
+    "split": "train",
+    "targets": [
+      7,
+      4,
+      0
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-01",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        3,
+        0,
+        5,
+        7,
+        4,
+        6,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        2,
+        7,
+        4,
+        3,
+        5,
+        6
+      ],
+      [
+        6,
+        4,
+        7,
+        5,
+        1,
+        2,
+        3,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-101",
+    "split": "train",
+    "targets": [
+      2,
+      7,
+      4
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-02",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        5,
+        0,
+        2,
+        6,
+        4,
+        7,
+        3,
+        1
+      ],
+      [
+        1,
+        2,
+        0,
+        6,
+        7,
+        5,
+        3,
+        4
+      ],
+      [
+        4,
+        3,
+        2,
+        0,
+        6,
+        7,
+        5,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-102",
+    "split": "train",
+    "targets": [
+      2,
+      0,
+      7
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-03",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        6,
+        3,
+        1,
+        0,
+        4,
+        7,
+        5,
+        2
+      ],
+      [
+        6,
+        0,
+        4,
+        3,
+        1,
+        5,
+        7,
+        2
+      ],
+      [
+        1,
+        4,
+        6,
+        2,
+        5,
+        3,
+        7,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-103",
+    "split": "train",
+    "targets": [
+      3,
+      4,
+      6
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-04",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        6,
+        1,
+        0,
+        7,
+        4,
+        2,
+        5,
+        3
+      ],
+      [
+        6,
+        0,
+        5,
+        4,
+        7,
+        3,
+        2,
+        1
+      ],
+      [
+        6,
+        1,
+        5,
+        2,
+        3,
+        7,
+        0,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-104",
+    "split": "train",
+    "targets": [
+      5,
+      6,
+      2
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-05",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        5,
+        2,
+        7,
+        3,
+        4,
+        6,
+        0,
+        1
+      ],
+      [
+        4,
+        1,
+        3,
+        7,
+        2,
+        0,
+        6,
+        5
+      ],
+      [
+        7,
+        2,
+        0,
+        6,
+        3,
+        4,
+        1,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-105",
+    "split": "train",
+    "targets": [
+      5,
+      6,
+      7
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-06",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        6,
+        0,
+        7,
+        5,
+        4,
+        3,
+        1,
+        2
+      ],
+      [
+        3,
+        5,
+        1,
+        4,
+        0,
+        6,
+        7,
+        2
+      ],
+      [
+        4,
+        5,
+        1,
+        7,
+        6,
+        3,
+        2,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-106",
+    "split": "train",
+    "targets": [
+      6,
+      4,
+      7
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-07",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        3,
+        2,
+        5,
+        4,
+        6,
+        0,
+        7
+      ],
+      [
+        0,
+        3,
+        7,
+        5,
+        4,
+        1,
+        6,
+        2
+      ],
+      [
+        6,
+        1,
+        7,
+        4,
+        0,
+        3,
+        2,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-107",
+    "split": "train",
+    "targets": [
+      5,
+      2,
+      4
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-08",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        5,
+        3,
+        0,
+        6,
+        4,
+        1,
+        7,
+        2
+      ],
+      [
+        1,
+        2,
+        4,
+        3,
+        0,
+        5,
+        6,
+        7
+      ],
+      [
+        5,
+        4,
+        1,
+        2,
+        3,
+        6,
+        0,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-108",
+    "split": "train",
+    "targets": [
+      2,
+      0,
+      3
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-09",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        5,
+        6,
+        0,
+        2,
+        3,
+        7,
+        4
+      ],
+      [
+        1,
+        2,
+        4,
+        5,
+        3,
+        6,
+        7,
+        0
+      ],
+      [
+        3,
+        7,
+        4,
+        2,
+        0,
+        6,
+        5,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-109",
+    "split": "train",
+    "targets": [
+      0,
+      5,
+      4
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-10",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        7,
+        4,
+        1,
+        3,
+        5,
+        2,
+        0,
+        6
+      ],
+      [
+        2,
+        3,
+        5,
+        0,
+        4,
+        6,
+        1,
+        7
+      ],
+      [
+        7,
+        4,
+        5,
+        2,
+        3,
+        6,
+        1,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-110",
+    "split": "train",
+    "targets": [
+      4,
+      0,
+      3
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-11",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        7,
+        3,
+        5,
+        4,
+        6,
+        2,
+        0
+      ],
+      [
+        4,
+        5,
+        3,
+        0,
+        7,
+        2,
+        6,
+        1
+      ],
+      [
+        3,
+        5,
+        7,
+        0,
+        6,
+        4,
+        1,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-111",
+    "split": "train",
+    "targets": [
+      1,
+      0,
+      7
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-12",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        3,
+        1,
+        5,
+        4,
+        6,
+        0,
+        2,
+        7
+      ],
+      [
+        0,
+        5,
+        1,
+        2,
+        4,
+        3,
+        6,
+        7
+      ],
+      [
+        6,
+        4,
+        5,
+        7,
+        0,
+        2,
+        3,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-112",
+    "split": "train",
+    "targets": [
+      3,
+      5,
+      0
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-13",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        7,
+        3,
+        0,
+        4,
+        6,
+        1,
+        5,
+        2
+      ],
+      [
+        6,
+        2,
+        3,
+        1,
+        0,
+        7,
+        5,
+        4
+      ],
+      [
+        4,
+        1,
+        6,
+        7,
+        3,
+        5,
+        0,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-113",
+    "split": "train",
+    "targets": [
+      2,
+      6,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-14",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        4,
+        0,
+        7,
+        6,
+        2,
+        5,
+        3
+      ],
+      [
+        3,
+        2,
+        6,
+        7,
+        0,
+        5,
+        1,
+        4
+      ],
+      [
+        0,
+        6,
+        1,
+        2,
+        7,
+        4,
+        5,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-114",
+    "split": "train",
+    "targets": [
+      6,
+      4,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-15",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        6,
+        0,
+        3,
+        4,
+        7,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        1,
+        7,
+        5,
+        3,
+        2,
+        4
+      ],
+      [
+        7,
+        3,
+        5,
+        1,
+        4,
+        2,
+        6,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-115",
+    "split": "train",
+    "targets": [
+      5,
+      3,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-16",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        2,
+        0,
+        6,
+        4,
+        7,
+        5,
+        1,
+        3
+      ],
+      [
+        7,
+        4,
+        2,
+        0,
+        3,
+        1,
+        6,
+        5
+      ],
+      [
+        0,
+        5,
+        6,
+        4,
+        7,
+        1,
+        2,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-116",
+    "split": "train",
+    "targets": [
+      1,
+      2,
+      0
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-17",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        3,
+        2,
+        5,
+        1,
+        6,
+        4,
+        7,
+        0
+      ],
+      [
+        6,
+        1,
+        5,
+        4,
+        7,
+        0,
+        3,
+        2
+      ],
+      [
+        7,
+        4,
+        0,
+        6,
+        1,
+        2,
+        3,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-117",
+    "split": "train",
+    "targets": [
+      3,
+      2,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-18",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        0,
+        3,
+        1,
+        2,
+        7,
+        5,
+        6,
+        4
+      ],
+      [
+        0,
+        3,
+        4,
+        2,
+        1,
+        6,
+        7,
+        5
+      ],
+      [
+        5,
+        4,
+        6,
+        3,
+        7,
+        0,
+        1,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-118",
+    "split": "train",
+    "targets": [
+      3,
+      2,
+      0
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 4,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-19",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        4,
+        7,
+        3,
+        1,
+        0,
+        2,
+        5,
+        6
+      ],
+      [
+        5,
+        2,
+        1,
+        7,
+        6,
+        0,
+        3,
+        4
+      ],
+      [
+        7,
+        6,
+        3,
+        0,
+        2,
+        4,
+        5,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-119",
+    "split": "train",
+    "targets": [
+      4,
+      6,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-20",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 0,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        1,
+        3,
+        7,
+        2,
+        4,
+        0,
+        6,
+        5
+      ],
+      [
+        3,
+        7,
+        6,
+        4,
+        1,
+        0,
+        5,
+        2
+      ],
+      [
+        0,
+        4,
+        3,
+        2,
+        5,
+        1,
+        7,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-120",
+    "split": "train",
+    "targets": [
+      6,
+      5,
+      0
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 1,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-21",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 1,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        3,
+        1,
+        0,
+        2,
+        5,
+        4,
+        7,
+        6
+      ],
+      [
+        2,
+        3,
+        0,
+        7,
+        5,
+        1,
+        6,
+        4
+      ],
+      [
+        2,
+        3,
+        7,
+        1,
+        5,
+        0,
+        6,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-121",
+    "split": "train",
+    "targets": [
+      5,
+      4,
+      1
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 2,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-22",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 2,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        3,
+        6,
+        0,
+        7,
+        2,
+        5,
+        4,
+        1
+      ],
+      [
+        3,
+        6,
+        2,
+        5,
+        7,
+        4,
+        0,
+        1
+      ],
+      [
+        6,
+        4,
+        7,
+        1,
+        5,
+        0,
+        2,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-122",
+    "split": "train",
+    "targets": [
+      0,
+      2,
+      7
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 3,
+    "family": "ar_traffic_office",
+    "id": "h52-ar_traffic_office-23",
+    "labels": [
+      "مراجعة رخصة",
+      "طلب تصريح",
+      "استعراض مخالفة",
+      "تحديث بيانات",
+      "حفظ طلب",
+      "طباعة ملخص",
+      "سجل المتابعة",
+      "قائمة المواعيد"
+    ],
+    "lang": "ar",
+    "layout": 3,
+    "notice": "بوابة تعلم غير حكومية",
+    "orders": [
+      [
+        6,
+        0,
+        3,
+        5,
+        1,
+        7,
+        2,
+        4
+      ],
+      [
+        7,
+        4,
+        1,
+        0,
+        2,
+        5,
+        6,
+        3
+      ],
+      [
+        7,
+        3,
+        0,
+        2,
+        5,
+        6,
+        1,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "AR_TRAFFIC_OFFICE-123",
+    "split": "train",
+    "targets": [
+      0,
+      1,
+      2
+    ],
+    "title": "مركز الخدمات التجريبي"
+  },
+  {
+    "accent": 0,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-00",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        4,
+        6,
+        2,
+        0,
+        5,
+        7,
+        1,
+        3
+      ],
+      [
+        7,
+        0,
+        3,
+        6,
+        5,
+        2,
+        4,
+        1
+      ],
+      [
+        6,
+        4,
+        1,
+        3,
+        2,
+        7,
+        5,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-100",
+    "split": "train",
+    "targets": [
+      1,
+      3,
+      2
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 1,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-01",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        3,
+        1,
+        5,
+        0,
+        6,
+        2,
+        7,
+        4
+      ],
+      [
+        5,
+        3,
+        0,
+        2,
+        6,
+        1,
+        4,
+        7
+      ],
+      [
+        7,
+        6,
+        5,
+        0,
+        2,
+        3,
+        1,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-101",
+    "split": "train",
+    "targets": [
+      1,
+      3,
+      0
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 2,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-02",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        4,
+        2,
+        0,
+        7,
+        1,
+        5,
+        3,
+        6
+      ],
+      [
+        4,
+        1,
+        6,
+        2,
+        3,
+        7,
+        0,
+        5
+      ],
+      [
+        7,
+        6,
+        4,
+        5,
+        0,
+        3,
+        2,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-102",
+    "split": "train",
+    "targets": [
+      5,
+      3,
+      2
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 3,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-03",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        3,
+        2,
+        0,
+        1,
+        5,
+        4,
+        7
+      ],
+      [
+        1,
+        0,
+        4,
+        2,
+        6,
+        5,
+        7,
+        3
+      ],
+      [
+        4,
+        3,
+        7,
+        6,
+        0,
+        5,
+        2,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-103",
+    "split": "train",
+    "targets": [
+      7,
+      3,
+      2
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 4,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-04",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        2,
+        5,
+        3,
+        1,
+        7,
+        4,
+        6,
+        0
+      ],
+      [
+        5,
+        4,
+        0,
+        1,
+        2,
+        3,
+        7,
+        6
+      ],
+      [
+        5,
+        2,
+        3,
+        1,
+        6,
+        4,
+        0,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-104",
+    "split": "train",
+    "targets": [
+      6,
+      7,
+      3
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 0,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-05",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        3,
+        1,
+        4,
+        7,
+        0,
+        5,
+        6,
+        2
+      ],
+      [
+        2,
+        0,
+        3,
+        1,
+        6,
+        5,
+        7,
+        4
+      ],
+      [
+        1,
+        7,
+        5,
+        3,
+        4,
+        6,
+        2,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-105",
+    "split": "train",
+    "targets": [
+      7,
+      2,
+      6
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 1,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-06",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        5,
+        3,
+        2,
+        7,
+        6,
+        1,
+        4,
+        0
+      ],
+      [
+        2,
+        5,
+        4,
+        6,
+        1,
+        3,
+        7,
+        0
+      ],
+      [
+        0,
+        2,
+        7,
+        1,
+        3,
+        4,
+        6,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-106",
+    "split": "train",
+    "targets": [
+      3,
+      0,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 2,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-07",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        5,
+        4,
+        2,
+        6,
+        1,
+        0,
+        3,
+        7
+      ],
+      [
+        6,
+        7,
+        3,
+        5,
+        1,
+        4,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        3,
+        4,
+        1,
+        6,
+        7,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-107",
+    "split": "train",
+    "targets": [
+      3,
+      1,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 3,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-08",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        7,
+        6,
+        5,
+        0,
+        4,
+        1,
+        2,
+        3
+      ],
+      [
+        3,
+        4,
+        6,
+        2,
+        5,
+        1,
+        7,
+        0
+      ],
+      [
+        1,
+        5,
+        6,
+        2,
+        3,
+        4,
+        7,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-108",
+    "split": "train",
+    "targets": [
+      5,
+      6,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 4,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-09",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        3,
+        7,
+        2,
+        5,
+        6,
+        4,
+        1,
+        0
+      ],
+      [
+        6,
+        7,
+        4,
+        3,
+        2,
+        1,
+        0,
+        5
+      ],
+      [
+        6,
+        1,
+        7,
+        0,
+        5,
+        2,
+        3,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-109",
+    "split": "train",
+    "targets": [
+      4,
+      1,
+      5
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 0,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-10",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        2,
+        5,
+        3,
+        1,
+        6,
+        0,
+        7,
+        4
+      ],
+      [
+        7,
+        2,
+        6,
+        0,
+        4,
+        3,
+        5,
+        1
+      ],
+      [
+        1,
+        7,
+        3,
+        6,
+        4,
+        0,
+        5,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-110",
+    "split": "train",
+    "targets": [
+      1,
+      4,
+      5
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 1,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-11",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        0,
+        2,
+        4,
+        5,
+        7,
+        3,
+        6,
+        1
+      ],
+      [
+        4,
+        1,
+        7,
+        5,
+        0,
+        3,
+        2,
+        6
+      ],
+      [
+        2,
+        4,
+        1,
+        6,
+        5,
+        7,
+        0,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-111",
+    "split": "train",
+    "targets": [
+      5,
+      3,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 2,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-12",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        2,
+        4,
+        0,
+        7,
+        5,
+        3,
+        1
+      ],
+      [
+        3,
+        6,
+        4,
+        5,
+        1,
+        0,
+        7,
+        2
+      ],
+      [
+        2,
+        1,
+        5,
+        3,
+        6,
+        0,
+        7,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-112",
+    "split": "train",
+    "targets": [
+      0,
+      6,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 3,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-13",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        5,
+        1,
+        0,
+        6,
+        7,
+        3,
+        4,
+        2
+      ],
+      [
+        7,
+        5,
+        6,
+        4,
+        1,
+        2,
+        0,
+        3
+      ],
+      [
+        0,
+        6,
+        2,
+        3,
+        1,
+        4,
+        5,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-113",
+    "split": "train",
+    "targets": [
+      2,
+      0,
+      1
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 4,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-14",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        0,
+        3,
+        7,
+        5,
+        2,
+        1,
+        4
+      ],
+      [
+        4,
+        7,
+        0,
+        3,
+        2,
+        5,
+        6,
+        1
+      ],
+      [
+        2,
+        1,
+        5,
+        6,
+        7,
+        4,
+        0,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-114",
+    "split": "train",
+    "targets": [
+      3,
+      5,
+      6
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 0,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-15",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        4,
+        6,
+        7,
+        5,
+        0,
+        1,
+        3,
+        2
+      ],
+      [
+        4,
+        1,
+        0,
+        3,
+        5,
+        2,
+        7,
+        6
+      ],
+      [
+        0,
+        7,
+        5,
+        1,
+        2,
+        6,
+        4,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-115",
+    "split": "train",
+    "targets": [
+      0,
+      1,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 1,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-16",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        2,
+        5,
+        1,
+        4,
+        7,
+        0,
+        3
+      ],
+      [
+        2,
+        7,
+        5,
+        3,
+        6,
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        7,
+        5,
+        3,
+        1,
+        2,
+        6,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-116",
+    "split": "train",
+    "targets": [
+      4,
+      7,
+      0
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 2,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-17",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        7,
+        5,
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      [
+        5,
+        4,
+        3,
+        6,
+        2,
+        0,
+        1,
+        7
+      ],
+      [
+        1,
+        4,
+        6,
+        3,
+        5,
+        0,
+        7,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-117",
+    "split": "train",
+    "targets": [
+      1,
+      5,
+      3
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 3,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-18",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        6,
+        0,
+        4,
+        2,
+        1,
+        3,
+        5,
+        7
+      ],
+      [
+        0,
+        2,
+        1,
+        4,
+        7,
+        6,
+        5,
+        3
+      ],
+      [
+        1,
+        6,
+        7,
+        0,
+        3,
+        5,
+        4,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-118",
+    "split": "train",
+    "targets": [
+      1,
+      7,
+      3
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 4,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-19",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        3,
+        5,
+        2,
+        6,
+        1,
+        4,
+        0,
+        7
+      ],
+      [
+        6,
+        4,
+        0,
+        1,
+        2,
+        7,
+        5,
+        3
+      ],
+      [
+        3,
+        4,
+        6,
+        7,
+        0,
+        2,
+        1,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-119",
+    "split": "train",
+    "targets": [
+      5,
+      0,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 0,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-20",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        5,
+        6,
+        7,
+        2,
+        1,
+        3,
+        4,
+        0
+      ],
+      [
+        1,
+        6,
+        4,
+        7,
+        2,
+        5,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        5,
+        6,
+        0,
+        7,
+        4,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-120",
+    "split": "train",
+    "targets": [
+      2,
+      5,
+      1
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 1,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-21",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        5,
+        7,
+        1,
+        6,
+        3,
+        4,
+        0,
+        2
+      ],
+      [
+        1,
+        2,
+        4,
+        7,
+        5,
+        0,
+        3,
+        6
+      ],
+      [
+        6,
+        2,
+        0,
+        1,
+        7,
+        4,
+        5,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-121",
+    "split": "train",
+    "targets": [
+      6,
+      2,
+      7
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 2,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-22",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        7,
+        2,
+        1,
+        4,
+        5,
+        0,
+        6,
+        3
+      ],
+      [
+        3,
+        1,
+        7,
+        4,
+        5,
+        6,
+        2,
+        0
+      ],
+      [
+        6,
+        1,
+        4,
+        5,
+        7,
+        3,
+        0,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-122",
+    "split": "train",
+    "targets": [
+      6,
+      4,
+      2
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 3,
+    "family": "en_fhir_workspace",
+    "id": "h52-en_fhir_workspace-23",
+    "labels": [
+      "Observation",
+      "Encounter",
+      "MedicationRequest",
+      "Bundle transaction",
+      "Bundle searchset",
+      "DiagnosticReport",
+      "Provenance",
+      "Practitioner"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "No real records or EHR connections",
+    "orders": [
+      [
+        1,
+        6,
+        0,
+        4,
+        5,
+        3,
+        2,
+        7
+      ],
+      [
+        2,
+        7,
+        6,
+        5,
+        1,
+        4,
+        0,
+        3
+      ],
+      [
+        7,
+        5,
+        2,
+        6,
+        1,
+        4,
+        3,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_FHIR_WORKSPACE-123",
+    "split": "train",
+    "targets": [
+      0,
+      5,
+      4
+    ],
+    "title": "Synthetic FHIR Workbench"
+  },
+  {
+    "accent": 0,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-00",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        2,
+        4,
+        3,
+        5,
+        6,
+        0,
+        7
+      ],
+      [
+        5,
+        7,
+        4,
+        3,
+        6,
+        2,
+        1,
+        0
+      ],
+      [
+        1,
+        3,
+        4,
+        5,
+        0,
+        6,
+        7,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-100",
+    "split": "train",
+    "targets": [
+      7,
+      4,
+      2
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 1,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-01",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        5,
+        0,
+        4,
+        3,
+        1,
+        2,
+        6,
+        7
+      ],
+      [
+        0,
+        3,
+        2,
+        5,
+        6,
+        4,
+        7,
+        1
+      ],
+      [
+        4,
+        0,
+        5,
+        2,
+        6,
+        3,
+        1,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-101",
+    "split": "train",
+    "targets": [
+      6,
+      7,
+      3
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 2,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-02",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        2,
+        5,
+        1,
+        6,
+        0,
+        3,
+        7,
+        4
+      ],
+      [
+        1,
+        2,
+        4,
+        7,
+        3,
+        0,
+        6,
+        5
+      ],
+      [
+        6,
+        3,
+        2,
+        1,
+        7,
+        4,
+        0,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-102",
+    "split": "train",
+    "targets": [
+      6,
+      7,
+      1
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 3,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-03",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        6,
+        5,
+        3,
+        4,
+        1,
+        2,
+        7,
+        0
+      ],
+      [
+        4,
+        2,
+        6,
+        7,
+        5,
+        3,
+        1,
+        0
+      ],
+      [
+        4,
+        6,
+        0,
+        2,
+        7,
+        5,
+        3,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-103",
+    "split": "train",
+    "targets": [
+      6,
+      0,
+      5
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 4,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-04",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        3,
+        5,
+        4,
+        1,
+        0,
+        6,
+        2,
+        7
+      ],
+      [
+        3,
+        1,
+        4,
+        2,
+        7,
+        6,
+        0,
+        5
+      ],
+      [
+        2,
+        3,
+        7,
+        5,
+        0,
+        4,
+        1,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-104",
+    "split": "train",
+    "targets": [
+      6,
+      1,
+      4
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 0,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-05",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        2,
+        7,
+        0,
+        1,
+        3,
+        5,
+        6,
+        4
+      ],
+      [
+        7,
+        3,
+        0,
+        2,
+        4,
+        6,
+        5,
+        1
+      ],
+      [
+        5,
+        0,
+        2,
+        7,
+        4,
+        1,
+        3,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-105",
+    "split": "train",
+    "targets": [
+      1,
+      0,
+      5
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 1,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-06",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        0,
+        4,
+        7,
+        3,
+        6,
+        1,
+        2,
+        5
+      ],
+      [
+        4,
+        5,
+        1,
+        3,
+        7,
+        6,
+        2,
+        0
+      ],
+      [
+        1,
+        2,
+        5,
+        6,
+        3,
+        7,
+        4,
+        0
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-106",
+    "split": "train",
+    "targets": [
+      6,
+      3,
+      5
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 2,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-07",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        2,
+        4,
+        5,
+        1,
+        7,
+        0,
+        3,
+        6
+      ],
+      [
+        3,
+        0,
+        7,
+        4,
+        1,
+        5,
+        2,
+        6
+      ],
+      [
+        7,
+        5,
+        2,
+        3,
+        0,
+        6,
+        1,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-107",
+    "split": "train",
+    "targets": [
+      5,
+      0,
+      7
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 3,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-08",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        3,
+        6,
+        4,
+        5,
+        1,
+        0,
+        2,
+        7
+      ],
+      [
+        3,
+        5,
+        0,
+        2,
+        6,
+        1,
+        4,
+        7
+      ],
+      [
+        0,
+        6,
+        1,
+        4,
+        5,
+        2,
+        7,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-108",
+    "split": "train",
+    "targets": [
+      3,
+      0,
+      7
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 4,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-09",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        7,
+        2,
+        0,
+        5,
+        6,
+        3,
+        4
+      ],
+      [
+        4,
+        0,
+        5,
+        1,
+        3,
+        6,
+        7,
+        2
+      ],
+      [
+        6,
+        2,
+        5,
+        0,
+        7,
+        4,
+        1,
+        3
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-109",
+    "split": "train",
+    "targets": [
+      1,
+      0,
+      7
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 0,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-10",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        7,
+        0,
+        5,
+        6,
+        4,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        7,
+        3,
+        1,
+        2,
+        5,
+        6,
+        0
+      ],
+      [
+        5,
+        3,
+        0,
+        6,
+        2,
+        1,
+        4,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-110",
+    "split": "train",
+    "targets": [
+      6,
+      1,
+      4
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 1,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-11",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        6,
+        4,
+        5,
+        3,
+        0,
+        2,
+        7
+      ],
+      [
+        7,
+        3,
+        4,
+        1,
+        2,
+        0,
+        6,
+        5
+      ],
+      [
+        3,
+        0,
+        7,
+        2,
+        4,
+        1,
+        5,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-111",
+    "split": "train",
+    "targets": [
+      6,
+      7,
+      3
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 2,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-12",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        2,
+        4,
+        3,
+        6,
+        5,
+        1,
+        0,
+        7
+      ],
+      [
+        1,
+        2,
+        4,
+        3,
+        0,
+        7,
+        6,
+        5
+      ],
+      [
+        4,
+        6,
+        0,
+        2,
+        7,
+        5,
+        3,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-112",
+    "split": "train",
+    "targets": [
+      2,
+      4,
+      0
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 3,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-13",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        3,
+        4,
+        2,
+        1,
+        7,
+        6,
+        0,
+        5
+      ],
+      [
+        7,
+        0,
+        4,
+        3,
+        6,
+        1,
+        2,
+        5
+      ],
+      [
+        5,
+        7,
+        2,
+        6,
+        0,
+        4,
+        3,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-113",
+    "split": "train",
+    "targets": [
+      3,
+      1,
+      4
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 4,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-14",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        4,
+        7,
+        5,
+        0,
+        2,
+        3,
+        6
+      ],
+      [
+        1,
+        5,
+        7,
+        3,
+        2,
+        4,
+        0,
+        6
+      ],
+      [
+        6,
+        4,
+        0,
+        2,
+        5,
+        1,
+        3,
+        7
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-114",
+    "split": "train",
+    "targets": [
+      7,
+      4,
+      3
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 0,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-15",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        3,
+        2,
+        7,
+        1,
+        5,
+        6,
+        4,
+        0
+      ],
+      [
+        2,
+        3,
+        4,
+        6,
+        7,
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        3,
+        4,
+        1,
+        5,
+        7,
+        2,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-115",
+    "split": "train",
+    "targets": [
+      2,
+      1,
+      7
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 1,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-16",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        6,
+        5,
+        4,
+        1,
+        7,
+        3,
+        0,
+        2
+      ],
+      [
+        7,
+        2,
+        5,
+        6,
+        1,
+        0,
+        4,
+        3
+      ],
+      [
+        5,
+        0,
+        6,
+        7,
+        4,
+        3,
+        2,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-116",
+    "split": "train",
+    "targets": [
+      1,
+      7,
+      0
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 2,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-17",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        2,
+        4,
+        0,
+        7,
+        6,
+        5,
+        3
+      ],
+      [
+        7,
+        5,
+        1,
+        0,
+        2,
+        6,
+        3,
+        4
+      ],
+      [
+        7,
+        5,
+        6,
+        3,
+        0,
+        1,
+        4,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-117",
+    "split": "train",
+    "targets": [
+      1,
+      7,
+      3
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 3,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-18",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        0,
+        4,
+        2,
+        5,
+        6,
+        1,
+        3,
+        7
+      ],
+      [
+        5,
+        7,
+        4,
+        1,
+        2,
+        3,
+        0,
+        6
+      ],
+      [
+        3,
+        7,
+        6,
+        2,
+        4,
+        5,
+        0,
+        1
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-118",
+    "split": "train",
+    "targets": [
+      4,
+      3,
+      1
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 4,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-19",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        3,
+        4,
+        5,
+        1,
+        2,
+        7,
+        0,
+        6
+      ],
+      [
+        7,
+        0,
+        4,
+        6,
+        5,
+        2,
+        1,
+        3
+      ],
+      [
+        7,
+        3,
+        0,
+        6,
+        2,
+        4,
+        1,
+        5
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-119",
+    "split": "train",
+    "targets": [
+      0,
+      2,
+      4
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 0,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-20",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 0,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        4,
+        1,
+        2,
+        0,
+        6,
+        3,
+        7,
+        5
+      ],
+      [
+        3,
+        6,
+        4,
+        1,
+        5,
+        0,
+        7,
+        2
+      ],
+      [
+        0,
+        3,
+        6,
+        5,
+        1,
+        4,
+        7,
+        2
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-120",
+    "split": "train",
+    "targets": [
+      3,
+      0,
+      1
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 1,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-21",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 1,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        4,
+        3,
+        0,
+        7,
+        2,
+        6,
+        5,
+        1
+      ],
+      [
+        4,
+        7,
+        6,
+        0,
+        2,
+        3,
+        5,
+        1
+      ],
+      [
+        7,
+        5,
+        6,
+        3,
+        0,
+        2,
+        1,
+        4
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-121",
+    "split": "train",
+    "targets": [
+      1,
+      6,
+      2
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 2,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-22",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 2,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        7,
+        6,
+        5,
+        0,
+        2,
+        4,
+        1,
+        3
+      ],
+      [
+        0,
+        1,
+        2,
+        7,
+        4,
+        3,
+        6,
+        5
+      ],
+      [
+        3,
+        2,
+        1,
+        0,
+        7,
+        5,
+        4,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-122",
+    "split": "train",
+    "targets": [
+      7,
+      5,
+      1
+    ],
+    "title": "Fictional Care Operations"
+  },
+  {
+    "accent": 3,
+    "family": "en_clinical_ops",
+    "id": "h52-en_clinical_ops-23",
+    "labels": [
+      "Specimen intake",
+      "Batch review",
+      "Device calibration",
+      "FHIR export",
+      "Audit queue",
+      "Review findings",
+      "Archive draft",
+      "Task board"
+    ],
+    "lang": "en",
+    "layout": 3,
+    "notice": "Simulated workflow with zero patient data",
+    "orders": [
+      [
+        1,
+        6,
+        7,
+        2,
+        5,
+        3,
+        4,
+        0
+      ],
+      [
+        1,
+        6,
+        2,
+        7,
+        5,
+        0,
+        4,
+        3
+      ],
+      [
+        0,
+        3,
+        2,
+        1,
+        5,
+        7,
+        4,
+        6
+      ]
+    ],
+    "rights": {
+      "benchmark_answers": false,
+      "external_assets": false,
+      "license": "CC0-1.0",
+      "official_interface": false,
+      "origin": "original_first_party_fictional_task_factory",
+      "personal_data": false,
+      "real_accounts": false
+    },
+    "scenario": "EN_CLINICAL_OPS-123",
+    "split": "train",
+    "targets": [
+      5,
+      0,
+      4
+    ],
+    "title": "Fictional Care Operations"
+  }
+]

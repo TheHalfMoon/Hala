@@ -19,7 +19,7 @@ class HalaDataLibraryTests(unittest.TestCase):
         original=ROOT/"h50/assets/authoring_sft.jsonl"
         self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),
                          storage["remote_training_jsonl_sha256"])
-        self.assertEqual(len(v["datasets"]),13)
+        self.assertEqual(len(v["datasets"]),14)
 
     def test_no_other_data_is_claimed_uploaded_or_trained(self):
         v=json.loads(CATALOG.read_text("utf-8"))
@@ -29,10 +29,10 @@ class HalaDataLibraryTests(unittest.TestCase):
             self.assertFalse(row["progress"]["training_completed"])
             self.assertFalse(row["progress"]["independent_evaluation_completed"])
             self.assertIsNone(row["trained_model_checkpoint"])
-            if row["id"]!="hala-h50-original":
+            if row["id"] not in ("hala-h50-original","hala-h52-original-task-factory"):
                 self.assertFalse(row["progress"]["stored_kaggle"])
                 self.assertFalse(row["remote_data_imported"])
-        self.assertEqual(sum(x["progress"]["stored_kaggle"] for x in v["datasets"]),1)
+        self.assertEqual(sum(x["progress"]["stored_kaggle"] for x in v["datasets"]),2)
 
     def test_builder_is_train_only_and_create_only(self):
         with tempfile.TemporaryDirectory() as folder:
