@@ -1,0 +1,291 @@
+{
+  "schema": "hala.h55.real-edge-prediction-replay.v1",
+  "origin": "provider_raw_model_outputs",
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+  "attempts_sha256": "27d424a4c6f0865e451cf97f6025e16721a57451a5f9e7eca7a9145a9d9d603f",
+  "actual_original_edge_mouse_drag_executed": true,
+  "public_dev_not_blind": true,
+  "synthetic_fixture_only": false,
+  "independent_model_inference_provenance_verified": false,
+  "neural_training_executed": false,
+  "official_benchmark_comparison_qualified": false,
+  "external_network_requests_rejected": 0,
+  "by_language": {
+    "ar": {
+      "cases": 12,
+      "valid": 2,
+      "real_edge_success": 0
+    },
+    "en": {
+      "cases": 12,
+      "valid": 12,
+      "real_edge_success": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "h55-ar_civic-00",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_civic-01",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_civic-02",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_civic-03",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_records-00",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_records-01",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_records-02",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_records-03",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_logistics-00",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_logistics-01",
+      "language": "ar",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_logistics-02",
+      "language": "ar",
+      "valid_action": false,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-ar_logistics-03",
+      "language": "ar",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_fhir-00",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_fhir-01",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_fhir-02",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_fhir-03",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_design-00",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_design-01",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_design-02",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_design-03",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_inventory-00",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_inventory-01",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_inventory-02",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h55-en_inventory-03",
+      "language": "en",
+      "valid_action": true,
+      "real_edge_drag_completed": false,
+      "observed_status": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    }
+  ]
+}

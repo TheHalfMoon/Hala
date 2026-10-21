@@ -26,8 +26,9 @@ All counts below are measured, not advertised. "DONE" always carries a receipt.
 | **Real frozen Qwen3-VL-2B inference on first-party PUBLIC DEV** | **DONE** | 24/24 H55 + 24/24 H58 cases on a real Tesla T4 at revision `89644892e4d85e24eaac8bacfd4f463576704203`; raw model strings preserved verbatim in `h60/evidence/` |
 | Measured baseline GUI drag task success | **DONE (negative)** | **0/24** geometrically correct on H55 and **0/24** on H58; strict bare-JSON validity 0/24 and 0/24 |
 | **Real Microsoft Edge GUI task-success measurement** | **DONE (negative)** | the genuine installed Edge executed the pointer actions for all 48 cases; **0/48** real GUI task success. Receipts `h60/evidence/h55-edge-replay.json` and `h60/evidence/h58-edge-replay.json` |
-| **Real gradient-bearing LoRA on authentic private DragOn TRAIN** | **RUNNING** | `training/scripts/train_adapter.py`, FP16 rank-8 LoRA on the unchanged pinned model, free Colab T4 |
-| Recoverable checkpoint and resume | **PENDING** | must save optimizer/scaler/RNG state and prove a resumed run matches |
+| **Real gradient-bearing LoRA on authentic private DragOn TRAIN** | **DONE** | `training/scripts/train_adapter.py`, FP16 rank-8 LoRA on the unchanged pinned model, free Colab T4: **60 real optimizer steps**, 112 changed adapter tensors, loss **2.4253 → 0.5490**, checkpoint `c166d318fcf8a5f996aab8b453aa358b8d8d48ba714a5e6c27311c5f280397b4`, adapter weights `d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249`, resume state `1dce7035026e3b74cfc4d58c427249336001028c0b5a70b37f3e657cd10e4674` |
+| **Matched adapter vs frozen base on the same public DEV cases** | **DONE (honest negative)** | identical model revision, prompts, decoding and cases. Protocol-valid actions accepted and executed by the genuine Edge: **0/48 → 17/48**. **Real GUI task success: 0/48 → 0/48** (unchanged) |
+| Recoverable checkpoint and resume | **DONE** | every step publishes an immutable adapter + optimizer/scaler/RNG bundle through the atomic pointer; the final bundle was re-read and its digests recomputed independently |
 | Genuinely private app-disjoint **blind** TEST | **NOT DONE** | the honest held-out source is first-party PUBLIC DEV: source-disjoint, but not blind and not app-disjoint from a third party |
 | Official benchmark comparison | **NOT DONE** | no benchmark eval/test source was ever read |
 
@@ -90,6 +91,24 @@ were not touched.
   image/task pairing, whole-archive SHA, window receipts, shard contents. The
   suite never touches the real upstream source and never touches a provider
   account.
+
+## Matched adapter against the frozen base (identical conditions)
+
+| Metric (48 public DEV cases) | Frozen base | Trained adapter | Change |
+|---|---:|---:|---|
+| Strict bare-JSON valid | 0 | 17 | **+17** |
+| Tolerant parse valid | 40 | 17 | −23 |
+| Ordered semantics valid | 40 | 17 | −23 |
+| Geometrically correct | 0 | 0 | 0 |
+| Actions the genuine Edge accepted and executed | 0 | 17 | **+17** |
+| **Real GUI task success** | **0** | **0** | **0** |
+
+The 60-step adapter learned the **output contract** (bare JSON, no markdown
+fence) and then collapsed onto a constant degenerate corner point. It did not
+learn the drag grounding. The curriculum was 1,586 rows and 60 optimizer steps:
+far below the 3,560,142 annotation target and below the 2k → 10k → 100k staged
+curriculum, so this is a measured negative result at the first scale, **not** a
+qualification of the method and **not** a claim that the approach fails.
 
 ## Honest limits of this ledger
 

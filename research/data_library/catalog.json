@@ -461,6 +461,7 @@
     {
       "actual_3560142_train_tasks_locally_parsed": false,
       "actual_3560142_train_tasks_private_kaggle_stored": false,
+      "adapter_quality_qualified": false,
       "advertised_upstream_train_images": 286012,
       "advertised_upstream_train_tasks": 3560142,
       "base_commit": "1746592e726c3f94c1272e6864072808688aa679",
@@ -471,6 +472,10 @@
       "independent_blind_test_completed": false,
       "kaggle_gpu_commercial_eligibility": "blocked_by_inspected_terms",
       "kaggle_gpu_compute_used": false,
+      "matched_adapter_protocol_valid_actions_adapter": 17,
+      "matched_adapter_protocol_valid_actions_base": 0,
+      "matched_adapter_real_gui_task_success_adapter": 0,
+      "matched_adapter_real_gui_task_success_base": 0,
       "measured_original_slider_actions": 877709,
       "measured_original_slider_images": 100000,
       "measured_original_slider_tar_bytes": 7146830848,
@@ -483,7 +488,13 @@
       "provider_download_bandwidth_measured_mb_s": 32.6,
       "provider_private_dataset_namespace": "abdulazizshehri/hala-h60-dragon-train-<domain>-<index>-private",
       "provider_upload_bandwidth_measured_mb_s": 1.0,
-      "real_gpu_optimizer_updates": 0,
+      "real_gpu_optimizer_updates": 60,
+      "real_lora_adapter_weights_sha256": "d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249",
+      "real_lora_checkpoint_sha256": "c166d318fcf8a5f996aab8b453aa358b8d8d48ba714a5e6c27311c5f280397b4",
+      "real_lora_first_step_loss": 2.4252646565437317,
+      "real_lora_last_step_loss": 0.5489906892180443,
+      "real_lora_resume_state_sha256": "1dce7035026e3b74cfc4d58c427249336001028c0b5a70b37f3e657cd10e4674",
+      "real_lora_training_executed": true,
       "remaining_domains_in_progress": [
         "sheet",
         "slide_resize",
@@ -492,7 +503,7 @@
       "source": "Hcompany/DragOn",
       "source_kind": "original-train-full-corpus-ingest",
       "source_revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
-      "training_completed": false,
+      "training_completed": true,
       "vercel_workflow_deployed": false
     }
   ],
