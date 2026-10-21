@@ -31,13 +31,14 @@ import urllib.request
 from pathlib import Path
 
 from h60 import pairs
-from h60.ingest import find_tasks_region_start
 from h60.source_fetch import REV, REPO, source_url
-from h60.tar_stream import TarStreamReader
+from h60.tar_stream import BLOCK, TarStreamReader, _checksum_ok, _member_name
 
 SCHEMA = "hala.h61.source-export.v1"
 RECEIPT_SCHEMA = "hala.h61.source-range-receipt.v1"
 DEFAULT_CHUNK = 16 * 1024 * 1024
+TASK_CHUNK = 32 * 1024 * 1024
+PROBE_BYTES = 256 * 1024
 LOOKAHEAD = 4
 FETCH_ATTEMPTS = 8
 MAX_IMAGES = 200_000
@@ -234,6 +235,54 @@ def official_lfs_digest(domain: str, plan_path=None) -> str:
     return str(entry["upstream_lfs_sha256"])
 
 
+def find_task_region_start(domain: str, total_bytes: int) -> tuple[int, str]:
+    """The exact byte offset of the first original `tasks/` member.
+
+    The archive holds the images before the task JSONs, so the task region can
+    only be reached after the image region. The offset is located with a
+    bounded binary search over small probes: every original member is larger
+    than the probe window, so a probe always contains at least one header, and
+    a probe that lands on a JPEG payload can only be accepted when its name
+    really starts the original task region.
+    """
+    url = source_url(domain)
+    prefix = f"{domain}/tasks/"
+
+    def probe(offset: int) -> tuple[int, str] | None:
+        probe_size = min(PROBE_BYTES, total_bytes - offset)
+        if probe_size <= 0:
+            return None
+        payload = fetch_range_resilient(url, offset, offset + probe_size - 1, total_bytes)
+        for index in range(0, len(payload) - BLOCK + 1, BLOCK):
+            block = payload[index : index + BLOCK]
+            if not block.strip(b"\0"):
+                continue
+            if not _checksum_ok(block) or block[257:262] != b"ustar":
+                continue
+            return offset + index, _member_name(block)
+        return None
+
+    low, high = 0, total_bytes
+    while low < high:
+        middle = (((low + high) // 2) // BLOCK) * BLOCK
+        found = probe(middle)
+        if found is None:
+            high = middle
+            continue
+        _, name = found
+        if name.startswith(prefix):
+            high = middle
+        else:
+            low = middle + BLOCK
+    found = probe(low)
+    if found is None:
+        raise ValueError(f"no original task member found in {domain}")
+    offset, name = found
+    if not name.startswith(prefix):
+        raise ValueError(f"task region boundary probe resolved to {name}")
+    return offset, name
+
+
 def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int = 10_000,
                   chunk_bytes: int = DEFAULT_CHUNK, receipt_dir=None,
                   frame: tuple = DEFAULT_FRAME,
@@ -256,7 +305,7 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
     (out_dir / "images" / domain).mkdir(parents=True, exist_ok=True)
     receipt_dir = Path(receipt_dir) if receipt_dir else out_dir / "range-receipts"
     started = time.time()
-    task_start, first_task_name = find_tasks_region_start(domain, total_bytes)
+    task_start, first_task_name = find_task_region_start(domain, total_bytes)
     image_prefix = f"{domain}/images/"
     task_prefix = f"{domain}/tasks/"
     wanted: dict[str, dict] = {}
@@ -324,7 +373,8 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
     missing = set(wanted) - {
         key for key, entry in wanted.items() if entry["tasks"]
     }
-    task_reader = RangeReader(domain, task_start, total_bytes - 1, total_bytes, receipt_dir, chunk_bytes)
+    task_reader = RangeReader(domain, task_start, total_bytes - 1, total_bytes, receipt_dir,
+                              max(chunk_bytes, TASK_CHUNK))
 
     def keep_task(member) -> bool:
         name = member.name

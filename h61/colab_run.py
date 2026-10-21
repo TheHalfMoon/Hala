@@ -150,6 +150,34 @@ def step_evaluate(work: Path, repo: Path, dev_sets: list[str]) -> dict:
     return results
 
 
+def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str]) -> dict:
+    """Measure the frozen base and the trained adapter on the official split."""
+    from h61.official_eval_run import run as run_official
+
+    results = {}
+    for label in ("frozen-base", "adapter"):
+        target = work / "official-eval" / label
+        if (target / "official-eval-run.json").exists():
+            results[label] = json.loads(
+                (target / "official-eval-run.json").read_text("utf8")
+            )["domains"]
+            print(f"H61_STEP official-eval {label} already complete", flush=True)
+            continue
+        adapter = None
+        adapter_digest = None
+        if label == "adapter":
+            checkpoint = work / "training"
+            pointer = json.loads((checkpoint / "latest.json").read_text("utf8"))
+            version = checkpoint / pointer["version"]
+            adapter = str(version / "adapter")
+            adapter_digest = pointer.get("adapter_weights_sha256")
+        print(f"H61_STEP official-eval {label}", flush=True)
+        receipt = run_official(domains, str(target), limit=limit, adapter=adapter,
+                               adapter_sha256=adapter_digest)
+        results[label] = receipt["domains"]
+    return results
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", required=True)
@@ -162,6 +190,8 @@ def main() -> int:
     parser.add_argument("--max-steps", type=int, default=600)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dev-sets", default="h55,h58")
+    parser.add_argument("--official-limit", type=int, default=60)
+    parser.add_argument("--official-domains", default="slider,sheet,slide_resize,text_highlight")
     args = parser.parse_args()
 
     repo = Path(args.repo).resolve()
@@ -220,6 +250,11 @@ def main() -> int:
             elif step == "evaluate":
                 receipt["results"]["evaluate"] = step_evaluate(
                     work, repo, [item for item in args.dev_sets.split(",") if item]
+                )
+            elif step == "official_eval":
+                receipt["results"]["official_eval"] = step_official_eval(
+                    work, repo, args.official_limit,
+                    [item for item in args.official_domains.split(",") if item],
                 )
             elif step == "report":
                 pass
