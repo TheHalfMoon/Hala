@@ -301,7 +301,14 @@ def load_export(examples_path, manifest):
     examples_path = Path(examples_path)
     if examples_path.name != ROWS_FILE or examples_path.is_symlink() or not isinstance(manifest, dict):
         raise ValueError("H60 source-bound private native drag SFT only")
-    blob, expected, rows = derive(examples_path.parent)
+    # Re-derive with the very caps the export was created under, so a bounded
+    # curriculum is verified against exactly the same derivation and not
+    # against a different one.
+    blob, expected, rows = derive(
+        examples_path.parent,
+        max_images_per_domain=manifest.get("max_images_per_domain", MAX_IMAGES_PER_DOMAIN),
+        max_labels_per_image=manifest.get("max_labels_per_image", MAX_LABELS_PER_IMAGE),
+    )
     if manifest != expected or examples_path.read_bytes() != blob:
         raise ValueError("H60 source train labels/media/derived SFT were modified")
     return rows

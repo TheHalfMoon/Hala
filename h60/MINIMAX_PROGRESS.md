@@ -174,6 +174,15 @@ far below the 3,560,142 annotation target and below the 2k → 10k → 100k stag
 curriculum, so this is a measured negative result at the first scale, **not** a
 qualification of the method and **not** a claim that the approach fails.
 
+## Exact local engineering receipts (2026-10-21)
+
+- **[DONE]** Entire Windows source test suite: **758 total = 756 PASS, 2 existing SKIP, ZERO failed**,
+  124.115 seconds. Original `reviews/h60-full-source-suite-20261021.log` SHA256
+  `de617be91efd206b9a25255b2444a642242256daa10ba41cb43b7a5beb8d8b3a`. An earlier run of the same
+  suite reported 12 `MemoryError`s in the pre-existing `tests/test_adapter_archive.py` while the
+  ingest driver held most of the machine memory; the same file passes on its own and the whole
+  suite passes with the driver idle, so that was host memory pressure and not a regression.
+
 ## Honest limits of this ledger
 
 * The private provider copy of the corpus is a **staging copy of a corpus that
