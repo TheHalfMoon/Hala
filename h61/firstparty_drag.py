@@ -247,9 +247,9 @@ def build_scenes(count: int) -> list[dict]:
 
 
 def capture(html_path: Path, png_path: Path) -> None:
-    """Capture one page in the genuine installed headless Microsoft Edge."""
+    """Capture one page in the genuine installed headless browser."""
     command = [
-        EDGE,
+        browser_path(),
         "--headless=new",
         "--disable-gpu",
         "--no-sandbox",
@@ -260,7 +260,7 @@ def capture(html_path: Path, png_path: Path) -> None:
     ]
     result = subprocess.run(command, capture_output=True, text=True, timeout=180)
     if result.returncode != 0 or not png_path.exists():
-        raise IOError(f"the genuine Edge capture failed: {result.stderr[:200]}")
+        raise IOError(f"the genuine browser capture failed: {result.stderr[:200]}")
 
 
 def audit_scene(png_path: Path, scene: dict) -> list[str]:
@@ -353,7 +353,18 @@ def build(out_dir, count: int, *, capture_scenes: bool = True) -> dict:
         try:
             capture_batch(html_paths, out_dir / "png")
         except Exception as error:  # noqa: BLE001
-            rejections.append({"id": "*", "reason": f"capture: {error}"[:200]})
+            # The batch protocol is the fast path. When the session does not
+            # support it, one browser launch per page is slower but it is the
+            # same genuine browser and the same audit.
+            rejections.append({"id": "*", "reason": f"batch capture: {error}"[:200]})
+            for html_path in html_paths:
+                png_path = out_dir / "png" / (html_path.stem + ".png")
+                try:
+                    capture(html_path, png_path)
+                except Exception as inner:  # noqa: BLE001
+                    rejections.append(
+                        {"id": html_path.stem, "reason": f"capture: {inner}"[:200]}
+                    )
     for scene in scenes:
         png_path = out_dir / "png" / f"{scene['id']}.png"
         if not png_path.exists():
