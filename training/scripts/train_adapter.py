@@ -30,6 +30,8 @@ from h57.native_multidomain_sft import (SCHEMA as H57_DRAG_SCHEMA,
 from h60.native_drag_sft import (SCHEMA as H60_DRAG_SCHEMA,
                                  load_export as load_h60_drag_export,
                                  validate_drag_baseline as validate_h60_drag_baseline)
+from h61.curriculum import SCHEMA as H61_DRAG_SCHEMA, load_export as load_h61_drag_export
+from h61.supervision import completion_weights, weighted_lm_loss
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -66,8 +68,13 @@ def load_json(path):
     return strict_json(path.read_text(encoding='utf-8'))
 
 
-def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False):
-    """One bounded image; validate expanded vision/prompt prefix before GPU use."""
+def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False,
+                   supervision='completion', coordinate_weight=8.0, return_weights=False):
+    """One bounded image; validate expanded vision/prompt prefix before GPU use.
+
+    The return shape stays `(inputs, labels)` unless `return_weights` is
+    requested, so every existing caller is unaffected.
+    """
     import torch
     from PIL import Image
     image_path = artifact_path(root, row['image_path'])
@@ -92,13 +99,25 @@ def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False
         label_ids = completion_labels(inputs.input_ids[0].tolist(),
                                       prompt_inputs.input_ids[0].tolist(), token_budget)
         labels = torch.tensor([label_ids], dtype=inputs.input_ids.dtype)
-        return inputs, labels
+        if supervision == 'coordinate_weighted':
+            completion_ids = label_ids[len(prompt_inputs.input_ids[0].tolist()):]
+            weights = completion_weights(completion_ids, processor.tokenizer.decode,
+                                         coordinate_weight)
+            weight_values = [0.0] * len(prompt_inputs.input_ids[0].tolist()) + weights
+        else:
+            weight_values = [0.0 if token == -100 else 1.0 for token in label_ids]
+        if not return_weights:
+            return inputs, labels
+        weights = torch.tensor([weight_values], dtype=torch.float32)
+        return inputs, labels, weights
     finally:
         image.close()
 
 
 def load_authoring_records(examples_path, manifest):
-    """Verify original H48/H49/H50/H52/H54/H57/H60 sources; H14 remains frozen."""
+    """Verify original H48/H49/H50/H52/H54/H57/H60/H61 sources; H14 remains frozen."""
+    if manifest.get('source_schema') == H61_DRAG_SCHEMA:
+        return load_h61_drag_export(examples_path, manifest)
     if manifest.get('source_schema') == H60_DRAG_SCHEMA:
         return load_h60_drag_export(examples_path, manifest)
     if manifest.get('source_schema') == H57_DRAG_SCHEMA:
@@ -117,7 +136,7 @@ def load_authoring_records(examples_path, manifest):
 
 
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
-          stop_after_step=None):
+          stop_after_step=None, init_adapter=None):
     if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_TRAINING_ALLOWED') != '1':
         raise ValueError('Explicitly approved remote Linux runtime required; local weights forbidden')
     config_data = load_json(config_path)
@@ -140,11 +159,25 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         validate_mixed_drag_baseline(baseline)
     if manifest.get('source_schema') == H60_DRAG_SCHEMA:
         validate_h60_drag_baseline(baseline)
+    if manifest.get('source_schema') == H61_DRAG_SCHEMA:
+        validate_h60_drag_baseline(baseline)
     validate_experiment(config, manifest, baseline)
     records = load_authoring_records(examples_path, manifest)
     root = Path(examples_path).parent.resolve()
-    native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA, H60_DRAG_SCHEMA)
+    native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
+                                                   H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
+    init_digest = ''
+    if init_adapter:
+        init_path = Path(init_adapter)
+        adapter_file = init_path / 'adapter_model.safetensors'
+        if not init_path.is_dir() or not adapter_file.exists():
+            raise ValueError('An initialised adapter directory is required')
+        init_digest = sha256_file(adapter_file)
+        # The training identity binds the initial adapter, so a resumed run can
+        # never continue from a different starting adapter than the one the
+        # checkpoint was published against.
+        signature = hashlib.sha256((signature + init_digest).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],
                 'manifest_sha256': sha256_file(manifest_path), 'max_steps': config.max_steps}
     output = Path(output_path)
@@ -189,9 +222,11 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                                              trust_remote_code=False)
     # Expanded vision tokens are included in this audit. No model weights allocated yet.
     for row in records:
-        checked_inputs, checked_labels = prepare_inputs(
-            row, processor, root, manifest['token_budget'], native_drag_jpeg=native_drag)
-        del checked_inputs, checked_labels
+        checked_inputs, checked_labels, checked_weights = prepare_inputs(
+            row, processor, root, manifest['token_budget'], native_drag_jpeg=native_drag,
+            supervision=config.supervision, coordinate_weight=config.coordinate_weight,
+            return_weights=True)
+        del checked_inputs, checked_labels, checked_weights
     runtime['audited_records'] = len(records)
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model_id, revision=config.revision, trust_remote_code=False,
@@ -200,7 +235,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                       target_modules=LORA_TARGET_PATTERN,
                       lora_dropout=0, task_type='CAUSAL_LM', bias='none')
     model = (PeftModel.from_pretrained(model, version / 'adapter', is_trainable=True)
-             if resume else get_peft_model(model, lora))
+             if resume else
+             (PeftModel.from_pretrained(model, init_adapter, is_trainable=True)
+              if init_adapter else get_peft_model(model, lora)))
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
     model.config.use_cache = False
@@ -249,16 +286,26 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         microbatches = []
         for accumulation in range(config.gradient_accumulation):
             index = (step * config.gradient_accumulation + accumulation) % len(records)
-            inputs, labels = prepare_inputs(records[index], processor, root,
-                                            manifest['token_budget'], native_drag_jpeg=native_drag)
+            inputs, labels, weights = prepare_inputs(records[index], processor, root,
+                                                    manifest['token_budget'],
+                                                    native_drag_jpeg=native_drag,
+                                                    supervision=config.supervision,
+                                                    coordinate_weight=config.coordinate_weight,
+                                                    return_weights=True)
             inputs, labels = inputs.to('cuda:0'), labels.to('cuda:0')
+            weights = weights.to('cuda:0')
             microbatches.append({'record_id': records[index]['id'],
                                  'input_tokens': int(inputs.input_ids.numel()),
                                  'completion_tokens': int((labels != -100).sum().item()),
+                                 'coordinate_tokens': int((weights > 1.0).sum().item()),
                                  'input_devices': {key: str(value.device) for key, value in inputs.items()
                                                    if hasattr(value, 'device')}})
             with torch.autocast('cuda', dtype=dtype):
-                loss = model(**inputs, labels=labels).loss
+                if config.supervision == 'coordinate_weighted':
+                    outputs = model(**inputs)
+                    loss = weighted_lm_loss(outputs.logits, labels, weights)
+                else:
+                    loss = model(**inputs, labels=labels).loss
             if not torch.isfinite(loss):
                 raise ValueError('Nonfinite training loss')
             scaler.scale(loss / config.gradient_accumulation).backward()
@@ -322,8 +369,10 @@ def main():
     for name in ('config', 'examples', 'manifest', 'baseline', 'output'):
         parser.add_argument('--' + name, required=True)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--init-adapter', default=None)
     args = parser.parse_args()
-    train(args.config, args.examples, args.manifest, args.baseline, args.output, args.resume)
+    train(args.config, args.examples, args.manifest, args.baseline, args.output, args.resume,
+          init_adapter=args.init_adapter)
 
 
 if __name__ == '__main__':
