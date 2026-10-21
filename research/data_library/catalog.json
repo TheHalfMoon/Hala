@@ -396,6 +396,38 @@
       "zerogpu_one_case_unpinned_provider_output_obtained": false,
       "zerogpu_provider_event": "error",
       "provenance_hash_verified_before_model_download": true
+    },
+    {
+      "id": "hala-h58-original-mixed-drag-public-dev",
+      "source": "original first-party Microsoft Edge fictional public DEV",
+      "split": "dev",
+      "license": "CC0-1.0",
+      "source_sha256": "a1c17c5dca028096bdd653de927fae18b1797a241ca3529646e10a1eb5f4f3de",
+      "original_1024x640_source_screenshots": 24,
+      "original_sheet_screenshots": 8,
+      "original_slide_resize_screenshots": 8,
+      "original_text_highlight_screenshots": 8,
+      "arabic_screenshots": 12,
+      "english_screenshots": 12,
+      "ordered_true": 8,
+      "ordered_false": 16,
+      "author_oracle_real_edge_forward_success": 24,
+      "author_oracle_real_edge_wrong_start_rejected": 24,
+      "author_oracle_real_edge_wrong_end_rejected": 24,
+      "author_oracle_real_edge_unordered_reverse_success": 16,
+      "author_oracle_real_edge_ordered_reverse_rejected": 8,
+      "evaluator_actual_edge_synthetic_fixture_forward_success": 24,
+      "evaluator_actual_edge_synthetic_fixture_reverse_success": 16,
+      "external_competitor_screenshots_used": false,
+      "hcompany_train_data_used": false,
+      "train_eligible": false,
+      "stored_in_kaggle": false,
+      "public_dev_only": true,
+      "blind_test": false,
+      "genuine_neural_inference_executed": false,
+      "genuine_neural_task_success_measured": false,
+      "model_weights_trained": false,
+      "official_benchmark_comparison_qualified": false
     }
   ]
 }

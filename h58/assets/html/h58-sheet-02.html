@@ -1,0 +1,25 @@
+<!doctype html><html lang="ar" dir="ltr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1024,initial-scale=1">
+<style>*{box-sizing:border-box}body{margin:0;background:#eff5f8;color:#253b4b;font:17px Segoe UI,Tahoma,Arial,sans-serif}
+header{height:74px;background:#fff;padding:18px 35px;border-bottom:2px solid #d2dfe8}main{position:relative;width:1024px;height:566px}
+h1{margin:19px 50px;font-size:24px}.instruction{margin:10px 50px;color:#3c856c;font-size:21px;font-weight:700}
+.scene{position:absolute;left:120px;width:780px;height:340px;border-radius:14px;padding:25px;top:155px;color:#5e7485;font-size:16px;background:#fff;border:1px solid #cedce5}
+.scene p{border-bottom:1px solid #e0e9ed;padding-bottom:4px}.drag-point{z-index:5;position:absolute;width:65px;height:43px;display:flex;align-items:center;justify-content:center;
+color:#fff;border:3px solid #fff;border-radius:9px;font-weight:700;font-size:12px;cursor:crosshair;touch-action:none;user-select:none;box-shadow:0 2px 6px #879fae}
+footer{position:absolute;bottom:22px;left:42px;font-size:13px;color:#7890a0}</style></head>
+<body><header><strong>جدول المخزون الافتراضي</strong><small style="float:right">H58 FIRST-PARTY PUBLIC DEV</small></header>
+<main><h1>sheet</h1><div class="instruction">حدد الخلايا من البداية إلى النهاية</div>
+<div class="scene" style="top:154px;background:#eaf1f7"><b>Row &nbsp;&nbsp; Product &nbsp;&nbsp; Date &nbsp;&nbsp; Quantity</b><hr><p>ROW-300 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 12</p><p>ROW-301 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 16</p><p>ROW-302 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 20</p><p>ROW-303 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 24</p><p>ROW-304 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 28</p><p>ROW-305 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 32</p><p>ROW-306 &nbsp;&nbsp; ITEM &nbsp;&nbsp; 2026-10 &nbsp;&nbsp; 36</p></div>
+<div class="drag-point" id="start" style="left:230px;top:304px;background:#3c856c">بدء</div>
+<div class="drag-point" id="end" style="left:485px;top:346px;background:#ac5839">نهاية</div>
+<footer>No real users, services, external application screenshots or Hcompany benchmark labels</footer></main>
+<script>(()=>{const A=[255,323],B=[510,365],ORDERED=false;
+let start=null,active=false,moves=0;const near=(x,y)=>Math.hypot(x[0]-y[0],x[1]-y[1])<22;
+document.body.dataset.completed="0";document.body.dataset.accepted="false";document.body.dataset.rejected="0";
+document.addEventListener("pointerdown",e=>{start=[e.clientX,e.clientY];active=true;moves=0;e.preventDefault();});
+document.addEventListener("pointermove",()=>{if(active)moves++;});
+document.addEventListener("pointerup",e=>{if(!active)return;active=false;const end=[e.clientX,e.clientY];
+const good=moves>=3&&((near(start,A)&&near(end,B))||(!ORDERED&&near(start,B)&&near(end,A)));
+if(good){document.body.dataset.completed="1";document.body.dataset.accepted="true";}
+else document.body.dataset.rejected=String(Number(document.body.dataset.rejected)+1);});
+document.addEventListener("pointercancel",()=>{active=false;});})();</script></body></html>

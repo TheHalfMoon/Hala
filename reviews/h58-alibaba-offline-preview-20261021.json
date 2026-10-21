@@ -1,0 +1,455 @@
+{
+  "schema_version": "1",
+  "mode": "workspace",
+  "repository": "C:/Users/Shehr/Documents/Codex/2026-10-14/files-pasted-by-the-user-hala/work/Hala-h58-mixed-native-drag-eval",
+  "total_files": 68,
+  "reviewable_count": 35,
+  "excluded_count": 33,
+  "total_insertions": 3491,
+  "total_deletions": 0,
+  "reviewable_files": [
+    {
+      "path": "h58/assets/capture.json",
+      "status": "added",
+      "insertions": 648,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-00.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-01.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-02.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-03.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-04.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-05.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-06.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-sheet-07.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-00.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-01.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-02.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-03.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-04.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-05.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-06.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-slide_resize-07.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-00.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-01.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-02.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-03.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-04.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-05.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-06.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/html/h58-text_highlight-07.html",
+      "status": "added",
+      "insertions": 25,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/plans.json",
+      "status": "added",
+      "insertions": 746,
+      "deletions": 0
+    },
+    {
+      "path": "h58/assets/source.json",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0
+    },
+    {
+      "path": "h58/audit.py",
+      "status": "added",
+      "insertions": 107,
+      "deletions": 0
+    },
+    {
+      "path": "h58/evidence/synthetic-forward-edge.json",
+      "status": "added",
+      "insertions": 385,
+      "deletions": 0
+    },
+    {
+      "path": "h58/evidence/synthetic-reverse-edge.json",
+      "status": "added",
+      "insertions": 385,
+      "deletions": 0
+    },
+    {
+      "path": "h58/original_multidomain_dev.js",
+      "status": "added",
+      "insertions": 118,
+      "deletions": 0
+    },
+    {
+      "path": "h58/replay_raw_actions.js",
+      "status": "added",
+      "insertions": 94,
+      "deletions": 0
+    },
+    {
+      "path": "h58/score.py",
+      "status": "added",
+      "insertions": 95,
+      "deletions": 0
+    },
+    {
+      "path": "research/data_library/catalog.json",
+      "status": "modified",
+      "insertions": 32,
+      "deletions": 0
+    },
+    {
+      "path": "reviews/h58-alibaba-offline-preview-20261021.json",
+      "status": "added",
+      "insertions": 0,
+      "deletions": 0
+    }
+  ],
+  "excluded_files": [
+    {
+      "path": "h58/README.md",
+      "status": "added",
+      "insertions": 64,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-04.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-05.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-06.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-sheet-07.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-04.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-05.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-06.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-slide_resize-07.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-00.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-01.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-02.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-03.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-04.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-05.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-06.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "h58/assets/png/h58-text_highlight-07.png",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "research/data_library/README.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext"
+    },
+    {
+      "path": "reviews/h58-focused-original-mixed-dev-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h58-focused-source-and-library-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h58-graft-build-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "reviews/h58-graft-check-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    },
+    {
+      "path": "tests/test_h58_original_multidomain_dev.py",
+      "status": "added",
+      "insertions": 92,
+      "deletions": 0,
+      "exclude_reason": "default_path"
+    },
+    {
+      "path": ".ignore",
+      "status": "added",
+      "insertions": 5,
+      "deletions": 0,
+      "exclude_reason": "user_exclude"
+    },
+    {
+      "path": "reviews/h58-full-source-suite-20261021.log",
+      "status": "binary",
+      "insertions": 0,
+      "deletions": 0,
+      "exclude_reason": "binary"
+    }
+  ]
+}
