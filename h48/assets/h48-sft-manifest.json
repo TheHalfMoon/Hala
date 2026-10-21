@@ -1,0 +1,802 @@
+{
+  "adapter_qualified": false,
+  "arabic_image_training": {
+    "capture_sha256": "a01db14518f6ce7a2bf7fa89212eae4a78edbd69ea2fbc5b8bd5ccaa8dc3f127",
+    "enabled": true,
+    "excluded_records": 0,
+    "raqm_qualified": false,
+    "render_route": "source_verified_chromium_edge"
+  },
+  "capture_sha256": "a01db14518f6ce7a2bf7fa89212eae4a78edbd69ea2fbc5b8bd5ccaa8dc3f127",
+  "dataset_sha256": "d39ace79d562db980c920717cbce6ab19f95cbaa7cabff50c5fc06d008ebc0c8",
+  "families": [
+    "inbox_triage",
+    "modal_approval",
+    "settings_access",
+    "ticket_board"
+  ],
+  "held_out_families": [
+    "calendar_slots",
+    "expense_review"
+  ],
+  "independent_blind_test": false,
+  "label_scope": "H48 authentic browser screenshot: first unique visible target only",
+  "media": [
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-00-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "d20ed5ea1ded6434f31fe475561801a7884b397e4976ea99720bbec796c02959"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-01-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "4d0650585ae00613d819282979d1f7c9ae3f7f6897fad46a1961f962bc748d32"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-02-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "d053805558f0417cd79d40242bba0d33b52db789c8a78f60b5e40928e974f6d2"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-03-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "ab1596ed5fcdae23132acbdfe11b2db7436817e268ba69030af4eb7f05b1547c"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-04-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "c8cb6b4b0f1e3b460a7620652b009cfba8a09956a47df371b431066e4478a0d3"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-05-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "71244e024ffe57b157b996636506bb65224a17470c31c0beb213412ed220289a"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-06-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "11e36a45d61e022cbc397e6ba03d8a58731828ba48dbd5eae59d75a02daf2106"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-07-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "4487163fe9e368adc7c93cf74111b7c8f35267bee51bc2a10ef0a52bd8e5e060"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-08-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "662439ba44723439158be1d90e9463af22831baec2af7466ef4cdc89fe3b2cd8"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-09-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "cfb8eb62255409f06df5acfbbc9db26c69f561457284dcdd69f43e4d57aba240"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-10-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "659b23e602a14d1b7cba3b192e32b9286a7244f1ae50d69d0c6e997823628423"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-11-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "2979f728fcd766d4d1400e91d115214b962d552acefe99b7991bd4276eeb8801"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-12-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "fd108cda4a2e30cf1258915449a2ab23909909ba3209c713c4a419af5b16a7da"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-13-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "3493aae4767e331f0888df9c8e55df9febccba6643234315570d1c49d9671e45"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-14-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "6d53483773a9445628aae9eebaf3e1917185181e884f44bb23a3a5aa0a91d151"
+    },
+    {
+      "family": "modal_approval",
+      "path": "png/h48-modal_approval-15-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "7f5e502e6975c49ee79ce11a7b88db3a0d98fbe74b0a2e43c4ebe15efb2f0950"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-00-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "abdcbf7f96525373a06dc38a8ff332e6a8bcae6afc3cbfd7564fa458ebef2bc4"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-01-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "96273ac7ff2f620e51eb60b345a5d1add1ebc83a60ed9f134bea047a0b697f5f"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-02-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "16c0b0157158e66ba358f817921ea92de00c685d207e38bf3893206df955135f"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-03-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "95e4f91ecc088755a3d698138c25a54fa9570abc7dc1abe6ff518abde593d1f3"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-04-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "7ab7d19b84161d7361f1984bc7c348e51ce7506591b3a4e1545dc80f6bfca58d"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-05-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "a42879601af5b5a2619f3ffb44feda23e10a8f320314717ffa069b34cae2b349"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-06-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "1f2e59232951342fa2d7853345644e38339613477c7752d6b06c3ad650660108"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-07-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "f00163a1cdc7d8a91e1f485f15efdeba64bad3b1a12c25b38aa7a817a921473e"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-08-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "145b5892a3e53655a219f6281826a39d81339c6f3ad6189418c833b071befeb5"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-09-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "0d008c7ef52cf14f351688305aba29ccb572439481114aa68ecfdb815356237c"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-10-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "13b9671a6385354b056e398b1f499b4cd18d1fb794b0444002c3573e4cb28d23"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-11-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "442df81e4f7b8b9fcf4ec3efc3d28df7183e9cfeaf370139516414a8d0dcab9b"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-12-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "dcb4a065a8b0633f2b28af7580cd7ffa4df319933682fa2bd3be26b2124f8cde"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-13-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "dda253e812336045dd4f8b446045ae1abf5257ca545e1b3fba7a870968720364"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-14-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "a05bba6ecf48edaf9ca0d5d3f2933d78bde5c5ba7131edbdc41476908ebee999"
+    },
+    {
+      "family": "inbox_triage",
+      "path": "png/h48-inbox_triage-15-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "f02570b2333650d3bc91ca94e390b39d5c6c78483ce003689137584e363391db"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-00-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "85139a8936d0b3bc61030bdd645c41a6d409fe6b6e9dabf11fe29d7467a4413a"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-01-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "4a19ddb3fc1e59f8b7caa6716500ec0bb417a4223eb15e27f430f0515b622b90"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-02-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "bdf46fc2a8894658d8bb0ea5d233463fe92707bc2d0bbb7866b58512edd4f8bb"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-03-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "8bafa9bd7d80a23eaaab8ec858e846d50892fb0709bb4303c279a493d9d268c0"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-04-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "98a02d1941c24e4b896e74d242030ca052d7e2a29337947cbae569c844f9cd76"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-05-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "1dab53505c6124482f5b83d651f81aaea8778f25ed186c3b610948a23e16804e"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-06-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "031766a675864d6f15eb6b55f06624229f9062331f4eaa9c97485df5d4139e71"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-07-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "190c6b33fa5976c486abbb1a41bf1784356fbc8ea7e54e58130fa6e3a1d6350d"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-08-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "902a6da11ec40d43d53e547d0aaee268f43752c13d92ef9ebe720d91c016b0fd"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-09-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "9b3ed14c62aa729b74d8a938a624ecbbe449252367340728fa4cbd875d674926"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-10-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "123a5696d91a6a57f9d568e34ddc198fe72cffe0d0863f4b8a63c81830532c8f"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-11-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "df471ee441e392ce145378952a5325b0b3c2692f7e1720653a6c7098c1023f69"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-12-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "fd08045a0f9f57ec70c6f581670194a777a243cf03861f559ba2054fcd75511d"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-13-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "7229009e4bd597559581027115fae10fba121ed983ed3ca23ef522139d522d9d"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-14-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "41eac565a428be894a4eb2eb64d82d195b225ecbffaa16a6c0b82301c2538e60"
+    },
+    {
+      "family": "settings_access",
+      "path": "png/h48-settings_access-15-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "7d49bcc2113b4ab973b160ba2d2402e5b1acade4833d22898de3ef2c5a9cc2e3"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-00-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "9fada211100cf4089c21136a3bc32398b899e28a32e8b3cd94ead731c787364f"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-01-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "b19e0126128a59d3038bd2552bc3a34eab8c6d0d61c192f9e8ccc9c21e708c0e"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-02-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "3ddaa4e89a26a495d85d2ff19ab98967c443ad174d5ceb2911bd39599174827e"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-03-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "716d4849ff5f9415667f98581954a5828db75a611913bf309655d292e27dc615"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-04-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "4632dd98a9b068f0975957fa96d85412769a39c113572d95a02a3e20d367ed62"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-05-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "1f5d53519d13832dc8d8ebf55940af5a81bafb6eeeab99fa62f435784349dbf0"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-06-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "7f92739cb4068d7d7b621a693e2b18a419ca5f6793178d1079f693ade1495b31"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-07-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "60767299de59cc748a5e22a0ee0752def292319f1e1deccbbf633d88967e6320"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-08-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "a9ce47ff813f2d2ac596dc21456f5a6a4999aea0f761ab233a081c87f1d324f5"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-09-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "e07321fd4ffe1d569161fd907498f7a826c413c452176cd54647844fa9628c2e"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-10-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "fb82959c35488a61806cc0b7ecb2b15b9a82047b4d90556c06bed22f096a75fb"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-11-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "86fe1db2dab26e66ae2c2e83a126da0d5610940f44680378e073a910c0d98b92"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-12-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "a02ba6a75c99783176dec12838ec0f13004360d0fd7236ce47021d0d217d05b9"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-13-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "3f342d7c8cf0be6ce3a84c5a2e6349a835d3f26642fbe12d0ae1993000556967"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-14-en.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "3227328ce330df0de76068948ec3e14674941013b43d78a06fa03d01c8ed05ff"
+    },
+    {
+      "family": "ticket_board",
+      "path": "png/h48-ticket_board-15-ar.png",
+      "provenance": {
+        "benchmark_trajectories": false,
+        "external_images": false,
+        "license": "CC0-1.0",
+        "origin": "original_first_party_fictional",
+        "personal_data": false
+      },
+      "sha256": "83a813a6c1a1b1853ad39e87b913026614751b502b441af6fb73a3433e515d31"
+    }
+  ],
+  "rights_cleared": true,
+  "schema": "hala.training.manifest.v1",
+  "source_kind": "synthetic",
+  "source_schema": "hala.h48.diverse-first-party-visual-grounding.v1",
+  "source_sha256": "70278a175a331222ad2e54890020a07849980addf0ec1bb77be9c9441f15e139",
+  "split": "train",
+  "token_budget": 4096,
+  "training_executed": false
+}
