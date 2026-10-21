@@ -42,3 +42,11 @@ No external bytes were downloaded, streamed or uploaded. All source datasets rem
 There is no direct proof that Hcompany's publicly released DragOn or benchmark trajectories are identical to the proprietary/internal Holo4 training set. **Do not label them 'Holo4 training data'** in public documentation. Holo4 used SFT/RL and Agentic Task Factory; the full internal corpus has not been shown publicly available. The high-value strategy is to adapt similarly structured rights-cleared training trajectories, not to report an unproven copy of the same training set.
 
 No new model-quality score is claimed and H46 actual 0/8 negative evidence is unchanged. Existing Kaggle H47 job stays queued; never duplicate a submission.
+
+## 2026-10-21 exact source local engineering qualification
+
+Signed source-head `798d17a2a6a712e7bda3a62ca47838e69b460594` on existing Draft PR #37 passed actual Windows source tests: **622 total, 620 passed, 2 existing skipped, 0 failures/errors** (`python -m unittest discover -s tests -q`, exit 0; 383.324 seconds). Original `reviews/external-data-guard-full-suite-20261021.log` SHA256 `14625672cc9eff3be1e042a5f026f0a1c7ff1ef11fd643453480ce6664ebe66d`.
+
+Source-specific admission guard **11/11 focused PASS**, original `reviews/external-data-guard-focused-20261021.log` SHA256 `b1b5b027885dfbb43a2a871c91e24b165a6de575e52c4326f420dd5c45862b39`. Genuine Graft wiring-only `build/check` PASS, **1,928 nodes, 5,190 edges, 234 files**; original check log SHA256 `09f01e8dd8676380365decbab1ea800b35448debfcba68ed9e2d54e1e58e9e91`. Graft deep semantic meaning layer NOT performed; independent D1/PStack/Alibaba model review NOT claimed.
+
+**Hosted GitHub CI must be verified against the final exact signed evidence commit**. Two Python 3.11/3.12 push jobs on initial source head had succeeded when checked, while two PR jobs remained queued. Neither partial hosted CI nor these CPU tests attest actual training, source license/PII clearance, model accuracy or benchmark performance.
