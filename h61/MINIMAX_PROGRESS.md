@@ -60,11 +60,12 @@ success 0 of 48). Three concrete, testable causes were identified:
 | Bounded, verified export of original TRAIN material | **DONE** | `h61/source_export.py`; HTTP 206 byte ranges against the pinned revision, a SHA-256 receipt per range, the original image bytes, the original task JSONs, the original boxes and the original `ordered` flag. Measured: **3,220 original slider screenshots / 28,355 native drag actions / 0 rejections** and **2,085 slide_resize screenshots / 21,940 native drag actions / 0 rejections** |
 | The task-region offset resolved cheaply and correctly | **DONE** | the measured cost of the inherited wide probe was minutes of source bandwidth per domain; the bounded probe resolves the same offset `6231426560` for the slider archive in about 35 s per domain |
 | Every original screenshot scaled into the evaluation frame without distortion | **DONE** | one uniform aspect-preserving scale, applied to the screenshot and to the original boxes together, and the prompt states the size the model actually sees. Before this fix the slide_resize export measured 75 usable rows and 21,865 rejections; after it, 21,940 rows and 0 rejections |
-| Capability-balanced curriculum with screenshot deduplication | **DONE** | `h61/curriculum.py`; a measured build over the real exported originals produced **3,000 rows over 3,000 distinct screenshots**, one row per screenshot, the capability `slider/ordered`, the full coordinate spread (start x 54-960, y 113-527) and a real drag-length distribution (p10 29, p50 116, p90 384) |
+| Capability-balanced curriculum with screenshot deduplication | **DONE** | `h61/curriculum.py`; the measured Stage B build is **10,000 rows over 10,000 distinct screenshots**, one row per screenshot, over six capabilities: sheet/ordered 500, sheet/ordered/column_resize 2,009, sheet/ordered/row_resize 35, slide_resize/ordered 2,486, slider/ordered 2,485, text_highlight/unordered 2,485. The languages are **1,000 Arabic and 9,000 English** and the direction split is 7,515 ordered / 2,485 unordered |
+| A first-party bilingual drag corpus in the same native drag contract | **DONE** | `h61/firstparty_drag.py`; **2,000 of 2,000** scenes captured and accepted with **0 rejections** in one real browser session: 1,000 Arabic and 1,000 English, 500 per capability, 1,500 ordered and 500 unordered. The capture goes through the DevTools protocol so one browser launch covers the whole corpus, and every rendered screenshot is audited pixel by pixel against the recorded handle and target boxes. The 2,000 authored pages are committed as the durable authoring record |
 | One shared prompt contract for training and evaluation | **DONE** | `h61/prompt_contract.py` and `tests/test_h61_prompt_contract.py` |
 | Coordinate-focused supervision | **DONE** | `h61/supervision.py`; the weighted loss provably reduces to the plain token mean when every weight is one |
-| **The supervision density measured on the real tokenizer** | **DONE** | `tools/preflight_h61_processor.py` over **200 real curriculum rows, 0 problems**: every completion is 38 tokens, 12 of them coordinate tokens; the coordinate tokens carry **31.1 %** of the gradient under the plain token mean and **78.3 %** under the coordinate-weighted loss. Receipt `reviews/h61-processor-preflight-20261021/preflight.json` |
-| Independent benchmark source qualified | **DONE** | the upstream `eval/` split was found, fetched and its task format confirmed identical to `train/`; 12 official scenes were fetched and scored locally |
+| **The supervision density measured on the real tokenizer** | **DONE** | `tools/preflight_h61_processor.py` over the Stage B mixture, **300 real rows, 0 problems**: every completion is 36 to 38 tokens with 10 to 12 coordinate tokens; the coordinate tokens carry **28.91 %** of the gradient under the plain token mean and **76.42 %** under the coordinate-weighted loss. Receipt `reviews/h61-processor-preflight-20261021/preflight.json` |
+| Independent benchmark source qualified | **DONE** | the upstream `eval/` split was found, fetched and its task format confirmed identical to `train/`; **40 official scenes per domain** are fetched, and the capability mix of the official split is measured: 40 ordered slider, 24 ordered and 16 unordered sheet, 40 ordered slide_resize and 40 unordered text_highlight |
 | The additional sources reviewed by actually reading them | **DONE** | `reviews/h61-source-qualification-20261021/source-qualification.json`: `xlangai/AgentNet` qualified as a training source pending its row count (MIT, one JSONL record per desktop trajectory with a `task_completed` outcome flag and an alignment and efficiency score; the published viewer does not serve that file-based dataset, so the trajectory count is a declaration and not a measured row count); `hflqf88888/GUIOdyssey` qualified (CC-BY-4.0, **8,334 measured** multistep mobile episodes, four official splits including an application-disjoint and a device-disjoint split); `ServiceNow/VideoCUA` **not** training-ready (video frames are not labelled tasks); UI-TARS-Desktop, OpenCUA and Holo4-35B-A3B answer HTTP 401 and are recorded as not available |
 | The genuine Jev typed advisory review | **DONE** | `docs/reviews/h61-jev-judgments.json`, 17/17 files judged with the source hashes. It approves nothing; it surfaced four real defects, and all four are closed |
 | The remote orchestration exercised on the CPU path | **DONE** | `h61.colab_run --steps export,curriculum,baseline` completes with no failure and derives the training gate baseline from the H60 real inference evidence with the measured 0 of 48 real GUI drag task success |
@@ -81,11 +82,21 @@ success 0 of 48). Three concrete, testable causes were identified:
 * No H61 model result exists yet. Every training and evaluation number in this
   ledger is a target, not a measurement, until the run finishes and the raw
   receipts are read back.
+* The free GPU allocation is a single T4 and the concurrent H60 run is
+  holding it. The H61 run is queued behind it and starts itself when the
+  allocation frees; it never competes for the allocation and never starts a
+  duplicate session.
+* The bilingual corpus is first-party and synthetic. It teaches the contract
+  in both languages and it is in the same visual family as the first-party
+  public DEV sets, so a gain on those sets may reflect the family as well as
+  the skill. The original DragOn family is the part of the mixture that
+  carries the real application screenshots, and the official upstream
+  evaluation split is the part that is third-party.
 * The upstream official evaluation split is public and is used for evaluation
   only. It is never read into a training row and never used to derive a label.
 * The official evaluation is measured in the H61 evaluation frame, which is a
-  documented, exactly reversible uniform scale of the official 1280x800
-  screenshots and of the official start and end boxes.
+  documented, exactly reversible uniform scale of the official screenshots and
+  of the official start and end boxes.
 * A drag on an unordered original task is accepted in either direction
   **because the original task says the direction does not matter**. An ordered
   original task is never accepted in the reversed direction.
