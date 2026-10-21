@@ -1,0 +1,68 @@
+{
+  "adapters_loaded": false,
+  "created_utc": "2026-10-21",
+  "deficit": "The frozen unchanged Qwen3-VL-2B produced 0 of 48 real GUI native drag task successes across the two first-party public DEV sets: 0 of 48 outputs were accepted by the strict bare-JSON scorer, 21 of 24 H55 and 6 of 24 H58 parseable outputs returned an identical start and end point, and 8 of 24 H58 outputs left the 1024x640 image bounds.",
+  "evidence": "real_inference",
+  "gpu": "Tesla T4",
+  "independent_blind_test_completed": false,
+  "kaggle_gpu_compute_used": false,
+  "model_changed": false,
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "official_benchmark_comparison_qualified": false,
+  "package_versions": {
+    "pillow": "11.3.0",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "paid_compute_units_consumed": 0,
+  "provider": "interactive_approved_free_colab",
+  "real_edge_gui_success_note": "The genuine installed Microsoft Edge executed the pointer actions for every case; no case was accepted because the frozen model returned a markdown fenced object with a degenerate or out of range drag, so the real GUI task success count is 0.",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "schema": "hala.h60.real-public-dev-baseline-evidence.v1",
+  "splits": {
+    "h55": {
+      "cases": 24,
+      "degenerate_start_equals_end": 21,
+      "edge_replay_schema": "hala.h55.real-edge-prediction-replay.v1",
+      "edge_replay_sha256": "06a6bf58771d7eeb48b538130583f7d8e8a4cdb2de1d7368acc006425a85a580",
+      "geometrically_correct": 0,
+      "ordered_semantics_valid": 24,
+      "out_of_range_points": 0,
+      "raw_attempts_sha256": "17a00d3e0bb208d00617be7af5dc35a2f4fafb246f3d7217f6d6058ffdb95b12",
+      "real_edge_gui_success": 0,
+      "real_edge_pointer_actions_executed": true,
+      "run_result_sha256": "953071248981d97803b0e207600e226d8826a4953fd724d78483d44361ce4387",
+      "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+      "strict_bare_json_valid": 0,
+      "tolerant_parse_valid": 24
+    },
+    "h58": {
+      "cases": 24,
+      "degenerate_start_equals_end": 6,
+      "edge_replay_schema": "hala.h58.actual-edge-raw-drag-replay.v1",
+      "edge_replay_sha256": "06bf7fe9ad69b615cf370e9056c20e4cc880e734747ac5d4a526721f6f4a9fbf",
+      "geometrically_correct": 0,
+      "ordered_semantics_valid": 16,
+      "out_of_range_points": 8,
+      "raw_attempts_sha256": "21d5cc1e18f6c44c3d6805ef72e54ef6522592120b0ab5b9f7e26662388472da",
+      "real_edge_gui_success": 0,
+      "real_edge_pointer_actions_executed": true,
+      "run_result_sha256": "b90610c33d16cd68774d9bee01b9c0f2b8913741d0c889c2fb6517cce04ebca2",
+      "source_sha256": "a1c17c5dca028096bdd653de927fae18b1797a241ca3529646e10a1eb5f4f3de",
+      "strict_bare_json_valid": 0,
+      "tolerant_parse_valid": 16
+    }
+  },
+  "totals": {
+    "cases": 48,
+    "degenerate_start_equals_end": 27,
+    "geometrically_correct": 0,
+    "ordered_semantics_valid": 40,
+    "out_of_range_points": 8,
+    "real_edge_gui_success": 0,
+    "strict_bare_json_valid": 0,
+    "tolerant_parse_valid": 40
+  },
+  "training_executed_by_this_evidence": false,
+  "vram_bytes": 15637086208
+}

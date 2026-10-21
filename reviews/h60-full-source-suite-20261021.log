@@ -1,0 +1,34 @@
+﻿{"counts": {"dev": 20, "test": 20, "train": 60}, "families": {"dev": ["classroom_attendance", "purchase_requisition"], "test": ["library_lending", "subscription_alerts"], "train": ["facility_booking", "maintenance_queue", "parcel_dispatch", "research_notes", "travel_itinerary", "volunteer_roster"]}, "languages": {"ar": 50, "en": 50}, "native_qualified": false, "sha256": "391d0dc925790558fd5d58f6c0e6348c7c7984b05891fbbd9ae956c9564572de", "type_image_training_qualified": false}
+{"families": {"authoring": ["food_pantry", "instrument_calibration", "museum_accessions"], "dev": ["accessibility_review", "habitat_survey", "seminar_facilitation"]}, "independent_holdout_qualified": false, "language_counts": {"ar": 42, "en": 42}, "native_execution_qualified": false, "records": 84, "sha256": "b94942b1b1a870867214b87160a7aad06776f4be8d111dcfa111041f7cd5759b", "split_counts": {"authoring": 42, "dev": 42}, "type_images_qualified": false, "unique_authored_goals": 84}
+{"languages": {"ar": 21, "en": 21}, "no_gpu_run": true, "no_native_orcel_execution": true, "no_test_qualification": true, "projection_sha256": "cceed2575f3f01995d489c811e2ee38f32272492fc2b533c0197ec0ba27c8ccd", "rows": 42, "schema": "hala.h25.dev_public_projection.v2", "source_cases_sha256": "b94942b1b1a870867214b87160a7aad06776f4be8d111dcfa111041f7cd5759b", "source_families": ["seminar_facilitation", "accessibility_review", "habitat_survey"], "source_splits": "DEV only; public non-holdout"}
+H34_IMMUTABLE_SOURCE aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa CONTENT_INVENTORY 7d8b818d48fc6c5cb1d8e04a24660310dc9b86c3aa9664499754a7b69889dafb
+H34_EXTERNAL_RAW_SHA256 757af9eff039f72e9cbb2cf8d1b18deebac0737522dd68127f3c01d80bcdd69d
+H34_RAW_AUDIT_REQUIRED; MODEL_QUALIFICATION_NOT_ESTABLISHED
+H60_TASK_REGION slider start=61440 bytes=62464 members=40 first=slider/tasks/00000000-0000-0000-0000-000000000000.json
+H60_SHARD h60-dragon-train-slider-0000 images=40 actions=120 published=False readback=False
+H60_TASK_REGION slider start=61440 bytes=62464 members=40 first=slider/tasks/00000000-0000-0000-0000-000000000000.json
+H60_SHARD h60-dragon-train-slider-0000 images=40 actions=120 published=False readback=False
+python : ......................s.......................................................................................
+.......................................................................................................................
+.......................................................................................................................
+..........s............................................................................................................
+.......................................................................................................................
+.....................................C:\Users\Shehr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py:484: 
+ResourceWarning: Implicitly cleaning up <HTTPError 404: 'Not Found'>
+At line:1 char:67
++ ... NG="utf-8"; python -m unittest discover -s tests -p "test_*.py" 2>&1  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (..................4: 'Not Found'>:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  _warnings.warn(self.warn_message, ResourceWarning)
+........C:\Users\Shehr\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py:484: ResourceWarning: Implicitly 
+cleaning up <HTTPError 403: 'Forbidden'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+.......................................................................................................................
+........
+----------------------------------------------------------------------
+Ran 758 tests in 124.115s
+
+OK (skipped=2)
+{"path": "C:\\Users\\Shehr\\AppData\\Local\\Temp\\tmp6r9vtmb7\\kaggle", "sha256": "783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c", "bytes": 1565627, "images": 64, "labels": 384, "kaggle_private_by_default": true}

@@ -1,0 +1,52 @@
+{
+  "adapters_loaded": false,
+  "blind_test": false,
+  "by_domain_language": {
+    "slider/ar": {
+      "degenerate_start_equals_end": 1,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 12,
+      "ordered_semantics_valid": 2,
+      "start_hit": 0,
+      "strict_valid": 2,
+      "tolerant_valid": 2
+    },
+    "slider/en": {
+      "degenerate_start_equals_end": 4,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 12,
+      "ordered_semantics_valid": 12,
+      "start_hit": 0,
+      "strict_valid": 12,
+      "tolerant_valid": 12
+    }
+  },
+  "dev_set": "h55",
+  "evidence": "real_inference",
+  "independent_blind_test_completed": false,
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_training_executed": false,
+  "notes": "strict_valid counts outputs the frozen public-dev scorer accepts as a bare JSON object; tolerant_valid additionally accepts a markdown fenced object so a format failure is not reported as a grounding failure.",
+  "official_benchmark_comparison_qualified": false,
+  "parse_failures": {
+    "point_out_of_range": 10
+  },
+  "public_dev_only": true,
+  "raw_attempts_sha256": "27d424a4c6f0865e451cf97f6025e16721a57451a5f9e7eca7a9145a9d9d603f",
+  "real_browser_model_task_success_verified": false,
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "schema": "hala.h60.public-dev-drag-output-diagnostic.v1",
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+  "totals": {
+    "degenerate_start_equals_end": 5,
+    "end_hit": 0,
+    "geometrically_correct": 0,
+    "n": 24,
+    "ordered_semantics_valid": 14,
+    "start_hit": 0,
+    "strict_valid": 14,
+    "tolerant_valid": 14
+  }
+}

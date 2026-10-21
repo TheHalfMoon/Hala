@@ -1,0 +1,385 @@
+{
+  "schema": "hala.h58.actual-edge-raw-drag-replay.v1",
+  "source_sha256": "a1c17c5dca028096bdd653de927fae18b1797a241ca3529646e10a1eb5f4f3de",
+  "origin": "provider_raw_model_outputs",
+  "candidate_input_sha256": "21d5cc1e18f6c44c3d6805ef72e54ef6522592120b0ab5b9f7e26662388472da",
+  "real_microsoft_edge_pointer_actions_executed": true,
+  "synthetic_fixture_only": false,
+  "raw_external_model_provenance_independently_verified": false,
+  "public_dev_only": true,
+  "blind_test": false,
+  "training_performed": false,
+  "official_benchmark_competitor_claim_qualified": false,
+  "external_requests_rejected": 0,
+  "by_domain_language": {
+    "sheet/ar": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    },
+    "sheet/en": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    },
+    "slide_resize/ar": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    },
+    "slide_resize/en": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    },
+    "text_highlight/ar": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    },
+    "text_highlight/en": {
+      "total": 4,
+      "valid": 0,
+      "real_edge_gui_success": 0
+    }
+  },
+  "real_browser_success_total": 0,
+  "results": [
+    {
+      "id": "h58-sheet-00",
+      "domain": "sheet",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-01",
+      "domain": "sheet",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-02",
+      "domain": "sheet",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-03",
+      "domain": "sheet",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-04",
+      "domain": "sheet",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-05",
+      "domain": "sheet",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-06",
+      "domain": "sheet",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-sheet-07",
+      "domain": "sheet",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-00",
+      "domain": "slide_resize",
+      "language": "ar",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-01",
+      "domain": "slide_resize",
+      "language": "en",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-02",
+      "domain": "slide_resize",
+      "language": "ar",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-03",
+      "domain": "slide_resize",
+      "language": "en",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-04",
+      "domain": "slide_resize",
+      "language": "ar",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-05",
+      "domain": "slide_resize",
+      "language": "en",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-06",
+      "domain": "slide_resize",
+      "language": "ar",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-slide_resize-07",
+      "domain": "slide_resize",
+      "language": "en",
+      "ordered": true,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-00",
+      "domain": "text_highlight",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-01",
+      "domain": "text_highlight",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-02",
+      "domain": "text_highlight",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-03",
+      "domain": "text_highlight",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-04",
+      "domain": "text_highlight",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-05",
+      "domain": "text_highlight",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-06",
+      "domain": "text_highlight",
+      "language": "ar",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    },
+    {
+      "id": "h58-text_highlight-07",
+      "domain": "text_highlight",
+      "language": "en",
+      "ordered": false,
+      "raw_valid": false,
+      "ordered_semantics_valid": false,
+      "genuine_edge_gui_completed": false,
+      "observed_state": {
+        "accepted": false,
+        "complete": 0,
+        "rejected": 0
+      }
+    }
+  ]
+}

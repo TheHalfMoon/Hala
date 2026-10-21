@@ -1,0 +1,60 @@
+{
+  "actual_neural_inference_provenance_independently_verified": false,
+  "benchmark_comparison_qualified": false,
+  "blind_test": false,
+  "by_domain_language": {
+    "sheet/ar": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    },
+    "sheet/en": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    },
+    "slide_resize/ar": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    },
+    "slide_resize/en": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    },
+    "text_highlight/ar": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    },
+    "text_highlight/en": {
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 0,
+      "reverse_accepted": 0,
+      "valid": 0
+    }
+  },
+  "geometrically_correct": 0,
+  "model_training_executed": false,
+  "ordered_semantics_valid": 0,
+  "origin": "provider_raw_model_outputs",
+  "original_public_dev_only": true,
+  "real_browser_model_task_success_verified": false,
+  "reverse_accepted": 0,
+  "scenes": 24,
+  "schema": "hala.h58.public-dev-geometric-diagnostic.v1",
+  "source_sha256": "a1c17c5dca028096bdd653de927fae18b1797a241ca3529646e10a1eb5f4f3de",
+  "total_valid": 0
+}

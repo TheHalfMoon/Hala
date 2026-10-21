@@ -1,0 +1,92 @@
+{
+  "adapters_loaded": false,
+  "blind_test": false,
+  "by_domain_language": {
+    "sheet/ar": {
+      "degenerate_start_equals_end": 4,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 4,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 4
+    },
+    "sheet/en": {
+      "degenerate_start_equals_end": 0,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 2,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 2
+    },
+    "slide_resize/ar": {
+      "degenerate_start_equals_end": 0,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 2,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 2
+    },
+    "slide_resize/en": {
+      "degenerate_start_equals_end": 0,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 2,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 2
+    },
+    "text_highlight/ar": {
+      "degenerate_start_equals_end": 2,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 4,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 4
+    },
+    "text_highlight/en": {
+      "degenerate_start_equals_end": 0,
+      "end_hit": 0,
+      "geometrically_correct": 0,
+      "n": 4,
+      "ordered_semantics_valid": 2,
+      "start_hit": 0,
+      "strict_valid": 0,
+      "tolerant_valid": 2
+    }
+  },
+  "dev_set": "h58",
+  "evidence": "real_inference",
+  "independent_blind_test_completed": false,
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_training_executed": false,
+  "notes": "strict_valid counts outputs the frozen public-dev scorer accepts as a bare JSON object; tolerant_valid additionally accepts a markdown fenced object so a format failure is not reported as a grounding failure.",
+  "official_benchmark_comparison_qualified": false,
+  "parse_failures": {
+    "point_out_of_range": 8
+  },
+  "public_dev_only": true,
+  "raw_attempts_sha256": "21d5cc1e18f6c44c3d6805ef72e54ef6522592120b0ab5b9f7e26662388472da",
+  "real_browser_model_task_success_verified": false,
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "schema": "hala.h60.public-dev-drag-output-diagnostic.v1",
+  "source_sha256": "a1c17c5dca028096bdd653de927fae18b1797a241ca3529646e10a1eb5f4f3de",
+  "totals": {
+    "degenerate_start_equals_end": 6,
+    "end_hit": 0,
+    "geometrically_correct": 0,
+    "n": 24,
+    "ordered_semantics_valid": 16,
+    "start_hit": 0,
+    "strict_valid": 0,
+    "tolerant_valid": 16
+  }
+}

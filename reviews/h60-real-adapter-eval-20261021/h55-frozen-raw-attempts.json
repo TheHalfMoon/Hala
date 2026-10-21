@@ -1,0 +1,127 @@
+{
+  "cases": [
+    {
+      "id": "h55-ar_civic-00",
+      "image_sha256": "7a2868afeddd08a13e8e614f785ce79438cddf7ec0fde717aa50550c737bdc3a",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [200, 488],\n  \"end_point\": [200, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_civic-01",
+      "image_sha256": "478f5dd897e88b63fad5351fb8ed6bf9cfa69349e85531cd066c9345bdf6d096",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [214, 514],\n  \"end_point\": [214, 514],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_civic-02",
+      "image_sha256": "a0b04bff9b2298f87ef295462e7652843d74b2c3da57833ffe80d504282b5e06",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [275, 540],\n  \"end_point\": [275, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_civic-03",
+      "image_sha256": "9eebdf50c648242b5083cc58b1a9fc557c9d6b438c6a9038e06494d9c3290d7b",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [275, 488],\n  \"end_point\": [275, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_records-00",
+      "image_sha256": "67922a83ecc82b5f00de9c1ed4f07559f1d021452db3733ef36b4e97e7d45727",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [185, 514],\n  \"end_point\": [185, 514],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_records-01",
+      "image_sha256": "708fce0e62e0855f632de46fe6a170a6fb56af6ec28039af8197c7f18997c28f",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [214, 540],\n  \"end_point\": [214, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_records-02",
+      "image_sha256": "01ebcdd086a2e382edd869d5cddd213563353cc7439f83b3dc9f6cd3f16f1164",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [275, 494],\n  \"end_point\": [275, 494],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_records-03",
+      "image_sha256": "928177444fff939351bc70edd3a0d4c67e3e706f40d9f65e38c270dee5343117",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [250, 514],\n  \"end_point\": [250, 514],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_logistics-00",
+      "image_sha256": "1e3096613755be37471e8fdc4077af62d95404fb011205c81019f29acf9e78e1",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [200, 540],\n  \"end_point\": [200, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_logistics-01",
+      "image_sha256": "4a6676b3583d5616505703bf2295275887cf83538576a36f4df76aab4691c950",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [214, 488],\n  \"end_point\": [214, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_logistics-02",
+      "image_sha256": "fbc82f2df0c766b9d0edec7358ed6a5c8b6340e5bd87564508dec55a4685f2e1",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [240, 510],\n  \"end_point\": [240, 510],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-ar_logistics-03",
+      "image_sha256": "829fdde188aa0d325153dd43d849afcd949522eb429a1386f0e1fcaa185fa543",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [298, 540],\n  \"end_point\": [300, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_fhir-00",
+      "image_sha256": "a6f03ec897ad41e503ea83b85f55901cb151140adb38b416ca25116ea877d2e0",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [205, 488],\n  \"end_point\": [205, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_fhir-01",
+      "image_sha256": "df6409a316ee613fc4ae8a7e3d7814f25186b054aac5c6cf5068af363181b05a",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [225, 500],\n  \"end_point\": [225, 500],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_fhir-02",
+      "image_sha256": "7641262114bfffec509e1bc28fdaf15241506c0561ed4c65ff5b0b108a191386",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [275, 540],\n  \"end_point\": [275, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_fhir-03",
+      "image_sha256": "d5f6a28f7028e71f92bd695c888f6216c78535ac682ad682231a083c96f1af7a",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [300, 488],\n  \"end_point\": [300, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_design-00",
+      "image_sha256": "d7abd51691594f43029f980e9bd5cf214d6e97a13897162ecb14580bbb5274c9",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [200, 510],\n  \"end_point\": [200, 510],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_design-01",
+      "image_sha256": "8941fb0147a763ec775359645f5573153ebcdc7aa5dd09c6d2805e845589762b",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [214, 538],\n  \"end_point\": [214, 538],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_design-02",
+      "image_sha256": "e6ff73b958aa98a6fd3961922417abeecc6d446a4b2c2a63356ac8388139556a",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [275, 498],\n  \"end_point\": [275, 498],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_design-03",
+      "image_sha256": "77778b0848c60c369e05dee3b6c8f3b2ec90bda0ee1f0a6d63175a46cf8f8b08",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [300, 515],\n  \"end_point\": [300, 515],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_inventory-00",
+      "image_sha256": "7eaf331c77d918bd99120ba32d511c1a2d36277459dba3de1428acfa1f83fb85",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [188, 540],\n  \"end_point\": [200, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_inventory-01",
+      "image_sha256": "3676367f0d7b2cc60d6fdfd0f46ae7e129ae61b28e175aefc1066184796b02d9",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [225, 488],\n  \"end_point\": [555, 488],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_inventory-02",
+      "image_sha256": "51d57c9e5e861384eeba63aeca96559ec0c550f2c310840732ca8ae1413c197c",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [250, 500],\n  \"end_point\": [250, 500],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    },
+    {
+      "id": "h55-en_inventory-03",
+      "image_sha256": "b15e9e1996dfd68481f37b088bd28179513e3b19b32d5332b28ca573e104046f",
+      "raw_output": "```json\n{\n  \"type\": \"drag\",\n  \"start_point\": [300, 540],\n  \"end_point\": [300, 540],\n  \"coordinate_space\": \"source_image_pixels\",\n  \"ordered\": true\n}\n```"
+    }
+  ],
+  "origin": "provider_raw_model_outputs",
+  "schema": "hala.h55.public-dev-raw-drag-attempts.v1",
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6"
+}
