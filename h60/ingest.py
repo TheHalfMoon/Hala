@@ -466,7 +466,92 @@ def publish_enabled(flag) -> bool:
 
 
 # ---------------------------------------------------------------- ingest
+class StagingLocked(RuntimeError):
+    """Another ingest already owns this staging directory."""
+
+
+class _StagingLock:
+    """Exclusive cross-process lock over one staging directory.
+
+    Two ingest processes over the same staging directory would publish the
+    same shard slug twice and race on the same shard body, so the lock is
+    taken before any source byte is read.
+    """
+
+    def __init__(self, staging: Path):
+        self.path = Path(staging) / "ingest.lock"
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self._handle = None
+
+    def __enter__(self) -> "_StagingLock":
+        self._handle = self.path.open("a+b")
+        try:
+            if os.name == "nt":
+                import msvcrt
+
+                msvcrt.locking(self._handle.fileno(), msvcrt.LK_NBLCK, 1)
+            else:
+                import fcntl
+
+                fcntl.flock(self._handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as error:
+            self._handle.close()
+            self._handle = None
+            raise StagingLocked(
+                f"another ingest already owns {self.path.parent}: {error}"
+            ) from error
+        return self
+
+    def __exit__(self, *exc_info) -> None:
+        if self._handle is not None:
+            try:
+                if os.name == "nt":
+                    import msvcrt
+
+                    self._handle.seek(0)
+                    msvcrt.locking(self._handle.fileno(), msvcrt.LK_UNLCK, 1)
+                else:
+                    import fcntl
+
+                    fcntl.flock(self._handle.fileno(), fcntl.LOCK_UN)
+            except OSError:
+                pass
+            self._handle.close()
+            self._handle = None
+
+
 def ingest_domain(
+    domain: str,
+    plan: dict,
+    staging: Path,
+    target_bytes: int,
+    workers: int,
+    sample_structure_every: int,
+    sample_pixels_every: int,
+    do_publish: bool,
+    token: str,
+    max_shards: int | None = None,
+    max_windows: int | None = None,
+    upload_workers: int = 2,
+) -> dict:
+    with _StagingLock(Path(staging)):
+        return _ingest_domain(
+            domain,
+            plan,
+            staging,
+            target_bytes,
+            workers,
+            sample_structure_every,
+            sample_pixels_every,
+            do_publish,
+            token,
+            max_shards,
+            max_windows,
+            upload_workers,
+        )
+
+
+def _ingest_domain(
     domain: str,
     plan: dict,
     staging: Path,
