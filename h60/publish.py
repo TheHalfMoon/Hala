@@ -249,39 +249,31 @@ def verify_readback(
     mismatched: list[str] = []
     size_mismatched: list[str] = []
     with zipfile.ZipFile(archive) as bundle:
-        names = set(bundle.namelist())
-        if names != set(expected_shas):
-            # The provider may wrap an expanded tree in one common directory.
-            prefix = _common_prefix(sorted(names))
-            if prefix:
-                stripped = {
-                    name[len(prefix) :]: name
-                    for name in names
-                    if name.startswith(prefix)
-                }
-                if set(stripped) == set(expected_shas):
-                    names = set(stripped)
-                    remap = stripped
-                else:
-                    remap = {}
-            else:
-                remap = {}
-            if not remap:
-                missing = sorted(set(expected_shas) - names)
-                extra = sorted(names - set(expected_shas))
+        archive_names = set(bundle.namelist())
+        # Map every provider archive member onto the published member name.
+        # The provider may wrap an expanded tree in one common directory.
+        mapping = {name: name for name in archive_names}
+        if archive_names != set(expected_shas):
+            prefix = _common_prefix(sorted(archive_names))
+            stripped = {
+                name: name[len(prefix) :]
+                for name in archive_names
+                if prefix and name.startswith(prefix)
+            }
+            if set(stripped.values()) != set(expected_shas):
+                missing = sorted(set(expected_shas) - set(stripped.values()))
+                extra = sorted(set(stripped.values()) - set(expected_shas))
                 raise ValueError(
                     "provider archive does not hold exactly the published members: "
                     f"missing={missing[:5]} extra={extra[:5]}"
                 )
-        else:
-            remap = {}
-        for name in sorted(names):
-            member_name = remap.get(name, name)
-            info = bundle.getinfo(name)
+            mapping = stripped
+        for archive_name, member_name in sorted(mapping.items()):
+            info = bundle.getinfo(archive_name)
             if info.file_size != expected_files[member_name]:
                 size_mismatched.append(member_name)
                 continue
-            with bundle.open(name) as member:
+            with bundle.open(archive_name) as member:
                 digest = hashlib.sha256()
                 for chunk in iter(lambda: member.read(BLOCK), b""):
                     digest.update(chunk)

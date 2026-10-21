@@ -41,6 +41,52 @@ The frozen 2B model emits markdown-fenced JSON instead of the requested bare
 object, frequently returns an identical start and end point, and never lands a
 drag endpoint. That is the measured deficit the LoRA curriculum must attack.
 
+## Provider publication path: measured corrections (2026-10-21, later in the same session)
+
+The first publication attempt failed for reasons that were **not** source
+problems. Each correction below is a measured provider behaviour, and each
+correction now has a test.
+
+| Measured provider behaviour | Consequence for the pipeline | Correction |
+|---|---|---|
+| `kaggle datasets files` serves **20 rows by default** (max 200) and the provider API paginates the dataset index | the readback compared only the first page against a 28,000-member inventory and every large shard was reported as a failed readback even though the upload had succeeded | the provider index is now read with explicit pagination, and the authoritative readback is a single streamed provider download whose **every member is hashed locally** |
+| a dataset created seconds earlier is **refused with HTTP 403** until the provider serves the new version | the propagation delay was recorded as a privacy failure | the pipeline waits for the provider itself to serve the dataset before any privacy or readback proof is attempted |
+| the provider CLI host (`api.kaggle.com`) is throttled with **HTTP 429** while `www.kaggle.com/api/v1` stays available | readback was unreliable and slow | the readback uses the provider REST endpoints; every CLI call retries with backoff on 429 and 5xx |
+| the provider may return the expanded tree **wrapped in one common directory** | a byte-exact member comparison would have rejected a correct dataset | the readback maps provider members onto published members and still requires an exact name, size and SHA-256 match for every member |
+
+Two further properties of the publication path were changed so that a
+half-published shard can never be mistaken for a stored shard:
+
+* the local shard body is released **only after** the provider has been proven
+  to hold exactly the published bytes, so an interrupted publication is
+  retried from the same local body instead of re-downloading the source;
+* a failed readback **deletes** the half-published provider dataset and
+  records a named failure receipt;
+* every shard member carries a fixed timestamp, so an identical shard body
+  always produces identical archive bytes and the shard SHA-256 becomes a
+  stable resume key: an already verified shard is recognised and is **not
+  uploaded twice**.
+
+The one half-published H60 slider dataset of the superseded generation was
+deleted rather than left in place; the three pre-existing founder datasets
+were not touched.
+
+### Publication-path receipts
+
+* **DONE** Provider publication probe with synthetic non-original bytes:
+  dataset created, `provider_is_private=true`, anonymous view **HTTP 403**,
+  readback of **20/20 members** with **0** mismatched bytes, provider index
+  complete, probe dataset deleted afterwards.
+* **DONE** `tests/test_h60_publish.py`: **8/8 PASS** — deterministic shard
+  bytes, release-only-after-verified-readback, failed-readback cleanup,
+  resume without a second upload, provider index pagination, wrapped-tree
+  readback, tampered-member rejection, missing-member rejection.
+* **DONE** `tests/test_h60_ingest.py`: **8/8 PASS** — synthetic original-style
+  archive over a local Range origin: boundary-safe member recovery,
+  image/task pairing, whole-archive SHA, window receipts, shard contents. The
+  suite never touches the real upstream source and never touches a provider
+  account.
+
 ## Honest limits of this ledger
 
 * The private provider copy of the corpus is a **staging copy of a corpus that
@@ -53,3 +99,7 @@ drag endpoint. That is the measured deficit the LoRA curriculum must attack.
   a training label.
 * Nothing here claims a competitive or SOTA result, and no independent blind
   TEST has been run.
+* The provider upload bandwidth measured at roughly 1.0 MB/s on one stream and
+  3.3 MB/s on four concurrent streams is the binding constraint on how fast
+  the full 61.2 GB corpus can be mirrored privately. It is a transfer
+  constraint only; it does not limit the corpus size.
