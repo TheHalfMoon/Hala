@@ -45,10 +45,11 @@ def build_subset(
     total = int(plan["source_domains"][domain]["bytes"])
     official = str(plan["source_domains"][domain]["upstream_lfs_sha256"])
     windows = [w for w in plan["windows"] if w["source_domain"] == domain]
-    source = WindowedSource(domain, windows, total, Path(output) / "window-receipts" / domain)
     output = Path(output)
     if output.exists():
         raise FileExistsError("An H60 curriculum subset is create-only")
+    receipts = output.parent / f"{output.name}-window-receipts"
+    source = WindowedSource(domain, windows, total, receipts)
     (output / "images" / domain).mkdir(parents=True)
     (output / "tasks" / domain).mkdir(parents=True)
 
@@ -210,7 +211,7 @@ def build_subset(
     (output / "manifest.json").write_text(
         json.dumps(manifest, sort_keys=True, ensure_ascii=False, indent=2) + "\n", encoding="utf8"
     )
-    shutil.rmtree(output / "window-receipts", ignore_errors=True)
+    shutil.rmtree(receipts, ignore_errors=True)
     return {
         "source_domain": domain,
         "whole_tar_sha256_verified": manifest["whole_tar_sha256_verified"],
