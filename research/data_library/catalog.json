@@ -96,7 +96,14 @@
       "imported_train_labels_sha256": "9abab62624b45ead5db1ed0c1fdb5d7123f7c761c0a32b8a35f9ecfdebc96c09",
       "unreviewed_remaining_training_images": 285925,
       "training_model_output": null,
-      "raw_external_screenshot_redistributed_publicly": false
+      "raw_external_screenshot_redistributed_publicly": false,
+      "native_drag_candidate_imported_to_lora_loader": true,
+      "native_drag_candidate_original_images": 87,
+      "native_drag_candidate_rows": 760,
+      "native_drag_candidate_jsonl_sha256": "205b408d314576d389fb497530fc44d115208b07d2b40501387c585c0700d40b",
+      "independent_drag_baseline_available": false,
+      "native_drag_adapter_trained": false,
+      "native_drag_derived_jsonl_uploaded_to_kaggle": false
     },
     {
       "id": "xlang-agentnet",
@@ -328,6 +335,43 @@
       "remote_data_imported": false,
       "trained_model_checkpoint": null,
       "notes": null
+    }
+  ],
+  "evaluation_sources": [
+    {
+      "id": "hala-h55-bilingual-public-drag-dev",
+      "split": "dev",
+      "license": "CC0-1.0",
+      "source": "first-party fictional original Edge UI",
+      "authored_screenshots": 24,
+      "arabic_screenshots": 12,
+      "english_screenshots": 12,
+      "distinct_app_families": 6,
+      "live_browser_correct_drags": 24,
+      "live_browser_wrong_origin_rejections": 24,
+      "live_browser_wrong_endpoint_rejections": 24,
+      "public_dev_only": true,
+      "training_allowed": false,
+      "stored_kaggle": false,
+      "independently_blinded": false,
+      "model_inference_evaluated": false,
+      "genuine_neural_task_success_count": null,
+      "model_fine_tuning_completed": false,
+      "original_public_source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+      "original_edge_capture_sha256": "cbff4d7d4db896b4a378435ffe69118c5a3d1f11e982391b934d5ad6a798d85a",
+      "source_qualified": true,
+      "real_edge_unit_replays_verified": true,
+      "independent_model_test_qualified": false,
+      "actual_qwen_model_baseline_runner_source_ready": true,
+      "real_qwen_2b_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "actual_qwen_colab_free_notebook_prepared": true,
+      "interactive_free_colab_gpu_session_confirmed": false,
+      "actual_qwen_2b_inference_completed": false,
+      "actual_qwen_raw_attempts_saved": false,
+      "real_edge_neural_model_action_replay_completed": false,
+      "zerogpu_one_case_unpinned_provider_output_obtained": false,
+      "zerogpu_provider_event": "error",
+      "provenance_hash_verified_before_model_download": true
     }
   ]
 }

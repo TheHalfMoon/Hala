@@ -1,0 +1,18 @@
+{
+  "actual_billing_verified": false,
+  "external_space": "akhaliq/Qwen3-VL-2B-Instruct",
+  "official_hala_model_revision_qualified": false,
+  "paid_jobs_created": false,
+  "primary_colab_baseline_completed": false,
+  "provider_returned_data": false,
+  "provider_sse_terminal": [
+    "event: error"
+  ],
+  "public_dev_original_source_only": true,
+  "public_screenshot_sha256": "7a2868afeddd08a13e8e614f785ce79438cddf7ec0fde717aa50550c737bdc3a",
+  "public_source_id": "h55-ar_civic-00",
+  "schema": "hala.h56.public-third-party-zerogpu-exploratory.v1",
+  "sse_events_received": 1,
+  "training_executed": false,
+  "weights_revision_pinned": false
+}

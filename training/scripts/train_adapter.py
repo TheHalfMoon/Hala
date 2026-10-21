@@ -21,6 +21,9 @@ from h49.audit import load_export as load_h49_export
 from h50.counterfactual import SCHEMA as H50_SOURCE_SCHEMA, load_export as load_h50_export
 from h52.factory import VERSION as H52_SOURCE_SCHEMA
 from h52.training_bridge import load_export as load_h52_export
+from h54.native_drag import (SCHEMA as H54_DRAG_SCHEMA,
+                             load_export as load_h54_drag_export,
+                             validate_drag_baseline)
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -57,7 +60,7 @@ def load_json(path):
     return strict_json(path.read_text(encoding='utf-8'))
 
 
-def prepare_inputs(row, processor, root, token_budget):
+def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False):
     """One bounded image; validate expanded vision/prompt prefix before GPU use."""
     import torch
     from PIL import Image
@@ -65,8 +68,9 @@ def prepare_inputs(row, processor, root, token_budget):
     if sha256_file(image_path) != row['image_sha256']:
         raise ValueError('Training media digest changed after preflight')
     with Image.open(image_path) as source:
-        if source.format != 'PNG' or source.width * source.height > MAX_PIXELS:
-            raise ValueError('Training image exceeds header/pixel budget')
+        image_format = 'JPEG' if native_drag_jpeg else 'PNG'
+        if source.format != image_format or source.width * source.height > MAX_PIXELS:
+            raise ValueError('Training image exceeds source-bound header/pixel budget')
         image = source.convert('RGB')
     try:
         messages = [{'role': 'user', 'content': [
@@ -88,7 +92,9 @@ def prepare_inputs(row, processor, root, token_budget):
 
 
 def load_authoring_records(examples_path, manifest):
-    """Verify original H48/H49/H50/H52 sources; H14 remains frozen."""
+    """Verify original H48/H49/H50/H52/H54 sources; H14 remains frozen."""
+    if manifest.get('source_schema') == H54_DRAG_SCHEMA:
+        return load_h54_drag_export(examples_path, manifest)
     if manifest.get('source_schema') == H52_SOURCE_SCHEMA:
         return load_h52_export(examples_path, manifest)
     if manifest.get('source_schema') == H50_SOURCE_SCHEMA:
@@ -117,9 +123,13 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     manifest = load_json(manifest_path)
-    validate_experiment(config, manifest, load_json(baseline_path))
+    baseline = load_json(baseline_path)
+    if manifest.get('source_schema') == H54_DRAG_SCHEMA:
+        validate_drag_baseline(baseline)
+    validate_experiment(config, manifest, baseline)
     records = load_authoring_records(examples_path, manifest)
     root = Path(examples_path).parent.resolve()
+    native_drag = manifest.get('source_schema') == H54_DRAG_SCHEMA
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],
                 'manifest_sha256': sha256_file(manifest_path), 'max_steps': config.max_steps}
@@ -165,7 +175,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                                              trust_remote_code=False)
     # Expanded vision tokens are included in this audit. No model weights allocated yet.
     for row in records:
-        checked_inputs, checked_labels = prepare_inputs(row, processor, root, manifest['token_budget'])
+        checked_inputs, checked_labels = prepare_inputs(
+            row, processor, root, manifest['token_budget'], native_drag_jpeg=native_drag)
         del checked_inputs, checked_labels
     runtime['audited_records'] = len(records)
     model = Qwen3VLForConditionalGeneration.from_pretrained(
@@ -224,7 +235,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         microbatches = []
         for accumulation in range(config.gradient_accumulation):
             index = (step * config.gradient_accumulation + accumulation) % len(records)
-            inputs, labels = prepare_inputs(records[index], processor, root, manifest['token_budget'])
+            inputs, labels = prepare_inputs(records[index], processor, root,
+                                            manifest['token_budget'], native_drag_jpeg=native_drag)
             inputs, labels = inputs.to('cuda:0'), labels.to('cuda:0')
             microbatches.append({'record_id': records[index]['id'],
                                  'input_tokens': int(inputs.input_ids.numel()),
