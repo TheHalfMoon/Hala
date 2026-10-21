@@ -200,7 +200,7 @@ def score(root, baseline_meta, baseline_raw, baseline_meta_sha, baseline_raw_sha
         metadata[arm], attempts[arm] = _load_arm(
             root, arm, mp, rp, mh, rh, manifest, dev, prompt_hash)
     # Paired conditions: no hardware/model/prompt/processor/source confounding.
-    for field in ("gpu_name", "provider", "model_id", "model_revision", "processor_revision",
+    for field in ("gpu_name", "provider", "provider_run_id", "model_id", "model_revision", "processor_revision",
                   "precision", "prompt_sha256", "source_sha256", "capture_sha256"):
         if metadata["baseline"][field] != metadata["adapter"][field]:
             raise ValueError("Actual paired comparison conditions mismatch: " + field)

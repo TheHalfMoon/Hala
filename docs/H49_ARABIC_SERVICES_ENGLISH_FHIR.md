@@ -123,3 +123,41 @@ The source-bearing scored-raw-evidence extension is signed and GitHub Verified a
 - Neither the scoreboard script nor its tests produced real neural outputs. A real Colab GPU allocation, authorized model+adapter fit, externally attested raw baseline/adapted inferences, a separately sealed independent bilingual TEST and genuine version-matched competition remain **NOT PERFORMED**. Local independent D1/PStack/Alibaba code review was unavailable, so no approval is claimed.
 
 An evidence-only later commit does not change the scored protocol, but its own exact-head hosted CI must be checked separately before considering this PR's last commit qualified. PR remains **DRAFT, unmerged**.
+
+## H49 genuine remote model inference producer — staged only, not executed (2026-10-21)
+
+`h49/remote_infer.py` closes the concrete missing producer between existing H49 32-case public DEV inputs and `h49/paired_eval.py`. It includes the exact original frozen Qwen3-VL-2B Instruct checkpoint revision, original first-party PNG digests, identical SFT/DEV instruction, bounded generation `do_sample=False`, and direct optional `PeftModel.from_pretrained` for a *genuinely trained* adapter from `training/scripts/train_adapter.py`. It does not load an oracle, original DOM/target labels or benchmarking TEST answers. It has no Windows/Mac model-loading route and does not run automatically as CI.
+
+### Hard experiment admission (before large weights)
+
+The runner first rejects anything except an **actual free noncommercial Google Colab Linux runtime**, with `COLAB_RELEASE_TAG`, `HALA_H49_FREE_COLAB_RESEARCH=1` and `HALA_H49_NO_PAID_RUNTIME_CONFIRMED=1`. Those two opt-ins express a human operator's **genuine confirmation of account billing plan and exact free GPU session**: the code cannot independently verify free account billing, or promise a GPU is available. Do **not** set either for a paid/pro runtime. Refuse Kaggle, other cloud runtimes, local Windows or Mac.
+
+It checks clean content of exact published `--source-commit` via `git show` of every public DEV PNG and the input manifest plus both inference protocol scripts (same SHA as remote checkout), strict 32 actual source-bound cases, one real CUDA GPU with at least 10GB total/8GB free, hardware UUID from `nvidia-smi`, and pinned versions of torch 2.11.0, Transformers 5.16.1, PEFT 0.20.0 and Pillow 12.3.0. The package pins are inherited from Hala's prior real H15/H34 path and must be installed on the remote kernel with compatible free-tier CUDA drivers. Availability **NOT VERIFIED HERE**.
+
+A single **real free Colab session** must use the same nonempty `--provider-session-id` for both arms, and the same physically observed GPU UUID in resulting `gpu_name`. Do not fabricate an ID or claim it proves Google attestation. The adapter arm additionally requires the actual local PEFT `adapter_model.safetensors` and `adapter_config.json`, verified SHA256 and matching pinned Qwen base model. Source must be a genuine completed adapter checkpoint with signed training/update evidence, not a synthetic file or a checkpoint copied from unqualified training. The script verifies file bytes but cannot independently prove checkpoint training.
+
+**Important:** A new real **unchanged-model baseline** must be measured and admitted **before** any new H49 LoRA training. The existing training preflight already demands real deficient unchanged-model evidence and rejects Kaggle; neither rule is bypassed. The H49 remote producer is for collecting a baseline and, later, separate adapter inference on unchanged public DEV; it does **not** itself execute training, source fine-tuning or submit an online notebook.
+
+Colab execution only after the operator confirms an actually allocated free GPU, source signed SHA and pinned packages:
+
+```bash
+# One genuine free Colab runtime, with an authorized clean published Hala checkout.
+# NEVER run these commands on Windows/Mac or paid Colab.
+export HALA_H49_FREE_COLAB_RESEARCH=1
+export HALA_H49_NO_PAID_RUNTIME_CONFIRMED=1
+SOURCE_COMMIT=ACTUAL_SIGNED_40_CHAR_H49_SHA
+SESSION_ID=ACTUAL_COLAB_SESSION_ID_USED_IN_BOTH_ARMS
+python -m h49.remote_infer --arm baseline --source-commit "$SOURCE_COMMIT" \
+  --provider-session-id "$SESSION_ID" --output /content/h49-baseline-evidence
+# After a verified actual adapter is trained (and only in the same free GPU session):
+python -m h49.remote_infer --arm adapter --source-commit "$SOURCE_COMMIT" \
+  --provider-session-id "$SESSION_ID" --adapter-dir /content/VERIFIED_TRAINED_ADAPTER \
+  --adapter-sha256 ACTUAL_TRAINED_ADAPTER_SAFETENSORS_SHA256 \
+  --output /content/h49-adapter-evidence
+```
+
+Each attempt is persisted as an unedited `baseline.jsonl` or `adapter.jsonl` with raw decoder output, actual time, output tokens, error type, image and case binding. Each arm gets scorer-compatible `baseline.json`/`adapter.json`, an additional full source/runtime/UUID receipt, and SHA256s. Partial/provider-failed runs remain `incomplete`; no scoring or experiment success is permitted from them. Preserve original artifacts and provider logs in signed GitHub before deleting temporary Colab output, and only then run the independent scorer with four exact raw/metadata SHA256 anchors. No live portal login, protected action, medical data, paid API, weights on the personal computer or benchmark TEST answers.
+
+### Current outcome/limits
+
+**No remote Colab session was available/provisioned or launched in this round.** There is no new model inference, adapter training, GPU measurement or measured accuracy improvement from this producer. Its CPU-only Windows unit tests verify *admission, source binding and output-contract construction* using first-party H49 public mock images and explicitly fake adapter bytes, but they are not model metrics. Repository docs are in English; communicate findings to the founder in Arabic. Keep H49 Draft/unmerged pending actual legal, GPU, checkpoint and independent benchmark qualification.

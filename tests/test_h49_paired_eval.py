@@ -137,7 +137,7 @@ class PairedScorerTests(unittest.TestCase):
                 self.rows["adapter"]=saved
 
     def test_reject_mismatched_hardware_source_adapter_and_prompt(self):
-        for field,bad in (("gpu_name","other"),("source_sha256","0"*64),
+        for field,bad in (("gpu_name","other"),("provider_run_id","different_session"),("source_sha256","0"*64),
                           ("adapter_sha256",None),("model_revision","f"*40),
                           ("prompt_sha256","f"*64),("precision","bf16"),
                           ("provider","kaggle"),("status","incomplete")):
