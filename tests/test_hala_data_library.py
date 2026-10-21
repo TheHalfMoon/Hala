@@ -13,7 +13,8 @@ class HalaDataLibraryTests(unittest.TestCase):
         v=json.loads(CATALOG.read_text("utf-8"))
         self.assertEqual(v["schema"],"hala.training-data-library-progress.v1")
         storage=v["storage"]
-        self.assertEqual(storage["kaggle_dataset"],DATASET)
+        self.assertEqual(storage["kaggle_dataset"],"abdulazizshehri/hala-gui-training-library-private")
+        self.assertNotEqual(storage["kaggle_dataset"],DATASET)  # historical v1 builder only
         self.assertTrue(storage["kaggle_private_verified"])
         self.assertTrue(storage["kaggle_metadata_readback_verified"])
         original=ROOT/"h50/assets/authoring_sft.jsonl"
@@ -29,10 +30,15 @@ class HalaDataLibraryTests(unittest.TestCase):
             self.assertFalse(row["progress"]["training_completed"])
             self.assertFalse(row["progress"]["independent_evaluation_completed"])
             self.assertIsNone(row["trained_model_checkpoint"])
-            if row["id"] not in ("hala-h50-original","hala-h52-original-task-factory"):
+            if row["id"] not in ("hala-h50-original","hala-h52-original-task-factory","hcompany-dragon"):
                 self.assertFalse(row["progress"]["stored_kaggle"])
                 self.assertFalse(row["remote_data_imported"])
-        self.assertEqual(sum(x["progress"]["stored_kaggle"] for x in v["datasets"]),2)
+        self.assertEqual(sum(x["progress"]["stored_kaggle"] for x in v["datasets"]),3)
+        drag=next(x for x in v["datasets"] if x["id"]=="hcompany-dragon")
+        self.assertEqual(drag["imported_original_images"],87)
+        self.assertEqual(drag["imported_train_drag_actions"],760)
+        self.assertFalse(drag["progress"]["quality_reviewed"])
+        self.assertTrue(drag["progress"]["stored_kaggle"])
 
     def test_builder_is_train_only_and_create_only(self):
         with tempfile.TemporaryDirectory() as folder:

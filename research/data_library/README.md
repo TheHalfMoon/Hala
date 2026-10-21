@@ -3,7 +3,7 @@
 
 ## Where everything is stored
 
-- **PRIVATE Kaggle library:** https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library — dataset ID `12748399`; authenticated as `abdulazizshehri`. Kaggle's metadata API returned `isPrivate: true`, then a source JSONL was downloaded again and its SHA256 matched the original H50 GitHub bytes.
+- **CURRENT PRIVATE Kaggle library:** https://www.kaggle.com/datasets/abdulazizshehri/hala-gui-training-library-private ? dataset ID `12752110`. Authenticated provider listing `is_private=True`; unauthenticated Kaggle API HTTP 403. H50/H52/H53 label SHA256 remotely verified. Old previously public Kaggle slug has been deleted.
 - **GitHub source registry and historical source/experiment evidence:** `research/competitor_data/2026-10-21/`, `h49/`, `h50/`, this folder and `reviews/`. Dataset/version state machine: `catalog.json`. No paid hosting or new model weights.
 - **Hugging Face:** Existing OAuth connection is authenticated as `MedScale`, but has only read-oriented repository scopes (no dataset-write scope). A **new account is unnecessary**; a future write-enabled connection may simplify storing large private dataset shards if Kaggle private quotas are insufficient.
 - **Storage architecture:** Kaggle private for versioned curated *small training shards*, upstream Hugging Face source repos for huge official archives, GitHub for source pins/hashes/rights evidence/tasks/replay scripts. Do not clone 200GB of AgentNet, 61GB of DragOn or all video frames onto the Windows machine. No HCompany benchmark/test trajectories included in a training archive.
@@ -17,7 +17,7 @@
 | H52 three-step task factory (96 workflows, 288 distinct screenshots, 144 Arabic / 144 English) | ✅ | ✅ first-party source/Edge audit | ✅ **private Kaggle v2, remote SHA verified** | ☐ | ☐ |
 | Original H49 DEV (32 screenshots) | ✅ | ✅ stored GitHub **not training** | — reserved DEV | — | ☐ |
 | OpenCUA / AgentNet (human desktop trajectories, ~22.6k tasks) | ✅ | ☐ | ☐ | ☐ | ☐ |
-| Hcompany DragOn (286,012 train images, ~3.56m drag labels) | ✅ | ☐ | ☐ | ☐ | ☐ |
+| Hcompany DragOn (upstream: 286,012 train images, ~3.56m drag labels) | ? | ? pinned official slider TRAIN subset, full visual privacy audit pending | ? **87 original images / 760 native drag annotations on private Kaggle, SHA verified** | ? | ? |
 | ServiceNow VideoCUA (~10k human tasks, video supervision) | ✅ | ☐ | ☐ | ☐ | ☐ |
 | GUI Odyssey (~8.3k mobile trajectories) | ✅ | ☐ | ☐ | ☐ | ☐ |
 | Microsoft Synthetic Computers at Scale (98 *fictional worlds*) | ✅ | ☐ | ☐ | ☐ | ☐ |
@@ -70,3 +70,10 @@ Repair verifies every original PNG and annotation **per-file SHA256**, the rebui
 - **[DONE]** Bounded **source-only** H52 -> Qwen3-VL LoRA `load_authoring_records` admission through `h52/training_bridge.py` + new `h52/remote_training_manifest.json`, without changing original H52 or H50 data. Windows focused 16/16 PASS; full source 638 total, 636 PASS and 2 SKIP; Graft wiring graph clean. Receipts under `reviews/h52-training-bridge-*` and `h52/README.md`.
 - **[NOT DONE]** Full Kaggle dataset single-call download/extraction: authenticated Kaggle `DownloadDataset` returned **404**; single-file original H52 PNG/JSONL downloads did pass independent SHA256 verification. No single-call full provider download qualification.
 - **[NOT DONE]** Real H52 neural finetune, actual GPU allocation, trained model checkpoint, blind bilingual 3-step end-to-end task success or competitor-leading benchmark results. Source-bridge qualification is not learned-model qualification.
+
+## H53 ? authentic DragOn shard and Kaggle privacy correction (2026-10-21)
+
+- **[DONE]** Fetched authentic Hcompany/DragOn `train/slider.tar` on immutable commit `3451c1fc3543c18fc3361a32bfe1f12cc69b64b5` via bounded byte ranges. Exact original UUID JPEG/JSON matching yielded 87 independent images, 760 original ordered native DRAG instructions. No eval/test sources were used.
+- **[DONE]** Saved genuine training data to newly created PRIVATE Kaggle dataset ID `12752110`. Authenticated private flag true, unauthenticated HTTP 403; all three H50/H52/H53 original training JSONL source SHA256 hashes independently downloaded and matched. Removed the previous accidentally public Kaggle dataset. This does NOT prove earlier public-version access never happened.
+- **[DONE]** Original H50/H52 archives retained; no third-party raw DragOn screenshots committed to the PUBLIC Hala GitHub. Kaggle license metadata for mixed-origin dataset is `apache-2.0`; original H50/H52 source remains CC0-1.0.
+- **[NOT DONE]** Full original 7.1GB DragOn TAR independent checksum, image-by-image manual privacy review, LoRA/native drag model training, learned or independently benchmarked neural task success. One representative slider screenshot was visually inspected. See `h53/README.md`.
