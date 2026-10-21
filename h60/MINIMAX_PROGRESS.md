@@ -28,6 +28,7 @@ All counts below are measured, not advertised. "DONE" always carries a receipt.
 | **Real Microsoft Edge GUI task-success measurement** | **DONE (negative)** | the genuine installed Edge executed the pointer actions for all 48 cases; **0/48** real GUI task success. Receipts `h60/evidence/h55-edge-replay.json` and `h60/evidence/h58-edge-replay.json` |
 | **Real gradient-bearing LoRA on authentic private DragOn TRAIN** | **DONE** | `training/scripts/train_adapter.py`, FP16 rank-8 LoRA on the unchanged pinned model, free Colab T4: **60 real optimizer steps**, 112 changed adapter tensors, loss **2.4253 → 0.5490**, checkpoint `c166d318fcf8a5f996aab8b453aa358b8d8d48ba714a5e6c27311c5f280397b4`, adapter weights `d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249`, resume state `1dce7035026e3b74cfc4d58c427249336001028c0b5a70b37f3e657cd10e4674` |
 | **Matched adapter vs frozen base on the same public DEV cases** | **DONE (honest negative)** | identical model revision, prompts, decoding and cases. Protocol-valid actions accepted and executed by the genuine Edge: **0/48 → 17/48**. **Real GUI task success: 0/48 → 0/48** (unchanged) |
+| **Matched output-format and ordered-semantics measurement of the same adapter** | **DONE (honest, mixed)** | the unmodified H55/H58 scorers over the same raw model strings: strict bare-JSON validity **0/24 → 14/24** on H55 and **0/24 → 3/24** on H58; H58 ordered-semantics validity **0/24 → 3/24**; geometrically correct **0/24 → 0/24** on both. Evidence `reviews/h60-real-adapter-eval-20261021/` |
 | Recoverable checkpoint and resume | **DONE** | every step publishes an immutable adapter + optimizer/scaler/RNG bundle through the atomic pointer; the final bundle was re-read and its digests recomputed independently |
 | Genuinely private app-disjoint **blind** TEST | **NOT DONE** | the honest held-out source is first-party PUBLIC DEV: source-disjoint, but not blind and not app-disjoint from a third party |
 | Official benchmark comparison | **NOT DONE** | no benchmark eval/test source was ever read |
@@ -45,6 +46,28 @@ object, frequently returns an identical start and end point, and never lands a
 drag endpoint. The real Microsoft Edge replay executed the pointer actions for
 every case and accepted none, so the honest real GUI task success is **0 of
 48**. That is the measured deficit the LoRA curriculum must attack.
+
+### Matched adapter measurement (same runner, same cases, same scorer)
+
+| Set | Metric | Frozen unchanged base | H60 adapter after 60 real steps |
+|---|---|---:|---:|
+| H55 (24 scenes) | strict bare-JSON valid | 0 / 24 | **14 / 24** |
+| H55 | both endpoints hit | 0 / 24 | 0 / 24 |
+| H58 (24 scenes) | strict bare-JSON valid | 0 / 24 | **3 / 24** |
+| H58 | ordered semantics valid | 0 / 24 | **3 / 24** |
+| H58 | geometrically correct | 0 / 24 | **0 / 24** |
+
+The adapter reproducibly changed the **output format** and partly recovered the
+**ordered semantics**, and it did **not** yet move **geometric grounding**. The
+H55 gain is English-only (12/12 valid English scenes, 2/12 Arabic scenes), which
+is consistent with an English original-source training corpus. Real GUI drag task
+success therefore remains **0**. The next measurable target is grounding, which
+needs a curriculum that supervises the endpoint coordinates and carries an Arabic
+share of the source, not more of the same English drag supervision.
+
+Full receipts, the raw model strings, the per-step gradient evidence and the
+scorer outputs are in `reviews/h60-real-adapter-eval-20261021/` with a
+`manifest.json` that binds every file by SHA-256.
 
 ## Provider publication path: measured corrections (2026-10-21, later in the same session)
 

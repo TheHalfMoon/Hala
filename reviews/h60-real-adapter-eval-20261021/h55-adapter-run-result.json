@@ -1,0 +1,4146 @@
+{
+  "adapter_checkpoint": {
+    "adapter_dir": "/content/hala-train/lora-h57/checkpoints/step-00000060-8647e997c44f4dc3acf5220efce56bea/adapter",
+    "adapter_file_sha256": {
+      "adapter/README.md": "fbf8419dec93fa7ecf2f46695d48043a2a292e92937ca5b2549b27fc361a453d",
+      "adapter/adapter_config.json": "e6ef532e21e688eac1e58345ab3aaf73c3261a5f383e117e4b339b55016de119",
+      "adapter/adapter_model.safetensors": "d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249"
+    },
+    "adapter_files": [
+      "adapter/README.md",
+      "adapter/adapter_config.json",
+      "adapter/adapter_model.safetensors"
+    ],
+    "adapter_weights_sha256": "d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249",
+    "changed_parameter_tensors": 112,
+    "checkpoint_max_steps": 60,
+    "checkpoint_sha256": "c166d318fcf8a5f996aab8b453aa358b8d8d48ba714a5e6c27311c5f280397b4",
+    "checkpoint_step": 60,
+    "checkpoint_version": "step-00000060-8647e997c44f4dc3acf5220efce56bea",
+    "first_step_loss": 2.4252646565437317,
+    "last_step_loss": 0.5489906892180443,
+    "peak_vram_bytes": 9443148288,
+    "runtime": {
+      "actual_reload": false,
+      "audited_records": 1586,
+      "cuda_available": true,
+      "cuda_build": "13.0",
+      "devices": [
+        {
+          "bf16_native_candidate": false,
+          "capability": [
+            7,
+            5
+          ],
+          "final_loss": 62.83631896972656,
+          "four_fp16_steps_seconds": 0.2167441339997822,
+          "index": 0,
+          "max_memory_allocated_bytes": 17146880,
+          "name": "Tesla T4",
+          "qualification_scope": "small_tensor_fp16_backward_only",
+          "tensor_gradient_changed": true,
+          "vram_bytes": 15637086208
+        }
+      ],
+      "downloads_weights": false,
+      "imported_packages": {
+        "peft": "0.20.0",
+        "pillow": "11.3.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "model_runtime_qualified": false,
+      "packages": {
+        "accelerate": "1.15.0",
+        "bitsandbytes": null,
+        "peft": "0.20.0",
+        "torch": "2.11.0+cu130",
+        "transformers": "5.16.1"
+      },
+      "parameter_residency": {
+        "adapter:cuda:0:torch.float32": 1605632,
+        "frozen_base:cuda:0:torch.float16": 2127532032
+      },
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+      "python": "3.13.15",
+      "qualification_steps": [
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.261205673217773,
+          "max_parameter_update": 4.999999873689376e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task01"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task03"
+            }
+          ],
+          "peak_allocated_bytes": 8635179008,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 1
+        },
+        {
+          "allocated_bytes": 4368498688,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.376791477203369,
+          "max_parameter_update": 5.006782885175198e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task05"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task06"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task07"
+            }
+          ],
+          "peak_allocated_bytes": 8641601536,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 2
+        },
+        {
+          "allocated_bytes": 4368482304,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 7.1443023681640625,
+          "max_parameter_update": 5.018047522753477e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task08"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2205,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task09"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task11"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 3
+        },
+        {
+          "allocated_bytes": 4368506880,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 6.775781154632568,
+          "max_parameter_update": 5.0337184802629054e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task12"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2196,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task13"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2183,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task14"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task15"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 4
+        },
+        {
+          "allocated_bytes": 4368506880,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 6.212558746337891,
+          "max_parameter_update": 5.053701170254499e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2204,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task16"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task17"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task18"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task19"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 5
+        },
+        {
+          "allocated_bytes": 4368547840,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 6.287825107574463,
+          "max_parameter_update": 5.077818059362471e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task21"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task23"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 6
+        },
+        {
+          "allocated_bytes": 4368629760,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 1339883520,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 5.431387901306152,
+          "max_parameter_update": 5.105618038214743e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task24"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-0a956089-77d9-5190-8bb1-8f115b773295-task25"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task00"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2204,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task01"
+            }
+          ],
+          "peak_allocated_bytes": 8651939328,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 14145290240,
+          "step": 7
+        },
+        {
+          "allocated_bytes": 4368531456,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 5.19373083114624,
+          "max_parameter_update": 5.1373091991990805e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2223,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task02"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task03"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task05"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 8
+        },
+        {
+          "allocated_bytes": 4368515072,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 4.57066535949707,
+          "max_parameter_update": 5.17402368132025e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task06"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task07"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2181,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task08"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task09"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 9
+        },
+        {
+          "allocated_bytes": 4368441344,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 4.9683613777160645,
+          "max_parameter_update": 5.212935502640903e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2209,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task10"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2204,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task11"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task12"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2181,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task13"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 10
+        },
+        {
+          "allocated_bytes": 4368605184,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 5.035640239715576,
+          "max_parameter_update": 5.2559771575033665e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task14"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2197,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task15"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2204,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task16"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2201,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task17"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 11
+        },
+        {
+          "allocated_bytes": 4368474112,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 4.102967262268066,
+          "max_parameter_update": 5.303358193486929e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2183,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task18"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task19"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task20"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task21"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 12
+        },
+        {
+          "allocated_bytes": 4368523264,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 5366415360,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 3.486473798751831,
+          "max_parameter_update": 5.3525553084909916e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task23"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task24"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-15fc5963-57ef-565e-98e8-0cd493234d56-task25"
+            }
+          ],
+          "peak_allocated_bytes": 8680615936,
+          "peak_reserved_bytes": 14191427584,
+          "reserved_bytes": 10118758400,
+          "step": 13
+        },
+        {
+          "allocated_bytes": 4381552640,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 628948992,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 3.42582631111145,
+          "max_parameter_update": 5.404150579124689e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 44,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2596,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task00"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2593,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task01"
+            },
+            {
+              "completion_tokens": 43,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2595,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task02"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2598,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task03"
+            }
+          ],
+          "peak_allocated_bytes": 9429972480,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 14856224768,
+          "step": 14
+        },
+        {
+          "allocated_bytes": 4381519872,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4680646656,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 3.0753605365753174,
+          "max_parameter_update": 5.4599076975136995e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2590,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task04"
+            },
+            {
+              "completion_tokens": 44,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2594,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task05"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2601,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task06"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2594,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task07"
+            }
+          ],
+          "peak_allocated_bytes": 9436560896,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10804527104,
+          "step": 15
+        },
+        {
+          "allocated_bytes": 4381601792,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4695326720,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 3.0961055755615234,
+          "max_parameter_update": 5.5194192100316286e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2586,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task08"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2591,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task09"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2599,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task10"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2604,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task11"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10789847040,
+          "step": 16
+        },
+        {
+          "allocated_bytes": 4381495296,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 2.9628171920776367,
+          "max_parameter_update": 5.5807409808039665e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2607,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task12"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2590,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task13"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2589,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task14"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2591,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task15"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 17
+        },
+        {
+          "allocated_bytes": 4381478912,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 2.7686429023742676,
+          "max_parameter_update": 5.6445307563990355e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2587,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task16"
+            },
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2599,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task17"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2590,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task18"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2589,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task19"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 18
+        },
+        {
+          "allocated_bytes": 4381478912,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 2.412346601486206,
+          "max_parameter_update": 5.704775685444474e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 44,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2590,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task20"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2597,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task21"
+            },
+            {
+              "completion_tokens": 43,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2589,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task22"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2589,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task23"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 19
+        },
+        {
+          "allocated_bytes": 4368547840,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 2.154719591140747,
+          "max_parameter_update": 5.7724653743207455e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2602,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task24"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2601,
+              "record_id": "h57-sheet-228cddb5-5e99-561c-b8ac-be2ea5d8a2c9-task25"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task01"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 20
+        },
+        {
+          "allocated_bytes": 4368556032,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 2.0739097595214844,
+          "max_parameter_update": 5.84254739806056e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task02"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task03"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task04"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2195,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task05"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 21
+        },
+        {
+          "allocated_bytes": 4368457728,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.9588143825531006,
+          "max_parameter_update": 5.9130834415555e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task06"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task07"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task08"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2183,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task09"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 22
+        },
+        {
+          "allocated_bytes": 4368523264,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.9275636672973633,
+          "max_parameter_update": 5.984306335449219e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2195,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task10"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task11"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task12"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task13"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 23
+        },
+        {
+          "allocated_bytes": 4368490496,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.7259507179260254,
+          "max_parameter_update": 6.051489617675543e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task14"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task15"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task16"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task17"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 24
+        },
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.2727105617523193,
+          "max_parameter_update": 6.117287557572126e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2198,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task18"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task19"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task20"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task21"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 25
+        },
+        {
+          "allocated_bytes": 4368474112,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.1332751512527466,
+          "max_parameter_update": 6.181816570460796e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2201,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task23"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task24"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-318649ca-59bf-58a8-9b32-ddd76b8a39e1-task25"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 26
+        },
+        {
+          "allocated_bytes": 4361183232,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.8824247121810913,
+          "max_parameter_update": 6.254902109503746e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1979,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1971,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task01"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1976,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1968,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task03"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 27
+        },
+        {
+          "allocated_bytes": 4361289728,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.0050771236419678,
+          "max_parameter_update": 6.329827010631561e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1972,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1974,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task05"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1984,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task06"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1981,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task07"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 28
+        },
+        {
+          "allocated_bytes": 4361289728,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.8404598832130432,
+          "max_parameter_update": 6.36950135231018e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1969,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task08"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1970,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task09"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1980,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1981,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task11"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 29
+        },
+        {
+          "allocated_bytes": 4361216000,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5719032883644104,
+          "max_parameter_update": 6.397371180355549e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1975,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task12"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1974,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task13"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1972,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task14"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1972,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task15"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 30
+        },
+        {
+          "allocated_bytes": 4361240576,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.790153980255127,
+          "max_parameter_update": 6.485020276159048e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1973,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task16"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1980,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task17"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1973,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task18"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1975,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task19"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 31
+        },
+        {
+          "allocated_bytes": 4361289728,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.8089355230331421,
+          "max_parameter_update": 6.503215990960598e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1973,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1972,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task21"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1969,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1981,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task23"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 32
+        },
+        {
+          "allocated_bytes": 4368621568,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.8087142705917358,
+          "max_parameter_update": 6.580690387636423e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1976,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task24"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1971,
+              "record_id": "h57-sheet-4005a04d-661c-51a6-b069-546fc7e01bb1-task25"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task00"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2203,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task01"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 33
+        },
+        {
+          "allocated_bytes": 4368695296,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.48667722940444946,
+          "max_parameter_update": 6.607454270124435e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task03"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2212,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task05"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 34
+        },
+        {
+          "allocated_bytes": 4368482304,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5855480432510376,
+          "max_parameter_update": 6.585288792848587e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task06"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task07"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2215,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task08"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task09"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 35
+        },
+        {
+          "allocated_bytes": 4368531456,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6106951832771301,
+          "max_parameter_update": 6.690341979265213e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task11"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task12"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task13"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 36
+        },
+        {
+          "allocated_bytes": 4368547840,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5681448578834534,
+          "max_parameter_update": 6.716680945828557e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task14"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2198,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task15"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task16"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2194,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task17"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 37
+        },
+        {
+          "allocated_bytes": 4368539648,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6938557028770447,
+          "max_parameter_update": 6.860314169898629e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task18"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2195,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task19"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2199,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task21"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 38
+        },
+        {
+          "allocated_bytes": 4368474112,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6446443200111389,
+          "max_parameter_update": 6.877019768580794e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2201,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task23"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task24"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-44c57939-ca40-58b6-a920-17b3037eb7e2-task25"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 39
+        },
+        {
+          "allocated_bytes": 4368482304,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6644445061683655,
+          "max_parameter_update": 6.922660395503044e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2202,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task01"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task03"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 40
+        },
+        {
+          "allocated_bytes": 4368531456,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6330991387367249,
+          "max_parameter_update": 7.005839142948389e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task05"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task06"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task07"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 41
+        },
+        {
+          "allocated_bytes": 4368490496,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5949289202690125,
+          "max_parameter_update": 6.803800351917744e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task08"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2182,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task09"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task11"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 42
+        },
+        {
+          "allocated_bytes": 4368523264,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.9011364579200745,
+          "max_parameter_update": 6.883172318339348e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task12"
+            },
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2180,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task13"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2196,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task14"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task15"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 43
+        },
+        {
+          "allocated_bytes": 4368490496,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.7997874617576599,
+          "max_parameter_update": 7.040647324174643e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2204,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task16"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2200,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task17"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task18"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task19"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 44
+        },
+        {
+          "allocated_bytes": 4368613376,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6477077007293701,
+          "max_parameter_update": 7.160683162510395e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task21"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2201,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2202,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task23"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 45
+        },
+        {
+          "allocated_bytes": 4368482304,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5904846787452698,
+          "max_parameter_update": 7.129879668354988e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2200,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task24"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2183,
+              "record_id": "h57-sheet-52c9d91e-636f-5c98-9b9c-55ba13c931bd-task25"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task00"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task01"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 46
+        },
+        {
+          "allocated_bytes": 4368531456,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.7209924459457397,
+          "max_parameter_update": 7.272884249687195e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2196,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task02"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task03"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task04"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2192,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task05"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 47
+        },
+        {
+          "allocated_bytes": 4368498688,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.7885852456092834,
+          "max_parameter_update": 7.390300743281841e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task06"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task07"
+            },
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task08"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task09"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 48
+        },
+        {
+          "allocated_bytes": 4368523264,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6419273614883423,
+          "max_parameter_update": 7.562153041362762e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task10"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2195,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task11"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2189,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task12"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task13"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 49
+        },
+        {
+          "allocated_bytes": 4368523264,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6408489346504211,
+          "max_parameter_update": 7.444585207849741e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task14"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task15"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2190,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task16"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task17"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 50
+        },
+        {
+          "allocated_bytes": 4368474112,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6811280250549316,
+          "max_parameter_update": 7.56551162339747e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2200,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task18"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task19"
+            },
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2193,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task21"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 51
+        },
+        {
+          "allocated_bytes": 4368490496,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.8465869426727295,
+          "max_parameter_update": 7.729174103587866e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2188,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task22"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2198,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task23"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task24"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2187,
+              "record_id": "h57-sheet-543e78b6-4900-52a9-ad2d-7874fc8b214b-task25"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 52
+        },
+        {
+          "allocated_bytes": 4354672640,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5519394874572754,
+          "max_parameter_update": 7.538404315710068e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1771,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task00"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1767,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task01"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1772,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task02"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1786,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task03"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 53
+        },
+        {
+          "allocated_bytes": 4354639872,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.5662872791290283,
+          "max_parameter_update": 6.930623203516006e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1768,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task04"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1771,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task05"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1766,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task06"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1782,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task07"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 54
+        },
+        {
+          "allocated_bytes": 4354529280,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 1.0197055339813232,
+          "max_parameter_update": 6.905793998157606e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1764,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task08"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1769,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task09"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1773,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task10"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1764,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task11"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 55
+        },
+        {
+          "allocated_bytes": 4354529280,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.7985865473747253,
+          "max_parameter_update": 7.274100789800286e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1764,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task12"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1789,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task13"
+            },
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1775,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task14"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1762,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task15"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 56
+        },
+        {
+          "allocated_bytes": 4354480128,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.9413395524024963,
+          "max_parameter_update": 7.545887638116255e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1760,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task16"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1763,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task17"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1765,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task18"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1760,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task19"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 57
+        },
+        {
+          "allocated_bytes": 4354521088,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.703146755695343,
+          "max_parameter_update": 7.372024265350774e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1762,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task20"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1761,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task21"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1768,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task22"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1767,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task23"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 58
+        },
+        {
+          "allocated_bytes": 4368474112,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6602770686149597,
+          "max_parameter_update": 7.108145655365661e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1774,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task24"
+            },
+            {
+              "completion_tokens": 40,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 1763,
+              "record_id": "h57-sheet-560987f4-f5b6-5083-99a4-15d530c8673d-task25"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2183,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task00"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2185,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task01"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 59
+        },
+        {
+          "allocated_bytes": 4368465920,
+          "changed_parameter_tensors_this_step": 112,
+          "device_free_bytes": 4714201088,
+          "device_total_bytes": 15637086208,
+          "gradient_norm_before_clip": 0.6257109642028809,
+          "max_parameter_update": 7.317401468753815e-05,
+          "microbatches": [
+            {
+              "completion_tokens": 42,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2191,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task02"
+            },
+            {
+              "completion_tokens": 39,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2220,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task03"
+            },
+            {
+              "completion_tokens": 38,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2186,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task04"
+            },
+            {
+              "completion_tokens": 41,
+              "input_devices": {
+                "attention_mask": "cuda:0",
+                "image_grid_thw": "cuda:0",
+                "input_ids": "cuda:0",
+                "mm_token_type_ids": "cuda:0",
+                "pixel_values": "cuda:0"
+              },
+              "input_tokens": 2184,
+              "record_id": "h57-sheet-6022f723-7d91-5bdf-90ba-98f6801ae85f-task05"
+            }
+          ],
+          "peak_allocated_bytes": 9443148288,
+          "peak_reserved_bytes": 14856224768,
+          "reserved_bytes": 10770972672,
+          "step": 60
+        }
+      ],
+      "resumed_from_step": 0,
+      "schema": "hala.runtime.probe.v1",
+      "status": "tested",
+      "timestamp_unix": 1792596119.450087,
+      "trainable_parameter_elements": 1605632,
+      "trainable_parameter_tensors": 112,
+      "trains_checkpoint": false
+    },
+    "training_identity": {
+      "config_sha256": "e77b0bcb8ac35f0ca3d02b77955225a67d0910140b9882fff832a9a71fa1f068",
+      "dataset_sha256": "10cdcee91ae219e45f74850a165cb1ce1228d7fd45f8b1b2274b5e69f934f99a",
+      "manifest_sha256": "9f99676c27e33a5d50c9ce1d418a768a7968d2ffcfed47b4acb114fcbe319548"
+    },
+    "training_seconds_total": 1127.945
+  },
+  "adapter_path": "/content/hala-train/lora-h57/checkpoints/step-00000060-8647e997c44f4dc3acf5220efce56bea/adapter",
+  "adapter_sha256": "d0e594035ccf912e7dffa4a96025ba16a0215e2fcc8acdf60d34b462cce69249",
+  "adapters_loaded": true,
+  "blind_test": false,
+  "coordinate_protocol": "original_image_pixels_1024x640_native_drag_v1",
+  "dev_set": "h55",
+  "evidence": "real_inference",
+  "gpu": "Tesla T4",
+  "independent_model_performance_qualified": false,
+  "inference_failure": null,
+  "matched_to_frozen_base_runner": "h60.real_drag_dev_baseline.run",
+  "max_cases": 24,
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_training_executed": true,
+  "package_versions": {
+    "torch": "2.11.0+cu130",
+    "transformers": "5.16.1"
+  },
+  "peak_vram_bytes": 4525397504,
+  "prompt_revision": "hala-h60-native-drag-public-dev-prompt-v1",
+  "provider": "interactive_approved_free_colab",
+  "raw_attempts_sha256": "27d424a4c6f0865e451cf97f6025e16721a57451a5f9e7eca7a9145a9d9d603f",
+  "real_generated_cases": [
+    {
+      "elapsed_seconds": 2.8534696859996984,
+      "id": "h55-ar_civic-00",
+      "image_sha256": "7a2868afeddd08a13e8e614f785ce79438cddf7ec0fde717aa50550c737bdc3a",
+      "input_prompt_sha256": "7eaa219df875d56c9c184941b97a42d3ad8ee6b941969a0a47cd9ca8e4e45ad2",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.733637010000166,
+      "id": "h55-ar_civic-01",
+      "image_sha256": "478f5dd897e88b63fad5351fb8ed6bf9cfa69349e85531cd066c9345bdf6d096",
+      "input_prompt_sha256": "7eaa219df875d56c9c184941b97a42d3ad8ee6b941969a0a47cd9ca8e4e45ad2",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.779498957999749,
+      "id": "h55-ar_civic-02",
+      "image_sha256": "a0b04bff9b2298f87ef295462e7652843d74b2c3da57833ffe80d504282b5e06",
+      "input_prompt_sha256": "7eaa219df875d56c9c184941b97a42d3ad8ee6b941969a0a47cd9ca8e4e45ad2",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.818926351999835,
+      "id": "h55-ar_civic-03",
+      "image_sha256": "9eebdf50c648242b5083cc58b1a9fc557c9d6b438c6a9038e06494d9c3290d7b",
+      "input_prompt_sha256": "7eaa219df875d56c9c184941b97a42d3ad8ee6b941969a0a47cd9ca8e4e45ad2",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.7293660309996994,
+      "id": "h55-ar_records-00",
+      "image_sha256": "67922a83ecc82b5f00de9c1ed4f07559f1d021452db3733ef36b4e97e7d45727",
+      "input_prompt_sha256": "5594286c2eca93a40092a42f97dc54c4f35366082e81d3d07b1227bb81817dec",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.7042460829998163,
+      "id": "h55-ar_records-01",
+      "image_sha256": "708fce0e62e0855f632de46fe6a170a6fb56af6ec28039af8197c7f18997c28f",
+      "input_prompt_sha256": "5594286c2eca93a40092a42f97dc54c4f35366082e81d3d07b1227bb81817dec",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.761595816999943,
+      "id": "h55-ar_records-02",
+      "image_sha256": "01ebcdd086a2e382edd869d5cddd213563353cc7439f83b3dc9f6cd3f16f1164",
+      "input_prompt_sha256": "5594286c2eca93a40092a42f97dc54c4f35366082e81d3d07b1227bb81817dec",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.7215612089994465,
+      "id": "h55-ar_records-03",
+      "image_sha256": "928177444fff939351bc70edd3a0d4c67e3e706f40d9f65e38c270dee5343117",
+      "input_prompt_sha256": "5594286c2eca93a40092a42f97dc54c4f35366082e81d3d07b1227bb81817dec",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.655364025000381,
+      "id": "h55-ar_logistics-00",
+      "image_sha256": "1e3096613755be37471e8fdc4077af62d95404fb011205c81019f29acf9e78e1",
+      "input_prompt_sha256": "8633780516cb3a3d668e6372647acc3083928da2e5866773a0d72c0af7811a15",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,480],\"ordered\":true,\"start_point\":[1024,480],\"type\":\"drag\"}",
+      "output_sha256": "f916d05efd16a30c7e90fcb0e963bf64c07590f89cb8ee52a2e4d277ec27ca17",
+      "output_tokens": 40,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.5675374829997963,
+      "id": "h55-ar_logistics-01",
+      "image_sha256": "4a6676b3583d5616505703bf2295275887cf83538576a36f4df76aab4691c950",
+      "input_prompt_sha256": "8633780516cb3a3d668e6372647acc3083928da2e5866773a0d72c0af7811a15",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,448],\"ordered\":true,\"start_point\":[640,448],\"type\":\"drag\"}",
+      "output_sha256": "cab898b15afa16047903baa250a7f1c0e6f0dd55d70f4e4e013debe820040581",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.804448799000056,
+      "id": "h55-ar_logistics-02",
+      "image_sha256": "fbc82f2df0c766b9d0edec7358ed6a5c8b6340e5bd87564508dec55a4685f2e1",
+      "input_prompt_sha256": "8633780516cb3a3d668e6372647acc3083928da2e5866773a0d72c0af7811a15",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[1024,640],\"ordered\":true,\"start_point\":[1024,640],\"type\":\"drag\"}",
+      "output_sha256": "1b01674a918cb946b7bddb1b53769348d3b68e55490ab4c44abb1bd074af7a3d",
+      "output_tokens": 41,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.6045461370003977,
+      "id": "h55-ar_logistics-03",
+      "image_sha256": "829fdde188aa0d325153dd43d849afcd949522eb429a1386f0e1fcaa185fa543",
+      "input_prompt_sha256": "8633780516cb3a3d668e6372647acc3083928da2e5866773a0d72c0af7811a15",
+      "kind": "slider",
+      "language": "ar",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,480],\"ordered\":true,\"start_point\":[320,480],\"type\":\"drag\"}",
+      "output_sha256": "5afab781866fd362fe5ee001697fe4ccfcab94b6565b806c247e10c6bb793e4c",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.6341447610002433,
+      "id": "h55-en_fhir-00",
+      "image_sha256": "a6f03ec897ad41e503ea83b85f55901cb151140adb38b416ca25116ea877d2e0",
+      "input_prompt_sha256": "84dbf5d3357ea0e223b384077b3d49a1554e7142530f6178fec0117b1053e238",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,480],\"ordered\":true,\"start_point\":[256,480],\"type\":\"drag\"}",
+      "output_sha256": "ec45c8244ae124b0eab4a08796e1e99c00d802eb58e31bbf4411b82195c7ca1c",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.628820108000582,
+      "id": "h55-en_fhir-01",
+      "image_sha256": "df6409a316ee613fc4ae8a7e3d7814f25186b054aac5c6cf5068af363181b05a",
+      "input_prompt_sha256": "84dbf5d3357ea0e223b384077b3d49a1554e7142530f6178fec0117b1053e238",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[784,524],\"ordered\":true,\"start_point\":[244,524],\"type\":\"drag\"}",
+      "output_sha256": "832d9548926efd01e47a868b2ea936162dafa60f39fe80a22a93ddb8a0672078",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.761856235999403,
+      "id": "h55-en_fhir-02",
+      "image_sha256": "7641262114bfffec509e1bc28fdaf15241506c0561ed4c65ff5b0b108a191386",
+      "input_prompt_sha256": "84dbf5d3357ea0e223b384077b3d49a1554e7142530f6178fec0117b1053e238",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[784,544],\"ordered\":true,\"start_point\":[344,544],\"type\":\"drag\"}",
+      "output_sha256": "1760dfde32f0110ea9710f5ba075218d0e2035caa45cf64ae8416e601a931ff8",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.608134259000508,
+      "id": "h55-en_fhir-03",
+      "image_sha256": "d5f6a28f7028e71f92bd695c888f6216c78535ac682ad682231a083c96f1af7a",
+      "input_prompt_sha256": "84dbf5d3357ea0e223b384077b3d49a1554e7142530f6178fec0117b1053e238",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,472],\"ordered\":true,\"start_point\":[320,472],\"type\":\"drag\"}",
+      "output_sha256": "18c5c7645f0957b1dec147eb2668218aa183e6d332df844ed88e9e335102a050",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.710297642999649,
+      "id": "h55-en_design-00",
+      "image_sha256": "d7abd51691594f43029f980e9bd5cf214d6e97a13897162ecb14580bbb5274c9",
+      "input_prompt_sha256": "93c08db126af7c4581d45990aa4aba4057aac02117f311dd8bc5a3bedd42cc30",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[744,524],\"ordered\":true,\"start_point\":[500,524],\"type\":\"drag\"}",
+      "output_sha256": "e99fefb1301ed6d461250875af02bf30f6926a5d37a8a5ba16fe9b706b521b6f",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.586166985000091,
+      "id": "h55-en_design-01",
+      "image_sha256": "8941fb0147a763ec775359645f5573153ebcdc7aa5dd09c6d2805e845589762b",
+      "input_prompt_sha256": "93c08db126af7c4581d45990aa4aba4057aac02117f311dd8bc5a3bedd42cc30",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[744,524],\"ordered\":true,\"start_point\":[500,524],\"type\":\"drag\"}",
+      "output_sha256": "e99fefb1301ed6d461250875af02bf30f6926a5d37a8a5ba16fe9b706b521b6f",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.6162218839999696,
+      "id": "h55-en_design-02",
+      "image_sha256": "e6ff73b958aa98a6fd3961922417abeecc6d446a4b2c2a63356ac8388139556a",
+      "input_prompt_sha256": "93c08db126af7c4581d45990aa4aba4057aac02117f311dd8bc5a3bedd42cc30",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[640,480],\"ordered\":true,\"start_point\":[320,480],\"type\":\"drag\"}",
+      "output_sha256": "5afab781866fd362fe5ee001697fe4ccfcab94b6565b806c247e10c6bb793e4c",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.5944763389998116,
+      "id": "h55-en_design-03",
+      "image_sha256": "77778b0848c60c369e05dee3b6c8f3b2ec90bda0ee1f0a6d63175a46cf8f8b08",
+      "input_prompt_sha256": "93c08db126af7c4581d45990aa4aba4057aac02117f311dd8bc5a3bedd42cc30",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[744,524],\"ordered\":true,\"start_point\":[444,524],\"type\":\"drag\"}",
+      "output_sha256": "61befc2f914499c664baca8022c7ea04b533ab375476fd55e4613c3460268151",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.613039641000796,
+      "id": "h55-en_inventory-00",
+      "image_sha256": "7eaf331c77d918bd99120ba32d511c1a2d36277459dba3de1428acfa1f83fb85",
+      "input_prompt_sha256": "a0a93c36e8b4051b0366f7af083d3a7f2dcacbe8a8888ccb45cbac0e7a227514",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[740,480],\"ordered\":true,\"start_point\":[740,480],\"type\":\"drag\"}",
+      "output_sha256": "674d1f3bae4ff2abab0ac4f4fb66b6d46482df8385c6d60e3b892a5a2c4ad4fa",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.5678715940002803,
+      "id": "h55-en_inventory-01",
+      "image_sha256": "3676367f0d7b2cc60d6fdfd0f46ae7e129ae61b28e175aefc1066184796b02d9",
+      "input_prompt_sha256": "a0a93c36e8b4051b0366f7af083d3a7f2dcacbe8a8888ccb45cbac0e7a227514",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[740,444],\"ordered\":true,\"start_point\":[740,444],\"type\":\"drag\"}",
+      "output_sha256": "c2e15b95b4db40fc399c491c5328da62cedfd20882f331e0b147975e21afcfc7",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.677364177000527,
+      "id": "h55-en_inventory-02",
+      "image_sha256": "51d57c9e5e861384eeba63aeca96559ec0c550f2c310840732ca8ae1413c197c",
+      "input_prompt_sha256": "a0a93c36e8b4051b0366f7af083d3a7f2dcacbe8a8888ccb45cbac0e7a227514",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[740,480],\"ordered\":true,\"start_point\":[740,480],\"type\":\"drag\"}",
+      "output_sha256": "674d1f3bae4ff2abab0ac4f4fb66b6d46482df8385c6d60e3b892a5a2c4ad4fa",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    },
+    {
+      "elapsed_seconds": 2.5813540839999405,
+      "id": "h55-en_inventory-03",
+      "image_sha256": "b15e9e1996dfd68481f37b088bd28179513e3b19b32d5332b28ca573e104046f",
+      "input_prompt_sha256": "a0a93c36e8b4051b0366f7af083d3a7f2dcacbe8a8888ccb45cbac0e7a227514",
+      "kind": "slider",
+      "language": "en",
+      "ordered": true,
+      "output_raw": "{\"coordinate_space\":\"source_image_pixels\",\"end_point\":[740,480],\"ordered\":true,\"start_point\":[740,480],\"type\":\"drag\"}",
+      "output_sha256": "674d1f3bae4ff2abab0ac4f4fb66b6d46482df8385c6d60e3b892a5a2c4ad4fa",
+      "output_tokens": 39,
+      "status": "real_neural_raw"
+    }
+  ],
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "schema": "hala.h60.real-adapter-qwen-native-drag-public-dev.v1",
+  "source_cases": 24,
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+  "split": "public_dev",
+  "status": "completed",
+  "vram_bytes": 15637086208
+}

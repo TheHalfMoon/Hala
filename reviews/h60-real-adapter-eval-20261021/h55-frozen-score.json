@@ -1,0 +1,30 @@
+{
+  "actual_browser_model_task_success_verified": false,
+  "blind_test": false,
+  "both_endpoints_hit": 0,
+  "by_language": {
+    "ar": {
+      "both_endpoints_hit": 0,
+      "end_hit": 0,
+      "n": 12,
+      "start_hit": 0,
+      "valid": 0
+    },
+    "en": {
+      "both_endpoints_hit": 0,
+      "end_hit": 0,
+      "n": 12,
+      "start_hit": 0,
+      "valid": 0
+    }
+  },
+  "inference_provenance_independently_verified": false,
+  "official_benchmark_comparison_qualified": false,
+  "origin": "provider_raw_model_outputs",
+  "public_dev_only": true,
+  "scenes": 24,
+  "schema": "hala.h55.public-dev-geometry-diagnostic.v1",
+  "source_sha256": "707ae19c6baf29d83501c0d7d02ba4c790bc6e40d592363a164bfe41e5b13bc6",
+  "total_valid": 0,
+  "training_executed_by_scorer": false
+}
