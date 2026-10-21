@@ -33,6 +33,7 @@ from h60.tar_stream import BLOCK, TarStreamReader, _checksum_ok, _member_name
 
 SCHEMA = "hala.h60.dragon-train-ingest.v1"
 SHARD_SCHEMA = "hala.h60.dragon-train-shard.v1"
+DOMAIN_PROOF_SCHEMA = "hala.h60.dragon-train-domain-proof.v1"
 TASK_REGION_PROBE = 1 << 20
 TASK_REGION_PROBE_LARGE = 8 << 20
 TASK_REGION_PROBE_MAX = 64 << 20
@@ -755,6 +756,7 @@ def _ingest_domain(
 
     archive_sha = source.archive_sha256
     official = official_sha
+    verified = archive_sha == official and not partial
     result = {
         "schema": SCHEMA,
         "source_repo": REPO,
@@ -764,7 +766,7 @@ def _ingest_domain(
         "source_tar_bytes": total,
         "source_tar_sha256": archive_sha,
         "source_tar_lfs_sha256_official": official,
-        "source_tar_sha256_matches_official": archive_sha == official and not partial,
+        "source_tar_sha256_matches_official": verified,
         "partial_run": partial,
         "source_bytes_streamed": source.archive_bytes,
         "task_region_start": task_start,
@@ -784,7 +786,96 @@ def _ingest_domain(
         "model_gpu_steps": 0,
         "elapsed_seconds": round(time.time() - started, 3),
     }
+    if verified and do_publish:
+        # The whole-archive digest is only known once the last byte has been
+        # streamed, so no single shard can carry it. The domain proof binds
+        # every published shard to that one verified archive, which is what
+        # makes the shards usable as training source.
+        result["domain_proof"] = publish_domain_proof(
+            domain, result, source.window_receipts, staging, token
+        )
     return result
+
+
+def publish_domain_proof(
+    domain: str,
+    result: dict,
+    window_receipts: list,
+    staging: Path,
+    token: str,
+) -> dict:
+    """Publish the domain proof: the one verified archive digest, bound to shards."""
+    proof = {
+        "schema": DOMAIN_PROOF_SCHEMA,
+        "source_repo": REPO,
+        "source_commit_sha": REV,
+        "source_domain": domain,
+        "split": "train",
+        "source_license": "Apache-2.0",
+        "source_tar_bytes": result["source_tar_bytes"],
+        "official_upstream_lfs_sha256": result["source_tar_lfs_sha256_official"],
+        "recomputed_archive_sha256": result["source_tar_sha256"],
+        "archive_sha256_matches_official": bool(result["source_tar_sha256_matches_official"]),
+        "source_bytes_streamed": result["source_bytes_streamed"],
+        "source_window_receipts": window_receipts,
+        "shards": [
+            {
+                "shard_id": shard.get("shard_id"),
+                "local_zip_sha256": shard.get("local_zip_sha256"),
+                "labels_sha256": (shard.get("manifest") or {}).get("labels_sha256"),
+                "original_images": (shard.get("manifest") or {}).get("original_images"),
+                "native_drag_actions": (shard.get("manifest") or {}).get("native_drag_actions"),
+                "provider_ref": shard.get("provider_ref"),
+                "provider_readback_verified": bool(shard.get("provider_readback_verified")),
+            }
+            for shard in result.get("shards") or []
+        ],
+        "official_eval_or_test_used": False,
+        "benchmark_answer_leakage": False,
+        "model_gpu_steps": 0,
+    }
+    ref = f"{publish.OWNER}/hala-h60-dragon-train-{domain}-domain-proof-private"
+    upload = staging / f"upload-proof-{domain}"
+    if upload.exists():
+        shutil.rmtree(upload, ignore_errors=True)
+    upload.mkdir(parents=True)
+    member = upload / f"h60-dragon-train-{domain}-domain-proof.json"
+    body = (json.dumps(proof, indent=2, sort_keys=True) + "\n").encode("utf8")
+    member.write_bytes(body)
+    try:
+        if not publish.reusable_private_dataset(
+            ref, token, expected_bytes=len(body), expected_member=member.name,
+        ):
+            if publish.dataset_exists(ref, token):
+                publish.delete_dataset(ref)
+            publish.create_private_dataset(
+                upload,
+                ref,
+                f"Hala H60 DragOn TRAIN {domain} DOMAIN PROOF PRIVATE",
+                "Verified whole-archive digest and shard binding for the original TRAIN source",
+            )
+        publish.wait_until_visible(ref, token)
+        privacy = publish.verify_private(ref, token)
+        readback = publish.verify_readback(
+            ref,
+            token,
+            {member.name: len(body)},
+            {member.name: publish.sha256_bytes(body)},
+            staging / "readback" / f"proof-{domain}",
+        )
+    finally:
+        shutil.rmtree(upload, ignore_errors=True)
+    return {
+        "provider_ref": ref,
+        "provider_member": member.name,
+        "provider_is_private": privacy["provider_is_private"],
+        "anonymous_provider_http_status": privacy["anonymous_view_http_status"],
+        "provider_readback_verified": readback.get(
+            "provider_readback_members_byte_verified_count", 0
+        ) == 1,
+        "proof_sha256": publish.sha256_bytes(body),
+        "shard_count": len(proof["shards"]),
+    }
 
 
 def main() -> int:

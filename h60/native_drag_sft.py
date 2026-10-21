@@ -19,6 +19,7 @@ ROWS_FILE = "h60_drag_sft.jsonl"
 MANIFEST_FILE = "h60_drag_training_manifest.json"
 LABELS_FILE = "labels.jsonl"
 SHARD_MANIFEST = "manifest.json"
+PROOF_FILE = "domain-proof.json"
 FAMILY_PREFIX = "hcompany_dragon_h60_"
 RESERVED_DEV_FAMILY = "original_disjoint_drag_holdout_reserved"
 DOMAINS = ("sheet", "slide_resize", "slider", "text_highlight")
@@ -66,7 +67,63 @@ def _shard_roots(root: Path) -> list[Path]:
     return found
 
 
-def _read_shard(shard: Path) -> tuple[list[dict], dict]:
+def load_domain_proof(root: Path) -> tuple[dict | None, str | None]:
+    """Load the domain proof that binds the shards to one verified archive."""
+    for candidate in (Path(root) / PROOF_FILE, Path(root).parent / PROOF_FILE):
+        if candidate.is_file():
+            proof = strict_json(candidate.read_text("utf8"))
+            if proof.get("schema") != "hala.h60.dragon-train-domain-proof.v1":
+                raise ValueError("Unknown H60 domain proof schema")
+            return proof, hashlib.sha256(candidate.read_bytes()).hexdigest()
+    return None, None
+
+
+def shard_bound_to_verified_archive(manifest: dict, proof: dict | None) -> bool:
+    """True when this shard is bound to the one SHA-verified original archive.
+
+    A shard that carries the whole-archive digest itself is self-proving. Any
+    other shard is accepted only when the domain proof binds it to the very
+    same archive whose recomputed digest equals the official upstream LFS
+    digest, and when the proof also carries the provider readback result for
+    that shard.
+    """
+    if manifest.get("whole_tar_sha256_verified") is True:
+        return True
+    if not proof:
+        return False
+    if proof.get("archive_sha256_matches_official") is not True:
+        return False
+    if proof.get("recomputed_archive_sha256") != proof.get("official_upstream_lfs_sha256"):
+        return False
+    if proof.get("source_commit_sha") != manifest.get("source_commit_sha"):
+        return False
+    if proof.get("official_upstream_lfs_sha256") != manifest.get("upstream_full_tar_lfs_sha256"):
+        return False
+    window_ids = {
+        row.get("original_window_id") for row in (proof.get("source_window_receipts") or [])
+    }
+    if not window_ids or not set(manifest.get("source_window_ids") or []) <= window_ids:
+        return False
+    entry = next(
+        (
+            row
+            for row in (proof.get("shards") or [])
+            if row.get("shard_id") == manifest.get("shard_id")
+        ),
+        None,
+    )
+    if entry is None:
+        return False
+    if entry.get("provider_readback_verified") is not True:
+        return False
+    return (
+        entry.get("labels_sha256") == manifest.get("labels_sha256")
+        and entry.get("original_images") == manifest.get("original_images")
+        and entry.get("native_drag_actions") == manifest.get("native_drag_actions")
+    )
+
+
+def _read_shard(shard: Path, proof: dict | None = None) -> tuple[list[dict], dict]:
     manifest = strict_json((shard / SHARD_MANIFEST).read_text("utf8"))
     if (
         manifest.get("schema") != "hala.h60.dragon-train-shard.v1"
@@ -76,7 +133,7 @@ def _read_shard(shard: Path) -> tuple[list[dict], dict]:
         or manifest.get("source_commit_sha") != "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5"
     ):
         raise ValueError("H60 shard is not a verified original TRAIN-only shard")
-    if manifest.get("whole_tar_sha256_verified") is not True:
+    if not shard_bound_to_verified_archive(manifest, proof):
         raise ValueError("H60 shard was not produced from a fully SHA-verified original TAR")
     rows = []
     for line in (shard / LABELS_FILE).read_text("utf8").splitlines():
@@ -99,6 +156,7 @@ def derive(root, *, max_images_per_domain: int = MAX_IMAGES_PER_DOMAIN,
     """Build the SFT blob, its manifest and the decoded rows from H60 shards."""
     root = Path(root)
     shards = _shard_roots(root)
+    proof, proof_sha256 = load_domain_proof(root)
     rows: list[dict] = []
     media: list[dict] = []
     families: set[str] = set()
@@ -109,7 +167,7 @@ def derive(root, *, max_images_per_domain: int = MAX_IMAGES_PER_DOMAIN,
     per_domain_images: dict[str, int] = {}
     shard_receipts = []
     for shard in shards:
-        shard_rows, shard_manifest = _read_shard(shard)
+        shard_rows, shard_manifest = _read_shard(shard, proof)
         images = _image_index(shard)
         shard_receipts.append(
             {
