@@ -167,7 +167,8 @@ def validate_remote() -> None:
         raise ValueError("Missing interactive Colab workspace; no remote weights elsewhere")
 
 
-def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_new_tokens: int = 160):
+def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_new_tokens: int = 160,
+        adapter: str | None = None, adapter_sha256: str | None = None):
     validate_remote()
     if dev not in DEV_SETS:
         raise ValueError("Unknown public DEV set")
@@ -175,6 +176,12 @@ def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_ne
         raise ValueError("Bounded actual model run parameters required")
     if type(max_new_tokens) is not int or not 32 <= max_new_tokens <= 192:
         raise ValueError("Bounded actual model run parameters required")
+    if adapter is not None:
+        adapter_path = Path(adapter)
+        if not adapter_path.is_dir() or not (adapter_path / "adapter_model.safetensors").exists():
+            raise ValueError("A real trained adapter directory is required")
+        if adapter_sha256 is None or len(adapter_sha256) != 64:
+            raise ValueError("The adapter file digest must be recorded")
     cases = _source_inputs(Path(root), dev)
     output = Path(output)
     if output.exists():
@@ -201,6 +208,8 @@ def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_ne
         "blind_test": False,
         "model_training_executed": False,
         "adapters_loaded": False,
+        "adapter_path": None,
+        "adapter_sha256": None,
         "provider": "interactive_approved_free_colab",
         "gpu": gpu.name,
         "vram_bytes": gpu.total_memory,
@@ -233,6 +242,15 @@ def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_ne
             torch_dtype=torch.float16,
             attn_implementation="sdpa",
         ).to("cuda:0").eval()
+        if adapter is not None:
+            from peft import PeftModel
+
+            model = PeftModel.from_pretrained(
+                model, adapter, is_trainable=False, trust_remote_code=False
+            ).eval()
+            info["adapters_loaded"] = True
+            info["adapter_path"] = str(adapter)
+            info["adapter_sha256"] = adapter_sha256
         info["status"] = "inferencing"
         save_partial()
         for scene in cases[:max_cases]:
@@ -320,8 +338,11 @@ if __name__ == "__main__":
     parser.add_argument("--dev", required=True, choices=sorted(DEV_SETS))
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-cases", type=int, default=MAX_CASES)
+    parser.add_argument("--adapter", default=None)
+    parser.add_argument("--adapter-sha256", default=None)
     args = parser.parse_args()
-    result = run(args.source, args.output, dev=args.dev, max_cases=args.max_cases)
+    result = run(args.source, args.output, dev=args.dev, max_cases=args.max_cases,
+                 adapter=args.adapter, adapter_sha256=args.adapter_sha256)
     print(
         json.dumps(
             {
