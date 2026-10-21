@@ -345,18 +345,59 @@ def publish_shard(
     if upload_dir.exists():
         shutil.rmtree(upload_dir, ignore_errors=True)
     upload_dir.mkdir(parents=True)
-    linked = upload_dir / "payload.zip"
+    # The shard body is uploaded as ONE opaque member. The provider expands a
+    # `.zip` member into its own tree and then materialises a downloadable
+    # artifact for every expanded member, which was measured not to scale: a
+    # 3,000 member archive became downloadable after 309 s and a 28,806 member
+    # archive was still refused with "No gcs url found" after an hour. One
+    # opaque member measured 17 s and is verified by one SHA-256.
+    member_name = f"{shard_id}{publish.SHARD_MEMBER_SUFFIX}"
+    linked = upload_dir / member_name
     try:
         os.link(zip_path, linked)
     except OSError:
         shutil.copy2(zip_path, linked)
+    readme = {
+        "schema": "hala.h60.dragon-train-shard-package.v1",
+        "shard_id": shard_id,
+        "source_domain": domain,
+        "source_repo": REPO,
+        "source_commit_sha": REV,
+        "split": "train",
+        "source_license": "Apache-2.0",
+        "packaging": {
+            "member": member_name,
+            "inner_format": "zip",
+            "inner_members": len(sizes),
+            "inner_labels_sha256": manifest.get("labels_sha256"),
+            "inner_manifest_sha256": publish.sha256_bytes_of_member(
+                zip_path, "manifest.json"
+            ),
+        },
+        "instructions": (
+            "The shard body is one ZIP member. Unpack it, then read the inner "
+            "manifest.json for the per-member SHA-256 of every original image, "
+            "original task JSON, the derived labels and the manifest."
+        ),
+    }
+    (upload_dir / publish.README_MEMBER).write_text(
+        json.dumps(readme, indent=2, sort_keys=True) + "\n", encoding="utf8"
+    )
+    provider_members = {member_name: linked.stat().st_size}
+    provider_shas = {member_name: receipt["local_zip_sha256"]}
+    readme_bytes = (upload_dir / publish.README_MEMBER).read_bytes()
+    provider_members[publish.README_MEMBER] = len(readme_bytes)
+    provider_shas[publish.README_MEMBER] = publish.sha256_bytes(readme_bytes)
+    receipt["provider_member"] = member_name
+    receipt["provider_members"] = provider_members
     try:
         # A shard body is byte-reproducible, so a provider dataset that already
         # holds exactly these bytes is reused instead of uploaded again. The
         # upload is the expensive part and must never be repeated for a
         # verification that can simply be re-run.
         reused = publish.reusable_private_dataset(
-            ref, token, expected_bytes=receipt["published_bytes"]
+            ref, token, expected_bytes=sum(provider_members.values()),
+            expected_member=member_name,
         )
         receipt["provider_reused_existing_dataset"] = bool(reused)
         if not reused:
@@ -381,7 +422,7 @@ def publish_shard(
         if privacy["anonymous_view_http_status"] != 403:
             raise ValueError("unauthenticated provider access was not rejected with HTTP 403")
         readback = publish.verify_readback(
-            ref, token, sizes, shas, staging / "readback" / shard_id
+            ref, token, provider_members, provider_shas, staging / "readback" / shard_id
         )
         receipt.update(readback)
         receipt["provider_published"] = True
@@ -393,7 +434,8 @@ def publish_shard(
         # proof succeeds. Anything else is removed so a retry cannot mistake
         # it for a verified private copy.
         if publish.reusable_private_dataset(
-            ref, token, expected_bytes=receipt["published_bytes"]
+            ref, token, expected_bytes=sum(provider_members.values()),
+            expected_member=member_name,
         ):
             receipt["provider_retained_for_retry"] = True
         else:

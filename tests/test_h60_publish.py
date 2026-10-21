@@ -198,7 +198,7 @@ class H60PublishReceiptTests(unittest.TestCase):
                     "provider_readback_members_checked": len(sizes),
                     "provider_readback_bytes_mismatched": 0,
                 },
-                reusable_private_dataset=lambda ref, token, expected_bytes: True,
+                reusable_private_dataset=lambda ref, token, expected_bytes, expected_member=None: True,
             ):
                 receipt = ingest.publish_shard(
                     "h60-dragon-train-slider-0000", "slider", shard, staging, "token", _manifest()
@@ -229,7 +229,7 @@ class H60PublishReceiptTests(unittest.TestCase):
                     "anonymous_view_http_status": 403,
                 },
                 verify_readback=failing_readback,
-                reusable_private_dataset=lambda ref, token, expected_bytes: True,
+                reusable_private_dataset=lambda ref, token, expected_bytes, expected_member=None: True,
             ):
                 with self.assertRaises(publish.ProviderNotReady):
                     ingest.publish_shard(
@@ -298,6 +298,97 @@ class H60ProviderReadbackTests(unittest.TestCase):
                     publish.verify_readback(
                         "owner/dataset", "token", sizes, shas, work / "readback"
                     )
+
+
+class H60ShardPackagingTests(unittest.TestCase):
+    """The shard body must reach the provider as ONE opaque member.
+
+    The provider expands a `.zip` or `.tar.gz` member into its own file tree
+    and then materialises a downloadable artifact for every expanded member.
+    That does not scale: a measured 3,000 member archive became downloadable
+    after 309 s and a measured 28,806 member archive was still refused with
+    "No gcs url found" after an hour, while a single opaque member measured
+    17 s.
+    """
+
+    def _upload_directory(self, staging: Path, shard: Path, shard_id: str) -> Path:
+        captured: dict = {}
+
+        def fake_create(upload_dir, ref, title, subtitle):
+            captured["members"] = sorted(
+                path.name for path in Path(upload_dir).iterdir()
+            )
+            captured["payload"] = {
+                path.name: path.read_bytes()
+                for path in Path(upload_dir).iterdir()
+                if path.name != "dataset-metadata.json"
+            }
+
+        with mock.patch.multiple(
+            publish,
+            create_private_dataset=fake_create,
+            delete_dataset=lambda ref: None,
+            wait_until_visible=lambda ref, token: {},
+            verify_private=lambda ref, token: {
+                "provider_is_private": True,
+                "provider_view_total_bytes": 10 ** 9,
+                "provider_version": 1,
+                "anonymous_view_http_status": 403,
+            },
+            verify_readback=lambda ref, token, sizes, shas, work: {
+                "provider_readback_members_checked": len(sizes),
+                "provider_readback_bytes_mismatched": 0,
+            },
+            reusable_private_dataset=lambda ref, token, expected_bytes, expected_member=None: False,
+        ):
+            receipt = ingest.publish_shard(
+                shard_id, "slider", shard, staging, "token", _manifest()
+            )
+        return receipt, captured
+
+    def test_the_shard_body_reaches_the_provider_as_one_opaque_member(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            staging = Path(temporary) / "staging"
+            staging.mkdir()
+            shard = staging / "h60-dragon-train-slider-0000.zip"
+            _write_shard(shard)
+            body = shard.read_bytes()
+            receipt, captured = self._upload_directory(
+                staging, shard, "h60-dragon-train-slider-0000"
+            )
+            self.assertEqual(
+                captured["members"],
+                ["README.json", "h60-dragon-train-slider-0000.hala.bin"],
+                "the provider must receive exactly one opaque member and a readme",
+            )
+            self.assertEqual(
+                captured["payload"]["h60-dragon-train-slider-0000.hala.bin"],
+                body,
+                "the uploaded member must be the shard body byte for byte",
+            )
+            self.assertEqual(
+                receipt["provider_member"], "h60-dragon-train-slider-0000.hala.bin"
+            )
+            self.assertEqual(
+                receipt["provider_members"]["h60-dragon-train-slider-0000.hala.bin"],
+                len(body),
+            )
+
+    def test_the_readme_describes_the_inner_shard(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            staging = Path(temporary) / "staging"
+            staging.mkdir()
+            shard = staging / "h60-dragon-train-slider-0000.zip"
+            _write_shard(shard)
+            _, captured = self._upload_directory(
+                staging, shard, "h60-dragon-train-slider-0000"
+            )
+            readme = json.loads(captured["payload"]["README.json"].decode("utf8"))
+            self.assertEqual(readme["schema"], "hala.h60.dragon-train-shard-package.v1")
+            self.assertEqual(readme["packaging"]["inner_format"], "zip")
+            self.assertEqual(readme["packaging"]["inner_members"], 5)
+            self.assertEqual(readme["split"], "train")
+            self.assertEqual(readme["source_license"], "Apache-2.0")
 
 
 class H60ProviderIndexTests(unittest.TestCase):

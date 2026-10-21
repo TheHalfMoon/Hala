@@ -29,6 +29,15 @@ KAGGLE_API = "https://www.kaggle.com/api/v1"
 RETRYABLE_STATUS = {429, 500, 502, 503, 504}
 MAX_ATTEMPTS = 6
 BLOCK = 1 << 20
+# The provider expands a `.zip` or `.tar.gz` member into its own file tree and
+# then materialises a downloadable artifact for every expanded member. That
+# materialisation does not scale: a measured 3,000 member archive became
+# downloadable after 309 s, and a measured 28,806 member archive was still
+# refused with "No gcs url found" after an hour. A shard is therefore uploaded
+# as ONE opaque member that the provider stores verbatim, which measured 17 s
+# to become downloadable, and the readback proves that single member's bytes.
+SHARD_MEMBER_SUFFIX = ".hala.bin"
+README_MEMBER = "README.json"
 
 
 def sha256_file(path: Path) -> str:
@@ -165,7 +174,13 @@ def wait_until_visible(ref: str, token: str, timeout: float = 1800.0) -> dict:
 
 
 def create_private_dataset(upload_dir: Path, ref: str, title: str, subtitle: str) -> None:
-    """Create a NEW private dataset from an upload directory."""
+    """Create a NEW private dataset from an upload directory.
+
+    The upload directory holds the dataset metadata and the shard body under an
+    opaque member name, so the provider stores the body verbatim instead of
+    expanding it into a tree it would then have to materialise member by
+    member.
+    """
     if not ref.startswith(OWNER + "/"):
         raise ValueError("only the owning account namespace may be used")
     metadata = upload_dir / "dataset-metadata.json"
@@ -430,13 +445,32 @@ def dataset_exists(ref: str, token: str) -> bool:
         raise
 
 
-def reusable_private_dataset(ref: str, token: str, expected_bytes: int) -> bool:
+def sha256_bytes(payload: bytes) -> str:
+    return hashlib.sha256(payload).hexdigest()
+
+
+def sha256_bytes_of_member(zip_path: Path, member: str) -> str:
+    """SHA-256 of one member inside a local shard archive."""
+    import zipfile
+
+    with zipfile.ZipFile(Path(zip_path)) as bundle:
+        digest = hashlib.sha256()
+        with bundle.open(member) as handle:
+            for chunk in iter(lambda: handle.read(BLOCK), b""):
+                digest.update(chunk)
+    return digest.hexdigest()
+
+
+def reusable_private_dataset(
+    ref: str, token: str, expected_bytes: int, expected_member: str | None = None
+) -> bool:
     """True when the provider already holds this exact private shard body.
 
     A shard body is byte-reproducible, so a provider dataset that already
-    reports the same private status and the same published size is the same
-    body. The upload is the expensive part of the pipeline and must never be
-    repeated for a verification that can simply be re-run.
+    reports the same private status, the same published size and the same
+    member name is the same body. The upload is the expensive part of the
+    pipeline and must never be repeated for a verification that can simply be
+    re-run.
     """
     try:
         view = api_get(f"/datasets/view/{ref}", token)
@@ -451,6 +485,15 @@ def reusable_private_dataset(ref: str, token: str, expected_bytes: int) -> bool:
     total = view.get("totalBytes")
     if not isinstance(total, int) or total <= 0:
         return False
-    # The provider reports the size of the uploaded archive, which is at least
-    # the sum of the published member sizes.
-    return total >= int(expected_bytes)
+    if total < int(expected_bytes):
+        return False
+    if expected_member:
+        try:
+            files, complete = dataset_files(ref, token, max_pages=4)
+        except Exception:  # noqa: BLE001
+            return False
+        if not complete and expected_member not in files:
+            return False
+        if expected_member not in files:
+            return False
+    return True
