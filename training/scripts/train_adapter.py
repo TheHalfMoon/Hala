@@ -18,6 +18,7 @@ from h48.factory import SCHEMA as H48_SOURCE_SCHEMA
 from h48.sft_bridge import load_export as load_h48_export
 from h49.factory import SCHEMA as H49_SOURCE_SCHEMA
 from h49.audit import load_export as load_h49_export
+from h50.counterfactual import SCHEMA as H50_SOURCE_SCHEMA, load_export as load_h50_export
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -86,6 +87,8 @@ def prepare_inputs(row, processor, root, token_budget):
 
 def load_authoring_records(examples_path, manifest):
     """Explicit original-asset verification for H48/H49; H14 remains frozen."""
+    if manifest.get('source_schema') == H50_SOURCE_SCHEMA:
+        return load_h50_export(examples_path, manifest)
     if manifest.get('source_schema') == H49_SOURCE_SCHEMA:
         return load_h49_export(examples_path, manifest)
     if manifest.get('source_schema') == H48_SOURCE_SCHEMA:
