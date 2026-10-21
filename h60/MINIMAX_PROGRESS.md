@@ -99,6 +99,17 @@ does not scale, and the numbers are unambiguous:
 | `.tar.gz` with 3,000 members | 3,000 | 64 s |
 | a real H60 slider shard as a `.zip` | **28,806** | **still refused with `No gcs url found` after an hour**, although the provider already reported the dataset private, at the exact published size of 1,075,682,352 bytes, at version 1 |
 
+The same delay also grows with the **member size**, so the materialisation rate is
+the real schedule of the whole corpus:
+
+| Single member size | Measured time until the content was downloadable |
+|---:|---:|
+| 4 KB | 17 s |
+| 952 KB | 17 s |
+| 16 MB | 140 s |
+| 128 MB | 461 s |
+| 965 MB | ~18 min under a concurrent upload load |
+
 A shard is therefore uploaded as **one opaque member** named
 `<shard_id>.hala.bin` that the provider stores verbatim, plus a `README.json`
 that describes the inner archive. The readback then proves the whole shard
