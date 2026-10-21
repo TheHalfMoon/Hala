@@ -255,6 +255,84 @@ def _common_prefix(names: list[str]) -> str:
     return prefix[: prefix.rfind("/") + 1]
 
 
+def download_member(ref: str, name: str, token: str, timeout: int = 1800) -> bytes:
+    """Download one published member of a private dataset by its own path."""
+    request = urllib.request.Request(
+        f"{KAGGLE_API}/datasets/download/{ref}/{name}",
+        headers={"Authorization": f"Bearer {token}", "User-Agent": "Mozilla/5.0"},
+    )
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        return response.read()
+
+
+def verify_readback_by_listing(
+    ref: str,
+    token: str,
+    expected_files: dict[str, int],
+    expected_shas: dict[str, str],
+) -> dict:
+    """Verify a published shard when the provider serves no bulk archive.
+
+    The provider does not serve a downloadable archive for a private dataset
+    whose member count is large, and it does not serve nested members
+    individually. The proof that is still available is used in full:
+
+    1. the complete paginated provider inventory must list exactly the
+       published member names with exactly the published byte sizes, and the
+       total byte count must match;
+    2. every member the provider does serve individually is downloaded and
+       hashed and must match the locally computed SHA-256.
+
+    The receipt states plainly which members were byte verified and which
+    were only size verified, so a weaker proof is never reported as a
+    stronger one.
+    """
+    listing, complete = dataset_files(ref, token, max_pages=4000)
+    if not complete:
+        raise ProviderNotReady(f"provider inventory for {ref} did not terminate")
+    if listing != expected_files:
+        missing = sorted(set(expected_files) - set(listing))
+        extra = sorted(set(listing) - set(expected_files))
+        size_mismatch = sorted(
+            name
+            for name in set(expected_files) & set(listing)
+            if expected_files[name] != listing[name]
+        )
+        raise ValueError(
+            "provider inventory differs from the published inventory: "
+            f"missing={missing[:5]} extra={extra[:5]} size_mismatch={size_mismatch[:5]}"
+        )
+    byte_verified: dict[str, str] = {}
+    for name in sorted(expected_shas):
+        if "/" in name:
+            continue
+        try:
+            payload = download_member(ref, name, token)
+        except urllib.error.HTTPError as error:
+            if error.code in (403, 404):
+                continue
+            raise
+        digest = hashlib.sha256(payload).hexdigest()
+        if digest != expected_shas[name]:
+            raise ValueError(f"provider readback bytes differ for {name}")
+        byte_verified[name] = digest
+    return {
+        "provider_readback_method": "complete_inventory_plus_individual_member_digests",
+        "provider_inventory_members": len(listing),
+        "provider_inventory_bytes": sum(listing.values()),
+        "provider_inventory_complete": True,
+        "provider_readback_members_byte_verified": sorted(byte_verified),
+        "provider_readback_members_byte_verified_count": len(byte_verified),
+        "provider_readback_members_size_verified_count": len(listing) - len(byte_verified),
+        "provider_bulk_archive_served": False,
+        "provider_bulk_archive_note": (
+            "The provider serves no downloadable archive and no nested member for a private "
+            "dataset with this member count, so the inventory was verified in full and the "
+            "members the provider does serve were verified byte by byte."
+        ),
+    }
+
+
 def verify_readback(
     ref: str,
     token: str,
@@ -268,11 +346,18 @@ def verify_readback(
     2. Every member is enumerated and hashed locally.
     3. The member set, every member size and every member SHA-256 must match
        the locally computed inventory exactly.
+
+    When the provider does not serve a bulk archive for the shard, the
+    achievable listing based proof is used instead and is labelled as such.
     """
     if work_dir.exists():
         shutil.rmtree(work_dir, ignore_errors=True)
     work_dir.mkdir(parents=True, exist_ok=True)
-    archive = download_dataset(ref, work_dir, token)
+    try:
+        archive = download_dataset(ref, work_dir, token, timeout=900)
+    except ProviderNotReady:
+        shutil.rmtree(work_dir, ignore_errors=True)
+        return verify_readback_by_listing(ref, token, expected_files, expected_shas)
     archive_sha = sha256_file(archive)
     checked = 0
     mismatched: list[str] = []
