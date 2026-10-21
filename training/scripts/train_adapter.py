@@ -16,6 +16,8 @@ from training.artifacts import (MAX_PIXELS, artifact_path, load_sft_artifact,
                                 sha256_file, strict_json)
 from h48.factory import SCHEMA as H48_SOURCE_SCHEMA
 from h48.sft_bridge import load_export as load_h48_export
+from h49.factory import SCHEMA as H49_SOURCE_SCHEMA
+from h49.audit import load_export as load_h49_export
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -82,6 +84,15 @@ def prepare_inputs(row, processor, root, token_budget):
         image.close()
 
 
+def load_authoring_records(examples_path, manifest):
+    """Explicit original-asset verification for H48/H49; H14 remains frozen."""
+    if manifest.get('source_schema') == H49_SOURCE_SCHEMA:
+        return load_h49_export(examples_path, manifest)
+    if manifest.get('source_schema') == H48_SOURCE_SCHEMA:
+        return load_h48_export(examples_path, manifest)
+    return load_sft_artifact(examples_path, manifest)
+
+
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
           stop_after_step=None):
     if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_TRAINING_ALLOWED') != '1':
@@ -100,9 +111,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     manifest = load_json(manifest_path)
     validate_experiment(config, manifest, load_json(baseline_path))
-    records = (load_h48_export(examples_path, manifest)
-               if manifest.get('source_schema') == H48_SOURCE_SCHEMA
-               else load_sft_artifact(examples_path, manifest))
+    records = load_authoring_records(examples_path, manifest)
     root = Path(examples_path).parent.resolve()
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],

@@ -1,0 +1,26 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><style>:root{--accent:#80593c}
+*{box-sizing:border-box}
+html,body{width:1024px;height:640px;margin:0;overflow:hidden}
+body{background:#f3f6fa;color:#23374a;font-family:Tahoma,'Segoe UI',Arial,sans-serif}
+header{height:79px;background:#fff;border-bottom:2px solid #dbe4ee;display:flex;
+align-items:center;justify-content:space-between;padding:0 43px}
+header strong{font-size:22px}header small{font-size:12px;color:#627386}
+main{margin:17px 40px}h1{font-size:23px;margin:0 0 10px}
+.sub{font-size:12px;margin:0 0 20px;color:#657281}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.table{display:flex;flex-direction:column;gap:7px}
+.side{display:grid;grid-template-columns:206px 1fr;gap:18px}
+aside{height:490px;border-radius:12px;padding:22px;background:#e5edf6}
+aside p{line-height:2.8;font-size:13px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;
+background:white;border:1px solid #ccd8e4;border-radius:10px;padding:12px}
+.grid .row{height:163px;flex-direction:column;align-items:stretch;justify-content:space-around}
+.table .row,.side .row{height:62px}
+.label{font-weight:650;font-size:15px;line-height:1.6;min-width:0}
+button.pick{background:var(--accent);border:none;border-radius:8px;color:white;
+font:700 14px Tahoma,'Segoe UI',Arial,sans-serif;padding:10px;min-width:109px;
+min-height:45px;cursor:default}
+.grid button{width:100%}
+footer{position:fixed;bottom:12px;width:100%;text-align:center;font-size:11px;
+direction:ltr;color:#64758a}
+</style></head><body><header><strong>لوحة خدمات بلدية افتراضية</strong><small>HALA · Offline Research</small></header><main><h1>لوحة خدمات بلدية افتراضية</h1><p class="sub">واجهة تجريبية مستقلة — ليست خدمة حكومية رسمية</p><div class="grid"><section class="row"><span class="label">نموذج طلب جديد</span><button class="pick" data-idx="0" data-key="1" aria-label="اختر: نموذج طلب جديد">اختر</button></section><section class="row"><span class="label">بيانات التواصل</span><button class="pick" data-idx="1" data-key="3" aria-label="اختر: بيانات التواصل">اختر</button></section><section class="row"><span class="label">موعد مراجعة</span><button class="pick" data-idx="2" data-key="4" aria-label="اختر: موعد مراجعة">اختر</button></section><section class="row"><span class="label">مخططات الأراضي</span><button class="pick" data-idx="3" data-key="2" aria-label="اختر: مخططات الأراضي">اختر</button></section><section class="row"><span class="label">متابعة تصريح موقع</span><button class="pick" data-idx="4" data-key="0" aria-label="اختر: متابعة تصريح موقع">اختر</button></section><section class="row"><span class="label">إشعارات الموقع</span><button class="pick" data-idx="5" data-key="5" aria-label="اختر: إشعارات الموقع">اختر</button></section></div></main><footer>واجهة تجريبية مستقلة — ليست خدمة حكومية رسمية</footer><script>document.querySelectorAll("button.pick").forEach(b=>b.addEventListener("click",()=>{document.body.dataset.selected=b.dataset.key;document.body.dataset.selectionCount=String(Number(document.body.dataset.selectionCount||0)+1)}));</script></body></html>

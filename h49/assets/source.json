@@ -1,0 +1,986 @@
+{
+  "count": 96,
+  "independent_blind_test": false,
+  "model_inference": false,
+  "public_dev": 32,
+  "real_service_test": false,
+  "rights": {
+    "benchmark_answers": false,
+    "external_assets": false,
+    "license": "CC0-1.0",
+    "official_interface": false,
+    "origin": "original_first_party_offline_simulation",
+    "personal_data": false,
+    "real_accounts": false
+  },
+  "rows": [
+    {
+      "family": "justice_execution",
+      "goal": "ابحث عن متابعة وضع طلب تنفيذ موجود",
+      "html_sha256": "dbdd9aaee2d76a0b1e32dfde1ebddbc7c2c65b954faa28e21036918530e862aa",
+      "id": "h49-justice_execution-00",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 0
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اختر عرض سجل الإجراءات السابقة",
+      "html_sha256": "2f2cbc1679b2f3294f6536a2a21a780f8034ac4fbd808606032d734146360330",
+      "id": "h49-justice_execution-01",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 5
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اعرض الإشعارات المرتبطة بالملفات",
+      "html_sha256": "f83b7044e87a2b31aee186eda84a780adf6ea0d7b453733eeffddd222c781ce8",
+      "id": "h49-justice_execution-02",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "justice_execution",
+      "goal": "انتقل لتنظيم موعد جلسة",
+      "html_sha256": "3982308e8350d3b9090375f3d2f4f9105b284cc801abc49cf434d4e84c682dca",
+      "id": "h49-justice_execution-03",
+      "language": "ar",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "justice_execution",
+      "goal": "افتح قائمة مستندات القضية المرفقة",
+      "html_sha256": "5e7f0dc60c64e0d0e5a47559b6b33d253115836ddddd9b1cdb353fd5ae00214f",
+      "id": "h49-justice_execution-04",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 2
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اختر خدمة بدء طلب تنفيذ جديد",
+      "html_sha256": "d68b694c3cc54eae28134c0f60a015c37b28988119cd00ade8acb63cd6df6abd",
+      "id": "h49-justice_execution-05",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 1
+    },
+    {
+      "family": "justice_execution",
+      "goal": "ابحث عن متابعة وضع طلب تنفيذ موجود",
+      "html_sha256": "2aeeef4c6326f77d3c8feb800d6b1ee1826c7c54832d18b40edeacfd5c66955f",
+      "id": "h49-justice_execution-06",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 0
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اختر عرض سجل الإجراءات السابقة",
+      "html_sha256": "e17e1a9c699266c1f0fcb1a0e4aa17c00d1dbacfcf14e3f51f6c4a8258b74950",
+      "id": "h49-justice_execution-07",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 5
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اعرض الإشعارات المرتبطة بالملفات",
+      "html_sha256": "1b1dba6157a3506323b5f1a05e7812676b3b1f83c485cf8a1d533682a52760f8",
+      "id": "h49-justice_execution-08",
+      "language": "ar",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 4
+    },
+    {
+      "family": "justice_execution",
+      "goal": "انتقل لتنظيم موعد جلسة",
+      "html_sha256": "09c7ba58a7925eb9d1c322003b546aa5f9ab620fbf64d9ca91309869488ae9fd",
+      "id": "h49-justice_execution-09",
+      "language": "ar",
+      "split": "train",
+      "target_index": 0,
+      "target_key": 3
+    },
+    {
+      "family": "justice_execution",
+      "goal": "افتح قائمة مستندات القضية المرفقة",
+      "html_sha256": "2f669f03f153e4d76bdad2860723edf6cb23b8e139f5a93bea0641a166c0b3e6",
+      "id": "h49-justice_execution-10",
+      "language": "ar",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 2
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اختر خدمة بدء طلب تنفيذ جديد",
+      "html_sha256": "b0c2bbec53c9ac0f2ef6ad646706402007629ffbb1a05c5df81d985c24884ea1",
+      "id": "h49-justice_execution-11",
+      "language": "ar",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 1
+    },
+    {
+      "family": "justice_execution",
+      "goal": "ابحث عن متابعة وضع طلب تنفيذ موجود",
+      "html_sha256": "bb37538e3746c0762ea0949a7809a25acfc2fb2535f3eac15d255744affca807",
+      "id": "h49-justice_execution-12",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 0
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اختر عرض سجل الإجراءات السابقة",
+      "html_sha256": "9983226b43f77ead047d90c5548439f367f6269f70a6ba8c4b0d14e702f49ec3",
+      "id": "h49-justice_execution-13",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 5
+    },
+    {
+      "family": "justice_execution",
+      "goal": "اعرض الإشعارات المرتبطة بالملفات",
+      "html_sha256": "643d3705f634b85c13b5046c50ba50d813b35a527b9f36d9c6fff1048537ae59",
+      "id": "h49-justice_execution-14",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "justice_execution",
+      "goal": "انتقل لتنظيم موعد جلسة",
+      "html_sha256": "f808e3fa3b0fec1fb355cc8aa19b07fb9a2072e42f6a6e2bf2ffe0fb66411a98",
+      "id": "h49-justice_execution-15",
+      "language": "ar",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "traffic_services",
+      "goal": "اعرض قائمة السيارات المحجوزة",
+      "html_sha256": "8444db501cbc1f14dd675431a09f7457a0625098859d238b12fa85cb08117e17",
+      "id": "h49-traffic_services-00",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 1
+    },
+    {
+      "family": "traffic_services",
+      "goal": "تحقق من سريان تغطية التأمين على سيارة",
+      "html_sha256": "484e69e44abfb41dfc248b7139dbb7535354ae60192346da7a9417ac8fefb96f",
+      "id": "h49-traffic_services-01",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 0
+    },
+    {
+      "family": "traffic_services",
+      "goal": "استعرض تفاصيل تسجيل سيارة",
+      "html_sha256": "b55ebb3f791477b8c022baa23cf8c5ca7c656c09bdc8d32528de67fa8b4017a0",
+      "id": "h49-traffic_services-02",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 5
+    },
+    {
+      "family": "traffic_services",
+      "goal": "افتح سجل المخالفات المرتبطة بالمرور",
+      "html_sha256": "0e8ae42e018b49e9038797e4c70120854de21fc86b372f3442dd52296fd15eb8",
+      "id": "h49-traffic_services-03",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "traffic_services",
+      "goal": "ابحث عن تفاصيل رخصة القيادة",
+      "html_sha256": "43d10c112ba565a81df2ba4cc6583a2b0b396711d7bc70b62005302c3e6cb442",
+      "id": "h49-traffic_services-04",
+      "language": "ar",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 3
+    },
+    {
+      "family": "traffic_services",
+      "goal": "انتقل لتحديد موعد لخدمة مرورية",
+      "html_sha256": "a126f55eac17ede913b802b8bfcfe00fe9af92f4b40be8b86ea2a1e0afc6a964",
+      "id": "h49-traffic_services-05",
+      "language": "ar",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 2
+    },
+    {
+      "family": "traffic_services",
+      "goal": "اعرض قائمة السيارات المحجوزة",
+      "html_sha256": "4f86384fa063e35bf04bb7daad2207955655c2214fba009f0614305f6edeffdd",
+      "id": "h49-traffic_services-06",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 1
+    },
+    {
+      "family": "traffic_services",
+      "goal": "تحقق من سريان تغطية التأمين على سيارة",
+      "html_sha256": "ff797a574d4a9b2eb912b173065205be579298df967cee1c20caae60d5b22b1c",
+      "id": "h49-traffic_services-07",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 0
+    },
+    {
+      "family": "traffic_services",
+      "goal": "استعرض تفاصيل تسجيل سيارة",
+      "html_sha256": "7a7fcab91b49d5a3e6406071f44aaab264b78ede8a6fc02c8e9faa588f6138b1",
+      "id": "h49-traffic_services-08",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 5
+    },
+    {
+      "family": "traffic_services",
+      "goal": "افتح سجل المخالفات المرتبطة بالمرور",
+      "html_sha256": "c4341e1f5c5797626c3b67bd226f5eea47e68840b62123dc092c2b33e72da293",
+      "id": "h49-traffic_services-09",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 4
+    },
+    {
+      "family": "traffic_services",
+      "goal": "ابحث عن تفاصيل رخصة القيادة",
+      "html_sha256": "8852aad236f640621aa7ecd649e8dad0837740feb33d7454110aab09af0cd0f8",
+      "id": "h49-traffic_services-10",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 3
+    },
+    {
+      "family": "traffic_services",
+      "goal": "انتقل لتحديد موعد لخدمة مرورية",
+      "html_sha256": "b4f451adff3294315e91b5a49ad98377da086bb77145de067eec4110529b8522",
+      "id": "h49-traffic_services-11",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 2
+    },
+    {
+      "family": "traffic_services",
+      "goal": "اعرض قائمة السيارات المحجوزة",
+      "html_sha256": "ef894bc10f922abe6d55f8bcc3f9f3df0f49eba42de8edc0a2cc79a93a4e07bc",
+      "id": "h49-traffic_services-12",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 1
+    },
+    {
+      "family": "traffic_services",
+      "goal": "تحقق من سريان تغطية التأمين على سيارة",
+      "html_sha256": "686cce4c342628ff24c1f8aa050a8f571fcc500fdde8c93b0cee4daa0d9d8ec7",
+      "id": "h49-traffic_services-13",
+      "language": "ar",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 0
+    },
+    {
+      "family": "traffic_services",
+      "goal": "استعرض تفاصيل تسجيل سيارة",
+      "html_sha256": "f310e72c7c7cce7cd281a37f28dcc17435af93df29c127df010eb194cc2d08cb",
+      "id": "h49-traffic_services-14",
+      "language": "ar",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 5
+    },
+    {
+      "family": "traffic_services",
+      "goal": "افتح سجل المخالفات المرتبطة بالمرور",
+      "html_sha256": "88fd96678ebb6beacfeaddfbebcb5bf02dc774e48097cdc4a3788f249e2c7afd",
+      "id": "h49-traffic_services-15",
+      "language": "ar",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Open the demographic identity resource",
+      "html_sha256": "7d4b5449d6013b606fbd03267002514bc53f01bf82a210c17afd25fa604a6f26",
+      "id": "h49-fhir_resources-00",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Locate the summary of a diagnostic test report",
+      "html_sha256": "410bfb87ede2b4e2811014a0d42d94e8cf9f14ca57c72fc73911a67017566973",
+      "id": "h49-fhir_resources-01",
+      "language": "en",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the resource representing a measured value",
+      "html_sha256": "13204fd07d1d267b4ae22f4e4645b6b098eae830781fb3a2ec4b14e2dc26260a",
+      "id": "h49-fhir_resources-02",
+      "language": "en",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 0
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the healthcare professional resource",
+      "html_sha256": "e827466c17359e80ed195559bb2e753977df7fb6a792606ef6ae4460f9e740d9",
+      "id": "h49-fhir_resources-03",
+      "language": "en",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 5
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Locate the medication order resource",
+      "html_sha256": "a7f6ddb457e8d88621fcb07a7c24a7a5609853e3487ca8c4fab0623350ac5bcc",
+      "id": "h49-fhir_resources-04",
+      "language": "en",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 4
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the record of a healthcare visit",
+      "html_sha256": "fff8a0728a9a4a7a312a22d8ad428afcc3866a7d0b059c1c5181286a2f1bc60f",
+      "id": "h49-fhir_resources-05",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Open the demographic identity resource",
+      "html_sha256": "49e69f0bbebb63061ee7c8930b0954209edaf62e9b81f44cd4c836da51070bee",
+      "id": "h49-fhir_resources-06",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Locate the summary of a diagnostic test report",
+      "html_sha256": "7ae73b362579338176c9825d7c2db6f7caf5dfc0a940a657f827c2079c0ac46d",
+      "id": "h49-fhir_resources-07",
+      "language": "en",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the resource representing a measured value",
+      "html_sha256": "6625cf0b65d1352c5434fb6fbe39d9680aa16533bd5abb7d1d83e1a3f3b3c878",
+      "id": "h49-fhir_resources-08",
+      "language": "en",
+      "split": "train",
+      "target_index": 0,
+      "target_key": 0
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the healthcare professional resource",
+      "html_sha256": "89265bc8da699bdfd192107cc1cd405cb172b65241b0049f89b076a2227bffd6",
+      "id": "h49-fhir_resources-09",
+      "language": "en",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 5
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Locate the medication order resource",
+      "html_sha256": "de822b9d33abdcd1744fd53d0d4e86edd692e345b0342a9648c33e925335c7e6",
+      "id": "h49-fhir_resources-10",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the record of a healthcare visit",
+      "html_sha256": "582c97f3ffee2c16db6febd04ec38b2563be7344b8300b87f93581a8d8b93beb",
+      "id": "h49-fhir_resources-11",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 3
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Open the demographic identity resource",
+      "html_sha256": "56c5e58383c5821de46651daed958c6364588fc50e18f599219f199a0d0598c3",
+      "id": "h49-fhir_resources-12",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Locate the summary of a diagnostic test report",
+      "html_sha256": "261143edc4ebfe88f77bb03ca663e390bf602963f3ffee16fb7e8c811296f6db",
+      "id": "h49-fhir_resources-13",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the resource representing a measured value",
+      "html_sha256": "4ea80dbd9a1c02a339fe0a425f8f2274a049185c93b657e49dd7837fe0a92efb",
+      "id": "h49-fhir_resources-14",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 0
+    },
+    {
+      "family": "fhir_resources",
+      "goal": "Find the healthcare professional resource",
+      "html_sha256": "6c504c54a44c4f41180eff2bcc9682cab18303ce521a3662dc7bc36da4514681",
+      "id": "h49-fhir_resources-15",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 5
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Locate a FHIR message exchange package",
+      "html_sha256": "7d2246715e3dd1e2b82af6e7aab3c7a2637d15f178a753ccf4d70b8b2b9b8b02",
+      "id": "h49-fhir_bundles-00",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 3
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a composition-led clinical document package",
+      "html_sha256": "358ac0ec6250dddb5f96c0045847887f425fc36949fa44294eb9d87e0793b6e0",
+      "id": "h49-fhir_bundles-01",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a package of atomic resource changes",
+      "html_sha256": "4a952c8f04b44480be14a804d94fa01cc8b9ec2ab5e0c63c5738ae7ecda2a013",
+      "id": "h49-fhir_bundles-02",
+      "language": "en",
+      "split": "train",
+      "target_index": 2,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find the container for a search response",
+      "html_sha256": "c26d625b8271213ed6b5e3778804f5588dc300a0ab41f74cf6f0f34c2b0194da",
+      "id": "h49-fhir_bundles-03",
+      "language": "en",
+      "split": "train",
+      "target_index": 5,
+      "target_key": 0
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find the resource version history results",
+      "html_sha256": "6d39e0a66adaee99393afee064a3b96249e3dc5b7feba9163216dae9a81d3b63",
+      "id": "h49-fhir_bundles-04",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 5
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Open a group of independent resources",
+      "html_sha256": "79ac88bb4b038206f6a0e180ff3cf9095f53b910978bb68d67ad82bd96ccbb1f",
+      "id": "h49-fhir_bundles-05",
+      "language": "en",
+      "split": "train",
+      "target_index": 1,
+      "target_key": 4
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Locate a FHIR message exchange package",
+      "html_sha256": "46a453d0d5c78795cf2ac161ab7117983ca4767d384e31c0da044fd552458d84",
+      "id": "h49-fhir_bundles-06",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 3
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a composition-led clinical document package",
+      "html_sha256": "a85b36e4fe4b8253e402332d5e740bbb7cd62818615cfc83907001d5f4c1e250",
+      "id": "h49-fhir_bundles-07",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a package of atomic resource changes",
+      "html_sha256": "d65dd7d6cc2ab05056759630365391e12f636d238e24c39bef0603141b743cba",
+      "id": "h49-fhir_bundles-08",
+      "language": "en",
+      "split": "train",
+      "target_index": 0,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find the container for a search response",
+      "html_sha256": "f37589e68c7f320f99651a1e7cff0d655f96367b8033ee5342fb9a83e9c8b737",
+      "id": "h49-fhir_bundles-09",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 0
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find the resource version history results",
+      "html_sha256": "37c35dd13447a0694a5a01a0369eace09d9d78661aebfc9a8c159b479acc140e",
+      "id": "h49-fhir_bundles-10",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 5
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Open a group of independent resources",
+      "html_sha256": "54bf8a3aa8bfc8304ec406403d67b1261c2cc8ecfe9c72a19e8232f2aad7a0df",
+      "id": "h49-fhir_bundles-11",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 4
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Locate a FHIR message exchange package",
+      "html_sha256": "541b43a24e0b1ca573a2d5742edac44464804dc68ae5d3b9672774323ccf4d0e",
+      "id": "h49-fhir_bundles-12",
+      "language": "en",
+      "split": "train",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a composition-led clinical document package",
+      "html_sha256": "5e29d71d4ebfa891e375365c3fa9567c282f9848256fe7137669cdd827ba399f",
+      "id": "h49-fhir_bundles-13",
+      "language": "en",
+      "split": "train",
+      "target_index": 0,
+      "target_key": 2
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find a package of atomic resource changes",
+      "html_sha256": "ed2ea5a89c12528a3a700a5a2d38f82ffabd6d4db2635077983fe105ecc0c9df",
+      "id": "h49-fhir_bundles-14",
+      "language": "en",
+      "split": "train",
+      "target_index": 0,
+      "target_key": 1
+    },
+    {
+      "family": "fhir_bundles",
+      "goal": "Find the container for a search response",
+      "html_sha256": "7bafcd76c819c197d91daed1f4ad477fea30256b91ca526ad52aa7b74336126b",
+      "id": "h49-fhir_bundles-15",
+      "language": "en",
+      "split": "train",
+      "target_index": 3,
+      "target_key": 0
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اختر موعدًا للزيارة المكتبية",
+      "html_sha256": "ba5d6532cf7cfe411c21125b87daefe10301b5151b4cb2b3e0bedf66c7837aaf",
+      "id": "h49-municipal_portal-00",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 4
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "انتقل لتحديث بيانات الاتصال",
+      "html_sha256": "2b2b781f388f0df270f336a29630e7dd46243a526f52bf2ccadc31dcbc74d5e4",
+      "id": "h49-municipal_portal-01",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اعرض الرسم التخطيطي لقطعة أرض",
+      "html_sha256": "d7a16b8f6f24556f2e89550029298d75dac97beda78bbb28d5d32141f07fc227",
+      "id": "h49-municipal_portal-02",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 2
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "ابدأ رفع استمارة طلب تجريبي",
+      "html_sha256": "09f2f2f11a4bba58e3f6270fa969bda5f91f855080ee90e90a97869ec31457cd",
+      "id": "h49-municipal_portal-03",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3,
+      "target_key": 1
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "تحقق من حالة إذن موقع سابق",
+      "html_sha256": "5ecf518911b7322e99c35d46734f55c9a490150d72079de903106da08786c6d9",
+      "id": "h49-municipal_portal-04",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3,
+      "target_key": 0
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "راجع آخر رسائل حالة الموقع",
+      "html_sha256": "65e854c01f679f56b63a33b4dfc9bdf9d6cf096f339455591895477643765f1d",
+      "id": "h49-municipal_portal-05",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2,
+      "target_key": 5
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اختر موعدًا للزيارة المكتبية",
+      "html_sha256": "f255e7e707927f8e00fc533132daf130e2c8641b95ef40dcfff4ea6700605913",
+      "id": "h49-municipal_portal-06",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 4
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "انتقل لتحديث بيانات الاتصال",
+      "html_sha256": "b63b31fb69b11e43144260a806f46f551834f10cec5fa8140349f2ca8be71593",
+      "id": "h49-municipal_portal-07",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 4,
+      "target_key": 3
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اعرض الرسم التخطيطي لقطعة أرض",
+      "html_sha256": "68e9fb2a85c15a807857395374f5f74cf77910b888fa019cddf7a250b4dfa65d",
+      "id": "h49-municipal_portal-08",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 4,
+      "target_key": 2
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "ابدأ رفع استمارة طلب تجريبي",
+      "html_sha256": "ddb63f308aecd0f846dd377e8dbddcfb82776b69d91e78d453177a7c5b39b8f2",
+      "id": "h49-municipal_portal-09",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 3,
+      "target_key": 1
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "تحقق من حالة إذن موقع سابق",
+      "html_sha256": "f0c37e13b8d12271b3c46a7de8bc22d7eee34fa8e726e46b67c732302a09d2c1",
+      "id": "h49-municipal_portal-10",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 0
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "راجع آخر رسائل حالة الموقع",
+      "html_sha256": "2c6989414347877d52b62338cb3c5eed985e06762afc8e25be2675c9c4c23436",
+      "id": "h49-municipal_portal-11",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2,
+      "target_key": 5
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اختر موعدًا للزيارة المكتبية",
+      "html_sha256": "2b12dcd9f14e3c8e6209408226177b9a9e8d1e5b7b25fda9880b91dd9f319eab",
+      "id": "h49-municipal_portal-12",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2,
+      "target_key": 4
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "انتقل لتحديث بيانات الاتصال",
+      "html_sha256": "0ceb2993a530291fe2d76a9e903b21c1115b258d726d9609e774ffbae3dbe669",
+      "id": "h49-municipal_portal-13",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 3
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "اعرض الرسم التخطيطي لقطعة أرض",
+      "html_sha256": "6b851492d9bae6796f993076ecc3e9d3f189d0b7ab03196fab002dfe7260bc0b",
+      "id": "h49-municipal_portal-14",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 2,
+      "target_key": 2
+    },
+    {
+      "family": "municipal_portal",
+      "goal": "ابدأ رفع استمارة طلب تجريبي",
+      "html_sha256": "534e46d4d6be8896a0d97095f016e91609449680132f5ee5a41609d5709e0d15",
+      "id": "h49-municipal_portal-15",
+      "language": "ar",
+      "split": "dev",
+      "target_index": 0,
+      "target_key": 1
+    },
+    {
+      "family": "research_lab",
+      "goal": "Locate a supplies replenishment request",
+      "html_sha256": "08d47eac0105b25dad092bf9c44d89992f2432ba80afa6f1a868744c9b1d45e4",
+      "id": "h49-research_lab-00",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0,
+      "target_key": 5
+    },
+    {
+      "family": "research_lab",
+      "goal": "Inspect the laboratory quality review",
+      "html_sha256": "e0b7ec1eda3da0ae8f8ec383e625ceec689fbc3bf31b14e935bb0f658ff38eb9",
+      "id": "h49-research_lab-01",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 4
+    },
+    {
+      "family": "research_lab",
+      "goal": "Open the waiting list for an analyzer",
+      "html_sha256": "4daf521de6874e4e5b3e37b6d470750f899b0f4c86fec43d6f0b227410127c48",
+      "id": "h49-research_lab-02",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 3
+    },
+    {
+      "family": "research_lab",
+      "goal": "Review the current procedure revision",
+      "html_sha256": "faaa9179695d14052f2c52947992cb679febbbfb33f957a8e9f1f169eed677f4",
+      "id": "h49-research_lab-03",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 2
+    },
+    {
+      "family": "research_lab",
+      "goal": "Find the instrument calibration history",
+      "html_sha256": "7043c8b191c2276138428b281590190d82c403ece762dd61daf9b3faa8901420",
+      "id": "h49-research_lab-04",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 1
+    },
+    {
+      "family": "research_lab",
+      "goal": "Check the arrival record of a specimen",
+      "html_sha256": "0456c8330da2edc09695197c2877bb7b368385a55d75eecceffce37c84eb7c02",
+      "id": "h49-research_lab-05",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 0
+    },
+    {
+      "family": "research_lab",
+      "goal": "Locate a supplies replenishment request",
+      "html_sha256": "a4b6f18b37d87ee9275a8ebd2f547b72bd69c8a16827298e8a225012cc14a372",
+      "id": "h49-research_lab-06",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0,
+      "target_key": 5
+    },
+    {
+      "family": "research_lab",
+      "goal": "Inspect the laboratory quality review",
+      "html_sha256": "a1bb9600a81d9e4330eb03f76b11049a14eb194c5745934825c3880c40d7c47f",
+      "id": "h49-research_lab-07",
+      "language": "en",
+      "split": "dev",
+      "target_index": 4,
+      "target_key": 4
+    },
+    {
+      "family": "research_lab",
+      "goal": "Open the waiting list for an analyzer",
+      "html_sha256": "e26e1d133d341abcd8c1429877f19a6ad918869081823b6203114f500b32465d",
+      "id": "h49-research_lab-08",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 3
+    },
+    {
+      "family": "research_lab",
+      "goal": "Review the current procedure revision",
+      "html_sha256": "b6f4216b6dccf40fcadbb1393174397b8b44ed50994bcdff051675fa243edf72",
+      "id": "h49-research_lab-09",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 2
+    },
+    {
+      "family": "research_lab",
+      "goal": "Find the instrument calibration history",
+      "html_sha256": "74a9edf2ef905cc32b5a0e9a61a0890e42fff7d3275f6b32cd70dca1353318e6",
+      "id": "h49-research_lab-10",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 1
+    },
+    {
+      "family": "research_lab",
+      "goal": "Check the arrival record of a specimen",
+      "html_sha256": "2a8c23e86e42a7a6373c84d030a40651f302f0df4a191deb8e33bcebf0a9f94c",
+      "id": "h49-research_lab-11",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0,
+      "target_key": 0
+    },
+    {
+      "family": "research_lab",
+      "goal": "Locate a supplies replenishment request",
+      "html_sha256": "881e7ca113c0ff6df73bf413c51ea866c67f0d1cbef2da3c7a74953567315297",
+      "id": "h49-research_lab-12",
+      "language": "en",
+      "split": "dev",
+      "target_index": 1,
+      "target_key": 5
+    },
+    {
+      "family": "research_lab",
+      "goal": "Inspect the laboratory quality review",
+      "html_sha256": "7669c9582e765170c9188ee3b6c6836283ccbfcfea3995c5d62d4f78b9bf8525",
+      "id": "h49-research_lab-13",
+      "language": "en",
+      "split": "dev",
+      "target_index": 3,
+      "target_key": 4
+    },
+    {
+      "family": "research_lab",
+      "goal": "Open the waiting list for an analyzer",
+      "html_sha256": "5cc9cc4ae09bb36aef868db1fa103ebfa1855ccf7508b171df4fd3da87bbcda0",
+      "id": "h49-research_lab-14",
+      "language": "en",
+      "split": "dev",
+      "target_index": 0,
+      "target_key": 3
+    },
+    {
+      "family": "research_lab",
+      "goal": "Review the current procedure revision",
+      "html_sha256": "96aab06a133a5de28c4c49a0ab0baa893cf56ca4e8689ae28c1687437d1bfc19",
+      "id": "h49-research_lab-15",
+      "language": "en",
+      "split": "dev",
+      "target_index": 5,
+      "target_key": 2
+    }
+  ],
+  "schema": "hala.h49.original-offline-domain-grounding.v1",
+  "sources_for_vocabulary_only": {
+    "absher": "https://www.absher.sa/",
+    "fhir_bundle": "https://hl7.org/fhir/R4/bundle.html",
+    "fhir_observation": "https://hl7.org/fhir/R4/observation.html",
+    "najiz": "https://najiz.sa/applications/landing/"
+  },
+  "train": 64
+}

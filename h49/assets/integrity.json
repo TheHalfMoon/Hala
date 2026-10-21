@@ -1,0 +1,17 @@
+{
+  "arabic": 48,
+  "capture_sha256": "2bd300775bfa739dd7f88b2e1cbc2539fa9f47bdc015930b596460460b23fbf4",
+  "correct_click_replays": 96,
+  "dataset_sha256": "df242de75f52b0401c1767fc94bbc2e24e4d10a17b0a7174da0e599c89bfc8cd",
+  "english": 48,
+  "independent_blind_test": false,
+  "model_trained": false,
+  "public_dev": 32,
+  "real_service_access": false,
+  "schema": "hala.h49.original-edge-audit.v1",
+  "screenshots": 96,
+  "source_sha256": "b9498312f459a6f3f54891e9e8736a0042f4805ec561abc787c890b7f07019fb",
+  "train_examples": 64,
+  "visible_buttons": 576,
+  "wrong_target_rejections": 96
+}
