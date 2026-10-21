@@ -1,0 +1,1867 @@
+{
+  "schema": "hala.h50.original-browser-six-clicks.v1",
+  "source_sha256": "b9498312f459a6f3f54891e9e8736a0042f4805ec561abc787c890b7f07019fb",
+  "capture_sha256": "2bd300775bfa739dd7f88b2e1cbc2539fa9f47bdc015930b596460460b23fbf4",
+  "case_count": 64,
+  "click_count": 384,
+  "real_service_access": false,
+  "model_inference": false,
+  "cases": [
+    {
+      "html_sha256": "dbdd9aaee2d76a0b1e32dfde1ebddbc7c2c65b954faa28e21036918530e862aa",
+      "png_sha256": "103813573e011590522aa8346c0179cbc57e7d613f74dc3d2a92799df3605c07",
+      "source_id": "h49-justice_execution-00",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "2f2cbc1679b2f3294f6536a2a21a780f8034ac4fbd808606032d734146360330",
+      "png_sha256": "2c9a9c3d724d5777432aff1164af01600df0234296de4a13f6300c1373c6c0e4",
+      "source_id": "h49-justice_execution-01",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "f83b7044e87a2b31aee186eda84a780adf6ea0d7b453733eeffddd222c781ce8",
+      "png_sha256": "8d6626e51510cbeadb977532a21514669c744290f54400616dd1eb02d7ecabd7",
+      "source_id": "h49-justice_execution-02",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "3982308e8350d3b9090375f3d2f4f9105b284cc801abc49cf434d4e84c682dca",
+      "png_sha256": "c56b7b4f509809808eb792336992b6f4e18ff2c1ec435891ca671c4a5c9cf94e",
+      "source_id": "h49-justice_execution-03",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "5e7f0dc60c64e0d0e5a47559b6b33d253115836ddddd9b1cdb353fd5ae00214f",
+      "png_sha256": "e5cb21f8a6e8e6c35eb7ca5ba1268290818d961da1b108c34480bcfac58367ae",
+      "source_id": "h49-justice_execution-04",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "d68b694c3cc54eae28134c0f60a015c37b28988119cd00ade8acb63cd6df6abd",
+      "png_sha256": "b57f097e1b1777c088991d50b72d956f8d9350ea6364c6b7131bae168ba155ee",
+      "source_id": "h49-justice_execution-05",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "2aeeef4c6326f77d3c8feb800d6b1ee1826c7c54832d18b40edeacfd5c66955f",
+      "png_sha256": "b813a935feabe2ca0d339712e0b72ae65ed654200c78412072b0d573166f4195",
+      "source_id": "h49-justice_execution-06",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "e17e1a9c699266c1f0fcb1a0e4aa17c00d1dbacfcf14e3f51f6c4a8258b74950",
+      "png_sha256": "e37ad406c6a319753e007727bed9ef4fe08d4ba55050536ed738eba3f8be851c",
+      "source_id": "h49-justice_execution-07",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "1b1dba6157a3506323b5f1a05e7812676b3b1f83c485cf8a1d533682a52760f8",
+      "png_sha256": "65151e50ec84f95e3ae4203343d9f084bedb9d65b12525c34012ff4a0027c6cf",
+      "source_id": "h49-justice_execution-08",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "09c7ba58a7925eb9d1c322003b546aa5f9ab620fbf64d9ca91309869488ae9fd",
+      "png_sha256": "5dbdc43872f9a145f9f245a5eaf543a89bfa181c0bc9c9dc190acc5b989ef4b9",
+      "source_id": "h49-justice_execution-09",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "2f669f03f153e4d76bdad2860723edf6cb23b8e139f5a93bea0641a166c0b3e6",
+      "png_sha256": "6e5fdbf4f9a0d9c8478feb17e7c62aff5139cbaa55a24b84f5b9a5329ba6e955",
+      "source_id": "h49-justice_execution-10",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "b0c2bbec53c9ac0f2ef6ad646706402007629ffbb1a05c5df81d985c24884ea1",
+      "png_sha256": "7e02c66a39338cc448f75a4f2edbb806633ef0f4f9c9da97d6a3aecb836a5b5e",
+      "source_id": "h49-justice_execution-11",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "bb37538e3746c0762ea0949a7809a25acfc2fb2535f3eac15d255744affca807",
+      "png_sha256": "d47a8c9257eb44554f3b371d829bc10949ea6c725263274441a63eb570464cc1",
+      "source_id": "h49-justice_execution-12",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "9983226b43f77ead047d90c5548439f367f6269f70a6ba8c4b0d14e702f49ec3",
+      "png_sha256": "4252bea289f12f8ecae4089a5776f63c525a19d1cc882ce317288f0fadfb0f0e",
+      "source_id": "h49-justice_execution-13",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "643d3705f634b85c13b5046c50ba50d813b35a527b9f36d9c6fff1048537ae59",
+      "png_sha256": "a1fcdacda18d50c22814c3177e9f095aad148876a81e89593e7a7c5350cf47f9",
+      "source_id": "h49-justice_execution-14",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "f808e3fa3b0fec1fb355cc8aa19b07fb9a2072e42f6a6e2bf2ffe0fb66411a98",
+      "png_sha256": "b886d3044c76efb625df0c03de9c7d597981394d64264f1c2b3a9f462f80a2a0",
+      "source_id": "h49-justice_execution-15",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "8444db501cbc1f14dd675431a09f7457a0625098859d238b12fa85cb08117e17",
+      "png_sha256": "3d18222ab34dc7c128e02fda9c0a54abd02eb029e1a54f38d99339254e897d9b",
+      "source_id": "h49-traffic_services-00",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "484e69e44abfb41dfc248b7139dbb7535354ae60192346da7a9417ac8fefb96f",
+      "png_sha256": "3b89ac36db0316eda0f3322d4e578661d1a5795259ab4e83a40618fa58dd5b40",
+      "source_id": "h49-traffic_services-01",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "b55ebb3f791477b8c022baa23cf8c5ca7c656c09bdc8d32528de67fa8b4017a0",
+      "png_sha256": "6b9a4dc8b26fe3fd3759ecb593f7ec88a0ba73fa81d0183b9c68aadc2ad907b0",
+      "source_id": "h49-traffic_services-02",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "0e8ae42e018b49e9038797e4c70120854de21fc86b372f3442dd52296fd15eb8",
+      "png_sha256": "bec30c849b46ba3afa53ed5d37b82d1b7035b7f4a570892a649eaefd396db772",
+      "source_id": "h49-traffic_services-03",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "43d10c112ba565a81df2ba4cc6583a2b0b396711d7bc70b62005302c3e6cb442",
+      "png_sha256": "1e7406aaf879ea8554bf1d2fd938958d67f51abdae74d950c3d4f9788263db62",
+      "source_id": "h49-traffic_services-04",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "a126f55eac17ede913b802b8bfcfe00fe9af92f4b40be8b86ea2a1e0afc6a964",
+      "png_sha256": "f0bdc64584ef10abf9a82b4d0d2ffa182ef0fbf739e94316ec118ff90d3260df",
+      "source_id": "h49-traffic_services-05",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "4f86384fa063e35bf04bb7daad2207955655c2214fba009f0614305f6edeffdd",
+      "png_sha256": "9cfddca7cf2604437e57b3ce54f84f9f4c15e9e784c90b3176194838b93b7ac3",
+      "source_id": "h49-traffic_services-06",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "ff797a574d4a9b2eb912b173065205be579298df967cee1c20caae60d5b22b1c",
+      "png_sha256": "cc31ebbf731e62179491aee54883d101a923280ac77242d81ecb212c0228e29d",
+      "source_id": "h49-traffic_services-07",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "7a7fcab91b49d5a3e6406071f44aaab264b78ede8a6fc02c8e9faa588f6138b1",
+      "png_sha256": "e879075fb1a22b562ba8c1f32f98dc18607af58b2f5b0b132557e371438a15c9",
+      "source_id": "h49-traffic_services-08",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "c4341e1f5c5797626c3b67bd226f5eea47e68840b62123dc092c2b33e72da293",
+      "png_sha256": "9c1a6d424d7dd09b445b46f7f96debea2853746e1ea41d274bb56a70fd0a64a3",
+      "source_id": "h49-traffic_services-09",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "8852aad236f640621aa7ecd649e8dad0837740feb33d7454110aab09af0cd0f8",
+      "png_sha256": "4101158ab5300aaa1196c2436aebae6b5a75fe8b02d924916f81e56a4e326a13",
+      "source_id": "h49-traffic_services-10",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "b4f451adff3294315e91b5a49ad98377da086bb77145de067eec4110529b8522",
+      "png_sha256": "ce77d50205786a13b9c2afce837002b0d748d20772ea8e6f39278b1b9a6515c5",
+      "source_id": "h49-traffic_services-11",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "ef894bc10f922abe6d55f8bcc3f9f3df0f49eba42de8edc0a2cc79a93a4e07bc",
+      "png_sha256": "04b1a22420f71a01d7dc055536bbe4f8f9541e5baa6e357d3ccdc740394741f5",
+      "source_id": "h49-traffic_services-12",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "686cce4c342628ff24c1f8aa050a8f571fcc500fdde8c93b0cee4daa0d9d8ec7",
+      "png_sha256": "c4b678a16aa790229df4a2575cb9fffc2d831fddf8ee27982ffa95a08ef4eacb",
+      "source_id": "h49-traffic_services-13",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "f310e72c7c7cce7cd281a37f28dcc17435af93df29c127df010eb194cc2d08cb",
+      "png_sha256": "4bf3cbfde54f8cc79111e713fa5c53391caaed531ee5fb7438158d46117132bc",
+      "source_id": "h49-traffic_services-14",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "88fd96678ebb6beacfeaddfbebcb5bf02dc774e48097cdc4a3788f249e2c7afd",
+      "png_sha256": "3c1289a31e44ecacb20386f9d89dc69343a1d38af8f5e8e0fbed0622b3678064",
+      "source_id": "h49-traffic_services-15",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "7d4b5449d6013b606fbd03267002514bc53f01bf82a210c17afd25fa604a6f26",
+      "png_sha256": "4269ed44d89fd5d1ade9180ae5f4ad293c0d575afc97b1fc3031afc1b66f5ef7",
+      "source_id": "h49-fhir_resources-00",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "410bfb87ede2b4e2811014a0d42d94e8cf9f14ca57c72fc73911a67017566973",
+      "png_sha256": "445dff65d48a0f317f6f42f540a4bfd68ea76b19724d2994b3439bbda19f8d21",
+      "source_id": "h49-fhir_resources-01",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "13204fd07d1d267b4ae22f4e4645b6b098eae830781fb3a2ec4b14e2dc26260a",
+      "png_sha256": "460e809aa0daca28c9df8ea872f45b82808200c06915df342c98613ca46bb668",
+      "source_id": "h49-fhir_resources-02",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "e827466c17359e80ed195559bb2e753977df7fb6a792606ef6ae4460f9e740d9",
+      "png_sha256": "ebef9e2b26c9c6c394546bb1c38ed1c92936757c13f881f953ece0a537c77c7d",
+      "source_id": "h49-fhir_resources-03",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "a7f6ddb457e8d88621fcb07a7c24a7a5609853e3487ca8c4fab0623350ac5bcc",
+      "png_sha256": "49357c7657eaac8e20a81dd5496d62b9a3776f274b3aaa65c92b7163eb1696e9",
+      "source_id": "h49-fhir_resources-04",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "fff8a0728a9a4a7a312a22d8ad428afcc3866a7d0b059c1c5181286a2f1bc60f",
+      "png_sha256": "7a81d7a5719715cf0c31abf916f27eaf536d74b8184a33d033f14346a2803c7b",
+      "source_id": "h49-fhir_resources-05",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "49e69f0bbebb63061ee7c8930b0954209edaf62e9b81f44cd4c836da51070bee",
+      "png_sha256": "69dd95f9976d4e1762d67be152d6e3142585d339284ca813723e083ed256bdb9",
+      "source_id": "h49-fhir_resources-06",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "7ae73b362579338176c9825d7c2db6f7caf5dfc0a940a657f827c2079c0ac46d",
+      "png_sha256": "4e43727ebb97a7da3daa237978846418e94c81e8b979b2649cd44a96c12c3a8a",
+      "source_id": "h49-fhir_resources-07",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "6625cf0b65d1352c5434fb6fbe39d9680aa16533bd5abb7d1d83e1a3f3b3c878",
+      "png_sha256": "e7a4ba0d25229cfb7609fb4dd833917e4d46bb4c67b66ae150b5fd871a55080e",
+      "source_id": "h49-fhir_resources-08",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "89265bc8da699bdfd192107cc1cd405cb172b65241b0049f89b076a2227bffd6",
+      "png_sha256": "87ae9708687b768b669f6308191ce50e0093e0b1e0324ba173df765513cc2762",
+      "source_id": "h49-fhir_resources-09",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "de822b9d33abdcd1744fd53d0d4e86edd692e345b0342a9648c33e925335c7e6",
+      "png_sha256": "028e5d142ad290ad8ccfefee1fd3cf5e90d803a214abf73c2845f0d96525c483",
+      "source_id": "h49-fhir_resources-10",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "582c97f3ffee2c16db6febd04ec38b2563be7344b8300b87f93581a8d8b93beb",
+      "png_sha256": "22db7b130a646740b465ab252e0e180e3f6626e1d95585ab13bd2194237050ea",
+      "source_id": "h49-fhir_resources-11",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "56c5e58383c5821de46651daed958c6364588fc50e18f599219f199a0d0598c3",
+      "png_sha256": "be19f51a605cc2e77b9438966c052bba068a28004cd8f5982276244588a3e7cf",
+      "source_id": "h49-fhir_resources-12",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "261143edc4ebfe88f77bb03ca663e390bf602963f3ffee16fb7e8c811296f6db",
+      "png_sha256": "ff7515f39a1fdbd41d7b930bc38631e43130fb5bb1d164ad32292e6b4f584443",
+      "source_id": "h49-fhir_resources-13",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "4ea80dbd9a1c02a339fe0a425f8f2274a049185c93b657e49dd7837fe0a92efb",
+      "png_sha256": "ce7748b048da7ca6675498e9c36148729ed9a49daa6ba64cdfc1ad1b922ba2f6",
+      "source_id": "h49-fhir_resources-14",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "6c504c54a44c4f41180eff2bcc9682cab18303ce521a3662dc7bc36da4514681",
+      "png_sha256": "c4d3b88dc62c26aee79dd75f9350905039cddba358f743e35f1fcc07bec59af4",
+      "source_id": "h49-fhir_resources-15",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "7d2246715e3dd1e2b82af6e7aab3c7a2637d15f178a753ccf4d70b8b2b9b8b02",
+      "png_sha256": "e95421192ca1296a49a93950c79a5fe9c921928c495fc166afb4a00aeda7b1e0",
+      "source_id": "h49-fhir_bundles-00",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "358ac0ec6250dddb5f96c0045847887f425fc36949fa44294eb9d87e0793b6e0",
+      "png_sha256": "d858137999982898851a250f59e2a2971064f25f8fe1d6c30d7bfd045e5c385a",
+      "source_id": "h49-fhir_bundles-01",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "4a952c8f04b44480be14a804d94fa01cc8b9ec2ab5e0c63c5738ae7ecda2a013",
+      "png_sha256": "a14a11bd414360231405cd942c5c5a77dfe325d434efb792845c0a33f1202719",
+      "source_id": "h49-fhir_bundles-02",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "c26d625b8271213ed6b5e3778804f5588dc300a0ab41f74cf6f0f34c2b0194da",
+      "png_sha256": "8c6620d822b528acc3ef359091f883997e1c1845e7d850cb182e30bb5bb8413e",
+      "source_id": "h49-fhir_bundles-03",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "6d39e0a66adaee99393afee064a3b96249e3dc5b7feba9163216dae9a81d3b63",
+      "png_sha256": "b14b7beb15d7d4a59dac877b67573664ab6ec75681058a1e2331d9fed2d9cc23",
+      "source_id": "h49-fhir_bundles-04",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "79ac88bb4b038206f6a0e180ff3cf9095f53b910978bb68d67ad82bd96ccbb1f",
+      "png_sha256": "496132195ea2f182bffb73716bc0d01da9da4bc621a832becd9242854bee2d29",
+      "source_id": "h49-fhir_bundles-05",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "46a453d0d5c78795cf2ac161ab7117983ca4767d384e31c0da044fd552458d84",
+      "png_sha256": "0a33eebd9a13b7f98fdf0ba3e9832d6b8236bd5a9ebad75586d60c81c15da28e",
+      "source_id": "h49-fhir_bundles-06",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "a85b36e4fe4b8253e402332d5e740bbb7cd62818615cfc83907001d5f4c1e250",
+      "png_sha256": "0074d4ac6689b84940e593a06e6fb3f46c9a758e31f0b66f7aa874699bf2ec31",
+      "source_id": "h49-fhir_bundles-07",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "d65dd7d6cc2ab05056759630365391e12f636d238e24c39bef0603141b743cba",
+      "png_sha256": "fb7f9865d6aaf3884572e6b19d57e848902296dc3e0d671a6685f8bb3e0d816a",
+      "source_id": "h49-fhir_bundles-08",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "f37589e68c7f320f99651a1e7cff0d655f96367b8033ee5342fb9a83e9c8b737",
+      "png_sha256": "ec04e8d77a64b4ba27bee68aa9eeb374aac065c06918bbd3bd0a5f1ef50bc01b",
+      "source_id": "h49-fhir_bundles-09",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "37c35dd13447a0694a5a01a0369eace09d9d78661aebfc9a8c159b479acc140e",
+      "png_sha256": "675fe7ff5737ecf23916b6fe37539213950258ca5ba3a92b072ba42f3ff7e862",
+      "source_id": "h49-fhir_bundles-10",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "54bf8a3aa8bfc8304ec406403d67b1261c2cc8ecfe9c72a19e8232f2aad7a0df",
+      "png_sha256": "d612c91c77eb2a23806294560d9c4ee58d716bcea50459aedf4901fc9d95e5ec",
+      "source_id": "h49-fhir_bundles-11",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "541b43a24e0b1ca573a2d5742edac44464804dc68ae5d3b9672774323ccf4d0e",
+      "png_sha256": "ab5e62e1851a4ba7df1405d2ffdf47a4b3f098b0d3d6182b2492b59e65efd1df",
+      "source_id": "h49-fhir_bundles-12",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "5e29d71d4ebfa891e375365c3fa9567c282f9848256fe7137669cdd827ba399f",
+      "png_sha256": "081f41f29ed6be654fdc88b860b98159107c2272ed37a1fc8a42a1b91aa5aaa6",
+      "source_id": "h49-fhir_bundles-13",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "ed2ea5a89c12528a3a700a5a2d38f82ffabd6d4db2635077983fe105ecc0c9df",
+      "png_sha256": "6e2b7e356585ecdf226e59e6411cc86a50f5e5fd2d2123d6491a2aab771f2519",
+      "source_id": "h49-fhir_bundles-14",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "html_sha256": "7bafcd76c819c197d91daed1f4ad477fea30256b91ca526ad52aa7b74336126b",
+      "png_sha256": "308dce7fcc92dc73da7452551c908b93a5cbf2386a3b6a1818f587ed5507dfaa",
+      "source_id": "h49-fhir_bundles-15",
+      "clicked_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selected_keys": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "click_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ]
+}

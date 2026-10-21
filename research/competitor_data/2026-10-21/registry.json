@@ -1,0 +1,206 @@
+{
+  "schema": "hala.competitor-data-source-registry.v1",
+  "researched_on": "2026-10-21",
+  "mode": "metadata_research_only",
+  "downloaded_raw_data": false,
+  "ran_training": false,
+  "benchmarks_test_reserved": true,
+  "disclosure": "Owner asserts additional private source-copy permissions, not verified in this research; no private grant documents are required in GitHub. Dataset-specific rights and privacy review still apply.",
+  "sources": [
+    {
+      "id": "hcompany-holo4-benchmark-traces",
+      "repo": "Hcompany/trajectories",
+      "url": "https://huggingface.co/datasets/Hcompany/trajectories",
+      "organization": "Hcompany",
+      "family": "Holo4",
+      "declared_license": "apache-2.0",
+      "repository_role": "benchmark-evaluation-traces",
+      "allowed_use": "analyze_only",
+      "published_size": "7366 benchmark trajectories; 2.74 GB",
+      "splits": [
+        "test"
+      ],
+      "training_partition": [],
+      "benchmark_overlap": [
+        "OSWorld",
+        "OSWorld2",
+        "AndroidWorld",
+        "AutomationBench",
+        "PinchBench",
+        "AgentsLastExam"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "QUARANTINE_BENCHMARK_TEST",
+      "source_note": "These are Holo4 evaluation trajectories, NOT the complete private Agentic Task Factory training corpus. Never SFT/RL/teacher-distill on them while claiming uncontaminated related benchmark scores.",
+      "citations": [
+        "https://huggingface.co/datasets/Hcompany/trajectories/blob/main/README.md",
+        "https://huggingface.co/blog/hcompany/holo4"
+      ]
+    },
+    {
+      "id": "hcompany-dragon-train",
+      "repo": "Hcompany/DragOn",
+      "url": "https://huggingface.co/datasets/Hcompany/DragOn",
+      "organization": "Hcompany",
+      "family": "DragOn",
+      "declared_license": "apache-2.0",
+      "repository_role": "training-and-public-evaluation",
+      "allowed_use": "candidate_train_after_audit",
+      "published_size": "286012 training images; 3560142 train tasks; 1000 public eval; 61.5 GB",
+      "splits": [
+        "train",
+        "eval"
+      ],
+      "training_partition": [
+        "train"
+      ],
+      "benchmark_overlap": [
+        "DragOn"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "CANDIDATE_NOT_IMPORTED",
+      "source_note": "TRAIN tar only, never public eval/test. Drag start/end bbox and ordered endpoint fields require a drag action schema; do not mislabel as click-only SFT.",
+      "citations": [
+        "https://huggingface.co/datasets/Hcompany/DragOn",
+        "https://hcompany.ai/research/publications"
+      ]
+    },
+    {
+      "id": "opencua-agentnet",
+      "repo": "xlangai/AgentNet",
+      "url": "https://huggingface.co/datasets/xlangai/AgentNet",
+      "organization": "xlang-ai",
+      "family": "OpenCUA",
+      "declared_license": "mit",
+      "repository_role": "human-demonstration-training-data",
+      "allowed_use": "candidate_train_after_audit",
+      "published_size": "22600 tasks across Windows macOS Linux; approximately 200 GB",
+      "splits": [
+        "train"
+      ],
+      "training_partition": [
+        "train"
+      ],
+      "benchmark_overlap": [
+        "AgentNetBench"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "CANDIDATE_NOT_IMPORTED",
+      "source_note": "Human demos. Screen for PII, credential and source software rights, app/episode split, platform metadata and train-vs-AgentNetBench overlap before inclusion. Do not bulk download to Windows.",
+      "citations": [
+        "https://github.com/xlang-ai/OpenCUA",
+        "https://huggingface.co/datasets/xlangai/AgentNet",
+        "https://huggingface.co/datasets/xlangai/AgentNet/blob/main/LICENSE.txt"
+      ]
+    },
+    {
+      "id": "guiodyssey-v2",
+      "repo": "hflqf88888/GUIOdyssey",
+      "url": "https://huggingface.co/datasets/hflqf88888/GUIOdyssey",
+      "organization": "OpenGVLab",
+      "family": "GUI-Odyssey",
+      "declared_license": "cc-by-4.0",
+      "repository_role": "cross-app-mobile-trajectories",
+      "allowed_use": "candidate_train_after_audit",
+      "published_size": "8334 episodes; 127893 screenshots reported",
+      "splits": [
+        "all",
+        "task_split",
+        "device_split",
+        "app_split"
+      ],
+      "training_partition": [
+        "verified_official_app_split_train"
+      ],
+      "benchmark_overlap": [
+        "GUIOdyssey"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "CANDIDATE_NOT_IMPORTED",
+      "source_note": "Never treat all_annot.json as wholly training. Pin official app split and exclude all evaluation devices/apps/episodes; retain CC BY 4.0 attribution and confirm screenshot rights.",
+      "citations": [
+        "https://huggingface.co/datasets/hflqf88888/GUIOdyssey",
+        "https://github.com/OpenGVLab/GUI-Odyssey"
+      ]
+    },
+    {
+      "id": "screenref",
+      "repo": "PrentisAI/ScreenRef",
+      "url": "https://huggingface.co/datasets/PrentisAI/ScreenRef",
+      "organization": "PrentisAI",
+      "family": "GroundGUI",
+      "declared_license": "restricted-research-only",
+      "repository_role": "gated-grounding-data",
+      "allowed_use": "research_metadata_only",
+      "published_size": "GUI screenshot/refusal annotations; gated",
+      "splits": [
+        "train",
+        "eval"
+      ],
+      "training_partition": [],
+      "benchmark_overlap": [
+        "ScreenSpot-Pro",
+        "ScreenSpot-V2"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "QUARANTINE_RESTRICTED_DATA",
+      "source_note": "Academic Research only, no redistribution; do not import images, annotation file, or models trained on dataset into generally releasable Hala. Study published architecture and curriculum concepts only.",
+      "citations": [
+        "https://huggingface.co/datasets/PrentisAI/ScreenRef",
+        "https://github.com/PrentisAI/GroundGUI"
+      ]
+    },
+    {
+      "id": "holo4-private-task-factory",
+      "repo": null,
+      "url": "https://huggingface.co/blog/hcompany/holo4",
+      "organization": "Hcompany",
+      "family": "Holo4",
+      "declared_license": "unpublished-private-training-dataset",
+      "repository_role": "internal-unreleased-training",
+      "allowed_use": "research_metadata_only",
+      "published_size": "not publicly enumerated",
+      "splits": [],
+      "training_partition": [],
+      "benchmark_overlap": [],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "UNAVAILABLE_NO_PUBLIC_DATA",
+      "source_note": "Holo4 model weights and test trajectories are public; Agentic Task Factory SFT/RL training corpus not established as published. Do not represent test trajectories as its train data.",
+      "citations": [
+        "https://huggingface.co/blog/hcompany/holo4"
+      ]
+    },
+    {
+      "id": "showui-web",
+      "repo": "ZhuOnR/ShowUI_Web",
+      "url": "https://huggingface.co/datasets/ZhuOnR/ShowUI_Web",
+      "organization": "ShowUI",
+      "family": "ShowUI",
+      "declared_license": "verify-upstream",
+      "repository_role": "web-grounding-candidate",
+      "allowed_use": "research_metadata_only",
+      "published_size": "21988 web screenshots (per card)",
+      "splits": [
+        "train"
+      ],
+      "training_partition": [],
+      "benchmark_overlap": [
+        "ShowUI"
+      ],
+      "third_party_rights_review": true,
+      "privacy_review": true,
+      "release_use_status": "QUARANTINE_UPSTREAM_LICENSE_REVIEW",
+      "source_note": "Mirror/repackaged dataset metadata must not substitute for upstream screenshot rights. Verify original showlab/ShowUI-web license, provenance, and per-image rights before any download/training.",
+      "citations": [
+        "https://huggingface.co/datasets/ZhuOnR/ShowUI_Web",
+        "https://github.com/showlab/ShowUI"
+      ]
+    }
+  ]
+}

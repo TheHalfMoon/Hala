@@ -1,0 +1,52 @@
+# Hala — Competitor Data REA and Source-First Admission Study
+**Source audit date: 2026-10-21 · All tool/code/docs in English · No download, model training, rights clearance or legal opinion.**
+
+## Bottom line
+
+Use publicly published *training* data from OpenCUA/AgentNet, Hcompany/DragOn and GUI Odyssey **after** pinning an immutable release and auditing privacy, provenance, benchmarks and split rights. Reuse high-quality permissively licensed annotation infrastructure, evaluation techniques and training recipes rather than rebuilding. Do **not** quietly train on Holo4's benchmark trajectories: they are **test/evaluation rollouts**, not the unreleased private Agentic Task Factory training corpus, and their use to optimize for OSWorld, AndroidWorld and related benchmarks invalidates independent leaderboard comparisons. Do not conflate public Holo4 35B-A3B model weights (Apache-2.0) with rights to any unpublished source data. A statement by the founder that there are additional private permissions is preserved as a founder assertion, not fabricated third-party clearance. No sensitive grant documents are requested or embedded here.
+
+## Priority order and exact source decisions
+
+1. **OpenCUA / AgentNet** — `xlangai/AgentNet`, MIT per authors, 22.6K human-demonstrated trajectories over Windows, macOS and Linux; reported 200 GB including screenshot assets. BEST candidate for long-horizon state-action trajectories, action recovery and mixed UI workflows. Need source SHA, explicit original TRAIN partition, third-party screenshot/software/PII review, app/episode-level contamination check against AgentNetBench. Source: https://github.com/xlang-ai/OpenCUA and https://huggingface.co/datasets/xlangai/AgentNet . Commercially permissive MIT claims apply to dataset publication; users still must inspect individual screenshots' third-party rights.
+2. **Hcompany DragOn** — `Hcompany/DragOn`, Apache-2.0 dataset card, **286,012 training images and 3,560,142 start/end drag-box training tasks**, four domains: text highlighting, spreadsheet cell selections, resizing/rotation/cropping and sliders; separate public 1,000-example eval and private test. Approximately 61.5 GB. Best specifically for drag action and spatial precision. **Use `train/` only**, never `eval/` or any future test. This data was published by Hcompany, but the card alone does **not** show it was part of Holo4's own training. Source: https://huggingface.co/datasets/Hcompany/DragOn .
+3. **GUI Odyssey (updated)** — `hflqf88888/GUIOdyssey`, CC BY 4.0, 8,334 cross-app mobile episodes and 127,893 screenshots documented. Has app/task/device splits. Consider only verified official **app-disjoint TRAIN** episodes; never the entire `all_annot.json` as training, and preserve attribution. Confirm upstream screenshot rights before copying for any eventual commercial model. Source: https://huggingface.co/datasets/hflqf88888/GUIOdyssey and https://github.com/OpenGVLab/GUI-Odyssey .
+4. **Hcompany Holo4 benchmark trajectories** — `Hcompany/trajectories`, Apache-2.0 wrapper with **7,366 evaluation run trajectories** and upstream OSWorld/OSWorld 2/AndroidWorld/AutomationBench/PinchBench/Agents' Last Exam content under their respective licenses, approximately 2.74 GB. **TRAIN=DENY; ANALYSIS ONLY**, including avoiding imitation or teacher-distillation into any Hala training set intended to be evaluated on those benchmarks. Can review error categories, latency/step structure, harness behavior and published performance without exporting screenshot/actions to SFT. These rollouts are NOT the full Holo4 SFT/RL Agentic Task Factory source dataset. Source: https://huggingface.co/datasets/Hcompany/trajectories and https://huggingface.co/blog/hcompany/holo4 .
+5. **GroundGUI / ScreenRef** — Gated Restricted Research-Only dataset, no redistribution, academic restrictions; **QUARANTINE** from any future generally releasable/commercial Hala training, even if code/model have different Apache-2.0 terms. Study public SFT and post-training recipe concepts only. https://huggingface.co/datasets/PrentisAI/ScreenRef and https://github.com/PrentisAI/GroundGUI .
+6. **ShowUI / UI-TARS** — Code and individual sample examples can inform architecture and benchmark harnesses, but **full reusable rights-cleared training corpus was not verified**. ShowUI web mirror imagery may contain proprietary third-party page screenshots. UI-TARS `training_example.json` is a sample, not proof of public release of all training traces. Candidate status RESEARCH ONLY until exact upstream datasets and rights independently confirmed. https://github.com/bytedance/UI-TARS and https://github.com/showlab/ShowUI .
+
+## Hala training architecture proposed (not executed)
+
+**Phase A: licensing and lineage.** Work from an official repo SHA, original manifest and source blob SHA256. Preserve dataset/provider title, original license and notices, citations, retrieval URL, task language and source application, episode ID, content hash and original train split. For any user-asserted additional private grant, reference an opaque founder-held authorization identifier if desired; never request private grant text or pretend we independently reviewed it. Hard-block source-specific evaluation, restricted and disputed content. Review PII/credentials/copyright at actual *image* level, not just dataset-level README.
+
+**Phase B: supervised recipe.** Reuse H49/H50 training-only original Arabic fictional service scenarios and English FHIR scenarios, add safely sourced AgentNet human trajectories (step selection, end-to-end success, correction) and drag-only DragOn episodes with a **proper drag schema and end-point semantics**. Add GUI Odyssey as a distinct app-level split only after the upstream partition is pinned and reviewed. Do not force drag actions into the existing click JSON or mix model/OCR coordinate spaces. Use strata for click, type, scroll, drag, visually absent target/abstention and recovery. Prioritize genuinely novel screenshot/application diversity, not more labels on duplicate screenshot pixels.
+
+**Phase C: comparison.** Freeze a real unchanged-model baseline and train equivalent H49 64-label vs H50 384-label vs source-enriched adapters on genuinely available **free authorized GPU** with version-matched steps, seed/optimizer/processor and compute budgets. Evaluate Arabic, English and GUI-only versus GUI+tools separately. No official evaluation benchmark task/screenshot from Hcompany/trajectories, AgentNetBench TEST, GUI Odyssey TEST, OSWorld/OSWorld V2, ScreenSpot-Pro, DragOn EVAL or ScreenRef may enter fine-tuning/teacher reward. Compare exact end-to-end task success, target accuracy, wrong-target recovery, abstention, latency, GPU memory and cost, preserving all negative runs in signed GitHub.
+
+**Phase D: release.** Require actual independent app-disjoint held-out/private TEST, license/attribution review, no training-eval leakage audit and repeatable GPU evidence before any claim that Hala beats Holo4/UI-TARS/OpenCUA. Holo4's benchmark result trajectories are used only to understand evaluation methodology.
+
+## Implemented in this planning increment
+
+- `research/competitor_data/2026-10-21/registry.json` — machine-readable **metadata-only** source inventory with training/eval/restricted partitions and rights review status.
+- `training/external_data_guard.py` — offline fail-closed gate; **does not fetch, store or train**. Blocks benchmark-only and restricted content, unpinned upstream SHA, missing original blob digest, incorrect split, missing per-source attestations, duplicate screenshot identity, benchmark test marker and unverified record shape.
+- `tests/test_external_data_guard.py` — deliberate fake-only proofs of rejection and explicit metadata-only output; neither trainer ingestion nor source licenses are deemed qualified by passing these tests.
+
+```bash
+python -m training.external_data_guard --list
+python -m unittest tests.test_external_data_guard -v
+```
+
+No external bytes were downloaded, streamed or uploaded. All source datasets remain **CANDIDATES / QUARANTINED**. The explicit attestations accepted by the metadata function represent unverified operator claims and cannot be used as independent legal/privacy clearance. Training remains gated on actual verified source bytes, provenance and an allowed GPU. Future implementation should implement a separate audited converter per dataset and retain the real source-level legal and privacy evidence in GitHub with secrets redacted, not modify the immutable H14/H47 source manifests.
+
+## Main risk to the project
+
+There is no direct proof that Hcompany's publicly released DragOn or benchmark trajectories are identical to the proprietary/internal Holo4 training set. **Do not label them 'Holo4 training data'** in public documentation. Holo4 used SFT/RL and Agentic Task Factory; the full internal corpus has not been shown publicly available. The high-value strategy is to adapt similarly structured rights-cleared training trajectories, not to report an unproven copy of the same training set.
+
+No new model-quality score is claimed and H46 actual 0/8 negative evidence is unchanged. Existing Kaggle H47 job stays queued; never duplicate a submission.
+
+## 2026-10-21 exact source local engineering qualification
+
+Signed source-head `798d17a2a6a712e7bda3a62ca47838e69b460594` on existing Draft PR #37 passed actual Windows source tests: **622 total, 620 passed, 2 existing skipped, 0 failures/errors** (`python -m unittest discover -s tests -q`, exit 0; 383.324 seconds). Original `reviews/external-data-guard-full-suite-20261021.log` SHA256 `14625672cc9eff3be1e042a5f026f0a1c7ff1ef11fd643453480ce6664ebe66d`.
+
+Source-specific admission guard **11/11 focused PASS**, original `reviews/external-data-guard-focused-20261021.log` SHA256 `b1b5b027885dfbb43a2a871c91e24b165a6de575e52c4326f420dd5c45862b39`. Genuine Graft wiring-only `build/check` PASS, **1,928 nodes, 5,190 edges, 234 files**; original check log SHA256 `09f01e8dd8676380365decbab1ea800b35448debfcba68ed9e2d54e1e58e9e91`. Graft deep semantic meaning layer NOT performed; independent D1/PStack/Alibaba model review NOT claimed.
+
+**Hosted GitHub CI must be verified against the final exact signed evidence commit**. Two Python 3.11/3.12 push jobs on initial source head had succeeded when checked, while two PR jobs remained queued. Neither partial hosted CI nor these CPU tests attest actual training, source license/PII clearance, model accuracy or benchmark performance.
