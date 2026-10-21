@@ -148,7 +148,7 @@ def wait_for_dataset(ref: str, token: str, timeout: float = 3600.0) -> dict[str,
     raise TimeoutError(f"provider never published a file listing for {ref}: {len(last)}")
 
 
-def wait_until_visible(ref: str, token: str, timeout: float = 1800.0) -> dict:
+def wait_until_visible(ref: str, token: str, timeout: float = 7200.0) -> dict:
     """Wait until the provider serves the freshly created dataset.
 
     A dataset that was just created is not immediately readable through the
@@ -204,7 +204,7 @@ class ProviderNotReady(RuntimeError):
     """The provider holds the dataset but cannot serve its content yet."""
 
 
-def download_dataset(ref: str, destination: Path, token: str, timeout: float = 3600.0) -> Path:
+def download_dataset(ref: str, destination: Path, token: str, timeout: float = 7200.0) -> Path:
     """Stream the provider dataset archive to disk with backoff.
 
     A freshly published dataset becomes *visible* before its expanded content
