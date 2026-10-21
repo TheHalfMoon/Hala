@@ -35,10 +35,11 @@ class RemoteInferenceAdmissionTests(unittest.TestCase):
             self.assertFalse(output.exists())
 
     def test_missing_free_colab_confirmation_is_not_treated_as_free_gpu(self):
-        # An affirmative flag on this Windows host cannot bypass platform gate.
+        # Deny missing free-tier confirmation on both Linux CI and Windows.
+        # Never assume CI runs on Windows or impersonate a paid runtime.
         from unittest.mock import patch
         with patch.dict("os.environ",{"HALA_H49_FREE_COLAB_RESEARCH":"1",
-                   "HALA_H49_NO_PAID_RUNTIME_CONFIRMED":"1",
+                   "HALA_H49_NO_PAID_RUNTIME_CONFIRMED":"0",
                    "COLAB_RELEASE_TAG":"UNIT_TEST"},clear=False):
             with self.assertRaises(RuntimeError):
                 infer.admit_environment()
