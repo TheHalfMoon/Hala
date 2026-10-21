@@ -429,5 +429,34 @@
       "model_weights_trained": false,
       "official_benchmark_comparison_qualified": false
     }
+  ],
+  "source_maps": [
+    {
+      "id": "hala-h59-millions-source-map",
+      "source": "Hcompany/DragOn",
+      "source_revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+      "source_kind": "original-train-metadata-map-only",
+      "private_kaggle_dataset": "abdulazizshehri/hala-million-source-map-private",
+      "private_kaggle_confirmed": true,
+      "anonymous_kaggle_403_confirmed": true,
+      "provider_download_sha256_verified": true,
+      "provider_manifest_sha256": "a2e99696970d83aa9e50a12a659ea7f3c79def6841333cedb7c5a9091de44b5b",
+      "planned_original_tar_windows": 116,
+      "original_train_total_bytes": 61195154432,
+      "advertised_upstream_train_images": 286012,
+      "advertised_upstream_train_tasks": 3560142,
+      "actual_new_full_source_windows_downloaded": 0,
+      "actual_3560142_train_tasks_locally_parsed": false,
+      "actual_3560142_train_tasks_private_kaggle_stored": false,
+      "original_hcompany_train_images_previously_qualified": 204,
+      "original_hcompany_train_annotations_previously_qualified": 2346,
+      "original_full_source_lfs_sha_values_declared": true,
+      "original_full_source_lfs_sha_independently_verified": false,
+      "training_completed": false,
+      "actual_gpu_steps": 0,
+      "vercel_workflow_deployed": false,
+      "minimax_handoff_prompt_ready": true,
+      "training_intended_use_eligibility_gate_unresolved": true
+    }
   ]
 }
