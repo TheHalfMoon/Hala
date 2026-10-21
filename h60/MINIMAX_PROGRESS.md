@@ -81,6 +81,36 @@ correction now has a test.
 | a dataset created seconds earlier is **refused with HTTP 403** until the provider serves the new version | the propagation delay was recorded as a privacy failure | the pipeline waits for the provider itself to serve the dataset before any privacy or readback proof is attempted |
 | the provider CLI host (`api.kaggle.com`) is throttled with **HTTP 429** while `www.kaggle.com/api/v1` stays available | readback was unreliable and slow | the readback uses the provider REST endpoints; every CLI call retries with backoff on 429 and 5xx |
 | the provider may return the expanded tree **wrapped in one common directory** | a byte-exact member comparison would have rejected a correct dataset | the readback maps provider members onto published members and still requires an exact name, size and SHA-256 match for every member |
+| a dataset created seconds earlier is briefly **absent from the provider index** and answers HTTP 404 | the absent window was recorded as a hard failure and the shard was destroyed | the propagation gate waits out both 403 and 404 and refuses to report a privacy failure it never measured |
+| the provider CLI writes bytes that are **not valid in the console code page** | a successful provider call could raise a decoding error and be reported as a failed publication | the captured output is decoded as UTF-8 with replacement |
+| a dataset becomes **visible before its content becomes downloadable**: the download answers HTTP 404 `No gcs url found` while the provider materialises the artifact | every large shard was refused after it had been published correctly | the download waits out the readiness window, and a correctly uploaded body is **retained** for the next retry instead of being discarded |
+
+### The packaging measurement that made the corpus transferable
+
+The provider expands a `.zip` or `.tar.gz` member into its own file tree and
+then materialises a downloadable artifact for **every expanded member**. That
+does not scale, and the numbers are unambiguous:
+
+| Private dataset | Members | Measured time until the content was downloadable |
+|---|---:|---:|
+| one opaque member | 1 | **17 s** |
+| one opaque member | 1 | 17 s |
+| `.zip` with 3,000 members | 3,000 | **309 s** |
+| `.tar.gz` with 3,000 members | 3,000 | 64 s |
+| a real H60 slider shard as a `.zip` | **28,806** | **still refused with `No gcs url found` after an hour**, although the provider already reported the dataset private, at the exact published size of 1,075,682,352 bytes, at version 1 |
+
+A shard is therefore uploaded as **one opaque member** named
+`<shard_id>.hala.bin` that the provider stores verbatim, plus a `README.json`
+that describes the inner archive. The readback then proves the whole shard
+body with **one** SHA-256 over the single member, which is a stronger proof
+than 28,806 separate member digests, and the dataset becomes downloadable in
+seconds instead of never.
+
+The corrected publication path was proven end to end against the real provider
+with synthetic content: the dataset was created, reported private, refused an
+unauthenticated request with **HTTP 403**, and every published member was read
+back from the provider and matched byte for byte, after which the probe
+dataset was deleted.
 
 Two further properties of the publication path were changed so that a
 half-published shard can never be mistaken for a stored shard:
