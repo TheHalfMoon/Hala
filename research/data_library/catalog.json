@@ -96,7 +96,14 @@
       "imported_train_labels_sha256": "9abab62624b45ead5db1ed0c1fdb5d7123f7c761c0a32b8a35f9ecfdebc96c09",
       "unreviewed_remaining_training_images": 285925,
       "training_model_output": null,
-      "raw_external_screenshot_redistributed_publicly": false
+      "raw_external_screenshot_redistributed_publicly": false,
+      "native_drag_candidate_imported_to_lora_loader": true,
+      "native_drag_candidate_original_images": 87,
+      "native_drag_candidate_rows": 760,
+      "native_drag_candidate_jsonl_sha256": "205b408d314576d389fb497530fc44d115208b07d2b40501387c585c0700d40b",
+      "independent_drag_baseline_available": false,
+      "native_drag_adapter_trained": false,
+      "native_drag_derived_jsonl_uploaded_to_kaggle": false
     },
     {
       "id": "xlang-agentnet",
