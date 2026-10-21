@@ -77,3 +77,38 @@ At initial **signed and GitHub Verified** H49 code head `73b404173bdc749b72cb714
 - Explicitly **NOT PERFORMED:** paid or Kaggle training, any real Najiz/Absher credentials/account interactions, FHIR patient data/real EHR workflow, medical/pharmaceutical action, proprietary screenshot capture, private independent blind TEST, deep Graft semantic audit, independent D1/PStack/Alibaba semantic approval, native OS E2E or original-vs-adapted model performance comparison. The previous genuine H46 **0/8 original model** result remains unchanged, and the queued H47 Kaggle notebook is not resubmitted.
 
 Keep this PR **DRAFT and unmerged** until required policy/independent review and model-validation gates are legitimately satisfied. No claims of Arabic government-app mastery, English FHIR workflow autonomy, OSWorld success, or better-than-Holo4 performance arise from these synthetic assets.
+
+## Paired real-inference scoring contract (post-data engineering)
+
+The CPU-only `h49/paired_eval.py` is the next engineering gate toward actual **learned grounding**: it checks two *externally produced* fully recorded real-model DEV inference arms, original model versus independently verified trained LoRA adapter on the exact same original 32 PUBLIC DEV screenshot+goal pairs. This change **does not train, download or execute any model** and must never publish a score using the unit tests' explicitly fake input data. Live GPU execution remains unavailable/unqualified in the current Windows checkout.
+
+Before executing a real experiment: source-pin original `Qwen/Qwen3-VL-2B-Instruct` revision `89644892e4d85e24eaac8bacfd4f463576704203` (model card advertises Apache-2.0 at https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct, but recheck exact revision and all transitive licenses). Verify model/processor match, actual *free* approved Linux Colab GPU resource and terms, actual nonzero adapter gradient updates and immutable signed adapter checkpoint and hash. Colab free GPU access is variable/not guaranteed per https://research.google.com/colaboratory/faq.html. No paid Google AI, commercial inference or Kaggle training restriction bypass.
+
+### Exact cross-arm I/O schema
+
+Use the existing `training.scripts.train_adapter.prepare_inputs` image-plus-goal chat-template construction style for inference. The exact prompt function `h49.paired_eval.public_prompt(goal)` reproduces every frozen H49 SFT training prompt, so there is no silent incompatibility between the SFT output schema and the inference format. Both arms see **only** the 1024×640 PNG and that public user prompt, never `h49/assets/evaluator_only.json`, `capture.json`, source expected target, indexed DOM controls or privileged label. Do not expose the private TEST set to either inference arm. Public DEV is for diagnostics only.
+
+Each arm must produce an independent unchanged raw `*.jsonl` file: exactly 32 rows, **in the order of the existing DEV rows in `h49/assets/model_inputs.json`**, with exactly the following keys:
+
+- `case_id`, `language`, `image_sha256`, `arm` (`baseline` or `adapter`).
+- `raw`: the original unedited decoded model output string (at most 2048 UTF-8 bytes) or `null` on error; `error`: `null` on success or a bounded type/name on failure. Never postprocess/correct the model's raw JSON.
+- `elapsed_seconds`: a finite nonnegative actual measured inference duration; `output_tokens`: a nonnegative integer observed from the GPU decoder.
+
+For each arm also save a `*.json` metadata file, with **exact** fields: `schema` (`hala.h49.paired-raw-inference.v1`), `arm`, `model_id`, `model_revision`, `processor_revision`, `prompt_sha256`, `dataset_sha256`, `source_sha256`, `capture_sha256`, `gpu_name`, `precision` (`fp16`), `provider` (`colab` or an authorized `linux_cuda` provider), `provider_run_id`, `adapter_sha256` (null for baseline, exact 64-digit hex for real adapter), `raw_sha256`, `status` (`completed`). All source and prompt hashes must be regenerated from the frozen manifest; do not invent a GPU name or run identifier. Save actual provider notebook logs and attested adapter/model SHA separately for independent qualification.
+
+The scorer explicitly requires externally supplied SHA256 digests for **both** metadata and raw outputs for each arm; only compares 32/32 complete cases with identical model/processor/hardware/precision/goal/prompt/source and individually verified screenshot digests. It recomputes source images, all original DOM rectangles and distinct accepted targets, then reports by language and all: parse invalid, error, abstain, wrong unique control, unbound/ambiguous control, correct target, latency and tokens, plus paired baseline-only/adapted-only wins, both wins and both wrong. It refuses changed, reordered, duplicate, missing or internally inconsistent evidence. It records `real_model_provenance_independently_verified=false` **even if metadata looks authentic**, because a checked file hash is not proof of actual GPU provider execution.
+
+Example only (fill paths and all four *actual external* digests from genuine runs):
+
+```bash
+python -m h49.paired_eval --root h49/assets \
+  --baseline-meta real-run/baseline.json --baseline-raw real-run/baseline.jsonl \
+  --baseline-meta-sha VERIFIED_REAL_SHA --baseline-raw-sha VERIFIED_REAL_SHA \
+  --adapter-meta real-run/adapter.json --adapter-raw real-run/adapter.jsonl \
+  --adapter-meta-sha VERIFIED_REAL_SHA --adapter-raw-sha VERIFIED_REAL_SHA \
+  --output real-run/independent-public-dev-score.json
+```
+
+**Before a real model inference producer is approved or any competitive assertion**: require actual provider original signed notebook source and immutable artifacts, independent GPU/run evidence, honest failures, a frozen baseline on same prompts, and a *separately created, sealed, app-family-disjoint and bilingual* TEST set. H49's DEV Arabic `municipal_portal` and English `research_lab` are not the Arabic Najiz/Absher or English FHIR TRAIN families, so this DEV scoring measures cross-domain transfer, **not** heldout same-service mastery. No numbers from synthetic unittest fixtures constitute empirical model accuracy.
+
+The scorer can be exercised on local synthetic fake data via `python -m unittest tests.test_h49_paired_eval -v`; those fake examples have clearly marked fictitious provider IDs and **must never** be archived or summarized as neural performance.
