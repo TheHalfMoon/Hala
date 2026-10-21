@@ -361,7 +361,17 @@
       "original_edge_capture_sha256": "cbff4d7d4db896b4a378435ffe69118c5a3d1f11e982391b934d5ad6a798d85a",
       "source_qualified": true,
       "real_edge_unit_replays_verified": true,
-      "independent_model_test_qualified": false
+      "independent_model_test_qualified": false,
+      "actual_qwen_model_baseline_runner_source_ready": true,
+      "real_qwen_2b_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "actual_qwen_colab_free_notebook_prepared": true,
+      "interactive_free_colab_gpu_session_confirmed": false,
+      "actual_qwen_2b_inference_completed": false,
+      "actual_qwen_raw_attempts_saved": false,
+      "real_edge_neural_model_action_replay_completed": false,
+      "zerogpu_one_case_unpinned_provider_output_obtained": false,
+      "zerogpu_provider_event": "error",
+      "provenance_hash_verified_before_model_download": true
     }
   ]
 }
