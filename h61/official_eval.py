@@ -97,27 +97,36 @@ def list_eval_files(domain: str, kind: str) -> list[dict]:
 
 
 def fetch_domain(domain: str, limit: int, out_dir) -> dict:
-    """Fetch a bounded number of official evaluation scenes for one domain."""
+    """Fetch a bounded number of official evaluation scenes for one domain.
+
+    The image and the task file of one scene share the same content
+    identifier, so the task is fetched by that identifier and not looked up in
+    a listing. A bounded listing would only intersect the image list by
+    chance, and the intersection would silently shrink the sample.
+    """
     if type(limit) is not int or not 1 <= limit <= MAX_SCENES:
         raise ValueError("Bounded official evaluation scene count required")
     out_dir = Path(out_dir)
     (out_dir / "images").mkdir(parents=True, exist_ok=True)
     (out_dir / "tasks").mkdir(parents=True, exist_ok=True)
     images = list_eval_files(domain, "images")
-    tasks = {row["path"].split("/")[-1][:-5]: row for row in list_eval_files(domain, "tasks")}
     scenes = []
+    missing_tasks = 0
     for row in images[:limit]:
         name = row["path"].split("/")[-1]
         key = name[:-4]
-        task_row = tasks.get(key)
-        if task_row is None:
-            continue
+        task_path = f"eval/{domain}/tasks/{key}.json"
         image_bytes = _get(RESOLVE.format(repo=REPO, rev=REV, path=row["path"]))
-        task_bytes = _get(RESOLVE.format(repo=REPO, rev=REV, path=task_row["path"]))
+        try:
+            task_bytes = _get(RESOLVE.format(repo=REPO, rev=REV, path=task_path))
+        except Exception:  # noqa: BLE001
+            missing_tasks += 1
+            continue
         (out_dir / "images" / name).write_bytes(image_bytes)
         (out_dir / "tasks" / f"{key}.json").write_bytes(task_bytes)
         source_tasks = json.loads(task_bytes.decode("utf8"))
         if not isinstance(source_tasks, list) or not source_tasks:
+            missing_tasks += 1
             continue
         scenes.append(
             {
@@ -139,6 +148,7 @@ def fetch_domain(domain: str, limit: int, out_dir) -> dict:
         "domain": domain,
         "scenes": scenes,
         "scene_count": len(scenes),
+        "scenes_without_a_readable_task": missing_tasks,
         "official_eval_or_test_used": False,
         "benchmark_answer_leakage": False,
     }

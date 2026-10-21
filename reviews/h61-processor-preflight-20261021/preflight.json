@@ -1,19 +1,19 @@
 ﻿
-{"id": "h60-slider-000be6ed-a326-530c-89e7-299c79c0f49a-t000", "prompt_tokens": 84, "completion_tokens": 38, 
-"coordinate_tokens": 12, "structural_tokens": 26, "coordinate_text": "573201477201", "weights": [1.0, 8.0], 
-"coordinate_gradient_share_plain_mean": 0.3158, "coordinate_gradient_share_coordinate_weighted": 0.7869}
-{"id": "h60-slider-002cc454-0f85-5d40-bed3-1246d2558972-t000", "prompt_tokens": 100, "completion_tokens": 38, 
-"coordinate_tokens": 12, "structural_tokens": 26, "coordinate_text": "837134803134", "weights": [1.0, 8.0], 
-"coordinate_gradient_share_plain_mean": 0.3158, "coordinate_gradient_share_coordinate_weighted": 0.7869}
-{"id": "h60-slider-00718c30-3843-5d79-9575-b39edf58f9fd-t000", "prompt_tokens": 100, "completion_tokens": 38, 
-"coordinate_tokens": 12, "structural_tokens": 26, "coordinate_text": "729464617464", "weights": [1.0, 8.0], 
+{"id": "h60-sheet-0031de5b-fd1b-5c9b-a2e8-20c3ca78210f-t000", "prompt_tokens": 95, "completion_tokens": 36, 
+"coordinate_tokens": 10, "structural_tokens": 26, "coordinate_text": "1548917389", "weights": [1.0, 8.0], 
+"coordinate_gradient_share_plain_mean": 0.2778, "coordinate_gradient_share_coordinate_weighted": 0.7547}
+{"id": "h60-sheet-0037fc49-fa1d-5fe5-9df9-8ebd0370fddc-t012", "prompt_tokens": 94, "completion_tokens": 36, 
+"coordinate_tokens": 10, "structural_tokens": 26, "coordinate_text": "4138930489", "weights": [1.0, 8.0], 
+"coordinate_gradient_share_plain_mean": 0.2778, "coordinate_gradient_share_coordinate_weighted": 0.7547}
+{"id": "h60-sheet-003fe687-a078-52aa-9eaa-004ec7eb9048-t001", "prompt_tokens": 88, "completion_tokens": 38, 
+"coordinate_tokens": 12, "structural_tokens": 26, "coordinate_text": "478147454147", "weights": [1.0, 8.0], 
 "coordinate_gradient_share_plain_mean": 0.3158, "coordinate_gradient_share_coordinate_weighted": 0.7869}
 {
-  "checked": 200,
+  "checked": 400,
   "problems": [],
   "problem_count": 0,
-  "mean_coordinate_gradient_share_plain_mean": 0.3111,
-  "mean_coordinate_gradient_share_coordinate_weighted": 0.783
+  "mean_coordinate_gradient_share_plain_mean": 0.2895,
+  "mean_coordinate_gradient_share_coordinate_weighted": 0.7645
 }
 
 
