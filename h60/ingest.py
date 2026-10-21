@@ -21,7 +21,9 @@ import os
 import json
 import shutil
 import time
+import threading
 import zipfile
+from concurrent.futures import Future, ThreadPoolExecutor
 from pathlib import Path
 
 from h59.master_data_plan import DOMAINS, check_plan
@@ -35,6 +37,19 @@ TASK_REGION_PROBE = 1 << 20
 TASK_REGION_PROBE_LARGE = 8 << 20
 TASK_REGION_PROBE_MAX = 64 << 20
 TASK_REGION_CHUNK = 64 << 20
+# Every shard member carries the same fixed timestamp, so an identical shard
+# body always produces identical archive bytes. That makes a shard SHA a
+# stable resume key: a rebuilt shard can be matched against the receipt of an
+# already published shard instead of being uploaded twice.
+FIXED_MEMBER_TIME = (2026, 10, 21, 0, 0, 0)
+
+
+def member_info(name: str, compress: int = zipfile.ZIP_STORED) -> zipfile.ZipInfo:
+    info = zipfile.ZipInfo(name, date_time=FIXED_MEMBER_TIME)
+    info.compress_type = compress
+    info.external_attr = 0o644 << 16
+    info.create_system = 0
+    return info
 
 
 # ---------------------------------------------------------------- probing
@@ -165,7 +180,7 @@ class ShardBuilder:
         if not pairs.image_tail_ok(payload):
             raise ValueError(f"original JPEG {key} has no end-of-image marker")
         name = f"images/{self.domain}/{key}.jpg"
-        with self.archive.open(name, "w") as member_out:
+        with self.archive.open(member_info(name), "w") as member_out:
             member_out.write(payload)
         self.image_bytes += len(payload)
         self.image_shas[name] = image_sha
@@ -195,7 +210,7 @@ class ShardBuilder:
             }
         )
         self.image_shas.setdefault(name, pairs.sha256_bytes(payload))
-        with self.archive.open(name, "w") as member_out:
+        with self.archive.open(member_info(name), "w") as member_out:
             member_out.write(payload)
 
     def add_row(self, row: dict) -> None:
@@ -218,7 +233,10 @@ class ShardBuilder:
             + b"\n"
             for row in self.rows
         )
-        self.archive.writestr("labels.jsonl", labels, compress_type=zipfile.ZIP_DEFLATED)
+        self.archive.writestr(
+            member_info("labels.jsonl", zipfile.ZIP_DEFLATED),
+            labels,
+        )
         manifest = {
             "schema": SHARD_SCHEMA,
             "shard_id": self.shard_id,
@@ -248,7 +266,10 @@ class ShardBuilder:
         blob = (
             json.dumps(manifest, sort_keys=True, ensure_ascii=False, indent=2) + "\n"
         ).encode("utf8")
-        self.archive.writestr("manifest.json", blob, compress_type=zipfile.ZIP_DEFLATED)
+        self.archive.writestr(
+            member_info("manifest.json", zipfile.ZIP_DEFLATED),
+            blob,
+        )
         self.archive.close()
         self.image_shas["labels.jsonl"] = hashlib.sha256(labels).hexdigest()
         self.image_shas["manifest.json"] = hashlib.sha256(blob).hexdigest()
@@ -280,7 +301,12 @@ def publish_shard(
     manifest: dict,
     do_publish: bool = True,
 ) -> dict:
-    """Publish one shard as a NEW private dataset and prove the readback."""
+    """Publish one shard as a NEW private dataset and prove the readback.
+
+    The local shard is released only after the provider has been proven to
+    hold exactly the published bytes, so an interrupted publication can be
+    retried from the same local body instead of re-downloading the source.
+    """
     sizes, shas = shard_inventory(zip_path)
     ref = f"{publish.OWNER}/hala-h60-dragon-train-{domain}-{shard_id.rsplit('-', 1)[-1]}-private"
     receipt = {
@@ -297,6 +323,22 @@ def publish_shard(
         "original_images": manifest["original_images"],
         "native_drag_actions": manifest["native_drag_actions"],
     }
+    receipt_dir = staging / "shard-receipts" / domain
+    receipt_dir.mkdir(parents=True, exist_ok=True)
+    receipt_path = receipt_dir / f"{shard_id}.json"
+    if receipt_path.exists():
+        try:
+            prior = json.loads(receipt_path.read_text("utf8"))
+        except (OSError, ValueError):
+            prior = {}
+        if (
+            prior.get("provider_readback_verified")
+            and prior.get("local_zip_sha256") == receipt["local_zip_sha256"]
+        ):
+            receipt.update(prior)
+            receipt["resumed_from_verified_receipt"] = True
+            zip_path.unlink(missing_ok=True)
+            return receipt
     if not do_publish:
         return receipt
     upload_dir = staging / f"upload-{shard_id}"
@@ -308,27 +350,50 @@ def publish_shard(
         os.link(zip_path, linked)
     except OSError:
         shutil.copy2(zip_path, linked)
-    publish.create_private_dataset(
-        upload_dir,
-        ref,
-        f"Hala H60 DragOn TRAIN {domain} {shard_id.rsplit('-', 1)[-1]} PRIVATE",
-        "Original Hcompany DragOn TRAIN images and drag labels, private verified shard",
+    try:
+        if publish.dataset_exists(ref, token):
+            # A previous attempt left this shard slug behind. It is not a
+            # verified copy, so it is removed before the shard is rebuilt.
+            publish.delete_dataset(ref)
+        publish.create_private_dataset(
+            upload_dir,
+            ref,
+            f"Hala H60 DragOn TRAIN {domain} {shard_id.rsplit('-', 1)[-1]} PRIVATE",
+            "Original Hcompany DragOn TRAIN images and drag labels, private verified shard",
+        )
+        publish.wait_until_visible(ref, token)
+        privacy = publish.verify_private(ref, token)
+        receipt["provider_is_private"] = privacy["provider_is_private"]
+        receipt["anonymous_provider_http_status"] = privacy["anonymous_view_http_status"]
+        receipt["provider_version"] = privacy["provider_version"]
+        receipt["provider_view_total_bytes"] = privacy["provider_view_total_bytes"]
+        if not privacy["provider_is_private"]:
+            raise ValueError("provider did not report the shard as private")
+        if privacy["anonymous_view_http_status"] != 403:
+            raise ValueError("unauthenticated provider access was not rejected with HTTP 403")
+        readback = publish.verify_readback(
+            ref, token, sizes, shas, staging / "readback" / shard_id
+        )
+        receipt.update(readback)
+        receipt["provider_published"] = True
+        receipt["provider_readback_verified"] = True
+    except Exception as error:  # noqa: BLE001
+        # A half-published provider dataset is not a stored shard. Remove it so
+        # a retry cannot mistake it for a verified private copy.
+        publish.delete_dataset(ref)
+        receipt["provider_deleted_after_failure"] = True
+        receipt["failure"] = f"{type(error).__name__}: {error}"[:400]
+        receipt_path.write_text(
+            json.dumps(receipt, sort_keys=True, indent=2) + "\n", encoding="utf8"
+        )
+        raise
+    finally:
+        shutil.rmtree(upload_dir, ignore_errors=True)
+    receipt_path.write_text(
+        json.dumps(receipt, sort_keys=True, indent=2) + "\n", encoding="utf8"
     )
-    privacy = publish.verify_private(ref, token)
-    receipt["provider_is_private"] = privacy["provider_is_private"]
-    receipt["anonymous_provider_http_status"] = privacy["anonymous_view_http_status"]
-    receipt["provider_version"] = privacy["provider_version"]
-    if not privacy["provider_is_private"]:
-        raise ValueError("provider did not report the shard as private")
-    if privacy["anonymous_view_http_status"] != 403:
-        raise ValueError("unauthenticated provider access was not rejected with HTTP 403")
-    readback = publish.verify_readback(
-        ref, token, sizes, shas, staging / "readback" / shard_id
-    )
-    receipt.update(readback)
-    receipt["provider_published"] = True
-    receipt["provider_readback_verified"] = True
-    shutil.rmtree(upload_dir, ignore_errors=True)
+    # The provider copy is now proven byte-exact, so the local shard is
+    # released and the bounded disk budget covers the next shards.
     zip_path.unlink(missing_ok=True)
     return receipt
 
@@ -354,6 +419,7 @@ def ingest_domain(
     token: str,
     max_shards: int | None = None,
     max_windows: int | None = None,
+    upload_workers: int = 2,
 ) -> dict:
     total = int(plan["source_domains"][domain]["bytes"])
     official_sha = str(plan["source_domains"][domain]["upstream_lfs_sha256"])
@@ -386,8 +452,13 @@ def ingest_domain(
     shard_index = 0
     window_receipts: list[dict] = []
     paired_task_keys: set[str] = set()
+    receipt_lock = threading.Lock()
+    slots = threading.BoundedSemaphore(max(1, upload_workers))
+    pool = ThreadPoolExecutor(max_workers=max(1, upload_workers))
+    pending: list[Future] = []
 
     def start_shard() -> ShardBuilder:
+        slots.acquire()
         return ShardBuilder(
             f"h60-dragon-train-{domain}-{shard_index:04d}", domain, staging, target_bytes
         )
@@ -397,31 +468,54 @@ def ingest_domain(
         if builder is None:
             return
         manifest = builder.close(builder.window_ids, source.archive_sha256, official_sha)
-        receipt = publish_shard(
-            builder.shard_id, domain, builder.zip_path, staging, token, manifest, do_publish
-        )
-        receipt["manifest"] = {
-            key: manifest[key]
-            for key in (
-                "original_images",
-                "original_task_members",
-                "native_drag_actions",
-                "ordered_true",
-                "ordered_false",
-                "image_bytes",
-                "labels_sha256",
-                "whole_tar_sha256_verified",
-            )
-        }
-        shards.append(receipt)
-        print(
-            f"H60_SHARD {builder.shard_id} images={manifest['original_images']} "
-            f"actions={manifest['native_drag_actions']} published={receipt['provider_published']} "
-            f"readback={receipt['provider_readback_verified']}",
-            flush=True,
-        )
+        shard_id = builder.shard_id
+        zip_path = builder.zip_path
         builder = None
         shard_index += 1
+
+        def task() -> None:
+            try:
+                receipt = publish_shard(
+                    shard_id, domain, zip_path, staging, token, manifest, do_publish
+                )
+                receipt["manifest"] = {
+                    key: manifest[key]
+                    for key in (
+                        "original_images",
+                        "original_task_members",
+                        "native_drag_actions",
+                        "ordered_true",
+                        "ordered_false",
+                        "image_bytes",
+                        "labels_sha256",
+                        "whole_tar_sha256_verified",
+                    )
+                }
+                with receipt_lock:
+                    shards.append(receipt)
+                print(
+                    f"H60_SHARD {shard_id} images={manifest['original_images']} "
+                    f"actions={manifest['native_drag_actions']} "
+                    f"published={receipt['provider_published']} "
+                    f"readback={receipt['provider_readback_verified']}",
+                    flush=True,
+                )
+            except Exception as error:  # noqa: BLE001
+                with receipt_lock:
+                    shards.append(
+                        {
+                            "shard_id": shard_id,
+                            "source_domain": domain,
+                            "provider_published": False,
+                            "provider_readback_verified": False,
+                            "error": f"{type(error).__name__}: {error}"[:400],
+                        }
+                    )
+                print(f"H60_SHARD_FAILED {shard_id} {type(error).__name__}: {error}"[:400], flush=True)
+            finally:
+                slots.release()
+
+        pending.append(pool.submit(task))
 
     def keep(member) -> bool:
         name = member.name
@@ -510,6 +604,10 @@ def ingest_domain(
     if not partial:
         reader.close()
     close_shard()
+    for future in pending:
+        future.result()
+    pool.shutdown(wait=True)
+    shards.sort(key=lambda item: item.get("shard_id", ""))
 
     archive_sha = source.archive_sha256
     official = official_sha
@@ -557,6 +655,7 @@ def main() -> int:
     parser.add_argument("--no-publish", action="store_true")
     parser.add_argument("--max-shards", type=int, default=None)
     parser.add_argument("--max-windows", type=int, default=None)
+    parser.add_argument("--upload-workers", type=int, default=2)
     parser.add_argument("--result", default=None)
     args = parser.parse_args()
 
@@ -581,6 +680,7 @@ def main() -> int:
         token,
         args.max_shards,
         args.max_windows,
+        args.upload_workers,
     )
     blob = json.dumps(result, sort_keys=True, indent=2) + "\n"
     if args.result:

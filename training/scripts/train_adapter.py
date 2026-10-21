@@ -27,6 +27,9 @@ from h54.native_drag import (SCHEMA as H54_DRAG_SCHEMA,
 from h57.native_multidomain_sft import (SCHEMA as H57_DRAG_SCHEMA,
                                        load_export as load_h57_drag_export,
                                        validate_mixed_drag_baseline)
+from h60.native_drag_sft import (SCHEMA as H60_DRAG_SCHEMA,
+                                 load_export as load_h60_drag_export,
+                                 validate_drag_baseline as validate_h60_drag_baseline)
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -95,7 +98,9 @@ def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False
 
 
 def load_authoring_records(examples_path, manifest):
-    """Verify original H48/H49/H50/H52/H54/H57 sources; H14 remains frozen."""
+    """Verify original H48/H49/H50/H52/H54/H57/H60 sources; H14 remains frozen."""
+    if manifest.get('source_schema') == H60_DRAG_SCHEMA:
+        return load_h60_drag_export(examples_path, manifest)
     if manifest.get('source_schema') == H57_DRAG_SCHEMA:
         return load_h57_drag_export(examples_path, manifest)
     if manifest.get('source_schema') == H54_DRAG_SCHEMA:
@@ -133,10 +138,12 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         validate_drag_baseline(baseline)
     if manifest.get('source_schema') == H57_DRAG_SCHEMA:
         validate_mixed_drag_baseline(baseline)
+    if manifest.get('source_schema') == H60_DRAG_SCHEMA:
+        validate_h60_drag_baseline(baseline)
     validate_experiment(config, manifest, baseline)
     records = load_authoring_records(examples_path, manifest)
     root = Path(examples_path).parent.resolve()
-    native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA)
+    native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA, H60_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],
                 'manifest_sha256': sha256_file(manifest_path), 'max_steps': config.max_steps}
