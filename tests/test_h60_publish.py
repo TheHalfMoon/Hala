@@ -259,5 +259,59 @@ class H60ProviderIndexTests(unittest.TestCase):
         self.assertIn("pageToken=page-2", seen[1])
 
 
+class H60ProviderCommandTests(unittest.TestCase):
+    def test_the_provider_cli_output_is_decoded_as_utf8(self) -> None:
+        """The provider CLI prints bytes that are not valid in the console code page."""
+        captured: dict = {}
+
+        class _Result:
+            returncode = 0
+            stdout = "created é中"
+            stderr = ""
+
+        def fake_run(command, **kwargs):
+            captured.update(kwargs)
+            captured["command"] = command
+            return _Result()
+
+        with mock.patch.object(publish.subprocess, "run", side_effect=fake_run):
+            result = publish._kaggle("datasets", "create", "-p", "dir")
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(captured.get("encoding"), "utf-8")
+        self.assertEqual(captured.get("errors"), "replace")
+
+    def test_the_propagation_gate_tolerates_a_not_found_then_serves(self) -> None:
+        import urllib.error
+
+        answers = [
+            urllib.error.HTTPError("url", 404, "Not Found", None, None),
+            urllib.error.HTTPError("url", 403, "Forbidden", None, None),
+            {"isPrivate": True, "totalBytes": 10},
+        ]
+
+        def fake_get(path: str, token: str) -> dict:
+            answer = answers.pop(0)
+            if isinstance(answer, Exception):
+                raise answer
+            return answer
+
+        with mock.patch.object(publish, "api_get", side_effect=fake_get):
+            with mock.patch.object(publish.time, "sleep"):
+                view = publish.wait_until_visible("owner/dataset", "token", timeout=120)
+        self.assertTrue(view["isPrivate"])
+        self.assertEqual(answers, [])
+
+    def test_the_propagation_gate_gives_up_instead_of_claiming_a_privacy_failure(self) -> None:
+        import urllib.error
+
+        def fake_get(path: str, token: str) -> dict:
+            raise urllib.error.HTTPError("url", 404, "Not Found", None, None)
+
+        with mock.patch.object(publish, "api_get", side_effect=fake_get):
+            with mock.patch.object(publish.time, "sleep"):
+                with self.assertRaises(TimeoutError):
+                    publish.wait_until_visible("owner/dataset", "token", timeout=0.1)
+
+
 if __name__ == "__main__":
     unittest.main()

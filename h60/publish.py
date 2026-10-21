@@ -40,10 +40,22 @@ def sha256_file(path: Path) -> str:
 
 
 def _kaggle(*args: str, check: bool = True) -> subprocess.CompletedProcess:
-    """Run the provider CLI with backoff for throttled or transient failures."""
+    """Run the provider CLI with backoff for throttled or transient failures.
+
+    The provider CLI writes progress output that is not always valid in the
+    console code page, so the captured bytes are decoded as UTF-8 with
+    replacement instead of the Windows ANSI code page. A decoding error must
+    never be mistaken for a failed provider call.
+    """
     last: Exception | None = None
     for attempt in range(MAX_ATTEMPTS):
-        result = subprocess.run(["kaggle", *args], capture_output=True, text=True)
+        result = subprocess.run(
+            ["kaggle", *args],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
         if result.returncode == 0:
             return result
         text = f"{result.stdout[-400:]} {result.stderr[-400:]}"
@@ -127,14 +139,15 @@ def wait_for_dataset(ref: str, token: str, timeout: float = 3600.0) -> dict[str,
     raise TimeoutError(f"provider never published a file listing for {ref}: {len(last)}")
 
 
-def wait_until_visible(ref: str, token: str, timeout: float = 900.0) -> dict:
+def wait_until_visible(ref: str, token: str, timeout: float = 1800.0) -> dict:
     """Wait until the provider serves the freshly created dataset.
 
     A dataset that was just created is not immediately readable through the
-    provider API: an immediate read is refused with HTTP 403 until the
-    provider has published the new version. This gate waits for the provider
-    itself to serve the dataset before any privacy or readback proof is
-    attempted, so a propagation delay is never recorded as a privacy failure.
+    provider API: an immediate read is refused with HTTP 403 while the
+    provider still processes the new version, and it is briefly absent from
+    the provider index as HTTP 404. This gate waits for the provider itself
+    to serve the dataset before any privacy or readback proof is attempted, so
+    a propagation delay is never recorded as a privacy failure.
     """
     deadline = time.time() + timeout
     last = "not attempted"
@@ -143,7 +156,7 @@ def wait_until_visible(ref: str, token: str, timeout: float = 900.0) -> dict:
             return api_get(f"/datasets/view/{ref}", token)
         except urllib.error.HTTPError as error:
             last = f"HTTP {error.code}"
-            if error.code not in RETRYABLE_STATUS and error.code != 403:
+            if error.code not in RETRYABLE_STATUS and error.code not in (403, 404):
                 raise
         except Exception as error:  # noqa: BLE001
             last = repr(error)
