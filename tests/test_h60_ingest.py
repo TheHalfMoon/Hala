@@ -123,8 +123,9 @@ class H60SyntheticIngestTests(unittest.TestCase):
         cls.server.shutdown()
         cls.server.server_close()
 
-    def _plan(self) -> dict:
-        total = len(self.archive)
+    def _plan(self, payload=None) -> dict:
+        payload = self.archive if payload is None else payload
+        total = len(payload)
         windows = []
         start = 0
         index = 0
@@ -139,7 +140,7 @@ class H60SyntheticIngestTests(unittest.TestCase):
                     "byte_end_inclusive": start + length - 1,
                     "expected_length": length,
                     "total_tar_bytes": total,
-                    "upstream_full_tar_lfs_sha256": hashlib.sha256(self.archive).hexdigest(),
+                    "upstream_full_tar_lfs_sha256": hashlib.sha256(payload).hexdigest(),
                     "expected_content_range": f"bytes {start}-{start + length - 1}/{total}",
                 }
             )
@@ -150,7 +151,7 @@ class H60SyntheticIngestTests(unittest.TestCase):
             "source_domains": {
                 DOMAIN: {
                     "bytes": total,
-                    "upstream_lfs_sha256": hashlib.sha256(self.archive).hexdigest(),
+                    "upstream_lfs_sha256": hashlib.sha256(payload).hexdigest(),
                 }
             },
             "windows": windows,
@@ -229,6 +230,71 @@ class H60SyntheticIngestTests(unittest.TestCase):
             self.assertEqual(row["action_type"], "drag")
             self.assertEqual(row["completion"]["coordinate_space"], "source_image_pixels")
             self.assertIn(row["ordered"], (True, False))
+
+    def test_one_credential_bearing_instruction_does_not_destroy_the_domain(self) -> None:
+        """A single unusable original instruction must not kill the whole domain."""
+        from h60 import ingest
+
+        blocks = []
+        images = []
+        task_members = []
+        for index in range(4):
+            key = str(uuid.UUID(int=index))
+            image = _jpeg((index * 3 % 255, 10, 20))
+            intent = "Type the api key into the field" if index == 2 else f"drag {index}"
+            tasks = [
+                {
+                    "image_id": key,
+                    "domain": DOMAIN,
+                    "ordered": True,
+                    "intent": intent,
+                    "start_bbox": [1, 1, 5, 5],
+                    "end_bbox": [6, 6, 9, 9],
+                }
+            ]
+            images.append(_tar_member(f"{DOMAIN}/images/{key}.jpg", image))
+            task_members.append(
+                _tar_member(f"{DOMAIN}/tasks/{key}.json", json.dumps(tasks).encode("utf8"))
+            )
+        # The original archive layout is every image first, then every task.
+        payload = (
+            b"".join(header + body for header, body in images)
+            + b"".join(header + body for header, body in task_members)
+            + b"\0" * 1024
+        )
+        handler = type("Handler", (_RangeHandler,), {"payload": payload})
+        server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        base = f"http://127.0.0.1:{server.server_address[1]}"
+        previous = os.environ.get("HALA_H60_SOURCE_BASE_URL")
+        os.environ["HALA_H60_SOURCE_BASE_URL"] = base
+        try:
+            with tempfile.TemporaryDirectory() as temporary:
+                staging = Path(temporary) / "staging"
+                result = ingest.ingest_domain(
+                    DOMAIN,
+                    self._plan(payload),
+                    staging,
+                    64 * 1024,
+                    workers=2,
+                    sample_structure_every=0,
+                    sample_pixels_every=0,
+                    do_publish=False,
+                    token="",
+                )
+        finally:
+            server.shutdown()
+            server.server_close()
+            if previous is None:
+                os.environ.pop("HALA_H60_SOURCE_BASE_URL", None)
+            else:
+                os.environ["HALA_H60_SOURCE_BASE_URL"] = previous
+        self.assertEqual(result["original_images"], 4)
+        self.assertEqual(result["native_drag_actions"], 3)
+        self.assertEqual(result["images_without_original_tasks"], 1)
+        self.assertEqual(result["orphan_task_members"], 1)
+        self.assertTrue(result["source_tar_sha256_matches_official"])
 
     def test_window_receipts_are_written_for_every_planned_window(self) -> None:
         from h60 import ingest

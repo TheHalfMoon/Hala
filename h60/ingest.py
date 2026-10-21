@@ -119,15 +119,24 @@ def read_task_region(domain: str, start: int, total: int) -> dict:
             return False
         return pairs.is_uuid(name[len(prefix) : -len(".json")])
 
+    rejected: list[dict] = []
+
     def sink(member, payload) -> None:
         key = member.name[len(prefix) : -len(".json")]
         if key in collected:
             raise ValueError(f"duplicate original task member {key}")
-        source_tasks = pairs.parse_source_tasks(payload)
-        candidates = [
-            pairs.candidate_from_source_task(domain, key, index, task)
-            for index, task in enumerate(source_tasks)
-        ]
+        try:
+            source_tasks = pairs.parse_source_tasks(payload)
+            candidates = [
+                pairs.candidate_from_source_task(domain, key, index, task)
+                for index, task in enumerate(source_tasks)
+            ]
+        except ValueError as error:
+            # One unusable original instruction must not destroy the domain. The
+            # task is refused with an explicit reason and the image that owns
+            # it is recorded as having no usable original task.
+            rejected.append({"image_id": key, "reason": f"{type(error).__name__}: {error}"[:200]})
+            return
         collected[key] = {
             "payload_sha256": pairs.sha256_bytes(payload),
             "payload": payload,
@@ -148,6 +157,7 @@ def read_task_region(domain: str, start: int, total: int) -> dict:
         "task_member_count": len(collected),
         "task_region_start": start,
         "task_region_bytes": total - start,
+        "task_region_rejected": rejected,
     }
 
 
@@ -578,6 +588,7 @@ def _ingest_domain(
     task_start, first_task_name = find_tasks_region_start(domain, total)
     region = read_task_region(domain, task_start, total)
     task_map = region["tasks"]
+    refused_task_keys = {entry["image_id"] for entry in region.get("task_region_rejected", [])}
     print(
         f"H60_TASK_REGION {domain} start={task_start} bytes={region['task_region_bytes']} "
         f"members={region['task_member_count']} first={first_task_name}",
@@ -591,6 +602,7 @@ def _ingest_domain(
         "rejected": 0,
         "orphan_tasks": 0,
         "images_without_tasks": 0,
+        "refused_tasks": [],
     }
     shards: list[dict] = []
     builder: ShardBuilder | None = None
@@ -728,8 +740,16 @@ def _ingest_domain(
         state["tasks"] += 1
         entry = task_map.get(key)
         if entry is None:
-            state["orphan_tasks"] += 1
-            raise ValueError(f"original task member {key} was absent from the task region read")
+            if key in refused_task_keys:
+                # The task region read refused this member with an explicit
+                # reason, so the full stream refuses it the same way rather
+                # than destroying the whole domain.
+                state["orphan_tasks"] += 1
+                state["refused_tasks"].append(key)
+                return
+            raise ValueError(
+                f"original task member {key} was absent from the task region read"
+            )
         digest = pairs.sha256_bytes(payload)
         if digest != entry["payload_sha256"]:
             raise ValueError(f"original task member {key} differs from the independently read copy")
