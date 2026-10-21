@@ -14,6 +14,7 @@
 | Data source | Discovered | Source pinned & reviewed | Uploaded to Kaggle | Used in real training | Independent model eval |
 |---|---|---|---|---|---|
 | Original H50 bilingual train (64 unique screenshots, 384 labels) | ✅ | ✅ | ✅ **v1 private; remote SHA verified** | ☐ | ☐ |
+| H52 three-step task factory (96 workflows, 288 distinct screenshots, 144 Arabic / 144 English) | ✅ | ✅ first-party source/Edge audit | ✅ **private Kaggle v2, remote SHA verified** | ☐ | ☐ |
 | Original H49 DEV (32 screenshots) | ✅ | ✅ stored GitHub **not training** | — reserved DEV | — | ☐ |
 | OpenCUA / AgentNet (human desktop trajectories, ~22.6k tasks) | ✅ | ☐ | ☐ | ☐ | ☐ |
 | Hcompany DragOn (286,012 train images, ~3.56m drag labels) | ✅ | ☐ | ☐ | ☐ | ☐ |

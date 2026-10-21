@@ -13,7 +13,13 @@
     "upload_archive_sha256": "783426a4f8ae10c2ce85fa6b9cc861f69857e64372e1a4dc8a4cf81b8053c37c",
     "huggingface_connected_user": "MedScale",
     "huggingface_write_scope_available": false,
-    "github": "TheHalfMoon/Hala"
+    "github": "TheHalfMoon/Hala",
+    "kaggle_dataset_version": 2,
+    "h52_remote_training_jsonl_sha256": "bca090f0a31aee88fba0cf47aaadaa895ca1fc7ede7c41fbf123d65d6ccb4c73",
+    "h52_remote_v2_manifest_sha256": "dfd7a0133ce892ad95db55a2de48ddd38db3857e56a7b7289fcdb40e4e08072a",
+    "h52_uploaded_archive_sha256": "37d7514538d51fd76ca8edf56c14ecacb80235e6ad1a0a3835e307f455ad113b",
+    "h52_private_kaggle_version_verified": true,
+    "original_v1_preserved_in_v2": true
   },
   "datasets": [
     {
@@ -36,6 +42,27 @@
       "remote_data_imported": true,
       "trained_model_checkpoint": null,
       "notes": null
+    },
+    {
+      "id": "hala-h52-original-task-factory",
+      "kind": "original-first-party",
+      "license_declared": "CC0-1.0",
+      "skills": "three-step visual grounding, task continuation, wrong-target rejection",
+      "unique_images": 288,
+      "examples_or_episodes": 96,
+      "split": "train only",
+      "progress": {
+        "discovered": true,
+        "upstream_pinned": true,
+        "quality_reviewed": true,
+        "stored_kaggle": true,
+        "training_completed": false,
+        "independent_evaluation_completed": false
+      },
+      "upstream_url": "https://github.com/TheHalfMoon/Hala/tree/ps/h52-original-task-factory/h52",
+      "remote_data_imported": true,
+      "trained_model_checkpoint": null,
+      "notes": "288 distinct Edge-captured state screenshots from 96 original three-step fictional workflows (144 Arabic, 144 English); verified private Kaggle v2; not neural benchmark results"
     },
     {
       "id": "hcompany-dragon",
