@@ -1,0 +1,235 @@
+{
+  "records": [
+    {
+      "accessible": true,
+      "annotation_files": 3,
+      "downloads": 7719,
+      "gated": false,
+      "independent_task_records": "23,000 desktop trajectories ",
+      "license": "mit",
+      "media_files": 2,
+      "private": false,
+      "reason": "MIT, open access, one JSONL record per desktop trajectory with a task_completed outcome flag and an alignment/efficiency score, plus the original screenshot archive. The record count is a trajectory count, not a frame count.",
+      "review": {
+        "annotation_record": {
+          "error": "the first line is not a JSON record",
+          "path": "agentnet_ubuntu_5k.jsonl"
+        },
+        "published_splits": [
+          {
+            "error": "HTTPError: HTTP Error 500: Internal Server Error"
+          }
+        ]
+      },
+      "revision": "d76ee50a63fad81cfdbe576416757d7c2091ed50",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "xlangai/AgentNet",
+      "split_files": [
+        "agentnet_ubuntu_5k.jsonl",
+        "agentnet_win_mac_18k.jsonl",
+        "meta_data_merged.jsonl",
+        "ubuntu_images/images.zip",
+        "win_mac_images/images.zip"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "LICENSE.txt",
+        "README.md",
+        "agentnet_ubuntu_5k.jsonl",
+        "agentnet_win_mac_18k.jsonl",
+        "meta_data_merged.jsonl",
+        "ubuntu_images",
+        "win_mac_images"
+      ],
+      "verdict": "QUALIFIED_AS_TRAINING_SOURCE"
+    },
+    {
+      "accessible": true,
+      "annotation_files": 0,
+      "downloads": 1973,
+      "gated": false,
+      "independent_task_records": null,
+      "license": "mit",
+      "media_files": 90,
+      "private": false,
+      "reason": "MIT and open access, one archive per professional desktop application. The published media are video demonstrations; a frame count is not a count of independent labelled tasks and the per-application annotation records have to be read before this source is called training-ready.",
+      "review": {
+        "application_archives": 24
+      },
+      "revision": "6ecc530df848f916bf0d195c66823ef8363abb93",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "ServiceNow/VideoCUA",
+      "split_files": [
+        "raw_data/7-Zip.zip",
+        "raw_data/Affine.zip",
+        "raw_data/Anki.zip",
+        "raw_data/Arduino IDE.zip",
+        "raw_data/Atom.zip",
+        "raw_data/Audacity.zip",
+        "raw_data/Bash.zip",
+        "raw_data/Bitwarden.zip",
+        "raw_data/Blender.zip",
+        "raw_data/Bluefish.zip",
+        "raw_data/Brackets.zip",
+        "raw_data/Brave.zip",
+        "raw_data/Calibre.zip",
+        "raw_data/Chromium.zip",
+        "raw_data/Code::Blocks.zip",
+        "raw_data/Conky.zip",
+        "raw_data/Cryptomator.zip",
+        "raw_data/Darktable.zip",
+        "raw_data/DuckDuckGo.zip",
+        "raw_data/Eclipse.zip",
+        "raw_data/Element.zip",
+        "raw_data/Emby.zip",
+        "raw_data/Flameshot.zip",
+        "raw_data/FontForge.zip"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "README.md",
+        "assets",
+        "raw_data"
+      ],
+      "verdict": "REVIEWED_NEEDS_FRAME_AND_TASK_REVIEW"
+    },
+    {
+      "accessible": true,
+      "annotation_files": 8339,
+      "downloads": 8933,
+      "gated": false,
+      "independent_task_records": 8334,
+      "license": "cc-by-4.0",
+      "media_files": 1,
+      "private": false,
+      "reason": "CC-BY-4.0, open access, one record per multistep mobile episode with the original apps, the device and the step count, and four official train/test splits including an application-disjoint and a device-disjoint split. The evaluation split must stay out of training.",
+      "review": {
+        "published_splits": [
+          {
+            "config": "default",
+            "fields": [
+              "app",
+              "category",
+              "device_name",
+              "episode_id",
+              "h",
+              "instruction",
+              "step_length",
+              "w"
+            ],
+            "num_rows_total": 8334,
+            "split": "all"
+          }
+        ],
+        "split_files": [
+          {
+            "path": "splits/app_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/device_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/random_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/task_split.json",
+            "size": 275065
+          }
+        ]
+      },
+      "revision": "61632d0f3f4d51d7e9561ce4f84347dd06b2019d",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "hflqf88888/GUIOdyssey",
+      "split_files": [
+        "all_annot.json",
+        "annotations/0000628297785099.json",
+        "annotations/0000912578932237.json",
+        "annotations/0000922671359408.json",
+        "annotations/0002412570554203.json",
+        "annotations/0002455403270123.json",
+        "annotations/0003269005797789.json",
+        "annotations/0003539114117434.json",
+        "annotations/0003950590824941.json",
+        "annotations/0006223132449496.json",
+        "annotations/0007216161758334.json",
+        "annotations/0011506778189106.json",
+        "annotations/0013369436362038.json",
+        "annotations/0013756686421890.json",
+        "annotations/0015844124232805.json",
+        "annotations/0016567388192150.json",
+        "annotations/0016866810410740.json",
+        "annotations/0017986853193264.json",
+        "annotations/0018651612081817.json",
+        "annotations/0019778284340925.json",
+        "annotations/0020030717509483.json",
+        "annotations/0021006740023566.json",
+        "annotations/0024023061324925.json",
+        "annotations/0025680968305533.json"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "README.md",
+        "all_annot.json",
+        "annotations",
+        "screenshots",
+        "splits"
+      ],
+      "verdict": "QUALIFIED_AS_TRAINING_SOURCE"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "ByteDance-Seed/UI-TARS-Desktop",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "xlangai/OpenCUA",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "Hcompany/Holo4-35B-A3B",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    }
+  ],
+  "schema": "hala.h61.source-qualification.v1"
+}

@@ -150,39 +150,33 @@ def step_evaluate(work: Path, repo: Path, dev_sets: list[str]) -> dict:
     return results
 
 
-def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str]) -> dict:
-    """Measure the frozen base and the trained adapter on the official split."""
+def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], label: str) -> dict:
+    """Measure the frozen base or the trained adapter on the official split."""
     from h61.official_eval_run import run as run_official
 
-    results = {}
-    for label in ("frozen-base", "adapter"):
-        target = work / "official-eval" / label
-        if (target / "official-eval-run.json").exists():
-            results[label] = json.loads(
-                (target / "official-eval-run.json").read_text("utf8")
-            )["domains"]
-            print(f"H61_STEP official-eval {label} already complete", flush=True)
-            continue
-        adapter = None
-        adapter_digest = None
-        if label == "adapter":
-            checkpoint = work / "training"
-            pointer = json.loads((checkpoint / "latest.json").read_text("utf8"))
-            version = checkpoint / pointer["version"]
-            adapter = str(version / "adapter")
-            adapter_digest = pointer.get("adapter_weights_sha256")
-        print(f"H61_STEP official-eval {label}", flush=True)
-        receipt = run_official(domains, str(target), limit=limit, adapter=adapter,
-                               adapter_sha256=adapter_digest)
-        results[label] = receipt["domains"]
-    return results
+    target = work / "official-eval" / label
+    if (target / "official-eval-run.json").exists():
+        print(f"H61_STEP official-eval {label} already complete", flush=True)
+        return json.loads((target / "official-eval-run.json").read_text("utf8"))["domains"]
+    adapter = None
+    adapter_digest = None
+    if label == "adapter":
+        checkpoint = work / "training"
+        pointer = json.loads((checkpoint / "latest.json").read_text("utf8"))
+        version = checkpoint / pointer["version"]
+        adapter = str(version / "adapter")
+        adapter_digest = pointer.get("adapter_weights_sha256")
+    print(f"H61_STEP official-eval {label}", flush=True)
+    receipt = run_official(domains, str(target), limit=limit, adapter=adapter,
+                           adapter_sha256=adapter_digest)
+    return receipt["domains"]
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", required=True)
     parser.add_argument("--work", required=True)
-    parser.add_argument("--steps", default="export,curriculum,baseline,train,evaluate,report")
+    parser.add_argument("--steps", default="export,curriculum,baseline,official_base,train,evaluate,official_adapter")
     parser.add_argument("--images", default="slider=8000,slide_resize=6000,sheet=6000")
     parser.add_argument("--chunk-bytes", type=int, default=16 * 1024 * 1024)
     parser.add_argument("--target-rows", type=int, default=10000)
@@ -251,10 +245,17 @@ def main() -> int:
                 receipt["results"]["evaluate"] = step_evaluate(
                     work, repo, [item for item in args.dev_sets.split(",") if item]
                 )
-            elif step == "official_eval":
-                receipt["results"]["official_eval"] = step_official_eval(
+            elif step == "official_base":
+                receipt["results"]["official_base"] = step_official_eval(
                     work, repo, args.official_limit,
                     [item for item in args.official_domains.split(",") if item],
+                    "frozen-base",
+                )
+            elif step == "official_adapter":
+                receipt["results"]["official_adapter"] = step_official_eval(
+                    work, repo, args.official_limit,
+                    [item for item in args.official_domains.split(",") if item],
+                    "adapter",
                 )
             elif step == "report":
                 pass

@@ -4,7 +4,7 @@
   "precision": "fp16",
   "max_steps": 600,
   "batch_size": 1,
-  "gradient_accumulation": 1,
+  "gradient_accumulation": 2,
   "learning_rate": 0.00005,
   "lora_rank": 8,
   "platform": "colab",

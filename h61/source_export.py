@@ -38,7 +38,8 @@ SCHEMA = "hala.h61.source-export.v1"
 RECEIPT_SCHEMA = "hala.h61.source-range-receipt.v1"
 DEFAULT_CHUNK = 16 * 1024 * 1024
 TASK_CHUNK = 32 * 1024 * 1024
-PROBE_BYTES = 256 * 1024
+PROBE_BYTES = 1024 * 1024
+MAX_PROBE_BYTES = 64 * 1024 * 1024
 LOOKAHEAD = 4
 FETCH_ATTEMPTS = 8
 MAX_IMAGES = 200_000
@@ -240,31 +241,48 @@ def find_task_region_start(domain: str, total_bytes: int) -> tuple[int, str]:
 
     The archive holds the images before the task JSONs, so the task region can
     only be reached after the image region. The offset is located with a
-    bounded binary search over small probes: every original member is larger
-    than the probe window, so a probe always contains at least one header, and
-    a probe that lands on a JPEG payload can only be accepted when its name
-    really starts the original task region.
+    bounded binary search.
+
+    A probe has to GROW until it finds a header: a probe that lands inside a
+    large original member finds nothing in a small window, and treating that
+    as "no member here" would drive the search the wrong way. Every probe is
+    nevertheless bounded, so the cost of the search stays bounded too.
     """
     url = source_url(domain)
     prefix = f"{domain}/tasks/"
 
-    def probe(offset: int) -> tuple[int, str] | None:
-        probe_size = min(PROBE_BYTES, total_bytes - offset)
-        if probe_size <= 0:
-            return None
-        payload = fetch_range_resilient(url, offset, offset + probe_size - 1, total_bytes)
+    def scan(payload: bytes, base: int) -> tuple[int, str] | None:
         for index in range(0, len(payload) - BLOCK + 1, BLOCK):
             block = payload[index : index + BLOCK]
-            if not block.strip(b"\0"):
+            if not block.strip(b"\0") and not _checksum_ok(block):
                 continue
-            if not _checksum_ok(block) or block[257:262] != b"ustar":
-                continue
-            return offset + index, _member_name(block)
+            if _checksum_ok(block) and block[257:262] == b"ustar":
+                return base + index, _member_name(block)
+        return None
+
+    def probe(offset: int) -> tuple[int, str] | None:
+        """The first original member header at or after `offset`.
+
+        The window GROWS until a header is found. A window that lands inside
+        a large original member finds nothing, and treating that as "no
+        member here" would drive the search the wrong way, so every window is
+        bounded and the growth stops as soon as a header is found.
+        """
+        size = PROBE_BYTES
+        while size <= MAX_PROBE_BYTES:
+            window = min(size, total_bytes - offset)
+            if window <= 0:
+                return None
+            payload = fetch_range_resilient(url, offset, offset + window - 1, total_bytes)
+            found = scan(payload, offset)
+            if found is not None:
+                return found
+            size *= 8
         return None
 
     low, high = 0, total_bytes
     while low < high:
-        middle = (((low + high) // 2) // BLOCK) * BLOCK
+        middle = ((low + high) // 2 // BLOCK) * BLOCK
         found = probe(middle)
         if found is None:
             high = middle
