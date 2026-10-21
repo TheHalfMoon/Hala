@@ -56,8 +56,13 @@ class HalaDataLibraryTests(unittest.TestCase):
             self.assertFalse(info["evaluation_material_included"])
             self.assertEqual(info["archive_sha256"],hashlib.sha256(
                 (dest/"hala-h50-train-original.zip").read_bytes()).hexdigest())
-            self.assertEqual(info["archive_sha256"],json.loads(
-                CATALOG.read_text("utf-8"))["storage"]["upload_archive_sha256"])
+            # DEFLATE can produce different ZIP bytes on Linux vs Windows.
+            # The actual uploaded Windows archive has its own remote receipt;
+            # never confuse its digest with this independently rebuilt ZIP.
+            self.assertEqual(info["files"]["authoring_sft.jsonl"],json.loads(
+                CATALOG.read_text("utf-8"))["storage"]["remote_training_jsonl_sha256"])
+            for item in json.loads((ROOT/"h50/assets/sft_manifest.json").read_text("utf-8"))["media"]:
+                self.assertEqual(info["files"][item["path"]],item["sha256"])
             with self.assertRaises(FileExistsError):
                 build(dest)
 
