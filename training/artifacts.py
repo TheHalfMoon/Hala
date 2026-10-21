@@ -111,15 +111,6 @@ def load_sft_artifact(examples_path, manifest):
     """Verify JSONL and every media byte before any processor/model allocation."""
     examples = Path(examples_path)
     root = examples.parent.resolve()
-    # Never launder first-party Edge captures into the legacy Pillow fixture
-    # provenance. Admit only the exact, independently reconstructed H48 export.
-    from h48.factory import PROVENANCE as H48_RIGHTS, SCHEMA as H48_SCHEMA
-    h48_mode = manifest.get('source_schema') == H48_SCHEMA
-    if h48_mode:
-        from h48.sft_bridge import expected_bytes
-        _, _, expected_manifest = expected_bytes(root)
-        if manifest != expected_manifest:
-            raise ValueError('H48 source, rights, split, render route or labels changed')
     if (manifest.get('schema') != 'hala.training.manifest.v1' or
             manifest.get('split') != 'train' or manifest.get('source_kind') != 'synthetic' or
             manifest.get('rights_cleared') is not True):
@@ -140,7 +131,7 @@ def load_sft_artifact(examples_path, manifest):
     if (not isinstance(arabic, dict) or
             type(arabic.get('enabled')) is not bool or
             type(arabic.get('raqm_qualified')) is not bool or
-            (arabic['enabled'] and not (arabic['raqm_qualified'] or h48_mode))):
+            (arabic['enabled'] and not arabic['raqm_qualified'])):
         raise ValueError('Explicit Arabic shaping eligibility required')
     media_list = manifest.get('media')
     if not isinstance(media_list, list) or not 1 <= len(media_list) <= MAX_RECORDS:
@@ -148,7 +139,7 @@ def load_sft_artifact(examples_path, manifest):
     media = {}
     for item in media_list:
         if (not isinstance(item, dict) or set(item) != {'path', 'sha256', 'family', 'provenance'} or
-                item['provenance'] != (H48_RIGHTS if h48_mode else RIGHTS) or item['family'] not in families or
+                item['provenance'] != RIGHTS or item['family'] not in families or
                 not isinstance(item['sha256'], str) or not re.fullmatch('[0-9a-f]{64}', item['sha256'])):
             raise ValueError('Content-bound original synthetic media rights required')
         normalized_relative_path(item['path'])

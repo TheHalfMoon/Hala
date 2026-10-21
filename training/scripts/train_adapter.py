@@ -14,6 +14,8 @@ from pathlib import Path
 
 from training.artifacts import (MAX_PIXELS, artifact_path, load_sft_artifact,
                                 sha256_file, strict_json)
+from h48.factory import SCHEMA as H48_SOURCE_SCHEMA
+from h48.sft_bridge import load_export as load_h48_export
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -98,7 +100,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     manifest = load_json(manifest_path)
     validate_experiment(config, manifest, load_json(baseline_path))
-    records = load_sft_artifact(examples_path, manifest)
+    records = (load_h48_export(examples_path, manifest)
+               if manifest.get('source_schema') == H48_SOURCE_SCHEMA
+               else load_sft_artifact(examples_path, manifest))
     root = Path(examples_path).parent.resolve()
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],

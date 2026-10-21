@@ -12,7 +12,7 @@ from pathlib import Path
 from h48.sft_bridge import EXAMPLES, MANIFEST, export, expected_bytes, source_rows
 from h48.audit import verify
 from h48.factory import HEIGHT, WIDTH, SCHEMA
-from training.artifacts import load_sft_artifact
+from h48.sft_bridge import load_export
 
 
 ROOT = Path("h48/assets")
@@ -24,7 +24,7 @@ class H48SFTBridgeTests(unittest.TestCase):
         cls.data, cls.manifest_bytes, cls.manifest = expected_bytes(ROOT)
 
     def test_original_training_split_no_dev_leakage_and_arabic(self):
-        records = load_sft_artifact(ROOT / EXAMPLES, self.manifest)
+        records = load_export(ROOT / EXAMPLES, self.manifest)
         self.assertEqual(len(records), 64)
         self.assertEqual(sum(row["language"] == "ar" for row in records), 32)
         self.assertEqual(sum(row["language"] == "en" for row in records), 32)
@@ -60,6 +60,12 @@ class H48SFTBridgeTests(unittest.TestCase):
                     matched.append(button["index"])
             self.assertEqual(matched, [by_id[identity]["expected_index"]])
 
+    def test_h14_immutable_training_loader_source_is_not_changed(self):
+        freeze = json.loads(Path("evaluation/heldout/manifest.json").read_text("utf-8"))
+        original = Path("training/artifacts.py").read_bytes()
+        self.assertEqual(hashlib.sha256(original).hexdigest(),
+                         freeze["files"]["training/artifacts.py"])
+
     def test_create_only_rejects_overwrite(self):
         with self.assertRaises(FileExistsError):
             export(ROOT)
@@ -79,7 +85,7 @@ class H48SFTBridgeTests(unittest.TestCase):
                 manifest = copy.deepcopy(self.manifest)
                 change(manifest)
                 with self.assertRaises((ValueError, KeyError)):
-                    load_sft_artifact(ROOT / EXAMPLES, manifest)
+                    load_export(ROOT / EXAMPLES, manifest)
 
     def test_modified_training_label_fails_even_with_rehashed_jsonl(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -95,7 +101,7 @@ class H48SFTBridgeTests(unittest.TestCase):
             forged = copy.deepcopy(self.manifest)
             forged["dataset_sha256"] = hashlib.sha256((root / EXAMPLES).read_bytes()).hexdigest()
             with self.assertRaises(ValueError):
-                load_sft_artifact(root / EXAMPLES, forged)
+                load_export(root / EXAMPLES, forged)
 
 
 if __name__ == "__main__":

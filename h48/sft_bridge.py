@@ -111,9 +111,24 @@ def expected_bytes(root: Path):
     return data, canonical(manifest), manifest
 
 
+def load_export(examples_path: Path, manifest: dict):
+    """Admit only immutable H48 source-rederived SFT without editing H14 freeze."""
+    from training.artifacts import validate_action_completion
+    path = Path(examples_path)
+    if path.name != EXAMPLES or path.is_symlink():
+        raise ValueError("Only original H48 training export path is admitted")
+    original_data, _, expected_manifest = expected_bytes(path.parent)
+    if (manifest != expected_manifest or path.stat().st_size != len(original_data)
+            or path.read_bytes() != original_data):
+        raise ValueError("H48 image, label, provenance or JSONL content changed")
+    records = [json.loads(line) for line in original_data.decode("utf-8").splitlines()]
+    for record in records:
+        validate_action_completion(record["completion"])
+    return records
+
+
 def export(root: Path):
     """Write two derived files only when absent; original evidence is immutable."""
-    from training.artifacts import load_sft_artifact
     root = Path(root)
     examples, manifest_file = root / EXAMPLES, root / MANIFEST
     if examples.exists() or manifest_file.exists():
@@ -125,7 +140,7 @@ def export(root: Path):
             with path.open("xb") as output:
                 output.write(payload)
             created.append(path)
-        load_sft_artifact(examples, manifest)
+        load_export(examples, manifest)
     except Exception:
         for path in created:
             path.unlink()
