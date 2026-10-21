@@ -870,9 +870,19 @@ def publish_domain_proof(
         "provider_member": member.name,
         "provider_is_private": privacy["provider_is_private"],
         "anonymous_provider_http_status": privacy["anonymous_view_http_status"],
-        "provider_readback_verified": readback.get(
-            "provider_readback_members_byte_verified_count", 0
-        ) == 1,
+        "provider_readback_verified": (
+            readback.get(
+                "provider_readback_members_byte_verified_count",
+                readback.get("provider_readback_members_checked", 0),
+            )
+            == 1
+            and readback.get("provider_readback_bytes_mismatched", 0) == 0
+        ),
+        "provider_readback_method": readback.get("provider_readback_method", "bulk_archive"),
+        "provider_readback_members_checked": readback.get(
+            "provider_readback_members_byte_verified_count",
+            readback.get("provider_readback_members_checked", 0),
+        ),
         "proof_sha256": publish.sha256_bytes(body),
         "shard_count": len(proof["shards"]),
     }
