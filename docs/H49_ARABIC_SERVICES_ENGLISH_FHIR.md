@@ -112,3 +112,14 @@ python -m h49.paired_eval --root h49/assets \
 **Before a real model inference producer is approved or any competitive assertion**: require actual provider original signed notebook source and immutable artifacts, independent GPU/run evidence, honest failures, a frozen baseline on same prompts, and a *separately created, sealed, app-family-disjoint and bilingual* TEST set. H49's DEV Arabic `municipal_portal` and English `research_lab` are not the Arabic Najiz/Absher or English FHIR TRAIN families, so this DEV scoring measures cross-domain transfer, **not** heldout same-service mastery. No numbers from synthetic unittest fixtures constitute empirical model accuracy.
 
 The scorer can be exercised on local synthetic fake data via `python -m unittest tests.test_h49_paired_eval -v`; those fake examples have clearly marked fictitious provider IDs and **must never** be archived or summarized as neural performance.
+
+### Exact-score-harness engineering evidence — 2026-10-21
+
+The source-bearing scored-raw-evidence extension is signed and GitHub Verified at commit `9395e6ec6bf0ebce930999b078af137843a8b676` on the same Draft PR #37 (no duplicate PR). Exact source-head GitHub Actions runs [39530449013](https://github.com/TheHalfMoon/Hala/actions/runs/39530449013) (push) and [39530452086](https://github.com/TheHalfMoon/Hala/actions/runs/39530452086) (PR) have **four SUCCESSFUL jobs**, Python 3.11 and 3.12 on both runs.
+
+- Actual Windows offline paired scorer focused suite: **8/8 PASS**, wholly fabricated memory-only parser and negative-path fixtures; `reviews/h49-paired-scorer-focused-20261021.log` retained (no generated inference outputs or false quality estimates).
+- Actual Windows complete serial Hala suite after introducing the scorer: **595 tests, 593 PASS and two existing skipped, zero failure/error**, exit 0, 343.132 seconds reported by unittest. Raw `reviews/h49-paired-scorer-full-suite-20261021.log` SHA256 `207b7040c987a2db8aca74558060f25524c4d7d31be904cea20ea59f7767a1b5`. The slow Windows run was not aborted or represented as a performance qualification.
+- Genuine Graft **wiring-only** build/check: **PASS 1,868 nodes, 5,046 edges, 227 files**. Raw `reviews/h49-paired-scorer-graft-build-20261021.log` and `reviews/h49-paired-scorer-graft-check-20261021.log` retained; semantic/deep meaning analysis **NOT RUN**.
+- Neither the scoreboard script nor its tests produced real neural outputs. A real Colab GPU allocation, authorized model+adapter fit, externally attested raw baseline/adapted inferences, a separately sealed independent bilingual TEST and genuine version-matched competition remain **NOT PERFORMED**. Local independent D1/PStack/Alibaba code review was unavailable, so no approval is claimed.
+
+An evidence-only later commit does not change the scored protocol, but its own exact-head hosted CI must be checked separately before considering this PR's last commit qualified. PR remains **DRAFT, unmerged**.
