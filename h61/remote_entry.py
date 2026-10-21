@@ -92,9 +92,12 @@ def main() -> int:
             "H61_STEPS",
             "export,curriculum,baseline,official_base,train,evaluate,official_adapter",
         )
-        images = os.environ.get("H61_IMAGES", "slider=8000,slide_resize=6000,sheet=6000")
+        images = os.environ.get(
+            "H61_IMAGES",
+            "slider=8000,slide_resize=6000,sheet=6000,text_highlight=5000",
+        )
         max_steps = os.environ.get("H61_MAX_STEPS", "600")
-        official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "40")
+        official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
         command = [
             sys.executable, "-m", "h61.colab_run",
             "--repo", str(repo),
