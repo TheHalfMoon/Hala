@@ -153,6 +153,19 @@ def qualify_all(candidates=CANDIDATES) -> list[dict]:
     return [qualify(repo) for repo in candidates]
 
 
+def tree_total(repo: str, revision: str, path: str) -> dict:
+    """The measured size and entry count of one published directory."""
+    try:
+        payload = json.loads(_get(SPLITS.format(repo=repo, rev=revision, path=path)))
+    except Exception:  # noqa: BLE001
+        return {}
+    return {
+        "path": path,
+        "entries": len(payload),
+        "bytes": sum(int(row.get("size") or 0) for row in payload),
+    }
+
+
 def review(record: dict) -> dict:
     """Add the measured format and split review to one qualification record."""
     repo = record["source"]
@@ -168,6 +181,14 @@ def review(record: dict) -> dict:
             review_notes["published_splits"] = [
                 dataset_rows(repo, "default", "train")
             ]
+            review_notes["media_directories"] = [
+                tree_total(repo, revision, "ubuntu_images"),
+                tree_total(repo, revision, "win_mac_images"),
+            ]
+            media_bytes = sum(
+                int((entry or {}).get("bytes") or 0)
+                for entry in review_notes["media_directories"]
+            )
             record["independent_task_records"] = (
                 "not measured: the published viewer does not serve this file-based "
                 "dataset. The published annotation files are named "
@@ -179,9 +200,12 @@ def review(record: dict) -> dict:
             record["reason"] = (
                 "MIT, open access, one JSONL record per desktop trajectory with a "
                 "task_completed outcome flag and an alignment and efficiency "
-                "score, plus the original screenshot archive. The declared "
-                "trajectory count is a declaration, not a measured row count, and "
-                "a frame count is never a task count."
+                "score. The declared trajectory count is a declaration, not a "
+                "measured row count. The published screenshot archives hold "
+                f"{media_bytes} bytes over the two directories, which is far "
+                "outside the storage and bandwidth budget of this project, so "
+                "the visual part of this source is not reachable and only its "
+                "trajectory annotations are."
             )
         elif repo == "hflqf88888/GUIOdyssey":
             review_notes["split_files"] = split_files(repo, revision, "splits")
