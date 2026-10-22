@@ -166,11 +166,11 @@ def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], l
     adapter = None
     adapter_digest = None
     if label == "adapter":
-        checkpoint = work / "training"
-        pointer = json.loads((checkpoint / "latest.json").read_text("utf8"))
-        version = checkpoint / pointer["version"]
-        adapter = str(version / "adapter")
-        adapter_digest = pointer.get("adapter_weights_sha256")
+        from h60.real_drag_dev_adapter_eval import verify_adapter_checkpoint
+
+        identity = verify_adapter_checkpoint(str(work / "training"))
+        adapter = identity["adapter_dir"]
+        adapter_digest = identity["adapter_weights_sha256"]
     print(f"H61_STEP official-eval {label}", flush=True)
     receipt = run_official(domains, str(target), limit=limit, adapter=adapter,
                            adapter_sha256=adapter_digest)
