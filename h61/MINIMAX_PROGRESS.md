@@ -80,7 +80,39 @@ success 0 of 48). Three concrete, testable causes were identified:
 | Kaggle GPU | **BLOCKED** | the inspected provider terms restrict service use to internal, personal, non-commercial use. The guards stay. |
 | Vercel Workflow | **NOT DONE** | no account, credential or deployment exists in this environment. The durable orchestration is portable inside `h61/colab_run.py` and `h59/durable_contract.py`. |
 
-## Honest limits
+## What H61 covers and what it does not
+
+The founder's ten capabilities are not all covered by this milestone, and the
+scope is stated so that the gap is not mistaken for a result.
+
+| Capability | State in H61 |
+|---|---|
+| GUI visual grounding | **covered** — this is the measured deficit H61 attacks |
+| Dragging and selection | **covered** — the native drag contract over the original corpus and the bilingual corpus |
+| Clicking, typing, scrolling | **not in the H61 curriculum** — the first-party click and multistep corpora of H48, H50 and H52 hold those, and the next staged mixture has to add them back beside the drag rows |
+| Desktop and browser navigation | **partly** — the original corpus is real desktop application screenshots; browser navigation stays with the first-party browser corpora |
+| Multiple applications and operating systems | **partly** — the original corpus is one desktop platform; `xlangai/AgentNet` is qualified and would add Windows and Ubuntu trajectories |
+| Long-horizon multistep tasks | **not in the H61 curriculum** — the H52 three-step workflows are the current source |
+| Error recovery and dynamic environments | **not addressed** — the first measured work on this is the recovery training of the next stage |
+| Arabic and English computer use | **covered for the first time** — 1,000 Arabic rows beside 9,000 English rows |
+| Safe action selection, verification, abstention | **not addressed** |
+| Efficiency and latency | **measured** — the run records the seconds of every optimizer step and the peak allocated VRAM |
+| Independently reproducible benchmark | **covered** — the upstream official public evaluation split |
+
+## The next executable tasks
+
+1. Run the queued remote training and read back the raw receipts.
+2. Publish the trained checkpoint bundle to a private provider dataset and
+   prove the copy.
+3. Report the matched comparison against the frozen base on the public DEV
+   sets and on the official split, with the per-language and per-capability
+   breakdown, whatever the numbers are.
+4. If and only if the grounding moved, scale the mixture to the staged
+   curriculum, add the click and multistep families back, and ingest the
+   qualified AgentNet trajectories for the second desktop platform.
+5. Open the error recovery and the abstention work on the verified
+   first-party state oracle, which is the only measurement of a real
+   recovery outcome that this project owns.
 
 * No H61 model result exists yet. Every training and evaluation number in this
   ledger is a target, not a measurement, until the run finishes and the raw
