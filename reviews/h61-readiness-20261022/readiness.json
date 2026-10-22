@@ -1,4 +1,4 @@
-﻿{
+{
   "export_root": "D:\\hala-h61\\export",
   "failures": [],
   "gates": {
@@ -116,5 +116,6 @@
   "model_result_known": false,
   "note": "This receipt proves the CPU side of the remote run only. It says nothing about the trained model, and the model outcome stays unknown until the remote session publishes its raw receipts.",
   "schema": "hala.h61.readiness-receipt.v1",
+  "staging_note": "The local staging area is a scratch copy, not the evidence. The per-range receipts, the derived labels and the curriculum digest are the evidence and they live in the repository, and every original screenshot is re-derivable from the pinned upstream revision. The local screenshot copies were released after this receipt was taken, so that the shared disk stayed free for the concurrent H60 corpus work.",
   "status": "READY"
 }

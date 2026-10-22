@@ -139,6 +139,15 @@ def main() -> int:
         "nothing about the trained model, and the model outcome stays unknown "
         "until the remote session publishes its raw receipts."
     )
+    receipt["staging_note"] = (
+        "The local staging area is a scratch copy, not the evidence. The "
+        "per-range receipts, the derived labels and the curriculum digest are "
+        "the evidence and they live in the repository, and every original "
+        "screenshot is re-derivable from the pinned upstream revision. The "
+        "local screenshot copies were released after this receipt was taken, "
+        "so that the shared disk stayed free for the concurrent H60 corpus "
+        "work."
+    )
     print(json.dumps(receipt, ensure_ascii=False, sort_keys=True, indent=2))
     return 1 if receipt["failures"] else 0
 
