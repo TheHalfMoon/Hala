@@ -76,10 +76,17 @@ class WeightedLossTests(unittest.TestCase):
 
     def test_unsupervised_positions_must_carry_zero_weight(self):
         logits = torch.randn(1, 4, 7)
-        labels = torch.tensor([[-100, 2, 3, 4]])
-        weights = torch.tensor([[0.0, 1.0, 1.0, 1.0]])
+        # The second position is unsupervised and it is inside the loss
+        # window, so a weight on it would silently supervise the prompt.
+        labels = torch.tensor([[2, -100, 3, 4]])
         with self.assertRaises(ValueError):
             weighted_lm_loss(logits, labels, torch.ones(1, 4))
+
+    def test_a_supervised_position_must_carry_a_positive_weight(self):
+        logits = torch.randn(1, 4, 7)
+        labels = torch.tensor([[-100, 2, 3, 4]])
+        with self.assertRaises(ValueError):
+            weighted_lm_loss(logits, labels, torch.zeros(1, 4))
 
     def test_a_span_without_any_supervised_token_is_refused(self):
         logits = torch.randn(1, 4, 7)

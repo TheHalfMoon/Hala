@@ -28,6 +28,17 @@ from h61.curriculum import export as export_curriculum
 SENTINEL = "\n<|endoftext|>\n"
 
 
+class Batch:
+    """The minimal shape of a processor batch that the trainer reads."""
+
+    def __init__(self, input_ids):
+        self.input_ids = input_ids
+
+    def to(self, device):
+        self.input_ids = self.input_ids.to(device)
+        return self
+
+
 class MockProcessor:
     """A deterministic whitespace tokenizer with the Qwen chat template shape."""
 
@@ -35,20 +46,28 @@ class MockProcessor:
         self.tokenizer = self
 
     def apply_chat_template(self, messages, tokenize=False, add_generation_prompt=False):
-        parts = []
+        user_parts = []
+        assistant = None
         for message in messages:
+            if message.get("role") == "assistant":
+                assistant = message["content"]
+                continue
             content = message["content"]
             if isinstance(content, str):
-                parts.append(content)
+                user_parts.append(content)
                 continue
             for item in content:
                 if item.get("type") == "text":
-                    parts.append(item["text"])
-        text = "\n".join(parts)
-        if add_generation_prompt:
-            text += "\n<|assistant|>\n"
-        else:
-            text += SENTINEL
+                    user_parts.append(item["text"])
+        # The assistant header comes before the assistant content, exactly like
+        # the real chat template, so the prefix stays a strict token prefix of
+        # the full text.
+        text = "\n".join(user_parts) + " <|assistant|>"
+        if assistant is not None:
+            body = assistant if isinstance(assistant, str) else "\n".join(
+                item["text"] for item in assistant if item.get("type") == "text"
+            )
+            text += " " + body + " <|endoftext|>"
         return text
 
     def __call__(self, text=None, images=None, return_tensors=None):
@@ -61,7 +80,7 @@ class MockProcessor:
 
             width = max(len(row) for row in encoded)
             padded = [row + [0] * (width - len(row)) for row in encoded]
-            return _torch.tensor(padded, dtype=_torch.long)
+            return Batch(_torch.tensor(padded, dtype=_torch.long))
         return {"input_ids": encoded}
 
     def decode(self, ids):
@@ -71,12 +90,15 @@ class MockProcessor:
 
 
 TOKEN_TEXT = {}
+TOKEN_BY_WORD = {}
 
 
 def hash_token(word):
-    if word not in TOKEN_TEXT:
-        TOKEN_TEXT[word] = 1000 + len(TOKEN_TEXT)
-    return TOKEN_TEXT[word]
+    if word not in TOKEN_BY_WORD:
+        token_id = 1000 + len(TOKEN_BY_WORD)
+        TOKEN_BY_WORD[word] = token_id
+        TOKEN_TEXT[token_id] = word
+    return TOKEN_BY_WORD[word]
 
 
 def make_shard(root: Path, domain: str = "slider", images: int = 4, rows: int = 1):
