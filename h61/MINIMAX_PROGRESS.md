@@ -103,6 +103,9 @@ success 0 of 48). Three concrete, testable causes were identified:
   evaluation split is the part that is third-party.
 * The upstream official evaluation split is public and is used for evaluation
   only. It is never read into a training row and never used to derive a label.
+  It is a static screenshot split, so it measures geometric task success and
+  not a live browser task success; the live browser replay stays with the
+  first-party public DEV sets, and the two together cover both.
 * The official evaluation is measured in the H61 evaluation frame, which is a
   documented, exactly reversible uniform scale of the official screenshots and
   of the official start and end boxes.
