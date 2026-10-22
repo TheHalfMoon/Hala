@@ -112,7 +112,11 @@ def step_curriculum(work: Path, target_rows: int, max_rows_per_image: int,
 
 
 def step_train(work: Path, config_path: Path, max_steps: int, resume: bool) -> dict:
-    """Run the real gradient-bearing LoRA training with a verified checkpoint."""
+    """Run the real gradient-bearing LoRA training with a verified checkpoint.
+
+    A published checkpoint is resumed automatically, so an interrupted session
+    continues its own trajectory instead of refusing to start again.
+    """
     from training.scripts.train_adapter import train
 
     source = work / "export"
@@ -123,15 +127,19 @@ def step_train(work: Path, config_path: Path, max_steps: int, resume: bool) -> d
     effective_config = work / "training-config.json"
     write_json(effective_config, config)
     baseline = work / "public-dev-baseline-receipt.json"
+    published = (output / "latest.json").exists()
     result = train(
         str(effective_config),
         str(source / "h61_drag_curriculum.jsonl"),
         str(source / "h61_drag_curriculum_manifest.json"),
         str(baseline),
         str(output),
-        resume=resume,
+        resume=resume or published,
     )
-    print(f"H61_STEP train done steps={result.get('step')}", flush=True)
+    print(
+        f"H61_STEP train done steps={result.get('step')} resumed={published}",
+        flush=True,
+    )
     return result
 
 
