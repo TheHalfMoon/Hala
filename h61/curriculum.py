@@ -433,6 +433,13 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
                 ),
             }
         )
+    # The rows are ordered by a deterministic pseudo-random key of their
+    # identity, not by their domain. The trainer walks the curriculum in
+    # order, so a sorted curriculum would feed it one capability for the
+    # whole run and the measured capability balance of the mixture would be
+    # an illusion. A shuffled order makes every prefix of the curriculum a
+    # representative sample of the whole mixture.
+    out_rows.sort(key=lambda row: sha(row["id"].encode("utf8")))
     blob = b"".join(
         json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
                    allow_nan=False).encode("utf8") + b"\n"

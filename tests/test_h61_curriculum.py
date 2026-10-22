@@ -204,6 +204,36 @@ class CurriculumTests(unittest.TestCase):
             self.assertTrue(resolved.exists(), row["image_path"])
             self.assertTrue(str(resolved).startswith(str(self.root)))
 
+    def test_every_prefix_of_the_curriculum_is_a_representative_sample(self):
+        """The trainer walks the curriculum in order, so a prefix must be mixed.
+
+        A curriculum that is ordered by its domain would feed the trainer one
+        capability for the whole run, and the measured capability balance of
+        the mixture would be an illusion.
+        """
+        for domain in ("slider", "sheet", "slide_resize", "text_highlight"):
+            write_shard(self.root, domain, 40, 2)
+        export(self.root, target_rows=160, max_rows_per_image=1)
+        rows = [
+            json.loads(line)
+            for line in (self.root / "h61_drag_curriculum.jsonl").read_text("utf8").splitlines()
+            if line.strip()
+        ]
+        self.assertEqual(len(rows), 160)
+        prefix = rows[:20]
+        self.assertGreaterEqual(len({row["capability"] for row in prefix}), 3)
+        half = rows[:80]
+        self.assertGreaterEqual(len({row["capability"] for row in half}), 3)
+
+    def test_the_curriculum_order_is_deterministic(self):
+        write_shard(self.root, "slider", 30, 2)
+        export(self.root, target_rows=30, max_rows_per_image=1)
+        first = (self.root / "h61_drag_curriculum.jsonl").read_text("utf8")
+        (self.root / "h61_drag_curriculum.jsonl").unlink()
+        (self.root / "h61_drag_curriculum_manifest.json").unlink()
+        export(self.root, target_rows=30, max_rows_per_image=1)
+        self.assertEqual(first, (self.root / "h61_drag_curriculum.jsonl").read_text("utf8"))
+
     def test_export_is_create_only_and_reloads(self):
         write_shard(self.root, "slider", 30, 2)
         write_shard(self.root, "sheet", 30, 2, ordered=False)
