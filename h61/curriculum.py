@@ -423,6 +423,9 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
                 ),
                 "image_path": row["image_path"],
                 "image_sha256": row["image_sha256"],
+                "image_format": (
+                    "PNG" if row["image_path"].lower().endswith(".png") else "JPEG"
+                ),
             }
         )
     blob = b"".join(

@@ -161,6 +161,23 @@ class CurriculumTests(unittest.TestCase):
         second, _ = select(list(reversed(rows)), 20, 2)
         self.assertEqual([row["id"] for row in first], [row["id"] for row in second])
 
+    def test_every_row_declares_the_format_of_its_media(self):
+        from h61.curriculum import build as build_curriculum
+        from training.scripts.train_adapter import media_format
+
+        write_shard(self.root, "slider", 4, 1)
+        blob, manifest, rows = build_curriculum(self.root, target_rows=4, max_rows_per_image=1)
+        self.assertTrue(rows)
+        for row in rows:
+            self.assertIn(row["image_format"], ("JPEG", "PNG"))
+            self.assertEqual(media_format(row, native_drag_jpeg=True), row["image_format"])
+
+    def test_a_record_without_a_declared_format_uses_the_source_flag(self):
+        from training.scripts.train_adapter import media_format
+
+        self.assertEqual(media_format({"image_path": "a.jpg"}, native_drag_jpeg=True), "JPEG")
+        self.assertEqual(media_format({"image_path": "a.png"}, native_drag_jpeg=False), "PNG")
+
     def test_every_curriculum_media_path_resolves_under_the_training_root(self):
         """The trainer resolves a row's media against the training root.
 

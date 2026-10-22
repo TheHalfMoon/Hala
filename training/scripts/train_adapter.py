@@ -68,6 +68,19 @@ def load_json(path):
     return strict_json(path.read_text(encoding='utf-8'))
 
 
+def media_format(row, native_drag_jpeg=False) -> str:
+    """The image format of one training record.
+
+    A record that declares its own format is trusted; a record that does not
+    falls back to the source-wide flag, which is what the earlier sources
+    need. A mixed corpus therefore does not have to lie about its format.
+    """
+    declared = row.get('image_format')
+    if declared in ('JPEG', 'PNG'):
+        return declared
+    return 'JPEG' if native_drag_jpeg else 'PNG'
+
+
 def check_media(row, root, native_drag_jpeg=False):
     """Verify one training media file without allocating a processor.
 
@@ -82,8 +95,9 @@ def check_media(row, root, native_drag_jpeg=False):
     if sha256_file(image_path) != row['image_sha256']:
         raise ValueError('Training media digest changed after preflight')
     with Image.open(image_path) as source:
-        image_format = 'JPEG' if native_drag_jpeg else 'PNG'
-        if source.format != image_format or source.width * source.height > MAX_PIXELS:
+        if source.format != media_format(row, native_drag_jpeg):
+            raise ValueError('Training image does not have its declared format')
+        if source.width * source.height > MAX_PIXELS:
             raise ValueError('Training image exceeds source-bound header/pixel budget')
 
 
@@ -100,8 +114,9 @@ def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False
     if sha256_file(image_path) != row['image_sha256']:
         raise ValueError('Training media digest changed after preflight')
     with Image.open(image_path) as source:
-        image_format = 'JPEG' if native_drag_jpeg else 'PNG'
-        if source.format != image_format or source.width * source.height > MAX_PIXELS:
+        if source.format != media_format(row, native_drag_jpeg):
+            raise ValueError('Training image does not have its declared format')
+        if source.width * source.height > MAX_PIXELS:
             raise ValueError('Training image exceeds source-bound header/pixel budget')
         image = source.convert('RGB')
     try:
