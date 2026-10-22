@@ -264,11 +264,20 @@ def capture(html_path: Path, png_path: Path) -> None:
 
 
 def audit_scene(png_path: Path, scene: dict) -> list[str]:
-    """Verify that the screenshot really shows the handle and the target."""
+    """Verify that the screenshot really shows the handle and the target.
+
+    A screenshot that the browser wrote but that is not a readable image is a
+    rejected scene, not a crash: a partial capture is a transport condition
+    and it must never stop the corpus.
+    """
     from PIL import Image
 
     problems: list[str] = []
-    with Image.open(png_path) as picture:
+    try:
+        picture = Image.open(png_path)
+    except Exception as error:  # noqa: BLE001
+        return [f"the captured screenshot is not a readable image: {type(error).__name__}"[:120]]
+    with picture:
         if picture.size != FRAME:
             problems.append(f"the captured frame is {picture.size}")
             picture = picture.convert("RGB")
@@ -370,7 +379,10 @@ def build(out_dir, count: int, *, capture_scenes: bool = True) -> dict:
         if not png_path.exists():
             rejections.append({"id": scene["id"], "reason": "the browser produced no screenshot"})
             continue
-        problems = audit_scene(png_path, scene)
+        try:
+            problems = audit_scene(png_path, scene)
+        except Exception as error:  # noqa: BLE001
+            problems = [f"the audit failed: {type(error).__name__}"[:120]]
         if problems:
             rejections.append({"id": scene["id"], "reason": "; ".join(problems)[:200]})
             png_path.unlink(missing_ok=True)

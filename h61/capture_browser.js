@@ -103,19 +103,35 @@ async function main() {
     width: 1024, height: 640, deviceScaleFactor: 1, mobile: false,
   });
   let done = 0;
+  let broken = 0;
   for (const page of pages) {
     const url = `file:///${path.resolve(page).replace(/\\/g, '/')}`;
-    await attached.send('Page.navigate', { url });
-    await sleep(120);
-    const shot = await attached.send('Page.captureScreenshot', {
-      format: 'png', captureBeyondViewport: false,
-    });
     const target = path.join(outputDir, path.basename(page).replace(/\.html$/, '.png'));
-    fs.writeFileSync(target, Buffer.from(shot.data, 'base64'));
+    let written = false;
+    for (let attempt = 0; attempt < 3 && !written; attempt += 1) {
+      await attached.send('Page.navigate', { url });
+      await sleep(250);
+      const shot = await attached.send('Page.captureScreenshot', {
+        format: 'png', captureBeyondViewport: false,
+      });
+      const buffer = Buffer.from(shot.data, 'base64');
+      // A truncated screenshot is a transport condition, so it is captured
+      // again rather than accepted.
+      if (buffer.length > 512) {
+        fs.writeFileSync(target, buffer);
+        written = true;
+      } else {
+        broken += 1;
+        await sleep(400);
+      }
+    }
+    if (!written) {
+      console.log(`H61_CAPTURE_INCOMPLETE ${path.basename(page)}`);
+    }
     done += 1;
     if (done % 50 === 0) console.log(`H61_CAPTURE ${done}/${pages.length}`);
   }
-  console.log(`H61_CAPTURE_DONE ${done}`);
+  console.log(`H61_CAPTURE_DONE ${done} incomplete=${broken}`);
   socket.close();
 }
 
