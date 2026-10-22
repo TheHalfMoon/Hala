@@ -32,7 +32,7 @@ class H59MiniMaxHandoffTests(unittest.TestCase):
 
     def test_h59_progress_in_repository_catalog_remains_source_only(self):
         doc=json.loads((ROOT/"research/data_library/catalog.json").read_text("utf8"))
-        self.assertEqual(len(doc["datasets"]),14)
+        self.assertEqual(len(doc["datasets"]),15)
         rows=[x for x in doc["source_maps"] if x["id"]=="hala-h59-millions-source-map"]
         self.assertEqual(len(rows),1)
         row=rows[0]

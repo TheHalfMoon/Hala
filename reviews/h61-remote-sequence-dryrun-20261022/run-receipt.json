@@ -1,0 +1,153 @@
+{
+  "domains": {
+    "slider": 1000
+  },
+  "elapsed_seconds": 872.181,
+  "failures": [],
+  "family_targets": {
+    "h61_firstparty_bilingual_drag_train": 500
+  },
+  "max_rows_per_image": 1,
+  "max_steps": 600,
+  "paid_compute_units_consumed": 0,
+  "provider": "interactive_approved_free_colab",
+  "repo": "C:\\Users\\Shehr\\work\\Hala\\h61",
+  "results": {
+    "baseline": {
+      "deficit": "The frozen unchanged Qwen3-VL-2B produced 0 of 48 real GUI native drag task successes across the two first-party public DEV sets: 0 of 48 outputs were accepted by the strict bare-JSON scorer, 21 of 24 H55 and 6 of 24 H58 parseable outputs returned an identical start and end point, and 8 of 24 H58 outputs left the 1024x640 image bounds.",
+      "evaluated_tasks": 48,
+      "evidence": "real_inference",
+      "gpu": "Tesla T4",
+      "held_out_dataset_sha256": "08c88cdb428f7a615792cb2af2a7095612f747278a9b5843e4eaf25e7b65e5f8",
+      "held_out_source": "original_firstparty_public_dev_h55_h58_source_disjoint_not_training",
+      "independent_blind_test_completed": false,
+      "measured_totals": {
+        "cases": 48,
+        "degenerate_start_equals_end": 27,
+        "geometrically_correct": 0,
+        "ordered_semantics_valid": 40,
+        "out_of_range_points": 8,
+        "real_edge_gui_success": 0,
+        "strict_bare_json_valid": 0,
+        "tolerant_parse_valid": 40
+      },
+      "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+      "official_benchmark_comparison_qualified": false,
+      "paid_compute_units_consumed": 0,
+      "provider": "interactive_approved_free_colab",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "schema": "hala.h61.public-dev-baseline-receipt.v1",
+      "source_evidence_sha256": "de079652aa2572754c61b292d54aa845694d0a2d2d855160dc842b37609e8523",
+      "task_kind": "mixed_ordered_unordered_drag",
+      "verified_success_rate": 0.0
+    },
+    "curriculum": {
+      "capability_counts": {
+        "sheet/ordered": 125,
+        "slide_resize/ordered": 125,
+        "slider/ordered": 125,
+        "text_highlight/unordered": 125
+      },
+      "curriculum_rows": 500,
+      "derived_train_sha256": "b92fd13884b4a72b8d7bbf1298588ba3901536cbf45e1f1007222188d488913f",
+      "domain_counts": {
+        "sheet": 125,
+        "slide_resize": 125,
+        "slider": 125,
+        "text_highlight": 125
+      },
+      "independent_model_evaluation_completed": false,
+      "language_counts": {
+        "ar": 252,
+        "en": 248
+      },
+      "model_training_executed": false,
+      "ordered_false": 125,
+      "ordered_true": 375,
+      "schema": "hala.h61.native-drag-curriculum.v1",
+      "unique_source_images": 500
+    },
+    "export": {
+      "domains": [
+        {
+          "benchmark_answer_leakage": false,
+          "bounded_export": true,
+          "elapsed_seconds": 157.175,
+          "first_task_member": "slider/tasks/._8c31a560-ee8e-5cb7-8cfc-2021f102625f.json",
+          "image_region_bytes_read": 67108864,
+          "image_region_sha256": "fce8966abbb7b32b418ba51f03485127fad1497164f28c47736750e39a0526f3",
+          "images_wanted": 1000,
+          "images_with_original_tasks": 1080,
+          "labels_sha256": "b887f7d2089aa0c2e3732e8e4104f96963829427a3e4fc1fffcb33660a8ad9c9",
+          "model_gpu_steps": 0,
+          "native_drag_actions": 9485,
+          "official_eval_or_test_used": false,
+          "original_images": 1080,
+          "range_receipts": 32,
+          "rejected": [],
+          "schema": "hala.h61.source-export.v1",
+          "source_commit_sha": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+          "source_domain": "slider",
+          "source_license": "Apache-2.0",
+          "source_repo": "Hcompany/DragOn",
+          "source_tar_bytes": 7146830848,
+          "source_tar_sha256_matches_official": false,
+          "split": "train",
+          "task_region_bytes_read": 915404288,
+          "task_region_sha256": "f0163a4a8ce553bff8fc58298e65d6262093ed1895a4eff47b8500d066fe3cc9",
+          "task_region_start": 6231426560,
+          "training_frame": [
+            1024,
+            640
+          ],
+          "upstream_lfs_sha256": "2455d5b4a164d4ff3d6cf41d92d24ad2e27db29e28ea16f5585b55956356a33e",
+          "whole_archive_streamed": false
+        }
+      ]
+    },
+    "firstparty": {
+      "benchmark_answer_leakage": false,
+      "by_kind": {
+        "sheet": 500,
+        "slide_resize": 500,
+        "slider": 500,
+        "text_highlight": 500
+      },
+      "by_language": {
+        "ar": 1000,
+        "en": 1000
+      },
+      "capture": "genuine installed headless Microsoft Edge",
+      "created_utc": "2026-10-22T03:33:55Z",
+      "frame": [
+        1024,
+        640
+      ],
+      "kind": "original-first-party",
+      "labels_sha256": "94c9b943f79264ceccf5d04a2daf8278e7cb02589ce5edbddee8a3e557daa4e6",
+      "language": "ar,en",
+      "model_gpu_steps": 0,
+      "ordered_false": 500,
+      "ordered_true": 1500,
+      "public_dev_families_used": false,
+      "rejections": [],
+      "scenes_accepted": 2000,
+      "scenes_authored": 2000,
+      "scenes_rejected": 0,
+      "schema": "hala.h61.firstparty-bilingual-drag.v1",
+      "split": "train only"
+    }
+  },
+  "resume": false,
+  "schema": "hala.h61.colab-run.v1",
+  "started_utc": "2026-10-22T03:19:24Z",
+  "status": "completed",
+  "steps": [
+    "export",
+    "firstparty",
+    "curriculum",
+    "baseline"
+  ],
+  "target_rows": 10000,
+  "work": "D:\\hala-h61\\dryrun"
+}

@@ -1,0 +1,364 @@
+{
+  "records": [
+    {
+      "accessible": true,
+      "annotation_files": 3,
+      "downloads": 7719,
+      "gated": false,
+      "independent_task_records": "not measured: the published viewer does not serve this file-based dataset. The published annotation files are named agentnet_ubuntu_5k.jsonl and agentnet_win_mac_18k.jsonl, which declare about 23,000 desktop trajectories, and that declaration is not a measured row count.",
+      "license": "mit",
+      "media_files": 2,
+      "private": false,
+      "reason": "MIT, open access, one JSONL record per desktop trajectory with a task_completed outcome flag and an alignment and efficiency score. The declared trajectory count is a declaration, not a measured row count. The published screenshot archives hold 197856763436 bytes over the two directories, which is far outside the storage and bandwidth budget of this project, so the visual part of this source is not reachable and only its trajectory annotations are.",
+      "review": {
+        "annotation_record": {
+          "fields": [
+            "actual_task",
+            "alignment_score",
+            "domain",
+            "efficiency_score",
+            "instruction",
+            "natural_language_task",
+            "reason",
+            "task_completed",
+            "task_difficulty",
+            "task_id",
+            "traj"
+          ],
+          "path": "agentnet_ubuntu_5k.jsonl",
+          "sample": {
+            "actual_task": "Launch GIMP application, open the pikachu.jpeg file from the desktop using the file dialog, navigate to Filters > Animation menu to locate the Venetian Blinds filter, and discover that this specific filter is not available in GIMP's Animation category.",
+            "alignment_score": 6,
+            "domain": "infeasible",
+            "efficiency_score": 9,
+            "instruction": "Open the Pikachu picture on the desktop using GIMP, and then select the \"Venetian Blinds\" filter in the animation.",
+            "natural_language_task": "Open the image editing software GIMP, load the pikachu.jpeg file from the desktop, then navigate to the Filters menu and look for a 'Venetian Blinds' filter in the Animation section to apply it to the image.",
+            "reason": "The agent successfully completed the first part of the task by efficiently opening GIMP, loading the pikachu.jpeg file from the desktop, and navigating to the Animation filters menu. All steps were logical and executed without redundancy. However, the task could not be completed because the 'Venetian Blinds' filter does not exist in GIMP's Animation category. The agent correctly identified this limitation and appropriately terminated the task rather than continuing futilely.",
+            "task_completed": false,
+            "task_difficulty": 4,
+            "task_id": "0030dc52-2a4a-4c0e-895b-48284c200efe",
+            "traj": [
+              {
+                "image": "30a6f01b-9daf-4107-a755-a4a602d0de8e.png",
+                "index": 0,
+                "value": {
+                  "action": "Click on the GIMP application icon in the left taskbar to launch the image editing software.",
+                  "code": "pyautogui.click(x=0.018, y=0.508)",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The current screen shows a desktop environment with a blue background featuring a large Pikachu character and the Pokémon logo. On the left side, there is a vertical taskbar containing various application icons and file shortcuts. The desktop displays multiple files and folders including xlsx files, text documents, images, and applications. Notable items visible include \"charizard.jpeg\", \"pikachu.jpeg\", \"Untitled 1.txt\", \"writer\", \"Chinese Writer.xlsx\", and various other files. There's also a \"Kpop Girl Groups\" folder and several application icons like LibreOffice, VLC media player, and others. The taskbar on the left contains system applications including what appears to be a terminal icon, file manager, and other system utilities. The overall layout suggests this is a Linux-based desktop environment, likely GNOME, with the Activities overview or similar interface active.",
+                  "reflection": "The last action successfully launched GIMP (GNU Image Manipulation Program) as evidenced by the application window now being open in the center of the screen. The GIMP interface is clearly visible with its characteristic dark gray theme, showing the main canvas area, toolbox on the left with various editing tools, and panels on the right including brush selection and layer options. The application title bar shows 'GNU Image Manipulation Program' confirming that GIMP has been properly launched. The desktop background with the Pokemon logo and Pikachu character is still visible behind the GIMP window, and I can still see the desktop files including the 'pikachu.jpeg' file that needs to be opened next. The taskbar on the left shows that GIMP is now the active application. This step was successful in opening the image editing software needed to complete the task.",
+                  "thought": "I need to start working towards the goal of opening the Pikachu picture on the desktop using GIMP and then applying the \"Venetian Blinds\" filter. Looking at the desktop, I can see there's a file called \"pikachu.jpeg\" which appears to be the Pikachu picture I need to open. To accomplish this task, I first need to open GIMP. I can see various application icons in the left taskbar, and I should look for GIMP among them. The logical first step would be to launch GIMP, which I can do by clicking on the GIMP icon if it's visible in the taskbar, or I might need to access it through the applications menu. Looking at the taskbar, I can see what appears to be an image editing application icon that could be GIMP. The next action should be to click on this application icon to launch GIMP, which will then allow me to open the Pikachu image file and proceed with applying the Venetian Blinds filter."
+                }
+              },
+              {
+                "image": "6a4c1f52-0d31-43dc-8cd0-803e2c2183e5.png",
+                "index": 1,
+                "value": {
+                  "action": "Press Ctrl+O to open the file dialog in GIMP, which will allow me to browse and select the pikachu.jpeg file from the desktop.",
+                  "code": "pyautogui.hotkey(['ctrl', 'o'])",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The GIMP application is now fully loaded and active, displaying the main interface with its characteristic dark gray theme. The application window shows the title \"GNU Image Manipulation Program\" at the top. The interface consists of several key areas: a toolbox on the left side containing various editing tools like selection, paint, and transform tools; a central canvas area that is currently empty with a gray background; and panels on the right side showing brush options, layers, and other editing controls. The menu bar at the top contains standard GIMP menus including File, Edit, Select, View, Image, Layer, Colors, Tools, Filters, Windows, and Help. On the desktop behind the GIMP window, I can still see the blue background with the Pikachu character, and importantly, there's a file visible on the left side of the desktop labeled \"pikachu.jpeg\" which is the target file that needs to be opened. The desktop also shows other files and folders in the left panel. The GIMP application is ready to accept commands and open image files.",
+                  "reflection": "The Ctrl+O keyboard shortcut was successful in opening the file dialog in GIMP. The 'Open Image' dialog window has appeared on top of the GIMP interface, showing a file browser with various folders and files listed. I can see the 'Recently Used' section is expanded, displaying several files including 'pikachu.jpeg' which is exactly what I need to open. The dialog shows file details like size and modification dates, and there's a preview panel on the right side that currently shows 'No selection'. The file browser interface is clean and organized, with navigation options on the left including Desktop, Pictures, Documents, and other standard folders. At the bottom of the dialog, there are 'Cancel' and 'Open' buttons, and I can see the pikachu.jpeg file is listed among the recently used files, making it easily accessible for selection.",
+                  "thought": "GIMP has successfully launched and is now ready for use. I can see the complete interface with all the necessary tools and menus available. Now I need to open the Pikachu image file that's visible on the desktop. I can see \"pikachu.jpeg\" in the desktop file list on the left side of the screen. To open this file in GIMP, I have several options: I could use the File menu and click \"Open\", I could drag and drop the file into GIMP, or I could use the keyboard shortcut Ctrl+O to open the file dialog. The keyboard shortcut Ctrl+O is typically the fastest and most efficient way to open a file in most applications, including GIMP. This will bring up the file browser dialog where I can navigate to and select the pikachu.jpeg file from the desktop. Once I have the image loaded, I'll then be able to proceed with applying the \"Venetian Blinds\" filter, which will likely be found in the Filters menu under one of the animation or distortion categories. Using the Ctrl+O shortcut is the logical next step to efficiently open the file dialog and locate the Pikachu image."
+                }
+              },
+              {
+                "image": "db7286e5-f1b8-4093-8752-69f03afebe1f.png",
+                "index": 2,
+                "value": {
+                  "action": "Click on the \"pikachu.jpeg\" file entry in the recently used files list to select it.",
+                  "code": "pyautogui.click(x=0.07, y=0.234)",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The current screen shows GIMP's \"Open Image\" dialog window overlaying the main GIMP interface. The dialog displays a file browser with two main sections: on the left is a \"Places\" panel showing various locations including \"Recently Used\", \"user\", \"Desktop\", \"File System\", \"Pictures\", \"Documents\", \"Music\", \"Videos\", and \"Downloads\". On the right is the main file listing area showing recently used files including xlsx, mozilla.pdf, charizard.jpeg, pikachu.jpeg, Digital_Monster.pdf, and Tiger3.pdf with their respective file sizes and modification dates. The pikachu.jpeg file is visible in the list with a size of 7.5 kB and shows \"Friday\" as the modification date. There's a preview panel on the right side currently showing \"No selection\" with a question mark icon. At the bottom of the dialog are \"Help\", \"Cancel\", and \"Open\" buttons. The dialog also shows options for \"Show All Files\" and \"Select File Type (Automatically Detected)\". In the background, the desktop is visible with a Pikachu wallpaper, and there are various application icons in the left taskbar including what appears to be the pikachu.jpeg file icon.",
+                  "reflection": "The last action successfully selected the pikachu.jpeg file. Looking at the visual changes between the two screenshots, I can see that the file dialog has navigated from showing the 'Recently Used' files to showing the Desktop folder contents. The pikachu.jpeg file is now visible and selected in the file list, as indicated by it being highlighted. In the preview panel on the right side, I can see a thumbnail preview of the Pikachu image, which confirms this is indeed the correct file. The file shows as 7.5 kB and was modified on Friday. The selection is clearly active and ready for the next step, which would be to click the 'Open' button to load this image into GIMP.",
+                  "thought": "Perfect! The file dialog has opened successfully and I can see exactly what I need. The pikachu.jpeg file is clearly listed in the \"Recently Used\" files section, which makes this very convenient. I can see it's a 7.5 kB file that was modified on Friday. Since the file is already visible in the recently used files list, I don't need to navigate to the Desktop folder - I can directly select the pikachu.jpeg file from this list. This is actually more efficient than browsing to the Desktop location. Once I click on the pikachu.jpeg file in the list, it should become selected and I'll be able to see a preview of the image in the preview panel on the right. After selecting the file, I'll then need to click the \"Open\" button to load the image into GIMP. The logical next step is to click on the pikachu.jpeg entry in the file list to select it. This will highlight the file and likely show a preview, confirming that this is indeed the correct Pikachu image I want to work with before opening it."
+                }
+              },
+              {
+                "image": "9fd7dccd-b509-47da-80e0-aecd93e19e56.png",
+                "index": 3,
+                "value": {
+                  "action": "Double-click on the \"pikachu.jpeg\" file entry in the file list to open the image in GIMP.",
+                  "code": "pyautogui.doubleClick(x=0.153, y=0.283)",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The current state shows GIMP's \"Open Image\" dialog window is active and displayed prominently in the center of the screen. The dialog shows the Desktop folder contents in the main file list area. Several files are visible including \"Kpop Girl Groups\", \"Spider-Man\", \"writer\", \"xlsx\", \"5566.pdf\", \"cheetard.jpeg\", and \"pikachu.jpeg\". The pikachu.jpeg file appears to be selected/highlighted in the file list, showing it's 7.5 kB in size and was modified on Friday. On the right side of the dialog, there's a preview panel that displays a thumbnail image of what appears to be a Pikachu character - a yellow Pokemon with black eyes and red cheeks. At the bottom of the dialog window are three buttons: \"Help\" on the left, and \"Cancel\" and \"Open\" on the right side. The file type selection shows \"Select File Type (Automatically Detected)\" at the bottom left. The dialog also shows navigation elements including a back button and breadcrumb showing \"user > Desktop\" path. In the background, the desktop is visible with a blue wallpaper featuring a large Pikachu image, and there are some application icons in the taskbar on the left side.",
+                  "reflection": "The double-click action on the pikachu.jpeg file was successful. The file dialog has closed and GIMP has opened the Pikachu image in its main editing interface. I can see the Pikachu image is now displayed in the center canvas area of GIMP, showing a cute yellow Pikachu character with red cheeks in a happy pose. The GIMP interface is fully loaded with all the standard menus (File, Edit, Select, View, Image, Layer, Colors, Tools, Filters, Windows, Help) visible at the top, and the toolbox and layers panel are visible on the right side. The image appears to be properly loaded as a layer called 'pikachu.jpeg' as shown in the layers panel. The desktop background with the large Pikachu character is still visible on the right side of the screen. This confirms that the image has been successfully opened in GIMP and I can now proceed to the next step of finding and applying the Venetian Blinds filter.",
+                  "thought": "I can see that the pikachu.jpeg file has been successfully selected in the file dialog, and the preview panel is showing the Pikachu image thumbnail, confirming this is indeed the correct file I want to open. The file appears highlighted in the list and all the details match what I expect - it's 7.5 kB and was modified on Friday. Now that I have the correct file selected and can see the preview confirming it's the Pikachu image, the next logical step is to actually open this file in GIMP so I can begin working with it. I have two options to open the selected file: I can either click the \"Open\" button at the bottom right of the dialog, or I can double-click directly on the pikachu.jpeg file entry in the list. Double-clicking on a file in a file dialog is a standard and efficient way to both select and open a file in one action. This would be faster than clicking the separate \"Open\" button. Since the pikachu.jpeg file is already selected and visible in the file list, double-clicking on it would immediately open the image in GIMP, allowing me to proceed with the next part of the task which involves finding and applying the \"Venetian Blinds\" filter in the animation menu. Double-clicking on the file entry is the most direct and efficient approach to open the image."
+                }
+              },
+              {
+                "image": "f4987a89-c1f3-42a9-b3fa-326768fea899.png",
+                "index": 4,
+                "value": {
+                  "action": "Click on the \"Filters\" menu in the GIMP menu bar to access the available filter categories and locate the animation filters.",
+                  "code": "pyautogui.click(x=0.377, y=0.193)",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The GIMP application is currently open with the pikachu.jpeg image successfully loaded in the main canvas area. The image shows a yellow Pikachu character with red cheeks in a happy pose, displayed in the center of the GIMP workspace. The GIMP interface shows the standard menu bar at the top with options including File, Edit, Select, View, Image, Layer, Colors, Tools, Filters, Windows, and Help. The Filters menu is visible in the menu bar and appears to be the target for accessing animation filters. On the right side of the interface, there are various tool panels including brush options, layers panel showing the pikachu.jpeg layer, and other editing controls. The left side of the screen shows the desktop with various application icons and files, including the original pikachu.jpeg file icon. The window title bar shows \"[pikachu] (imported)-1.0 (RGB color, 8-bit gamma integer, GIMP built-in sRGB, 1 layer) 232x217 – GIMP\" confirming the image is properly loaded. The overall layout shows GIMP is fully functional and ready for image editing operations.",
+                  "reflection": "The last action successfully clicked on the Filters menu in GIMP, which opened a comprehensive dropdown menu showing all available filter categories. The menu is now displayed with various filter options including Repeat Last, Re-Show Last, Reset all Filters, and multiple filter categories like Blur, Enhance, Distorts, Light and Shadow, Noise, Edge-Detect, Generic, Combine, Artistic, Decor, Map, Render, Web, Animation, Script-Fu, and Gqat-exercise. Most importantly, I can see the 'Animation' category in the menu, which is exactly what I need to find the Venetian Blinds filter. The menu is clearly visible and accessible, showing that the click was successful and I can now proceed to click on the Animation submenu to locate the Venetian Blinds filter.",
+                  "thought": "Perfect! The pikachu.jpeg file has been successfully opened in GIMP and I can see the Pikachu image displayed clearly in the main canvas area. The image is properly loaded as a layer and GIMP is fully functional with all menus accessible. Now I need to proceed to the next part of the task, which is to find and apply the \"Venetian Blinds\" filter in the animation section. Looking at the current state, I can see all the standard GIMP menus are available at the top of the interface. To access animation filters like \"Venetian Blinds\", I need to navigate through the menu system. The Filters menu is where I would typically find various image effects and filters, including animation-related filters. Since the goal specifically mentions finding the \"Venetian Blinds\" filter in the animation section, I should start by clicking on the Filters menu to explore the available filter categories. This will likely reveal submenus where animation filters would be organized. The Filters menu is clearly visible in the menu bar and clicking on it would be the logical first step to locate the Venetian Blinds animation filter. This approach follows the standard workflow in GIMP where filters are organized under the main Filters menu with various subcategories."
+                }
+              },
+              {
+                "image": "1e2f8fac-b878-4e64-82dd-cdd83df3c57c.png",
+                "index": 5,
+                "value": {
+                  "action": "Move the mouse to the Animation menu item in the Filters dropdown menu.",
+                  "code": "pyautogui.moveTo(x=0.394, y=0.604)",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The GIMP application is currently open with the pikachu.jpeg file loaded and displayed in the main canvas area. The Pikachu image is clearly visible showing a yellow Pikachu character. The Filters menu has been clicked and is now open, displaying a comprehensive dropdown menu with various filter categories. The menu shows options including Repeat Last, Re-Show Last, Reset all Filters, followed by multiple filter categories such as Blur, Enhance, Distorts, Light and Shadow, Noise, Edge-Detect, Generic, Combine, Artistic, Decor, Map, Render, Web, Animation, Script-Fu, and Goat-exercise. Each category has an arrow indicator suggesting they contain submenus. The Animation category is visible in the menu list, which is the target category needed to find the Venetian Blinds filter. The menu is fully expanded and accessible, with all options clearly readable. The GIMP interface shows the standard layout with toolbox on the left, main canvas in the center displaying the Pikachu image, and layers panel on the right. The window title shows \"[pikachu] (imported)-1.0 (RGB color 8-bit gamma integer, GIMP built-in sRGB, 1 layer) 232x217 – GIMP\".",
+                  "reflection": "The mouse movement to the Animation menu item was successful. In the second screenshot, I can see that the Animation submenu has expanded, revealing several animation-related filter options including 'Blend...', 'Burn-In...', 'Rippling...', 'Spinning Globe...', and 'Waves...'. However, I notice that the 'Venetian Blinds' filter is not visible in the currently displayed submenu options. This suggests that either the Venetian Blinds filter might be located in a different category within the Filters menu, or it may require scrolling within the Animation submenu to see additional options. The submenu expansion confirms that the mouse positioning was accurate and the interface is responding correctly to the navigation.",
+                  "thought": "The Filters menu has successfully opened and I can see all the available filter categories displayed in the dropdown menu. This is exactly what I needed - the menu is showing various filter options and most importantly, I can clearly see the \"Animation\" category listed among the options. Since my goal is to find the \"Venetian Blinds\" filter in the animation section, I need to click on the Animation category to access its submenu. The Animation option is visible in the menu and appears to have an arrow indicator, suggesting it contains additional filter options within it. This is the logical next step in my workflow - I've successfully opened the pikachu.jpeg file in GIMP, accessed the Filters menu, and now I need to navigate to the Animation submenu where the Venetian Blinds filter should be located. Clicking on the Animation category will reveal the animation-related filters available in GIMP, and among those should be the Venetian Blinds filter that I'm looking for. This follows the standard GIMP navigation pattern where filters are organized hierarchically under main categories with specific filters grouped in relevant subcategories."
+                }
+              },
+              {
+                "image": "89a351dc-18fe-4fb4-a481-eb4b26f11a65.png",
+                "index": 6,
+                "value": {
+                  "action": "Terminate the task with failure status because the \"Venetian Blinds\" filter is not available in GIMP's Animation filter category.",
+                  "code": "computer.terminate(status='failure')",
+                  "last_step_correct": true,
+                  "last_step_redundant": false,
+                  "observation": "The current screenshot shows GIMP is open with the pikachu.jpeg file loaded. The Filters menu is expanded, showing various filter categories including Blur, Enhance, Distorts, Light and Shadow, Noise, Edge-Detect, Generic, Combine, Artistic, Decor, Map, Render, Web, Animation, Script-Fu, and Goat-exercise. The Animation submenu is currently expanded on the right side, displaying the available animation filters: Blend..., Burn-In..., Rippling..., Spinning Globe..., Waves..., followed by additional options like Optimize (Difference), Optimize (for GIF), Playback..., and Unoptimize. The pikachu image is visible in the main canvas area. Notably, there is no \"Venetian Blinds\" filter visible in the Animation submenu that is currently displayed.",
+                  "reflection": "",
+                  "thought": "The Animation submenu has expanded successfully, revealing the available animation filters in GIMP. However, after examining the complete list of animation filters shown (Blend, Burn-In, Rippling, Spinning Globe, Waves, and various optimization options), I can clearly see that there is no \"Venetian Blinds\" filter available in the Animation category. This is a significant discovery because the task specifically requires me to find and select the \"Venetian Blinds\" filter within the animation section. I have successfully completed the first part of the task - opening the pikachu.jpeg file in GIMP and navigating to the Animation filters menu. However, the core requirement of the task cannot be fulfilled because the \"Venetian Blinds\" filter simply does not exist in GIMP's Animation filter category. This appears to be a case where the task is asking for a filter that is not available in the software. In software applications, when a required feature or option is not available, the appropriate response is to acknowledge that the task cannot be completed as specified. Since I cannot locate the \"Venetian Blinds\" filter in the Animation section (or anywhere else that would be logically expected), the most appropriate action is to terminate the task with a failure status, indicating that the requested filter is not available in GIMP's current installation."
+                }
+              }
+            ]
+          }
+        },
+        "media_directories": [
+          {
+            "bytes": 73520638209,
+            "entries": 14,
+            "path": "ubuntu_images"
+          },
+          {
+            "bytes": 124336125227,
+            "entries": 24,
+            "path": "win_mac_images"
+          }
+        ],
+        "published_splits": [
+          {
+            "error": "HTTPError: HTTP Error 500: Internal Server Error"
+          }
+        ]
+      },
+      "revision": "d76ee50a63fad81cfdbe576416757d7c2091ed50",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "xlangai/AgentNet",
+      "split_files": [
+        "agentnet_ubuntu_5k.jsonl",
+        "agentnet_win_mac_18k.jsonl",
+        "meta_data_merged.jsonl",
+        "ubuntu_images/images.zip",
+        "win_mac_images/images.zip"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "LICENSE.txt",
+        "README.md",
+        "agentnet_ubuntu_5k.jsonl",
+        "agentnet_win_mac_18k.jsonl",
+        "meta_data_merged.jsonl",
+        "ubuntu_images",
+        "win_mac_images"
+      ],
+      "verdict": "QUALIFIED_AS_TRAINING_SOURCE_PENDING_ROW_COUNT"
+    },
+    {
+      "accessible": true,
+      "annotation_files": 0,
+      "downloads": 1973,
+      "gated": false,
+      "independent_task_records": null,
+      "license": "mit",
+      "media_files": 90,
+      "private": false,
+      "reason": "MIT and open access, one archive per professional desktop application. The published media are video demonstrations; a frame count is not a count of independent labelled tasks and the per-application annotation records have to be read before this source is called training-ready.",
+      "review": {
+        "application_archives": 24
+      },
+      "revision": "6ecc530df848f916bf0d195c66823ef8363abb93",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "ServiceNow/VideoCUA",
+      "split_files": [
+        "raw_data/7-Zip.zip",
+        "raw_data/Affine.zip",
+        "raw_data/Anki.zip",
+        "raw_data/Arduino IDE.zip",
+        "raw_data/Atom.zip",
+        "raw_data/Audacity.zip",
+        "raw_data/Bash.zip",
+        "raw_data/Bitwarden.zip",
+        "raw_data/Blender.zip",
+        "raw_data/Bluefish.zip",
+        "raw_data/Brackets.zip",
+        "raw_data/Brave.zip",
+        "raw_data/Calibre.zip",
+        "raw_data/Chromium.zip",
+        "raw_data/Code::Blocks.zip",
+        "raw_data/Conky.zip",
+        "raw_data/Cryptomator.zip",
+        "raw_data/Darktable.zip",
+        "raw_data/DuckDuckGo.zip",
+        "raw_data/Eclipse.zip",
+        "raw_data/Element.zip",
+        "raw_data/Emby.zip",
+        "raw_data/Flameshot.zip",
+        "raw_data/FontForge.zip"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "README.md",
+        "assets",
+        "raw_data"
+      ],
+      "verdict": "REVIEWED_NEEDS_FRAME_AND_TASK_REVIEW"
+    },
+    {
+      "accessible": true,
+      "annotation_files": 8339,
+      "downloads": 8933,
+      "gated": false,
+      "independent_task_records": 8334,
+      "license": "cc-by-4.0",
+      "media_files": 1,
+      "private": false,
+      "reason": "CC-BY-4.0, open access, one record per multistep mobile episode with the original apps, the device and the step count, and four official train/test splits including an application-disjoint and a device-disjoint split. The 8,334 record count is the measured published row count of the source. The evaluation split must stay out of training.",
+      "review": {
+        "published_splits": [
+          {
+            "config": "default",
+            "fields": [
+              "app",
+              "category",
+              "device_name",
+              "episode_id",
+              "h",
+              "instruction",
+              "step_length",
+              "w"
+            ],
+            "num_rows_total": 8334,
+            "split": "all"
+          }
+        ],
+        "split_files": [
+          {
+            "path": "splits/app_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/device_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/random_split.json",
+            "size": 275065
+          },
+          {
+            "path": "splits/task_split.json",
+            "size": 275065
+          }
+        ]
+      },
+      "revision": "61632d0f3f4d51d7e9561ce4f84347dd06b2019d",
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "hflqf88888/GUIOdyssey",
+      "split_files": [
+        "all_annot.json",
+        "annotations/0000628297785099.json",
+        "annotations/0000912578932237.json",
+        "annotations/0000922671359408.json",
+        "annotations/0002412570554203.json",
+        "annotations/0002455403270123.json",
+        "annotations/0003269005797789.json",
+        "annotations/0003539114117434.json",
+        "annotations/0003950590824941.json",
+        "annotations/0006223132449496.json",
+        "annotations/0007216161758334.json",
+        "annotations/0011506778189106.json",
+        "annotations/0013369436362038.json",
+        "annotations/0013756686421890.json",
+        "annotations/0015844124232805.json",
+        "annotations/0016567388192150.json",
+        "annotations/0016866810410740.json",
+        "annotations/0017986853193264.json",
+        "annotations/0018651612081817.json",
+        "annotations/0019778284340925.json",
+        "annotations/0020030717509483.json",
+        "annotations/0021006740023566.json",
+        "annotations/0024023061324925.json",
+        "annotations/0025680968305533.json"
+      ],
+      "top_level": [
+        ".gitattributes",
+        "README.md",
+        "all_annot.json",
+        "annotations",
+        "screenshots",
+        "splits"
+      ],
+      "verdict": "QUALIFIED_AS_TRAINING_SOURCE"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "ByteDance-Seed/UI-TARS-Desktop",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "xlangai/OpenCUA",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    },
+    {
+      "accessible": false,
+      "annotation_files": 0,
+      "downloads": null,
+      "gated": null,
+      "independent_task_records": null,
+      "license": null,
+      "media_files": 0,
+      "private": null,
+      "reason": "metadata unavailable: HTTPError: HTTP Error 401: Unauthorized",
+      "revision": null,
+      "schema": "hala.h61.source-qualification.v1",
+      "source": "Hcompany/Holo4-35B-A3B",
+      "split_files": [],
+      "top_level": [],
+      "verdict": "NOT_QUALIFIED"
+    }
+  ],
+  "schema": "hala.h61.source-qualification.v1"
+}

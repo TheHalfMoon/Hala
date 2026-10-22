@@ -1,0 +1,46 @@
+﻿
+H61_PREFLIGHT records=10000
+H61_PREFLIGHT media_checked=10000 failures=0
+H61_PREFLIGHT sample id=h60-sheet-0031de5b-fd1b-5c9b-a2e8-20c3ca78210f-t000 tokens=719 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-0037fc49-fa1d-5fe5-9df9-8ebd0370fddc-t012 tokens=718 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-003fe687-a078-52aa-9eaa-004ec7eb9048-t001 tokens=714 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-005ea16b-0047-503a-bf14-71d9dd30262a-t001 tokens=721 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-0066d706-5bcc-50fa-a4b9-3aaab964cdc0-t008 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-006a640c-9cbd-5666-926a-d17d338fa672-t007 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-00cab00f-097e-5ff6-a6a9-cc94b792a57f-t000 tokens=722 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-011b5b5e-e1f8-5ec8-b973-979b4e0dcea5-t013 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-019d444f-dc24-5e7b-85e3-984f9dae676c-t011 tokens=717 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-01d7193b-c629-55f7-9119-97e4f29b6b27-t004 tokens=711 supervised=37 coordinate=9
+H61_PREFLIGHT sample id=h60-sheet-021eddbb-2ddc-5211-8734-25a699946661-t005 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-023acb0c-1dd5-5d78-9f4a-8a1784aa5e55-t018 tokens=717 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-024013ed-a3ea-5ec7-8bcc-c0e8358f0155-t004 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-02657590-7895-5847-b5e2-6e06fe7d6ae2-t004 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-0275a447-c623-5c14-81a5-43c3acabb2a4-t007 tokens=718 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-02a7123a-0c08-5937-9112-f239c12707da-t009 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-02ba8838-c71e-5ec0-adcf-de0f3ab2d74c-t001 tokens=716 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-02bbac15-df7f-5f0e-856a-7f73e9f86a4b-t000 tokens=717 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-02c13672-1fb5-5eb7-be4e-691703187d8a-t002 tokens=720 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-02e0951d-be65-5255-95ce-998366d81466-t008 tokens=718 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-03245211-8802-5bba-ad59-e2432c6fe28e-t000 tokens=719 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-032d6f6a-7ab6-57dd-8bb8-d895796415b0-t001 tokens=720 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-032fa972-f11c-5a82-aa21-28256eb9018f-t007 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-0340ba91-2455-513c-91bb-16f27df9596e-t003 tokens=717 supervised=37 coordinate=9
+H61_PREFLIGHT sample id=h60-sheet-035a3a08-59e3-556c-ae6e-aab0f77bf4a1-t008 tokens=714 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-03d411d7-e48c-552b-9eb7-64b73c200aa7-t001 tokens=716 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-03e652b0-f776-5ddf-ac87-a667fae6ccbb-t021 tokens=721 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-03e98cb6-9e89-506f-8f1c-ac809d08dad9-t006 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-03f79389-084e-545c-8f84-770cae110f61-t001 tokens=715 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-0407a8f0-ceae-58fb-b891-fa33038eafff-t008 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-040dbfc1-f15f-584d-adaa-c5a4f9f5dab2-t000 tokens=715 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-04503ee8-755e-5c3e-9572-4ef5798540d5-t012 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-04506146-6ca3-51ff-ba40-e9ca62bd766e-t005 tokens=723 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-045f304c-a2a1-51c6-a1d8-f87aff6c55e8-t003 tokens=712 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-0467fefa-b937-5d91-acc3-6635ec96c8ab-t015 tokens=714 supervised=40 coordinate=12
+H61_PREFLIGHT sample id=h60-sheet-04804773-1a70-5294-9f48-5a08c2103800-t000 tokens=718 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-04895104-8311-5533-ba96-a59632f18014-t008 tokens=714 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-04bfe2ed-fb72-5427-b445-aa6992d6e947-t006 tokens=717 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-04fd2a5b-6a38-5250-b87d-99330b7e6131-t002 tokens=711 supervised=38 coordinate=10
+H61_PREFLIGHT sample id=h60-sheet-0505ba67-bd8c-5cf3-9c6e-2601c95cfaf6-t013 tokens=716 supervised=40 coordinate=12
+H61_PREFLIGHT processor_audited=40 failures=0
+
+

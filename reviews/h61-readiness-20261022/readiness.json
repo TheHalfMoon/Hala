@@ -1,0 +1,121 @@
+{
+  "export_root": "D:\\hala-h61\\export",
+  "failures": [],
+  "gates": {
+    "curriculum": {
+      "capability_counts": {
+        "sheet/ordered": 500,
+        "sheet/unordered/cell_range": 14039,
+        "slide_resize/ordered": 14597,
+        "slider/ordered": 20660,
+        "text_highlight/unordered": 14504
+      },
+      "dataset_sha256": "038baec02070a48a941f320d336f009eaa640967906ca64031b52aa768c8ac2d",
+      "language_counts": {
+        "ar": 1000,
+        "en": 63300
+      },
+      "loader_rows": 64300,
+      "ordered_false": 28543,
+      "ordered_true": 35757,
+      "prompt_revision": "hala-h61-native-drag-prompt-contract-v1",
+      "selected_by_family": {
+        "h61_firstparty_bilingual_drag_train": 2000,
+        "hcompany_dragon_h61_sheet_train": 14039,
+        "hcompany_dragon_h61_slide_resize_train": 14097,
+        "hcompany_dragon_h61_slider_train": 20160,
+        "hcompany_dragon_h61_text_highlight_train": 14004
+      },
+      "train_rows": 64300,
+      "unique_source_images": 64300,
+      "unresolved_media": 0
+    },
+    "firstparty_corpus": {
+      "by_kind": {
+        "sheet": 500,
+        "slide_resize": 500,
+        "slider": 500,
+        "text_highlight": 500
+      },
+      "by_language": {
+        "ar": 1000,
+        "en": 1000
+      },
+      "ordered_false": 500,
+      "ordered_true": 1500,
+      "scenes_accepted": 2000,
+      "scenes_rejected": 0
+    },
+    "official_evaluation": {
+      "sheet": {
+        "ordered": 24,
+        "scenes": 40
+      },
+      "slide_resize": {
+        "ordered": 40,
+        "scenes": 40
+      },
+      "slider": {
+        "ordered": 40,
+        "scenes": 40
+      },
+      "text_highlight": {
+        "ordered": 0,
+        "scenes": 40
+      }
+    },
+    "original_exports": {
+      "sheet": {
+        "native_drag_actions": 364741,
+        "original_images": 14039,
+        "range_receipts": 316,
+        "rejected": 0,
+        "source_tar_bytes": 14258661376,
+        "upstream_lfs_sha256": "19a78475e7bc4d66a3f1f20b49ce12b6760a820270365f5ef30f3fd447d4cded"
+      },
+      "slide_resize": {
+        "native_drag_actions": 149077,
+        "original_images": 14097,
+        "range_receipts": 113,
+        "rejected": 0,
+        "source_tar_bytes": 9915637248,
+        "upstream_lfs_sha256": "16414ddb6e4b7c7f07e93e1548468b21dd29ab5e028fb0931e6b973bcca0b89f"
+      },
+      "slider": {
+        "native_drag_actions": 176733,
+        "original_images": 20160,
+        "range_receipts": 103,
+        "rejected": 0,
+        "source_tar_bytes": 7146830848,
+        "upstream_lfs_sha256": "2455d5b4a164d4ff3d6cf41d92d24ad2e27db29e28ea16f5585b55956356a33e"
+      },
+      "text_highlight": {
+        "native_drag_actions": 139973,
+        "original_images": 14004,
+        "range_receipts": 265,
+        "rejected": 0,
+        "source_tar_bytes": 29874024960,
+        "upstream_lfs_sha256": "130d1a47add164bb84849abc3ae5ea29d4dd58a892082c887bef9866986515f8"
+      }
+    },
+    "training_gate": {
+      "baseline_evaluated_tasks": 48,
+      "baseline_verified_success_rate": 0.0,
+      "coordinate_weight": 8.0,
+      "gradient_accumulation": 2,
+      "max_steps": 600,
+      "result": {
+        "artifacts_must_be_hash_verified_at_load": true,
+        "configuration_validated": true,
+        "license_qualification_required": true,
+        "training_qualified": false
+      },
+      "supervision": "coordinate_weighted"
+    }
+  },
+  "model_result_known": false,
+  "note": "This receipt proves the CPU side of the remote run only. It says nothing about the trained model, and the model outcome stays unknown until the remote session publishes its raw receipts.",
+  "schema": "hala.h61.readiness-receipt.v1",
+  "staging_note": "The local staging area is a scratch copy, not the evidence. The per-range receipts, the derived labels and the curriculum digest are the evidence and they live in the repository, and every original screenshot is re-derivable from the pinned upstream revision. The local screenshot copies were released after this receipt was taken, so that the shared disk stayed free for the concurrent H60 corpus work.",
+  "status": "READY"
+}

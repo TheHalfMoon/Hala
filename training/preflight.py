@@ -4,6 +4,10 @@ import math
 import re
 from dataclasses import dataclass
 
+# Optional configuration fields. A configuration that omits them keeps the
+# original behaviour, so an existing experiment configuration still validates.
+OPTIONAL_FIELDS = frozenset({'supervision', 'coordinate_weight', 'audit_records'})
+
 
 @dataclass(frozen=True)
 class TrainingConfig:
@@ -17,10 +21,16 @@ class TrainingConfig:
     lora_rank: int
     platform: str
     download_remote_weights: bool
+    supervision: str = 'completion'
+    coordinate_weight: float = 8.0
+    audit_records: int = 0
 
     @classmethod
     def from_dict(cls, fields):
-        if not isinstance(fields, dict) or set(fields) != set(cls.__dataclass_fields__):
+        if not isinstance(fields, dict) or set(fields) - set(cls.__dataclass_fields__):
+            raise ValueError('Exact training configuration fields required')
+        required = set(cls.__dataclass_fields__) - set(OPTIONAL_FIELDS)
+        if not required <= set(fields):
             raise ValueError('Exact training configuration fields required')
         value = cls(**fields)
         if not isinstance(value.model_id, str) or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', value.model_id):
@@ -41,6 +51,15 @@ class TrainingConfig:
             raise ValueError('Remote platform required')
         if type(value.download_remote_weights) is not bool or not value.download_remote_weights:
             raise ValueError('Explicit remote weight-download opt-in required')
+        if value.supervision not in ('completion', 'coordinate_weighted'):
+            raise ValueError('Only the implemented supervision modes are allowed')
+        if (type(value.coordinate_weight) not in (int, float) or
+                not 1.0 <= value.coordinate_weight <= 64.0 or
+                not math.isfinite(value.coordinate_weight)):
+            raise ValueError('Bounded finite coordinate supervision weight required')
+        if (type(value.audit_records) is not int or
+                not 0 <= value.audit_records <= 1000000):
+            raise ValueError('Bounded audit record count required')
         return value
 
 
