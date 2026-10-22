@@ -114,6 +114,8 @@ scope is stated so that the gap is not mistaken for a result.
    first-party state oracle, which is the only measurement of a real
    recovery outcome that this project owns.
 
+## Honest limits
+
 * No H61 model result exists yet. Every training and evaluation number in this
   ledger is a target, not a measurement, until the run finishes and the raw
   receipts are read back.
