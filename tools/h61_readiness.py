@@ -91,6 +91,8 @@ def main() -> int:
             "selected_by_family": manifest.get("selected_by_family"),
             "loader_rows": len(rows),
             "unresolved_media": len(unresolved),
+            "dataset_sha256": manifest.get("dataset_sha256"),
+            "prompt_revision": manifest.get("prompt_revision"),
         }
         if unresolved:
             receipt["failures"].append(f"{len(unresolved)} curriculum media paths do not resolve")

@@ -10,6 +10,7 @@
         "slider/ordered": 20660,
         "text_highlight/unordered": 14504
       },
+      "dataset_sha256": "038baec02070a48a941f320d336f009eaa640967906ca64031b52aa768c8ac2d",
       "language_counts": {
         "ar": 1000,
         "en": 63300
@@ -17,6 +18,7 @@
       "loader_rows": 64300,
       "ordered_false": 28543,
       "ordered_true": 35757,
+      "prompt_revision": "hala-h61-native-drag-prompt-contract-v1",
       "selected_by_family": {
         "h61_firstparty_bilingual_drag_train": 2000,
         "hcompany_dragon_h61_sheet_train": 14039,
