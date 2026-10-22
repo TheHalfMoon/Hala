@@ -285,12 +285,14 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int,
     grouped: dict[str, list[dict]] = {}
     for row in rows:
         grouped.setdefault(capability_of(row), []).append(row)
-    families = sorted({row.get("family", FAMILY_PREFIX + "unknown") for row in rows})
+    families = sorted({row.get("family") or (FAMILY_PREFIX + row["domain"] + "_train")
+                       for row in rows})
     rank = {family: index for index, family in enumerate(families)}
     for capability in grouped:
         grouped[capability].sort(
             key=lambda item: (
-                rank.get(item.get("family", FAMILY_PREFIX + "unknown"), len(families)),
+                rank.get(item.get("family")
+                        or (FAMILY_PREFIX + item["domain"] + "_train"), len(families)),
                 item["image_id"],
                 item["source_task_index"],
             )
@@ -316,7 +318,7 @@ def select(rows: list[dict], target_rows: int, max_rows_per_image: int,
             bucket = taken[capability]
             if position < len(bucket):
                 row = bucket[position]
-                family = row.get("family", FAMILY_PREFIX + "unknown")
+                family = row.get("family") or (FAMILY_PREFIX + row["domain"] + "_train")
                 limit = family_targets.get(family)
                 if limit is not None and family_counts.get(family, 0) >= limit:
                     continue
@@ -365,6 +367,9 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
         )
     if not all_rows:
         raise ValueError("No original TRAIN rows were found")
+    for row in all_rows:
+        if not row.get("family"):
+            row["family"] = FAMILY_PREFIX + row["domain"] + "_train"
     selected, balance = select(all_rows, target_rows, max_rows_per_image, family_targets)
     if not selected:
         raise ValueError("The curriculum selection is empty")
