@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -27,6 +28,20 @@ MODULE_FOR_REQUIREMENT = {
     "pillow": "PIL",
 }
 RECEIPT_SCHEMA = "hala.h61.remote-entry.v1"
+
+
+def require_successful_child_exit(returncode: int) -> None:
+    """Never publish a successful orchestration receipt for failed training."""
+    if type(returncode) is not int or returncode != 0:
+        raise RuntimeError(f"H61 remote training/evaluation child failed (exit={returncode!r})")
+
+
+def require_pinned_checkout(actual: str, expected: str | None) -> None:
+    """An allocation after hours of waiting must not train an advanced branch."""
+    if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{40}", expected):
+        raise RuntimeError("Explicit HALA_PINNED_SOURCE_SHA is required for GPU execution")
+    if actual != expected:
+        raise RuntimeError("Remote source checkout changed since the intended pinned training commit")
 
 
 def run(command, **kwargs):
@@ -66,12 +81,20 @@ def main() -> int:
         if not _git_available():
             run(["apt-get", "install", "-y", "git"])
         repo = work / "repo"
+        source_branch = os.environ.get("HALA_REMOTE_SOURCE_BRANCH", BRANCH)
+        if not re.fullmatch(r"ps/h[0-9]{2}-[a-z0-9-]+", source_branch):
+            raise RuntimeError("Invalid explicit Hala source branch")
         if not (repo / ".git").exists():
-            run(["git", "clone", "--depth", "1", "--branch", BRANCH, REPO_URL, str(repo)])
+            run(["git", "clone", "--depth", "1", "--branch", source_branch, REPO_URL, str(repo)])
         run(["git", "-C", str(repo), "rev-parse", "HEAD"])
         receipt["repo_head"] = run(
             ["git", "-C", str(repo), "rev-parse", "HEAD"]
         ).stdout.strip()
+        receipt["repo_source_branch"] = source_branch
+        require_pinned_checkout(
+            receipt["repo_head"], os.environ.get("HALA_PINNED_SOURCE_SHA")
+        )
+        receipt["repo_source_sha_verified"] = True
 
         versions = package_versions()
         missing = []
@@ -122,6 +145,7 @@ def main() -> int:
         receipt["steps"] = steps.split(",")
         receipt["colab_run_exit"] = result.returncode
         receipt["run_receipt"] = str(work / "run" / "run-receipt.json")
+        require_successful_child_exit(result.returncode)
     except BaseException as error:  # noqa: BLE001
         receipt["failure"] = f"{type(error).__name__}: {error}"[:400]
         receipt["elapsed_seconds"] = round(time.time() - started, 3)
