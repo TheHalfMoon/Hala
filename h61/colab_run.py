@@ -207,7 +207,7 @@ def main() -> int:
     parser.add_argument("--repo", required=True)
     parser.add_argument("--work", required=True)
     parser.add_argument("--steps", default="export,curriculum,baseline,official_base,train,evaluate,official_adapter")
-    parser.add_argument("--images", default="slider=8000,slide_resize=6000,sheet=6000,text_highlight=5000")
+    parser.add_argument("--images", default="slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
     parser.add_argument("--chunk-bytes", type=int, default=16 * 1024 * 1024)
     parser.add_argument("--target-rows", type=int, default=10000)
     parser.add_argument("--max-rows-per-image", type=int, default=1)

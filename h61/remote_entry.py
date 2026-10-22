@@ -94,7 +94,7 @@ def main() -> int:
         )
         images = os.environ.get(
             "H61_IMAGES",
-            "slider=8000,slide_resize=6000,sheet=6000,text_highlight=5000",
+            "slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500",
         )
         max_steps = os.environ.get("H61_MAX_STEPS", "600")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
