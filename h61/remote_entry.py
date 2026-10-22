@@ -102,6 +102,8 @@ def main() -> int:
             "H61_FAMILY_TARGETS",
             '{"h61_firstparty_bilingual_drag_train": 2000}',
         )
+        family_targets_path = work / "family-targets.json"
+        family_targets_path.write_text(family_targets, encoding="utf8")
         command = [
             sys.executable, "-m", "h61.colab_run",
             "--repo", str(repo),
@@ -110,7 +112,7 @@ def main() -> int:
             "--images", images,
             "--max-steps", max_steps,
             "--official-limit", official_limit,
-            "--family-targets", family_targets,
+            "--family-targets-file", str(family_targets_path),
         ]
         environment = dict(os.environ)
         environment["PYTHONPATH"] = str(repo)

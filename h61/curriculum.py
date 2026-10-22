@@ -123,8 +123,13 @@ def has_member(shard: Path, name: str) -> bool:
         return name in bundle.namelist()
 
 
-def read_shard(shard: Path) -> tuple[list[dict], dict]:
-    """Read one shard or export and refuse anything that is not original TRAIN."""
+def read_shard(shard: Path, prefix: str = "") -> tuple[list[dict], dict]:
+    """Read one shard or export and refuse anything that is not original TRAIN.
+
+    `prefix` is the shard directory relative to the training root. The media
+    and task paths of a row are recorded relative to the TRAINING ROOT, not
+    relative to the shard, because that is how the trainer resolves them.
+    """
     shard = Path(shard)
     if has_member(shard, "manifest.json"):
         manifest = strict_json(read_member(shard, "manifest.json").decode("utf8"))
@@ -142,7 +147,7 @@ def read_shard(shard: Path) -> tuple[list[dict], dict]:
     else:
         receipt = strict_json(read_member(shard, "receipt.json").decode("utf8"))
         if receipt.get("schema") == FIRSTPARTY_SCHEMA:
-            return _read_firstparty(shard, receipt)
+            return _read_firstparty(shard, receipt, prefix)
         if (
             receipt.get("schema") != EXPORT_SCHEMA
             or receipt.get("split") != "train"
@@ -168,10 +173,15 @@ def read_shard(shard: Path) -> tuple[list[dict], dict]:
     for line in read_member(shard, "labels.jsonl").decode("utf8").splitlines():
         if line.strip():
             rows.append(strict_json(line))
+    if prefix:
+        for row in rows:
+            row["image_path"] = f"{prefix}/{row['image_path']}"
+            if row.get("source_task_json_path"):
+                row["source_task_json_path"] = f"{prefix}/{row['source_task_json_path']}"
     return rows, normalised
 
 
-def _read_firstparty(shard: Path, receipt: dict) -> tuple[list[dict], dict]:
+def _read_firstparty(shard: Path, receipt: dict, prefix: str = "") -> tuple[list[dict], dict]:
     """Read the first-party bilingual drag corpus into the common row shape.
 
     The first-party corpus is authored by this project, captured in the
@@ -202,11 +212,13 @@ def _read_firstparty(shard: Path, receipt: dict) -> tuple[list[dict], dict]:
                 "language": record["language"],
                 "family": record["family"],
                 "image_id": record["id"],
-                "image_path": record["image_path"],
+                "image_path": (f"{prefix}/{record['image_path']}" if prefix
+                               else record["image_path"]),
                 "image_sha256": record["image_sha256"],
                 "image_width": record["image_width"],
                 "image_height": record["image_height"],
-                "source_task_json_path": record["html_path"],
+                "source_task_json_path": (f"{prefix}/{record['html_path']}" if prefix
+                                          else record["html_path"]),
                 "source_task_sha256": record["html_sha256"],
                 "source_task_index": 0,
                 "intent": record["instruction"],
@@ -335,7 +347,10 @@ def build(root, *, target_rows: int = DEFAULT_TARGET_ROWS,
     all_rows: list[dict] = []
     shard_receipts = []
     for shard in shards:
-        rows, manifest = read_shard(shard)
+        prefix = ""
+        if shard.is_dir() and shard != root:
+            prefix = shard.relative_to(root).as_posix()
+        rows, manifest = read_shard(shard, prefix)
         all_rows.extend(rows)
         shard_receipts.append(
             {

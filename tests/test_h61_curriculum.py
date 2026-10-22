@@ -161,6 +161,32 @@ class CurriculumTests(unittest.TestCase):
         second, _ = select(list(reversed(rows)), 20, 2)
         self.assertEqual([row["id"] for row in first], [row["id"] for row in second])
 
+    def test_every_curriculum_media_path_resolves_under_the_training_root(self):
+        """The trainer resolves a row's media against the training root.
+
+        A path that is relative to the shard instead of the root is the
+        defect that would stop a real training run on its first row, so the
+        export proves the resolution here.
+        """
+        from PIL import Image
+
+        shard = write_shard(self.root, "slider", 6, 2)
+        images = shard / "images" / "slider"
+        images.mkdir(parents=True, exist_ok=True)
+        for index in range(6):
+            Image.new("RGB", (8, 8), (1, 2, 3)).save(images / f"slider-{index:04d}.jpg")
+        export(self.root, target_rows=6, max_rows_per_image=1)
+        rows = [
+            json.loads(line)
+            for line in (self.root / "h61_drag_curriculum.jsonl").read_text("utf8").splitlines()
+            if line.strip()
+        ]
+        self.assertTrue(rows)
+        for row in rows:
+            resolved = self.root / row["image_path"]
+            self.assertTrue(resolved.exists(), row["image_path"])
+            self.assertTrue(str(resolved).startswith(str(self.root)))
+
     def test_export_is_create_only_and_reloads(self):
         write_shard(self.root, "slider", 30, 2)
         write_shard(self.root, "sheet", 30, 2, ordered=False)

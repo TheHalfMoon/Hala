@@ -213,6 +213,8 @@ def main() -> int:
     parser.add_argument("--max-rows-per-image", type=int, default=1)
     parser.add_argument("--family-targets", default=None,
                         help="JSON object of family to maximum row count")
+    parser.add_argument("--family-targets-file", default=None,
+                        help="file holding the JSON object of family to maximum row count")
     parser.add_argument("--max-steps", type=int, default=600)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dev-sets", default="h55,h58")
@@ -232,7 +234,13 @@ def main() -> int:
     for item in args.images.split(","):
         name, _, count = item.partition("=")
         domains[name] = int(count)
-    family_targets = json.loads(args.family_targets) if args.family_targets else None
+    family_targets = None
+    if args.family_targets_file:
+        family_targets = json.loads(
+            Path(args.family_targets_file).read_text("utf-8-sig")
+        )
+    elif args.family_targets:
+        family_targets = json.loads(args.family_targets)
     steps = [step.strip() for step in args.steps.split(",") if step.strip()]
     receipt = {
         "schema": SCHEMA,
