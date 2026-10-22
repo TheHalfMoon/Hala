@@ -68,6 +68,25 @@ def load_json(path):
     return strict_json(path.read_text(encoding='utf-8'))
 
 
+def check_media(row, root, native_drag_jpeg=False):
+    """Verify one training media file without allocating a processor.
+
+    The media digest and the format are checked for EVERY record, and the
+    processor is only needed for the records that are actually audited. That
+    split is what makes a curriculum of a hundred thousand records affordable
+    without weakening the integrity of the corpus.
+    """
+    from PIL import Image
+
+    image_path = artifact_path(root, row['image_path'])
+    if sha256_file(image_path) != row['image_sha256']:
+        raise ValueError('Training media digest changed after preflight')
+    with Image.open(image_path) as source:
+        image_format = 'JPEG' if native_drag_jpeg else 'PNG'
+        if source.format != image_format or source.width * source.height > MAX_PIXELS:
+            raise ValueError('Training image exceeds source-bound header/pixel budget')
+
+
 def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False,
                    supervision='completion', coordinate_weight=8.0, return_weights=False):
     """One bounded image; validate expanded vision/prompt prefix before GPU use.
@@ -220,14 +239,20 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     dtype = torch.float16 if config.precision == 'fp16' else torch.bfloat16
     processor = AutoProcessor.from_pretrained(config.model_id, revision=config.revision,
                                              trust_remote_code=False)
-    # Expanded vision tokens are included in this audit. No model weights allocated yet.
+    # Every record is checked for its media digest and its format. The
+    # processor audit is bounded so that a curriculum of a hundred thousand
+    # records does not cost hours before the first optimizer step.
     for row in records:
+        check_media(row, root, native_drag_jpeg=native_drag)
+    audit_limit = config.audit_records or len(records)
+    for row in records[:audit_limit]:
         checked_inputs, checked_labels, checked_weights = prepare_inputs(
             row, processor, root, manifest['token_budget'], native_drag_jpeg=native_drag,
             supervision=config.supervision, coordinate_weight=config.coordinate_weight,
             return_weights=True)
         del checked_inputs, checked_labels, checked_weights
-    runtime['audited_records'] = len(records)
+    runtime['audited_records'] = min(audit_limit, len(records))
+    runtime['media_checked_records'] = len(records)
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model_id, revision=config.revision, trust_remote_code=False,
         torch_dtype=dtype, attn_implementation='sdpa').to('cuda:0')

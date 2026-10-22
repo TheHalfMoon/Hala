@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 # Optional configuration fields. A configuration that omits them keeps the
 # original behaviour, so an existing experiment configuration still validates.
-OPTIONAL_FIELDS = frozenset({'supervision', 'coordinate_weight'})
+OPTIONAL_FIELDS = frozenset({'supervision', 'coordinate_weight', 'audit_records'})
 
 
 @dataclass(frozen=True)
@@ -23,6 +23,7 @@ class TrainingConfig:
     download_remote_weights: bool
     supervision: str = 'completion'
     coordinate_weight: float = 8.0
+    audit_records: int = 0
 
     @classmethod
     def from_dict(cls, fields):
@@ -56,6 +57,9 @@ class TrainingConfig:
                 not 1.0 <= value.coordinate_weight <= 64.0 or
                 not math.isfinite(value.coordinate_weight)):
             raise ValueError('Bounded finite coordinate supervision weight required')
+        if (type(value.audit_records) is not int or
+                not 0 <= value.audit_records <= 1000000):
+            raise ValueError('Bounded audit record count required')
         return value
 
 

@@ -10,5 +10,6 @@
   "platform": "colab",
   "download_remote_weights": true,
   "supervision": "coordinate_weighted",
-  "coordinate_weight": 8.0
+  "coordinate_weight": 8.0,
+  "audit_records": 0
 }
