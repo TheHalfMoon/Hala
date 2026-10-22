@@ -1,0 +1,116 @@
+﻿{
+  "export_root": "D:\\hala-h61\\export",
+  "failures": [],
+  "gates": {
+    "curriculum": {
+      "capability_counts": {
+        "sheet/ordered": 500,
+        "sheet/ordered/column_resize": 2009,
+        "sheet/ordered/row_resize": 35,
+        "slide_resize/ordered": 2486,
+        "slider/ordered": 2485,
+        "text_highlight/unordered": 2485
+      },
+      "language_counts": {
+        "ar": 1000,
+        "en": 9000
+      },
+      "loader_rows": 10000,
+      "ordered_false": 2485,
+      "ordered_true": 7515,
+      "selected_by_family": {
+        "h61_firstparty_bilingual_drag_train": 2000,
+        "hcompany_dragon_h61_unknown": 8000
+      },
+      "train_rows": 10000,
+      "unique_source_images": 10000,
+      "unresolved_media": 0
+    },
+    "firstparty_corpus": {
+      "by_kind": {
+        "sheet": 500,
+        "slide_resize": 500,
+        "slider": 500,
+        "text_highlight": 500
+      },
+      "by_language": {
+        "ar": 1000,
+        "en": 1000
+      },
+      "ordered_false": 500,
+      "ordered_true": 1500,
+      "scenes_accepted": 2000,
+      "scenes_rejected": 0
+    },
+    "official_evaluation": {
+      "sheet": {
+        "ordered": 24,
+        "scenes": 40
+      },
+      "slide_resize": {
+        "ordered": 40,
+        "scenes": 40
+      },
+      "slider": {
+        "ordered": 40,
+        "scenes": 40
+      },
+      "text_highlight": {
+        "ordered": 0,
+        "scenes": 40
+      }
+    },
+    "original_exports": {
+      "sheet": {
+        "native_drag_actions": 53105,
+        "original_images": 2044,
+        "range_receipts": 58,
+        "rejected": 0,
+        "source_tar_bytes": 14258661376,
+        "upstream_lfs_sha256": "19a78475e7bc4d66a3f1f20b49ce12b6760a820270365f5ef30f3fd447d4cded"
+      },
+      "slide_resize": {
+        "native_drag_actions": 21940,
+        "original_images": 2085,
+        "range_receipts": 32,
+        "rejected": 0,
+        "source_tar_bytes": 9915637248,
+        "upstream_lfs_sha256": "16414ddb6e4b7c7f07e93e1548468b21dd29ab5e028fb0931e6b973bcca0b89f"
+      },
+      "slider": {
+        "native_drag_actions": 28355,
+        "original_images": 3220,
+        "range_receipts": 40,
+        "rejected": 0,
+        "source_tar_bytes": 7146830848,
+        "upstream_lfs_sha256": "2455d5b4a164d4ff3d6cf41d92d24ad2e27db29e28ea16f5585b55956356a33e"
+      },
+      "text_highlight": {
+        "native_drag_actions": 25370,
+        "original_images": 2538,
+        "range_receipts": 64,
+        "rejected": 0,
+        "source_tar_bytes": 29874024960,
+        "upstream_lfs_sha256": "130d1a47add164bb84849abc3ae5ea29d4dd58a892082c887bef9866986515f8"
+      }
+    },
+    "training_gate": {
+      "baseline_evaluated_tasks": 48,
+      "baseline_verified_success_rate": 0.0,
+      "coordinate_weight": 8.0,
+      "gradient_accumulation": 2,
+      "max_steps": 600,
+      "result": {
+        "artifacts_must_be_hash_verified_at_load": true,
+        "configuration_validated": true,
+        "license_qualification_required": true,
+        "training_qualified": false
+      },
+      "supervision": "coordinate_weighted"
+    }
+  },
+  "model_result_known": false,
+  "note": "This receipt proves the CPU side of the remote run only. It says nothing about the trained model, and the model outcome stays unknown until the remote session publishes its raw receipts.",
+  "schema": "hala.h61.readiness-receipt.v1",
+  "status": "READY"
+}
