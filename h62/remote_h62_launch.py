@@ -167,6 +167,16 @@ def ensure_packages() -> dict:
     return versions
 
 
+def qualify_stage_source(stage_sha: str, source_sha: str) -> str:
+    """Require separately pinned data provenance whenever CPU stage is provided."""
+    if bool(stage_sha) != bool(source_sha):
+        raise fail("staged TRAIN data requires BOTH ZIP digest and original source Git SHA")
+    if stage_sha and (re.fullmatch(r"[0-9a-f]{64}", stage_sha) is None
+                      or SHA_PATTERN.fullmatch(source_sha) is None):
+        raise fail("invalid H67 stage digest or original source Git SHA")
+    return source_sha
+
+
 def main() -> int:
     started = time.time()
     work = Path(os.environ.get("H62_WORK", "/content/hala-h62-work"))
@@ -185,6 +195,12 @@ def main() -> int:
         repo = work / "repo"
         receipt["repo_head"] = fetch_pinned_source(repo, pinned)
         receipt["repo_source_sha_verified"] = True
+        stage_sha = os.environ.get("H67_STAGE_SHA256", "")
+        stage_source_sha = qualify_stage_source(
+            stage_sha, os.environ.get("H67_STAGE_SOURCE_SHA", ""))
+        if stage_sha:
+            receipt["h67_source_git_sha"] = stage_source_sha
+            receipt["h67_zip_sha256"] = stage_sha
         # This entry script itself was uploaded from the host. Only import
         # training/staging code from the SHA-verified freshly fetched checkout.
         sys.path.insert(0, str(repo))
@@ -192,7 +208,6 @@ def main() -> int:
         receipt["packages_after_install"] = ensure_packages()
 
         steps = os.environ.get("H61_STEPS", "export,firstparty,curriculum,baseline,train,evaluate")
-        stage_sha = os.environ.get("H67_STAGE_SHA256", "")
         if stage_sha:
             # CPU-created TRAIN bundle is uploaded before this T4 process.
             # Never repeat full data preparation inside a short-lived GPU.
@@ -202,7 +217,7 @@ def main() -> int:
             from h67.stage import restore_stage
             receipt["h67_stage"] = restore_stage(
                 Path("/content/hala-h67-stage.zip"), stage_sha, work / "run",
-                pinned, rederive=True)
+                stage_source_sha, rederive=True)
         images = os.environ.get("H61_IMAGES", "slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
         max_steps = os.environ.get("H61_MAX_STEPS", "600")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")

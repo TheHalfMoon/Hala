@@ -32,8 +32,8 @@ def write_receipt(path, data):
 def supervise(session: str, sha: str, destination: Path, *,
               interval: float = 90.0, max_seconds: float = 21600.0,
               steps: str = "export,firstparty,curriculum,baseline,train,evaluate",
-              stage_sha256: str = "", max_steps: int = 600,
-              runner=subprocess.Popen,
+              stage_sha256: str = "", stage_source_sha: str = "",
+              max_steps: int = 600, runner=subprocess.Popen,
               snapshot=snapshot_once,
               hardware=session_hardware,
               sleep=time.sleep,
@@ -45,7 +45,11 @@ def supervise(session: str, sha: str, destination: Path, *,
         raise ValueError("bounded smoke/training optimizer step count (1..600) required")
     if (len(sha) != 40 or any(char not in "0123456789abcdef" for char in sha)):
         raise ValueError("40-character pinned commit required")
+    if bool(stage_sha256) != bool(stage_source_sha):
+        raise ValueError("stage ZIP SHA256 and original source Git SHA are both required")
     if stage_sha256:
+        if len(stage_source_sha) != 40 or any(c not in "0123456789abcdef" for c in stage_source_sha):
+            raise ValueError("invalid original H71 source Git SHA")
         if len(stage_sha256) != 64 or any(c not in "0123456789abcdef" for c in stage_sha256):
             raise ValueError("invalid H67 CPU stage SHA256")
         if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
@@ -66,13 +70,16 @@ def supervise(session: str, sha: str, destination: Path, *,
                "--local-dir", str(destination / "operator"),
                "--steps", steps, "--timeout", str(int(max_seconds))]
     if stage_sha256:
-        command.extend(["--stage-sha256", stage_sha256])
+        command.extend(["--stage-sha256", stage_sha256,
+                        "--stage-source-sha", stage_source_sha])
     command.extend(["--max-steps", str(max_steps)])
     log = destination / "operator.log"
     with log.open("w", encoding="utf8") as output:
         child = runner(command, stdout=output, stderr=subprocess.STDOUT)
         write_receipt(receipt_path, {"event": "launch", "session": session,
-                                    "pinned_sha": sha, "steps": steps, "pid": child.pid})
+                                    "pinned_sha": sha, "steps": steps, "pid": child.pid,
+                                    "stage_source_sha": stage_source_sha or None,
+                                    "stage_sha256": stage_sha256 or None})
         try:
             while child.poll() is None:
                 try:
@@ -151,12 +158,15 @@ def main(argv=None):
     parser.add_argument("--steps",
                         default="export,firstparty,curriculum,baseline,train,evaluate")
     parser.add_argument("--stage-sha256", default="")
+    parser.add_argument("--stage-source-sha", default="",
+                        help="Original H71 data source SHA, not the new running-code SHA")
     parser.add_argument("--max-steps", type=int, default=600,
                         help="H61 optimizer steps, bounded for first free-T4 diagnostic")
     args = parser.parse_args(argv)
     result = supervise(args.session, args.pinned_sha, args.destination,
                        interval=args.interval, max_seconds=args.max_seconds,
                        steps=args.steps, stage_sha256=args.stage_sha256,
+                       stage_source_sha=args.stage_source_sha,
                        max_steps=args.max_steps)
     print(json.dumps(result, sort_keys=True))
     return 0 if result["status"] == "COMPLETED_WITH_HOST_EGRESS" else 1
