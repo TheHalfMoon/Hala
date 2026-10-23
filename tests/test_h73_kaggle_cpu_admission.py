@@ -29,6 +29,18 @@ class AdmissionTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,"SHA256 mismatch"):
                     h.verify_input(bad)
 
+    def test_kaggle_2026_owner_mount_locates_only_exact_train_file(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            target=root/"datasets"/"abdulazizshehri"/"hala-h71-drag-train-10000-private"
+            target.mkdir(parents=True)
+            expected=target/"hala-h71-train-10000.hala.bin"
+            expected.write_bytes(b"small-test-payload")
+            self.assertEqual(h.locate_attached_train(root),expected)
+            expected.unlink()
+            with self.assertRaisesRegex(ValueError,"not mounted"):
+                h.locate_attached_train(root)
+
     def test_exact_file_sha_attests_input_without_model_download(self):
         with tempfile.TemporaryDirectory() as folder:
             blob=Path(folder)/"stage.bin"
