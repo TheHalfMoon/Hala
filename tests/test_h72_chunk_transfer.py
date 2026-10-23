@@ -101,6 +101,44 @@ class ChunkTransferTests(unittest.TestCase):
         self.assertEqual(remote.sha(self.final),self.digest)
         self.assertFalse(result["gpu_training_executed"])
 
+    def test_reject_unbounded_parallelism_before_provider_contact(self):
+        with mock.patch.object(host, "executable", side_effect=AssertionError("provider touched")):
+            for workers in (0, 5, -1, 1.5, True):
+                with self.subTest(workers=workers):
+                    with self.assertRaisesRegex(ValueError, "worker count"):
+                        host.transfer(self.source,self.digest,GIT,"t4-test",
+                                      workers=workers,cpu_test=True)
+
+    def test_parallel_three_workers_uploaded_every_verified_byte(self):
+        sent = []
+        def simulated(cli, *args, **kwargs):
+            if args[0] == "sessions":
+                return "[hala-h72-test] cpu-standard | Hardware: CPU | Shape: Standard | Variant: CPU"
+            if args[0] == "upload":
+                import shutil
+                src = Path(args[-2])
+                name = Path(args[-1]).name
+                shutil.copyfile(src, self.parts / name)
+                sent.append(name)
+                return "uploaded"
+            if args[0] == "exec":
+                action = next(s.split("=", 1)[1] for s in args if s.startswith("H72_ACTION="))
+                if action == "prepare":
+                    return "H72_ROOT_PREPARED"
+                if action == "probe":
+                    return "H72_HAVE_JSON=" + json.dumps(remote.present(remote.read_manifest(self.parts),self.parts))
+                if action == "assemble":
+                    return "H72_STAGE_READY=" + json.dumps(remote.assemble(self.parts,self.final))
+            raise AssertionError("unexpected provider command")
+        with mock.patch.object(host,"_run",side_effect=simulated),mock.patch.object(host,"executable",return_value="colab"):
+            result=host.transfer(self.source,self.digest,GIT,"hala-h72-test",
+                                 cpu_test=True,workers=3)
+        self.assertEqual(result["uploaded_chunks"],2)
+        self.assertEqual(result["upload_workers"],3)
+        self.assertEqual(result["resumed_verified_chunks"],0)
+        self.assertEqual(remote.sha(self.final),self.digest)
+        self.assertEqual(set(sent),{"manifest.json","chunk_00000.bin","chunk_00001.bin"})
+
     def test_refuse_changed_existing_completed_stage(self):
         self.populate()
         self.final.write_bytes(b"not the original dataset")
