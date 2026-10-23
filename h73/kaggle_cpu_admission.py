@@ -25,6 +25,22 @@ import zipfile
 SCHEMA = "hala.h73.kaggle-cpu-admission.v1"
 INPUT = Path("/kaggle/input/hala-h71-drag-train-10000-private/hala-h71-train-10000.hala.bin")
 OUTPUT = Path("/kaggle/working/h73-cpu-admission.json")
+DATA_ROOT = Path("/kaggle/input")
+DATASET_OWNER = "abdulazizshehri"
+DATASET_SLUG = "hala-h71-drag-train-10000-private"
+DATASET_FILE = "hala-h71-train-10000.hala.bin"
+
+def locate_attached_h71(root: Path = DATA_ROOT) -> Path:
+    """Only the exact owner/slug/file Kaggle input; never scan other datasets."""
+    choices = (
+        root / "datasets" / DATASET_OWNER / DATASET_SLUG / DATASET_FILE,
+        root / DATASET_SLUG / DATASET_FILE,
+        root / DATASET_OWNER / DATASET_SLUG / DATASET_FILE,
+    )
+    for path in choices:
+        if path.is_file() and not path.is_symlink():
+            return path
+    raise ValueError("exact private H71 TRAIN Kaggle input was not mounted")
 INDEX = "h67-stage.json"
 MANIFEST = "export/h61_drag_curriculum_manifest.json"
 ROWS = "export/h61_drag_curriculum.jsonl"
@@ -220,7 +236,7 @@ def main():
         raise RuntimeError("H73 requires a Kaggle kernel, not a local model run")
     if os.getenv("CUDA_VISIBLE_DEVICES") not in (None, "", "-1"):
         raise RuntimeError("H73 cannot execute in a GPU-exposed notebook")
-    result = qualify(INPUT)
+    result = qualify(locate_attached_h71())
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     if OUTPUT.exists():
         raise FileExistsError("refusing overwrite of existing H73 proof")
