@@ -44,10 +44,10 @@ class SubprocessContractTests(unittest.TestCase):
             self.assertEqual(runner.run(["colab", "sessions"]), (0, "ok", ""))
 
     def test_session_hardware_parses_real_provider_output(self):
-        stdout = "[hala-h62] node123 | Hardware: GPU | Shape: Standard | Variant: T4 | Status: IDLE"
+        stdout = "[hala-h62] node123 | Hardware: T4 | Shape: Standard | Variant: T4 | Status: IDLE"
         cp = subprocess.CompletedProcess(["colab", "sessions"], 0, stdout, "")
         with mock.patch.object(runner.subprocess, "run", return_value=cp):
-            self.assertEqual(runner.session_hardware("hala-h62"), "GPU")
+            self.assertEqual(runner.session_hardware("hala-h62"), "T4")
 
     def test_no_gpu_cannot_be_misreported_as_gpu(self):
         stdout = "[hala-h62] node123 | Hardware: CPU | Shape: Standard"
@@ -87,7 +87,7 @@ class ReceiptAdmissionTests(unittest.TestCase):
                 return True
 
             with (
-                mock.patch.object(runner, "session_hardware", return_value="GPU"),
+                mock.patch.object(runner, "session_hardware", return_value="T4"),
                 mock.patch.object(runner, "execute", return_value=(0, "remote complete", "")),
                 mock.patch.object(runner, "download", side_effect=fake_download),
             ):
@@ -204,7 +204,7 @@ class WatcherDurabilityTests(unittest.TestCase):
             fake = mock.Mock()
             fake.session_name = "hala-h62"
             fake.balance_is_zero.return_value = (True, "balance 0.00 compute units")
-            fake.existing_session.return_value = ("another-project-gpu", "GPU", "")
+            fake.existing_session.return_value = ("another-project-gpu", "T4", "")
             launch = mock.Mock()
             state = watcher.run_watcher(
                 fake, watcher.ReceiptLog(Path(folder) / "receipts.jsonl"),
@@ -223,7 +223,7 @@ class WatcherDurabilityTests(unittest.TestCase):
             fake.session_name = "hala-h62"
             fake.balance_is_zero.return_value = (True, "balance 0.00 compute units")
             fake.existing_session.side_effect = [
-                ("other-project", "GPU", ""),
+                ("other-project", "T4", ""),
                 ("", "", ""),
             ]
             fake.allocate_t4.return_value = (0, "[colab] Session READY.")
