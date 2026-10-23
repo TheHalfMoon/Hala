@@ -97,6 +97,7 @@ def main() -> int:
         if mode not in ("metadata", "full"):
             raise ValueError("explicit bounded metadata/full prefetch mode required")
         guard_free_colab()
+        CACHE.parent.mkdir(parents=True, exist_ok=True)
         if mode == "full" and shutil.disk_usage(CACHE.parent).free < 6 * 1024**3:
             raise OSError("insufficient free Colab disk for pinned full model cache")
         from huggingface_hub import snapshot_download
