@@ -26,6 +26,7 @@ training evidence. It does not by itself mean the model improved.
 from __future__ import annotations
 
 import json
+from importlib import metadata
 import os
 import re
 import subprocess
@@ -106,13 +107,20 @@ def fetch_pinned_source(repo_dir: Path, pinned_sha: str) -> str:
 
 
 def package_versions() -> dict:
+    """Inspect installed distributions without importing/caching modules.
+
+    Importing transformers/peft *before* pip pinning leaves their older
+    __version__ values in sys.modules even after a successful install.
+    Metadata reads the actual installed distribution, then a fresh process
+    verifies imports. This was an observed false failure on free T4.
+    """
     versions = {}
-    for name in ("torch", "transformers", "peft", "PIL"):
+    for module, dist in (("torch", "torch"), ("transformers", "transformers"),
+                         ("peft", "peft"), ("PIL", "Pillow")):
         try:
-            module = __import__(name)
-            versions[name] = getattr(module, "__version__", "unknown")
-        except Exception as error:  # noqa: BLE001
-            versions[name] = f"unavailable: {type(error).__name__}"
+            versions[module] = metadata.version(dist)
+        except metadata.PackageNotFoundError:
+            versions[module] = "unavailable: PackageNotFoundError"
     return versions
 
 
@@ -149,11 +157,13 @@ def ensure_packages() -> dict:
     # This check is intentionally performed BEFORE any model download.
     # A missing transitive dependency is a failed preflight, not grounds
     # to trigger an uncontrolled, costly pip reinstall on a GPU session.
-    try:
-        from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
-        from peft import LoraConfig, PeftModel
-    except (ImportError, RuntimeError, OSError) as error:
-        raise fail(f"pinned training imports unavailable: {type(error).__name__}") from error
+    import_script = ("from transformers import AutoProcessor, "
+                     "Qwen3VLForConditionalGeneration; "
+                     "from peft import LoraConfig, PeftModel")
+    checked = subprocess.run([sys.executable, "-c", import_script],
+                             capture_output=True, text=True, timeout=120)
+    if checked.returncode != 0:
+        raise fail("pinned training imports unavailable in fresh Python process")
     return versions
 
 
