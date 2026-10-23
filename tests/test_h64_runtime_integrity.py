@@ -55,6 +55,16 @@ class SubprocessContractTests(unittest.TestCase):
         with mock.patch.object(runner.subprocess, "run", return_value=cp):
             self.assertEqual(runner.session_hardware("hala-h62"), "CPU")
 
+    def test_non_t4_accelerator_is_refused_even_if_it_is_a_gpu(self):
+        with tempfile.TemporaryDirectory() as folder:
+            with mock.patch.object(runner, "session_hardware", return_value="A100"):
+                with mock.patch.object(runner, "execute") as execute:
+                    code = runner.main(["--pinned-sha", PIN, "--local-dir", folder])
+            self.assertEqual(code, 1)
+            execute.assert_not_called()
+            report = json.loads((Path(folder) / "run-report.json").read_text(encoding="utf8"))
+            self.assertIn("not the approved T4", report["failure"])
+
     def test_execute_consumes_true_completed_process(self):
         cp = subprocess.CompletedProcess(["colab", "exec"], 137, "", "killed")
         with mock.patch.object(runner.subprocess, "run", return_value=cp):
