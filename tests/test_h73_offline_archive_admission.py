@@ -52,7 +52,7 @@ def bundle(directory, *, dev_row=False, corrupt_media=False, duplicate=False):
                   for name, data in content.items()},
     }
     if corrupt_media:
-        content["export/" + paths[0]] = b"modified-media"
+        content["export/" + paths[0]] = b"X" * len(png[0])
         # Keep frozen original inventory to catch tampering.
     archive = Path(directory) / "small.hala.bin"
     with zipfile.ZipFile(archive, "w") as z:
