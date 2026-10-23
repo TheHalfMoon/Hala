@@ -199,6 +199,47 @@ class WatcherDurabilityTests(unittest.TestCase):
             launch.assert_not_called()
             fake.balance_is_zero.assert_not_called()
 
+    def test_foreign_project_gpu_is_never_adopted_or_used_for_training(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fake = mock.Mock()
+            fake.session_name = "hala-h62"
+            fake.balance_is_zero.return_value = (True, "balance 0.00 compute units")
+            fake.existing_session.return_value = ("another-project-gpu", "GPU", "")
+            launch = mock.Mock()
+            state = watcher.run_watcher(
+                fake, watcher.ReceiptLog(Path(folder) / "receipts.jsonl"),
+                watcher.WatcherState(), watcher.BackoffPolicy(),
+                deadline_seconds=60, max_requests=1,
+                rng=random.Random(1), clock=lambda: 0.0, sleep=lambda _: None,
+                launch=launch)
+            self.assertFalse(state.allocated)
+            self.assertEqual(state.stop_reason, "request_budget_exhausted")
+            fake.allocate_t4.assert_not_called()
+            launch.assert_not_called()
+
+    def test_foreign_gpu_gone_then_dedicated_hala_gpu_can_be_requested(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fake = mock.Mock()
+            fake.session_name = "hala-h62"
+            fake.balance_is_zero.return_value = (True, "balance 0.00 compute units")
+            fake.existing_session.side_effect = [
+                ("other-project", "GPU", ""),
+                ("", "", ""),
+            ]
+            fake.allocate_t4.return_value = (0, "[colab] Session READY.")
+            launch = mock.Mock()
+            state = watcher.run_watcher(
+                fake, watcher.ReceiptLog(Path(folder) / "receipts.jsonl"),
+                watcher.WatcherState(), watcher.BackoffPolicy(),
+                deadline_seconds=60, max_requests=3,
+                rng=random.Random(1), clock=lambda: 0.0, sleep=lambda _: None,
+                launch=launch)
+            self.assertTrue(state.allocated)
+            self.assertEqual(state.session_name, "hala-h62")
+            self.assertFalse(state.adopted)
+            self.assertEqual(fake.allocate_t4.call_count, 1)
+            launch.assert_called_once_with("hala-h62", False)
+
     def test_invalid_elapsed_time_is_refused_before_allocate(self):
         with tempfile.TemporaryDirectory() as folder:
             fake = mock.Mock()
