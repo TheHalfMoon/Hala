@@ -1,8 +1,9 @@
 # H70 — Complete Original DragOn TRAIN CPU Domains and Private Recovery
 
-**Status:** Three remaining H61 original TRAIN domains exported and packaged
-on the CPU, full Kaggle private provider revalidation pending independent
-authenticated byte readback for each. No GPU, no weights trained, no release.
+**Status:** Three remaining H61 original TRAIN domains exported, packaged,
+published to owner-private Kaggle, independently downloaded byte-identically
+and recovered with the original source validator. No GPU, no weights trained,
+no release.
 
 Parent PR #53 (H69 original slider verified private storage). Branch
 `ps/h70-original-three-domains-private-qualification`.
@@ -68,3 +69,41 @@ the H69 `slider` dataset. CI must be green on Python 3.11 and 3.12.
   success remains 0/48; keep no-change claims factual.
 - No source screenshots, Kaggle tokens or weight files may be committed
   to public GitHub. Keep the work as a stacked Draft PR.
+
+## Provider-recovered, verified on October 23, 2026
+
+All three new domains passed the same independent private storage and real
+source revalidation gate as H69: owner authenticated Kaggle lists the exact
+binary byte size, unauthenticated dataset API view returned HTTP **403**,
+a new authenticated download's **complete SHA256** matched the originally
+packed immutable archive, then a new Ubuntu `h69.domain_archive unpack`
+returned `VERIFIED_CPU_SOURCE_RESTORED` for every image and action record.
+
+| Dataset ref | Bytes after owner readback | Anon HTTP | Full source restore |
+| --- | ---: | ---: | --- |
+| `abdulazizshehri/hala-h70-original-sheet-2500-private` | 633,422,412 | 403 | 2,500 images / 64,954 actions |
+| `abdulazizshehri/hala-h70-original-slide-resize-2500-private` | 438,021,742 | 403 | 2,500 images / 26,313 actions |
+| `abdulazizshehri/hala-h70-original-text-highlight-2500-private` | 347,938,610 | 403 | 2,500 images / 24,990 actions |
+
+The archived SHA256 values are in the table above and each provider-returned
+binary exactly matched its source digest; no file-list-only success was
+accepted. The datasets were not publicly released. Kaggle initially refused
+an underscore in the slide dataset slug and a too-long text dataset title;
+the identifiers were corrected *before* successful private creation.
+The `sheet` asynchronous create became visible before its provider file
+listing did; H70 added read-only retry and explicit `--resume-existing`,
+then finished a separate complete byte readback without duplicate upload.
+
+### Operational and science constraints
+
+- All 11,000 original TRAIN source images and 147,097 original drag-action
+  annotation rows have independently validated private source copies.
+- H68's 2,000 first-party browser-rendered bilingual scenes remain an
+  independent, private, readback-tested family.
+- The 10,000-row H61 mixed curriculum and its final GPU-ready private
+  bundle are **not yet prepared**. The full four-domain and bilingual
+  mixture must pass the original H61 re-derivation gate before training.
+- No optimizer steps, new adapter checkpoint, H63 true pixel-intervention
+  experiment, or improved real GUI success has been measured.
+- The three raw provider-returned copies were for CPU verification only;
+  no raw screenshots, credentials or model weights are pushed to GitHub.
