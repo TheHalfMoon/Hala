@@ -1,0 +1,17 @@
+{
+  "id": "abdulazizshehri/hala-h73-cpu-train-source-admission",
+  "title": "Hala H73 CPU TRAIN Source Admission",
+  "code_file": "kaggle_h73_cpu.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "machine_shape": "",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
