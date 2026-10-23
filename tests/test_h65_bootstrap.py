@@ -30,6 +30,8 @@ class BootstrapTests(unittest.TestCase):
             mock.patch.object(launch.subprocess, "run") as process,
             mock.patch.dict(sys.modules, self.imports()),
         ):
+            # Fresh Python import probe returns a real numeric process exit.
+            process.return_value.returncode = 0
             versions = launch.ensure_packages()
         self.assertEqual(versions["peft"], "0.20.0")
         self.assertEqual(process.call_count, 2)
@@ -49,6 +51,7 @@ class BootstrapTests(unittest.TestCase):
             mock.patch.object(launch.subprocess, "run") as process,
             mock.patch.dict(sys.modules, self.imports()),
         ):
+            process.return_value.returncode = 0
             launch.ensure_packages()
         process.assert_called_once()
         self.assertIn("-c", process.call_args.args[0])
