@@ -127,10 +127,33 @@ def ensure_packages() -> dict:
         if actual.split("+")[0] != wanted:
             missing.append(requirement)
     if missing:
-        print(f"H62_INSTALL {missing}", flush=True)
-        subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", *missing],
-                       check=True, capture_output=True, text=True)
+        # Colab has Torch and the model's dependency graph already installed.
+        # Installing two pure Python package pins WITH dependencies can try to
+        # re-resolve massive GPU libraries during a short-lived T4 allocation.
+        # We measured --no-deps on a free Colab CPU session on 2026-10-23:
+        # 17.327 s to pin transformers 5.16.1 + peft 0.20.0, followed by
+        # successful imports. Never infer compatibility from pip exit alone.
+        print(f"H62_INSTALL_PIN_ONLY {missing}", flush=True)
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "--disable-pip-version-check",
+             "--quiet", "--no-deps", *missing],
+            check=True, capture_output=True, text=True,
+            timeout=180,
+        )
         versions = package_versions()
+    for requirement in REQUIREMENTS:
+        name, _, wanted = requirement.partition("==")
+        module = MODULE_FOR_REQUIREMENT[name.lower()]
+        if versions.get(module, "").split("+")[0] != wanted:
+            raise fail(f"package pin failed validation: {name}=={wanted}")
+    # This check is intentionally performed BEFORE any model download.
+    # A missing transitive dependency is a failed preflight, not grounds
+    # to trigger an uncontrolled, costly pip reinstall on a GPU session.
+    try:
+        from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
+        from peft import LoraConfig, PeftModel
+    except (ImportError, RuntimeError, OSError) as error:
+        raise fail(f"pinned training imports unavailable: {type(error).__name__}") from error
     return versions
 
 
