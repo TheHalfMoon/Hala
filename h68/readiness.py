@@ -21,9 +21,9 @@ REQUIRED = {"slider": 3500, "slide_resize": 2500,
             "sheet": 2500, "text_highlight": 2500}
 
 
-def _json(path):
+def _json(path, *, max_bytes: int = 2 * 1024 * 1024):
     path = Path(path)
-    if not path.is_file() or path.is_symlink() or path.stat().st_size > 2 * 1024 * 1024:
+    if not path.is_file() or path.is_symlink() or path.stat().st_size > max_bytes:
         raise ValueError("source receipt missing, linked or oversized")
     result = json.loads(path.read_text("utf8"))
     if not isinstance(result, dict):
@@ -88,7 +88,11 @@ def audit(work: Path, *, rederive: bool = True) -> dict:
     qualified = {}
     try:
         qualified = validate_train(work, rederive=rederive)
-        manifest = _json(work / "export" / "h61_drag_curriculum_manifest.json")
+        # 10,000 SHA-backed media entries legitimately exceed 2 MiB.
+        # Keep the strict 2 MiB receipt budget; only this derived TRAIN
+        # manifest may use the existing 16 MiB H67 metadata budget.
+        manifest = _json(work / "export" / "h61_drag_curriculum_manifest.json",
+                         max_bytes=16 * 1024 * 1024)
         if (qualified["rows"] != 10000
                 or qualified["media"] < 10000
                 or manifest.get("target_rows") != 10000
