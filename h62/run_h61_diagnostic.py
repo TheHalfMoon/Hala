@@ -104,8 +104,11 @@ def main(argv=None) -> int:
     }
     try:
         report["hardware"] = session_hardware(args.session)
-        if report["hardware"] != "GPU":
-            raise RuntimeError(f"the session hardware is {report['hardware']}, not GPU")
+        # The official Colab CLI renders the accelerator model (e.g. T4),
+        # not necessarily the generic word GPU. Admit only the named free
+        # T4 tier, never a CPU or an unverified L4/A100 paid variant.
+        if report["hardware"] != "T4":
+            raise RuntimeError(f"the session hardware is {report['hardware']}, not the approved T4")
         code, out, err = execute(args.session, args.pinned_sha, args.steps, args.images,
                                  args.max_steps, args.official_limit,
                                  args.family_targets, args.timeout)
