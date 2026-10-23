@@ -200,7 +200,7 @@ class WatcherBehaviourTests(unittest.TestCase):
             self.assertEqual(runner.allocations, 0)
 
     def test_an_existing_gpu_session_is_adopted_without_a_second_request(self):
-        runner = FakeRunner(sessions=session_line("hala-h62", "GPU"))
+        runner = FakeRunner(sessions=session_line("hala-h62", "T4"))
         client = ProviderClient(runner, "hala-h62")
         launched = []
         with tempfile.TemporaryDirectory() as directory:
