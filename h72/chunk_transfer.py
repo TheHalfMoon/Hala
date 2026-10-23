@@ -8,6 +8,7 @@ sent to Colab. CPU-only preparation; no provider sessions created here.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 import json
 import re
@@ -77,7 +78,12 @@ def _marker(output: str, key: str):
 
 
 def transfer(source: Path, zip_sha: str, git_sha: str, session: str, *,
-             cpu_test=False, runner=subprocess.run):
+             cpu_test=False, runner=subprocess.run, workers: int = 3):
+    # Multiple independent official CLI requests avoid the sustained
+    # serial-upload duration that previously exceeded the free T4 lifetime.
+    # Keep at most 4 concurrent source-chunk buffers and provider requests.
+    if type(workers) is not int or not 1 <= workers <= 4:
+        raise ValueError("bounded H72 upload worker count must be 1..4")
     if not re.fullmatch("[a-zA-Z0-9_-]{1,80}", session):
         raise ValueError("trusted existing session name required")
     data = plan(source, zip_sha, git_sha)
@@ -114,21 +120,45 @@ def transfer(source: Path, zip_sha: str, git_sha: str, session: str, *,
         valid = {p["name"] for p in data["parts"]}
         if not good <= valid:
             raise ValueError("untrusted remote uploaded part list")
-        with Path(source).open("rb") as original:
-            for part in data["parts"]:
+        queued = [item for item in enumerate(data["parts"])
+                  if item[1]["name"] not in good]
+        def upload_item(pair):
+            index, part = pair
+            # Random-access independent file handles are safe across threads
+            # and avoid an out-of-order or skipped-chunk host stream offset.
+            with Path(source).open("rb") as original:
+                original.seek(index * MAX_CHUNK)
                 block = original.read(part["bytes"])
-                if part["name"] in good:
-                    continue
-                if len(block) != part["bytes"] or hashlib.sha256(block).hexdigest() != part["sha256"]:
-                    raise ValueError("local ZIP content changed during transport")
-                chunk_file = folder / part["name"]
-                chunk_file.write_bytes(block)
+            if (len(block) != part["bytes"]
+                    or hashlib.sha256(block).hexdigest() != part["sha256"]):
+                raise ValueError("source changed during concurrent chunk upload")
+            local = folder / part["name"]
+            local.write_bytes(block)
+            try:
+                _run(cli, "upload", "-s", session, str(local),
+                     str(ROOT / part["name"]), runner=runner, timeout=180)
+                return part["name"]
+            finally:
+                local.unlink(missing_ok=True)
+
+        uploaded = 0
+        errors = []
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(upload_item, item) for item in queued]
+            for future in as_completed(futures):
                 try:
-                    _run(cli, "upload", "-s", session, str(chunk_file),
-                         str(ROOT / part["name"]), runner=runner)
-                finally:
-                    chunk_file.unlink(missing_ok=True)
-            # Any skipped remote part must not cause a misaligned host stream.
+                    future.result()
+                    uploaded += 1
+                    # Bounded numeric progress, no signed provider URLs.
+                    if uploaded % 10 == 0 or uploaded == len(queued):
+                        print(f"H72_TRANSFER_PROGRESS {len(good) + uploaded}/{len(data['parts'])}",
+                              flush=True)
+                except (OSError, RuntimeError, ValueError, subprocess.TimeoutExpired) as error:
+                    errors.append(type(error).__name__)
+        if errors:
+            raise RuntimeError(
+                f"H72 {len(errors)} chunk uploads failed; remote stage unqualified, "
+                "resumable chunks may be checked in a new session")
         result = _run(cli, "exec", "-s", session, "-f", str(script),
                       "--env", "H72_ACTION=assemble", "--timeout", "600",
                       timeout=900, runner=runner)
@@ -142,6 +172,8 @@ def transfer(source: Path, zip_sha: str, git_sha: str, session: str, *,
                 "zip_sha256": zip_sha, "git_sha": git_sha,
                 "bytes": data["zip_bytes"], "chunks": len(data["parts"]),
                 "resumed_verified_chunks": len(good),
+                "uploaded_chunks": uploaded,
+                "upload_workers": workers,
                 "gpu_training_executed": False,
                 "h61_source_rederivation_executed": False}
 
@@ -153,9 +185,12 @@ def main():
     p.add_argument("--git-sha", required=True)
     p.add_argument("--session", required=True)
     p.add_argument("--cpu-smoke", action="store_true")
+    p.add_argument("--workers", type=int, default=3,
+                   help="1..4 independent bounded CLI upload requests")
     args = p.parse_args()
     print(json.dumps(transfer(args.source, args.sha256, args.git_sha,
-                              args.session, cpu_test=args.cpu_smoke), sort_keys=True))
+                              args.session, cpu_test=args.cpu_smoke,
+                              workers=args.workers), sort_keys=True))
 
 
 if __name__ == "__main__":
