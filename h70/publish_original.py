@@ -12,6 +12,7 @@ import json
 import re
 import subprocess
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -49,7 +50,8 @@ def anonymous_view(ref: str, *, opener=urllib.request.urlopen) -> int:
 
 def publish(bundle: Path, domain: str, expected_sha: str, source_git_sha: str,
             receipt_dir: Path, *, cli=subprocess.run, opener=urllib.request.urlopen,
-            unpacker=unpack) -> dict:
+            unpacker=unpack, resume_existing: bool = False,
+            sleep=time.sleep) -> dict:
     """Leave input bytes intact even on failure; require full rederivation."""
     if domain not in PRIVATE_DOMAINS:
         raise ValueError("H70 only handles three not-yet-published original TRAIN domains")
@@ -89,15 +91,32 @@ def publish(bundle: Path, domain: str, expected_sha: str, source_git_sha: str,
         }
         (staging / "dataset-metadata.json").write_text(
             json.dumps(meta, sort_keys=True), encoding="utf8")
-        provider_command(["datasets", "create", "-p", str(staging), "-q", "-r", "skip"],
-                         cli=cli)
-        listed = provider_command(
-            ["datasets", "files", ref, "--csv", "--page-size", "20"], cli=cli)
-        # Listing is corroborating metadata, never final storage proof.
-        if name not in listed.stdout or str(bundle.stat().st_size) not in listed.stdout:
-            raise ValueError("provider file listing omitted exact expected binary")
-        if anonymous_view(ref, opener=opener) != 403:
-            raise ValueError("private dataset access not demonstrated")
+        if not resume_existing:
+            provider_command(["datasets", "create", "-p", str(staging), "-q", "-r", "skip"],
+                             cli=cli)
+        # Kaggle can accept an asynchronous upload but return 404/403 for
+        # the file index until server-side processing is complete. Never
+        # re-create an accepted dataset just because a fresh list failed.
+        ready = False
+        for attempt in range(18):
+            try:
+                listed = provider_command(
+                    ["datasets", "files", ref, "--csv", "--page-size", "20"], cli=cli)
+                ready = name in listed.stdout and str(bundle.stat().st_size) in listed.stdout
+            except (RuntimeError, subprocess.TimeoutExpired, OSError):
+                ready = False
+            if ready:
+                break
+            if attempt < 17:
+                sleep(10)
+        if not ready:
+            raise RuntimeError("private provider file index not yet available; use explicit resume")
+        for attempt in range(12):
+            if anonymous_view(ref, opener=opener) == 403:
+                break
+            if attempt == 11:
+                raise ValueError("private dataset access not demonstrated")
+            sleep(10)
         readback = Path(temp) / "authenticated-readback"
         readback.mkdir()
         provider_command(
@@ -144,8 +163,11 @@ def main(argv=None):
     ap.add_argument("--sha256", required=True)
     ap.add_argument("--git-sha", required=True)
     ap.add_argument("--receipts", type=Path, required=True)
+    ap.add_argument("--resume-existing", action="store_true",
+                    help="verify an already-created owner dataset without re-creating it")
     a = ap.parse_args(argv)
-    print(json.dumps(publish(a.bundle, a.domain, a.sha256, a.git_sha, a.receipts),
+    print(json.dumps(publish(a.bundle, a.domain, a.sha256, a.git_sha, a.receipts,
+                             resume_existing=a.resume_existing),
                      sort_keys=True))
     return 0
 
