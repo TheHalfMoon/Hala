@@ -1,8 +1,8 @@
 # H73 — Private H71 TRAIN admission on Kaggle CPU (not model training)
 
-Status (2026-10-23): **original private Kaggle CPU verification succeeded**;
-a second offline, internet-disabled streaming verification has been submitted
-and must be separately checked for actual Kaggle success.
+Status (2026-10-23): **TWO independent private Kaggle CPU source validations PASSED**,
+including a second offline, internet-disabled, GPU-disabled verification
+with independently retrieved authenticated owner receipt.
 
 ## Verified owner-private H71 source admission
 
@@ -85,3 +85,36 @@ authorize overriding that policy. Never silently remove this gate.
 
 All original data and owner receipt remain private and the code PR is
 Draft. No Kaggle public release and no branch merge.
+
+## Independent offline Kaggle result — CONFIRMED
+
+The new owner-private Kaggle script
+`abdulazizshehri/hala-h73-offline-h71-admission` completed with provider
+status `KernelWorkerStatus.COMPLETE`. The authenticated owner actually
+downloaded `h73-cpu-admission.json` (899 bytes), independently checked its
+schema/counts/immutable original SHA256 and training-false fields, and
+observed anonymous Kaggle API **HTTP 404**. Kaggle notebook metadata pinned
+`is_private: true`, `enable_gpu: false`, `enable_internet: false`,
+with only H71 private dataset attached.
+
+The actual provider-returned proof reports:
+
+- `status: KAGGLE_PRIVATE_CPU_SOURCE_ADMITTED`
+- `members_sha_verified: 15224`, `media_sha_verified: 10000`,
+  `rows_verified: 10000`
+- `language_counts: {"ar": 1000, "en": 9000}`
+- `source_archive_sha256:`
+  `4a8e602c785c2b90a60e49f78381a7af983401cb99b16c53f3df69e930cc073a`
+- `dataset_sha256:`
+  `9888ac9d3b5ec7b8efe677287d54dc350c222a1804619e6217a84ec8f95eddcd`
+- `source_git_sha: acd694fbae10752ff4ee3fe6cc3e52142ab7f0fe`
+- `original_dataset_unchanged: true`, `training_executed: false`,
+  `gpu_allocated: false`, `model_checkpoint_produced: false`.
+
+**Owner-returned receipt SHA256**:
+`e14da702eb49da83e95e406b7656a01ce7fc1c9dca83ee1f7f9f88ef36788365`.
+
+This separately proves CPU archive/member/media/row integrity directly inside
+an internet-disabled Kaggle runtime. It is not a new H61 training
+experiment or a new real GUI evaluation. The official H73 source-rederivation
+notebook's prior `RESTORED_TRAIN_STAGE` proof remains independently valid.
