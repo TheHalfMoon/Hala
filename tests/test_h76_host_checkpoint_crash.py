@@ -71,6 +71,20 @@ class CrashRecoveryTests(unittest.TestCase):
             self.snapshot()
         self.assertFalse((self.local / "latest.json").exists())
 
+    def test_wrong_metadata_state_type_is_a_controlled_failure(self):
+        import hashlib
+        ptr_file = self.remote / "latest.json"
+        pointer = json.loads(ptr_file.read_text("utf8"))
+        metadata_file = self.remote / pointer["version"] / "checkpoint.json"
+        metadata = json.loads(metadata_file.read_text("utf8"))
+        metadata["state"] = ["not", "a", "valid", "checkpoint"]
+        metadata_file.write_text(json.dumps(metadata), encoding="utf8")
+        pointer["checkpoint_sha256"] = hashlib.sha256(metadata_file.read_bytes()).hexdigest()
+        ptr_file.write_text(json.dumps(pointer), encoding="utf8")
+        with self.assertRaisesRegex(ValueError, "invalid checkpoint manifest"):
+            self.snapshot()
+        self.assertFalse((self.local / "latest.json").exists())
+
     def test_no_pointer_and_no_version_downloads_normally(self):
         result = self.snapshot()
         self.assertEqual(result["status"], "VERIFIED_HOST_STAGING")

@@ -130,6 +130,7 @@ def snapshot_once(session: str, destination: Path, *, runner=subprocess.run,
         if (not isinstance(metadata, dict)
                 or set(metadata) != {"schema", "state", "artifacts"}
                 or metadata["schema"] != "hala.training.checkpoint.v1"
+                or not isinstance(metadata["state"], dict)
                 or not isinstance(metadata["artifacts"], dict)
                 or not 1 <= len(metadata["artifacts"]) <= 1024):
             raise ValueError("invalid checkpoint manifest")
