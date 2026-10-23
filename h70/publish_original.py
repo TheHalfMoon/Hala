@@ -86,7 +86,7 @@ def publish(bundle: Path, domain: str, expected_sha: str, source_git_sha: str,
         shutil.copyfile(bundle, staging / name)
         meta = {
             "id": ref,
-            "title": f"Hala H70 Original {domain} 2500 TRAIN Private",
+            "title": f"Hala H70 {domain.replace('_', ' ').title()} TRAIN Private",
             "subtitle": "Pinned original Drag TRAIN screenshots and actions; no model weights",
             "licenses": [{"name": "Apache-2.0"}],
             "isPrivate": True,
