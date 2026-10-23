@@ -1,6 +1,6 @@
 # H68 — CPU first-party bilingual qualification and strict full-TRAIN gate
 
-Status: **CPU PILOT VERIFIED; FULL 2,000-SCENE CAPTURE RUN UNDER TEST; NO TRAINED H61 CHECKPOINT**.
+Status: **2,000 ORIGINAL BILINGUAL CPU SCENES COMPLETE; PRIVATE KAGGLE BYTE-READBACK AND RESTORE VERIFIED; NO TRAINED H61 CHECKPOINT**.
 Parent: H67 Draft PR #51, head `37635b76a4a7125d89359563d4c1b1a92a565e79`.
 
 ## Why H68 exists
@@ -39,6 +39,41 @@ Observed in the first completed run:
 - H61 derived dataset SHA256 `075529de3f809495459be3eeb9e5df8b5f7d82a9b7a09c4c63ba6be6b443255c`.
 - Underlying source Git commit `f92d42de8d820f7997953399e9812a75381a53b1`.
 - **This is a TRANSPORT PILOT and not a model training run.**
+
+## Complete 2,000-scene run — real images and independent private readback
+
+On the Windows host using Microsoft Edge batch browser capture, the H61
+first-party generator **completed all 2,000 scenes** (1,000 Arabic and
+1,000 English), with **zero rejected scenes**. The full CPU session
+completed in **772.04 seconds**, with no Colab/GPU allocation.
+
+- Original first-party labels SHA-256:
+  `94c9b943f79264ceccf5d04a2daf8278e7cb02589ce5edbddee8a3e557daa4e6`.
+- H61 CPU curriculum: exactly 2,000 rows and 2,000 unique screenshot media,
+  SHA-256 `935a5b90be42701b572f6d2e5dea94237f18e1883121c5c9dd045a15eebf464e`.
+- H67 immutable CPU bundle: 4,006 files, 36,601,923 bytes, ZIP-wrapper
+  SHA-256 `e396ae08e7061411580801577a763f5dc2f15e872e2c2a508a256d368e982a0a`.
+- Source pinned inside the archive to `bcb26b589f79797c00a73d43378c29f299a4c25f`
+  (the immutable verified commit used to build it, not a future branch tip).
+- Kaggle dataset private owner resource:
+  `abdulazizshehri/hala-h68-bilingual-drag-2000-private`.
+- Real Kaggle CLI `datasets create`: exit 0, private dataset successfully
+  added. Authenticated `datasets files` lists the full binary (36,601,923
+  bytes). Anonymous `GET /api/v1/datasets/view/...`: **HTTP 403**.
+- Independently downloaded the actual provider binary using authenticated
+  `kaggle datasets download -f` into a new directory and compared its full
+  SHA-256: **byte-identical** to the original checksum.
+- `python -m h67.stage restore` on the **provider-returned** archive passed
+  the original H61 curriculum re-derivation and member integrity checks,
+  restoring 2,000 TRAIN rows and 2,000 screenshot media.
+
+**Claim boundary:** this is a separately qualified *first-party bilingual
+family* and private recoverable dataset, **not** the full H61 TRAIN
+dataset. It contains no completed original DragOn four-domain 11,000-image
+CPU export, no finished 10,000-row mixed curriculum, no trained H61
+checkpoint, and no improvement in GUI accuracy. A `PRIVATE` word in a
+Kaggle dataset name is not itself a privacy proof: the anonymous 403 and
+owner-authenticated byte return are the evidence.
 
 ## New full-readiness gate
 
