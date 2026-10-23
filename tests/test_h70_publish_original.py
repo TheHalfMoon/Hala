@@ -81,6 +81,32 @@ class PublishTests(unittest.TestCase):
         self.assertIn("2500-private",output["provider_dataset"])
         self.assertTrue((self.receipts/"sheet-readback.json").is_file())
 
+    def test_resume_existing_owner_dataset_without_duplicate_create(self):
+        provider=FakeKaggle(self.binary, "sheet")
+        output=p.publish(self.binary,"sheet",self.hexsha,GIT,self.receipts,
+                         cli=provider,opener=forbidden_anon,
+                         unpacker=self.verified,resume_existing=True)
+        self.assertEqual(output["status"],"PRIVATE_BYTE_READBACK_VERIFIED")
+        self.assertEqual([cmd[2] for cmd in provider.commands],["files","download"])
+        self.assertTrue(self.binary.exists())
+
+    def test_provider_index_delay_retries_without_duplicate_upload(self):
+        original=FakeKaggle(self.binary,"sheet")
+        attempts=[0]
+        def flaky(command, **kwargs):
+            if command[2]=="files" and attempts[0]<2:
+                attempts[0]+=1
+                return subprocess.CompletedProcess(command,1,"","not yet indexed")
+            return original(command, **kwargs)
+        delays=[]
+        output=p.publish(self.binary,"sheet",self.hexsha,GIT,self.receipts,
+                         cli=flaky,opener=forbidden_anon,
+                         unpacker=self.verified,sleep=lambda sec:delays.append(sec))
+        self.assertEqual(output["status"],"PRIVATE_BYTE_READBACK_VERIFIED")
+        self.assertEqual(attempts[0],2)
+        self.assertEqual(delays,[10,10])
+        self.assertEqual(sum(cmd[2]=="create" for cmd in original.commands),1)
+
     def test_missing_or_modified_remote_bytes_cannot_admit_receipt(self):
         for args in ({"incomplete":True},{"corrupt":True}):
             with self.subTest(args=args):
