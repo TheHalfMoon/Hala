@@ -111,7 +111,8 @@ def step_curriculum(work: Path, target_rows: int, max_rows_per_image: int,
     return result
 
 
-def step_train(work: Path, config_path: Path, max_steps: int, resume: bool) -> dict:
+def step_train(work: Path, config_path: Path, max_steps: int, resume: bool,
+               processor_audit_records: int = 0) -> dict:
     """Run the real gradient-bearing LoRA training with a verified checkpoint.
 
     A published checkpoint is resumed automatically, so an interrupted session
@@ -124,6 +125,10 @@ def step_train(work: Path, config_path: Path, max_steps: int, resume: bool) -> d
     output.mkdir(parents=True, exist_ok=True)
     config = json.loads(config_path.read_text("utf8"))
     config["max_steps"] = max_steps
+    if processor_audit_records:
+        if type(processor_audit_records) is not int or not 1 <= processor_audit_records <= 64 or max_steps > 3:
+            raise ValueError("bounded processor audit is only for 1..3-step diagnostic")
+        config["audit_records"] = processor_audit_records
     effective_config = work / "training-config.json"
     write_json(effective_config, config)
     baseline = work / "public-dev-baseline-receipt.json"
@@ -231,6 +236,8 @@ def main() -> int:
     parser.add_argument("--family-targets-file", default=None,
                         help="file holding the JSON object of family to maximum row count")
     parser.add_argument("--max-steps", type=int, default=600)
+    parser.add_argument("--processor-audit-records", type=int, default=0,
+                        help="0 = full (default); 1..64 opt-in for staged <=3-step diagnostic")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dev-sets", default="h55,h58")
     parser.add_argument("--official-limit", type=int, default=30)
@@ -257,6 +264,12 @@ def main() -> int:
     elif args.family_targets:
         family_targets = json.loads(args.family_targets)
     steps = [step.strip() for step in args.steps.split(",") if step.strip()]
+    if args.processor_audit_records:
+        if (not 1 <= args.processor_audit_records <= 64 or args.max_steps > 3
+                or "train" not in steps
+                or not os.environ.get("H67_STAGE_SHA256")
+                or not os.environ.get("H67_STAGE_SOURCE_SHA")):
+            raise ValueError("processor audit override requires H67 staged <=3-step TRAIN")
     if "firstparty" in steps and (args.firstparty_scenes < 8 or args.firstparty_scenes > FIRSTPARTY_SCENES or args.firstparty_scenes % 8):
         raise ValueError("first-party scenes must be a multiple of 8 between 8 and 2000")
     receipt = {
@@ -270,6 +283,7 @@ def main() -> int:
         "max_rows_per_image": args.max_rows_per_image,
         "family_targets": family_targets,
         "max_steps": args.max_steps,
+        "processor_audit_records": args.processor_audit_records,
         "resume": args.resume,
         # Export/first-party/curriculum also run on a local CPU. Do not
         # attribute those runs to Colab or assert a paid compute meter value.
@@ -305,6 +319,7 @@ def main() -> int:
                     repo / "experiments" / "runtime" / "h61-colab-train-config.json",
                     args.max_steps,
                     args.resume,
+                    args.processor_audit_records,
                 )
             elif step == "evaluate":
                 receipt["results"]["evaluate"] = step_evaluate(

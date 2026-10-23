@@ -50,7 +50,8 @@ def session_hardware(session: str) -> str:
 
 def execute(session: str, pinned_sha: str, steps: str, images: str, max_steps: str,
             official_limit: str, family_targets: str, timeout: float,
-            stage_sha256: str = "", stage_source_sha: str = "") -> tuple:
+            stage_sha256: str = "", stage_source_sha: str = "",
+            processor_audit_records: int = 0) -> tuple:
     """Run the pinned remote entry point inside the session."""
     environment = [
         f"HALA_PINNED_SOURCE_SHA={pinned_sha}",
@@ -65,6 +66,13 @@ def execute(session: str, pinned_sha: str, steps: str, images: str, max_steps: s
     ]
     if bool(stage_sha256) != bool(stage_source_sha):
         raise ValueError("stage ZIP and source SHA must be provided together")
+    if processor_audit_records:
+        if (type(processor_audit_records) is not int
+                or not 1 <= processor_audit_records <= 64
+                or int(max_steps) > 3 or not stage_sha256
+                or "train" not in [s.strip() for s in steps.split(",")]):
+            raise ValueError("H75 diagnostic requires staged TRAIN, 1..3 steps and 1..64 audits")
+        environment.append(f"H61_PROCESSOR_AUDIT_RECORDS={processor_audit_records}")
     if stage_sha256:
         if not re.fullmatch(r"[0-9a-f]{64}", stage_sha256) or not re.fullmatch(
                 r"[0-9a-f]{40}", stage_source_sha):
@@ -102,6 +110,7 @@ def main(argv=None) -> int:
     parser.add_argument("--stage-sha256", default="")
     parser.add_argument("--stage-source-sha", default="",
                         help="Original H67/H71 source Git SHA, independent of running code SHA")
+    parser.add_argument("--processor-audit-records", type=int, default=0)
     args = parser.parse_args(argv)
 
     if bool(args.stage_sha256) != bool(args.stage_source_sha):
@@ -114,6 +123,11 @@ def main(argv=None) -> int:
         if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
                for s in args.steps.split(",")):
             raise ValueError("CPU preparation forbidden in staged GPU run")
+    if args.processor_audit_records and (
+            not 1 <= args.processor_audit_records <= 64
+            or int(args.max_steps) > 3 or not args.stage_sha256
+            or "train" not in args.steps.split(",")):
+        raise ValueError("H75 processor audit requires staged <=3-step TRAIN diagnostic")
     local_dir = Path(args.local_dir).resolve()
     local_dir.mkdir(parents=True, exist_ok=True)
     started = time.time()
@@ -124,6 +138,7 @@ def main(argv=None) -> int:
         "steps": args.steps,
         "stage_zip_sha256": args.stage_sha256 or None,
         "stage_source_git_sha": args.stage_source_sha or None,
+        "processor_audit_records": args.processor_audit_records,
         "started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(started)),
     }
     try:
@@ -136,7 +151,8 @@ def main(argv=None) -> int:
         code, out, err = execute(args.session, args.pinned_sha, args.steps, args.images,
                                  args.max_steps, args.official_limit,
                                  args.family_targets, args.timeout,
-                                 args.stage_sha256, args.stage_source_sha)
+                                 args.stage_sha256, args.stage_source_sha,
+                                 args.processor_audit_records)
         log_path = local_dir / "remote-exec.log"
         log_path.write_text(out + "\n=== STDERR ===\n" + err, encoding="utf8")
         report["exec_exit"] = code

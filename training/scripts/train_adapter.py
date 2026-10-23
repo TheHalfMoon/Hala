@@ -32,6 +32,7 @@ from h60.native_drag_sft import (SCHEMA as H60_DRAG_SCHEMA,
                                  validate_drag_baseline as validate_h60_drag_baseline)
 from h61.curriculum import SCHEMA as H61_DRAG_SCHEMA, load_export as load_h61_drag_export
 from h61.supervision import completion_weights, weighted_lm_loss
+from h75.processor_audit import select_processor_audit_rows, audit_summary
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
@@ -259,15 +260,16 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     # records does not cost hours before the first optimizer step.
     for row in records:
         check_media(row, root, native_drag_jpeg=native_drag)
-    audit_limit = config.audit_records or len(records)
-    for row in records[:audit_limit]:
+    audit_rows = select_processor_audit_rows(records, config.audit_records)
+    for row in audit_rows:
         checked_inputs, checked_labels, checked_weights = prepare_inputs(
             row, processor, root, manifest['token_budget'], native_drag_jpeg=native_drag,
             supervision=config.supervision, coordinate_weight=config.coordinate_weight,
             return_weights=True)
         del checked_inputs, checked_labels, checked_weights
-    runtime['audited_records'] = min(audit_limit, len(records))
+    runtime['audited_records'] = len(audit_rows)
     runtime['media_checked_records'] = len(records)
+    runtime.update(audit_summary(audit_rows, len(records)))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model_id, revision=config.revision, trust_remote_code=False,
         torch_dtype=dtype, attn_implementation='sdpa').to('cuda:0')
