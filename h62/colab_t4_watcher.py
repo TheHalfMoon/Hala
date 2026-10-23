@@ -368,7 +368,9 @@ def run_watcher(
         live, hardware, live_detail = client.existing_session()
         if live:
             state.requests += 1
-            if hardware == "GPU":
+            if hardware == "GPU" and live == client.session_name:
+                # Another project's GPU session is not ours to repurpose.
+                # Only the dedicated Hala session may be adopted.
                 state.allocated = True
                 state.session_name = live
                 state.adopted = True
