@@ -37,6 +37,27 @@ def file_hash(path: Path) -> str:
     return h.hexdigest()
 
 
+def locate_attached_train(root: Path = Path("/kaggle/input")) -> Path:
+    """Locate only the attached owner/slug H71 binary, not arbitrary inputs.
+
+    Modern Kaggle mounts use /kaggle/input/datasets/<owner>/<slug>.
+    Older kernels flatten the dataset slug at /kaggle/input/<slug>.
+    Any candidate is still required to pass the full immutable SHA-256.
+    """
+    owner = "abdulazizshehri"
+    slug = "hala-h71-drag-train-10000-private"
+    name = "hala-h71-train-10000.hala.bin"
+    candidates = [
+        root / "datasets" / owner / slug / name,
+        root / slug / name,
+        root / owner / slug / name,
+    ]
+    for path in candidates:
+        if path.is_file() and not path.is_symlink():
+            return path
+    raise ValueError("exact attached owner-private TRAIN binary not mounted")
+
+
 def verify_input(path: Path) -> dict:
     if path.is_symlink() or not path.is_file():
         raise ValueError("private attached Kaggle H71 TRAIN binary missing or linked")
@@ -108,14 +129,15 @@ def main():
               "model_weights_downloaded": False, "admission": "NOT_QUALIFIED"}
     try:
         require_cpu()
-        status.update(verify_input(ARCHIVE))
+        attached = locate_attached_train()
+        status.update(verify_input(attached))
         scratch_parent = Path("/kaggle/temp")
         if not scratch_parent.is_dir():
             raise ValueError("Kaggle scratch workspace unavailable")
         if shutil.disk_usage(scratch_parent).free < 5 * 1024**3:
             raise OSError("insufficient scratch disk for full source rederivation")
         with tempfile.TemporaryDirectory(prefix="hala-h73-verify-", dir=scratch_parent) as temp:
-            status.update(verify_source(Path(temp), ARCHIVE))
+            status.update(verify_source(Path(temp), attached))
         status["admission"] = "VERIFIED_CPU_TRAIN_SOURCE"
     except Exception as error:
         status["failure"] = f"{type(error).__name__}: {error}"[:260]
@@ -126,11 +148,14 @@ def main():
         if root.is_dir():
             status["attached_dataset_names"] = sorted(
                 child.name for child in list(root.iterdir())[:32])
-            expected = root / "hala-h71-drag-train-10000-private"
-            if expected.is_dir():
-                status["attached_expected_entries"] = sorted(
-                    child.name for child in list(expected.iterdir())[:32])
-            status["expected_archive_symlink"] = ARCHIVE.is_symlink()
+            dataset_mount = root / "datasets" / "abdulazizshehri"
+            if dataset_mount.is_dir():
+                status["attached_owner_names"] = sorted(
+                    child.name for child in list(dataset_mount.iterdir())[:32])
+                desired = dataset_mount / "hala-h71-drag-train-10000-private"
+                if desired.is_dir():
+                    status["attached_expected_entries"] = sorted(
+                        child.name for child in list(desired.iterdir())[:32])
             status["expected_archive_exists"] = ARCHIVE.exists()
     status["elapsed_seconds"] = round(time.monotonic() - started, 3)
     write_receipt(status)
