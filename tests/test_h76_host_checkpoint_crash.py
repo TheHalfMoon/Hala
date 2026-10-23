@@ -148,7 +148,8 @@ class CrashRecoveryTests(unittest.TestCase):
                                hardware=lambda _: "T4",
                                runner=lambda *a, **kw: child,
                                snapshot=lambda *a: next(snapshots),
-                               sleep=lambda _: None, clock=lambda: 0.0)
+                               sleep=lambda _: None, clock=lambda: 0.0,
+                               checkpoint_verifier=lambda *args: {"status": "SYNTHETIC_VALIDATION_ONLY"})
             self.assertEqual(result["status"], "COMPLETED_WITH_HOST_EGRESS")
             self.assertEqual(result["successful_egress_polls"], 2)
             self.assertFalse(result["private_provider_readback_verified"])

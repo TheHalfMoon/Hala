@@ -203,7 +203,8 @@ class StageTests(unittest.TestCase):
             result = supervisor.supervise("hala-h67", SHA, Path(tmp),
                 steps="train", stage_sha256="f"*64, stage_source_sha=SHA, runner=proc,
                 hardware=lambda _: "T4", snapshot=lambda *a: {"status": "ALREADY_VERIFIED"},
-                sleep=lambda _: None, clock=lambda: 0.0)
+                sleep=lambda _: None, clock=lambda: 0.0,
+                checkpoint_verifier=lambda *args: {"status": "SYNTHETIC_VALIDATION_ONLY"})
         self.assertIn("--stage-sha256", calls[0])
         self.assertEqual(result["status"], "COMPLETED_WITH_HOST_EGRESS")
 
