@@ -177,6 +177,20 @@ def qualify_stage_source(stage_sha: str, source_sha: str) -> str:
     return source_sha
 
 
+def qualify_h75_audit(stage_sha: str, steps: str, max_steps: str,
+                       audit_records: str) -> int:
+    """Validate the explicit bounded processor audit BEFORE dependency installs."""
+    if audit_records == "0":
+        return 0
+    if (not audit_records.isascii() or not audit_records.isdigit()
+            or not 1 <= int(audit_records) <= 64
+            or not max_steps.isascii() or not max_steps.isdigit()
+            or not 1 <= int(max_steps) <= 3 or not stage_sha
+            or "train" not in [s.strip() for s in steps.split(",")]):
+        raise fail("H75 bounded processor audit only permitted on staged <=3-step TRAIN")
+    return int(audit_records)
+
+
 def main() -> int:
     started = time.time()
     work = Path(os.environ.get("H62_WORK", "/content/hala-h62-work"))
@@ -201,13 +215,18 @@ def main() -> int:
         if stage_sha:
             receipt["h67_source_git_sha"] = stage_source_sha
             receipt["h67_zip_sha256"] = stage_sha
+        steps = os.environ.get("H61_STEPS", "export,firstparty,curriculum,baseline,train,evaluate")
+        max_steps = os.environ.get("H61_MAX_STEPS", "600")
+        audit_records = os.environ.get("H61_PROCESSOR_AUDIT_RECORDS", "0")
+        audit_count = qualify_h75_audit(stage_sha, steps, max_steps, audit_records)
+        if audit_count:
+            receipt["processor_audit_records"] = audit_count
         # This entry script itself was uploaded from the host. Only import
         # training/staging code from the SHA-verified freshly fetched checkout.
         sys.path.insert(0, str(repo))
         receipt["packages_before"] = package_versions()
         receipt["packages_after_install"] = ensure_packages()
 
-        steps = os.environ.get("H61_STEPS", "export,firstparty,curriculum,baseline,train,evaluate")
         if stage_sha:
             # CPU-created TRAIN bundle is uploaded before this T4 process.
             # Never repeat full data preparation inside a short-lived GPU.
@@ -219,7 +238,6 @@ def main() -> int:
                 Path("/content/hala-h67-stage.zip"), stage_sha, work / "run",
                 stage_source_sha, rederive=True)
         images = os.environ.get("H61_IMAGES", "slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
-        max_steps = os.environ.get("H61_MAX_STEPS", "600")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
         family_targets = os.environ.get(
             "H61_FAMILY_TARGETS", '{"h61_firstparty_bilingual_drag_train": 2000}')
@@ -242,6 +260,8 @@ def main() -> int:
             "--official-limit", official_limit,
             "--family-targets-file", str(family_targets_path),
         ]
+        if audit_count:
+            command.extend(["--processor-audit-records", str(audit_count)])
         receipt["command"] = command
         result = subprocess.run(command, cwd=str(repo), env=environment, text=True)
         receipt["colab_run_exit"] = result.returncode

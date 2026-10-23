@@ -33,7 +33,8 @@ def supervise(session: str, sha: str, destination: Path, *,
               interval: float = 90.0, max_seconds: float = 21600.0,
               steps: str = "export,firstparty,curriculum,baseline,train,evaluate",
               stage_sha256: str = "", stage_source_sha: str = "",
-              max_steps: int = 600, runner=subprocess.Popen,
+              max_steps: int = 600, processor_audit_records: int = 0,
+              runner=subprocess.Popen,
               snapshot=snapshot_once,
               hardware=session_hardware,
               sleep=time.sleep,
@@ -43,6 +44,12 @@ def supervise(session: str, sha: str, destination: Path, *,
         raise ValueError("bounded monitor interval and deadline required")
     if type(max_steps) is not int or not 1 <= max_steps <= 600:
         raise ValueError("bounded smoke/training optimizer step count (1..600) required")
+    if processor_audit_records:
+        if (type(processor_audit_records) is not int
+                or not 1 <= processor_audit_records <= 64
+                or max_steps > 3 or not stage_sha256
+                or "train" not in [s.strip() for s in steps.split(",")]):
+            raise ValueError("H75 processor audit requires staged <=3-step TRAIN diagnostic")
     if (len(sha) != 40 or any(char not in "0123456789abcdef" for char in sha)):
         raise ValueError("40-character pinned commit required")
     if bool(stage_sha256) != bool(stage_source_sha):
@@ -73,13 +80,16 @@ def supervise(session: str, sha: str, destination: Path, *,
         command.extend(["--stage-sha256", stage_sha256,
                         "--stage-source-sha", stage_source_sha])
     command.extend(["--max-steps", str(max_steps)])
+    if processor_audit_records:
+        command.extend(["--processor-audit-records", str(processor_audit_records)])
     log = destination / "operator.log"
     with log.open("w", encoding="utf8") as output:
         child = runner(command, stdout=output, stderr=subprocess.STDOUT)
         write_receipt(receipt_path, {"event": "launch", "session": session,
                                     "pinned_sha": sha, "steps": steps, "pid": child.pid,
                                     "stage_source_sha": stage_source_sha or None,
-                                    "stage_sha256": stage_sha256 or None})
+                                    "stage_sha256": stage_sha256 or None,
+                                    "processor_audit_records": processor_audit_records})
         try:
             while child.poll() is None:
                 try:
@@ -162,12 +172,15 @@ def main(argv=None):
                         help="Original H71 data source SHA, not the new running-code SHA")
     parser.add_argument("--max-steps", type=int, default=600,
                         help="H61 optimizer steps, bounded for first free-T4 diagnostic")
+    parser.add_argument("--processor-audit-records", type=int, default=0,
+                        help="0=full processor audit; 1..64 only for staged <=3-step smoke")
     args = parser.parse_args(argv)
     result = supervise(args.session, args.pinned_sha, args.destination,
                        interval=args.interval, max_seconds=args.max_seconds,
                        steps=args.steps, stage_sha256=args.stage_sha256,
                        stage_source_sha=args.stage_source_sha,
-                       max_steps=args.max_steps)
+                       max_steps=args.max_steps,
+                       processor_audit_records=args.processor_audit_records)
     print(json.dumps(result, sort_keys=True))
     return 0 if result["status"] == "COMPLETED_WITH_HOST_EGRESS" else 1
 
