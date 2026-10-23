@@ -54,6 +54,25 @@ class ReadinessTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, "lost required scenes"):
                     step_firstparty(Path(temp), Path(temp), 8)
 
+    def test_cpu_preparation_receipt_must_not_claim_colab_or_metered_units(self):
+        import os
+        import sys
+        from h61.colab_run import main
+        with tempfile.TemporaryDirectory() as temp:
+            work = Path(temp) / "cpu"
+            args = ["h61.colab_run", "--repo", temp, "--work", str(work),
+                    "--steps", "firstparty", "--firstparty-scenes", "8"]
+            with (mock.patch.object(sys, "argv", args),
+                  mock.patch.dict(os.environ, {"COLAB_RELEASE_TAG": ""}),
+                  mock.patch("h61.colab_run.step_firstparty",
+                             return_value={"scenes_authored": 8,
+                                           "scenes_accepted": 8})):
+                self.assertEqual(main(), 0)
+            receipt = json.loads((work / "run-receipt.json").read_text())
+            self.assertEqual(receipt["provider"], "host_cpu_preparation")
+            self.assertIsNone(receipt["paid_compute_units_consumed"])
+            self.assertEqual(receipt["status"], "completed")
+
     def test_pilot_cannot_claim_full_gpu_stage(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
