@@ -63,7 +63,9 @@ def publish(bundle: Path, domain: str, expected_sha: str, source_git_sha: str,
     if not bundle.is_file() or sha(bundle) != expected_sha:
         raise ValueError("source archive differs from the reviewed SHA256")
     name = f"hala-h70-{domain}-2500.hala.bin"
-    ref = f"{OWNER}/hala-h70-original-{domain}-2500-private"
+    # Kaggle dataset slugs allow alphanumeric and hyphens, not underscores.
+    # Preserve the canonical domain key in source bytes and file name.
+    ref = f"{OWNER}/hala-h70-original-{domain.replace('_', '-')}-2500-private"
     receipt_dir = Path(receipt_dir).resolve()
     receipt_dir.mkdir(parents=True, exist_ok=True)
     if (receipt_dir / f"{domain}-readback.json").exists():
