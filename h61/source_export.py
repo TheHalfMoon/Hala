@@ -348,6 +348,12 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
     rejections: list[dict] = []
 
     def keep_image(member) -> bool:
+        # TarStreamReader may parse many complete images from one HTTP range.
+        # A post-feed check is too late: the old exporter requested 5 images
+        # and actually retained 68, subsequently requiring far more task
+        # ranges. Reject additional members *during* the streaming feed.
+        if len(wanted) >= images_wanted:
+            return False
         name = member.name
         if "/._" in name or "/PaxHeader/" in name:
             return False
@@ -358,6 +364,9 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
         )
 
     def sink_image(member, payload) -> None:
+        # Also guard the sink itself against any already-buffered callback.
+        if len(wanted) >= images_wanted:
+            return
         key = member.name[len(image_prefix) : -len(".jpg")]
         if not pairs.image_tail_ok(payload):
             rejections.append({"image_id": key, "reason": "no end-of-image marker"})
@@ -408,6 +417,8 @@ def export_domain(domain: str, total_bytes: int, out_dir, *, images_wanted: int 
         if len(wanted) >= images_wanted:
             break
 
+    if len(wanted) > images_wanted:
+        raise ValueError("source image capture exceeded its explicit row cap")
     missing = set(wanted) - {
         key for key, entry in wanted.items() if entry["tasks"]
     }
