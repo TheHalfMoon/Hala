@@ -131,9 +131,11 @@ def main():
         require_cpu()
         attached = locate_attached_train()
         status.update(verify_input(attached))
-        scratch_parent = Path("/kaggle/temp")
-        if not scratch_parent.is_dir():
-            raise ValueError("Kaggle scratch workspace unavailable")
+        # Kaggle's current runtime may omit /kaggle/temp. Its dedicated
+        # non-persistent scratch is /kaggle/tmp, which is not exported as a
+        # saved notebook output. Never put 13k raw TRAIN images in working/.
+        scratch_parent = Path("/kaggle/tmp")
+        scratch_parent.mkdir(mode=0o700, parents=True, exist_ok=True)
         if shutil.disk_usage(scratch_parent).free < 5 * 1024**3:
             raise OSError("insufficient scratch disk for full source rederivation")
         with tempfile.TemporaryDirectory(prefix="hala-h73-verify-", dir=scratch_parent) as temp:
