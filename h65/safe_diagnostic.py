@@ -17,6 +17,8 @@ from pathlib import Path
 
 from h65.checkpoint_egress import snapshot_once
 from h62.run_h61_diagnostic import session_hardware
+from h78.checkpoint_evidence import (checkpoint_sha_if_present,
+                                     qualify_completed_host_checkpoint)
 
 SCHEMA = "hala.h65.supervised-diagnostic.v1"
 
@@ -37,6 +39,7 @@ def supervise(session: str, sha: str, destination: Path, *,
               runner=subprocess.Popen,
               snapshot=snapshot_once,
               hardware=session_hardware,
+              checkpoint_verifier=qualify_completed_host_checkpoint,
               sleep=time.sleep,
               clock=time.monotonic) -> dict:
     """Return truthful result; never create or adopt a GPU session."""
@@ -64,6 +67,11 @@ def supervise(session: str, sha: str, destination: Path, *,
             raise ValueError("CPU preparation forbidden in staged GPU run")
     destination = Path(destination).resolve()
     destination.mkdir(parents=True, exist_ok=True)
+    train_requested = "train" in [part.strip() for part in steps.split(",")]
+    # A completed checkpoint already present at launch can be salvaged but
+    # never masquerade as an update performed by this training child.
+    prior_checkpoint_sha = (checkpoint_sha_if_present(destination / "checkpoint-staging")
+                            if train_requested else None)
     receipt_path = destination / "monitor-receipts.jsonl"
     last_status = "NOT_YET_ATTEMPTED"
     successful_snapshots = 0
@@ -146,15 +154,25 @@ def supervise(session: str, sha: str, destination: Path, *,
                 except subprocess.TimeoutExpired:
                     child.kill()
                     child.wait(timeout=10)
+    completion = None
     if exit_code != 0:
         status, reason = "FAILED", "child_nonzero"
-    elif "train" in [part.strip() for part in steps.split(",")] and not successful_snapshots:
+    elif train_requested and not successful_snapshots:
         status, reason = "FAILED", "missing_verified_checkpoint_egress"
+    elif train_requested:
+        try:
+            completion = checkpoint_verifier(destination / "checkpoint-staging",
+                                             max_steps, prior_checkpoint_sha)
+        except (OSError, ValueError, KeyError, TypeError):
+            status, reason = "FAILED", "unqualified_completed_checkpoint"
+        else:
+            status, reason = "COMPLETED_WITH_HOST_EGRESS", "verified_completed_host_checkpoint"
     else:
-        status, reason = "COMPLETED_WITH_HOST_EGRESS", "host_evidence_only"
+        status, reason = "COMPLETED_WITH_HOST_EGRESS", "no_training_requested"
     report = {"schema": SCHEMA, "status": status, "reason": reason,
               "child_exit": exit_code, "successful_egress_polls": successful_snapshots,
               "last_egress": last_status,
+              "completed_checkpoint_evidence": completion,
               "private_provider_readback_verified": False}
     write_receipt(receipt_path, {"event": "final", **report})
     return report

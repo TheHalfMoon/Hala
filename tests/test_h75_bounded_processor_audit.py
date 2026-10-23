@@ -88,7 +88,8 @@ class Propagation(unittest.TestCase):
                                runner=lambda command, **kw: (commands.append(command) or FakeChild()),
                                snapshot=lambda *args: {"status": "VERIFIED_HOST_STAGING", "step": 1},
                                hardware=lambda _: "T4", sleep=lambda _: None,
-                               clock=lambda: 0.0)
+                               clock=lambda: 0.0,
+                               checkpoint_verifier=lambda *args: {"status": "SYNTHETIC_VALIDATION_ONLY"})
         self.assertEqual(result["status"], "COMPLETED_WITH_HOST_EGRESS")
         self.assertIn("--processor-audit-records", commands[0])
         self.assertEqual(commands[0][commands[0].index("--processor-audit-records") + 1], "32")

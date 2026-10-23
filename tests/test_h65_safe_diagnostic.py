@@ -56,7 +56,8 @@ class SupervisorTests(unittest.TestCase):
             report = supervise("hala-h65", "a"*40, Path(root),
                                interval=30, max_seconds=90, steps=steps,
                                runner=process, snapshot=snapshot,
-                               hardware=h, sleep=lambda _: None, clock=lambda: 0.0)
+                               hardware=h, sleep=lambda _: None, clock=lambda: 0.0,
+                               checkpoint_verifier=lambda *args: {"status": "SYNTHETIC_VALIDATION_ONLY"})
             receipts = (Path(root) / "monitor-receipts.jsonl").read_text().splitlines()
             return report, child, process, snapshot, [json.loads(x) for x in receipts]
 

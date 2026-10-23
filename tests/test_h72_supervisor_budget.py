@@ -21,7 +21,8 @@ class BoundedTrainingTests(unittest.TestCase):
                                runner=runner,
                                snapshot=lambda *args: {"status":"VERIFIED_HOST_STAGING", "step": 1},
                                hardware=lambda _: "T4",
-                               sleep=lambda _: None, clock=lambda: 0.0)
+                               sleep=lambda _: None, clock=lambda: 0.0,
+                               checkpoint_verifier=lambda *args: {"status": "SYNTHETIC_VALIDATION_ONLY"})
         self.assertEqual(report["status"],"COMPLETED_WITH_HOST_EGRESS")
         self.assertEqual(commands[0][commands[0].index("--max-steps")+1],"3")
         self.assertEqual(commands[0][commands[0].index("--stage-sha256")+1],"b"*64)
