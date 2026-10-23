@@ -95,7 +95,9 @@ class PublishTests(unittest.TestCase):
     def test_public_dataset_refused_without_auth_readback(self):
         provider=FakeKaggle(self.binary,"sheet")
         def public(*args,**kwargs):
-            return io.BytesIO(b"public")
+            reply = io.BytesIO(b"public")
+            reply.status = 200
+            return reply
         with self.assertRaisesRegex(ValueError,"private dataset access"):
             p.publish(self.binary,"sheet",self.hexsha,GIT,self.receipts,
                       cli=provider,opener=public,unpacker=self.verified)
