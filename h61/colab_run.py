@@ -185,7 +185,7 @@ def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], l
     return receipt["domains"]
 
 
-def step_firstparty(work: Path, repo: Path) -> dict:
+def step_firstparty(work: Path, repo: Path, scenes: int = FIRSTPARTY_SCENES) -> dict:
     """Build the first-party bilingual drag corpus on the remote session.
 
     The corpus is authored by the committed generator and the committed pages,
@@ -196,12 +196,18 @@ def step_firstparty(work: Path, repo: Path) -> dict:
     """
     from h61.firstparty_drag import build as build_firstparty
 
+    if type(scenes) is not int or scenes < 8 or scenes > FIRSTPARTY_SCENES or scenes % 8:
+        raise ValueError("first-party scene count must be a positive multiple of eight (8..2000)")
     target = work / "export" / "firstparty"
     if (target / "receipt.json").exists():
         receipt = json.loads((target / "receipt.json").read_text("utf8"))
+        if receipt.get("scenes_authored") != scenes or receipt.get("scenes_accepted") != scenes:
+            raise ValueError("existing first-party receipt does not match the complete requested scene set")
         print("H61_STEP firstparty already complete", flush=True)
         return receipt
-    receipt = build_firstparty(target, FIRSTPARTY_SCENES)
+    receipt = build_firstparty(target, scenes)
+    if receipt.get("scenes_authored") != scenes or receipt.get("scenes_accepted") != scenes:
+        raise RuntimeError("first-party browser render lost required scenes; refusing incomplete TRAIN stage")
     print(
         f"H61_STEP firstparty done scenes={receipt.get('scenes_accepted')} "
         f"languages={receipt.get('by_language')}",
@@ -217,6 +223,7 @@ def main() -> int:
     parser.add_argument("--steps", default="export,curriculum,baseline,official_base,train,evaluate,official_adapter")
     parser.add_argument("--images", default="slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
     parser.add_argument("--chunk-bytes", type=int, default=16 * 1024 * 1024)
+    parser.add_argument("--firstparty-scenes", type=int, default=FIRSTPARTY_SCENES)
     parser.add_argument("--target-rows", type=int, default=10000)
     parser.add_argument("--max-rows-per-image", type=int, default=1)
     parser.add_argument("--family-targets", default=None,
@@ -250,6 +257,8 @@ def main() -> int:
     elif args.family_targets:
         family_targets = json.loads(args.family_targets)
     steps = [step.strip() for step in args.steps.split(",") if step.strip()]
+    if "firstparty" in steps and (args.firstparty_scenes < 8 or args.firstparty_scenes > FIRSTPARTY_SCENES or args.firstparty_scenes % 8):
+        raise ValueError("first-party scenes must be a multiple of 8 between 8 and 2000")
     receipt = {
         "schema": SCHEMA,
         "repo": str(repo),
@@ -257,6 +266,7 @@ def main() -> int:
         "steps": steps,
         "domains": domains,
         "target_rows": args.target_rows,
+        "firstparty_scenes": args.firstparty_scenes,
         "max_rows_per_image": args.max_rows_per_image,
         "family_targets": family_targets,
         "max_steps": args.max_steps,
@@ -277,7 +287,7 @@ def main() -> int:
                     work, args.target_rows, args.max_rows_per_image, family_targets
                 )
             elif step == "firstparty":
-                receipt["results"]["firstparty"] = step_firstparty(work, repo)
+                receipt["results"]["firstparty"] = step_firstparty(work, repo, args.firstparty_scenes)
             elif step == "baseline":
                 from h61.baseline import build_baseline_receipt
 
