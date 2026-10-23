@@ -32,6 +32,7 @@ def write_receipt(path, data):
 def supervise(session: str, sha: str, destination: Path, *,
               interval: float = 90.0, max_seconds: float = 21600.0,
               steps: str = "export,firstparty,curriculum,baseline,train,evaluate",
+              stage_sha256: str = "",
               runner=subprocess.Popen,
               snapshot=snapshot_once,
               hardware=session_hardware,
@@ -42,6 +43,12 @@ def supervise(session: str, sha: str, destination: Path, *,
         raise ValueError("bounded monitor interval and deadline required")
     if (len(sha) != 40 or any(char not in "0123456789abcdef" for char in sha)):
         raise ValueError("40-character pinned commit required")
+    if stage_sha256:
+        if len(stage_sha256) != 64 or any(c not in "0123456789abcdef" for c in stage_sha256):
+            raise ValueError("invalid H67 CPU stage SHA256")
+        if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
+               for s in steps.split(",")):
+            raise ValueError("CPU preparation forbidden in staged GPU run")
     destination = Path(destination).resolve()
     destination.mkdir(parents=True, exist_ok=True)
     receipt_path = destination / "monitor-receipts.jsonl"
@@ -56,6 +63,8 @@ def supervise(session: str, sha: str, destination: Path, *,
                "--session", session, "--pinned-sha", sha,
                "--local-dir", str(destination / "operator"),
                "--steps", steps, "--timeout", str(int(max_seconds))]
+    if stage_sha256:
+        command.extend(["--stage-sha256", stage_sha256])
     log = destination / "operator.log"
     with log.open("w", encoding="utf8") as output:
         child = runner(command, stdout=output, stderr=subprocess.STDOUT)
@@ -138,10 +147,11 @@ def main(argv=None):
     parser.add_argument("--max-seconds", type=float, default=21600.0)
     parser.add_argument("--steps",
                         default="export,firstparty,curriculum,baseline,train,evaluate")
+    parser.add_argument("--stage-sha256", default="")
     args = parser.parse_args(argv)
     result = supervise(args.session, args.pinned_sha, args.destination,
                        interval=args.interval, max_seconds=args.max_seconds,
-                       steps=args.steps)
+                       steps=args.steps, stage_sha256=args.stage_sha256)
     print(json.dumps(result, sort_keys=True))
     return 0 if result["status"] == "COMPLETED_WITH_HOST_EGRESS" else 1
 

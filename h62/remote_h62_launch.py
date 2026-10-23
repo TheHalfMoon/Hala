@@ -175,10 +175,24 @@ def main() -> int:
         repo = work / "repo"
         receipt["repo_head"] = fetch_pinned_source(repo, pinned)
         receipt["repo_source_sha_verified"] = True
+        # This entry script itself was uploaded from the host. Only import
+        # training/staging code from the SHA-verified freshly fetched checkout.
+        sys.path.insert(0, str(repo))
         receipt["packages_before"] = package_versions()
         receipt["packages_after_install"] = ensure_packages()
 
         steps = os.environ.get("H61_STEPS", "export,firstparty,curriculum,baseline,train,evaluate")
+        stage_sha = os.environ.get("H67_STAGE_SHA256", "")
+        if stage_sha:
+            # CPU-created TRAIN bundle is uploaded before this T4 process.
+            # Never repeat full data preparation inside a short-lived GPU.
+            if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
+                   for s in steps.split(",")):
+                raise fail("CPU-only steps forbidden with an H67 staged dataset")
+            from h67.stage import restore_stage
+            receipt["h67_stage"] = restore_stage(
+                Path("/content/hala-h67-stage.zip"), stage_sha, work / "run",
+                pinned, rederive=True)
         images = os.environ.get("H61_IMAGES", "slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
         max_steps = os.environ.get("H61_MAX_STEPS", "600")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
