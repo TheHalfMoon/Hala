@@ -176,8 +176,15 @@ def main(argv=None):
                         help="H61 optimizer steps, bounded for first free-T4 diagnostic")
     parser.add_argument("--processor-audit-records", type=int, default=0,
                         help="0=full processor audit; 1..64 only for staged <=3-step smoke")
+    parser.add_argument("--private-readback-after-egress", action="store_true",
+                        help="Explicit opt-in: publish verified host checkpoint to private "
+                             "Kaggle with authenticated full readback, never remove host copy")
     args = parser.parse_args(argv)
-    result = supervise(args.session, args.pinned_sha, args.destination,
+    monitor = supervise
+    if args.private_readback_after_egress:
+        from h77.private_checkpoint_continuation import supervise_then_private_readback
+        monitor = supervise_then_private_readback
+    result = monitor(args.session, args.pinned_sha, args.destination,
                        interval=args.interval, max_seconds=args.max_seconds,
                        steps=args.steps, stage_sha256=args.stage_sha256,
                        stage_source_sha=args.stage_source_sha,
