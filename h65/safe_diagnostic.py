@@ -32,7 +32,7 @@ def write_receipt(path, data):
 def supervise(session: str, sha: str, destination: Path, *,
               interval: float = 90.0, max_seconds: float = 21600.0,
               steps: str = "export,firstparty,curriculum,baseline,train,evaluate",
-              stage_sha256: str = "",
+              stage_sha256: str = "", max_steps: int = 600,
               runner=subprocess.Popen,
               snapshot=snapshot_once,
               hardware=session_hardware,
@@ -41,6 +41,8 @@ def supervise(session: str, sha: str, destination: Path, *,
     """Return truthful result; never create or adopt a GPU session."""
     if not 30.0 <= interval <= 1800.0 or not 30.0 <= max_seconds <= 28800.0:
         raise ValueError("bounded monitor interval and deadline required")
+    if type(max_steps) is not int or not 1 <= max_steps <= 600:
+        raise ValueError("bounded smoke/training optimizer step count (1..600) required")
     if (len(sha) != 40 or any(char not in "0123456789abcdef" for char in sha)):
         raise ValueError("40-character pinned commit required")
     if stage_sha256:
@@ -65,6 +67,7 @@ def supervise(session: str, sha: str, destination: Path, *,
                "--steps", steps, "--timeout", str(int(max_seconds))]
     if stage_sha256:
         command.extend(["--stage-sha256", stage_sha256])
+    command.extend(["--max-steps", str(max_steps)])
     log = destination / "operator.log"
     with log.open("w", encoding="utf8") as output:
         child = runner(command, stdout=output, stderr=subprocess.STDOUT)
@@ -148,10 +151,13 @@ def main(argv=None):
     parser.add_argument("--steps",
                         default="export,firstparty,curriculum,baseline,train,evaluate")
     parser.add_argument("--stage-sha256", default="")
+    parser.add_argument("--max-steps", type=int, default=600,
+                        help="H61 optimizer steps, bounded for first free-T4 diagnostic")
     args = parser.parse_args(argv)
     result = supervise(args.session, args.pinned_sha, args.destination,
                        interval=args.interval, max_seconds=args.max_seconds,
-                       steps=args.steps, stage_sha256=args.stage_sha256)
+                       steps=args.steps, stage_sha256=args.stage_sha256,
+                       max_steps=args.max_steps)
     print(json.dumps(result, sort_keys=True))
     return 0 if result["status"] == "COMPLETED_WITH_HOST_EGRESS" else 1
 
