@@ -48,14 +48,37 @@ actual model trainer. No Kaggle GPU training authorization is implied.
 
 Actual host unit tests on Ubuntu CPU: **7/7 PASS**. Owner Kaggle private
 kernel: `abdulazizshehri/hala-h73-cpu-train-source-admission`, version 1
-created CPU-only. Version 1 failed the attached source path lookup and
-created no training output; version 2 adds bounded attachment name diagnostics
-to resolve the provider's actual input layout without reading private
-content into logs.
+created CPU-only. Versions 1-2 failed the old flat input path. Version 3 resolved
+the modern owner-scoped path but found that `/kaggle/temp` did not exist.
+Version 4 uses non-persistent `/kaggle/tmp` scratch (never the saved
+`/kaggle/working` output area for raw screenshots).
 
-**Acceptance criterion:** successful private kernel result and an H67
-`RESTORED_TRAIN_STAGE` from the *attached* Kaggle input bytes. Until then
-this is a prepared CPU admission candidate, not validated portable storage.
+### Actual Kaggle CPU provider proof — PASS
+
+Kaggle kernel version **4** completed in provider status `COMPLETE`,
+and the provider-generated `hala-h73-cpu-admission.json` was
+downloaded independently using the authenticated Kaggle CLI. Its actual
+contents reported:
+
+- `admission: VERIFIED_CPU_TRAIN_SOURCE`
+- `execution: CPU_ONLY`, `gpu_training_executed: false`,
+  `model_weights_downloaded: false`
+- Input owner-private dataset:
+  `abdulazizshehri/hala-h71-drag-train-10000-private`
+- Byte size **1,759,484,545** and full archive SHA256
+  `4a8e602c785c2b90a60e49f78381a7af983401cb99b16c53f3df69e930cc073a`
+- Exact H67 pinned source commit
+  `acd694fbae10752ff4ee3fe6cc3e52142ab7f0fe`
+- `h67: RESTORED_TRAIN_STAGE`, **15,224** original archived files
+- Re-derived 10,000-row H61 dataset SHA256
+  `9888ac9d3b5ec7b8efe677287d54dc350c222a1804619e6217a84ec8f95eddcd`
+- Provider recorded `elapsed_seconds: 71.39`
+- Kaggle kernel run was CPU only and did not create any model checkpoint.
+
+**The CPU attached-source admission gate is therefore qualified and
+reproducible.** This removes the need for repeated Colab CLI transfer
+for this particular source-integrity research workflow. It does *not*
+qualify a Kaggle GPU run or override the non-commercial restriction.
 
 ## Compliance gate
 
