@@ -126,7 +126,8 @@ class PublishTests(unittest.TestCase):
             return reply
         with self.assertRaisesRegex(ValueError,"private dataset access"):
             p.publish(self.binary,"sheet",self.hexsha,GIT,self.receipts,
-                      cli=provider,opener=public,unpacker=self.verified)
+                      cli=provider,opener=public,unpacker=self.verified,
+                      sleep=lambda seconds: None)
         self.assertEqual(len(provider.commands),2)
         self.assertFalse((self.receipts/"sheet-readback.json").exists())
 
