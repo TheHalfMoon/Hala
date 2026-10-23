@@ -38,6 +38,7 @@ import subprocess
 import sys
 import time
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 
 SCHEMA = "hala.h62.colab-t4-watcher.v1"
@@ -219,6 +220,15 @@ class ReceiptLog:
         """Rebuild the state from the durable stream so a restart continues."""
         state = WatcherState()
         for record in self.read():
+            # The first durable start timestamp owns the original deadline.
+            # Restarts must never silently obtain another 36-hour window.
+            if not state.started_utc:
+                embedded = record.get("state")
+                state.started_utc = (
+                    embedded.get("started_utc", "") if isinstance(embedded, dict) else ""
+                ) or record.get("recorded_utc", "")
+            if record.get("event") == "stop":
+                state.stop_reason = record.get("reason", state.stop_reason)
             if record.get("event") == "attempt":
                 state.attempts = max(state.attempts, int(record.get("attempt", 0)))
                 state.requests = max(state.requests, int(record.get("request", 0)))
@@ -320,13 +330,19 @@ def run_watcher(
     sleep=time.sleep,
     clock=time.monotonic,
     launch=None,
+    elapsed_seconds: float = 0.0,
 ) -> WatcherState:
     """The bounded allocation loop.
 
     ``launch`` is called with the allocated session name once, and only once,
     after a real allocation receipt exists.
     """
-    deadline = clock() + deadline_seconds
+    if state.allocated or state.stop_reason:
+        # Recovered terminal state is not a license to allocate or launch again.
+        return state
+    if not 0.0 <= elapsed_seconds < float("inf"):
+        raise ValueError("elapsed_seconds must be finite and nonnegative")
+    deadline = clock() + max(0.0, deadline_seconds - elapsed_seconds)
     attempt = state.attempts
     while True:
         remaining = deadline - clock()
@@ -434,14 +450,21 @@ def main(argv=None) -> int:
     state_dir.mkdir(parents=True, exist_ok=True)
     log = ReceiptLog(state_dir / "watcher-receipts.jsonl")
     state = log.restore()
+    now = datetime.now(timezone.utc)
     if not state.started_utc:
-        state.started_utc = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        state.started_utc = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        started = datetime.strptime(state.started_utc, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError as error:
+        raise ValueError("unreadable original watcher start time; refusing restart") from error
+    elapsed_seconds = max(0.0, (now - started).total_seconds())
 
     client = ProviderClient(CommandRunner(args.colab_executable), args.session)
     if args.probe_only:
         balance_ok, balance_detail = client.balance_is_zero()
-        live, live_detail = client.existing_session()
-        hardware = client.session_hardware(live) if live else ""
+        live, hardware, live_detail = client.existing_session()
+        if live and not hardware:
+            hardware = client.session_hardware(live)
         probe = {
             "event": "probe",
             "balance_zero": balance_ok,
@@ -492,6 +515,7 @@ def main(argv=None) -> int:
         max_requests=args.max_requests,
         rng=random.Random(20261022),
         launch=launch,
+        elapsed_seconds=elapsed_seconds,
     )
     log.append({"event": "final", "state": final.to_json()})
     print(json.dumps(final.to_json(), sort_keys=True))
