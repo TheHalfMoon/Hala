@@ -1,4 +1,4 @@
-"""H62 detect the constant-coordinate collapse and prove the vision is used.
+"""H62 detect coordinate collapse and measure target association without causal claims.
 
 The H60 adapter learned the output contract and then collapsed onto a
 constant degenerate point: strict bare JSON validity went 0 to 17 of 48,
@@ -17,14 +17,12 @@ compares the predicted distribution against the distribution the ground
 truth actually has. A model that predicts a constant point while the truth
 varies is diagnosed as a collapse even when the task is easy.
 
-**Is the vision pathway actually connected?** A model can produce
-well-formed coordinates that are produced by the language prior alone. The
-probe measures the gap between matching accuracy, where a prediction is
-scored against its own image's target, and shuffled accuracy, where the
-same predictions are scored against a different image's target under a
-deterministic derangement. A model whose output does not change when the
-image changes has a broken visual pathway no matter how good its numbers
-look in aggregate.
+**Are predictions associated with their assigned targets?** Matching versus
+permuted target scores are a useful descriptive control, but the model is
+NOT rerun on exchanged pixels. A text-only shortcut or position prior can
+pass this audit. Hence the static audit cannot determine whether the model
+uses images; all static visual-causality verdicts are inconclusive. Use a
+matched actual-image intervention (H63) for visual-sensitivity evidence.
 
 Everything here is pure, CPU-only and dependency free, so the probe can run
 on the raw model outputs of a finished run, on a training sample, or inside
@@ -237,17 +235,18 @@ def _hits_against(prediction: Prediction, box) -> bool:
 
 
 def vision_pathway_probe(predictions: list, *, minimum: int = 4) -> dict:
-    """Test whether the predictions actually depend on the image.
+    """Describe prediction-to-target association, not visual causality.
 
-    ``matching`` scores every prediction against its own image's target.
-    ``shuffled`` scores the same predictions against a different image's
-    target. A model that reads the image has a strictly better matching
-    score. A model that ignores the image scores the same on both.
+    No model inference with swapped images occurs here. Higher matching than
+    shuffled-target accuracy can be produced by a prompt-only rule as well.
+    The only scientifically defensible vision verdict is inconclusive.
     """
     usable = [p for p in predictions if p.point is not None and p.target_box is not None]
     report = {
         "usable_predictions": len(usable),
         "hit_tolerance_px": HIT_TOLERANCE_PX,
+        "evidence_kind": "static_target_permutation_only",
+        "requires_paired_image_intervention": True,
     }
     if len(usable) < minimum:
         report["verdict"] = VISION_INCONCLUSIVE
@@ -274,25 +273,15 @@ def vision_pathway_probe(predictions: list, *, minimum: int = 4) -> dict:
         left, top, right, bottom = other.target_box
         centre = ((left + right) // 2, (top + bottom) // 2)
         movements.append(math.dist(prediction.point, centre))
-    report["mean_shift_px"] = statistics.fmean(movements) if movements else 0.0
-    if matching == shuffled and matching > 0:
-        report["verdict"] = VISION_IGNORED
-        report["reason"] = (
-            f"the predictions score the same against their own image "
-            f"({matching}) and against a different image ({shuffled})"
-        )
-    elif matching > shuffled:
-        report["verdict"] = VISION_USED
-        report["reason"] = (
-            f"matching accuracy {matching} exceeds shuffled accuracy {shuffled}; "
-            f"the answer depends on the image"
-        )
-    else:
-        report["verdict"] = VISION_INCONCLUSIVE
-        report["reason"] = (
-            f"matching accuracy {matching} does not exceed shuffled accuracy "
-            f"{shuffled}; the probe cannot attribute the answers to the image"
-        )
+    report["mean_distance_to_permuted_target_px"] = (
+        statistics.fmean(movements) if movements else 0.0
+    )
+    report["verdict"] = VISION_INCONCLUSIVE
+    report["reason"] = (
+        "static predictions were never rerun with swapped image pixels; "
+        f"matching={matching}, permuted-target={shuffled}. "
+        "This is target association, not evidence of visual dependence."
+    )
     return report
 
 
