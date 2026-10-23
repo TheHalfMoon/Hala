@@ -224,12 +224,12 @@ def main() -> int:
         # This entry script itself was uploaded from the host. Only import
         # training/staging code from the SHA-verified freshly fetched checkout.
         sys.path.insert(0, str(repo))
-        receipt["packages_before"] = package_versions()
-        receipt["packages_after_install"] = ensure_packages()
-
         if stage_sha:
-            # CPU-created TRAIN bundle is uploaded before this T4 process.
-            # Never repeat full data preparation inside a short-lived GPU.
+            # H79: the pinned, CPU-only H67 restore requires only the Python
+            # standard library. Admit every original TRAIN byte, SHA and
+            # derived curriculum BEFORE the optional pip dependency changes.
+            # An absent/corrupted H72 transfer must never waste free T4
+            # time pinning packages or downloading Qwen weights.
             if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
                    for s in steps.split(",")):
                 raise fail("CPU-only steps forbidden with an H67 staged dataset")
@@ -237,6 +237,13 @@ def main() -> int:
             receipt["h67_stage"] = restore_stage(
                 Path("/content/hala-h67-stage.zip"), stage_sha, work / "run",
                 stage_source_sha, rederive=True)
+            if (not isinstance(receipt["h67_stage"], dict)
+                    or receipt["h67_stage"].get("status") != "RESTORED_TRAIN_STAGE"
+                    or receipt["h67_stage"].get("sha256") != stage_sha
+                    or receipt["h67_stage"].get("git_sha") != stage_source_sha):
+                raise fail("H79 authenticated TRAIN stage identity or admission missing")
+        receipt["packages_before"] = package_versions()
+        receipt["packages_after_install"] = ensure_packages()
         images = os.environ.get("H61_IMAGES", "slider=3500,slide_resize=2500,sheet=2500,text_highlight=2500")
         official_limit = os.environ.get("H61_OFFICIAL_LIMIT", "30")
         family_targets = os.environ.get(

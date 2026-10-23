@@ -56,7 +56,7 @@ class RemoteAuditContract(unittest.TestCase):
                   mock.patch.object(launch, "fetch_pinned_source", return_value=CODE),
                   mock.patch.object(launch, "package_versions", return_value={}),
                   mock.patch.object(launch, "ensure_packages", return_value={}),
-                  mock.patch("h67.stage.restore_stage", return_value={"status": "RESTORED_TRAIN_STAGE"}) as restore,
+                  mock.patch("h67.stage.restore_stage", return_value={"status": "RESTORED_TRAIN_STAGE", "sha256": ZIP, "git_sha": SOURCE}) as restore,
                   mock.patch.object(launch.subprocess, "run", return_value=done) as run):
                 self.assertEqual(launch.main(), 0)
             command = run.call_args.args[0]
