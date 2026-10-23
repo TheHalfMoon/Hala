@@ -22,7 +22,7 @@ import tempfile
 import uuid
 from pathlib import Path
 
-from training.checkpoints import atomic_json, load_checkpoint, validate_version
+from training.checkpoints import IDENTITY_FIELDS, atomic_json, load_checkpoint, validate_version
 from training.artifacts import strict_json
 
 SCHEMA = "hala.h65.host-checkpoint-egress.v1"
@@ -106,6 +106,7 @@ def snapshot_once(session: str, destination: Path, *, runner=subprocess.run,
         relative = pointer["version"]
         step = int(VERSION.fullmatch(relative).group(1))
         existing_pointer = destination / "latest.json"
+        prior_state = None
         if existing_pointer.exists():
             prior_version, prior_state = load_checkpoint(destination, None)
             prior = _pointer(existing_pointer)
@@ -134,6 +135,10 @@ def snapshot_once(session: str, destination: Path, *, runner=subprocess.run,
             raise ValueError("invalid checkpoint manifest")
         if metadata["state"].get("step") != step:
             raise ValueError("checkpoint pointer step differs from manifest")
+        if prior_state is not None and any(
+                prior_state.get(field) != metadata["state"].get(field)
+                for field in (*IDENTITY_FIELDS, "max_steps")):
+            raise ValueError("remote checkpoint changes previously verified training identity")
         artifacts = metadata["artifacts"]
         for name, expected in artifacts.items():
             _member_name(name)
@@ -145,7 +150,32 @@ def snapshot_once(session: str, destination: Path, *, runner=subprocess.run,
             raise ValueError("checkpoint cannot restore complete optimizer and adapter")
 
         staging_parent = destination / "checkpoints"
+        if staging_parent.is_symlink():
+            raise ValueError("checkpoint storage must not be a symlink")
         staging_parent.mkdir(parents=True, exist_ok=True)
+        target = destination / relative
+        # Recovery window: an interrupted host process may already have
+        # atomically renamed a COMPLETE version before updating latest.json.
+        # Revalidate its exact remote pointer, manifest, files and training
+        # identity instead of discarding the precious first checkpoint.
+        if target.exists() or target.is_symlink():
+            if target.is_symlink() or not target.is_dir():
+                raise ValueError("unsafe or incomplete preexisting checkpoint path")
+            manifest_file = target / "checkpoint.json"
+            if not manifest_file.is_file() or digest(manifest_file) != pointer["checkpoint_sha256"]:
+                raise ValueError("preexisting checkpoint metadata disagrees with remote pointer")
+            recovered_state, recovered_artifacts = validate_version(target, None)
+            if (recovered_state != metadata["state"]
+                    or recovered_artifacts != artifacts or recovered_state["step"] != step):
+                raise ValueError("preexisting checkpoint differs from remote immutable version")
+            atomic_json(destination / "latest.json", pointer)
+            version, confirmed = load_checkpoint(destination, None)
+            return {"schema": SCHEMA, "status": "RECOVERED_HOST_STAGING",
+                    "step": confirmed["step"],
+                    "checkpoint_sha256": pointer["checkpoint_sha256"],
+                    "artifacts": len(recovered_artifacts), "downloaded_bytes": 0,
+                    "storage_kind": "host_local_only_not_provider_readback",
+                    "version": version.relative_to(destination).as_posix()}
         stage = staging_parent / (".staging-h65-" + uuid.uuid4().hex)
         stage.mkdir()
         try:
@@ -165,9 +195,8 @@ def snapshot_once(session: str, destination: Path, *, runner=subprocess.run,
             state, _ = validate_version(stage, None)
             if state["step"] != step:
                 raise ValueError("inconsistent validated checkpoint step")
-            target = destination / relative
             if target.exists():
-                raise ValueError("target version already exists unexpectedly")
+                raise ValueError("checkpoint version appeared during egress")
             os.replace(stage, target)
             atomic_json(destination / "latest.json", pointer)
             # Re-read everything through the original independent validator.
@@ -189,7 +218,8 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     result = snapshot_once(args.session, args.destination)
     print(json.dumps(result, sort_keys=True))
-    return 0 if result["status"] in ("VERIFIED_HOST_STAGING", "ALREADY_VERIFIED") else 2
+    return 0 if result["status"] in ("VERIFIED_HOST_STAGING", "RECOVERED_HOST_STAGING",
+                                     "ALREADY_VERIFIED") else 2
 
 
 if __name__ == "__main__":

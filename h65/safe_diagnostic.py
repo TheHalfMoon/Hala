@@ -95,7 +95,8 @@ def supervise(session: str, sha: str, destination: Path, *,
                 try:
                     result = snapshot(session, destination / "checkpoint-staging")
                     last_status = result["status"]
-                    if last_status in ("VERIFIED_HOST_STAGING", "ALREADY_VERIFIED"):
+                    if last_status in ("VERIFIED_HOST_STAGING", "RECOVERED_HOST_STAGING",
+                                     "ALREADY_VERIFIED"):
                         successful_snapshots += 1
                     write_receipt(receipt_path, {"event": "egress", "status": last_status,
                                                 "step": result.get("step")})
@@ -132,7 +133,8 @@ def supervise(session: str, sha: str, destination: Path, *,
             try:
                 result = snapshot(session, destination / "checkpoint-staging")
                 last_status = result["status"]
-                if last_status in ("VERIFIED_HOST_STAGING", "ALREADY_VERIFIED"):
+                if last_status in ("VERIFIED_HOST_STAGING", "RECOVERED_HOST_STAGING",
+                                     "ALREADY_VERIFIED"):
                     successful_snapshots += 1
             except (OSError, ValueError, RuntimeError, KeyError):
                 last_status = "EGRESS_FAILED"
