@@ -47,10 +47,10 @@ class PinnedModelTests(unittest.TestCase):
         def stat(path,*args,**kwargs):
             value=real(path,*args,**kwargs)
             if Path(path)==binary:
-                from unittest.mock import Mock
-                fake=Mock()
-                fake.st_size=4*1024**3
-                return fake
+                import os
+                fields=list(value)
+                fields[6]=4*1024**3
+                return os.stat_result(fields)
             return value
         with mock.patch.object(p,"CACHE",self.cache),mock.patch.object(p.Path,"stat",stat):
             with self.assertRaisesRegex(ValueError,"SHA256 differs"):
