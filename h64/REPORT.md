@@ -15,9 +15,11 @@ No merge to H63/H62/H61/main and no provider or cloud operation.
 3. **Receipt success is verified, not assumed.** The operator runner removes stale downloaded receipts, requires both fresh remote files to exist and be nonempty, parses them, verifies the pinned repository commit and zero child exit, and admits the run only if the H61 run receipt reports completion, no failures, and the exact requested steps. A successful `colab exec` without successful downloads is **not** success.
 4. **Restart preserves the original deadline and terminal state.** `ReceiptLog.restore` reconstructs the initial UTC timestamp and recorded stop outcome. A restarted process subtracts elapsed wall-clock time from the original 36-hour budget rather than getting a new deadline. Already-allocated or stopped watchers do not allocate or launch again. This does **not** create a distributed lock between independent watcher processes; the operator must still ensure only one instance exists.
 
+5. **No cross-project GPU adoption.** The allocation watcher previously accepted *any* existing GPU session returned from the account, even one belonging to a separate project. It now adopts only the dedicated `hala-h62` session. An unrelated GPU prevents new allocation until released, but is never commandeered for Hala model training. The regression includes both an unrelated GPU that remains active and one that is later released.
+
 ## Measured local evidence
 
-The original targeted test command, on a separately cloned Windows checkout:
+The initial pre-cross-project-fix targeted test command, on a separately cloned Windows checkout:
 
 ```text
 python -m unittest tests.test_h64_runtime_integrity tests.test_h62_colab_watcher tests.test_h63_visual_intervention tests.test_h62_collapse_probe -v
@@ -27,7 +29,7 @@ HALA_H64_TARGETED_EXIT=0
 HALA_H64_TEMP_CLEANED
 ```
 
-The targeted regression uses authentic Python `CompletedProcess` instances and simulated provider responses, including missing download, inconsistent pinned SHA, failed child, stopped watcher and expired prior deadline. It is NOT evidence that Colab granted a T4, that the machine trained weights, or that Hala performance improved.
+After adding cross-project session isolation, rerun the targeted suite and rely on the exact post-change hosted CI before treating H64 as green. The targeted regression uses authentic Python `CompletedProcess` instances and simulated provider responses, including missing download, inconsistent pinned SHA, failed child, stopped watcher and expired prior deadline. It is NOT evidence that Colab granted a T4, that the machine trained weights, or that Hala performance improved.
 
 ## Honest remaining blockers and next step
 
