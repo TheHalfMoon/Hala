@@ -149,7 +149,9 @@ class StageTests(unittest.TestCase):
             for info in src.infolist():
                 content = src.read(info)
                 if info.filename == stage.CURRICULUM:
-                    content = b"changed"
+                    # Preserve length so inventory size checks pass; the
+                    # independent SHA check must reject the changed bytes.
+                    content = bytes([content[0] ^ 1]) + content[1:]
                 dst.writestr(info, content)
         with self.assertRaisesRegex(ValueError, "file SHA-256 mismatch"):
             stage.restore_stage(replaced, stage.digest(replaced), self.restore, SHA,
