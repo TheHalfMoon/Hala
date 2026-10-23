@@ -109,7 +109,9 @@ class CollapseDetectionTests(unittest.TestCase):
 class VisionPathwayTests(unittest.TestCase):
     def test_a_grounded_model_is_recognised_as_using_the_image(self):
         report = vision_pathway_probe(grounded_predictions())
-        self.assertEqual(report["verdict"], VISION_USED)
+        self.assertEqual(report["verdict"], VISION_INCONCLUSIVE)
+        self.assertEqual(report["evidence_kind"], "static_target_permutation_only")
+        self.assertTrue(report["requires_paired_image_intervention"])
         self.assertGreater(report["matching_hits"], report["shuffled_hits"])
         self.assertGreater(report["vision_gain"], 0.0)
 
@@ -122,13 +124,30 @@ class VisionPathwayTests(unittest.TestCase):
             for index in range(12)
         ]
         report = vision_pathway_probe(predictions)
-        self.assertEqual(report["verdict"], VISION_IGNORED)
+        self.assertEqual(report["verdict"], VISION_INCONCLUSIVE)
+        self.assertEqual(report["matching_hits"], report["shuffled_hits"])
 
     def test_a_language_only_model_is_not_credited_with_seeing(self):
         report = vision_pathway_probe(language_only_predictions())
         self.assertEqual(report["verdict"], VISION_INCONCLUSIVE)
         self.assertEqual(report["matching_hits"], 0)
         self.assertEqual(report["shuffled_hits"], 0)
+
+    def test_prompt_only_spatial_shortcut_cannot_be_called_vision(self):
+        # Coordinates are determined by instruction text alone, never pixels.
+        # Different target boxes happen to align with the textual shortcuts.
+        predictions = []
+        for index in range(12):
+            left = 20 + index * 40
+            predictions.append(Prediction(
+                case_id=f"prior-{index}", image_id=f"img-{index}",
+                instruction=f"click column {index}",
+                point=(left + 10, 45), target_box=(left, 35, left + 20, 55),
+                valid_output=True))
+        report = vision_pathway_probe(predictions)
+        self.assertEqual(report["matching_hits"], 12)
+        self.assertLess(report["shuffled_hits"], 12)
+        self.assertEqual(report["verdict"], VISION_INCONCLUSIVE)
 
     def test_too_few_predictions_are_inconclusive(self):
         report = vision_pathway_probe(grounded_predictions(2))
