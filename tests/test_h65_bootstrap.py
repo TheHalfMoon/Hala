@@ -1,6 +1,7 @@
 """H65: pinned packages cannot resolve large GPU dependencies implicitly."""
 import sys
 import types
+import subprocess
 import unittest
 from unittest import mock
 
@@ -29,14 +30,19 @@ class BootstrapTests(unittest.TestCase):
             mock.patch.object(launch.subprocess, "run") as process,
             mock.patch.dict(sys.modules, self.imports()),
         ):
+            # Fresh Python import probe returns a real numeric process exit.
+            process.return_value.returncode = 0
             versions = launch.ensure_packages()
         self.assertEqual(versions["peft"], "0.20.0")
-        called = process.call_args.args[0]
+        self.assertEqual(process.call_count, 2)
+        called = process.call_args_list[0].args[0]
         self.assertIn("--no-deps", called)
         self.assertIn("transformers==5.16.1", called)
         self.assertIn("peft==0.20.0", called)
         self.assertNotIn("torch==2.11.0", called)
-        self.assertEqual(process.call_args.kwargs["timeout"], 180)
+        self.assertEqual(process.call_args_list[0].kwargs["timeout"], 180)
+        self.assertIn("-c", process.call_args_list[1].args[0])
+        self.assertEqual(process.call_args_list[1].kwargs["timeout"], 120)
 
     def test_no_install_if_all_pins_already_present(self):
         with (
@@ -45,8 +51,11 @@ class BootstrapTests(unittest.TestCase):
             mock.patch.object(launch.subprocess, "run") as process,
             mock.patch.dict(sys.modules, self.imports()),
         ):
+            process.return_value.returncode = 0
             launch.ensure_packages()
-        process.assert_not_called()
+        process.assert_called_once()
+        self.assertIn("-c", process.call_args.args[0])
+        self.assertNotIn("pip", process.call_args.args[0])
 
     def test_bad_post_install_pin_refuses_before_model_download(self):
         with (
@@ -58,15 +67,22 @@ class BootstrapTests(unittest.TestCase):
                 launch.ensure_packages()
 
     def test_missing_transitive_import_is_a_failure_not_automatic_unbounded_pip(self):
+        # A cached sys.modules value does not prove fresh interpreter
+        # importability. Simulate the bounded fresh interpreter returning a
+        # dependency failure without running a real subprocess or pip.
         with (
             mock.patch.object(launch, "package_versions",
                               return_value=installed("5.16.1", "0.20.0")),
-            mock.patch.object(launch.subprocess, "run") as process,
+            mock.patch.object(launch.subprocess, "run",
+                              return_value=subprocess.CompletedProcess(
+                                  ["python", "-c"], 1, "", "ImportError")) as process,
             mock.patch.dict(sys.modules, {"transformers": None, "peft": None}),
         ):
             with self.assertRaisesRegex(RuntimeError, "training imports unavailable"):
                 launch.ensure_packages()
-        process.assert_not_called()
+        process.assert_called_once()
+        self.assertIn("-c", process.call_args.args[0])
+        self.assertNotIn("pip", process.call_args.args[0])
 
 
 if __name__ == "__main__":
