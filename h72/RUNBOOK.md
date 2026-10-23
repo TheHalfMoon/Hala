@@ -69,7 +69,9 @@ guaranteed; do not allocate a paid tier or auto-loop new sessions.
 
 Once the remote ZIP reports `H72_STAGE_READY` and matching final SHA,
 the H65 supervised diagnostic's existing staged-data path may run
-`--steps train,evaluate --stage-sha256 <ZIP_SHA256>`.
+`--steps train,evaluate --stage-sha256 <ZIP_SHA256> --stage-source-sha acd694fbae10752ff4ee3fe6cc3e52142ab7f0fe`.
+The source SHA binds the original H71 TRAIN bundle; it is intentionally
+independent of the running code's reviewed `--pinned-sha`.
 H67 on the remote VM then verifies all ~15k stored members and
 re-derives the original 10k H61 training rows before any optimizer
 step. H65 host snapshot must verify actual checkpoint readback.

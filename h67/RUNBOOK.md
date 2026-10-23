@@ -103,7 +103,8 @@ python -m h67.upload_stage --bundle <ZIP> --session <EXISTING_T4> \
 
 python -m h65.safe_diagnostic --session <EXISTING_T4> \
   --pinned-sha <PINNED_H67_COMMIT> --destination <host-evidence-dir> \
-  --steps train,evaluate --stage-sha256 <ZIP_SHA256>
+  --steps train,evaluate --stage-sha256 <ZIP_SHA256> \
+  --stage-source-sha <ORIGINAL_STAGE_SOURCE_GIT_SHA>
 ```
 
 Host upload success is **only** a transport signal. Inside Colab, the
