@@ -49,7 +49,8 @@ def session_hardware(session: str) -> str:
 
 
 def execute(session: str, pinned_sha: str, steps: str, images: str, max_steps: str,
-            official_limit: str, family_targets: str, timeout: float) -> tuple:
+            official_limit: str, family_targets: str, timeout: float,
+            stage_sha256: str = "") -> tuple:
     """Run the pinned remote entry point inside the session."""
     environment = [
         f"HALA_PINNED_SOURCE_SHA={pinned_sha}",
@@ -62,6 +63,8 @@ def execute(session: str, pinned_sha: str, steps: str, images: str, max_steps: s
         f"H61_FAMILY_TARGETS={family_targets}",
         f"H62_WORK={REMOTE_WORK}",
     ]
+    if stage_sha256:
+        environment.append(f"H67_STAGE_SHA256={stage_sha256}")
     command = ["colab", "exec", "-s", session, "-f", str(LAUNCHER),
                "--timeout", str(int(timeout))]
     for item in environment:
@@ -90,8 +93,15 @@ def main(argv=None) -> int:
     parser.add_argument("--official-limit", default="30")
     parser.add_argument("--family-targets", default='{"h61_firstparty_bilingual_drag_train": 2000}')
     parser.add_argument("--timeout", type=float, default=21600.0)
+    parser.add_argument("--stage-sha256", default="")
     args = parser.parse_args(argv)
 
+    if args.stage_sha256:
+        if not re.fullmatch(r"[0-9a-f]{64}", args.stage_sha256):
+            raise ValueError("invalid H67 CPU stage SHA256")
+        if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
+               for s in args.steps.split(",")):
+            raise ValueError("CPU preparation forbidden in staged GPU run")
     local_dir = Path(args.local_dir).resolve()
     local_dir.mkdir(parents=True, exist_ok=True)
     started = time.time()
@@ -111,7 +121,8 @@ def main(argv=None) -> int:
             raise RuntimeError(f"the session hardware is {report['hardware']}, not the approved T4")
         code, out, err = execute(args.session, args.pinned_sha, args.steps, args.images,
                                  args.max_steps, args.official_limit,
-                                 args.family_targets, args.timeout)
+                                 args.family_targets, args.timeout,
+                                 args.stage_sha256)
         log_path = local_dir / "remote-exec.log"
         log_path.write_text(out + "\n=== STDERR ===\n" + err, encoding="utf8")
         report["exec_exit"] = code
