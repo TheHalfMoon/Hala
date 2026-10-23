@@ -119,6 +119,19 @@ def main():
         status["admission"] = "VERIFIED_CPU_TRAIN_SOURCE"
     except Exception as error:
         status["failure"] = f"{type(error).__name__}: {error}"[:260]
+        # A metadata-only bounded locator distinguishes provider mount
+        # names from missing credentials. Never output file content or
+        # mount absolute paths to the notebook status.
+        root = Path("/kaggle/input")
+        if root.is_dir():
+            status["attached_dataset_names"] = sorted(
+                child.name for child in list(root.iterdir())[:32])
+            expected = root / "hala-h71-drag-train-10000-private"
+            if expected.is_dir():
+                status["attached_expected_entries"] = sorted(
+                    child.name for child in list(expected.iterdir())[:32])
+            status["expected_archive_symlink"] = ARCHIVE.is_symlink()
+            status["expected_archive_exists"] = ARCHIVE.exists()
     status["elapsed_seconds"] = round(time.monotonic() - started, 3)
     write_receipt(status)
     print("H73_ADMISSION=" + json.dumps(status, sort_keys=True), flush=True)
