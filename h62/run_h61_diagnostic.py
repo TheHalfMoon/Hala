@@ -30,7 +30,11 @@ SESSION_LINE = re.compile(
 
 def run(command, timeout=None):
     print(f"H62_LOCAL_RUN {command}", flush=True)
-    return subprocess.run(command, capture_output=True, text=True, timeout=timeout)
+    # Callers consume the (exit_code, stdout, stderr) triple. Returning the
+    # CompletedProcess object would raise TypeError before GPU admission,
+    # evaluation or receipt retrieval could complete.
+    completed = subprocess.run(command, capture_output=True, text=True, timeout=timeout)
+    return completed.returncode, completed.stdout, completed.stderr
 
 
 def session_hardware(session: str) -> str:
@@ -72,7 +76,7 @@ def download(session: str, remote_path: str, local_path: Path) -> bool:
     if code != 0:
         print(f"H62_DOWNLOAD_FAILED {remote_path}: {(out + err)[-300:]}", flush=True)
         return False
-    return True
+    return local_path.is_file() and local_path.stat().st_size > 0
 
 
 def main(argv=None) -> int:
@@ -113,12 +117,38 @@ def main(argv=None) -> int:
         report["stderr_tail"] = err[-2000:]
         if code != 0:
             raise RuntimeError(f"the remote execution failed with exit {code}")
+        receipts = {}
         for name, remote in (
             ("launch-receipt", f"{REMOTE_WORK}/h62-remote-launch-receipt.json"),
             ("run-receipt", f"{REMOTE_WORK}/run/run-receipt.json"),
         ):
-            report[f"{name}_downloaded"] = download(
-                args.session, remote, local_dir / f"{name}.json")
+            target = local_dir / f"{name}.json"
+            # A previous run's receipt is not evidence for a new launch.
+            target.unlink(missing_ok=True)
+            received = download(args.session, remote, target)
+            report[f"{name}_downloaded"] = received
+            if not received:
+                raise RuntimeError(f"missing or empty remote {name}")
+            try:
+                receipts[name] = json.loads(target.read_text(encoding="utf8"))
+            except (OSError, ValueError) as error:
+                raise RuntimeError(f"invalid remote {name}") from error
+
+        launch_receipt = receipts["launch-receipt"]
+        run_receipt = receipts["run-receipt"]
+        if (not isinstance(launch_receipt, dict)
+                or launch_receipt.get("status") != "completed"
+                or launch_receipt.get("colab_run_exit") != 0
+                or launch_receipt.get("pinned_source_sha") != args.pinned_sha
+                or launch_receipt.get("repo_head") != args.pinned_sha
+                or launch_receipt.get("repo_source_sha_verified") is not True):
+            raise RuntimeError("remote launch receipt does not prove successful pinned execution")
+        if (not isinstance(run_receipt, dict)
+                or run_receipt.get("status") != "completed"
+                or run_receipt.get("failures")
+                or run_receipt.get("steps") != [s.strip() for s in args.steps.split(",") if s.strip()]):
+            raise RuntimeError("H61 run receipt is missing success or does not match requested steps")
+        report["remote_receipts_verified"] = True
     except BaseException as error:  # noqa: BLE001
         report["failure"] = f"{type(error).__name__}: {error}"[:400]
         report["elapsed_seconds"] = round(time.time() - started, 3)
