@@ -44,7 +44,7 @@ class ConcurrentQualificationTests(unittest.TestCase):
             r=model(session,mode=mode)
             r["model_weights_sha256"]="0"*64
             return r
-        with self.assertRaisesRegex(ValueError,"model revision proof|SHA-verify"):
+        with self.assertRaisesRegex(ValueError,"metadata or full"):
             h.prefetch("any-session",mode="other")
         for broken in (wrong_model,):
             def checked_prefetch(*args,**kwargs):
@@ -64,12 +64,13 @@ class ConcurrentQualificationTests(unittest.TestCase):
                         uploader=corrupt,model_prefetch=model)
 
     def test_worker_bounds_refused_before_any_provider_action(self):
-        with mock.Mock(side_effect=AssertionError("provider must not run")) as network:
-            for workers in (0,5,True,1.5):
-                with self.subTest(workers=workers):
-                    with self.assertRaisesRegex(ValueError,"bounded"):
-                        h.bootstrap("source",ZIP,GIT,"session",workers=workers,
-                                    session_check=network)
+        network=mock.Mock(side_effect=AssertionError("provider must not run"))
+        for workers in (0,5,True,1.5):
+            with self.subTest(workers=workers):
+                with self.assertRaisesRegex(ValueError,"bounded"):
+                    h.bootstrap("source",ZIP,GIT,"session",workers=workers,
+                                session_check=network)
+        network.assert_not_called()
 
 
 if __name__=="__main__":
