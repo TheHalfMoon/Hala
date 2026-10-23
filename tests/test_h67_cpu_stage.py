@@ -117,7 +117,10 @@ class StageTests(unittest.TestCase):
             stage.make_stage(self.work, self.bundle, SHA, rederive=False)
 
     def test_source_symlink_refused(self):
-        (self.work / "export" / "danger").symlink_to(self.work / stage.BASELINE)
+        try:
+            (self.work / "export" / "danger").symlink_to(self.work / stage.BASELINE)
+        except (OSError, NotImplementedError):
+            self.skipTest("Windows host cannot create symlink without privileges")
         with self.assertRaisesRegex(ValueError, "symlink forbidden"):
             stage.make_stage(self.work, self.bundle, SHA, rederive=False)
 
@@ -169,6 +172,7 @@ class StageTests(unittest.TestCase):
             operator.main(["--session", "hala-h67", "--pinned-sha", SHA,
                            "--local-dir", str(self.path / "ops"),
                            "--stage-sha256", "1" * 64,
+                           "--stage-source-sha", SHA,
                            "--steps", "export,curriculum,train"])
 
     def test_stage_hash_is_transmitted_to_colab_exec(self):
@@ -178,9 +182,10 @@ class StageTests(unittest.TestCase):
             return 0, "", ""
         with mock.patch.object(operator, "run", side_effect=fake_run):
             operator.execute("hala-h67", SHA, "train", "slider=1", "3", "1",
-                             "{}", 30, "e" * 64)
+                             "{}", 30, "e" * 64, SHA)
         args = called[0]
         self.assertIn("H67_STAGE_SHA256=" + "e"*64, args)
+        self.assertIn("H67_STAGE_SOURCE_SHA=" + SHA, args)
 
     def test_supervisor_passes_only_digest_and_not_cpu_data(self):
         class Child:
@@ -196,7 +201,7 @@ class StageTests(unittest.TestCase):
             return Child()
         with tempfile.TemporaryDirectory() as tmp:
             result = supervisor.supervise("hala-h67", SHA, Path(tmp),
-                steps="train", stage_sha256="f"*64, runner=proc,
+                steps="train", stage_sha256="f"*64, stage_source_sha=SHA, runner=proc,
                 hardware=lambda _: "T4", snapshot=lambda *a: {"status": "ALREADY_VERIFIED"},
                 sleep=lambda _: None, clock=lambda: 0.0)
         self.assertIn("--stage-sha256", calls[0])
@@ -205,7 +210,8 @@ class StageTests(unittest.TestCase):
     def test_supervisor_refuses_cpu_source_export_on_gpu(self):
         with self.assertRaisesRegex(ValueError, "CPU preparation forbidden"):
             supervisor.supervise("hala-h67", SHA, self.path / "out",
-                                 stage_sha256="f"*64, steps="export,train")
+                                 stage_sha256="f"*64, stage_source_sha=SHA,
+                                 steps="export,train")
 
 
 if __name__ == "__main__":

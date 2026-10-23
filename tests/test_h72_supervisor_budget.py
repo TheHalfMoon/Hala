@@ -16,7 +16,7 @@ class BoundedTrainingTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             report = supervise("hala-h72", "a"*40, Path(root),
                                steps="train,evaluate",
-                               stage_sha256="b"*64, max_steps=3,
+                               stage_sha256="b"*64, stage_source_sha="c"*40, max_steps=3,
                                interval=30, max_seconds=90,
                                runner=runner,
                                snapshot=lambda *args: {"status":"VERIFIED_HOST_STAGING", "step": 1},
@@ -25,6 +25,7 @@ class BoundedTrainingTests(unittest.TestCase):
         self.assertEqual(report["status"],"COMPLETED_WITH_HOST_EGRESS")
         self.assertEqual(commands[0][commands[0].index("--max-steps")+1],"3")
         self.assertEqual(commands[0][commands[0].index("--stage-sha256")+1],"b"*64)
+        self.assertEqual(commands[0][commands[0].index("--stage-source-sha")+1],"c"*40)
 
     def test_invalid_step_budget_refused_before_any_gpu_action(self):
         with tempfile.TemporaryDirectory() as root:
