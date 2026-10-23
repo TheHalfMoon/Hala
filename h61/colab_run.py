@@ -271,8 +271,11 @@ def main() -> int:
         "family_targets": family_targets,
         "max_steps": args.max_steps,
         "resume": args.resume,
-        "provider": "interactive_approved_free_colab",
-        "paid_compute_units_consumed": 0,
+        # Export/first-party/curriculum also run on a local CPU. Do not
+        # attribute those runs to Colab or assert a paid compute meter value.
+        "provider": ("interactive_colab" if os.environ.get("COLAB_RELEASE_TAG")
+                     else "host_cpu_preparation"),
+        "paid_compute_units_consumed": None,
         "started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(started)),
         "results": {},
         "failures": [],
