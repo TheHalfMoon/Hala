@@ -81,11 +81,17 @@ def transfer(source: Path, zip_sha: str, git_sha: str, session: str, *,
     if not re.fullmatch("[a-zA-Z0-9_-]{1,80}", session):
         raise ValueError("trusted existing session name required")
     data = plan(source, zip_sha, git_sha)
-    from h62.run_h61_diagnostic import session_hardware
-    hw = session_hardware(session)
-    if hw != "T4" and not (cpu_test and hw == "CPU"):
-        raise RuntimeError("must use an existing authorized Colab T4")
+    from h62.run_h61_diagnostic import SESSION_LINE
     cli = executable()
+    sessions = _run(cli, "sessions", runner=runner)
+    hardware = None
+    for line in sessions.splitlines():
+        match = SESSION_LINE.match(line.strip())
+        if match and match.group("name") == session:
+            hardware = match.group("hardware").upper()
+            break
+    if hardware != "T4" and not (cpu_test and hardware == "CPU"):
+        raise RuntimeError("must use an existing authorized Colab T4")
     script = Path(__file__).with_name("remote_stage.py")
     if not script.is_file():
         raise FileNotFoundError("H72 independently reviewed VM verifier unavailable")
@@ -110,11 +116,9 @@ def transfer(source: Path, zip_sha: str, git_sha: str, session: str, *,
             raise ValueError("untrusted remote uploaded part list")
         with Path(source).open("rb") as original:
             for part in data["parts"]:
+                block = original.read(part["bytes"])
                 if part["name"] in good:
                     continue
-                block = original.read(part["bytes"])
-                # We always advance input even if a matching remote part exists
-                # because the source was already checked by full plan digest.
                 if len(block) != part["bytes"] or hashlib.sha256(block).hexdigest() != part["sha256"]:
                     raise ValueError("local ZIP content changed during transport")
                 chunk_file = folder / part["name"]
