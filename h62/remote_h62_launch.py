@@ -175,6 +175,9 @@ def main() -> int:
         repo = work / "repo"
         receipt["repo_head"] = fetch_pinned_source(repo, pinned)
         receipt["repo_source_sha_verified"] = True
+        # This entry script itself was uploaded from the host. Only import
+        # training/staging code from the SHA-verified freshly fetched checkout.
+        sys.path.insert(0, str(repo))
         receipt["packages_before"] = package_versions()
         receipt["packages_after_install"] = ensure_packages()
 
