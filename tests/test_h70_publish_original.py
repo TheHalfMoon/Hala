@@ -81,6 +81,18 @@ class PublishTests(unittest.TestCase):
         self.assertIn("2500-private",output["provider_dataset"])
         self.assertTrue((self.receipts/"sheet-readback.json").is_file())
 
+    def test_underscored_original_domain_uses_kaggle_safe_hyphenated_slug(self):
+        provider=FakeKaggle(self.binary,"slide_resize")
+        def verified_slide(*args):
+            return {"status":"VERIFIED_CPU_SOURCE_RESTORED",
+                    "images":2500,"actions":19000,
+                    "labels_sha256":"b"*64,"source_revision":"c"*40}
+        result=p.publish(self.binary,"slide_resize",self.hexsha,GIT,self.receipts,
+                         cli=provider,opener=forbidden_anon,
+                         unpacker=verified_slide,sleep=lambda _:None)
+        self.assertIn("original-slide-resize-2500-private",result["provider_dataset"])
+        self.assertNotIn("_",result["provider_dataset"])
+
     def test_resume_existing_owner_dataset_without_duplicate_create(self):
         provider=FakeKaggle(self.binary, "sheet")
         output=p.publish(self.binary,"sheet",self.hexsha,GIT,self.receipts,
