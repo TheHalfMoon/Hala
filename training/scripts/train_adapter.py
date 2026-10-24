@@ -39,6 +39,7 @@ from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkp
 from training.masking import completion_labels
 from training.preflight import TrainingConfig, qualify_environment, validate_experiment
 from h85.model_cache import HF_HOME, pinned_cache_kwargs
+from h99.sampler import STRATEGY as H99_SAMPLER, build_balanced_plan
 from training.scripts.gpu_probe import probe
 from training.scripts.baseline import reject_kaggle_runtime
 
@@ -188,11 +189,16 @@ def load_authoring_records(examples_path, manifest):
 
 
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
-          stop_after_step=None, init_adapter=None, vision_lora=False):
+          stop_after_step=None, init_adapter=None, vision_lora=False,
+          sampling_strategy=None):
     # H96 is a distinct isolated pilot. Do not silently reinterpret earlier
     # language-only checkpoints or combine adapters without qualification.
     if type(vision_lora) is not bool:
         raise ValueError('Explicit vision_lora boolean required')
+    if sampling_strategy not in (None, H99_SAMPLER):
+        raise ValueError('only the exact source-bound H99 sampler is admitted')
+    if sampling_strategy and (not vision_lora or init_adapter is not None or resume):
+        raise ValueError('H99 is isolated fresh vision-only private research')
     if vision_lora and (init_adapter is not None or resume):
         raise ValueError('H96 first pilot forbids warmstart/resume or combined language LoRA')
     config_data = load_json(config_path)
@@ -204,7 +210,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Interruption must leave a remaining optimizer step')
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
-    if vision_lora and (config.platform != 'kaggle' or config.max_steps > 32
+    if vision_lora and (config.platform != 'kaggle' or
+                        config.max_steps > (128 if sampling_strategy else 32)
                         or config.lora_rank > 8 or config.precision != 'fp16'
                         or config.gradient_accumulation != 1):
         raise ValueError('H96 vision study bounded to <=32 steps, rank<=8, one T4 microbatch')
@@ -225,11 +232,21 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     validate_experiment(config, manifest, baseline)
     records = load_authoring_records(examples_path, manifest)
     root = Path(examples_path).parent.resolve()
+    # Do not reorder, overwrite or republish the original 10k immutable H71
+    # curriculum. Selection is an opt-in index plan bound to training identity.
+    sampling_plan = (build_balanced_plan(
+        records, config.max_steps * config.gradient_accumulation)
+        if sampling_strategy else None)
+    if sampling_plan and set(sampling_plan.summary['selected_languages']) != {'ar', 'en'}:
+        raise ValueError('H99 sampler did not expose both original languages')
     native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
                                                    H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
     if vision_lora:
         signature = hashlib.sha256((signature + VISION_LORA_SCOPE_NONCE).encode()).hexdigest()
+    if sampling_plan is not None:
+        signature = hashlib.sha256(
+            (signature + H99_SAMPLER + sampling_plan.sha256).encode()).hexdigest()
     init_digest = ''
     if init_adapter:
         init_path = Path(init_adapter)
@@ -301,6 +318,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             return_weights=True)
         del checked_inputs, checked_labels, checked_weights
     runtime['audited_records'] = len(audit_rows)
+    if sampling_plan is not None:
+        runtime['h99_training_sampler'] = sampling_plan.summary
     runtime['media_checked_records'] = len(records)
     runtime.update(audit_summary(audit_rows, len(records)))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
@@ -379,7 +398,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         losses = []
         microbatches = []
         for accumulation in range(config.gradient_accumulation):
-            index = (step * config.gradient_accumulation + accumulation) % len(records)
+            ordinal = step * config.gradient_accumulation + accumulation
+            index = (sampling_plan.indices[ordinal] if sampling_plan is not None
+                     else ordinal % len(records))
             inputs, labels, weights = prepare_inputs(records[index], processor, root,
                                                     manifest['token_budget'],
                                                     native_drag_jpeg=native_drag,
