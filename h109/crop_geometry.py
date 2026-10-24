@@ -64,7 +64,7 @@ def crop_around_point(image:Image.Image,coarse:list[int],size:int=PATCH):
     if not hasattr(image,"size") or image.mode not in ("RGB","RGBA"):
         raise ValueError("bounded original image required")
     sw,sh=image.size
-    if (type(size) is not int or size!=PATCH
+    if (type(size) is not int or size not in (PATCH,512)
             or type(coarse) is not list or len(coarse)!=2
             or any(type(v) is not int for v in coarse)
             or not (0<=coarse[0]<sw and 0<=coarse[1]<sh)):
