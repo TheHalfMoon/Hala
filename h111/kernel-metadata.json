@@ -1,0 +1,17 @@
+{
+  "id": "abdulazizshehri/hala-h111-private-fresh-focus512-replication",
+  "title": "Hala H111 Private Fresh Focus512 Replication",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h106-private-joint-grounding-t4"
+  ],
+  "model_sources": []
+}
