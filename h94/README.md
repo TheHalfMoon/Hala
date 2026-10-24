@@ -20,7 +20,7 @@ The private Kaggle notebook metadata is `h94/kernel-metadata.json`, attaching on
 
 ```powershell
 kaggle kernels push -p C:\Users\Shehr\work\Hala\kaggle-h94-private-run --accelerator NvidiaTeslaT4 --timeout 2400
-kaggle kernels status abdulazizshehri/hala-h94-private-h92-warmstart-qwen64
+kaggle kernels status abdulazizshehri/hala-h94-private-h92-warmstart-qwen-64-steps
 ```
 
 Notebook `COMPLETE` alone is insufficient. Retrieve `hala-h94-training-receipt.json`, `hala-h94-attempt.json` and private `hala-h94-private-checkpoint/`; validate the immutable optimizer and safetensors SHA **on the owner host** before claiming 64 real optimizer steps. Next compare a fixed independent DEV and public EVAL sample against **both Qwen base and H92** with unchanged strict scorer and a separately labeled fence-format diagnostic; do not tune prompt or select examples using official EVAL. No bilingual score or release readiness is implied by this training run. Keep all PRs Draft/NO-GO.
