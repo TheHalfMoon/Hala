@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h95-private-fresh-paired-qwen-h92-h94-eval",
+  "title": "Hala H95 Private Fresh Paired Qwen H92 H94 Eval",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h92-private-qwen-h87-warmstart-eight-steps",
+    "abdulazizshehri/hala-h94-private-h92-warmstart-qwen-64-steps"
+  ],
+  "model_sources": []
+}
