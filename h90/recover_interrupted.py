@@ -95,7 +95,9 @@ def admit_interrupted_checkpoint(downloaded_output):
     finalized = final_path.exists() or final_path.is_symlink()
     if finalized:
         result = read_json(final_path)
+        metadata = read_json(version / "checkpoint.json")
         if (result.get("schema") != "hala.training.run.v1"
+                or result.get("artifacts") != metadata.get("artifacts")
                 or result.get("checkpoint") != version.name
                 or result.get("configuration") != config
                 or result.get("adapter_qualified") is not False
