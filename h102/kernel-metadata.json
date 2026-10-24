@@ -1,6 +1,6 @@
 {
   "id": "abdulazizshehri/hala-h102-private-original-train-geometry-cpu",
-  "title": "Hala H102 Private Original H71 TRAIN Geometry Audit CPU",
+  "title": "Hala H102 Private Original Train Geometry CPU",
   "code_file": "kaggle_private_run.py",
   "language": "python",
   "kernel_type": "script",
