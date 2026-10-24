@@ -5,7 +5,7 @@ from h114.schedule import trainer_row
 from h116.delta import derive_schedule,SPACE,DELTA_ROLE
 from training.scripts.train_adapter import train,H117_DELTA_SCOPE_NONCE
 from h61.supervision import coordinate_token_flags
-from h117.supervision import target_only_weights,role_training_row
+from h117.supervision import target_only_weights,role_from_exact_completion,role_training_row
 
 class TestH117ConditionedTraining(unittest.TestCase):
     def test_exact_signed_and_start_schemas_and_nonce(self):
@@ -26,7 +26,8 @@ class TestH117ConditionedTraining(unittest.TestCase):
                 "image_format":"JPEG","prompt":"original prompt",
                 "completion":"old"}
         end={"id":"source-train::end_delta","original_source_id":"source-train",
-             "split":"train","image_path":"source.png","image_sha256":"a"*64,
+             "split":"train","endpoint_role":"end_delta",
+             "image_path":"source.png","image_sha256":"a"*64,
              "language":"en","family":"slider",
              "prompt":"Source intent and bounded signed displacement instructions",
              "completion":json.dumps({"role":"end_delta","delta":[-150,220],
