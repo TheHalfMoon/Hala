@@ -179,10 +179,13 @@ def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False
         if supervision == 'coordinate_weighted':
             completion_ids = label_ids[len(prompt_inputs.input_ids[0].tolist()):]
             if h117_target_only:
-                from h117.supervision import target_only_weights
+                from h117.supervision import target_only_weights, role_from_exact_completion
+                # Source overlay deliberately preserves original media and
+                # carries role only in the supervised target JSON.
+                role = role_from_exact_completion(row['completion'])
                 weights = target_only_weights(
                     completion_ids,processor.tokenizer.decode,
-                    row['endpoint_role'],coordinate_weight)
+                    role,coordinate_weight)
             else:
                 weights = completion_weights(completion_ids, processor.tokenizer.decode,
                                              coordinate_weight)
@@ -450,12 +453,12 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                            return_weights=True)
         runtime['h114_point_processor_audited_roles'] = 10
     if h117_delta_plan is not None:
-        from h114.schedule import trainer_row
+        from h117.supervision import role_training_row
         runtime['h117_start_conditioned_delta_sampler'] = h117_delta_plan.summary
         for ordinal in (0,1,2,3,126,127,252,253,254,255):
             base=records[sampling_plan.indices[ordinal//2]]
             derived=h117_delta_plan.selected[ordinal]
-            checked=trainer_row(base,derived)
+            checked=role_training_row(base,derived)
             prepare_inputs(checked,processor,root,manifest['token_budget'],
                            native_drag_jpeg=native_drag,
                            supervision=config.supervision,
@@ -567,8 +570,10 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             selected_point_rows=(h114_point_plan.selected if h114_point_plan is not None
                                  else (h117_delta_plan.selected if h117_delta_plan is not None
                                        else None))
-            training_row = (trainer_row(records[index],selected_point_rows[ordinal])
-                            if point_mode else records[index])
+            training_row = (role_training_row(records[index],selected_point_rows[ordinal])
+                            if h117_delta_plan is not None
+                            else (trainer_row(records[index],selected_point_rows[ordinal])
+                                  if h114_point_plan is not None else records[index]))
             inputs, labels, weights = prepare_inputs(training_row, processor, root,
                                                     manifest['token_budget'],
                                                     native_drag_jpeg=native_drag,

@@ -5,7 +5,7 @@ from h114.schedule import trainer_row
 from h116.delta import derive_schedule,SPACE,DELTA_ROLE
 from training.scripts.train_adapter import train,H117_DELTA_SCOPE_NONCE
 from h61.supervision import coordinate_token_flags
-from h117.supervision import target_only_weights
+from h117.supervision import target_only_weights,role_training_row
 
 class TestH117ConditionedTraining(unittest.TestCase):
     def test_exact_signed_and_start_schemas_and_nonce(self):
@@ -38,6 +38,12 @@ class TestH117ConditionedTraining(unittest.TestCase):
         self.assertEqual(updated["completion"],end["completion"])
         self.assertEqual(updated["image_sha256"],source["image_sha256"])
         self.assertNotEqual(updated["prompt"],source["prompt"])
+        repaired=role_training_row(source,end)
+        self.assertEqual(repaired["endpoint_role"],"end_delta")
+        self.assertEqual(repaired["image_sha256"],source["image_sha256"])
+        self.assertNotIn("endpoint_role",source)
+        with self.assertRaises(ValueError):
+            role_training_row(source,dict(end,endpoint_role="end"))
     def test_negative_displacement_digits_remain_supervised(self):
         completion=json.dumps({"role":"end_delta","delta":[-221,55],
                                "coordinate_space":SPACE})
