@@ -112,8 +112,13 @@ def run(scratch:Path,output:Path):
             raise ValueError("missing actual Qwen image patch grid")
         fgrid=full["image_grid_thw"][0].tolist()
         pgrid=prefix["image_grid_thw"][0].tolist()
-        if fgrid!=pgrid or not grid_matches_source(width,height,patch,[int(v) for v in pgrid]):
-            raise ValueError("processor silently resizes the pixel frame relative to source labels")
+        same_grid=(fgrid==pgrid)
+        source_frame_match=grid_matches_source(width,height,patch,[int(v) for v in pgrid])
+        if not same_grid:
+            raise ValueError("train and inference image patch grids differ")
+        # Record any private processor resizing without silently calling it a
+        # qualified success. Continue strictly auditing token loss masks.
+        processed_width,processed_height=pgrid[2]*patch,pgrid[1]*patch
         if not ("pixel_values" in full and "pixel_values" in prefix
                 and torch.equal(full["pixel_values"],prefix["pixel_values"])):
             raise ValueError("train/eval prefix image tensor mismatch")
@@ -130,19 +135,29 @@ def run(scratch:Path,output:Path):
             raise ValueError("original H71 coordinate supervision token budget invalid")
         statuses.append({"source_pixels":width*height,
                          "processor_grid":fgrid,
-                         "source_frame_match":True,
+                         "source_frame_match":source_frame_match,
+                         "source_width":width,"source_height":height,
+                         "processed_width":processed_width,
+                         "processed_height":processed_height,
                          "train_eval_pixel_tensor_identity":True,
                          **evidence,
                          "prompt_masked":True,"coordinate_weight":8.0})
         del full,labels,weights,prefix,image
     result={"schema":SCHEMA,
-            "status":"PINNED_H71_QWEN3VL_PROCESSOR_MASK_GATE_PASS",
+            "status":("PINNED_H71_QWEN3VL_PROCESSOR_MASK_GATE_PASS"
+                      if all(x["source_frame_match"] for x in statuses)
+                      else "PINNED_H71_PROCESSOR_FRAME_DRIFT_GATE_FAIL"),
             "model_id":MODEL_ID,"model_revision":MODEL_REVISION,
             "transformers_version":transformers.__version__,
             "source_h71_sha256":TRAIN_SHA,
             "original_train_records":len(rows),
             "audited_original_bilingual_family_screenshots":len(samples),
             "source_frames_preserved":sum(x["source_frame_match"] for x in statuses),
+            "source_frames_rescaled":sum(not x["source_frame_match"] for x in statuses),
+            "observed_original_to_processor_frame_pairs":[
+                {"source_dims":[x["source_width"],x["source_height"]],
+                 "processor_dims":[x["processed_width"],x["processed_height"]]}
+                for x in statuses],
             "train_eval_pixel_tensors_identical":len(statuses),
             "instruction_prefix_masked_cases":len(statuses),
             "coordinate_weight_verified_cases":len(statuses),
