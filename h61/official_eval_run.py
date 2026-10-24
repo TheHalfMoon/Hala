@@ -90,6 +90,11 @@ def run(domains: list[str], work: str, *, limit: int = 60, max_new_tokens: int =
         "adapters_loaded": adapter is not None,
         "adapter_sha256": adapter_sha256,
         "evidence": "real_inference",
+        "requested_domains": domains,
+        "requested_limit": limit,
+        "requested_max_new_tokens": max_new_tokens,
+        "raw_attempts_sha256": {},
+        "score_sha256": {},
         "domains": {},
     }
     for domain in domains:
@@ -143,6 +148,10 @@ def run(domains: list[str], work: str, *, limit: int = 60, max_new_tokens: int =
             )
         )
         (domain_dir / "score.json").write_bytes(canonical(scored))
+        receipt["raw_attempts_sha256"][domain] = sha(
+            (domain_dir / "raw-attempts.json").read_bytes())
+        receipt["score_sha256"][domain] = sha(
+            (domain_dir / "score.json").read_bytes())
         receipt["domains"][domain] = {
             key: scored[key]
             for key in ("scenes", "action_valid", "start_hit", "end_hit", "task_success",

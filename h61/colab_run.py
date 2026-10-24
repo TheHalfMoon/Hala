@@ -155,19 +155,25 @@ def step_evaluate(work: Path, repo: Path, dev_sets: list[str]) -> dict:
     """Run the matched public DEV protocol with the trained adapter."""
     from h60.real_drag_dev_adapter_eval import run as run_adapter_dev
 
+    from h60.real_drag_dev_adapter_eval import verify_adapter_checkpoint
+    from h84.eval_cache import valid_dev_cache
+
+    identity = verify_adapter_checkpoint(str(work / "training"))
     results = {}
     for dev in dev_sets:
-        output = work / "eval" / f"adapter-{dev}"
-        if (output / "run-result.json").exists():
-            results[dev] = json.loads((output / "run-result.json").read_text("utf8"))
-            print(f"H61_STEP evaluate {dev} already complete", flush=True)
+        if dev not in ("h55", "h58"):
+            raise ValueError("unrecognized frozen public DEV suite")
+        # Create-only runner: namespace by FULL immutable checkpoint digest.
+        # Never reuse previous-step metrics or wipe previous evaluation data.
+        output = work / "eval" / f"adapter-{dev}-{identity['checkpoint_sha256']}"
+        if output.exists():
+            results[dev] = valid_dev_cache(output, dev, identity)
+            print(f"H61_STEP evaluate {dev} bound cached checkpoint", flush=True)
             continue
-        output.mkdir(parents=True, exist_ok=True)
         source = repo / ("h55" if dev == "h55" else "h58") / "assets"
         print(f"H61_STEP evaluate {dev}", flush=True)
-        results[dev] = run_adapter_dev(
-            str(source), str(output), str(work / "training"), dev=dev
-        )
+        run_adapter_dev(str(source), str(output), str(work / "training"), dev=dev)
+        results[dev] = valid_dev_cache(output, dev, identity)
     return results
 
 
@@ -175,22 +181,39 @@ def step_official_eval(work: Path, repo: Path, limit: int, domains: list[str], l
     """Measure the frozen base or the trained adapter on the official split."""
     from h61.official_eval_run import run as run_official
 
-    target = work / "official-eval" / label
-    if (target / "official-eval-run.json").exists():
-        print(f"H61_STEP official-eval {label} already complete", flush=True)
-        return json.loads((target / "official-eval-run.json").read_text("utf8"))["domains"]
+    from h84.eval_cache import identity_key, valid_official_cache
+
     adapter = None
     adapter_digest = None
+    checkpoint_digest = ""
     if label == "adapter":
         from h60.real_drag_dev_adapter_eval import verify_adapter_checkpoint
 
         identity = verify_adapter_checkpoint(str(work / "training"))
         adapter = identity["adapter_dir"]
         adapter_digest = identity["adapter_weights_sha256"]
+        checkpoint_digest = identity["checkpoint_sha256"]
+    elif label != "frozen-base":
+        raise ValueError("unknown official eval model variant")
+    if (type(limit) is not int or not 1 <= limit <= 250
+            or not isinstance(domains, list) or not domains
+            or len(set(domains)) != len(domains)
+            or any(d not in ("slider", "sheet", "slide_resize", "text_highlight")
+                   for d in domains)):
+        raise ValueError("official evaluation arguments invalid")
+    suffix = identity_key(label, checkpoint_sha=checkpoint_digest,
+                          domains=domains, limit=limit, max_new_tokens=160)
+    target = work / "official-eval" / (label + "-" + suffix)
+    if target.exists():
+        result = valid_official_cache(target, domains=domains, limit=limit,
+                                      kind=label, adapter_sha=adapter_digest)
+        print(f"H61_STEP official-eval {label} bound cached model and evidence", flush=True)
+        return result
     print(f"H61_STEP official-eval {label}", flush=True)
-    receipt = run_official(domains, str(target), limit=limit, adapter=adapter,
-                           adapter_sha256=adapter_digest)
-    return receipt["domains"]
+    run_official(domains, str(target), limit=limit, adapter=adapter,
+                 adapter_sha256=adapter_digest)
+    return valid_official_cache(target, domains=domains, limit=limit,
+                                kind=label, adapter_sha=adapter_digest)
 
 
 def step_firstparty(work: Path, repo: Path, scenes: int = FIRSTPARTY_SCENES) -> dict:
