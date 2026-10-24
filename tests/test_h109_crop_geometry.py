@@ -34,6 +34,7 @@ class TestH109SourceCrop(unittest.TestCase):
         for bad in ([-1,80],[495,80],[80,640],[True,30]):
             with self.assertRaises(ValueError):
                 crop_around_point(image,bad)
+        self.assertEqual(crop_around_point(image,[20,20],512)[0].size,(990,1024))
         with self.assertRaises(ValueError):
             crop_around_point(image,[20,20],600)
         with self.assertRaises(ValueError):
