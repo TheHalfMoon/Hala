@@ -14,7 +14,7 @@ import tempfile
 from pathlib import Path
 
 from h60.publish import OWNER
-from h61.publish_checkpoint import publish_bundle
+from h61.publish_checkpoint import publish_bundle, collect, sha256_file
 from training.checkpoints import load_checkpoint
 
 
@@ -40,17 +40,41 @@ def publish_latest(root: Path, token: str, work: Path, *,
         target = stage / pointer["version"]
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(version, target)
+        # H83: do not claim an authenticated provider readback of a bundle
+        # that was inconsistent during the host-to-publish copy.
+        staged_version, staged_state = load_checkpoint(stage, None)
+        staged_pointer = json.loads((stage / "latest.json").read_text("utf8"))
+        if (staged_pointer["checkpoint_sha256"] != checkpoint_sha
+                or staged_state != state or staged_version != target.resolve()):
+            raise ValueError("staged checkpoint copy differs from verified host identity")
+        expected_files = collect(stage)
+        expected_hashes = {
+            name: sha256_file(path) for name, path in expected_files.items()
+        }
+        expected_bytes = sum(path.stat().st_size for path in expected_files.values())
         receipt = uploader(
             stage, ref,
             f"Hala verified resume step {state['step']:08d} PRIVATE",
             "Private, byte-verified model adapter and optimizer resume state",
             token, Path(temp) / "provider-work",
         )
-    if (not receipt.get("provider_published")
-            or not receipt.get("provider_is_private")
+    if (not isinstance(receipt, dict)
+            or receipt.get("provider_ref") != ref
+            or receipt.get("member_sha256") != expected_hashes
+            or type(receipt.get("published_members")) is not int
+            or receipt["published_members"] != len(expected_hashes)
+            or type(receipt.get("published_bytes")) is not int
+            or receipt["published_bytes"] != expected_bytes
+            or receipt.get("provider_published") is not True
+            or receipt.get("provider_is_private") is not True
             or receipt.get("anonymous_provider_http_status") != 403
-            or not receipt.get("provider_readback_verified")):
-        raise ValueError("provider private publication and readback NOT verified")
+            or receipt.get("provider_readback_verified") is not True):
+        raise ValueError("provider private publication and exact bundle readback NOT verified")
+    _, unchanged_host = load_checkpoint(root, None)
+    unchanged_pointer = json.loads((root / "latest.json").read_text("utf8"))
+    if (unchanged_host != state
+            or unchanged_pointer["checkpoint_sha256"] != checkpoint_sha):
+        raise ValueError("host checkpoint identity changed during private readback")
     result = {
         "schema": SCHEMA,
         "private_provider_ref": ref,

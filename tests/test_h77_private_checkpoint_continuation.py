@@ -19,7 +19,10 @@ SCHEMA = "hala.h65.supervised-diagnostic.v1"
 
 def verified_response(root):
     _, state = load_checkpoint(Path(root), None)
+    pointer = json.loads((Path(root) / "latest.json").read_text("utf8"))
     return {
+        "schema": "hala.h65.private-checkpoint-readback.v1",
+        "checkpoint_sha256": pointer["checkpoint_sha256"],
         "provider_published": True,
         "provider_is_private": True,
         "provider_readback_verified": True,
