@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h92-private-qwen-h87-warmstart-eight-steps",
+  "title": "Hala H92 Private Qwen H87 Warmstart Eight Steps",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h87-private-original-h71-first-qwen-step"
+  ],
+  "model_sources": []
+}
