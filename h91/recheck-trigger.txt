@@ -1,0 +1,4 @@
+# H91 trusted-branch inert rerun marker
+# Editing this text is a PUSH trigger only. It is never checked out or executed by the credential-bearing workflow.
+attempt=1
+reason=initial-readonly-auth-verification
