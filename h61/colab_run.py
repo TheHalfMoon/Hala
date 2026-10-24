@@ -133,13 +133,16 @@ def step_train(work: Path, config_path: Path, max_steps: int, resume: bool,
     write_json(effective_config, config)
     baseline = work / "public-dev-baseline-receipt.json"
     published = (output / "latest.json").exists()
+    # A complete first-step version can survive a crash just before writing
+    # latest.json; explicitly enter H82's strict recovery path on next run.
+    orphan_workspace = (output / "checkpoints").exists()
     result = train(
         str(effective_config),
         str(source / "h61_drag_curriculum.jsonl"),
         str(source / "h61_drag_curriculum_manifest.json"),
         str(baseline),
         str(output),
-        resume=resume or published,
+        resume=resume or published or orphan_workspace,
     )
     print(
         f"H61_STEP train done steps={result.get('step')} resumed={published}",

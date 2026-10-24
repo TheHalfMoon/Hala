@@ -221,6 +221,11 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     output.mkdir(parents=True, exist_ok=True)
     previous, version = None, None
     if resume:
+        # H82: a killed free-T4 runtime can leave a fully durable optimizer
+        # version after atomic rename, but before its latest.json publish.
+        # Recover exactly one verified next-step version, not a new fork.
+        from h82.orphan_recovery import recover_orphaned_checkpoint
+        recover_orphaned_checkpoint(output, identity)
         version, previous = load_checkpoint(output, identity)
         if previous['step'] == config.max_steps:
             # Finalization after interruption needs no further weights or optimizer step.
