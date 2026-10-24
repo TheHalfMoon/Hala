@@ -37,3 +37,34 @@ not Hala's GUI competence, general model quality or all 10k images.**
 Any mismatch stops expansion/training and is investigated before a new LoRA.
 
 No model architecture/training/release changes or publication.
+
+## Actual owner-private H103 CPU findings (2026-10-24)
+
+- Private Kaggle CPU run **completed its eight-case source-bound processor audit**
+  and intentionally reported a **failed strict source-frame equivalence gate**.
+  The failure is qualified evidence about the processor pixel grid, **not
+  a model/weight training or inference error**.
+- **6/8** exact source width/height preserved in the visual processor grid;
+  **2/8** auto-resized to patch-aligned widths: **495×640→480×640** and
+  **853×640→864×640** at actual **16-pixel patches**.
+- **8/8** actual training-vs-inference prefix image grids/tensors identical.
+  **8/8** original prompt/image-token prefix masking correct.
+  **8/8** H99 numeric-coordinate token weight **8.0** and other supervised
+  completion token weight **1.0** match their original labels.
+- Exact immutable H71 TRAIN dataset SHA and Qwen3-VL processor revision pinned.
+  Representative subset: 8 independent images, **2 Arabic / 6 English**
+  across **5 source families**. Owner Windows independently replayed the
+  provider's aggregate evidence **18/18** comparisons.
+- The resize alone does **not prove a bug or explain Hala's 0/16 successes**.
+  Qwen processing a patch-grid is expected; original-image coordinate-space
+  can remain valid if conditioned on source dimensions. The H100/H101 EVAL
+  frame is 1024×640, which was exact in H102, so don't claim a causal
+  model error from these two source TRAIN cases.
+- **Conservative result:** H103 image-grid identity gate FAIL as specified;
+  masking and train/eval image-tensor identity PASS on 8/8. No data mutation,
+  model training, paid compute, public outputs or PR merge.
+- **Follow-up:** implement an optional explicitly invertible
+  source-pixel ↔ processor-pixel mapping and test its strict-score geometry on
+  the original public EVAL source; never silently reinterpret existing
+  H71 labels or weaken the H61 strict scorer. Bigger risk remains the very
+  small H99 training sample with collapsed drag directions.
