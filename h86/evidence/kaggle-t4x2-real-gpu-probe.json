@@ -1,0 +1,23 @@
+{
+  "commercial_training_qualified": false,
+  "cuda_available": true,
+  "dataset_accessed": false,
+  "gpu_count": 2,
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "gpu_vram_bytes": [
+    15636037632,
+    15636037632
+  ],
+  "hala_model_training": false,
+  "kaggle_session": true,
+  "paid_compute_requested": false,
+  "schema": "hala.h86.private-kaggle-gpu-research-probe.v1",
+  "scope": "personal_noncommercial_research_toy_optimizer_only",
+  "status": "PASS_GPU_TOY_STEP_ONLY",
+  "torch_version": "2.11.0+cu128",
+  "toy_gradient_norm": 1.5811388492584229,
+  "toy_step_updated": true
+}
