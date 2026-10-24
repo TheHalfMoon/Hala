@@ -38,3 +38,40 @@ than a change to the H61 scorer or to an existing checkpoint.
   distributions, checks and a SHA of private deterministic plan.
 
 Do not merge, publish, deploy or silently overwrite H99.
+
+## Actual owner-private qualification outcome — 2026-10-24
+
+The first pre-registered sampler was correctly **BLOCKED**:
+it achieved major-direction share **100/512 = 19.53%** versus historical
+H99 63.28%, but only **84/512 Arabic** and one source family had
+**15/512** samples. The provider notebook returned ERROR rather than
+silently accepting the plan. No model training occurred.
+
+Updated sampler v2 added progressive minimum source-supported bilingual
+and family quotas. Owner-private Kaggle CPU **COMPLETE** and original H71
+full archive rederived and verified. **ALL nine pre-registered source
+admission gates PASS**; owner Windows independent receipt comparison **18/18**.
+
+- **512/512** unique original TRAIN screenshots SHA-256/media dimensions,
+  native source bbox-ground-truth, strict original H61 oracle checked.
+- Original H71 source SHA:
+  `9888ac9d3b5ec7b8efe677287d54dc350c222a1804619e6217a84ec8f95eddcd`.
+- Proposed immutable plan SHA:
+  `ed69e0ea119c4e208ba6aa0a486cb29fb0c857e61fb278d6543152d022c40d0d`.
+- Dominant drag direction fraction **179/512 = 34.96%** vs H99
+  **81/128 = 63.28%**. Eight octants represented.
+- Arabic **128/512 = 25%**, English 384. Each of five source
+  families >= **51 examples**, text highlight 51, slide resize 158,
+  slide and sheet/slider as recorded in the private aggregate receipt.
+- Start and end grid spatial coverage **16/16 each**; displacement
+  scales short 173 / medium 173 / long 166.
+- Single original H71 right==width half-open boundary exception
+  quarantined only for this proposal. Source H71 unchanged.
+- Owner-private CPU only, ZERO optimizer steps, no model inference,
+  hidden TEST, model weights, GPU, paid cloud, publication or merge.
+
+**Scientific boundary:** Source diversity is now proven and a meaningful
+next training experiment is technically justifiable. This does **NOT**
+establish Hala model improvement. Next train/eval must be source-disjoint,
+matched-budget, and report strict GUI action success on fresh cases,
+never format-only JSON or training loss as success.
