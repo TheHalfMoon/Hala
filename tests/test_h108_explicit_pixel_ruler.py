@@ -24,15 +24,18 @@ class H108RulerContracts(unittest.TestCase):
         self.assertEqual(first.tobytes(),second.tobytes())
         self.assertEqual(GRID_STEP,64)
     def test_wrong_dimensions_refused_no_implicit_source_warp(self):
-        with self.assertRaises(ValueError):position_ruler(Image.new("RGB",(495,640)))
-        with self.assertRaises(ValueError):position_ruler(Image.new("RGB",(1024,480)))
+        with self.assertRaises(ValueError):position_ruler(Image.new("RGB",(1300,640)))
+        with self.assertRaises(ValueError):position_ruler(Image.new("RGB",(1024,800)))
+        self.assertEqual(position_ruler(Image.new("RGB",(495,640))).size,(495,640))
+        self.assertEqual(position_ruler(Image.new("RGB",(1024,480))).size,(1024,480))
     def test_unchanged_original_prompt_retained_and_bbox_not_exposed(self):
         prompt="Locate the requested slider in the displayed UI."
-        augmented=annotated_prompt(prompt)
+        augmented=annotated_prompt(prompt,495,640)
         self.assertTrue(augmented.startswith(prompt))
         self.assertIn("original image pixel coordinates",augmented)
         self.assertNotIn("start_bbox",augmented)
-        with self.assertRaises(ValueError):annotated_prompt("")
+        self.assertIn("(495x640)",augmented)
+        with self.assertRaises(ValueError):annotated_prompt("",495,640)
     def test_fresh_original_indices_36_43_only(self):
         scenes=[{"id":str(i)} for i in range(44)]
         chosen=frozen_source(scenes)

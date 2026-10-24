@@ -43,7 +43,7 @@ untouched in all earlier H93..H107 inference comparisons.
   coordinate-grid instruction.
 
 For every source screenshot, the overlay is deterministic, doesn't read
-or draw ground truth, preserves the 1024×640 dimensions exactly,
+or draw ground truth, preserves EACH original screenshot's measured H61 framed width and height exactly (no padding/cropping/coordinate changes),
 doesn't edit original image bytes, and **never transforms bbox labels**.
 Each model receives the same source scene/prompts for its variant.
 Actual image/prompt/response SHA recorded privately per case.
@@ -58,3 +58,22 @@ checkpoints. Owner-private free Kaggle T4 only, zero paid resources and
 no public model/raw outputs. If zero task successes, **NO-GO for ruler-only
 approach**; prioritize source-bound staged single-point localization,
 region crops, multi-resolution training and dense spatial supervision.
+
+## Source admission fix after Kaggle first-run (no model result)
+
+The first private free T4 execution rejected an actual original public EVAL
+source scene **before model inference** because the prototype incorrectly
+assumed every framed DragOn screenshot must be *exactly 1024x640*. The
+original immutable `h61.source_export.frame_target` actually preserves
+source aspect ratios inside a **maximum 1024x640** frame, and valid scenes
+may have smaller widths/heights. This was an H108 preprocessing assertion
+bug, NOT evidence that the grid failed or that H106 got worse.
+
+The amended invariant uses each scene's **actual decoded, recorded H61
+framed image dimensions**, makes grid axes and text use those actual
+dimensions, requires the annotated image to preserve them byte-exactly
+as a dimension pair, and never alters original source bbox/scoring.
+Regression tests cover (495,640), (1024,480), max (1024,640),
+out-of-bounds cases, nonmutation, deterministic overlay and target privacy.
+The original 32-scene EVAL sample index, four arms and scorer did not change.
+The initial failed notebook's empty model results are **not scored**.

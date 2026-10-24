@@ -56,11 +56,11 @@ def variants(scenes,folder):
         augmented=dict(scene)
         augmented["image_path"]=str(target)
         augmented["image_sha256"]=sha256_file(target)
-        augmented["prompt"]=annotated_prompt(scene["prompt"])
+        augmented["prompt"]=annotated_prompt(scene["prompt"],scene["image_width"],scene["image_height"])
         if augmented["task"]!=scene["task"]:
             raise ValueError("source original benchmark labels mutated")
-        if (augmented["image_width"],augmented["image_height"])!=(1024,640):
-            raise ValueError("only original H61 source-pixel frame allowed")
+        if (augmented["image_width"],augmented["image_height"])!=rendered.size:
+            raise ValueError("original H61 source-pixel frame was altered")
         result.append(augmented)
     return originals,result
 
@@ -139,7 +139,8 @@ def run(*,repo,work,output,attached_inputs=Path("/kaggle/input")):
             "ruler_schema":RULER_SCHEMA,
             "grid_spacing_source_pixels":GRID_STEP,
             "unaltered_original_source_bbox_scorer":True,
-            "original_source_frame_pixels":[1024,640],
+            "max_original_frame_pixels":[1024,640],
+            "original_aspect_ratio_preserved":True,
             "ruler_exposes_no_original_bbox_or_answer":True,
             "sample_counts":count,
             "strict_successes":strict,

@@ -16,8 +16,11 @@ def position_ruler(original:Image.Image)->Image.Image:
     if original is None or not hasattr(original,"size"):
         raise ValueError("original screenshot required")
     width,height=original.size
-    if (width,height)!=(1024,640):
-        raise ValueError("H108 only exact original H61 1024x640 EVAL frame")
+    # H61 scales uniformly into a MAXIMUM 1024x640 canvas, preserving
+    # each source's aspect ratio. Never assume every frame is exactly
+    # 1024x640, since it would reject legitimate original source scenes.
+    if not (64<=width<=1024 and 64<=height<=640):
+        raise ValueError("H108 requires original H61 aspect-preserved bounded frame")
     base=original.convert("RGB").copy().convert("RGBA")
     layer=Image.new("RGBA",(width,height),(0,0,0,0))
     draw=ImageDraw.Draw(layer,"RGBA")
@@ -47,8 +50,15 @@ def position_ruler(original:Image.Image)->Image.Image:
     return Image.alpha_composite(base,layer).convert("RGB")
 
 
-def annotated_prompt(prompt:str)->str:
+def annotated_prompt(prompt:str,width:int,height:int)->str:
     """The ruler provides positions only; do not leak bbox or oracle action."""
     if not isinstance(prompt,str) or not prompt or len(prompt)>12000:
         raise ValueError("actual original H61 text prompt required")
-    return prompt+"\nThe screenshot has faint coordinate gridlines every 64 pixels; labels x0,x128,... and y0,y128,... show pixel positions. Read the target objects in the original screenshot. Use original image pixel coordinates (1024x640), not grid-cell indexes. Output the same exact JSON schema."
+    if (type(width) is not int or type(height) is not int
+            or not 64<=width<=1024 or not 64<=height<=640):
+        raise ValueError("actual H61 source dimensions required")
+    return (prompt+"\nThe screenshot has faint coordinate gridlines every 64 pixels; "
+            "labels x0,x128,... and y0,y128,... show pixel positions. "
+            "Read the target objects in the original screenshot. "
+            f"Use original image pixel coordinates ({width}x{height}), not grid-cell indexes. "
+            "Output the same exact JSON schema.")
