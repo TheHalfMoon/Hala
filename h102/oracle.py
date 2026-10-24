@@ -19,6 +19,31 @@ def in_bounds(box,w,h):
             and all(type(v) is int for v in box)
             and 0<=box[0]<=box[2]<w and 0<=box[1]<=box[3]<h)
 
+def invalid_bbox_reasons(box,w,h):
+    """Classify invalid source boundaries; no coordinates/identifiers exported."""
+    if in_bounds(box,w,h):
+        return ()
+    if (type(box) is not list or len(box)!=4 or
+            any(type(v) is not int for v in box)):
+        return ("noninteger_or_malformed",)
+    failures=[]
+    if box[0]<0 or box[1]<0:
+        failures.append("negative_left_or_top")
+    if box[0]>box[2] or box[1]>box[3]:
+        failures.append("inverted_box")
+    if box[2]==w:
+        failures.append("right_equals_width_half_open_candidate")
+    elif box[2]>w:
+        failures.append("right_exceeds_width")
+    if box[3]==h:
+        failures.append("bottom_equals_height_half_open_candidate")
+    elif box[3]>h:
+        failures.append("bottom_exceeds_height")
+    if box[2]<0 or box[3]<0:
+        failures.append("negative_right_or_bottom")
+    return tuple(failures or ("invalid_dimensions_or_unknown_boundary",))
+
+
 def inside(point,box):
     return (type(point) is list and len(point)==2 and
             all(type(v) is int for v in point) and

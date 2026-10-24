@@ -2,7 +2,7 @@
 import json
 import unittest
 from h61.official_eval import score
-from h102.oracle import in_bounds,center,make_action,assert_oracle
+from h102.oracle import in_bounds,center,make_action,assert_oracle,invalid_bbox_reasons
 
 class H102OracleContracts(unittest.TestCase):
     def setUp(self):
@@ -33,5 +33,14 @@ class H102OracleContracts(unittest.TestCase):
         self.assertFalse(in_bounds([False,0,4,4],1024,640))
         with self.assertRaises(ValueError):
             assert_oracle(self.s,[True,110],[620,420])
+
+    def test_boundary_anomaly_classifies_half_open_without_silent_fix(self):
+        self.assertEqual(invalid_bbox_reasons([0,0,1024,20],1024,640),
+                         ("right_equals_width_half_open_candidate",))
+        self.assertEqual(invalid_bbox_reasons([0,0,1025,20],1024,640),
+                         ("right_exceeds_width",))
+        self.assertEqual(invalid_bbox_reasons([0,0,10,640],1024,640),
+                         ("bottom_equals_height_half_open_candidate",))
+        self.assertEqual(invalid_bbox_reasons([0,0,10,639],1024,640),())
 
 if __name__=="__main__": unittest.main()

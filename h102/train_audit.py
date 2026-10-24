@@ -10,7 +10,7 @@ from h73.kaggle_h73_cpu import (TRAIN_SHA,H71_CODE_SHA,ARCHIVE_SHA,
                                 locate_attached_train,require_cpu)
 from h81.staged_resume import admit_stage
 from h99.sampler import build_balanced_plan
-from h102.oracle import audit_train_pair,in_bounds,inside
+from h102.oracle import audit_train_pair,in_bounds,inside,invalid_bbox_reasons
 
 SCHEMA="hala.h102.owner-private-original-h71-train-geometry-integrity.v1"
 
@@ -36,6 +36,9 @@ def run(scratch:Path,output:Path):
         raise ValueError("H99 actual 128 source IDs not unique")
     source_by_id={}
     failures=Counter()
+    invalid_bbox_details=Counter()
+    invalid_bbox_families=Counter()
+    invalid_bbox_selected_H99=0
     scanned=0
     ordered=Counter()
     true_distances=[]
@@ -61,6 +64,11 @@ def run(scratch:Path,output:Path):
         w,h=source["image_width"],source["image_height"]
         if any(not in_bounds(source[k],w,h) for k in ("start_bbox","end_bbox")):
             failures["invalid_bbox"]+=1
+            invalid_bbox_families[author["family"]]+=1
+            invalid_bbox_selected_H99+=int(author["id"] in chosen)
+            for k in ("start_bbox","end_bbox"):
+                for reason in invalid_bbox_reasons(source[k],w,h):
+                    invalid_bbox_details[k+":"+reason]+=1
             continue
         try:
             action=json.loads(author["completion"])
@@ -106,6 +114,9 @@ def run(scratch:Path,output:Path):
             "original_source_rows_available":len(source_by_id),
             "original_train_rows":len(rows),
             "original_10k_label_failures":dict(sorted(failures.items())),
+            "invalid_bbox_reason_counts":dict(sorted(invalid_bbox_details.items())),
+            "invalid_bbox_families":dict(sorted(invalid_bbox_families.items())),
+            "invalid_bbox_present_in_H99_selected_prefix":bool(invalid_bbox_selected_H99),
             "ordered_counts":dict(sorted(ordered.items())),
             "unique_H99_screenshots_with_full_sha_media_and_oracle":len(selected_shas),
             "actual_H99_original_samples_checked":passes,
