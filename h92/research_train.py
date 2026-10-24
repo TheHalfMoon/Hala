@@ -51,7 +51,7 @@ def admit_h87_seed(root: Path) -> tuple[Path, str]:
             or sha256_file(weights) != H87_ADAPTER_SHA
             or sha256_file(version / "checkpoint.json") != H87_CHECKPOINT_SHA
             or state["dataset_sha256"] != TRAIN_SHA
-            or state["step"] != state["max_steps"] != 1
+            or state["step"] != 1 or state["max_steps"] != 1
             or state["changed_parameter_tensors"] <= 0):
         raise ValueError("H87 model-initialization bytes not qualified")
     return adapter, H87_ADAPTER_SHA
