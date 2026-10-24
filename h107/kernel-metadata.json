@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h107-private-fresh-strict-64",
+  "title": "Hala H107 Private Fresh Strict 64",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h99-private-balanced-visual-128",
+    "abdulazizshehri/hala-h106-private-joint-grounding-t4"
+  ],
+  "model_sources": []
+}
