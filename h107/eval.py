@@ -34,6 +34,10 @@ FETCH_COUNT=36
 ARMS=("base","h99_vision","h106_joint")
 H106_PRIVATE_KERNEL="hala-h106-private-joint-grounding-t4"
 H106_OUTPUT_ROOT="hala-h106-private-joint-checkpoint"
+H106_FINAL_CHECKPOINT_SHA="dd683335d379a7799d35118efb6068ae5a40b41e09702ba7de396c5ba89ee952"
+H106_FINAL_ADAPTER_SHA="a6dea2bbb0ff81ece70941cb248d49c3a735f14da5bc524082388cf695bbaa62"
+H106_FINAL_OPTIMIZER_SHA="15bb54b0b775141a9ff01f379229d31d3ec148a6ca060c49ea95f484c5df09be"
+H106_FINAL_TRAIN_PLAN_SHA="80cd0c5618816cdbe8b552c2e0ca92e20e4e6867458df76bab35459cff9e0e33"
 SCHEMA="hala.h107.new-source-64-paired-base-h99-h106-native-drag-eval.v1"
 
 
@@ -88,6 +92,12 @@ def admit_h106_checkpoint(input_root,repo):
     adapter=version/"adapter"
     actual_ckpt=sha256_file(version/"checkpoint.json")
     actual_adapter=sha256_file(adapter/"adapter_model.safetensors")
+    actual_optimizer=sha256_file(version/"resume.pt")
+    if (actual_ckpt!=H106_FINAL_CHECKPOINT_SHA
+            or actual_adapter!=H106_FINAL_ADAPTER_SHA
+            or actual_optimizer!=H106_FINAL_OPTIMIZER_SHA
+            or plan_sha()!=H106_FINAL_TRAIN_PLAN_SHA):
+        raise ValueError("H106 checkpoint does not match independently verified owner SHA256")
     if (report.get("status")!="ORIGINAL_H71_REAL_256_JOINT_OPTIMIZER_STEPS_VERIFIED"
             or report.get("new_optimizer_steps")!=H106_STEPS
             or report.get("gradient_bearing_steps")!=H106_STEPS

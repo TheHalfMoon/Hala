@@ -2,7 +2,8 @@
 import hashlib
 import json
 import unittest
-from h107.eval import select_fresh,plan_sha,expected_training_identity
+from h107.eval import (select_fresh,plan_sha,expected_training_identity,
+    H106_FINAL_CHECKPOINT_SHA,H106_FINAL_ADAPTER_SHA,H106_FINAL_TRAIN_PLAN_SHA)
 from h106.training_plan import H105_QUALIFIED_PLAN_SHA
 from h106.research_train import config
 from training.scripts.train_adapter import JOINT_LORA_SCOPE_NONCE
@@ -31,6 +32,13 @@ class H107FrozenSource(unittest.TestCase):
         self.assertEqual(len(H105_QUALIFIED_PLAN_SHA),64)
         self.assertRegex(plan_sha(),r"^[0-9a-f]{64}$")
         self.assertNotEqual(plan_sha(),H105_QUALIFIED_PLAN_SHA)
+
+    def test_owner_verified_h106_final_weights_and_plan_bound(self):
+        self.assertEqual(H106_FINAL_TRAIN_PLAN_SHA,plan_sha())
+        self.assertEqual(H106_FINAL_ADAPTER_SHA,
+                         'a6dea2bbb0ff81ece70941cb248d49c3a735f14da5bc524082388cf695bbaa62')
+        self.assertEqual(H106_FINAL_CHECKPOINT_SHA,
+                         'dd683335d379a7799d35118efb6068ae5a40b41e09702ba7de396c5ba89ee952')
 
     def test_expected_train_identity_fails_if_training_config_changes(self):
         expected=expected_training_identity(".")
