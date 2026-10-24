@@ -30,8 +30,8 @@ def main():
         if (not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")
                 or not Path("/kaggle/working").is_dir()):
             raise ValueError("owner private Kaggle required")
-        from h73.kaggle_h73_cpu import require_cpu
-        require_cpu()
+        # The runtime contains only this runner before GitHub source checkout.
+        # The pinned H73 CPU-only admission runs again inside h102.train_audit.
         import shutil
         if shutil.disk_usage("/kaggle/tmp").free<5*1024**3:
             raise OSError(">=5GB Kaggle CPU scratch needed to rederive original H71")
