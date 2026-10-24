@@ -1,0 +1,16 @@
+{
+  "id": "abdulazizshehri/hala-h102-private-original-train-geometry-cpu",
+  "title": "Hala H102 Private Original Train Geometry CPU",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
