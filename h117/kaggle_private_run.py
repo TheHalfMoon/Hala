@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="56a7c7a98e16dbca91cc5e609f40c7d741359695"
+SOURCE_SHA="528851bca6491e2a00d4af49ab35d4dc1af210db"
 REPO=Path("/kaggle/tmp/hala-h117-frozen-source")
 SCRATCH=Path("/kaggle/tmp/hala-h117-original-h113-conditioned-delta")
 OUTPUT=Path("/kaggle/working/hala-h117-private-conditioned-delta256-checkpoint")
