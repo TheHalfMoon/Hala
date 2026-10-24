@@ -53,6 +53,7 @@ VISION_LORA_SCOPE_NONCE = 'hala.h96.vision-last-four-lora-rank8-v1'
 JOINT_LORA_TARGET_PATTERN = (r'.*(?:language_model.*\.(?:q_proj|v_proj)|'
                              r'visual\.blocks\.(?:20|21|22|23)\.attn\.(?:qkv|proj))$')
 JOINT_LORA_SCOPE_NONCE = 'hala.h106.original-h105-joint-vision-language-lora-rank8-v1'
+H114_POINT_SCOPE_NONCE = 'hala.h114.original-h113-independent-start-end-point-fresh-joint-lora-v1'
 
 
 def qualify_vision_target_names(names):
@@ -211,13 +212,17 @@ def load_authoring_records(examples_path, manifest):
 
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
           stop_after_step=None, init_adapter=None, vision_lora=False,
-          sampling_strategy=None, joint_lora=False):
+          sampling_strategy=None, joint_lora=False, point_sft_path=None):
     # H96 is a distinct isolated pilot. Do not silently reinterpret earlier
     # language-only checkpoints or combine adapters without qualification.
     if type(vision_lora) is not bool or type(joint_lora) is not bool:
         raise ValueError('Explicit visual and joint LoRA boolean selectors required')
     if vision_lora and joint_lora:
         raise ValueError('H96 visual-only and H106 joint LoRA paths cannot mix')
+    if point_sft_path is not None and (
+            not joint_lora or sampling_strategy!=H106_SAMPLER
+            or resume or init_adapter is not None):
+        raise ValueError('H114 isolated fresh joint point SFT must use immutable H106 source selection')
     if sampling_strategy not in (None, H99_SAMPLER, H106_SAMPLER):
         raise ValueError('only pinned original H99 or H106 source plans are admitted')
     if sampling_strategy==H99_SAMPLER and (not vision_lora or init_adapter is not None or resume):
@@ -280,6 +285,24 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             raise ValueError('H106 no EVAL or TEST in training')
     else:
         sampling_plan=None
+    h114_point_plan=None
+    if point_sft_path is not None:
+        from h114.schedule import qualify_owner_private,SCREENSHOTS,STEPS
+        if (manifest.get('source_schema')!=H61_DRAG_SCHEMA
+                or config.max_steps!=STEPS
+                or sampling_plan is None or len(sampling_plan.indices)!=STEPS):
+            raise ValueError('H114 requires exact H71 original TRAIN and 256-step H105 sampler')
+        h114_point_plan=qualify_owner_private(Path(point_sft_path))
+        for image_index in range(SCREENSHOTS):
+            original=records[sampling_plan.indices[image_index]]
+            for role_index in range(2):
+                derived=h114_point_plan.selected[image_index*2+role_index]
+                if (derived['original_source_id']!=original['id']
+                        or derived['image_sha256']!=original['image_sha256']
+                        or derived['image_path']!=original['image_path']
+                        or derived['language']!=original['language']
+                        or derived['family']!=original['family']):
+                    raise ValueError('H114 original point source does not equal original H105 TRAIN source')
     native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
                                                    H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
@@ -290,6 +313,11 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     if sampling_plan is not None:
         signature = hashlib.sha256(
             (signature + sampling_strategy + sampling_plan.sha256).encode()).hexdigest()
+    if h114_point_plan is not None:
+        signature = hashlib.sha256((
+            signature + H114_POINT_SCOPE_NONCE +
+            h114_point_plan.summary['original_h113_point_jsonl_sha256'] +
+            h114_point_plan.summary['selected_identities_anonymized_sha256']).encode()).hexdigest()
     init_digest = ''
     if init_adapter:
         init_path = Path(init_adapter)
@@ -365,6 +393,19 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         runtime['h99_training_sampler'] = sampling_plan.summary
     if sampling_strategy==H106_SAMPLER:
         runtime['h106_joint_training_sampler'] = sampling_plan.summary
+    if h114_point_plan is not None:
+        from h114.schedule import trainer_row
+        runtime['h114_independent_point_sampler'] = h114_point_plan.summary
+        for ordinal in (0,1,2,3,126,127,252,253,254,255):
+            base=records[sampling_plan.indices[ordinal//2]]
+            derived=h114_point_plan.selected[ordinal]
+            audited=trainer_row(base,derived)
+            prepare_inputs(audited,processor,root,manifest['token_budget'],
+                           native_drag_jpeg=native_drag,
+                           supervision=config.supervision,
+                           coordinate_weight=config.coordinate_weight,
+                           return_weights=True)
+        runtime['h114_point_processor_audited_roles'] = 10
     runtime['media_checked_records'] = len(records)
     runtime.update(audit_summary(audit_rows, len(records)))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
@@ -463,9 +504,12 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         microbatches = []
         for accumulation in range(config.gradient_accumulation):
             ordinal = step * config.gradient_accumulation + accumulation
-            index = (sampling_plan.indices[ordinal] if sampling_plan is not None
-                     else ordinal % len(records))
-            inputs, labels, weights = prepare_inputs(records[index], processor, root,
+            index = (sampling_plan.indices[ordinal//2] if h114_point_plan is not None
+                     else (sampling_plan.indices[ordinal] if sampling_plan is not None
+                           else ordinal % len(records)))
+            training_row = (trainer_row(records[index],h114_point_plan.selected[ordinal])
+                            if h114_point_plan is not None else records[index])
+            inputs, labels, weights = prepare_inputs(training_row, processor, root,
                                                     manifest['token_budget'],
                                                     native_drag_jpeg=native_drag,
                                                     supervision=config.supervision,
@@ -473,7 +517,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                                                     return_weights=True)
             inputs, labels = inputs.to('cuda:0'), labels.to('cuda:0')
             weights = weights.to('cuda:0')
-            microbatches.append({'record_id': records[index]['id'],
+            microbatches.append({'record_id': training_row['id'],
                                  'input_tokens': int(inputs.input_ids.numel()),
                                  'completion_tokens': int((labels != -100).sum().item()),
                                  'coordinate_tokens': int((weights > 1.0).sum().item()),
