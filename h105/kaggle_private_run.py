@@ -6,7 +6,7 @@ import shutil
 import subprocess
 import sys
 
-SOURCE_SHA="ca459cf0d4ac28d84aa1b1fc69484a811129dc02"
+SOURCE_SHA="ff44eaa7608967a476e05338922f0cb2b6664d26"
 REPO=Path("/kaggle/tmp/hala-h105-source")
 SCRATCH=Path("/kaggle/tmp/hala-h105-source-original-h71")
 OUTPUT=Path("/kaggle/working/hala-h105-private-curriculum-512")
