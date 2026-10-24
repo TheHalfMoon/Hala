@@ -22,7 +22,10 @@ full start+end joint drag action. Reusing **only original H71 TRAIN**
 (without a single EVAL/TEST sample), verify each original raw source:
 train split, original screenshot SHA/path, original prompt contract,
 immutable original full-drag completion, exact true start/end bboxes,
-original screenshot dimensions and source-bbox centers.
+original screenshot dimensions and the ORIGINAL recorded source points
+(which need only lie INSIDE the original target boxes; they need not be
+geometric centers). Never replace a genuine noncenter source point with
+a computed center.
 
 Each admitted original image produces two **independent point examples**:
 1. locate the START endpoint on the ORIGINAL full source screenshot;

@@ -89,8 +89,8 @@ def admit_original_source(row:dict,original:dict):
         pixel=action[role+"_point"]
         if (type(pixel) is not list or len(pixel)!=2
                 or any(type(v) is not int for v in pixel)
-                or pixel!=[(box[0]+box[2])//2,(box[1]+box[3])//2]):
-            raise ValueError("H113 target not original verified box center")
+                or not (box[0]<=pixel[0]<=box[2] and box[1]<=pixel[1]<=box[3])):
+            raise ValueError("H113 exact source training point outside original verified target box")
     return w,h,action
 
 

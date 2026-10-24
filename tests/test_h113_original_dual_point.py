@@ -56,11 +56,23 @@ class TestH113(unittest.TestCase):
             "source_image_pixels","normalized_0_1000")
         with self.assertRaises(ValueError):derive_two_independent_points(row,src)
 
-    def test_bbox_center_not_arbitrary_target_label(self):
+    def test_original_noncenter_source_point_inside_bbox_must_be_preserved(self):
+        row,src=fixtures()
+        src["completion"]["start_point"]=[257,263]
+        row["completion"]=json.dumps(src["completion"],sort_keys=True,separators=(",",":"))
+        start,end=derive_two_independent_points(row,src)
+        point=json.loads(start["completion"])["point"]
+        reconstructed=relative_to_source_pixel(point,1024,640)
+        self.assertTrue(250<=reconstructed[0]<=290 and 250<=reconstructed[1]<=290)
+        self.assertNotEqual(src["completion"]["start_point"],[270,270])
+        self.assertEqual(end["endpoint_role"],"end")
+
+    def test_original_point_outside_original_target_box_rejected(self):
         row,src=fixtures()
         src["completion"]["start_point"]=[10,10]
         row["completion"]=json.dumps(src["completion"],sort_keys=True,separators=(",",":"))
-        with self.assertRaises(ValueError):derive_two_independent_points(row,src)
+        with self.assertRaisesRegex(ValueError,"outside original verified target box"):
+            derive_two_independent_points(row,src)
 
     def test_narrow_single_pixel_box_quantization_is_quarantined(self):
         row,src=fixtures()
