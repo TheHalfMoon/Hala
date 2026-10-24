@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import platform
+import re
 import time
 from pathlib import Path
 
@@ -42,6 +43,21 @@ from training.scripts.gpu_probe import probe
 from training.scripts.baseline import reject_kaggle_runtime
 
 LORA_TARGET_PATTERN = r'.*language_model.*\.(q_proj|v_proj)$'
+# H96 isolated research only. Vision last-four blocks: 8 explicit fused
+# QKV/output projections; the original text-only adapter remains unchanged.
+VISION_LORA_TARGET_PATTERN = r'.*visual\.blocks\.(20|21|22|23)\.attn\.(qkv|proj)$'
+VISION_LORA_SCOPE_NONCE = 'hala.h96.vision-last-four-lora-rank8-v1'
+
+
+def qualify_vision_target_names(names):
+    expected = {f'visual.blocks.{i}.attn.{part}'
+                for i in range(20, 24) for part in ('qkv', 'proj')}
+    matched = [name for name in names
+               if re.fullmatch(VISION_LORA_TARGET_PATTERN, name)]
+    suffixes = [name[name.index('visual.blocks.'):] for name in matched]
+    if len(matched) != 8 or set(suffixes) != expected or len(set(suffixes)) != 8:
+        raise ValueError('Exactly eight Qwen3-VL late visual QKV/proj layers required')
+    return tuple(sorted(matched))
 
 
 class QualificationInterrupted(RuntimeError):
@@ -172,7 +188,13 @@ def load_authoring_records(examples_path, manifest):
 
 
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
-          stop_after_step=None, init_adapter=None):
+          stop_after_step=None, init_adapter=None, vision_lora=False):
+    # H96 is a distinct isolated pilot. Do not silently reinterpret earlier
+    # language-only checkpoints or combine adapters without qualification.
+    if type(vision_lora) is not bool:
+        raise ValueError('Explicit vision_lora boolean required')
+    if vision_lora and (init_adapter is not None or resume):
+        raise ValueError('H96 first pilot forbids warmstart/resume or combined language LoRA')
     config_data = load_json(config_path)
     config = TrainingConfig.from_dict(config_data)
     from h87.research_runtime import require_training_provider
@@ -182,6 +204,10 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Interruption must leave a remaining optimizer step')
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
+    if vision_lora and (config.platform != 'kaggle' or config.max_steps > 2
+                        or config.lora_rank > 8 or config.precision != 'fp16'
+                        or config.gradient_accumulation != 1):
+        raise ValueError('H96 vision study bounded to <=2 steps, rank<=8, one T4 microbatch')
     if research_provider != 'kaggle_noncommercial_research':
         reject_kaggle_runtime()
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
@@ -202,6 +228,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
                                                    H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
+    if vision_lora:
+        signature = hashlib.sha256((signature + VISION_LORA_SCOPE_NONCE).encode()).hexdigest()
     init_digest = ''
     if init_adapter:
         init_path = Path(init_adapter)
@@ -278,8 +306,17 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model_id, **pinned_cache_kwargs(config.model_id, config.revision),
         torch_dtype=dtype, attn_implementation='sdpa').to('cuda:0')
+    vision_modules = ()
+    if vision_lora:
+        vision_modules = qualify_vision_target_names(
+            name for name, module in model.named_modules())
+        modules = dict(model.named_modules())
+        if any(not isinstance(modules[name], torch.nn.Linear)
+               for name in vision_modules):
+            raise ValueError('Vision target must be a real fused attention Linear layer')
     lora = LoraConfig(r=config.lora_rank, lora_alpha=config.lora_rank * 2,
-                      target_modules=LORA_TARGET_PATTERN,
+                      target_modules=(VISION_LORA_TARGET_PATTERN if vision_lora
+                                      else LORA_TARGET_PATTERN),
                       lora_dropout=0, task_type='CAUSAL_LM', bias='none')
     model = (PeftModel.from_pretrained(model, version / 'adapter', is_trainable=True)
              if resume else
@@ -291,7 +328,17 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     model.train()
     trainable = [(name, parameter) for name, parameter in model.named_parameters()
                  if parameter.requires_grad]
-    if not trainable or any('lora_' not in name or 'visual' in name for name, _ in trainable):
+    if vision_lora:
+        if (len(trainable) != 2 * len(vision_modules)
+                or any('lora_' not in name or '.visual.blocks.' not in name
+                       for name, _ in trainable)
+                or any(not any(target in name for target in vision_modules)
+                       for name, _ in trainable)):
+            raise ValueError('H96 only eight visual last-four LoRA layers may train')
+        runtime['h96_vision_target_modules'] = list(vision_modules)
+        runtime['h96_vision_lora_only'] = True
+    elif not trainable or any('lora_' not in name or 'visual' in name
+                              for name, _ in trainable):
         raise ValueError('Only language LoRA parameters may receive gradients; base/vision frozen')
     parameters = [parameter for _, parameter in trainable]
     for parameter in parameters:
