@@ -7,7 +7,7 @@ import subprocess
 import sys
 import shutil
 
-SOURCE_SHA="6b5ed8e42a888eee7f4544d3417e583208c97101"
+SOURCE_SHA="9b3c064e5dcfce954c45913dc654ab9a946769a9"
 REPO=Path("/kaggle/tmp/hala-h103-source")
 SCRATCH=Path("/kaggle/tmp/hala-h103-original-h71")
 OUT=Path("/kaggle/working/hala-h103-private-processor-mask")
