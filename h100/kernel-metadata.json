@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h100-private-fourway-fresh-gui-eval",
+  "title": "Hala H100 Private Fourway Fresh GUI Eval",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h94-private-h92-warmstart-qwen-64-steps",
+    "abdulazizshehri/hala-h97-private-vision-thirtytwo-step",
+    "abdulazizshehri/hala-h99-private-balanced-visual-128"
+  ],
+  "model_sources": []
+}
