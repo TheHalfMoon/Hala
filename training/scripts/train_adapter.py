@@ -173,18 +173,17 @@ def load_authoring_records(examples_path, manifest):
 
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
           stop_after_step=None, init_adapter=None):
-    if platform.system() != 'Linux' or os.environ.get('HALA_REMOTE_TRAINING_ALLOWED') != '1':
-        raise ValueError('Explicitly approved remote Linux runtime required; local weights forbidden')
     config_data = load_json(config_path)
     config = TrainingConfig.from_dict(config_data)
+    from h87.research_runtime import require_training_provider
+    research_provider = require_training_provider(config)
     if stop_after_step is not None and (type(stop_after_step) is not int or
                                        not 1 <= stop_after_step < config.max_steps):
         raise ValueError('Interruption must leave a remaining optimizer step')
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
-    if config.platform == 'kaggle':
-        raise ValueError('Kaggle commercial-use eligibility is blocked by inspected provider terms')
-    reject_kaggle_runtime()
+    if research_provider != 'kaggle_noncommercial_research':
+        reject_kaggle_runtime()
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     manifest = load_json(manifest_path)
