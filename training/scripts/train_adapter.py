@@ -204,10 +204,10 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Interruption must leave a remaining optimizer step')
     if config.batch_size != 1:
         raise ValueError('Only candidate batch-size-one accumulation is implemented')
-    if vision_lora and (config.platform != 'kaggle' or config.max_steps > 2
+    if vision_lora and (config.platform != 'kaggle' or config.max_steps > 32
                         or config.lora_rank > 8 or config.precision != 'fp16'
                         or config.gradient_accumulation != 1):
-        raise ValueError('H96 vision study bounded to <=2 steps, rank<=8, one T4 microbatch')
+        raise ValueError('H96 vision study bounded to <=32 steps, rank<=8, one T4 microbatch')
     if research_provider != 'kaggle_noncommercial_research':
         reject_kaggle_runtime()
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
