@@ -19,6 +19,7 @@ import time
 from pathlib import Path
 
 from training.scripts.baseline import MODEL_ID, MODEL_REVISION, reject_kaggle_runtime
+from h85.model_cache import HF_HOME, pinned_cache_kwargs
 
 DEV_SETS = {
     "h55": {
@@ -187,6 +188,7 @@ def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_ne
     if output.exists():
         raise FileExistsError("Create-only baseline output folder")
     output.mkdir(parents=True)
+    os.environ["HF_HOME"] = HF_HOME
     import torch
     import transformers
     from PIL import Image
@@ -230,15 +232,13 @@ def run(root: str, output: str, *, dev: str = "h55", max_cases: int = 24, max_ne
     try:
         os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
         os.environ["DO_NOT_TRACK"] = "1"
-        os.environ["HF_HOME"] = "/tmp/hala-h60-model-cache"
+        os.environ["HF_HOME"] = HF_HOME
         torch.manual_seed(42)
         processor = AutoProcessor.from_pretrained(
-            MODEL_ID, revision=MODEL_REVISION, trust_remote_code=False
+            MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION)
         )
         model = Qwen3VLForConditionalGeneration.from_pretrained(
-            MODEL_ID,
-            revision=MODEL_REVISION,
-            trust_remote_code=False,
+            MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION),
             torch_dtype=torch.float16,
             attn_implementation="sdpa",
         ).to("cuda:0").eval()

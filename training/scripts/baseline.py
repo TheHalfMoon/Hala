@@ -86,7 +86,8 @@ def run(output_path='hala-baseline-result.json', coordinate_mode='pixels'):
     reject_kaggle_runtime()
     os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
     os.environ['DO_NOT_TRACK'] = '1'
-    os.environ['HF_HOME'] = '/tmp/hala-model-cache'
+    from h85.model_cache import HF_HOME, pinned_cache_kwargs
+    os.environ['HF_HOME'] = HF_HOME
     import torch
     import transformers
     from PIL import Image, ImageDraw, ImageFont, features
@@ -117,10 +118,10 @@ def run(output_path='hala-baseline-result.json', coordinate_mode='pixels'):
         torch.cuda.reset_peak_memory_stats(0)
         start = time.perf_counter()
         model = Qwen3VLForConditionalGeneration.from_pretrained(
-            MODEL_ID, revision=MODEL_REVISION, trust_remote_code=False,
+            MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION),
             torch_dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()
-        processor = AutoProcessor.from_pretrained(MODEL_ID, revision=MODEL_REVISION,
-                                                 trust_remote_code=False)
+        processor = AutoProcessor.from_pretrained(
+            MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION))
         torch.cuda.synchronize(0)
         result['download_and_load_seconds'] = time.perf_counter() - start
         result['loaded_allocated_bytes'] = torch.cuda.memory_allocated(0)

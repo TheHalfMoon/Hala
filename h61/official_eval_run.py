@@ -18,6 +18,7 @@ import time
 from pathlib import Path
 
 from h61.official_eval import SCHEMA, apply_frame, canonical, fetch_domain, load_scenes, score
+from h85.model_cache import HF_HOME, pinned_cache_kwargs
 
 RUN_SCHEMA = "hala.h61.official-dragon-eval-run.v1"
 ATTEMPTS_SCHEMA = "hala.h61.official-dragon-eval-raw-attempts.v1"
@@ -54,6 +55,7 @@ def run(domains: list[str], work: str, *, limit: int = 60, max_new_tokens: int =
     from training.scripts.baseline import MODEL_ID, MODEL_REVISION, reject_kaggle_runtime
 
     reject_kaggle_runtime()
+    os.environ["HF_HOME"] = HF_HOME
     import torch
     import transformers
     from PIL import Image
@@ -65,12 +67,12 @@ def run(domains: list[str], work: str, *, limit: int = 60, max_new_tokens: int =
 
     os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
     os.environ["DO_NOT_TRACK"] = "1"
-    os.environ["HF_HOME"] = "/tmp/hala-h61-model-cache"
+    os.environ["HF_HOME"] = HF_HOME
     torch.manual_seed(42)
-    processor = AutoProcessor.from_pretrained(MODEL_ID, revision=MODEL_REVISION,
-                                             trust_remote_code=False)
+    processor = AutoProcessor.from_pretrained(
+        MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
-        MODEL_ID, revision=MODEL_REVISION, trust_remote_code=False,
+        MODEL_ID, **pinned_cache_kwargs(MODEL_ID, MODEL_REVISION),
         torch_dtype=torch.float16, attn_implementation="sdpa",
     ).to("cuda:0").eval()
     if adapter is not None:

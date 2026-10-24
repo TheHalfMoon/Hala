@@ -37,6 +37,7 @@ from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkp
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
 from training.preflight import TrainingConfig, qualify_environment, validate_experiment
+from h85.model_cache import HF_HOME, pinned_cache_kwargs
 from training.scripts.gpu_probe import probe
 from training.scripts.baseline import reject_kaggle_runtime
 
@@ -240,7 +241,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             raise ValueError(f'Unqualified dependency version: {package}')
     os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
     os.environ['DO_NOT_TRACK'] = '1'
-    os.environ['HF_HOME'] = '/tmp/hala-model-cache'
+    os.environ['HF_HOME'] = HF_HOME
     import torch
     import peft
     import transformers
@@ -258,8 +259,8 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
 
     torch.manual_seed(42)
     dtype = torch.float16 if config.precision == 'fp16' else torch.bfloat16
-    processor = AutoProcessor.from_pretrained(config.model_id, revision=config.revision,
-                                             trust_remote_code=False)
+    processor = AutoProcessor.from_pretrained(
+        config.model_id, **pinned_cache_kwargs(config.model_id, config.revision))
     # Every record is checked for its media digest and its format. The
     # processor audit is bounded so that a curriculum of a hundred thousand
     # records does not cost hours before the first optimizer step.
@@ -276,7 +277,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     runtime['media_checked_records'] = len(records)
     runtime.update(audit_summary(audit_rows, len(records)))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
-        config.model_id, revision=config.revision, trust_remote_code=False,
+        config.model_id, **pinned_cache_kwargs(config.model_id, config.revision),
         torch_dtype=dtype, attn_implementation='sdpa').to('cuda:0')
     lora = LoraConfig(r=config.lora_rank, lora_alpha=config.lora_rank * 2,
                       target_modules=LORA_TARGET_PATTERN,
