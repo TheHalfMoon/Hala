@@ -1,13 +1,11 @@
-"""Explicit noncommercial Kaggle research authorization for Hala training.
+"""Noncommercial Hala Kaggle research gate, separate from commercial releases.
 
-No change to baseline/inference's commercial-use guard. Only training with
-explicit user-designated noncommercial scope in a genuine private Kaggle
-Linux notebook may enter via this narrowly scoped seam.
+Kaggle container images may also set COLAB_RELEASE_TAG; Kaggle's actual
+provider marker and its /kaggle/working workspace are authoritative.
 """
 import os
 import platform
 from pathlib import Path
-
 
 def require_training_provider(config, *, env=None, system=None, workspace=None):
     env = os.environ if env is None else env
@@ -17,7 +15,6 @@ def require_training_provider(config, *, env=None, system=None, workspace=None):
     if config.platform == "kaggle":
         if (env.get("HALA_NONCOMMERCIAL_RESEARCH") != "1"
                 or not env.get("KAGGLE_KERNEL_RUN_TYPE")
-                or env.get("COLAB_RELEASE_TAG")
                 or not (Path("/kaggle/working").is_dir()
                         if workspace is None else workspace)):
             raise ValueError("noncommercial private Kaggle research runtime not verified")
