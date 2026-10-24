@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="65491070168a08e422f592be8447598ffecf0571"
+SOURCE_SHA="595658253040d4802d1b97babf868a66e2222781"
 REPO=Path("/kaggle/tmp/hala-h96-source")
 SCRATCH=Path("/kaggle/tmp/hala-h96-vision-pilot")
 OUTPUT=Path("/kaggle/working/hala-h96-vision-checkpoint")
