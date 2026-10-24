@@ -1,0 +1,16 @@
+{
+  "id": "abdulazizshehri/hala-h103-private-processor-mask-cpu",
+  "title": "Hala H103 Private Processor Mask CPU",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
