@@ -6,6 +6,7 @@ on:
       - ps/h91-readonly-private-kaggle-status-bridge
     paths:
       - .github/workflows/kaggle-research-status.yml
+      - h91/recheck-trigger.txt
   workflow_dispatch:
 
 permissions:
