@@ -6,6 +6,8 @@ from pathlib import Path
 from unittest import mock
 
 from h65.provider_publish import publish_latest
+from h60.publish import OWNER
+from h61.publish_checkpoint import collect, sha256_file
 from training.checkpoints import publish_checkpoint, load_checkpoint
 
 
@@ -38,11 +40,23 @@ class PrivateReadbackTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    @staticmethod
-    def approved():
-        return {"provider_published": True, "provider_is_private": True,
-                "provider_readback_verified": True,
-                "anonymous_provider_http_status": 403}
+    def approved(self):
+        pointer = json.loads((self.root / "latest.json").read_text("utf8"))
+        sha = pointer["checkpoint_sha256"]
+        _, state = load_checkpoint(self.root, None)
+        members = collect(self.root)
+        return {
+            "provider_published": True, "provider_is_private": True,
+            "provider_readback_verified": True,
+            "anonymous_provider_http_status": 403,
+            "provider_ref": (
+                f"{OWNER}/hala-h65-checkpoint-step-{state['step']:08d}-"
+                f"{sha[:12]}-private"),
+            "member_sha256": {
+                name: sha256_file(path) for name, path in members.items()},
+            "published_members": len(members),
+            "published_bytes": sum(path.stat().st_size for path in members.values()),
+        }
 
     def test_verified_publication_keeps_host_copy_by_default(self):
         uploader = mock.Mock(return_value=self.approved())

@@ -12,6 +12,7 @@ from pathlib import Path
 from h65.provider_publish import publish_latest
 from h65.safe_diagnostic import supervise, write_receipt
 from training.checkpoints import atomic_json, load_checkpoint
+from training.artifacts import strict_json
 
 SCHEMA = "hala.h77.private-continuation.v1"
 
@@ -45,9 +46,13 @@ def supervise_then_private_readback(session, sha, destination, *,
         try:
             staging = destination / "checkpoint-staging"
             _, state = load_checkpoint(staging, None)
+            expected_checkpoint_sha = strict_json(
+                (staging / "latest.json").read_text("utf8"))["checkpoint_sha256"]
             output = publisher(staging, token, destination / "private-publication",
                                remove_host_copy=False)
             if (not isinstance(output, dict)
+                    or output.get("schema") != "hala.h65.private-checkpoint-readback.v1"
+                    or output.get("checkpoint_sha256") != expected_checkpoint_sha
                     or output.get("provider_published") is not True
                     or output.get("provider_is_private") is not True
                     or output.get("provider_readback_verified") is not True
@@ -58,14 +63,20 @@ def supervise_then_private_readback(session, sha, destination, *,
                 raise ValueError("provider private readback or checkpoint identity NOT verified")
             # A mutable local directory is not a substitute for private readback.
             # Preserve it for independent recovery; never delete on success.
-            load_checkpoint(staging, None)
+            _, confirmed = load_checkpoint(staging, None)
+            after_sha = strict_json(
+                (staging / "latest.json").read_text("utf8"))["checkpoint_sha256"]
+            if confirmed != state or after_sha != expected_checkpoint_sha:
+                raise ValueError("host checkpoint changed during authenticated provider readback")
             result.update(private_provider_readback_verified=True,
                           private_publication_status="PRIVATE_READBACK_VERIFIED",
                           private_provider_ref=output["private_provider_ref"],
-                          private_checkpoint_step=state["step"])
+                          private_checkpoint_step=state["step"],
+                          private_checkpoint_sha256=expected_checkpoint_sha)
             receipt.update(private_provider_readback_verified=True,
                            private_publication_status="PRIVATE_READBACK_VERIFIED",
-                           private_checkpoint_step=state["step"])
+                           private_checkpoint_step=state["step"],
+                           private_checkpoint_sha256=expected_checkpoint_sha)
         except Exception as error:
             result["private_publication_status"] = "PRIVATE_READBACK_FAILED"
             result["private_publication_error_class"] = type(error).__name__
