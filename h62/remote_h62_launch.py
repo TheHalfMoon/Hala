@@ -233,8 +233,8 @@ def main() -> int:
             if any(s.strip() in {"export", "firstparty", "curriculum", "baseline"}
                    for s in steps.split(",")):
                 raise fail("CPU-only steps forbidden with an H67 staged dataset")
-            from h67.stage import restore_stage
-            receipt["h67_stage"] = restore_stage(
+            from h81.staged_resume import admit_stage
+            receipt["h67_stage"] = admit_stage(
                 Path("/content/hala-h67-stage.zip"), stage_sha, work / "run",
                 stage_source_sha, rederive=True)
             if (not isinstance(receipt["h67_stage"], dict)
