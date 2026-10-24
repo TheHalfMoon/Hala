@@ -1,6 +1,6 @@
 {
   "id": "abdulazizshehri/hala-h117-private-conditioned-delta256-t4",
-  "title": "Hala H117 Private Conditioned Signed End Delta256 T4",
+  "title": "Hala H117 Private Conditioned Delta256 T4",
   "code_file": "kaggle_private_run.py",
   "language": "python",
   "kernel_type": "script",
