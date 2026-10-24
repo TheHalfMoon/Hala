@@ -105,7 +105,12 @@ def propose(records:list[dict],sources:dict[str,dict],count:int=COUNT,seed:str=S
     quotas={"direction":count/8,"language_ar":count*.3,
             "language_en":count*.7,"family":count/n_families,
             "scale":count/3,"cell":count/16}
-    for _ in range(count):
+    for step in range(count):
+        # Source-supported floor targets prevent minor-language and scarce
+        # desktop families from disappearing in an otherwise spatially
+        # diverse prefix. These are TRAIN-only curriculum quotas.
+        ar_prefix_floor=math.ceil((step+1)*.25)
+        family_prefix_floor=math.floor((step+1)*.10)
         best=None
         best_score=float("inf")
         for x in eligible:
@@ -116,7 +121,10 @@ def propose(records:list[dict],sources:dict[str,dict],count:int=COUNT,seed:str=S
                    1.6*ctr["family"][x["family"]]/quotas["family"]+
                    .65*ctr["scale"][x["scale"]]/quotas["scale"]+
                    .85*ctr["start_cell"][x["start_cell"]]/quotas["cell"]+
-                   .85*ctr["end_cell"][x["end_cell"]]/quotas["cell"])
+                   .85*ctr["end_cell"][x["end_cell"]]/quotas["cell"]-
+                   (10.0 if x["language"]=="ar" and
+                    ctr["language"]["ar"]<ar_prefix_floor else 0.0)-
+                   (7.0 if ctr["family"][x["family"]]<family_prefix_floor else 0.0))
             if score<best_score:
                 best_score,best=score,x
         if best is None:
@@ -133,6 +141,9 @@ def propose(records:list[dict],sources:dict[str,dict],count:int=COUNT,seed:str=S
         "dominant_direction_below_40pct":summary["largest_direction_fraction"]<.4,
         "arabic_at_least_20pct":summary["language"].get("ar",0)>=math.ceil(count*.2),
         "all_five_original_source_families":len(summary["family"])>=5,
+        "each_family_at_least_10pct":(
+            len(summary["family"])==5 and
+            all(n>=math.floor(count*.10) for n in summary["family"].values())),
         "at_least_six_start_regions":summary["start_cells_occupied"]>=6,
         "at_least_six_end_regions":summary["end_cells_occupied"]>=6,
     }
