@@ -33,6 +33,7 @@ def main():
         # The runtime contains only this runner before GitHub source checkout.
         # The pinned H73 CPU-only admission runs again inside h102.train_audit.
         import shutil
+        Path("/kaggle/tmp").mkdir(parents=True,exist_ok=True)
         if shutil.disk_usage("/kaggle/tmp").free<5*1024**3:
             raise OSError(">=5GB Kaggle CPU scratch needed to rederive original H71")
         state["stage"]="PINNED_PRIVATE_SOURCE_FETCH"
