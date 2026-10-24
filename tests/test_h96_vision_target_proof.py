@@ -35,7 +35,7 @@ class IsolatedVisionLoRATests(unittest.TestCase):
         original=research_configuration(repo)
         new=vision_pilot_config(repo)
         self.assertEqual(new["max_steps"],1)
-        self.assertEqual(new["audit_records"],4)
+        self.assertEqual(new["audit_records"],32)
         self.assertEqual(
             {k:v for k,v in original.items() if k not in ("max_steps","audit_records")},
             {k:v for k,v in new.items() if k not in ("max_steps","audit_records")})

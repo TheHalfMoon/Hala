@@ -21,7 +21,7 @@ def vision_pilot_config(repo):
     config=h94_config(repo)
     if config.get("max_steps")!=64 or config.get("platform")!="kaggle":
         raise ValueError("H94 source training configuration changed")
-    return {**config,"max_steps":1,"audit_records":4}
+    return {**config,"max_steps":1,"audit_records":32}
 
 def require_private_vision_research(*,env=None,operating_system=None,scratch=None,output=None):
     env=os.environ if env is None else env
