@@ -39,3 +39,38 @@ tested base/H99/prompt-only arms; source-only diversity is not ability.
 
 Keep H105/H106 source immutable; Draft PR only, no paid services,
 no datasets/weights published, no hidden TEST, no unchecked merges.
+
+## Actual H107 owner-independent final result — 2026-10-24
+
+Kaggle 3-arm 64-scene original DragOn public EVAL COMPLETE. Owner Windows
+independently re-fetched all 64 scenes (pinned upstream commit,
+4 domains × original EVAL indices 20..35), verified actual image SHA-256,
+prompt SHA and raw neural output SHA, replayed original **unmodified** H61
+strict scorer, and verified every arm/source pairing and Kaggle reported
+per-domain scores. **All checks PASS, 0/64 strict successes for each arm**:
+unchanged original base, original H99 visual-only and real 256-step H106
+joint visual+language. Format-only repairs also yield 0/64 successes.
+
+- Native strict action syntax: base **0/64**, H99 **0/64**,
+  H106 **63/64**. This is *output serialization*, not GUI ability.
+- H106 original strict start target-box hits **0/64**, end hits
+  **1/64**, full correct drags **0/64**. 11/63 parsed drags had
+  equal start/end positions.
+- Private owner independently computed median start/end bbox miss of
+  **115.55 / 170 pixels** for parsed H106 drags and median action distance
+  **20 px** versus reference **117 px**. H99 diagnostic median predicted
+  distance **0 px**; base diagnostic median **0 px**.
+- Paired strict McNemar on 64 identical scenes gives **0 discordant
+  successes** for H106 versus base and H106 versus H99. This cannot
+  support a grounding improvement claim.
+- All source IDs/raw output, original media, private evaluation receipts,
+  real H106 checkpoint bytes and optimizer remain owner-only.
+- **NO-GO for simply extending H106 256-step LoRA.** The bottleneck is
+  spatial grounding, not native JSON. Next pre-registered experiment should
+  target *explicit image-to-pixel positioning* (visual ruler/grid or
+  controlled iterative focus) rather than prompt verbosity or more of the
+  same completion-token loss. Any new candidate must use untouched later
+  EVAL indices for a fresh, matched comparison.
+
+H107 data isn't an independent hidden test. Do not claim global performance,
+public release readiness, or a successful GUI agent from this result.
