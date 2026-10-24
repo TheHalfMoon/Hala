@@ -1,5 +1,5 @@
 {
-  "id": "abdulazizshehri/hala-h94-private-h92-warmstart-qwen64",
+  "id": "abdulazizshehri/hala-h94-private-h92-warmstart-qwen-64-steps",
   "title": "Hala H94 Private H92 Warmstart Qwen 64 Steps",
   "code_file": "kaggle_private_run.py",
   "language": "python",
