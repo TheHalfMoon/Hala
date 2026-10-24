@@ -1,0 +1,128 @@
+name: Hala private Kaggle research status (read-only)
+
+on:
+  push:
+    branches:
+      - ps/h91-readonly-private-kaggle-status-bridge
+    paths:
+      - .github/workflows/kaggle-research-status.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  private-kaggle-readonly:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    # Never run this privileged check for pull_request or pull_request_target.
+    # Never checkout/run branch code while injecting the Kaggle credential.
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      PYTHONIOENCODING: utf-8
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+    steps:
+      - name: Detect preexisting private Kaggle authentication
+        id: access
+        shell: bash
+        run: |
+          if [[ -n "${KAGGLE_API_TOKEN:-}" ||
+                ( -n "${KAGGLE_USERNAME:-}" && -n "${KAGGLE_KEY:-}" ) ]]; then
+            echo 'has_auth=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'has_auth=false' >> "$GITHUB_OUTPUT"
+            echo 'Kaggle private status: BLOCKED_AUTH_NOT_CONFIGURED' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Read ONLY private Kaggle job statuses and bounded receipts
+        if: steps.access.outputs.has_auth == 'true'
+        shell: bash
+        run: |
+          set +x
+          python -m pip install -q 'kaggle==2.2.4'
+          python - <<'PY'
+          """No repo checkout, no private dataset or model download, no raw Kaggle logs."""
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import tempfile
+
+          KERNELS = (
+              ("H87", "abdulazizshehri/hala-h87-private-original-h71-first-qwen-step",
+               "hala-h87-attempt.json"),
+              ("H88", "abdulazizshehri/hala-h88-private-original-h71-qwen-step",
+               "hala-h88-research-attempt.json"),
+          )
+          VALID = ("COMPLETE", "ERROR", "RUNNING", "QUEUED", "CANCELLED", "UNKNOWN")
+          RECEIPT_FIELDS = ("schema", "status", "stage", "failure_class", "model_training_confirmed",
+                            "model_trained_verified", "source_sha", "checkpoint_sha256")
+
+          def status_for(kernel):
+              try:
+                  run = subprocess.run(
+                      ["kaggle", "kernels", "status", kernel],
+                      capture_output=True, text=True, timeout=50, check=False)
+              except (OSError, subprocess.TimeoutExpired):
+                  return "PROVIDER_QUERY_FAILED"
+              if run.returncode:
+                  return "PROVIDER_QUERY_FAILED"
+              match = re.search(r'KernelWorkerStatus\.([A-Z_]+)', run.stdout)
+              return match.group(1) if match and match.group(1) in VALID else "UNRECOGNIZED"
+
+          def receipt_for(kernel, filename):
+              # Exact name filtering: no full outputs, checkpoints, or private source.
+              with tempfile.TemporaryDirectory(prefix="hala-private-status-") as tmp:
+                  try:
+                      proc = subprocess.run(
+                          ["kaggle", "kernels", "output", kernel, "--file-pattern",
+                           "^" + re.escape(filename) + "$", "-p", tmp, "-q"],
+                          capture_output=True, text=True, timeout=80, check=False)
+                  except (OSError, subprocess.TimeoutExpired):
+                      return "UNAVAILABLE", {}
+                  file = Path(tmp) / filename
+                  if proc.returncode or file.is_symlink() or not file.is_file():
+                      return "UNAVAILABLE", {}
+                  if not 0 < file.stat().st_size <= 32768:
+                      return "INVALID", {}
+                  try:
+                      data = json.loads(file.read_text("utf-8"))
+                  except (UnicodeError, ValueError, OSError):
+                      return "INVALID", {}
+                  if not isinstance(data, dict):
+                      return "INVALID", {}
+                  safe = {}
+                  for name in RECEIPT_FIELDS:
+                      value = data.get(name)
+                      if isinstance(value, bool):
+                          safe[name] = value
+                      elif isinstance(value, str) and len(value) <= 128 and re.fullmatch(
+                              r"[a-zA-Z0-9_.:-]+", value):
+                          safe[name] = value
+                  return "READ", safe
+
+          lines = ["### Kaggle read-only research status (not model qualification)"]
+          for label, kernel, filename in KERNELS:
+              state = status_for(kernel)
+              lines.append(f"- {label} provider status: `{state}`")
+              # No need to retrieve outputs from active kernels. A previous
+              # attempt file is not proof of the latest version's training.
+              if state in ("COMPLETE", "ERROR"):
+                  outcome, receipt = receipt_for(kernel, filename)
+                  lines.append(f"- {label} selected metadata receipt: `{outcome}`")
+                  if outcome == "READ":
+                      for field in ("status", "stage", "failure_class",
+                                    "model_training_confirmed", "model_trained_verified"):
+                          if field in receipt:
+                              lines.append(f"  - {field}: `{receipt[field]}`")
+              elif state == "PROVIDER_QUERY_FAILED":
+                  lines.append("- Query failed; no model or checkpoint conclusion.")
+          lines.append("- This workflow does not download private weights, model checkpoints, "
+                       "dataset archives, raw notebook logs, or training prompts.")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+              f.write("\n".join(lines) + "\n")
+          print("Kaggle status check finished; see job summary for bounded metadata.")
+          PY
