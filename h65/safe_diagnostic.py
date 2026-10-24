@@ -131,9 +131,37 @@ def supervise(session: str, sha: str, destination: Path, *,
                         child.kill()
                         child.wait(timeout=10)
                     exit_code = child.returncode
-                    return {"schema": SCHEMA, "status": "FAILED",
-                            "reason": reason, "child_exit": exit_code,
-                            "successful_egress_polls": successful_snapshots}
+                    # H80: only a deadline with *confirmed present* T4
+                    # permits one final read-only salvage after stopping the
+                    # child. Never contact a missing/revoked provider again.
+                    # The session's failure remains FAILED even when salvage
+                    # recovers a complete immutable training checkpoint.
+                    closeout = ("SKIPPED_PROVIDER_MISSING" if not present
+                                else "ATTEMPTED_ONCE")
+                    if present:
+                        try:
+                            final = snapshot(session, destination / "checkpoint-staging")
+                            last_status = final["status"]
+                            if last_status in ("VERIFIED_HOST_STAGING",
+                                               "RECOVERED_HOST_STAGING", "ALREADY_VERIFIED"):
+                                successful_snapshots += 1
+                            write_receipt(receipt_path, {
+                                "event": "deadline_final_egress", "status": last_status,
+                                "step": final.get("step")})
+                        except (OSError, ValueError, RuntimeError, KeyError) as error:
+                            last_status = "EGRESS_FAILED"
+                            write_receipt(receipt_path, {
+                                "event": "deadline_final_egress_error",
+                                "error_class": type(error).__name__})
+                    report = {"schema": SCHEMA, "status": "FAILED",
+                              "reason": reason, "child_exit": exit_code,
+                              "successful_egress_polls": successful_snapshots,
+                              "last_egress": last_status,
+                              "deadline_final_salvage": closeout,
+                              "completed_checkpoint_evidence": None,
+                              "private_provider_readback_verified": False}
+                    write_receipt(receipt_path, {"event": "final", **report})
+                    return report
                 sleep(interval)
             exit_code = child.wait()
             # After completed execution the session may still exist, so take
