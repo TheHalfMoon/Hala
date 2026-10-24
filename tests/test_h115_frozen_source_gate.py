@@ -1,7 +1,7 @@
 """H115 frozen future 64-case strict original GUI score/source contract."""
 import unittest
 from h115.eval import (START_INDEX,PER_DOMAIN,END_INDEX,ARMS,frozen,
-                       admit_h114_checkpoint,H114_VERIFIED_ADAPTER_SHA)
+                       admit_h114_checkpoint,H114_VERIFIED_ADAPTER_SHA,H114_VERIFIED_CHECKPOINT_SHA)
 from h115.compose import compose_strict_original_drag
 
 class TestH115FrozenNewSource(unittest.TestCase):
@@ -15,7 +15,8 @@ class TestH115FrozenNewSource(unittest.TestCase):
         with self.assertRaises(ValueError):frozen(cases[:-1])
         self.assertEqual(ARMS,("h106_original_drag","h114_two_independent_points"))
     def test_unverified_gpu_weights_never_loaded(self):
-        self.assertIsNone(H114_VERIFIED_ADAPTER_SHA)
+        self.assertEqual(H114_VERIFIED_ADAPTER_SHA,"33838bc150413b9f04e3a36644010ec10540693ec3095827715f08fd1a28dff6")
+        self.assertEqual(H114_VERIFIED_CHECKPOINT_SHA,"cafae869baaef62c1b2af983e97ed67c5a7138777bf6f608ef286d08b27e39c8")
         with self.assertRaises(ValueError):
             admit_h114_checkpoint("/nonexistent/private/source")
     def test_partial_model_outputs_fail_closed(self):

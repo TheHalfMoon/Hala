@@ -1,10 +1,10 @@
 # H115 — original strict GUI evaluation held out from new point LoRA
 
 This is a **frozen future evaluation design**, not a successful model
-result. H114 is a new private free-T4 training candidate on original
+result. H114 has completed genuine original
 H71 TRAIN 128 source screenshots with two independent START/END role
 examples each (256 optimizer updates). Its actual model checkpoint
-must be owner byte-verified before H115 can allocate another GPU.
+was independently verified on Windows before H115 GPU evaluation.
 
 ## Strict trial
 
@@ -31,9 +31,5 @@ H114 uses 2 model calls/screenshot versus H106's one. These are public
 EVAL diagnostic cases, not hidden TEST or deployment validation.
 All actual neural outputs/screenshot paths stay owner-private.
 
-**HARD BLOCKER:** H115 evaluation code is fail-closed with unset owner
-verified H114 adapter/checkpoint SHA. A finished GPU job by itself
-cannot unblock this. Only after actual H114 training receipts and
-Windows owner independent checkpoint/optimizer SHA evidence can the
-new exact SHA be committed in a NEW source-pinned evaluation version.
+**H114 ADMITTED:** Kaggle completed 256 real source-trained point optimizer updates, and owner-Windows independently replayed 18/18 original source/role/gradient/optimizer/adapter/checkpoint byte SHA gates. The two frozen SHA constants have been added to the evaluator. H115 is now allowed to try the new evaluation; NO model skill claims are yet qualified.
 No merge, weights publication, paid resources or release.

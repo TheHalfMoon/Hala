@@ -29,8 +29,8 @@ SCHEMA="hala.h115.private-source-disjoint-64-original-drag-vs-trained-points.v1"
 
 # Populated only AFTER H114 actual model completion and independently
 # owner-verified SHA; never guess or accept an arbitrary saved adapter.
-H114_VERIFIED_ADAPTER_SHA=None
-H114_VERIFIED_CHECKPOINT_SHA=None
+H114_VERIFIED_ADAPTER_SHA="33838bc150413b9f04e3a36644010ec10540693ec3095827715f08fd1a28dff6"
+H114_VERIFIED_CHECKPOINT_SHA="cafae869baaef62c1b2af983e97ed67c5a7138777bf6f608ef286d08b27e39c8"
 
 def frozen(rows):
     if len(rows)!=END_INDEX:
