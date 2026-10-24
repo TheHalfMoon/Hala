@@ -65,4 +65,25 @@ class TestH117ConditionedTraining(unittest.TestCase):
         with self.assertRaises(ValueError):
             target_only_weights([ord(c) for c in completion],
                                 lambda ts:chr(ts[0]),"end_delta")
+    def test_kaggle_regression_missing_endpoint_role_metadata(self):
+        # Previous private T4 failed with KeyError('endpoint_role') before
+        # training step one: original media overlay stores role in completion.
+        source={"id":"source-train","split":"train","image_path":"source.png",
+                "image_sha256":"a"*64,"language":"en","family":"slider"}
+        for role,target in (
+            ("start",{"role":"start","point":[230,750],
+                      "coordinate_space":"normalized_0_1000"}),
+            ("end_delta",{"role":"end_delta","delta":[-200,75],
+                          "coordinate_space":"normalized_displacement_1000"})):
+            derived={**source,"id":"source-train::"+role,
+                     "original_source_id":"source-train",
+                     "prompt":"Original source-bound role instruction",
+                     "completion":json.dumps(target)}
+            # No metadata role in model training row; JSON is authoritative.
+            model_row=trainer_row(source,derived)
+            self.assertNotIn("endpoint_role",model_row)
+            self.assertEqual(role_from_exact_completion(model_row["completion"]),role)
+        with self.assertRaises(ValueError):
+            role_from_exact_completion(json.dumps({"role":"end_delta",
+                "delta":[True,4],"coordinate_space":"normalized_displacement_1000"}))
 if __name__=="__main__":unittest.main()
