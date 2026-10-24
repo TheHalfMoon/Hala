@@ -1,0 +1,9 @@
+H98 — owner-private three-arm fresh DragOn public EVAL diagnostic
+
+Purpose: measure GUI coordinate grounding, not just training loss. H97's real free Kaggle 32-step vision-only LoRA passed 19/19 host SHA-256 and original optimizer checkpoint checks. Earlier H95 matched public EVAL still yielded H94 language LoRA 0/16 successes despite much better direct JSON adherence. H97's task quality remains unknown.
+
+H98 fixes a completely distinct ordered public DragOn EVAL sample, indices 8..11 from each of the four upstream pinned Hcompany/DragOn domains, 16 scenes each. H93 used indices 0..3, H95 used 4..7. Three fresh-arm inferences share exactly the same preselected 16 images and prompt contract: original Qwen3-VL-2B base, SHA-verified H94 language-only LoRA and SHA-verified H97 vision-only LoRA. No training or optimizer step occurs in the eval. The model is freshly reloaded separately for each arm so different language and vision adapter scopes cannot contaminate one another.
+
+Every Kaggle attached private checkpoint must validate the original H61 immutable pointer, every artifact SHA-256, pinned Qwen identity/source train SHA, H97 32 steps, exact 8 vision LoRA modules and 16 trainable parameter tensors. H94 admission is the exact source-first H95 routine. The original H61 official strict JSON + ground-truth bounding box scorer is UNMODIFIED. A second independently labeled exact Markdown JSON-fence normalization is only a diagnostic, not the official score. Raw neural outputs and screenshots stay private in Kaggle. Only aggregate status/score/digests may enter public GitHub.
+
+Sample is a small public official EVAL diagnostic, not a hidden TEST, complete official benchmark, or bilingual qualification. Training losses from H94/H97 cannot be mistaken for GUI task success. No paid GPU, publication, merge, or release. Draft/NO-GO until objectively measured significant gains and wider bilingual evaluation.

@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h98-private-threeway-new-gui-eval",
+  "title": "Hala H98 Private Threeway New GUI Eval",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h94-private-h92-warmstart-qwen-64-steps",
+    "abdulazizshehri/hala-h97-private-vision-thirtytwo-step"
+  ],
+  "model_sources": []
+}
