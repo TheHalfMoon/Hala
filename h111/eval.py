@@ -1,7 +1,7 @@
-"""H110 source-disjoint H106 one-pass vs two-crop local pixel refinement.
+"""H111 independent H110 fixed-policy replication: one-pass vs two-crop.
 
 Pilot is NOT proof of model gain or a faithful GUI-Spotlight implementation.
-Original public EVAL indices 44..47/family (16 total), untouched native H61
+Original public EVAL indices 48..55/family (32 total), untouched native H61
 scorer. Model coarse predictions ONLY choose crops. True boxes only evaluated
 after model response.
 """
@@ -27,10 +27,10 @@ SCHEMA="hala.h111.new-source-32-preregistered-replication-focus.v1"
 
 def frozen(scenes):
     if len(scenes)!=END:
-        raise ValueError("source original EVAL 48-prefix required")
+        raise ValueError("source original EVAL 56-prefix required")
     selected=scenes[START:END]
     if len(selected)!=COUNT or len({x["id"] for x in selected})!=COUNT:
-        raise ValueError("exactly four untouched real source screenshots")
+        raise ValueError("exactly eight untouched real source screenshots")
     return selected
 
 def center_in_roi(box,frame):
