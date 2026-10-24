@@ -41,7 +41,9 @@ def admit_stage(bundle: Path, expected_sha256: str, destination: Path,
             or stage.digest(bundle) != expected_sha256):
         raise ValueError("original TRAIN bundle digest or source Git SHA invalid")
     for top in destination.iterdir():
-        if top.is_symlink() or top.name not in (
+        if top.is_symlink():
+            raise ValueError("linked H61 run workspace entry")
+        if top.name not in (
                 {"export", stage.BASELINE} | ALLOWED_OUTPUTS):
             raise ValueError("untrusted H61 run workspace entry")
     if (destination / "export").is_symlink() or not (destination / "export").is_dir():
