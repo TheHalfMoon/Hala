@@ -1,4 +1,4 @@
-"""H122 private 64 original TRAIN-heldout END evaluation (not launched).
+"""H122 private 64 original TRAIN-heldout END evaluation.
 
 Run ONLY after H122 actual 448 optimizer steps and three independent
 owner SHA-256 binary pins have been verified and committed to the
@@ -11,9 +11,10 @@ from pathlib import Path
 import subprocess
 import sys
 
-# This frozen source is intentionally UNARMED: verified model SHA pins
-# are None; do not launch against a hypothetical Kaggle training result.
-SOURCE_SHA="f37da7fe19a6933af319ae418f7c68ddbe6e25df"
+# This immutable source includes owner-independent Windows verified
+# real 448-step H122 v4 adapter/optimizer/checkpoint SHA pins.
+# No official EVAL/TEST or external GUI-skill qualification in this run.
+SOURCE_SHA="6b17aed8b3f95aea3f6e4e2ca9c94eba617fda2c"
 REPO=Path("/kaggle/tmp/hala-h122-heldout-frozen-source")
 WORK=Path("/kaggle/tmp/hala-h122-private-TRAIN64-END-work")
 OUTPUT=Path("/kaggle/working/hala-h122-private-train64-END-eval")
