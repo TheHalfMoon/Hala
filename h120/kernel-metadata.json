@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h120-private-next64-strict-three-model-gui",
+  "title": "Hala H120 Private Next64 Strict Three Model GUI",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h114-private-dual-point256-t4",
+    "abdulazizshehri/hala-h117-private-conditioned-delta256-t4",
+    "abdulazizshehri/hala-h119-private-robust-full512-1024-t4"
+  ],
+  "model_sources": []
+}
