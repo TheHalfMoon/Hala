@@ -81,3 +81,40 @@ never a gating claim if absent.
 **Currently no H122 model skill, improved GUI performance, or release
 claim.** No weights pushed to public GitHub/Hugging Face, no merging,
 no deployment, no paid GPU.
+
+
+## H122 original END-box source integrity correction
+
+The H61 **SFT export intentionally does not carry original bounding boxes,
+frame dimensions or source labels**. A review of the first H122 frozen
+trainer commit found that it attempted to read these unavailable fields
+directly from `records[index]`. That would fail before GPU training
+and invalidates the old frozen trainer as an executable H122 experiment,
+independently of any Kaggle provider startup error.
+
+The repaired `h122/source_bound.py` builds an original-source map using
+the existing `h61.curriculum.read_shard` + `shard_roots`, then binds each
+selected SFT record to its true original source using the existing
+`h105.curriculum.source_geometry` checks: identical source ID, original
+image bytes digest/path, family, language, complete original action and
+true START/END geometry. `verify_overlay` now receives the original
+source record containing genuine END boxes and frame dimensions; the
+64 heldout source builder uses the same path. New regression tests
+construct a deliberately box-less SFT record and assert refusal of
+drift, EVAL substitution and model-endpoint target corruption.
+
+**All prior Kaggle launches pinned to the old first trainer SHA must
+not be treated as valid H122 model results**. The first kernel v1
+returned ERROR with empty log; v2 submission outcome is unknown due
+Desktop Commander quota. The next submission must use a new frozen
+SHA including this fix. Owner must re-run CPU regressions and true
+448-step original source/optimizer and 64-heldout evidence. Until
+then no H122 model quality can be claimed.
+
+The heldout code (`h122/heldout_source.py`,
+`h122/admit_checkpoint.py`, `h122/eval_heldout.py`,
+`h122/owner_replay.py`) is prepared but **not executed**. It is
+fail-closed while three owner-verified binary SHA constants remain
+unset. A separate Kaggle heldout runner is also staged **without
+submission**. No separate external public EVAL/TEST may be read
+before a real heldout-gate pass and independent Windows replay.
