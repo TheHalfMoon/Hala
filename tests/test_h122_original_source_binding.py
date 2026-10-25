@@ -48,10 +48,34 @@ class OriginalSourceProof(unittest.TestCase):
     def test_sft_missing_box_still_admitted_via_original_source(self):
         original,sft,derived=fixtures()
         restored=original_for_sft(sft,{original["id"]:original})
-        self.assertIs(restored,original)
+        self.assertEqual(restored,original)
+        self.assertIsNot(restored,original)
         self.assertTrue(verify_overlay(restored,derived))
         with self.assertRaises((KeyError,ValueError)):
             verify_overlay(sft,derived)
+
+    def test_raw_dragon_missing_family_and_language_matches_exact_H61(self):
+        original,sft,derived=fixtures()
+        raw=dict(original)
+        raw["domain"]="slider"
+        raw.pop("family")
+        raw.pop("language")
+        sft["family"]="hcompany_dragon_h61_slider_train"
+        sft["language"]="en"
+        derived["family"]=sft["family"]
+        derived["language"]=sft["language"]
+        qualified=original_for_sft(sft,{raw["id"]:raw})
+        self.assertEqual(qualified["family"],sft["family"])
+        self.assertEqual(qualified["language"],sft["language"])
+        self.assertNotIn("family",raw)
+        self.assertNotIn("language",raw)
+        self.assertTrue(verify_overlay(qualified,derived))
+        # Reject wrong synthetic language/family instead of defaulting
+        # to whatever the SFT row happens to claim.
+        with self.assertRaises(ValueError):
+            original_for_sft({**sft,"language":"ar"},{raw["id"]:raw})
+        with self.assertRaises(ValueError):
+            original_for_sft({**sft,"family":"tampered"},{raw["id"]:raw})
 
     def test_mismatched_image_sha_refused_before_end_score(self):
         original,sft,_=fixtures()
