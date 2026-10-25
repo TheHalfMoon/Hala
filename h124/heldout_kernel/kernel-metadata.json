@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h124-private-joint-train128-eval-v1",
+  "title": "hala-h124-private-joint-train128-eval-v1",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h124-private-new-joint896-t4"
+  ],
+  "model_sources": []
+}
