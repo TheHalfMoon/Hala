@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="812853c04867ae030b64b2ad07edd444f02cb43a"
+SOURCE_SHA="5c3b7e53fd8f87b319ba38f554e473e093c41371"
 REPO=Path("/kaggle/tmp/hala-h120-frozen-source")
 WORK=Path("/kaggle/tmp/hala-h120-next64-paired-official-GUI")
 OUTPUT=Path("/kaggle/working/hala-h120-private-original-next64-three-arm")
