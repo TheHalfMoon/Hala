@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="939bf5b26f4d39a57f19545834617c2eecbd65bb"
+SOURCE_SHA="fdd18c7e39c075f4feac22a22a5649fb98b0aae1"
 REPO=Path("/kaggle/tmp/hala-h122-frozen-source")
 SCRATCH=Path("/kaggle/tmp/hala-h122-original-train448-grid-end")
 OUTPUT=Path("/kaggle/working/hala-h122-private-end-grid448-checkpoint")
