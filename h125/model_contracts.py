@@ -12,16 +12,19 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class Model:
     model_id:str
+    revision_sha:str
     license:str
     coordinate_space:str
     arch:str
     pretrained_gui_grounding:bool
 
 MODELS={
-  "uground_2b":Model("osunlp/UGround-V1-2B","apache-2.0","normalized_0_1000",
-                     "qwen2_vl",True),
-  "showui_2b":Model("showlab/ShowUI-2B","mit","relative_0_1",
-                    "qwen2_vl",True)
+  "uground_2b":Model("osunlp/UGround-V1-2B",
+                     "ea7109f9573e5d8ee5170e425bd1fd73f2020e06",
+                     "apache-2.0","normalized_0_1000","qwen2_vl",True),
+  "showui_2b":Model("showlab/ShowUI-2B",
+                    "cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60",
+                    "mit","relative_0_1","qwen2_vl",True)
 }
 UGROUND_PROMPT="""Find the described interface target in the screenshot. Give only its representative center as a single coordinate pair (x,y), on a 0..1000 normalized image grid.
 Description: {description}
