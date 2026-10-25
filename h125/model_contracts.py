@@ -1,0 +1,63 @@
+"""H125 separate pretrained GUI-grounding 2B native output contracts.
+
+UGround: parenthesized coordinates normalized 0..1000.
+ShowUI: [x,y] or (x,y) normalized 0..1.
+NEVER silently reinterpret 0..1 and 0..1000.
+"""
+from __future__ import annotations
+import ast
+import math
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Model:
+    model_id:str
+    license:str
+    coordinate_space:str
+    arch:str
+    pretrained_gui_grounding:bool
+
+MODELS={
+  "uground_2b":Model("osunlp/UGround-V1-2B","apache-2.0","normalized_0_1000",
+                     "qwen2_vl",True),
+  "showui_2b":Model("showlab/ShowUI-2B","mit","relative_0_1",
+                    "qwen2_vl",True)
+}
+UGROUND_PROMPT="""Find the described interface target in the screenshot. Give only its representative center as a single coordinate pair (x,y), on a 0..1000 normalized image grid.
+Description: {description}
+Answer:"""
+SHOWUI_SYSTEM="Find the specified GUI element in this screenshot. Output only [x,y] relative image coordinates from 0 to 1, with x measured horizontally and y vertically."
+
+def prompt_for(model:str,intent:str,role:str):
+    if model not in MODELS or role not in ("START","END"):
+        raise ValueError("H125 pinned owner two-model/role experiment only")
+    if not isinstance(intent,str) or not 4<=len(intent)<=1200:
+        raise ValueError("H125 genuine original source TRAIN instruction required")
+    description=intent+" Locate the "+role+" handle/target of this drag."
+    return (UGROUND_PROMPT.format(description=description)
+            if model=="uground_2b"
+            else SHOWUI_SYSTEM+"\n"+description)
+
+def parse_point(model:str,raw:str,w:int,h:int):
+    if (model not in MODELS or type(raw) is not str or not 1<=len(raw)<=128
+            or type(w) is not int or type(h) is not int
+            or not 64<=w<=1024 or not 64<=h<=640):
+        return None
+    try:
+        xy=ast.literal_eval(raw.strip())
+    except (ValueError,SyntaxError,TypeError,MemoryError,RecursionError):
+        return None
+    if (type(xy) not in (tuple,list) or len(xy)!=2 or
+            any(type(v) not in (int,float) or
+                not math.isfinite(v) for v in xy)):
+        return None
+    if model=="uground_2b" and (type(xy) is not tuple or
+             any(type(val) is not int for val in xy)):
+        return None
+    if model=="showui_2b" and type(xy) is not list:
+        return None
+    maximum=1000 if model=="uground_2b" else 1
+    if any(not 0<=val<=maximum for val in xy):
+        return None
+    return (min(w-1,round(xy[0]*w/maximum)),
+            min(h-1,round(xy[1]*h/maximum)))
