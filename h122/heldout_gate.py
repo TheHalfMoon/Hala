@@ -6,7 +6,7 @@ Only owner-private H113 original TRAIN holdout source+neural bytes are scored.
 import hashlib
 from collections import Counter
 from h122.grid import parse_end
-from h122.schedule import HOLDOUT
+from h122.schedule import HOLDOUT,TRAIN,Schedule
 
 SCHEMA="hala.h122.owner-private-original-train64-heldout-END-eval.v1"
 FROZEN_SPLIT_SHA="f986eeb5ca0c242a1d000ebe4474dc429abdc54514b20dd9e82e1537cbd57ba2"
@@ -16,13 +16,21 @@ MIN_UNIQUE_VALID_POINTS=24
 MAX_MODAL_POINT_FRACTION=0.25
 MIN_FAMILIES_WITH_HIT=3
 
-def qualify_prediction_evidence(cases,raw_evidence):
+def qualify_prediction_evidence(cases,raw_evidence,heldout_schedule):
     """Verify paired screenshot/prompt/raw-response SHAs before ANY bbox score."""
     if type(cases) is not list or len(cases)!=HOLDOUT or type(raw_evidence) is not list or len(raw_evidence)!=HOLDOUT:
         raise ValueError("H122 exactly 64 original heldout TRAIN inference calls required")
+    if (not isinstance(heldout_schedule,Schedule)
+            or heldout_schedule.summary.get("schedule_sha256")!=FROZEN_SPLIT_SHA
+            or heldout_schedule.summary.get("source_split")!="TRAIN_ONLY"
+            or len(heldout_schedule.heldout)!=HOLDOUT
+            or len(heldout_schedule.train)!=TRAIN
+            or len(set(heldout_schedule.train_original_indices)&
+                   set(heldout_schedule.heldout_original_indices))!=0):
+        raise ValueError("H122 exact owner-qualified 448/64 frozen TRAIN schedule required")
     seen=set()
     outputs={}
-    for item,observation in zip(cases,raw_evidence):
+    for item,observation,derived in zip(cases,raw_evidence,heldout_schedule.heldout):
         if type(item) is not dict or type(observation) is not dict:
             raise ValueError("H122 exact original private evidence objects")
         source_id=item.get("id")
@@ -34,6 +42,12 @@ def qualify_prediction_evidence(cases,raw_evidence):
                 or len(item["image_sha256"])!=64
                 or type(item.get("prompt")) is not str):
             raise ValueError("H122 source images not heldout original TRAIN")
+        if (item.get("id")!=derived.get("original_source_id") or
+                item.get("image_sha256")!=derived.get("image_sha256") or
+                item.get("prompt")!=derived.get("prompt") or
+                derived.get("split")!="train" or
+                derived.get("original_source_split")!="train"):
+            raise ValueError("H122 case is not the SHA-qualified original 64 TRAIN holdout")
         if (observation.get("id")!=source_id or
                 observation.get("image_sha256")!=item["image_sha256"] or
                 observation.get("prompt_sha256")!=hashlib.sha256(item["prompt"].encode("utf8")).hexdigest()):
@@ -45,14 +59,14 @@ def qualify_prediction_evidence(cases,raw_evidence):
         outputs[source_id]=raw
     return outputs
 
-def score_heldout(cases,raw_evidence,split_sha=FROZEN_SPLIT_SHA):
+def score_heldout(cases,raw_evidence,heldout_schedule,split_sha=FROZEN_SPLIT_SHA):
     """Score genuine target boxes ONLY AFTER verifying model responses.
 
     Strict gate does not establish external general GUI skill.
     """
     if split_sha!=FROZEN_SPLIT_SHA:
         raise ValueError("H122 fixed original 448/64 split SHA differs")
-    raw=qualify_prediction_evidence(cases,raw_evidence)
+    raw=qualify_prediction_evidence(cases,raw_evidence,heldout_schedule)
     valid=0
     end_hit=0
     per_family=Counter()
@@ -107,7 +121,9 @@ def score_heldout(cases,raw_evidence,split_sha=FROZEN_SPLIT_SHA):
         "frozen_split_sha256":FROZEN_SPLIT_SHA,
         "all_model_raw_screenshot_and_prompt_SHA_verified":True,
         "no_original_public_EVAL_or_TEST_used":True,
-        "no_holdout_images_used_for_optimizer":True,
+        "no_holdout_images_used_for_optimizer":
+            len(set(heldout_schedule.train_original_indices)&
+                set(heldout_schedule.heldout_original_indices))==0,
         "GUI_skill_improvement_claimed":False,
         "external_evaluation_required_even_if_gate_passes":True,
     }
