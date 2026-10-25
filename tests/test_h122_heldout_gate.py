@@ -2,6 +2,7 @@
 import hashlib
 import unittest
 from h122.grid import end_completion
+from h113.dual_point import relative_to_source_pixel
 from h122.heldout_gate import score_heldout,HOLDOUT,FROZEN_SPLIT_SHA
 from h122.schedule import Schedule
 
@@ -14,6 +15,9 @@ def fixtures(correct=12,repeat=False):
         predicted=[true_x,true_y] if i<correct else [true_x+50,true_y+10]
         if repeat:
             predicted=[5,5]
+        # Model point uses normalized [0,1000]; original TRAIN END bbox
+        # must be in actual source-image pixels (1000 x 600).
+        source_x,source_y=relative_to_source_pixel([true_x,true_y],1000,600)
         prompt="Locate destination of original drag on unchanged screenshot."
         response=end_completion(predicted)
         scene={"id":f"train-scene-{i}","split":"train",
@@ -21,7 +25,7 @@ def fixtures(correct=12,repeat=False):
                "family":families[i%len(families)],
                "image_sha256":hashlib.sha256(f"image:{i}".encode()).hexdigest(),
                "prompt":prompt,"image_width":1000,"image_height":600,
-               "end_bbox":[true_x-2,true_y-2,true_x+2,true_y+2]}
+               "end_bbox":[source_x-2,source_y-2,source_x+2,source_y+2]}
         evidence={"id":scene["id"],"image_sha256":scene["image_sha256"],
                   "prompt_sha256":hashlib.sha256(prompt.encode()).hexdigest(),
                   "raw_output":response,
