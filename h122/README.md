@@ -62,9 +62,16 @@ never a gating claim if absent.
    heldout-TRAIN-only original 64 END-point inference with source
    digest, prompt SHA, model raw bytes, target box success, per-family
    balanced performance, cell/point consistency, and output-vector
-   diversity. Pre-register threshold prior to reading heldout targets.
-   Reject if model repeats a coordinate too frequently or fails
-   heldout geometry; no bypass.
+   diversity. The new `h122/heldout_gate.py` preregisters strict
+   thresholds *before model inference*: at least **8/64 END hits**,
+   **48/64 native-valid spatial JSON outputs**, **24 unique valid
+   locations**, modal location frequency **at most 25%**, and hits
+   in **at least three of five** original TRAIN families. These are
+   internal exploratory qualification limits, not external benchmark
+   significance or clinical/general GUI skill proof. All 64 model
+   prompt/image/raw-response SHAs must match; EVAL/TEST labels may
+   never be used to choose checkpoints. Any failed gate stops before
+   fresh public EVAL; no bypass.
 4. Only if heldout gate passes: evaluate new original official DragOn
    EVAL indices 108..123 per each four domains with unchanged H61 scorer,
    matched H114 and frozen H119 baselines, separate model-produced
