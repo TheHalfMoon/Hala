@@ -92,6 +92,17 @@ class H122HeldoutGateTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             score_heldout(cases,raw,schedule,split_sha="0"*64)
 
+    def test_disjoint_but_nonoriginal_indices_cannot_forge_frozen_split(self):
+        cases,raw,schedule=fixtures()
+        forged=Schedule(
+            train=schedule.train,
+            heldout=schedule.heldout,
+            train_original_indices=schedule.train_original_indices,
+            heldout_original_indices=tuple(range(600,664)),
+            summary=schedule.summary)
+        with self.assertRaises(ValueError):
+            score_heldout(cases,raw,forged)
+
     def test_partial_predictions_never_silently_drop(self):
         cases,raw,schedule=fixtures()
         with self.assertRaises(ValueError):
