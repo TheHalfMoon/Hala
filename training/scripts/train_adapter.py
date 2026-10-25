@@ -405,15 +405,21 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                     raise ValueError('H119 source image/prompt does not match exact original H105 TRAIN')
     if h122_grid_plan is not None:
         from h122.grid import verify_overlay
+        from h122.source_bound import admit_original_source_map,original_for_sft
         from h122.schedule import TRAIN as H122_TRAIN,HOLDOUT as H122_HOLDOUT
         if (config.max_steps!=H122_TRAIN or
                 len(sampling_plan.indices)!=H122_TRAIN or
                 h122_grid_plan.summary.get('heldout_train_source_images')!=H122_HOLDOUT):
             raise ValueError('H122 exact 448 TRAIN /64 heldout no optimizer overlap')
+        # H61 SFT rows intentionally omit END bbox and frame dimensions.
+        # Read immutable TRAIN source shards; never infer target boxes
+        # from model output, EVAL/TEST labels, or H61 prompt text.
+        original_sources=admit_original_source_map(root)
         for ordinal,(index,derived) in enumerate(zip(
                 sampling_plan.indices,h122_grid_plan.train)):
-            if not verify_overlay(records[index],derived):
-                raise ValueError('H122 original source END target changed')
+            original=original_for_sft(records[index],original_sources)
+            if not verify_overlay(original,derived):
+                raise ValueError('H122 original TRAIN source END target changed')
     native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
                                                    H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
