@@ -23,9 +23,11 @@ strict scores. The `eval.py` GPU evaluator is implemented for three
 private checkpoint arms with genuine neural START and END predictions,
 untouched original H61 scoring, private raw output and source/prompt
 SHA evidence. The private Kaggle `kaggle_private_run.py` is prepared but
-**MUST NOT be submitted** while H119 adapter/checkpoint/optimizer SHA
-pins in `eval.py` are `None`. An owner Windows replay program is also
-prepared outside the GitHub repo; no real H120 neural inference or owner
-replay has yet occurred. Raw media, checkpoints, target boxes and neural
+was withheld until actual H119 adapter/checkpoint/optimizer SHA bytes
+passed an independent Windows replay (18/18 checks), and those exact
+verified values are now pinned in `eval.py`. The Kaggle runner must
+fetch a committed source SHA including these pins. An owner Windows
+replay program is prepared outside GitHub; no real H120 neural inference
+or owner H120 GUI replay has yet occurred. Raw media, checkpoints, target boxes and neural
 outputs stay owner-private.
 No paid resources, public model publication, merge or release.

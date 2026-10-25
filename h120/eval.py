@@ -35,11 +35,11 @@ from training.artifacts import sha256_file
 from training.checkpoints import load_checkpoint
 from training.scripts.baseline import MODEL_ID,MODEL_REVISION
 
-# Fill ONLY after owner independently verifies original adapter, checkpoint
-# AND optimizer bytes, exact H119 1024-step gradients and source identity.
-H119_ADAPTER_SHA = None
-H119_CHECKPOINT_SHA = None
-H119_OPTIMIZER_SHA = None
+# Independently owner-verified 2026-10-25: 18/18 real Windows binary,
+# optimizer, gradient, exact original TRAIN/source identity checks passed.
+H119_ADAPTER_SHA = "6b5c01eff8097321926373e251bc9a3e7a6cc17e524bdf860fc1543e551b2ed7"
+H119_CHECKPOINT_SHA = "a9c3b7d66450b910cea78a3876529c3408b67d3ad1080e629e72b2d239a93f19"
+H119_OPTIMIZER_SHA = "0f73481865b4f2ead8726362db495224eb4cd02a14857593f3df79719c33f4f7"
 H119_KERNEL="hala-h119-private-robust-full512-1024-t4"
 H119_ROOT="hala-h119-private-robust512-1024-checkpoint"
 SUMMARY_SCHEMA="hala.h120.owner-private-real-next64-three-arm-GUI.v1"
