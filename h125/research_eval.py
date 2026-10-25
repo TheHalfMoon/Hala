@@ -13,7 +13,7 @@ from h96.research_probe import require_private_vision_research
 from h125.source import derive,TOTAL
 from h125.eval_plan import get_plan,score,SOURCE_SHA,SCHEDULE_SHA
 from h125.heldout_source import admit_original_train64
-from h125.model_contracts import MODELS
+from h125.model_contracts import MODELS,SHOWUI_SYSTEM
 from training.artifacts import sha256_file
 
 SCHEMA="hala.h125.real-original-TRAIN64-zero-shot-specialized2b-v1"
@@ -31,8 +31,16 @@ def _inference(model,processor,cases,torch,arm):
                 "image_sha256":item["image_sha256"]}
         for role in ("start","end"):
             prompt=item["prompt_"+role]
-            msg=[{"role":"user","content":[
-                 {"type":"image"},{"type":"text","text":prompt}]}]
+            if arm=="showui_2b":
+                if not prompt.startswith(SHOWUI_SYSTEM+"\n"):
+                    raise ValueError("H125 official ShowUI system/task prompt identity drift")
+                task=prompt[len(SHOWUI_SYSTEM)+1:]
+                content=[{"type":"text","text":SHOWUI_SYSTEM},
+                         {"type":"image"},
+                         {"type":"text","text":task}]
+            else:
+                content=[{"type":"image"},{"type":"text","text":prompt}]
+            msg=[{"role":"user","content":content}]
             rendered=processor.apply_chat_template(
                 msg,tokenize=False,add_generation_prompt=True)
             batch=processor(text=[rendered],images=[image],

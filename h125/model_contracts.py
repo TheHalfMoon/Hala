@@ -26,10 +26,13 @@ MODELS={
                     "cabec4fcc48d15ffd3efe0b33ea9bc7d41509d60",
                     "mit","relative_0_1","qwen2_vl",True)
 }
-UGROUND_PROMPT="""Find the described interface target in the screenshot. Give only its representative center as a single coordinate pair (x,y), on a 0..1000 normalized image grid.
+UGROUND_PROMPT="""Your task is to help the user identify the precise coordinates (x, y) of a specific area/element/object on the screen based on a description.
+- Your response should aim to point to the center or a representative point within the described area/element/object as accurately as possible.
+- If the description is unclear or ambiguous, infer the most relevant area or element based on its likely context or purpose.
+- Your answer should be a single string (x, y) corresponding to the point of interest.
 Description: {description}
 Answer:"""
-SHOWUI_SYSTEM="Find the specified GUI element in this screenshot. Output only [x,y] relative image coordinates from 0 to 1, with x measured horizontally and y vertically."
+SHOWUI_SYSTEM="Based on the screenshot of the page, I give a text description and you give its corresponding location. The coordinate represents a clickable location [x, y] for an element, which is a relative coordinate on the screenshot, scaled from 0 to 1."
 
 def prompt_for(model:str,intent:str,role:str):
     if model not in MODELS or role not in ("START","END"):
