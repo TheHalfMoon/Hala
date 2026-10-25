@@ -13,7 +13,7 @@ import sys
 
 # This frozen source is intentionally UNARMED: verified model SHA pins
 # are None; do not launch against a hypothetical Kaggle training result.
-SOURCE_SHA="178f4902f435d305d66e3784bdf55e241de762e1"
+SOURCE_SHA="9a5133d254d339d0e3d89993bd7aff886efeb025"
 REPO=Path("/kaggle/tmp/hala-h122-heldout-frozen-source")
 WORK=Path("/kaggle/tmp/hala-h122-private-TRAIN64-END-work")
 OUTPUT=Path("/kaggle/working/hala-h122-private-train64-END-eval")
