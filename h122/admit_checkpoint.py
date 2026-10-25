@@ -25,12 +25,13 @@ SOURCE_KERNEL="hala-h122-private-end-grid448-t4"
 SOURCE_DIR="hala-h122-private-end-grid448-checkpoint"
 SOURCE_RECEIPT="hala-h122-private-train-receipt.json"
 
-# These must be pinned ONLY from a true independently replayed private
-# Windows adapter/checkpoint/optimizer readback, not copied from a
-# hypothetical experiment, text plan, or unverified Kaggle status.
-H122_VERIFIED_ADAPTER_SHA=None
-H122_VERIFIED_CHECKPOINT_SHA=None
-H122_VERIFIED_OPTIMIZER_SHA=None
+# These three exact bytes were independently verified against
+# real owner-private free T4 v4 training checkpoint files on Windows,
+# 20/20 checks PASS (source/optimizer/data/media/binary identity).
+# This only admits END heldout evaluation, NOT GUI performance.
+H122_VERIFIED_ADAPTER_SHA="c870d3c37ffb4d4811ddd60539a697f4867e20f65c2e9b4d436083a807326efc"
+H122_VERIFIED_CHECKPOINT_SHA="2659b4cf2e256c1383114cadd493c89b1eba205aca5e149f9cf4201f0aee0d8b"
+H122_VERIFIED_OPTIMIZER_SHA="b83675126a3499fe448ce3b05a79de2b59fef3193a69636de637e17d27267964"
 
 
 def expected_training_identity(repo:Path, original_rows, source_root, schedule:Schedule):
