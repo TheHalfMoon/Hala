@@ -1,0 +1,20 @@
+{
+  "id": "abdulazizshehri/hala-h122-private-original-train64-heldout-end",
+  "title": "Hala H122 Private Original TRAIN64 END Holdout",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h113-private-original-dual-point-cpu",
+    "abdulazizshehri/hala-h122-private-end-grid448-t4"
+  ],
+  "model_sources": []
+}
