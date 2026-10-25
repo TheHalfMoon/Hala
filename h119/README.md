@@ -26,14 +26,19 @@ more-diverse *candidate curriculum* and explicitly perturbs TRAIN anchors:
 - Never read older H115/H118 EVAL targets for TRAIN construction, change
   previous checkpoints, or reuse an H117 adapter. Raw data remains private.
 
-This is only a **CPU-verified training-data plan**, NOT a new trained model
-or a demonstrated accuracy improvement. The existing H106/H117 trainer
-explicitly restricts joint LoRA to 256 optimizer steps and the original
-first 128 source pairs. A **new opt-in isolated trainer path**, new run
-identity, source/checkpoint/optimizer SHA attestations, 1024-step T4
-resource budget, and regression tests are required *before* H119 may
-run real training. Do not remove inherited safety constraints or silently
-reuse existing training flags.
+The original H106/H117 256-step training defaults remain unchanged.
+H119 now implements an **explicit isolated opt-in 1024-step joint LoRA path**
+with an exact full512 original H105 source plan, H113 source-bound pairing,
+strict target-only coordinate loss, a distinct experiment signature,
+no adapter warm-start, and bounded 64-step periodic checkpoint saves
+(16 optimizer snapshots rather than 1024). Owner-independent source
+qualification and CPU regression tests pass; the new private free-T4
+runner is SHA-pinned to the H119 training implementation commit.
+
+**A completed Kaggle kernel is not a model-quality result.** Genuine 1024
+GPU steps, owner-independent adapter/checkpoint/optimizer byte readback,
+and fresh original H61 strict GUI evaluation must be verified before any
+model improvement claims. No EVAL labels enter training.
 
 ## Pre-registered future evaluation
 Only after a distinct actual H119 adapter has independent byte replay,
