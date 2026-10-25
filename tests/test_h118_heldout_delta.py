@@ -21,8 +21,8 @@ class TestH118PreRegisteredGui(unittest.TestCase):
         self.assertEqual([r["id"] for r in frozen(full)],
                          [str(i) for i in range(76,92)])
         with self.assertRaises(ValueError):frozen(full[:-1])
-    def test_H117_checkpoint_remains_blocked_before_owner_verification(self):
-        self.assertIsNone(H117_ADAPTER_SHA)
+    def test_H117_checkpoint_fail_closed_without_real_binary(self):
+        self.assertEqual(H117_ADAPTER_SHA,"32222c4c75f2046cf5914caf1c9554c6bd15bb02c33ac4c4075ea9f1b8c577cf")
         with self.assertRaises(ValueError):
             admit_h117_checkpoint("/unknown/owner/checkpoint")
     def test_only_model_start_may_anchor_new_signed_end(self):

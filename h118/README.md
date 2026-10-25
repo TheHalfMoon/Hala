@@ -1,8 +1,10 @@
 # H118 — preregistered new 64-scene strict GUI experiment
 
-This is an evaluator-only Draft. H117's adapter is NOT admitted until
-actual 256 optimizer updates, a private checkpoint and an independent
-owner-Windows adapter/checkpoint/optimizer byte-SHA replay are verified.
+This is an evaluator-only Draft. H117 actual 256 optimizer updates and
+owner-Windows byte-level replay passed 20/20 checks on 2026-10-25. The
+fresh adapter and checkpoint SHA-256 are now explicitly pinned and admitted.
+This is **NOT** evidence of better GUI ability: H118 neural evaluation
+and independent source/prompt/output replay are still required.
 
 Prior benchmark: H115 on genuine pinned original DragOn public EVAL
 60..75, four domains, 64 unseen scenes. H106 scored 0/64 full drags;
@@ -40,9 +42,10 @@ context. Inference deliberately uses its OWN predicted START, which
 may introduce substantial distribution shift. This is a known limitation,
 not hidden by an oracle anchor or test-set hand correction.
 
-Fail-closed at source: H117_ADAPTER_SHA/H117_CHECKPOINT_SHA remain unset
-until actual owner independently verified H117 new model. No H118
-Kaggle kernel should run before verification. If any change to H117
+Fail-closed at source: H117_ADAPTER_SHA/H117_CHECKPOINT_SHA are fixed to
+actual owner independently rehashed final H117 binaries (20/20 checks),
+including the separate optimizer resume SHA. H118 may now run only with
+the original private source-bound attached checkpoint and unchanged scorer. If any change to H117
 weights, code, data or source indices occurs, require a new committed
 and separately identified evaluation attempt.
 

@@ -22,8 +22,8 @@ class TestH118FutureStrict(unittest.TestCase):
         self.assertEqual(ARMS,("h106_original_drag",
                                "h114_independent_points",
                                "h117_conditioned_signed_end"))
-    def test_checkpoint_is_blocked_until_independent_owner_sha(self):
-        self.assertIsNone(H117_ADAPTER_SHA)
+    def test_checkpoint_requires_exact_owner_verified_binary(self):
+        self.assertEqual(H117_ADAPTER_SHA,"32222c4c75f2046cf5914caf1c9554c6bd15bb02c33ac4c4075ea9f1b8c577cf")
         with self.assertRaises(ValueError):
             admit_h117_checkpoint("/no/private/adapter")
     def test_actual_model_predicted_start_required_no_oracle(self):

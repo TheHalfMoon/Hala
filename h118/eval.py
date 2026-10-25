@@ -23,8 +23,8 @@ PER_DOMAIN=16
 END=START+PER_DOMAIN
 ARMS=("h106_original_drag","h114_independent_points","h117_conditioned_signed_end")
 SCHEMA="hala.h118.private-new64-absolute-vs-conditioned-signed-end-GUI.v1"
-H117_ADAPTER_SHA=None
-H117_CHECKPOINT_SHA=None
+H117_ADAPTER_SHA="32222c4c75f2046cf5914caf1c9554c6bd15bb02c33ac4c4075ea9f1b8c577cf"
+H117_CHECKPOINT_SHA="cd7c84936b623937fc2fa32554368fa28a9f0f1878c74b4019e8929ebb9fbcb0"
 
 def frozen(rows):
     if len(rows)!=END:
