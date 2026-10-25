@@ -26,8 +26,12 @@ def qualify_prediction_evidence(cases,raw_evidence,heldout_schedule):
             or heldout_schedule.summary.get("source_split")!="TRAIN_ONLY"
             or len(heldout_schedule.heldout)!=HOLDOUT
             or len(heldout_schedule.train)!=TRAIN
-            or len(set(heldout_schedule.train_original_indices)&
-                   set(heldout_schedule.heldout_original_indices))!=0):
+            or len(set(heldout_schedule.train_original_indices))!=TRAIN
+            or len(set(heldout_schedule.heldout_original_indices))!=HOLDOUT
+            or set(heldout_schedule.train_original_indices)&
+               set(heldout_schedule.heldout_original_indices)
+            or (set(heldout_schedule.train_original_indices)|
+                set(heldout_schedule.heldout_original_indices))!=set(range(TRAIN+HOLDOUT))):
         raise ValueError("H122 exact owner-qualified 448/64 frozen TRAIN schedule required")
     seen=set()
     outputs={}
