@@ -1,6 +1,6 @@
-"""H122 checkpoint and heldout GPU runners are UNARMED until owner SHA proof.
+"""H122 heldout GPU admits only exact independently verified real model bytes.
 
-These tests require no Kaggle quota, no model weights or local inference.
+CPU tests require no Kaggle quota, weights or local inference.
 """
 import unittest
 from pathlib import Path
@@ -15,11 +15,15 @@ from h122.schedule import Schedule
 
 
 class H122PrivateResearchGateTest(unittest.TestCase):
-    def test_unverified_training_binary_cannot_be_evaluated(self):
-        self.assertIsNone(H122_VERIFIED_ADAPTER_SHA)
-        self.assertIsNone(H122_VERIFIED_CHECKPOINT_SHA)
-        self.assertIsNone(H122_VERIFIED_OPTIMIZER_SHA)
-        with self.assertRaisesRegex(ValueError,"not yet admitted"):
+    def test_owner_verified_real_training_hashes_are_pinned(self):
+        self.assertEqual(H122_VERIFIED_ADAPTER_SHA,
+            "c870d3c37ffb4d4811ddd60539a697f4867e20f65c2e9b4d436083a807326efc")
+        self.assertEqual(H122_VERIFIED_CHECKPOINT_SHA,
+            "2659b4cf2e256c1383114cadd493c89b1eba205aca5e149f9cf4201f0aee0d8b")
+        self.assertEqual(H122_VERIFIED_OPTIMIZER_SHA,
+            "b83675126a3499fe448ce3b05a79de2b59fef3193a69636de637e17d27267964")
+        # Even SHA-pinned weights cannot bypass private checkpoint and source.
+        with self.assertRaisesRegex(ValueError,"private attached Kaggle"):
             admit_checkpoint(Path("missing"),Path("missing"),[],
                              Path("missing"),None)
 
