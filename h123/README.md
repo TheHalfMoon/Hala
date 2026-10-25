@@ -29,7 +29,8 @@ From *new*, independent, SHA-bound images select exactly 256 per
 complex family: sheet, slide_resize, slider, text_highlight.
 Balance real original drag directions, final target 4x4 regions and
 distance scales on TRAIN source geometry only, using a fixed seed.
-Reserve 32/domain (4 from each of eight original drag directions) as
+Reserve 32/domain with source-support-proportional stratification across
+the directions genuinely represented within each original domain as
 new never-optimized heldout; keep 224/domain for eventual actual
 training. New total: **896 train, 128 heldout**, 1024 unique original
 TRAIN images across all four families. Every example has genuine

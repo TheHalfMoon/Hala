@@ -78,9 +78,16 @@ def _balanced_choose(candidates,count):
         direction[best["direction"]]+=1
         cells[tuple(best["end_cell"])]+=1
         scales[best["scale"]]+=1
-    if (len(chosen)!=count or len(used_images)!=count or
-            len(direction)<6 or len(cells)<8):
-        raise ValueError("H123 original TRAIN spatial/direction diversity failed")
+    available_dirs={x["direction"] for x in candidates}
+    available_cells={tuple(x["end_cell"]) for x in candidates}
+    if (len(chosen)!=count or len(used_images)!=count
+            or len(available_dirs)<2 or len(available_cells)<2
+            or len(direction)<min(6,len(available_dirs))
+            or len(cells)<min(8,len(available_cells))):
+        raise ValueError(
+            "H123 original TRAIN support-aware spatial/direction diversity "
+            f"failed: chosen_dirs={len(direction)}, available_dirs={len(available_dirs)}, "
+            f"chosen_cells={len(cells)}, available_cells={len(available_cells)}")
     return chosen
 
 
@@ -94,13 +101,22 @@ def _holdout_indices(selected):
             raise ValueError("H123 original eight-way drag direction required")
         by_dir[x["direction"]].append(
             (_hashed("heldout:"+SEED+x["sha"]),i))
-    if len(by_dir)!=8 or any(len(items)<4 for items in by_dir.values()):
-        raise ValueError("H123 all eight original TRAIN directions required")
-    indices=set()
-    for direction,items in sorted(by_dir.items()):
-        indices.update(i for _,i in sorted(items)[:4])
+    if not 2<=len(by_dir)<=8 or any(len(items)<4 for items in by_dir.values()):
+        raise ValueError("H123 original source has insufficient supported directions")
+    # Stratify over actual TRAIN directions, rather than demanding GUI
+    # motions that do not exist in a particular original source domain.
+    ordering={k:[i for _,i in sorted(v)] for k,v in by_dir.items()}
+    used={k:1 for k in ordering}
+    indices={indices[0] for indices in ordering.values()}
+    while len(indices)<HELDOUT_PER_FAMILY:
+        choices=[k for k in ordering if used[k]<len(ordering[k])-1]
+        if not choices:
+            raise ValueError("H123 32 independent TRAIN holdouts unavailable")
+        direction=min(choices,key=lambda k:(used[k]/len(ordering[k]),k))
+        indices.add(ordering[direction][used[direction]])
+        used[direction]+=1
     if len(indices)!=HELDOUT_PER_FAMILY:
-        raise ValueError("H123 original complex 32/domain heldout source drift")
+        raise ValueError("H123 exact source 32/domain holdout count differs")
     return indices
 
 

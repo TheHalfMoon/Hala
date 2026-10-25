@@ -68,6 +68,20 @@ class H123SourceTests(unittest.TestCase):
             [x["source_id"] for x in _balanced_choose(features(),PER_FAMILY)],
             [x["source_id"] for x in selected])
 
+    def test_original_gui_domain_with_only_horizontal_motion(self):
+        # A source domain may genuinely contain only horizontal drags.
+        # Sample-support stratification must not fabricate other labels.
+        source=features()
+        for row in source:
+            row["direction"]=row["direction"]%2
+        selected=_balanced_choose(source,PER_FAMILY)
+        heldout=_holdout_indices(selected)
+        self.assertEqual(len(selected),256)
+        self.assertEqual(len(heldout),32)
+        self.assertEqual({selected[i]["direction"] for i in heldout},{0,1})
+        self.assertEqual(sum(selected[i]["direction"]==0 for i in heldout),16)
+        self.assertEqual(sum(selected[i]["direction"]==1 for i in heldout),16)
+
     def test_malformed_original_source_distribution_refused(self):
         with self.assertRaises(ValueError):
             _balanced_choose(features(255),256)
