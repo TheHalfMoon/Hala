@@ -18,8 +18,14 @@ model inference count and two-sided paired exact McNemar. No optional
 post-hoc replacement of failing scenes. No model skill claim based on
 loss or native JSON validity.
 
-H120's current `protocol.py` is the **CPU-only scene selector and
-frozen strict-score comparison**. GPU inference and Windows-independent
-prompt/media/raw-output replays are future work contingent on training.
-Raw media, checkpoints, target boxes, neural outputs stay owner-private.
+The frozen CPU-only `protocol.py` selects source scenes and compares
+strict scores. The `eval.py` GPU evaluator is implemented for three
+private checkpoint arms with genuine neural START and END predictions,
+untouched original H61 scoring, private raw output and source/prompt
+SHA evidence. The private Kaggle `kaggle_private_run.py` is prepared but
+**MUST NOT be submitted** while H119 adapter/checkpoint/optimizer SHA
+pins in `eval.py` are `None`. An owner Windows replay program is also
+prepared outside the GitHub repo; no real H120 neural inference or owner
+replay has yet occurred. Raw media, checkpoints, target boxes and neural
+outputs stay owner-private.
 No paid resources, public model publication, merge or release.
