@@ -96,7 +96,8 @@ def score_paired(scenes,actions):
             "h119_vs_h114":exact_mcnemar(outcomes[ARMS[2]],outcomes[ARMS[0]]),
             "h119_vs_h117":exact_mcnemar(outcomes[ARMS[2]],outcomes[ARMS[1]]),
             "unchanged_original_H61_strict_scorer":True,
-            "no_oracle_targets_in_inference":True,
+            "oracle_prompt_provenance_not_checked_by_scorer":True,
+            "independent_prompt_media_raw_sha_replay_required":True,
             "inference_executed_by_this_module":False,
             "training_executed_by_this_module":False,
             "model_GUI_improved_claimed":False}
