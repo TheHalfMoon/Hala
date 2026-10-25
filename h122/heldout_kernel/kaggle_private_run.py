@@ -82,6 +82,7 @@ def main():
             raise ValueError("H122 frozen evaluation code SHA differs")
         sys.path.insert(0,str(REPO))
         os.environ.update(HALA_NONCOMMERCIAL_RESEARCH="1",
+                          HALA_REMOTE_TRAINING_ALLOWED="1",
                           HF_HUB_DISABLE_TELEMETRY="1",DO_NOT_TRACK="1")
         state["stage"]="OWNER_SHA_VERIFIED_MODEL_AND_64_ORIGINAL_TRAIN_HELDOUT"
         record(state)
