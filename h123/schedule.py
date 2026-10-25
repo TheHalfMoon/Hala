@@ -81,7 +81,7 @@ def _balanced_choose(candidates,count):
     available_dirs={x["direction"] for x in candidates}
     available_cells={tuple(x["end_cell"]) for x in candidates}
     if (len(chosen)!=count or len(used_images)!=count
-            or len(available_dirs)<2 or len(available_cells)<2
+            or len(available_dirs)<1 or len(available_cells)<2
             or len(direction)<min(6,len(available_dirs))
             or len(cells)<min(8,len(available_cells))):
         raise ValueError(
@@ -92,7 +92,7 @@ def _balanced_choose(candidates,count):
 
 
 def _holdout_indices(selected):
-    """Before training: four heldout images from each of eight directions."""
+    """Reserve 32 per domain across its authentic TRAIN-supported directions."""
     if len(selected)!=PER_FAMILY or len({x["sha"] for x in selected})!=PER_FAMILY:
         raise ValueError("H123 original 256 unique screenshots required")
     by_dir=defaultdict(list)
@@ -101,7 +101,7 @@ def _holdout_indices(selected):
             raise ValueError("H123 original eight-way drag direction required")
         by_dir[x["direction"]].append(
             (_hashed("heldout:"+SEED+x["sha"]),i))
-    if not 2<=len(by_dir)<=8 or any(len(items)<4 for items in by_dir.values()):
+    if not 1<=len(by_dir)<=8 or any(len(items)<4 for items in by_dir.values()):
         raise ValueError("H123 original source has insufficient supported directions")
     # Stratify over actual TRAIN directions, rather than demanding GUI
     # motions that do not exist in a particular original source domain.
@@ -186,7 +186,15 @@ def derive(rows,root:Path):
             else:
                 train.append(item["role"]);train_indices.append(item["index"])
                 family_t+=1
-        domain_sizes[family]={"train":family_t,"heldout":family_h}
+        domain_sizes[family]={
+            "train":family_t,"heldout":family_h,
+            "available_original_TRAIN_directions":
+                len({x["direction"] for x in pool[family]}),
+            "selected_TRAIN_directions":
+                dict(sorted((str(k),v) for k,v in
+                     Counter(x["direction"] for x in selected).items())),
+            "available_original_TRAIN_target_regions":
+                len({tuple(x["end_cell"]) for x in pool[family]})}
         if family_t!=224 or family_h!=32:
             raise ValueError("H123 exact original TRAIN domain allocation drift")
     if (len(train)!=TRAIN or len(heldout)!=HOLDOUT

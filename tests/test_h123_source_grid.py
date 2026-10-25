@@ -82,12 +82,22 @@ class H123SourceTests(unittest.TestCase):
         self.assertEqual(sum(selected[i]["direction"]==0 for i in heldout),16)
         self.assertEqual(sum(selected[i]["direction"]==1 for i in heldout),16)
 
+    def test_single_direction_original_source_is_not_fabricated(self):
+        xs=features()
+        for item in xs:
+            item["direction"]=0
+        selected=_balanced_choose(xs,256)
+        holdout=_holdout_indices(selected)
+        self.assertEqual(len(holdout),32)
+        self.assertEqual({selected[i]["direction"] for i in holdout},{0})
+        self.assertEqual(len({tuple(i["end_cell"]) for i in selected}),16)
+
     def test_malformed_original_source_distribution_refused(self):
         with self.assertRaises(ValueError):
             _balanced_choose(features(255),256)
         xs=features()
-        for x in xs:
-            x["direction"]=0
+        for item in xs:
+            item["end_cell"]=(0,0)
         with self.assertRaises(ValueError):
             _balanced_choose(xs,256)
 
