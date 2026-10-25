@@ -16,6 +16,7 @@ from h106.training_plan import STRATEGY as H106_STRATEGY
 from h61.curriculum import load_export as load_h71
 from h122.schedule import qualify_owner_private,TRAIN,HOLDOUT
 from h122.training_plan import get_plan,STEPS
+from h122.pre_gpu import qualify_before_gpu
 from training.artifacts import sha256_file
 from training.checkpoints import load_checkpoint
 from training.scripts.train_adapter import train
@@ -67,11 +68,17 @@ def run(*,repo,scratch,output):
     plan=get_plan(original,root,qualified,STEPS)
     if len(plan.indices)!=TRAIN or len(qualified.heldout)!=HOLDOUT:
         raise ValueError("H122 original source heldout disjointness missing")
+    original_source_proof=qualify_before_gpu(original,root,qualified,plan)
+    if (original_source_proof["original_source_images_sha_verified"]!=512
+            or original_source_proof["optimizer_train_images_sha_verified"]!=TRAIN
+            or original_source_proof["excluded_heldout_train_images_sha_verified"]!=HOLDOUT):
+        raise ValueError("H122 all original TRAIN screenshots unverified")
     (Path("/kaggle/working")/"hala-h122-preflight.json").write_text(
         json.dumps({"schema":SCHEMA,"status":"448_TRAIN_64_TRAIN_HELDOUT_SHA_QUALIFIED",
                     "source_h71_train_sha256":TRAIN_SHA,
                     "h122_train_data_sha256":TRAIN_SHA_H122,
                     "h122_heldout_data_sha256":HELDOUT_SHA_H122,
+                    "original_source_pre_gpu_proof":original_source_proof,
                     "optimizers_executed":False,
                     "model_improvement_claimed":False,
                     "no_EVAL_or_TEST_in_training":True},
@@ -119,6 +126,7 @@ def run(*,repo,scratch,output):
         "train_private_sha256":TRAIN_SHA_H122,
         "heldout_private_sha256":HELDOUT_SHA_H122,
         "schedule_sha256":SCHEDULE_SHA_H122,
+        "original_source_pre_gpu_proof":original_source_proof,
         "original_train_screenshots":TRAIN,
         "original_heldout_train_screenshots":HOLDOUT,
         "actual_optimizer_steps":STEPS,
