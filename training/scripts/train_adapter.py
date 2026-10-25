@@ -55,6 +55,7 @@ JOINT_LORA_TARGET_PATTERN = (r'.*(?:language_model.*\.(?:q_proj|v_proj)|'
 JOINT_LORA_SCOPE_NONCE = 'hala.h106.original-h105-joint-vision-language-lora-rank8-v1'
 H114_POINT_SCOPE_NONCE = 'hala.h114.original-h113-independent-start-end-point-fresh-joint-lora-v1'
 H117_DELTA_SCOPE_NONCE = 'hala.h117.original-h116-conditioned-signed-end-delta-fresh-joint-lora-v1'
+H119_FULL512_SCOPE_NONCE = 'hala.h119.full512-anchor-robust-1024-fresh-joint-lora-v1'
 
 
 def qualify_vision_target_names(names):
@@ -221,7 +222,7 @@ def load_authoring_records(examples_path, manifest):
 def train(config_path, examples_path, manifest_path, baseline_path, output_path, resume=False,
           stop_after_step=None, init_adapter=None, vision_lora=False,
           sampling_strategy=None, joint_lora=False, point_sft_path=None,
-          conditioned_delta_sft_path=None):
+          conditioned_delta_sft_path=None, robust_anchor_sft_path=None):
     # H96 is a distinct isolated pilot. Do not silently reinterpret earlier
     # language-only checkpoints or combine adapters without qualification.
     if type(vision_lora) is not bool or type(joint_lora) is not bool:
@@ -237,6 +238,16 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             or sampling_strategy!=H106_SAMPLER
             or resume or init_adapter is not None):
         raise ValueError('H117 separate original TRAIN-only conditioned signed delta LoRA required')
+    if robust_anchor_sft_path is not None and (
+            type(robust_anchor_sft_path) not in (str, Path)
+            or point_sft_path is not None or conditioned_delta_sft_path is not None
+            or not joint_lora or sampling_strategy!=H106_SAMPLER
+            or resume or init_adapter is not None or vision_lora):
+        raise ValueError('H119 isolated fresh TRAIN-only full512/1024 path required')
+    if robust_anchor_sft_path is not None and stop_after_step is not None:
+        from h119.training_plan import checkpoint_due
+        if not checkpoint_due(stop_after_step):
+            raise ValueError('H119 interruption only allowed at durable 64-step checkpoint')
     if sampling_strategy not in (None, H99_SAMPLER, H106_SAMPLER):
         raise ValueError('only pinned original H99 or H106 source plans are admitted')
     if sampling_strategy==H99_SAMPLER and (not vision_lora or init_adapter is not None or resume):
@@ -261,7 +272,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                         or config.lora_rank > 8 or config.precision != 'fp16'
                         or config.gradient_accumulation != 1):
         raise ValueError('H96 vision study bounded to <=32 steps, rank<=8, one T4 microbatch')
-    if joint_lora and (config.platform!='kaggle' or config.max_steps!=256
+    if joint_lora and (config.platform!='kaggle' or config.max_steps!=(1024 if robust_anchor_sft_path is not None else 256)
                        or config.lora_rank!=8 or config.precision!='fp16'
                        or config.gradient_accumulation!=1 or config.batch_size!=1
                        or config.supervision!='coordinate_weighted'
@@ -294,7 +305,11 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
     elif sampling_strategy==H106_SAMPLER:
         if manifest.get('source_schema')!=H61_DRAG_SCHEMA:
             raise ValueError('H106 only immutable original H71 TRAIN source')
-        sampling_plan=get_h106_joint_plan(records,root,config.max_steps)
+        if robust_anchor_sft_path is not None:
+            from h119.training_plan import get_plan as get_h119_full_plan
+            sampling_plan=get_h119_full_plan(records,root,config.max_steps)
+        else:
+            sampling_plan=get_h106_joint_plan(records,root,config.max_steps)
         if sampling_plan.summary['source_split']!='TRAIN_ONLY':
             raise ValueError('H106 no EVAL or TEST in training')
     else:
@@ -340,6 +355,28 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                         or derived['language']!=original['language']
                         or derived['family']!=original['family']):
                     raise ValueError('H117 original H116 point and signed displacement source mismatched H71')
+    h119_full_plan=None
+    if robust_anchor_sft_path is not None:
+        from h119.curriculum import qualify_owner_private as qualify_h119_source
+        from h119.training_plan import STEPS as H119_STEPS, PAIRS as H119_PAIRS
+        if (manifest.get('source_schema')!=H61_DRAG_SCHEMA or
+                config.max_steps!=H119_STEPS or sampling_plan is None or
+                len(sampling_plan.indices)!=H119_PAIRS):
+            raise ValueError('H119 requires original 512 H105 selected TRAIN screenshots')
+        h119_full_plan=qualify_h119_source(Path(robust_anchor_sft_path))
+        if h119_full_plan.summary['source_split']!='TRAIN_ONLY':
+            raise ValueError('H119 source not TRAIN-only')
+        for image_index in range(H119_PAIRS):
+            original=records[sampling_plan.indices[image_index]]
+            for role_index in range(2):
+                derived=h119_full_plan.selected[image_index*2+role_index]
+                if (derived['original_source_id']!=original['id'] or
+                        derived['image_sha256']!=original['image_sha256'] or
+                        derived['image_path']!=original['image_path'] or
+                        derived['language']!=original['language'] or
+                        derived['family']!=original['family'] or
+                        derived['split']!='train'):
+                    raise ValueError('H119 source image/prompt does not match exact original H105 TRAIN')
     native_drag = manifest.get('source_schema') in (H54_DRAG_SCHEMA, H57_DRAG_SCHEMA,
                                                    H60_DRAG_SCHEMA, H61_DRAG_SCHEMA)
     signature = hashlib.sha256(json.dumps(config_data, sort_keys=True).encode()).hexdigest()
@@ -361,6 +398,11 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
             h117_delta_plan.summary['original_h113_parent_sha256'] +
             h117_delta_plan.summary['derived_private_training_jsonl_sha256']
         ).encode()).hexdigest()
+    if h119_full_plan is not None:
+        signature=hashlib.sha256((
+            signature + H119_FULL512_SCOPE_NONCE +
+            h119_full_plan.summary['derived_private_train_sha256'] +
+            sampling_plan.sha256).encode()).hexdigest()
     init_digest = ''
     if init_adapter:
         init_path = Path(init_adapter)
@@ -462,6 +504,21 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                            coordinate_weight=config.coordinate_weight,
                            return_weights=True,h117_target_only=True)
         runtime['h117_signed_delta_processor_audited_roles'] = 10
+    if h119_full_plan is not None:
+        from h114.schedule import trainer_row
+        runtime['h119_full512_robust_anchor_sampler']=h119_full_plan.summary
+        runtime['h119_full512_original_plan']=sampling_plan.summary
+        for ordinal in (0,1,2,3,254,255,510,511,1018,1019,1022,1023):
+            original=records[sampling_plan.indices[ordinal//2]]
+            derived=h119_full_plan.selected[ordinal]
+            checked=trainer_row(original,derived)
+            checked['endpoint_role']=derived['endpoint_role']
+            prepare_inputs(checked,processor,root,manifest['token_budget'],
+                           native_drag_jpeg=native_drag,
+                           supervision=config.supervision,
+                           coordinate_weight=config.coordinate_weight,
+                           return_weights=True,h117_target_only=True)
+        runtime['h119_original_role_processor_audits']=12
     runtime['media_checked_records'] = len(records)
     runtime.update(audit_summary(audit_rows, len(records)))
     model = Qwen3VLForConditionalGeneration.from_pretrained(
@@ -560,22 +617,24 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         microbatches = []
         for accumulation in range(config.gradient_accumulation):
             ordinal = step * config.gradient_accumulation + accumulation
-            point_mode=(h114_point_plan is not None or h117_delta_plan is not None)
+            point_mode=(h114_point_plan is not None or h117_delta_plan is not None or h119_full_plan is not None)
             index = (sampling_plan.indices[ordinal//2] if point_mode
                      else (sampling_plan.indices[ordinal] if sampling_plan is not None
                            else ordinal % len(records)))
             selected_point_rows=(h114_point_plan.selected if h114_point_plan is not None
                                  else (h117_delta_plan.selected if h117_delta_plan is not None
-                                       else None))
+                                       else (h119_full_plan.selected if h119_full_plan is not None else None)))
             training_row = (trainer_row(records[index],selected_point_rows[ordinal])
                             if point_mode else records[index])
+            if h119_full_plan is not None:
+                training_row['endpoint_role']=selected_point_rows[ordinal]['endpoint_role']
             inputs, labels, weights = prepare_inputs(training_row, processor, root,
                                                     manifest['token_budget'],
                                                     native_drag_jpeg=native_drag,
                                                     supervision=config.supervision,
                                                     coordinate_weight=config.coordinate_weight,
                                                     return_weights=True,
-                                                    h117_target_only=(h117_delta_plan is not None))
+                                                    h117_target_only=(h117_delta_plan is not None or h119_full_plan is not None))
             inputs, labels = inputs.to('cuda:0'), labels.to('cuda:0')
             weights = weights.to('cuda:0')
             microbatches.append({'record_id': training_row['id'],
@@ -641,8 +700,14 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
                         'scaler': scaler.state_dict(), 'torch_rng': torch.get_rng_state(),
                         'cuda_rng': torch.cuda.get_rng_state_all()}, stage / 'resume.pt')
 
-        version = publish_checkpoint(output, progress, write_version)
-        interrupt_after_checkpoint(stop_after_step, step + 1, version)
+        # H119's 1024 updates must not create 1024 full optimizer copies
+        # and overflow the user's private Kaggle output volume.
+        # Keep existing per-step snapshots unchanged for all older paths.
+        if h119_full_plan is not None:
+            from h119.training_plan import checkpoint_due
+        if h119_full_plan is None or checkpoint_due(step+1,config.max_steps):
+            version = publish_checkpoint(output, progress, write_version)
+            interrupt_after_checkpoint(stop_after_step, step + 1, version)
     result = completed_checkpoint_result(version, progress, config_data)
     atomic_json(output / 'training-result.json', result)
     return result

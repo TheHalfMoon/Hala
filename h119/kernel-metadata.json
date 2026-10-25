@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h119-private-robust-full512-1024-t4",
+  "title": "Hala H119 Private Robust Full512 1024 T4",
+  "code_file": "kaggle_private_run.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h71-drag-train-10000-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h113-private-original-dual-point-cpu"
+  ],
+  "model_sources": []
+}
