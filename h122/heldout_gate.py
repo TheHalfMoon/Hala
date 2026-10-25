@@ -6,6 +6,7 @@ Only owner-private H113 original TRAIN holdout source+neural bytes are scored.
 import hashlib
 from collections import Counter
 from h122.grid import parse_end
+from h61.official_eval import strict_json
 from h122.schedule import HOLDOUT,TRAIN,Schedule
 
 SCHEMA="hala.h122.owner-private-original-train64-heldout-END-eval.v1"
@@ -71,7 +72,7 @@ def score_heldout(cases,raw_evidence,heldout_schedule,split_sha=FROZEN_SPLIT_SHA
     end_hit=0
     per_family=Counter()
     family_hits=Counter()
-    points=Counter()
+    normalized_points=Counter()
     grid_cells=Counter()
     for item in cases:
         w,h=item.get("image_width"),item.get("image_height")
@@ -88,16 +89,21 @@ def score_heldout(cases,raw_evidence,heldout_schedule,split_sha=FROZEN_SPLIT_SHA
         if end is None:
             continue
         valid+=1
-        points[tuple(end)]+=1
-        grid_cells[(min(9,end[0]*10//w),min(9,end[1]*10//h))]+=1
+        # Detect repeated *model-native normalized coordinates*, not pixel
+        # coordinates which can differ solely because image sizes differ.
+        # parse_end above has already enforced strict unique-key JSON,
+        # cell-to-point consistency and original image bounds.
+        predicted=strict_json(raw[item["id"]])
+        normalized_points[tuple(predicted["point"])]+=1
+        grid_cells[tuple(predicted["cell"])]+=1
         if box[0]<=end[0]<=box[2] and box[1]<=end[1]<=box[3]:
             end_hit+=1
             family_hits[fam]+=1
     if len(per_family)!=5 or sum(per_family.values())!=HOLDOUT:
         raise ValueError("H122 all five original TRAIN families required")
-    modal=(max(points.values())/valid) if valid else 1.0
+    modal=(max(normalized_points.values())/valid) if valid else 1.0
     gate=(valid>=MIN_VALID_ACTIONS and end_hit>=MIN_END_HITS and
-          len(points)>=MIN_UNIQUE_VALID_POINTS and
+          len(normalized_points)>=MIN_UNIQUE_VALID_POINTS and
           modal<=MAX_MODAL_POINT_FRACTION and
           len(family_hits)>=MIN_FAMILIES_WITH_HIT)
     return {
@@ -107,9 +113,10 @@ def score_heldout(cases,raw_evidence,heldout_schedule,split_sha=FROZEN_SPLIT_SHA
         "original_heldout_scenes":HOLDOUT,
         "strict_valid_END_grid_and_point":valid,
         "strict_END_hits":end_hit,
-        "unique_valid_END_points":len(points),
+        "unique_valid_END_points":len(normalized_points),
         "distinct_valid_grid_cells":len(grid_cells),
         "modal_point_fraction":round(modal,5),
+        "point_diversity_space":"model_normalized_0_1000",
         "original_train_families":dict(sorted(per_family.items())),
         "hits_per_family":dict(sorted(family_hits.items())),
         "thresholds":{"minimum_END_hits":MIN_END_HITS,
