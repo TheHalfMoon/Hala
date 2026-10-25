@@ -118,3 +118,26 @@ fail-closed while three owner-verified binary SHA constants remain
 unset. A separate Kaggle heldout runner is also staged **without
 submission**. No separate external public EVAL/TEST may be read
 before a real heldout-gate pass and independent Windows replay.
+
+
+## CPU source-proof gate before allocating free GPU
+
+The `h122/pre_gpu.py` admission runs **before** `train_adapter.train`
+imports or instantiates the 2B vision model. It re-verifies the frozen
+H105 source selection against the actual 512-original-H113 schedule;
+checks exact 448 optimizer TRAIN vs 64 heldout TRAIN index partition;
+rebinds every row to its authentic original H71 TRAIN action and END
+bbox; independently hashes the **actual staged bytes of all 512
+original screenshots**; and validates five-family and bilingual counts
+against the owner-SHA-verified frozen schedule.
+
+The preflight receipt contains only aggregate image counts, schedule
+digests and strict `model_initialized_or_trained=False`. No original
+source IDs, bounding boxes, raw media or coordinates are published.
+Any missing/changed image, overlap, mismatched bbox or source split
+fails **before consuming free Kaggle T4 model-loading resources**.
+The model trainer retains its own independent original source checks
+in addition to this early preflight. CI has synthetic original-source
+integrity tests; those do not replace the real owner-private H71/H113
+artifact checks during Kaggle execution. Neither preflight nor CPU CI
+proves an improved Hala model.
