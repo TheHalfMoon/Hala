@@ -11,6 +11,7 @@ from pathlib import Path
 from h113.dual_point import valid_box
 from h119.training_plan import get_plan as original_full512_plan
 from h122.grid import verify_overlay
+from h122.source_bound import admit_original_source_map,original_for_sft
 from h122.schedule import HOLDOUT,ORIGINAL,TRAIN,Schedule
 from training.artifacts import sha256_file
 
@@ -31,12 +32,14 @@ def admit_original_train_heldout(rows, root, schedule):
     if not root.is_dir() or root.is_symlink():
         raise ValueError("H122 exact original H71 TRAIN media root required")
     original=original_full512_plan(rows,root,ORIGINAL*2)
+    source_map=admit_original_source_map(root)
     chosen=[]
     seen_ids=set()
     seen_media=set()
     for original_index,derived in zip(
             schedule.heldout_original_indices,schedule.heldout):
-        row=rows[original.indices[original_index]]
+        sft=rows[original.indices[original_index]]
+        row=original_for_sft(sft,source_map)
         if (not verify_overlay(row,derived)
                 or row.get("split")!="train"
                 or row["id"] in seen_ids
