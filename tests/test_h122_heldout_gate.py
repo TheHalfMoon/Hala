@@ -60,6 +60,22 @@ class H122HeldoutGateTest(unittest.TestCase):
         self.assertEqual(result["strict_END_hits"],0)
         self.assertEqual(result["modal_point_fraction"],1.0)
 
+    def test_identical_normalized_point_across_different_screen_sizes_is_collapse(self):
+        cases,raw,schedule=fixtures()
+        for i,(case,observation) in enumerate(zip(cases,raw)):
+            case["image_width"]=800 if i%2==0 else 1000
+            case["image_height"]=400 if i%2==0 else 600
+            case["end_bbox"]=[300,280,340,320]
+            output=end_completion([200,200])
+            observation["raw_output"]=output
+            observation["output_sha256"]=hashlib.sha256(output.encode()).hexdigest()
+        result=score_heldout(cases,raw,schedule)
+        self.assertEqual(result["strict_valid_END_grid_and_point"],64)
+        self.assertEqual(result["unique_valid_END_points"],1)
+        self.assertEqual(result["modal_point_fraction"],1.0)
+        self.assertEqual(result["point_diversity_space"],"model_normalized_0_1000")
+        self.assertFalse(result["holdout_gate_passed"])
+
     def test_raw_neural_hash_cannot_be_faked(self):
         cases,raw,schedule=fixtures()
         changed=[dict(x) for x in raw]
