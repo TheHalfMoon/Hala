@@ -8,7 +8,7 @@ never guessed from an SFT row or copied from official EVAL/TEST.
 No new dataset, model, paid compute, benchmark or modification to H71.
 """
 from pathlib import Path
-from h61.curriculum import read_shard,shard_roots
+from h61.curriculum import FAMILY_PREFIX,read_shard,shard_roots
 from h105.curriculum import source_geometry
 
 
@@ -39,8 +39,15 @@ def original_for_sft(sft_row,original_source_map):
             or sft_row.get("id") not in original_source_map):
         raise ValueError("H122 original H71 TRAIN SFT source absent")
     original=original_source_map[sft_row["id"]]
-    if (sft_row.get("language")!=original.get("language")
-            or sft_row.get("family")!=original.get("family")
+    # H61.build derives exactly these two fields for original DragOn
+    # shard rows when raw labels omit them. Preserve the authentic raw
+    # source action, task boxes, media path and SHA unchanged.
+    # Missing language on original DragOn means English; missing family
+    # is derived from source domain. First-party rows already carry both.
+    language=original.get("language","en")
+    family=original.get("family") or (FAMILY_PREFIX+original["domain"]+"_train")
+    if (sft_row.get("language")!=language
+            or sft_row.get("family")!=family
             or sft_row.get("image_sha256")!=original.get("image_sha256")
             or sft_row.get("image_path")!=original.get("image_path")):
         raise ValueError("H122 SFT image/lang/family does not match original source")
@@ -48,4 +55,9 @@ def original_for_sft(sft_row,original_source_map):
     # original source END bbox, ordered field and TRAIN split.
     if source_geometry(sft_row,original) is None:
         raise ValueError("H122 original source geometry was excluded by H105")
-    return original
+    # Source geometry is immutable; the values below are H61's canonical
+    # metadata derivation, not modified media, new labels or EVAL data.
+    qualified=dict(original)
+    qualified["language"]=language
+    qualified["family"]=family
+    return qualified
