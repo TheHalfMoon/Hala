@@ -1,6 +1,6 @@
 {
   "id": "abdulazizshehri/hala-h127-private-blind-original-train64-cpu",
-  "title": "Hala H127 Private Blind Original TRAIN64 Source CPU",
+  "title": "hala-h127-private-blind-original-train64-cpu",
   "code_file": "kaggle_private_run.py",
   "language": "python",
   "kernel_type": "script",
