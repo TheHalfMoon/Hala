@@ -18,7 +18,7 @@ from h140.blind_original_capture import SCHEMA as PRIVATE_SOURCE_SCHEMA
 
 CANDIDATES={
     "ood-vanilla-complete":"blind-candidate-aisha16-v1",
-    "ood-second-drag":"blind-candidate-michael16-v2",
+    "ood-second-drag":"blind-candidate-michael16-v3",
 }
 
 def check_blind_source(root,app):
@@ -115,7 +115,11 @@ def seal(private_root,experiments_root=None):
     excluded,n_history,n_pilots=image_sha_exclusions(root,experiment_root)
     # A previously rejected incomplete source capture may have real images;
     # NEVER silently recycle any of those 6 observed originals in BLIND v2.
-    for old in root.glob("blind-candidate-*.incomplete"):
+    # Quarantine every previously tried OOD source frame, even completed
+    # source-only runs that failed native point-diversity requirements.
+    for old in root.glob("blind-candidate-*"):
+        if old.name in set(CANDIDATES.values()) or not old.is_dir():
+            continue
         for png in old.glob("*.png"):
             excluded.add(digest(png.read_bytes()))
     source_apps={app:check_blind_source(root,app) for app in CANDIDATES}
