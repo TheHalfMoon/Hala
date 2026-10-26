@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>H134 Original GUI Learning Tasks</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eaf0f8;color:#1a2d43;font:18px system-ui,sans-serif}
+main{padding:24px}h1{font-size:24px}#instruction{font-size:20px;font-weight:650}
+#stage{position:relative;width:800px;height:480px;background:#fdfefe;border:2px solid #adc0d4;border-radius:12px;overflow:hidden}
+.handle{position:absolute;z-index:3;background:#255fc2;touch-action:none;cursor:grab}
+.target{position:absolute;pointer-events:none;border:3px dashed #22965d;background:rgba(34,150,93,.10);z-index:2}
+#status{font-weight:bold}#hint{position:absolute;bottom:9px;left:22px;font-size:14px;color:#647d94}
+#track{position:absolute;height:16px;border-radius:8px;background:#cbdaf4}
+#panel{position:absolute;border:3px solid #255fc2;background:#e5efff;font-size:16px;padding:10px}
+#sheet{position:absolute;background:repeating-linear-gradient(0deg,#d7e6f8 0,#d7e6f8 26px,#f8fbff 26px,#f8fbff 52px);border:2px solid #adc0d4}
+#decoy{position:absolute;border:2px solid #9daec4;background:#d9e1eb;opacity:.75}
+</style></head><body><main><h1>Workspace Control Lab</h1>
+<p id="instruction"></p><div id="stage" data-success="false"></div><p id="status">Ready.</p></main>
+<script>
+"use strict";
+const query=new URLSearchParams(location.search);
+const id=Number(query.get("seed"));
+if(!Number.isSafeInteger(id)||id<1||id>999999)throw Error("Invalid original H134 seed");
+const family=id%4;
+const lang=id%5===0?"ar":"en";
+let random=id*0x9e3779b1>>>0;
+function rnd(){random^=random<<13;random^=random>>>17;random^=random<<5;return(random>>>0)/4294967296;}
+function pick(a){return a[Math.floor(rnd()*a.length)];}
+function elem(type,name,css,content){const e=document.createElement(type);e.id=name;Object.assign(e.style,css);if(content)e.textContent=content;stage.appendChild(e);return e;}
+const stage=document.querySelector("#stage"),instr=document.querySelector("#instruction"),status=document.querySelector("#status");
+const instructionEnglish=[
+  "Slide the blue knob to the green marker on the track.",
+  "Use the blue corner grip to resize the blue panel until its corner meets the green mark.",
+  "Drag the blue vertical divider of the data table to the green guide.",
+  "Move the blue task card into the green destination zone."
+];
+const instructionArabic=[
+  "اسحب مقبض الشريط الأزرق نحو العلامة الخضراء.",
+  "اسحب مقبض الزاوية الأزرق لتغيير حجم اللوحة وصولاً إلى العلامة الخضراء.",
+  "حرّك فاصل أعمدة الجدول الأزرق حتى يصل إلى الدليل الأخضر.",
+  "اسحب بطاقة المهمة الزرقاء إلى منطقة الإفلات الخضراء."
+];
+instr.textContent=lang==="ar"?instructionArabic[family]:instructionEnglish[family];
+const y=105+Math.floor(rnd()*215);
+const leftStart=120+Math.floor(rnd()*150);
+const rightStart=470+Math.floor(rnd()*115);
+const startsLeft=rnd()>.5;
+const sx=startsLeft?leftStart:rightStart;
+const gx=startsLeft?450+Math.floor(rnd()*190):105+Math.floor(rnd()*160);
+const sy=y,gy=family===0||family===2?sy:95+Math.floor(rnd()*275);
+const width=family===3?104:24,height=family===3?70:24;
+const hleft=sx-width/2,htop=sy-height/2;
+const destinationSize=family===3?[144,116]:[30,30];
+const target=elem("div","target",{left:(gx-destinationSize[0]/2)+"px",
+ top:(gy-destinationSize[1]/2)+"px",width:destinationSize[0]+"px",
+ height:destinationSize[1]+"px",borderRadius:family===3?"9px":"5px"});
+target.className="target";
+if(family===0){
+  elem("div","track",{left:(Math.min(sx,gx)-45)+"px",top:(sy-7)+"px",
+    width:(Math.abs(sx-gx)+90)+"px"});
+}
+if(family===1){
+ const bx=sx-110,by=sy-90;
+ const panel=elem("div","panel",{left:bx+"px",top:by+"px",width:"110px",height:"90px"},"Resize");
+ panel.dataset.baseX=String(bx);panel.dataset.baseY=String(by);
+}
+if(family===2){
+ elem("div","sheet",{left:(Math.min(sx,gx)-85)+"px",top:(sy-84)+"px",
+ width:(Math.abs(sx-gx)+180)+"px",height:"165px"},"Data | Details");
+}
+for(let i=0;i<3;i++){
+ let rx=Math.floor(45+rnd()*660),ry=Math.floor(60+rnd()*375);
+ if(Math.abs(rx-sx)<75&&Math.abs(ry-sy)<75)rx=(rx+160)%720;
+ if(Math.abs(rx-gx)<75&&Math.abs(ry-gy)<75)ry=(ry+150)%395;
+ elem("div","decoy"+i,{left:rx+"px",top:ry+"px",width:"48px",height:"24px",borderRadius:"6px"});
+}
+const handle=elem("div","handle",{left:hleft+"px",top:htop+"px",
+ width:width+"px",height:height+"px",border:"3px solid white",
+ borderRadius:family===0?"50%":"6px",boxShadow:"0 0 0 2px #255fc2"},family===3?"Task":"");
+handle.className="handle";handle.dataset.role="handle";
+elem("div","hint",{},lang==="ar"?"استخدم السحب المستمر لتحريك العنصر":"Drag and release to finish");
+function pointer(e){const r=stage.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];}
+let active=false;
+handle.addEventListener("pointerdown",e=>{
+ active=true;e.preventDefault();handle.setPointerCapture(e.pointerId);
+});
+handle.addEventListener("pointermove",e=>{
+ if(!active)return;
+ const [px,py]=pointer(e);
+ if(family===0||family===2){
+  handle.style.left=(px-width/2)+"px";
+ }else{
+  handle.style.left=(px-width/2)+"px";handle.style.top=(py-height/2)+"px";
+  if(family===1){
+    const panel=document.querySelector("#panel");
+    panel.style.width=Math.max(65,px-Number(panel.dataset.baseX))+"px";
+    panel.style.height=Math.max(60,py-Number(panel.dataset.baseY))+"px";
+  }
+ }
+});
+handle.addEventListener("pointerup",e=>{
+ if(!active)return;active=false;
+ const [px,py]=pointer(e);
+ const tolerance=family===3?[68,54]:family===0||family===2?[19,45]:[22,22];
+ const success=Math.abs(px-gx)<=tolerance[0]&&Math.abs(py-gy)<=tolerance[1];
+ stage.dataset.success=String(success);
+ status.textContent=success?"Task completed.":"Try again.";
+});
+handle.addEventListener("pointercancel",()=>active=false);
+</script></body></html>
