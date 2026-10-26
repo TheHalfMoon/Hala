@@ -56,11 +56,14 @@ this file.** First complete and independently verify all gates above.
 - Replacement `AishaChunawala/interactive-kanban-board-or-study-kanban-board`
   at `f89d065e2cf16f91918bf1a72ae9ac132150197e` contains an original
   MIT LICENSE plus index.html, script.js, and style.css, and has a clean
-  owner Windows checkout. Its first fully offline browser preflight
-  **timed out during localhost navigation**. It is NOT qualified as
-  an independent blind application. No blind model result claimed.
-  The app references external CDN scripts; offline viability must be
-  proven without editing its original source.
+  owner Windows checkout. Its first fully offline browser preflight timed out during local navigation;
+  a controlled second source-only run using Chromium `wait_until=commit`
+  **SUCCEEDED**: genuine native HTML5 mouse drag changed the task from
+  `todo` to `in-progress` in `kanbanTasks` and **survived page reload**,
+  while all external CDN HTTP requests were blocked. The original MIT
+  tracked source remains unchanged. This is a **RUNTIME SOURCE QA PASS**,
+  NOT a trained model result and NOT a fully sealed, geometry-diverse
+  BLIND screenshot corpus; no blind screenshot or labels were uploaded.
 - The independent Vue 3 candidate `N3XT3R1337/kanban-board` at
   `5d5a433d9860cec617ab523e91447fb6513ecee8` has complete source
   files and MIT LICENSE verified in the GitHub tree, but owner-local
