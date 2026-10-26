@@ -51,5 +51,15 @@ research (RegionFocus, ICCV 2025) and visual feedback refinement (Microsoft
 - Source and score summaries preserve provenance and explicit negative
   outcomes. Keep this PR Draft.
 
+Owner-independent evidence: the separate private **CPU** kernel in
+`kernel-source-metadata.json` recreates the exact same 16 original TRAIN
+sources by frozen schedule and actual image SHA, exports source identities
+and START/END boxes privately, and makes no model calls. Once the GPU
+kernel has finished, run `h128.owner_replay.run_files(source, raw, report,
+private_output)` on Windows to independently parse each native direct/zoom
+model response, recompute every crop from the model's baseline alone, verify
+SHA/source/model identity, and recompute paired score. No private sources,
+predictions, labels or reviewer results are to be posted in the PR.
+
 Tests:
-`python -m unittest discover -s tests -p "test_h128_zoom_pilot.py" -v`
+`python -m unittest discover -s tests -p "test_h128*.py" -v`
