@@ -79,3 +79,24 @@ the ZIP in an optimizer kernel; it may only be used in a **separate**
 inference-only evaluation after a checkpoint and its SHA have been
 frozen. Real-world success must then be scored on owner Windows by
 replaying the model's native points in the original unchanged React app.
+
+## H139 measured FREE T4 DEV results — model research, not flagship
+
+Owner-private H139 run **completed 64 real optimizer steps** on the
+frozen external GUI Assist Grounder Qwen3.5-2B foundation. Owner Windows
+independently SHA-verified the 21.85 MB native LoRA adapter binary:
+`c46ec0abf4d9fed545ec85867737ca19dc59f54f84e847b90304d4af6b052180`.
+
+On 16 original held-out DEV browser screenshots from the **same two
+training apps**, pretrained START was 6/16 and END 7/16; frozen H139
+adapter START was 16/16 and END 16/16. These are isolated bbox-point hits,
+NOT verified complete browser-task successes and NOT evidence of transfer
+to independent applications. Hala 35B flagship remains unchanged.
+
+For blind inference, the entirely separate private T4 kernel in
+`h139/blind_kaggle/` is restricted to the pinned redacted 8-image OOD ZIP
+and SHA-verified frozen adapter. It has no training mount and performs
+zero optimizer steps. `h139.owner_replay` separately checks raw output
+parsing and actual persisted card moves in the unchanged independent
+React app on owner Windows. The blind result remains unqualified until
+all genuine model calls and owner browser replay have completed.
