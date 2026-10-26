@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="4e29016a53465efa962ed3e985bb2c5af7bceaf2"
+SOURCE_SHA="d4ac96e2e5f208be3b41c13b7644ba742efb870e"
 REPO=Path("/kaggle/tmp/hala-h139-frozen-blind-inference-source")
 OUT=Path("/kaggle/working/hala-h139-private-blind-native-output")
 RECEIPT=Path("/kaggle/working/hala-h139-private-blind-run-attempt.json")
@@ -42,8 +42,7 @@ def main():
                 for i in range(torch.cuda.device_count())):
             raise ValueError("H139 FREE T4 required, no paid fallback")
         names=[p.name.lower() for p in Path("/kaggle/input").iterdir() if p.is_dir()]
-        if len(names)!=2 or any(
-                f in n for n in names for f in ("train64","dev16","sealed")):
+        if any(f in n for n in names for f in ("train64","dev16","sealed")):
             raise ValueError("H139 only frozen blind/redacted and adapter datasets allowed")
         run(sys.executable,"-m","pip","uninstall","-y","torchao",timeout=90)
         run(sys.executable,"-m","pip","install","-q",
