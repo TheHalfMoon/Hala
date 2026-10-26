@@ -159,9 +159,9 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
                             # create source-side positional variance.
                             src.scroll_into_view_if_needed(timeout=15000)
                             dest.scroll_into_view_if_needed(timeout=15000)
-                            inner_delta=(attempt*71)%112
+                            inner_delta=(attempt*83)%165
                             page.evaluate("(delta)=>{for(const column of document.querySelectorAll('.tasks-container[data-status=todo],.tasks-container[data-status=inprogress]')){column.scrollTop+=delta}}",inner_delta)
-                            page.evaluate("(delta)=>window.scrollBy(0,delta)",(attempt*37)%110)
+                            page.evaluate("(target)=>window.scrollTo(0,target)",(attempt*61)%148)
                         else:
                             last=max(center(pre_start)[1],center(pre_end)[1])
                             page.evaluate("(y)=>window.scrollTo(0,y)",max(0,last-620)+scroll)
@@ -169,6 +169,15 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
                         box1,box2=src.bounding_box(),dest.bounding_box()
                         if not visible_box(box1) or not visible_box(box2):
                             rejected["offscreen_original_geometry"]+=1;continue
+                        if app=="ood-second-drag":
+                            # Pre-register source geometry diversity BEFORE
+                            # capturing/ever scoring any neural BLIND prediction.
+                            seen_start={position_bin(r["start_bbox"]) for r in records}
+                            seen_end={position_bin(r["end_bbox"]) for r in records}
+                            if ((len(seen_start)<8 and position_bin(box1) in seen_start)
+                                or (len(seen_end)<8 and position_bin(box2) in seen_end)):
+                                rejected["non_novel_original_geometry_bin"]+=1
+                                continue
                         snapshot=page.screenshot(type="png")
                         photo=Image.open(io.BytesIO(snapshot))
                         if photo.format!="PNG" or photo.size!=(WIDTH,HEIGHT):
