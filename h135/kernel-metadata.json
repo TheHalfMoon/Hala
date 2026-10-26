@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h135-private-resolution-pilot12-t4",
+  "title": "hala-h135-private-resolution-pilot12-t4",
+  "code_file": "kaggle_pilot.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h135-private-original-pilot12",
+    "abdulazizshehri/hala-h134-private-frozen-24step-adapter"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__GIT_SHA__"
+SOURCE_SHA="7fca82c910503d3faee287a5d41ec14d816ae2fa"
 REPO=Path("/kaggle/tmp/hala-h135-frozen-resolution-source")
 OUTPUT=Path("/kaggle/working/hala-h135-private-native-versus-640-pilot12")
 RECEIPT=Path("/kaggle/working/hala-h135-pilot-attempt.json")
