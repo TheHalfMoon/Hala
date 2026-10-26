@@ -52,3 +52,36 @@ zone, audio slider, schedule card drop.
 No H71 originals, paid GPU, publication, merge, or release. Keep external
 model credits/rights; owner synthetic originals and private raw model
 responses stay off GitHub. H127 blinded real-H71 visual review remains open.
+
+## Owner PILOT12 real measured result — 2026-10-26
+
+96 actual neural START/END calls succeeded on free owner-private Kaggle T4.
+Owner independently checked immutable source manifest, frozen model/adaptor
+identities, response native JSON, and private raw file SHA; actual Chromium
+replay used **48 neural-generated drags**, without oracle coordinate fallback.
+
+| Model | Image | START hits /12 | END hits /12 | Real full tasks /12 | Median START bbox error |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Pretrained external specialist 2B | manual 640x480 | 0 | 0 | 0 | 152.85px |
+| Pretrained external specialist 2B | native 960x720 | 2 | 5 | 1 | 78.72px |
+| Frozen H134 LoRA research adapter | manual 640x480 | 0 | 1 | 0 | 75.90px |
+| Frozen H134 LoRA research adapter | native 960x720 | 1 | 7 | 1 | 42.00px |
+
+Predeclared pilot selection: maximize (actual GUI successes, START hits,
+negative median START pixel error, native tie-break), using frozen **H134
+adapter** on the same 12 pilot scenes. Selected `native_960`, frozen
+owner decision artifact SHA256:
+`2574aa16e2a4d112793859852fbe5027f9cb15c2699cdb1712946762dc5857fa`.
+
+Result is a **positive within-pilot image-processing signal** for native
+pretrained processor input, **NOT a demonstrated Hala skill improvement**:
+the pretrained and trained external 2B arms each succeeded on just 1/12
+pilot tasks at native resolution. Exact paired neural full-task discordance
+test for image modes: p=1.0 for each arm, tiny n12. Native resolution is
+a frozen candidate, not a generalization claim. No training took place.
+
+Original H135 SEALED18 manifest was frozen *before* pilot output:
+`5dacbcd0dbaaca0f976d0cc342328da9f22a0adf12f3f67401fe88489914ab91`.
+Separate once-only free owner-private sealed evaluation will use ONLY these
+18 untouched images and the already frozen H134 adapter, without training or
+mounting the pilot dataset.
