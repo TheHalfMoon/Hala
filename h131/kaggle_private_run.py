@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="6d376af96658b6a3bac80b5ca0d5dfec1d03e315"
+SOURCE_SHA="e07bbdcf32542831795537c00e6ccc081d115f7b"
 PHASE="initial"
 REPO=Path("/kaggle/tmp/hala-h131-private-code")
 OUTPUT=Path("/kaggle/working/hala-h131-private-neural-"+PHASE)
