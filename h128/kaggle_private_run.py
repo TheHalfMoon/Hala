@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__REPLACE_FROZEN_SHA__"
+SOURCE_SHA="36f38361fca8579200eee2990489ca29e12f52db"
 REPO=Path("/kaggle/tmp/hala-h128-fresh-zoom16-code")
 SCRATCH=Path("/kaggle/tmp/hala-h128-fresh-zoom16-source")
 OUTPUT=Path("/kaggle/working/hala-h128-private-zoom16")
