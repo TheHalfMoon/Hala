@@ -40,15 +40,32 @@ points fail this diversity qualification; no oracle fallback.
 exists yet.** The unit tests use deliberately artificial minimal PNG headers
 to falsify acceptance logic; they are not H140 training or evaluation data.
 
+## Implemented original-app owner-private evidence
+
+Three distinct complete MIT source apps have been cloned at immutable
+Git revisions, built or served without tracked edits, and qualified through
+real local Chromium native mouse-drags and page-reload persisted state:
+Vanilla HTML5 (32 reference scenes), React (16), React+dnd-kit (32).
+**80 original 960×720 PNG SHA unique across apps, 19/15, 13/11 and
+12/12 distinct START/END geometry bins, balanced EN/AR per app.**
+
+Independent source integrity auditor `h140.private_pilot_audit` passed
+on owner Windows across all 80 decodable original PNGs and rejected reuse
+of **475 historical distinct images from 15 H136–H139 private manifests**.
+Neither pixels nor gold coordinates nor model weights are in public GitHub.
+See `PILOT_EVIDENCE.md`; these are **diagnostic-only**, not TRAIN or BLIND.
+
 ## Next engineering work
 
-1. Identify genuinely independent complete legally usable apps and pin source
-   MIT LICENSE file, creator attribution and commit SHA before acquisition.
-2. Implement offline owner Windows source captures with *real* positional
-   perturbations and browser-persisted reference gestures; keep all source
-   pixels/labels private and never use historical blind cases for training.
-3. Run independent source/audit tests and freeze actual TRAIN/DEV/BLIND split
-   manifests before selecting an optimizer or any models.
+1. Finish verifying two completely independent original MIT applications
+   for the future one-shot blind OOD split, keeping media/labels permanently
+   private and out of every model-selection prompt.
+2. Build new disjoint TRAIN256 and DEV64 from the three now-qualified
+   source app implementations. Do not re-label or reuse these 80 diagnostic
+   source images; require brand-new originals, real variable geometry,
+   witnessed persisted gestures, SHA uniqueness and prior-stage exclusions.
+3. Freeze actual TRAIN/DEV/BLIND split manifests and run independent
+   source/audit tests before selecting an optimizer or any models.
 4. Use free private T4 only after source qualification. Compare frozen
    external 2B vs new adapter; never call this trained flagship Hala 35B.
 5. Freeze checkpoint/prompt before ONE blind OOD inference and independent

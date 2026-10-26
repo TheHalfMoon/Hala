@@ -102,7 +102,36 @@ unmodified licensed app rather than manufactured rectangles.
 | **Total cross-application disjoint** | **80** | — | — |
 
 All three pairwise cross-app PNG SHA overlaps are zero. Original apps
-remain unmodified and independently MIT-provenanced. Owner-private PNG,
+remain unmodified and independently MIT-provenanced.
+
+## Independent strict private media and historical-exclusion audit
+
+`python -m h140.private_pilot_audit --private-root <owner-private-h140>
+--experiments-root <owner-experiment-root>` verifies the authentic
+full PNG image can be decoded (not merely a PNG signature), has exact
+960×720 native dimensions, and matches the manifest image SHA. It
+requires genuine source reference and reload-success receipts, all
+three clean pinned original MIT checkouts, an equal EN/AR distribution
+per app, and 8+ START and END point bins. Most importantly, it
+**fails closed** unless historical source manifests exist for
+**every** private H136, H137, H138 and H139 stage.
+
+Owner Windows 2026-10-26 independent run **PASS**:
+- 15 original historical source manifests inspected.
+- 475 distinct old original screenshot SHA values excluded.
+- ZERO overlap of the 80 original H140 pilot PNGs with those 475 old
+  image hashes and ZERO pairwise cross-app overlap.
+- START most-frequent point-bin share: Vanilla 9.4%, React 18.8%,
+  dnd-kit 15.6%.
+- END most-frequent point-bin share: Vanilla 21.9%, React 18.8%,
+  dnd-kit 18.8%.
+- 80 decodable original PNGs checked, with all source Git HEAD SHA,
+  original MIT LICENSE, and tracked source-clean checks qualified.
+- No optimization, neural inference, published source images, and no
+  modification to the Hala flagship 35B weights.
+
+This audit itself is source-side QA; it does **not** qualify a model or
+prove real task success for model-predicted pointer coordinates. Owner-private PNG,
 seed states, source labels and bbox coordinates are **never** pushed to
 GitHub, Kaggle or public Hugging Face. Public repo contains source
 collectors, verification tests and these truthful aggregate receipts.
