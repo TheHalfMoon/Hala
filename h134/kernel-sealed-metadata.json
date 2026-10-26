@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h134-private-once-sealed16-eval-t4",
+  "title": "hala-h134-private-once-sealed16-eval-t4",
+  "code_file": "kaggle_private_sealed.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h134-private-sealed16",
+    "abdulazizshehri/hala-h134-private-frozen-24step-adapter"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
