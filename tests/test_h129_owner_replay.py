@@ -4,6 +4,7 @@ import unittest
 from h125.model_contracts import MODELS
 from h129.feedback import score
 from h129.owner_replay import replay
+from h129.kaggle_private_source_run import qualifies_source_receipt
 from h129.source import FAMILIES
 
 def data():
@@ -40,6 +41,14 @@ def data():
     return source,responses,reported
 
 class H129OwnerTests(unittest.TestCase):
+    def test_cpu_source_receipt_rejects_old_2688_count(self):
+        result={"status":"PASS_H129_OWNER_PRIVATE_TRAIN16_SOURCE_REPLAY_CPU",
+                "source_verified":16,"excluded_previous":2704,
+                "model_inference_calls":0,"optimizer_steps":0}
+        self.assertTrue(qualifies_source_receipt(result))
+        result["excluded_previous"]=2688
+        self.assertFalse(qualifies_source_receipt(result))
+
     def test_exact_private_native_replay(self):
         source,responses,metrics=data()
         result=replay(source,responses,metrics,"c"*64)

@@ -21,6 +21,14 @@ def checked(*args):
         raise RuntimeError("H129 fresh owner CPU source Git SHA acquisition failed")
     return proc.stdout.strip()
 
+def qualifies_source_receipt(result):
+    """Validate independent H129 frozen owner CPU source receipt, not GPU accuracy."""
+    return (result.get("status")=="PASS_H129_OWNER_PRIVATE_TRAIN16_SOURCE_REPLAY_CPU"
+            and result.get("source_verified")==16
+            and result.get("excluded_previous")==2704
+            and result.get("model_inference_calls")==0
+            and result.get("optimizer_steps")==0)
+
 def main():
     state={"schema":"hala.h129.private-source16-CPU-owner-replay-attempt.v1",
            "status":"NOT_QUALIFIED","source_git_sha":SOURCE_SHA,
@@ -45,9 +53,7 @@ def main():
         state.update(stage="FROZEN_SOURCE16_PRIVATE_SHA_EXPORT")
         record(state)
         result=run(SCRATCH,OUTPUT)
-        if (result.get("status")!="PASS_H129_OWNER_PRIVATE_TRAIN16_SOURCE_REPLAY_CPU" or
-            result.get("source_verified")!=16 or
-            result.get("excluded_previous")!=2688):
+        if not qualifies_source_receipt(result):
             raise ValueError("H129 original independent owner source export failed")
         state.update(result)
         record(state)
