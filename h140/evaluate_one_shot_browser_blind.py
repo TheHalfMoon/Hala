@@ -69,7 +69,6 @@ def load_predictions(path,chosen_sha,owner_root):
     return found
 
 def score_original_blind(owner_root,predictions,v2_dir,v3_dir):
-    from playwright.sync_api import sync_playwright
     root=Path(owner_root)
     v2_dir,v3_dir=Path(v2_dir),Path(v3_dir)
     gate=evaluate(v2_dir,v3_dir)
@@ -78,6 +77,10 @@ def score_original_blind(owner_root,predictions,v2_dir,v3_dir):
     v3_receipt=json.loads((v3_dir/"private-h140-v3-learning-evidence.json").read_text("utf8"))
     chosen_sha=actual_adapter_hash(v3_dir,v3_receipt)
     expected=load_predictions(predictions,chosen_sha,root)
+    # Import the optional native browser dependency ONLY after the DEV
+    # authorization and no-gold prediction schema pass. The CPU-only CI
+    # must reject a NO-GO without installing Playwright or launching Chrome.
+    from playwright.sync_api import sync_playwright
 
     marker=root/"frozen-source-v1"/"blind_test"/RECEIPT_NAME
     if marker.exists():
