@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__PIN_FROZEN_SEALED_SOURCE_COMMIT__"
+SOURCE_SHA="5aaf2b74acd3396c6746aa095df4f34248dda06d"
 REPO=Path("/kaggle/tmp/hala-h136-private-frozen-sealed-source")
 OUTPUT=Path("/kaggle/working/hala-h136-private-sealed24-frozen")
 RECEIPT=Path("/kaggle/working/hala-h136-private-sealed24-attempt.json")
