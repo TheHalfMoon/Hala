@@ -25,6 +25,25 @@ def checked(*args,timeout=180):
     if item.returncode:
         raise RuntimeError("H134 predeclared private training prerequisite failure")
     return item.stdout.strip()
+def identify_owner_splits(inputs):
+    """Admit only two genuine H134 source manifests regardless Kaggle mount layout."""
+    SCHEMA="hala.h134.original-chromium-start-end-source.v1"
+    found={"train":0,"dev":0}
+    for file in Path(inputs).rglob("manifest.json"):
+        try:
+            item=json.loads(file.read_text("utf8"))
+        except (OSError,ValueError,json.JSONDecodeError):
+            continue
+        if item.get("schema")!=SCHEMA:
+            continue
+        split=item.get("split")
+        if split not in found:
+            raise ValueError("H134 training kernel may not mount SEALED_TEST or unknown source split")
+        found[split]+=1
+    if found!={"train":1,"dev":1}:
+        raise ValueError(f"H134 genuine private source mounts missing or duplicated: {found}")
+    return found
+
 def main():
     state={
         "schema":"hala.h134.private-2b-language-lora-training-attempt.v1",
@@ -48,11 +67,11 @@ def main():
                 for i in range(torch.cuda.device_count())):
             raise ValueError("H134 only FREE Kaggle Nvidia T4; no paid fallback")
         inputs=Path("/kaggle/input")
-        slugs=sorted(p.name for p in inputs.iterdir() if p.is_dir())
-        if (not all(any(s in x for x in slugs) for s in
-                    ("hala-h134-private-train128","hala-h134-private-dev16")) or
-            any("sealed" in x or "test" in x or "h133" in x or "h71" in x for x in slugs)):
-            raise ValueError("H134 exactly owner-private TRAIN and DEV, no sealed/test/old")
+        if not inputs.is_dir():
+            raise ValueError("H134 Kaggle private datasets root absent")
+        source_admission=identify_owner_splits(inputs)
+        state["admitted_train_and_dev"]=source_admission
+        state["stage"]="SOURCE_128_AND_16_ADMITTED"
         checked(sys.executable,"-m","pip","uninstall","-y","torchao",timeout=90)
         checked(sys.executable,"-m","pip","install","-q",
                 "transformers==5.17.0","peft==0.21.2",
