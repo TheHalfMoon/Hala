@@ -51,3 +51,35 @@ actual H71 drag examples; only after source qualification should legal,
 original START-target training data or LoRA adaptation proceed.
 
 Frozen owner screenshot manifest byte SHA-256: `01de0f06ca176286f8119aa2fbf177691f458bb910f88bcbb82a7e6d8cfd868e`. All 8 screenshots were disjoint from H131's four original image hashes; each case identity, instruction and PNG SHA were validated before model execution.
+
+## Owner evidence — frozen H133 result (2026-10-26)
+
+Both private free T4 arms completed with **16 real pretrained neural calls each**,
+all eight START/END pairs native-parse valid. Owner Windows independently
+verified each raw response JSON SHA against the corresponding private Kaggle
+attempt and validated source image / manifest SHA and frozen model revisions.
+The two models were evaluated on the exact same preselected eight NEW
+Chromium scenes, and the final point predictions were executed via actual
+Playwright mouse movements (no oracle point correction or model training).
+
+| Metric | ShowUI-2B | GUI Assist Grounder 2B |
+| --- | ---: | ---: |
+| START points inside real draggable handles | 0/8 | **5/8** |
+| Completed full browser tasks | 0/8 | **4/8** |
+| Visual state changes | 4/8 | 5/8 |
+| Median initial START distance to handle | 264.46 px | **0 px** |
+
+Specialist full successes were slider-south, resize-east, column-right,
+and drop-high; drop-low hit START but missed the endpoint, while
+slider-north, resize-west and column-left missed the START handle.
+An exact two-sided paired McNemar/binomial test over discordant pairs gives
+p=0.125 for task success (4 specialist-only successes, 0 ShowUI-only)
+and p=0.0625 for START hits (5 specialist-only, 0 ShowUI-only). This small,
+synthetic, nonrandom sample does **not** establish generalized superiority
+or trained Hala improvement. The positive direction supports a larger
+predeclared independent sample and focused START-vs-END analysis; it does
+**not** justify release/merging or silently adopting third-party weights.
+
+Original eight private PNG screenshots and raw neural outputs remain outside
+GitHub. Neither model underwent optimization/training; both used free private
+Kaggle T4 only. H127 genuine H71 source human review is still open.

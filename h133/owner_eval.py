@@ -15,6 +15,7 @@ from h131.contract import parse_showui
 from h132.grounder_contract import MODEL_ID,MODEL_SHA,native_point
 from h125.model_contracts import MODELS
 from h131.owner_diagnostics import distance_to_box
+from h133.paired_stats import compare
 
 def verify_model(file,manifest,arm):
     data=json.loads(Path(file).read_text("utf8"))
@@ -102,6 +103,9 @@ def evaluate(source_dir,showui_file,specialist_file,output_file):
         "status":"H133_TWO_FROZEN_MODELS_REAL_BROWSER_OUTCOMES_SCORED",
         "source_scene_count":8,
         "models":totals,
+        "paired_exact":{
+           "full_gui_success":compare(totals,"actual_gui_task_success"),
+           "start_handle_hit":compare(totals,"start_hits_handle")},
         "scene_selection_before_model_inference":True,
         "zero_model_training":True,
         "four_initial_H131_scenes_excluded":True,
