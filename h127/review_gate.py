@@ -154,6 +154,8 @@ def grade(truth, a, b):
     if a["reviewer_id"] == b["reviewer_id"]:
         raise ValueError("H127 two distinct reviewers required")
     totals = {f: {"count": 0, "a_correct": 0, "b_correct": 0,
+                  "a_start_hits": 0, "a_end_hits": 0,
+                  "b_start_hits": 0, "b_end_hits": 0,
                   "both_correct": 0, "a_abstain": 0, "b_abstain": 0} for f in FAMILIES}
     for case in truth["truth"]:
         family = case["family"]
@@ -165,7 +167,11 @@ def grade(truth, a, b):
             if item["status"] != "located":
                 t[prefix + "_abstain"] += 1
                 continue
-            if _within(item["start"], case["start_bbox"]) and _within(item["end"], case["end_bbox"]):
+            start_hit = _within(item["start"], case["start_bbox"])
+            end_hit = _within(item["end"], case["end_bbox"])
+            t[prefix + "_start_hits"] += int(start_hit)
+            t[prefix + "_end_hits"] += int(end_hit)
+            if start_hit and end_hit:
                 t[prefix + "_correct"] += 1
         if (amap[case["key"]]["status"] == "located" and
             bmap[case["key"]]["status"] == "located" and
@@ -176,7 +182,8 @@ def grade(truth, a, b):
     if any(v["count"] != 16 for v in totals.values()):
         raise ValueError("H127 16 original TRAIN scenes per family required")
     aggregate = {k: sum(v[k] for v in totals.values()) for k in
-                 ("count", "a_correct", "b_correct", "both_correct", "a_abstain", "b_abstain")}
+                 ("count", "a_correct", "b_correct", "a_start_hits", "a_end_hits",
+                  "b_start_hits", "b_end_hits", "both_correct", "a_abstain", "b_abstain")}
     # Conservative preregistered screening threshold, not publication/model gate:
     # 58/64 jointly correct, >=13/16 per domain, and <=4 abstentions per reviewer.
     threshold = (aggregate["both_correct"] >= 58 and

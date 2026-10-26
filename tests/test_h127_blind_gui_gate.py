@@ -91,6 +91,8 @@ class H127BlindGateTests(unittest.TestCase):
         b = review(truth, "independent-B")
         result = grade(truth, a, b)
         self.assertEqual(result["aggregate"]["both_correct"], 64)
+        self.assertEqual(result["aggregate"]["a_start_hits"], 64)
+        self.assertEqual(result["aggregate"]["b_end_hits"], 64)
         self.assertEqual(result["status"], "PROVISIONAL_SELF_ATTESTED_SCREEN_PASS")
         self.assertFalse(result["reviewer_identities_independently_verified"])
         self.assertFalse(result["model_skill_qualified"])
