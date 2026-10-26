@@ -151,8 +151,20 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
                         pre_start=src.bounding_box();pre_end=dest.bounding_box()
                         if pre_start is None or pre_end is None:
                             rejected["source_dom_missing"]+=1;continue
-                        last=max(center(pre_start)[1],center(pre_end)[1])
-                        page.evaluate("(y)=>window.scrollTo(0,y)",max(0,last-(560 if app=="ood-second-drag" else 620))+scroll)
+                        if app=="ood-second-drag":
+                            # Independent multi-board source cards scroll inside
+                            # their OWN 300px native column containers, not just
+                            # window. Real Playwright scroll restores both cards,
+                            # then different legitimate column/window positions
+                            # create source-side positional variance.
+                            src.scroll_into_view_if_needed(timeout=15000)
+                            dest.scroll_into_view_if_needed(timeout=15000)
+                            inner_delta=(attempt*71)%112
+                            page.evaluate("(delta)=>{for(const column of document.querySelectorAll('.tasks-container[data-status=todo],.tasks-container[data-status=inprogress]')){column.scrollTop+=delta}}",inner_delta)
+                            page.evaluate("(delta)=>window.scrollBy(0,delta)",(attempt*37)%110)
+                        else:
+                            last=max(center(pre_start)[1],center(pre_end)[1])
+                            page.evaluate("(y)=>window.scrollTo(0,y)",max(0,last-620)+scroll)
                         page.wait_for_timeout(120)
                         box1,box2=src.bounding_box(),dest.bounding_box()
                         if not visible_box(box1) or not visible_box(box2):
