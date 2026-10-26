@@ -10,26 +10,35 @@ from h140.train_kaggle.kaggle_private_train import (
 
 
 class H140FreePrivateGPUOnlyContracts(unittest.TestCase):
-    def test_exact_two_frozen_owner_sources_and_no_blind(self):
+    def test_source_roles_identified_without_relying_on_kaggle_mount_name(self):
         self.assertEqual(APPROVED_MOUNTS,{
             "hala-h140-private-train256-original",
             "hala-h140-private-dev64-original"})
         with tempfile.TemporaryDirectory() as t:
-            p=Path(t)
-            for n in APPROVED_MOUNTS:
-                (p/n).mkdir()
-            source_mounts(p)
-            # Additional known system mount is harmless; dataset admission
-            # still requires exactly TRAIN256/DEV64 H140 manifests elsewhere.
-            (p/"__kaggle-system").mkdir()
-            source_mounts(p)
-            (p/"private-owner-h140-blind-original").mkdir()
-            with self.assertRaisesRegex(ValueError,"not permitted"):
-                source_mounts(p)
-            (p/"private-owner-h140-blind-original").rmdir()
-            (p/next(iter(APPROVED_MOUNTS))).rmdir()
-            with self.assertRaisesRegex(ValueError,"missing"):
-                source_mounts(p)
+            root=Path(t)
+            schema="hala.h140.original-app-multi-geometry-bilingual-source.v1"
+            train=root/"kaggle-auto-nested-train-source"
+            dev=root/"other-worker-dev-source"
+            train.mkdir();dev.mkdir()
+            def write(role,folder):
+                (folder/"manifest.json").write_text(json.dumps({
+                    "schema":schema,"split":role,"private":True}),encoding="utf8")
+            write("train",train);write("dev",dev)
+            self.assertEqual(source_mounts(root),{"train":1,"dev":1})
+            (root/"__kaggle-system").mkdir()
+            self.assertEqual(source_mounts(root),{"train":1,"dev":1})
+            forbidden=root/"some-ood-mount";forbidden.mkdir()
+            write("blind_test",forbidden)
+            with self.assertRaisesRegex(ValueError,"forbidden"):
+                source_mounts(root)
+            (forbidden/"manifest.json").unlink()
+            write("train",forbidden)
+            with self.assertRaisesRegex(ValueError,"unavailable"):
+                source_mounts(root)
+            (forbidden/"manifest.json").unlink()
+            (dev/"manifest.json").unlink()
+            with self.assertRaisesRegex(ValueError,"unavailable"):
+                source_mounts(root)
 
     def test_kernel_is_private_noncommercial_free_t4_metadata(self):
         root=Path(__file__).parent.parent/"h140"/"train_kaggle"
