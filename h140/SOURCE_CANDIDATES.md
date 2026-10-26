@@ -14,7 +14,7 @@ actual persisted-state reference drag. Those acceptance gates remain mandatory.
 | TRAIN + DEV | `dandemslay/React-KanbanBoard` — Vite/React drag-and-drop without a third-party DnD library; localStorage | `fa047f7a32afb57750ed5246456dc282ea7befcd` | Danny Rodriguez |
 | TRAIN + DEV | `TomCani/kanban-dndkit-localstorage` — Vite/React/TypeScript, dnd-kit sorting and cross-column cards | `f3e129998e3140a386f1884faff314345e0eb10b` | Thomas Cani |
 | Independent one-time BLIND only | `N3XT3R1337/kanban-board` — Vue 3 drag-and-drop board | `5d5a433d9860cec617ab523e91447fb6513ecee8` | panaceya (N3XT3R1337) |
-| Independent one-time BLIND only | `PixelPenguin94/kanban-board-vanilla-js` — dependency-free modular vanilla HTML5 board with localStorage | `652d763c61f59a23fbd64179e82bd363cda337e0` | PixelPenguin94 |
+| Independent one-time BLIND only — **NOT YET RUNTIME-QUALIFIED** | `AishaChunawala/interactive-kanban-board-or-study-kanban-board` — complete original HTML5 drag board with localStorage | `f89d065e2cf16f91918bf1a72ae9ac132150197e` | Aisha Abrar Chunawala |
 | Additional independent BLIND candidate | `aashwinshukla/FaceTask` — React/dnd-kit full Kanban/dashboard/task persistence | `0698d3c0a2a4a63b636e40c62a21f645290a4705` | aashwinshukla |
 
 ## Security, data and compute gates before using any candidate
@@ -42,3 +42,30 @@ actual persisted-state reference drag. Those acceptance gates remain mandatory.
 
 **Do not promote a candidate to `app_sources` just because it appears in
 this file.** First complete and independently verify all gates above.
+
+
+## Rejected and still-blocked one-time BLIND sources — 2026-10-26
+
+- **REJECTED** `PixelPenguin94/kanban-board-vanilla-js` at
+  `652d763c61f59a23fbd64179e82bd363cda337e0`. The owner cloned
+  the exact MIT source and independently checked its GitHub recursive
+  tree: it contains ONLY the README, LICENSE, .gitignore and
+  .gitattributes; **no index.html or working JavaScript application**.
+  This repo must not enter training or evaluation even though its README
+  advertises a complete Kanban board.
+- Replacement `AishaChunawala/interactive-kanban-board-or-study-kanban-board`
+  at `f89d065e2cf16f91918bf1a72ae9ac132150197e` contains an original
+  MIT LICENSE plus index.html, script.js, and style.css, and has a clean
+  owner Windows checkout. Its first fully offline browser preflight
+  **timed out during localhost navigation**. It is NOT qualified as
+  an independent blind application. No blind model result claimed.
+  The app references external CDN scripts; offline viability must be
+  proven without editing its original source.
+- The independent Vue 3 candidate `N3XT3R1337/kanban-board` at
+  `5d5a433d9860cec617ab523e91447fb6513ecee8` has complete source
+  files and MIT LICENSE verified in the GitHub tree, but owner-local
+  build, genuine persisted browser drag and sealed-source admission
+  remain **PENDING**.
+
+Keep H140 one-time BLIND sealed and separate from TRAIN/DEV. No model
+tuning on exposed H136-H139 or H140 blind labels/screenshots.
