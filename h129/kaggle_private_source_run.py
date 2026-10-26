@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__PIN_SOURCE_SHA__"
+SOURCE_SHA="648de917b2456f2e1125e8422a2e93f9b1e59d09"
 REPO=Path("/kaggle/tmp/hala-h129-source16-cpu-replay")
 SCRATCH=Path("/kaggle/tmp/hala-h129-source16-cpu-staging")
 OUTPUT=Path("/kaggle/working/hala-h129-private-original16-source.json")
