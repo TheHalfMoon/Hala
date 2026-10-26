@@ -72,10 +72,43 @@ unmodified licensed app rather than manufactured rectangles.
   images across TWO distinct independent source applications**. The
   previously recorded vanilla first-pilot 16 duplicates MUST NOT be added.
 
-Only owner-private original screenshots and gold bboxes exist; public
-GitHub contains code and aggregate counts only, not media or labels.
+## Third independent source — dnd-kit/TypeScript, 32 genuine references
 
-**This is diagnostic, not a qualified TRAIN dataset.** In particular, H140
+- Complete original MIT app `TomCani/kanban-dndkit-localstorage`
+  (copyright Thomas Cani) at pinned Git SHA:
+  `f3e129998e3140a386f1884faff314345e0eb10b`.
+- Original tracked source clean. Local `npm ci` + `npm run build`
+  (TypeScript and Vite) **PASS**; no source code changes.
+- Genuine Chromium `PointerSensor` START/END mouse movements, observed
+  card transition from `col_todo` to `col_doing` in `kanban:v1`
+  localStorage, and original app page-reload state verification.
+- The FIRST 16-task schedule achieved only 7 START and 7 END geometry
+  bins, and was correctly recorded **NOT QUALIFIED**. No threshold was
+  lowered. The second, position-diverse 32-task diagnostic run achieved:
+  - 32/32 real persisted browser drags that survived page reload
+  - 32/32 unique private original screenshot PNG SHA values
+  - 12 START and 12 END true native 24-pixel geometry bins
+  - 16 English and 16 Arabic tasks; zero offscreen or failed actions
+- The owner-independent integrity audit verified all 32 PNG/geometry
+  receipts and cross-app hash disjointness. The initial 16 from the
+  FAILED schedule are not concatenated or represented as independent
+  training examples.
+
+| Qualified diagnostic sample only | Original scenes | START bins | END bins |
+| --- | ---: | ---: | ---: |
+| Vanilla HTML5 | 32 | 19 | 15 |
+| React drag/drop | 16 | 13 | 11 |
+| React + dnd-kit | 32 | 12 | 12 |
+| **Total cross-application disjoint** | **80** | — | — |
+
+All three pairwise cross-app PNG SHA overlaps are zero. Original apps
+remain unmodified and independently MIT-provenanced. Owner-private PNG,
+seed states, source labels and bbox coordinates are **never** pushed to
+GitHub, Kaggle or public Hugging Face. Public repo contains source
+collectors, verification tests and these truthful aggregate receipts.
+
+**These 80 real samples are STILL diagnostic, not a qualified TRAIN
+dataset or neural-model improvement.** In particular, H140
 still requires 256 TRAIN, 64 DEV and 32 one-time BLIND scenes from >=3
 real training apps and >=2 **completely different** BLIND app codebases,
 independent Git/license audits, prior H136–H139 SHA exclusion, and truly
@@ -84,7 +117,7 @@ disjoint snapshots across training, development and BLIND.
 ## Qualification boundary
 
 These pilot samples are not authorized for optimization, model selection or
-public sharing. They prove only that these two independent original apps can provide diverse,
+public sharing. They prove only that these three independent original apps can provide diverse,
 persisted original reference gestures and real screenshot geometry. The
 H140 research adapter, 35B flagship update, GPU training and full browser
 benchmark remain unstarted. Preserve the negative H139 independent React
