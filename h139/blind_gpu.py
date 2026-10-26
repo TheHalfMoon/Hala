@@ -29,7 +29,10 @@ def admit(root=None):
         raise ValueError("H139 frozen private inference payload SHA drift")
     forbidden=("train64","dev16","sealed","train896","eval128")
     mounts=[x.name.lower() for x in root.iterdir() if x.is_dir()]
-    if len(mounts)!=2 or any(any(f in m for f in forbidden) for m in mounts):
+    # Kaggle may expose additional system mount directories. Admit exactly
+    # one byte-pinned blind archive and one byte-pinned adapter above; do
+    # not rely on an exact directory count for the hosted input root.
+    if any(any(f in m for f in forbidden) for m in mounts):
         raise ValueError("H139 blind neural inference only; reject any train/dev/old dataset")
     with ZipFile(zips[0]) as z:
         entries=z.namelist()
