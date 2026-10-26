@@ -33,15 +33,35 @@ def checked(*args,timeout=180):
     return result.stdout.strip()
 
 def source_mounts(root):
-    actual={p.name for p in root.iterdir() if p.is_dir()}
-    # Kaggle can inject its own system mounts. Do not assume every
-    # /kaggle/input child is a dataset from our kernel metadata. Admit the
-    # two owner source mounts by EXACT slug, and reject any OOD/BLIND mounts.
-    if not APPROVED_MOUNTS.issubset(actual):
-        raise ValueError("H140 required owner-private TRAIN+DEV mounts missing")
-    if any(any(fragment in name.lower() for fragment in
-               ("blind","sealed","ood","test")) for name in actual):
-        raise ValueError("H140 one-time OOD not permitted as model training input")
+    """Discover owner source by frozen manifest ROLE, not Kaggle folder name.
+
+    Kaggle's mounted dataset paths vary across workers. The subsequent
+    train_gpu.private_splits() independently pins the COMPLETE manifest
+    SHA256 and decodes every genuine original screenshot before training.
+    """
+    schema="hala.h140.original-app-multi-geometry-bilingual-source.v1"
+    found={"train":0,"dev":0}
+    for manifest in Path(root).rglob("manifest.json"):
+        try:
+            source=json.loads(manifest.read_text("utf8"))
+        except (OSError,ValueError,json.JSONDecodeError):
+            continue
+        if source.get("schema")!=schema:
+            continue
+        role=source.get("split")
+        if role not in found:
+            raise ValueError("H140 forbidden original OOD/BLIND source mounted")
+        found[role]+=1
+    if found!={"train":1,"dev":1}:
+        # These are ONLY mounted directory/archive NAMES. No owner media,
+        # source labels, target bboxes or model data are emitted to logs.
+        mounts=sorted(p.name for p in Path(root).iterdir())
+        zip_names=sorted(p.name for p in Path(root).rglob("*.zip"))[:10]
+        print("H140_PRIVATE_INPUT_MOUNT_DISCOVERY",json.dumps({
+            "mounts":mounts[:20],"zip_names":zip_names,"source_roles":found
+        },sort_keys=True),flush=True)
+        raise ValueError("H140 exact owner TRAIN256/DEV64 manifests unavailable")
+    return found
 
 def main():
     status={"schema":"hala.h140.owner-private-only-free-kaggle-training-attempt.v1",
