@@ -38,13 +38,36 @@ def check_blind_source(root,app):
             "tracked_source_modified":False,"application_is_complete":True}
 
 def old_evaluated_manifests(root):
+    """Keep every old IMAGE-bearing manifest; metadata-only files have no SHA.
+
+    Cross-check image-hash equality with the owner historical auditor so
+    skipping non-image metadata cannot weaken H136-H139 exclusions.
+    """
+    from h140.private_pilot_audit import historical_exclusions
     found=[]
+    collected=set()
     for name in ("private-h136","private-h137","private-h138","private-h139"):
         directory=root/name
         paths=sorted(directory.rglob("manifest.json")) if directory.is_dir() else []
-        if not paths:
-            raise ValueError("H140 missing historical blind/training image exclusions")
-        found.extend(paths)
+        valid=0
+        for path in paths:
+            doc=json.loads(path.read_text("utf8"))
+            rows=doc.get("cases",[])
+            if not isinstance(rows,list):
+                continue
+            shas={r.get("image_sha256") for r in rows
+                  if isinstance(r,dict) and
+                  isinstance(r.get("image_sha256"),str) and
+                  len(r["image_sha256"])==64}
+            if shas:
+                found.append(path)
+                collected.update(shas)
+                valid+=1
+        if valid==0:
+            raise ValueError("H140 historical stage lacks any IMAGE-bearing manifest: "+name)
+    audited,_=historical_exclusions(root)
+    if collected!=audited:
+        raise ValueError("H140 filtered old manifests fail independent historic SHA reconciliation")
     return found
 
 def admit_source(root,app,excluded,seen):
