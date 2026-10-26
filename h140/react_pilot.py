@@ -76,7 +76,7 @@ def run(source,output,count=16,max_attempts=100,attempt_offset=0):
                     ctx.route("https://**/*",lambda route:route.abort())
                     try:
                         page=ctx.new_page()
-                        page.goto(url,wait_until="domcontentloaded",timeout=12000)
+                        page.goto(url,wait_until="commit",timeout=20000)
                         src=page.locator(".task_column").nth(0).locator(".task_card").nth(src_idx)
                         dst=page.locator(".task_column").nth(1).locator(".hide_drop").nth(dst_idx)
                         src.wait_for(timeout=12000)
@@ -101,7 +101,7 @@ def run(source,output,count=16,max_attempts=100,attempt_offset=0):
                         if (sum(row.get("task")==chosen and row.get("status")=="doing"
                                 for row in state)!=1):
                             rejected["real_reference_drag_failure"]+=1;continue
-                        page.reload(wait_until="domcontentloaded",timeout=12000)
+                        page.reload(wait_until="commit",timeout=20000)
                         persisted=json.loads(page.evaluate("localStorage.getItem('tasks')"))
                         if (sum(row.get("task")==chosen and row.get("status")=="doing"
                                 for row in persisted)!=1):
