@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>H133 Unseen Browser GUI Set</title>
+<style>
+*{box-sizing:border-box}body{margin:0;color:#203044;background:#eff3f8;font:17px system-ui,sans-serif}
+main{padding:24px}h1{font-size:25px}#instruction{font-weight:650;font-size:20px}
+#stage{position:relative;width:800px;height:480px;background:white;border:2px solid #b1c0d3;border-radius:12px;overflow:hidden}
+#status{font-weight:bold}.handle{position:absolute;background:#2f65c9;touch-action:none;cursor:grab;z-index:3}
+.target{position:absolute;border:3px dashed #15945f;background:#1fa26b22;pointer-events:none;z-index:2}
+#trail{position:absolute;background:#cedcf1;border-radius:8px;height:13px}
+#board{position:absolute;border:3px solid #2f65c9;background:#e5eeff}
+#column-bg{position:absolute;background:repeating-linear-gradient(0deg,#d8e6f6 0,#d8e6f6 25px,#f9fbff 25px,#f9fbff 50px);border:2px solid #b0c6e6}
+#caption{position:absolute;left:30px;bottom:14px;font-size:13px;color:#798699}
+</style></head><body><main><h1>Desk Tasks · Interactive</h1><p id="instruction"></p>
+<div id="stage" data-success="false"></div><p id="status">Ready to perform the drag.</p></main>
+<script>
+"use strict";
+const tasks={
+  "slider-north":{type:"slider",start:[160,138],goal:[535,138], label:"Move the blue slider thumb across the upper timeline to the green target."},
+  "slider-south":{type:"slider",start:[620,315],goal:[235,315], label:"Move the blue slider thumb LEFT along the bottom track to the green marker."},
+  "resize-west":{type:"resize",start:[270,205],goal:[425,308],base:[95,100],label:"Resize the blue document panel by dragging its bottom-right blue corner to the green corner."},
+  "resize-east":{type:"resize",start:[535,190],goal:[666,335],base:[370,100],label:"Enlarge the blue panel on the right using its bottom-right blue resize grip until it reaches the green corner."},
+  "column-left":{type:"column",start:[222,155],goal:[505,155],label:"Widen the first table column: move the blue vertical splitter RIGHT to the green guide."},
+  "column-right":{type:"column",start:[582,295],goal:[278,295],label:"Narrow the first table column: drag the blue vertical splitter LEFT to the green guide."},
+  "drop-high":{type:"drop",start:[175,127],goal:[593,312],label:"Drag the blue project card into the green drop area near the lower right."},
+  "drop-low":{type:"drop",start:[617,145],goal:[178,340],label:"Move the blue task card into the green destination box at the bottom left."}
+};
+const id=new URLSearchParams(location.search).get("case");
+const task=tasks[id], stage=document.querySelector("#stage"),status=document.querySelector("#status");
+const instruction=document.querySelector("#instruction");
+if(!task){instruction.textContent="Unknown task";throw Error("Invalid H133 case");}
+instruction.textContent=task.label;
+function el(name,cls,style,text){const n=document.createElement("div");n.id=name;n.className=cls;Object.assign(n.style,style);n.textContent=text||"";stage.appendChild(n);return n;}
+const [sx,sy]=task.start,[gx,gy]=task.goal;
+if(task.type==="slider"){
+ const left=Math.min(sx,gx)-55, right=Math.max(sx,gx)+55;
+ el("trail","",{left:left+"px",top:(sy-6)+"px",width:(right-left)+"px"});
+}
+if(task.type==="resize"){
+ const [bx,by]=task.base;
+ el("board","",{left:bx+"px",top:by+"px",width:(sx-bx)+"px",height:(sy-by)+"px"},"Drag corner to resize");
+}
+if(task.type==="column"){
+ el("column-bg","",{left:"95px",top:(sy-95)+"px",width:"630px",height:"200px"},"Records / Details");
+}
+if(task.type==="drop"){
+ el("task-card","",{left:(sx-58)+"px",top:(sy-37)+"px",width:"116px",height:"74px",background:"#2f65c9",borderRadius:"9px",color:"white",display:"grid",placeItems:"center"},"Task card");
+}
+const target=el("target","target",task.type==="drop"?
+  {left:(gx-80)+"px",top:(gy-58)+"px",width:"160px",height:"116px",borderRadius:"12px"}:
+  {left:(gx-13)+"px",top:(gy-15)+"px",width:"26px",height:"30px"},"");
+let handle;
+if(task.type==="drop"){
+ handle=document.querySelector("#task-card");handle.className="handle";handle.dataset.role="handle";
+}else{
+ handle=el("handle","handle",{
+   left:(sx-12)+"px",top:(sy-12)+"px",width:"24px",height:"24px",
+   border:"3px solid white",borderRadius:task.type==="slider"?"50%":"5px",
+   boxShadow:"0 0 0 2px #2f65c9"
+ });
+ handle.dataset.role="handle";
+}
+el("caption","",{},"Complete the task with a continuous mouse drag.");
+function xy(e){const r=stage.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];}
+let dragging=false;
+handle.addEventListener("pointerdown",e=>{
+  dragging=true;e.preventDefault();handle.setPointerCapture(e.pointerId);
+});
+handle.addEventListener("pointermove",e=>{
+  if(!dragging)return;
+  const [x,y]=xy(e);
+  if(task.type==="slider"){
+    handle.style.left=(x-12)+"px";
+  }else if(task.type==="resize"){
+    const board=document.querySelector("#board");
+    board.style.width=Math.max(60,x-task.base[0])+"px";
+    board.style.height=Math.max(60,y-task.base[1])+"px";
+    handle.style.left=(x-12)+"px";handle.style.top=(y-12)+"px";
+  }else if(task.type==="column"){
+    handle.style.left=(x-12)+"px";
+  }else{
+    handle.style.left=(x-58)+"px";handle.style.top=(y-37)+"px";
+  }
+});
+handle.addEventListener("pointerup",e=>{
+  if(!dragging)return;dragging=false;
+  const [x,y]=xy(e);
+  const tolerance=task.type==="drop"?[80,58]:task.type==="slider"?[18,36]:[20,20];
+  const success=Math.abs(x-gx)<=tolerance[0]&&Math.abs(y-gy)<=tolerance[1];
+  stage.dataset.success=String(success);
+  status.textContent=success?"Task completed.":"Incorrect location; try again.";
+});
+handle.addEventListener("pointercancel",()=>dragging=false);
+</script></body></html>
