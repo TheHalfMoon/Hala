@@ -5,7 +5,6 @@ H136/H137/H138 tests and from the H139 frozen React blind-test app.
 """
 import json
 from pathlib import Path
-from playwright.sync_api import sync_playwright
 from h138.probe import serve,mouse_drag,center
 from h130.browser_env import WIDTH,HEIGHT,_chromium_binary
 from h139.registry import UPSTREAM,SCHEMA,check_upstream,check_split_manifest,sha
@@ -42,6 +41,9 @@ def instructions(title,lang):
     return "Drag the "+title+" task card into the In Progress column."
 
 def qualify(root,output,split,n_override=None):
+    # Browser dependencies are needed only on owner Windows when generating
+    # source screenshots, never in the Kaggle GPU training runtime.
+    from playwright.sync_api import sync_playwright
     root,output=Path(root),Path(output)
     if split not in COUNTS:raise ValueError("H139 TRAIN/DEV only")
     if output.exists():raise ValueError("H139 source create-only")

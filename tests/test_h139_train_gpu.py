@@ -23,6 +23,16 @@ class H139FrozenTrainingGuards(unittest.TestCase):
         self.assertEqual(SPLITS["train"][1],64)
         self.assertEqual(SPLITS["dev"][1],16)
 
+    def test_training_import_needs_no_browser_package(self):
+        import subprocess,sys
+        from pathlib import Path
+        root=Path(__file__).parent.parent
+        result=subprocess.run(
+            [sys.executable,"-c",
+             'import sys;sys.modules["playwright"]=None;import h139.train_gpu'],
+            cwd=root,capture_output=True,text=True,timeout=20)
+        self.assertEqual(result.returncode,0,result.stderr)
+
     def test_exact_pinned_private_kaggle_job(self):
         import json
         from pathlib import Path
