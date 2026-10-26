@@ -7,6 +7,7 @@ from PIL import Image
 from h130.browser_env import TASKS
 from h131.contract import (SCHEMA,MODEL_SCHEMA,parse_showui,sha,
                            verify_manifest,verify_model_predictions)
+from h131.gpu_infer import locate_private_input
 class H131ContractTests(unittest.TestCase):
     def test_showui_native_coords_for_960x720(self):
         self.assertEqual(parse_showui("[0.5, 0.5]"),(480,360))
@@ -28,6 +29,9 @@ class H131ContractTests(unittest.TestCase):
                       "cases":rows}
             (path/"manifest.json").write_text(json.dumps(manifest),"utf8")
             verified=verify_manifest(path,expect_phase="initial")
+            discovered, admitted=locate_private_input("initial",root=path)
+            self.assertEqual(discovered,path)
+            self.assertEqual(admitted["schema"],SCHEMA)
             predictions={"schema":MODEL_SCHEMA,"phase":"initial",
                 "input_manifest_sha256":sha(json.dumps(verified,sort_keys=True,separators=(",",":")).encode()),
                 "model_id":"showlab/ShowUI-2B",

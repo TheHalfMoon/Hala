@@ -30,18 +30,26 @@ def _infer(model,processor,torch,image,intent,role):
         raise ValueError("H131 invalid model-native text response")
     return raw
 
-def locate_private_input(phase):
-    root=Path("/kaggle/input")
-    files=list(root.glob("*/manifest.json"))
+def locate_private_input(phase, root=Path("/kaggle/input")):
+    root=Path(root)
+    if not root.is_dir():
+        raise ValueError("H131 Kaggle private dataset input root is absent")
+    # Kaggle may mount a private dataset under an additional owner/version
+    # directory; search nested manifests but still admit exactly one source.
+    files=list(root.rglob("manifest.json"))
     valid=[]
+    rejected=[]
     for file in files:
         try:
             manifest=verify_manifest(file.parent,expect_phase=phase)
-        except (ValueError,KeyError,TypeError,FileNotFoundError,json.JSONDecodeError):
+        except (ValueError,KeyError,TypeError,FileNotFoundError,json.JSONDecodeError) as error:
+            rejected.append(type(error).__name__)
             continue
         valid.append((file.parent,manifest))
     if len(valid)!=1:
-        raise ValueError("H131 exactly one private, SHA-qualified screenshot input required")
+        raise ValueError("H131 exact private dataset admission failed: "
+                         f"manifests={len(files)} validated={len(valid)} "
+                         f"rejected_types={rejected[:8]}")
     return valid[0]
 
 def run(output,phase):
