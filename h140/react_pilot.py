@@ -57,6 +57,10 @@ def run(source,output,count=16,max_attempts=100,attempt_offset=0):
                 for attempt in range(attempt_offset,attempt_offset+max_attempts):
                     if len(records)>=count:break
                     n,src_idx,dst_idx,offset,language=proposal(attempt)
+                    # Never let rejected/offscreen attempts skew per-app bilingual balance.
+                    if sum(r["language"]==language for r in records)>=count//2:
+                        rejected["balanced_language_cap"]+=1
+                        continue
                     chosen=f"H140 owner React draggable {attempt:04d}"
                     seed=[
                         {"task": chosen if i==src_idx else f"Todo {attempt:04d}-{i:02d}",
