@@ -63,3 +63,19 @@ recorded as failure and requires newly preregistered application sources.
 No release, deployment, merges or expensive services. Hala flagship
 35B unchanged; H127 independent human assessment on actual H71 evidence
 remains open.
+
+## Privacy-preserving blind inference transport
+
+`h139.blind_export` can prepare a local, owner-private ZIP containing
+only eight frozen React blind screenshot PNGs and the external bilingual
+instructions required for model inference. It deliberately excludes
+gold START/END rectangles, original task IDs, seeded state and oracle
+pointer geometry. Before exporting it audits all three H139 splits and
+optionally the previous historic manifest SHA exclusions.
+
+The output stays beneath owner `private-h139/` and is never included in
+this public Git repository or the Kaggle TRAIN/DEV kernel. Do not mount
+the ZIP in an optimizer kernel; it may only be used in a **separate**
+inference-only evaluation after a checkpoint and its SHA have been
+frozen. Real-world success must then be scored on owner Windows by
+replaying the model's native points in the original unchanged React app.
