@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>Hala H130 Browser Actions</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f5f9;font:18px system-ui;color:#1b2b41}
+main{padding:24px}h1{font-size:25px;margin:0 0 14px}#instruction{font-size:20px;font-weight:650}
+#stage{position:relative;width:800px;height:480px;border:2px solid #b7c4d6;background:white;overflow:hidden;border-radius:12px}
+#status{font-weight:bold}.handle{touch-action:none;cursor:grab;background:#2865cb}
+.target{border:3px dashed #24a06a;background:#24a06a16}
+#rail{position:absolute;left:110px;top:210px;width:530px;height:14px;border-radius:10px;background:#c2d2ec}
+#knob{position:absolute;left:192px;top:193px;width:44px;height:44px;border:3px solid white;border-radius:50%;box-shadow:0 0 0 2px #2865cb}
+#slider-target{position:absolute;left:474px;top:186px;height:65px;width:15px}
+#panel{position:absolute;top:90px;left:115px;width:195px;height:120px;background:#e2edff;border:3px solid #2865cb}
+#resize-handle{position:absolute;width:24px;height:24px;right:-12px;bottom:-12px;border-radius:5px}
+#resize-target{position:absolute;top:90px;left:115px;width:360px;height:240px;pointer-events:none}
+#columns{position:absolute;top:110px;left:110px;border:2px solid #9fb4d0;display:flex;height:230px}
+#first{width:205px;background:#e4eeff;padding:18px}#second{width:230px;background:#fafafa;padding:18px}
+#divider{position:absolute;top:0;left:195px;height:226px;width:18px;background:#2865cb88}
+#column-target{position:absolute;top:100px;left:414px;width:15px;height:250px;pointer-events:none}
+#drop-zone{position:absolute;left:510px;top:145px;width:155px;height:125px;display:grid;place-items:center}
+#tile{position:absolute;left:125px;top:152px;width:120px;height:80px;border-radius:10px;color:white;display:grid;place-items:center}
+aside{margin:24px;font-size:14px;color:#66788e}
+</style></head><body><main><h1>Interactive GUI</h1><p id="instruction"></p>
+<div id="stage" data-success="false"></div><p id="status">Ready for the action.</p></main>
+<script>
+"use strict";
+const t=new URLSearchParams(location.search).get("task");
+const stage=document.querySelector("#stage"), status=document.querySelector("#status");
+const info=document.querySelector("#instruction");
+let finished=false;
+const xx=e=>e.clientX-stage.getBoundingClientRect().left;
+const yy=e=>e.clientY-stage.getBoundingClientRect().top;
+function end(ok){finished=Boolean(ok);stage.dataset.success=String(finished);status.textContent=ok?"Task completed.":"Try again: target not reached."}
+function drag(handle,step){
+ let active=false;
+ handle.addEventListener("pointerdown",e=>{if(finished)return;active=true;e.preventDefault();handle.setPointerCapture(e.pointerId)});
+ handle.addEventListener("pointermove",e=>{if(active)step(e,false)});
+ handle.addEventListener("pointerup",e=>{if(active){step(e,true);active=false}});
+ handle.addEventListener("pointercancel",()=>active=false);
+}
+if(t==="slider"){
+ info.textContent="Drag the blue slider knob to the green 70% target.";
+ stage.innerHTML='<div id="rail"></div><div id="slider-target" class="target"></div><div id="knob" class="handle" data-role="handle"></div>';
+ const knob=document.querySelector("#knob");
+ drag(knob,(e,up)=>{const x=Math.max(110,Math.min(640,xx(e)));knob.style.left=(x-22)+"px";if(up)end(Math.abs(x-481)<=15)});
+}else if(t==="resize"){
+ info.textContent="Drag the blue panel bottom-right handle until it matches the green outline.";
+ stage.innerHTML='<div class="target" id="resize-target"></div><div id="panel">Resize panel<div id="resize-handle" class="handle" data-role="handle"></div></div>';
+ const panel=document.querySelector("#panel");
+ drag(document.querySelector("#resize-handle"),(e,up)=>{const w=Math.max(60,xx(e)-115),h=Math.max(60,yy(e)-90);panel.style.width=w+"px";panel.style.height=h+"px";if(up)end(Math.abs(w-360)<=15&&Math.abs(h-240)<=15)});
+}else if(t==="column"){
+ info.textContent="Drag the blue table divider to the green vertical guide.";
+ stage.innerHTML='<div id="column-target" class="target"></div><div id="columns"><div id="first">Name<br>Row A<br>Row B</div><div id="second">Detail<br>Value A<br>Value B</div><div id="divider" class="handle" data-role="handle"></div></div>';
+ const left=document.querySelector("#first"),bar=document.querySelector("#divider");
+ drag(bar,(e,up)=>{const width=Math.max(50,xx(e)-110);left.style.width=width+"px";bar.style.left=(width-10)+"px";if(up)end(Math.abs(xx(e)-421)<=15)});
+}else if(t==="drop"){
+ info.textContent="Drag the blue task card into the green destination box.";
+ stage.innerHTML='<div id="drop-zone" class="target">DROP HERE</div><div id="tile" class="handle" data-role="handle">Task card</div>';
+ const tile=document.querySelector("#tile");
+ drag(tile,(e,up)=>{tile.style.left=(xx(e)-60)+"px";tile.style.top=(yy(e)-40)+"px";if(up)end(xx(e)>=510&&xx(e)<=665&&yy(e)>=145&&yy(e)<=270)});
+}else{info.textContent="Unknown task.";}
+</script></body></html>
