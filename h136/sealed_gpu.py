@@ -10,7 +10,7 @@ from h136.train_gpu import BASE_MODEL,BASE_REV,model_predict
 from h136.prompt import role_prompt
 
 SEALED_MANIFEST_SHA="a8d3ea230af8cab8d0902d1f4dfff2f6eded899a7d357bdbc2d4c4273a9e6244"
-FROZEN_ADAPTER_SHA="__TRAINED_ADAPTER_SHA_BEFORE_SEALED__"
+FROZEN_ADAPTER_SHA="183680c3224b024c546dbbd1428e7a05ffa1491d57c117aec350a11e04cba1a7"
 FORMAT="hala.h136.once-only-private-sealed24-grounding.v1"
 
 def inputs():
