@@ -69,11 +69,9 @@ def main():
         inputs=Path("/kaggle/input")
         if not inputs.is_dir():
             raise ValueError("H136 Kaggle private datasets root absent")
-        if (len(list(inputs.rglob("train288.zip")))!=1 or
-            len(list(inputs.rglob("dev24.zip")))!=1 or
-            any("sealed" in p.name.lower() for p in inputs.rglob("*.zip"))):
-            raise ValueError("H136 private TRAIN288 and DEV24 ZIPs required, no sealed archive")
-        state["stage"]="PRIVATE_SOURCE_ZIP_PRESENCE_CHECKED"
+        if any("sealed" in p.name.lower() for p in inputs.rglob("*.zip")):
+            raise ValueError("H136 cannot mount SEALED source in training")
+        state["stage"]="PRIVATE_KAGGLE_SOURCE_MOUNT_CHECKED"
         checked(sys.executable,"-m","pip","uninstall","-y","torchao",timeout=90)
         checked(sys.executable,"-m","pip","install","-q",
                 "transformers==5.17.0","peft==0.21.2",
@@ -95,12 +93,19 @@ def main():
         sys.path.insert(0,str(REPO))
         os.environ.update(HALA_NONCOMMERCIAL_RESEARCH="1",
             HF_HUB_DISABLE_TELEMETRY="1",DO_NOT_TRACK="1")
-        from h136.archive_admission import admit_zipped_private_sources
-        unpacked=admit_zipped_private_sources(
-            inputs,Path("/kaggle/tmp/hala-h136-private-source-extracted"))
-        state["admitted_train_and_dev"]=identify_owner_splits(unpacked)
         from h136 import train_gpu
-        train_gpu.DATASET_ROOT=unpacked
+        # Kaggle automatically unpacks ZIP-only datasets into individual
+        # manifest/PNG files. Support that verified layout without retrying
+        # unreliable per-file uploads. A raw ZIP mount is accepted only
+        # through the SHA-validating, path-safe archive admission.
+        if list(inputs.rglob("train288.zip")) and list(inputs.rglob("dev24.zip")):
+            from h136.archive_admission import admit_zipped_private_sources
+            source_root=admit_zipped_private_sources(
+                inputs,Path("/kaggle/tmp/hala-h136-private-source-extracted"))
+        else:
+            source_root=inputs
+        state["admitted_train_and_dev"]=identify_owner_splits(source_root)
+        train_gpu.DATASET_ROOT=source_root
         state["status"]="RUNNING_REAL_PRIVATE_H136_LANGUAGE_LORA"
         save(state)
         result=train_gpu.run(OUTPUT)
