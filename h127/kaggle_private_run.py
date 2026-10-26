@@ -5,7 +5,7 @@ import os
 import subprocess
 import sys
 
-SOURCE_SHA = "__SOURCE_COMMIT_SHA__"
+SOURCE_SHA = "b6c899a3514e56ce708b3b10c6eecb5a91075dde"
 REPO = Path("/kaggle/tmp/hala-h127-source-bound")
 OUTPUT = Path("/kaggle/working/hala-h127-private-blind-review")
 RECEIPT = Path("/kaggle/working/hala-h127-attempt.json")
