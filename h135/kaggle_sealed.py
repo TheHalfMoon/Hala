@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__SEALED_COMMIT_SHA__"
+SOURCE_SHA="3bed7eca2003e4a4dbf289a993c9cf21f1298904"
 REPO=Path("/kaggle/tmp/hala-h135-frozen-one-time-sealed-code")
 OUTPUT=Path("/kaggle/working/hala-h135-private-sealed18-once")
 ATTEMPT=Path("/kaggle/working/hala-h135-sealed-attempt.json")
