@@ -51,7 +51,6 @@ class H140V3DevPromotionGate(unittest.TestCase):
             outcome=evaluate(a,b)
             self.assertEqual(outcome["status"],"NOT_QUALIFIED_DO_NOT_TOUCH_BLIND")
             self.assertFalse(outcome["checks"]["original_3_app_end_diversity"])
-            self.setup_receipt(b,True,True,7) if False else None
             file=b/"private-h140-v3-learning-evidence.json"
             state=json.loads(file.read_text("utf8"))
             state["h140_adapter_dev"]["all_apps_and_roles_diverse"]=True
