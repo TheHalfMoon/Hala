@@ -25,3 +25,38 @@ Starting point: frozen pretrained external Apache-2.0 GUI Assist Grounder 2B, re
 - No model improvement can be claimed until actual GPU training and independent holdout verification; a pilot DEV increase alone cannot qualify production or Hala flagship generalization.
 
 H127 independent blinded human target review of original H71 data remains unfinished, and that data is not involved. Keep all private assets and adapter owner-private and PR Draft; no release/merge/deployment.
+
+## Final owner-private empirical results — 2026-10-26
+
+- H134 original, human-free owner-created source and real Playwright oracle
+  source checks: TRAIN 128, DEV 16, SEALED_TEST 16; no cross-image SHA
+  overlap and no previous H131/H133 screenshot reuse.
+- **Actual** free Kaggle T4 training: rank-8 language-only LoRA on frozen
+  external GUI Assist Grounder 2B, 24 optimizer steps, 0 paid compute.
+  Owner-private adapter safetensors SHA256:
+  711f9dc76cde160818625c9d154c299ad1e098ae48bd554277634ef4b9defdad
+- Owner independent trained adapter/native DEV replay PASS:
+  START 0/16 pretrained to 2/16 trained; END 1/16 to 5/16.
+- ONE-TIME sealed TEST16 evaluation, after adapter and selection frozen:
+  64 actual neural START/END calls, 0 optimizer steps, only private sealed
+  source plus frozen adapter datasets in the evaluation kernel.
+  SEALED START 0/16 before to **0/16** after;
+  SEALED END 3/16 before to **5/16** after;
+  BOTH correct points 0/16 before to **0/16** after.
+- Owner independent sealed native response + actual Chromium browser drag
+  replay: PASS on 16 frozen screenshots x both model arms, **32 real browser
+  action attempts**. Full UI tasks before 0/16, adapter after **0/16**;
+  exact paired task-success p=1.0.
+- Result: TRAINING INFRASTRUCTURE WORKS, but **NO verified START or full GUI
+  task improvement on the sealed set**. Small END improvement alone is not
+  enough. No evidence of generalizable Hala skill improvements or a ready
+  release. Flagship Hala 35B weights are entirely unchanged.
+- No further tuning against this exposed sealed set. Future work requires
+  a DIFFERENT fresh unseen holdout, larger and more diverse lawful
+  training sources (multiple real GUI component geometries and instructions),
+  a gated comparison of frozen vision vs selective vision adaptation and
+  explicit START handle success as primary criterion. H127 independent blind
+  source-identifiability review remains open.
+
+All source originals, adapter weights and raw responses remain in owner-private
+files and Kaggle private datasets. PR stays Draft, no merge or deployment.
