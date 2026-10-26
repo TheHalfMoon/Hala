@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+<title>H137 independent library interaction benchmark</title>
+<link rel="stylesheet" href="vendor/nouislider.min.css"/>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#eff4f7;--ink:#24344c;--dark:#26344e;--surface:#fff;--edge:#b8c9dd;--accent:#2564aa;--mark:#e89b32}
+body{font:15px system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0}
+header{height:70px;background:var(--dark);display:flex;align-items:center;gap:36px;padding:0 25px;color:white}
+header strong{font-size:20px}header span{opacity:.84}
+aside{width:170px;top:70px;bottom:0;left:0;background:#dbe5ee;padding:22px 12px;position:absolute}
+aside div{margin-bottom:16px;background:#f6f8fa;padding:10px 12px;border-radius:6px}
+main{margin-left:190px;padding:14px 20px}
+h1{font-size:22px;line-height:30px;margin:0}
+#instruction{max-width:680px;height:48px;font-weight:650;font-size:16px}
+#workspace{position:relative;width:726px;height:405px;border-radius:12px;border:2px solid var(--edge);background:var(--surface);overflow:hidden}
+#status{font-weight:700;margin:10px 0}
+.hint{position:absolute;font-size:13px;color:#65768f}
+#end-target{position:absolute;border:3px dashed var(--mark);background:rgba(247,183,67,.15);pointer-events:none;z-index:2}
+#slider-track{position:absolute;top:205px;left:130px;width:455px;height:18px}
+#slider-track .noUi-connect{background:#2b8b9c}
+#slider-track .noUi-handle{width:30px;height:28px;right:-15px;top:-7px;cursor:grab}
+#slider-track .noUi-handle:before{left:10px;height:12px;top:7px}
+#slider-track .noUi-handle:after{left:15px;height:12px;top:7px}
+#split-shell{display:none;position:absolute;left:68px;top:132px;width:595px;height:235px;border:1px solid #a7b9cb;overflow:visible}
+.split-pane{padding:14px;height:100%;min-width:0;overflow:hidden}
+#split-a{background:#e8f2ff}#split-b{background:#f8eee6}
+.gutter{background:#607d9c;cursor:col-resize;position:relative}
+.gutter:before{content:'⋮';color:white;position:absolute;left:3px;top:100px;font-size:20px}
+#sortable-shell{display:none;position:absolute;left:70px;top:45px;display:flex;gap:66px}
+.sort-column{width:220px;height:325px;border:2px solid #b0bcd0;background:#f6f7fb;padding:10px;position:relative;display:flex;flex-direction:column;gap:10px}
+.card{background:white;border:1px solid #a9b5c8;border-radius:7px;height:61px;padding:12px;font-weight:650}
+.grip{display:inline-block;background:#365c95;color:white;min-width:33px;text-align:center;padding:6px;margin-right:7px;border-radius:5px;cursor:grab}
+#sort-destination{height:155px;background:#fff9e8;border:2px dashed #e29c2c;margin-top:10px}
+#sort-destination .card{height:53px}
+#sort-destination #end-target{border:none;position:absolute;top:80px;left:22px;width:165px;height:60px;background:none}
+.sortable-ghost{opacity:.5}
+.theme-dark{--bg:#dfe5ee;--ink:#182f43;--dark:#112c44;--surface:#f8fbff;--edge:#879dba;--accent:#2f689f}
+.theme-orange{--bg:#faf0e7;--ink:#573526;--dark:#794735;--surface:#fffcf8;--edge:#e3bea0;--accent:#bc6927}
+.theme-green{--bg:#edf5eb;--ink:#2b4b31;--dark:#315a44;--surface:#fbfffc;--edge:#bad0b7;--accent:#478f65}
+</style></head><body>
+<header><strong>Workplace</strong><span>Board</span><span>Projects</span><span>Settings</span></header>
+<aside><div>Home</div><div>Tasks</div><div>Team</div><div>Reports</div><div>Archive</div></aside>
+<main><h1>Operations workspace</h1><p id="instruction"></p>
+<div id="workspace" data-success="false">
+<div id="ui-root"></div>
+<div class="hint" style="left:32px;top:22px">INTERACTIVE PANEL</div>
+</div><p id="status">Ready</p></main>
+<script src="vendor/nouislider.min.js"></script>
+<script src="vendor/sortable.min.js"></script>
+<script src="vendor/split.min.js"></script>
+<script src="app.js"></script>
+</body></html>
