@@ -38,7 +38,7 @@ class H139FrozenTrainingGuards(unittest.TestCase):
         from pathlib import Path
         from h139.kaggle_private_train import SOURCE_SHA, OUTPUT, identify_owner_splits
         metadata=json.loads((Path(__file__).parent.parent/"h139"/"kernel-metadata.json").read_text("utf8"))
-        self.assertEqual(SOURCE_SHA,"bef2a0a7ccbeb64f53c6d86d976914b8a7eba8f9")
+        self.assertEqual(SOURCE_SHA,"a3b82c99eb02a8150c574d2b148d26f412dcbb4b")
         self.assertEqual(len(SOURCE_SHA),40)
         self.assertTrue(metadata["is_private"])
         self.assertEqual(metadata["machine_shape"],"NvidiaTeslaT4")
