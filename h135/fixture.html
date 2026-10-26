@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>H135 original workstation controls</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--back);color:var(--ink);font:16px system-ui,sans-serif}
+header{height:68px;display:flex;align-items:center;gap:35px;padding:0 28px;background:var(--chrome);color:var(--ink)}
+header strong{font-size:20px}header span{opacity:.65}
+aside{position:absolute;top:68px;left:0;bottom:0;width:155px;background:var(--nav);padding:30px 14px}
+aside div{margin:13px 0;padding:10px;background:var(--chrome);border-radius:6px;font-size:13px}
+main{margin-left:160px;padding:22px}
+#title{font-size:24px;margin:5px 0}
+#instruction{font-size:17px;font-weight:650;margin-bottom:16px}
+#canvas{position:relative;width:735px;height:430px;overflow:hidden;border:1px solid var(--muted);border-radius:14px;background:var(--paper)}
+#status{font-size:16px;font-weight:650}
+#handle{position:absolute;background:var(--handle);border:2px solid white;box-shadow:0 0 0 2px var(--handle);cursor:grab;z-index:4;touch-action:none}
+#target{position:absolute;border:3px dashed var(--target);background:color-mix(in srgb,var(--target) 20%,transparent);pointer-events:none;z-index:3}
+.box{position:absolute;background:var(--panel);border:2px solid var(--muted);border-radius:7px}
+#track{position:absolute;height:14px;background:var(--muted);border-radius:12px;opacity:.5}
+.navtag{position:absolute;background:var(--panel);border:1px solid var(--muted);border-radius:4px;padding:7px;font-size:13px}
+</style></head><body>
+<header><strong>Workstation</strong><span>Activity</span><span>Workspace</span><span>Analytics</span><span>Preferences</span></header>
+<aside><div>Overview</div><div>Records</div><div>Inbox</div><div>Automations</div></aside>
+<main><h1 id="title">Configure view</h1><p id="instruction"></p>
+<div id="canvas" data-success="false"></div><p id="status">Ready.</p></main>
+<script>
+"use strict";
+const params=new URLSearchParams(location.search);
+const id=Number(params.get("id"));
+if(!Number.isSafeInteger(id)||id<100000||id>999999)throw new Error("Unsupported H135 scenario");
+let state=(id*2654435761)>>>0;
+function rand(){state^=state<<13;state^=state>>>17;state^=state<<5;return(state>>>0)/4294967296;}
+function ri(a,b){return a+Math.floor(rand()*(b-a+1));}
+const themeIndex=id%4;
+const themes=[
+{back:"#eaf1fa",ink:"#152d49",chrome:"#d7e5f8",nav:"#dce8f8",paper:"#ffffff",panel:"#f1f6ff",muted:"#9cb4d7",handle:"#2562bc",target:"#1a9665"},
+{back:"#ede9f8",ink:"#30254c",chrome:"#ded7fa",nav:"#e3ddfa",paper:"#fbfaff",panel:"#eeeafc",muted:"#baafe5",handle:"#7d49c9",target:"#cf843b"},
+{back:"#eef4ed",ink:"#234332",chrome:"#dcebdd",nav:"#e4f0e3",paper:"#fefffe",panel:"#e9f4eb",muted:"#a9c4ae",handle:"#257e52",target:"#c77b26"},
+{back:"#f6efea",ink:"#4c3022",chrome:"#fae1d4",nav:"#f4e6dd",paper:"#fffefa",panel:"#fcf0e9",muted:"#dcb8a5",handle:"#b75c3b",target:"#3a85c4"}
+];
+for(const [k,v] of Object.entries(themes[themeIndex]))document.documentElement.style.setProperty("--"+k,v);
+const typeIndex=id%6;
+const labels=[
+ "Move the adjustable timeline thumb to the outlined checkpoint.",
+ "Stretch the selected editor pane using its colored corner grip to the dashed mark.",
+ "Resize the data-grid column by dragging its narrow colored divider to the guideline.",
+ "Drop the colored work item card into the outlined delivery zone.",
+ "Adjust the volume handle along the horizontal audio channel to the target mark.",
+ "Reposition the schedule card into the highlighted release slot."
+];
+const text=document.querySelector("#instruction"),canvas=document.querySelector("#canvas"),status=document.querySelector("#status");
+text.textContent=labels[typeIndex];
+const sx=ri(105,560), sy=ri(105,285);
+let gx=ri(105,560),gy=(typeIndex===0||typeIndex===2||typeIndex===4)?sy:ri(120,310);
+if(Math.abs(sx-gx)<110)gx=sx>345?sx-ri(125,190):sx+ri(125,190);
+gx=Math.max(85,Math.min(635,gx));
+const card=[3,5].includes(typeIndex);
+const width=card?94:((typeIndex===2)?14:22),height=card?58:27;
+function item(tag,id,css,cls,words){const e=document.createElement(tag);e.id=id;if(cls)e.className=cls;Object.assign(e.style,css);if(words)e.textContent=words;canvas.appendChild(e);return e;}
+if([0,4].includes(typeIndex))item("div","track",{"left":(Math.min(sx,gx)-34)+"px","top":(sy-7)+"px",width:(Math.abs(sx-gx)+70)+"px"},"");
+if(typeIndex===1)item("div","pane",{"left":(sx-100)+"px","top":(sy-94)+"px",width:"100px",height:"94px",padding:"10px"},"box","Document");
+if(typeIndex===2)item("div","grid",{"left":(Math.min(sx,gx)-25)+"px","top":(sy-75)+"px",width:(Math.abs(sx-gx)+55)+"px",height:"150px",padding:"12px"},"box","Customer / Status");
+for(let i=0;i<3;i++){
+ let x=ri(25,640),y=ri(20,365);
+ if(Math.abs(x-sx)<100&&Math.abs(y-sy)<90)x=(x+240)%630+20;
+ if(Math.abs(x-gx)<100&&Math.abs(y-gy)<90)y=(y+195)%350+10;
+ item("div","tag"+i,{left:x+"px",top:y+"px",width:"63px"},"navtag",["Filter","Sort","More"][i]);
+}
+const targetW=card?130:36,targetH=card?92:36;
+item("div","target",{left:(gx-targetW/2)+"px",top:(gy-targetH/2)+"px",
+ width:targetW+"px",height:targetH+"px",borderRadius:"8px"});
+const handle=item("div","handle",{left:(sx-width/2)+"px",top:(sy-height/2)+"px",
+ width:width+"px",height:height+"px",borderRadius:card?"8px":"6px",
+ color:"#fff",textAlign:"center",fontSize:"14px",paddingTop:card?"12px":"0"},"",card?"Move":"");
+handle.dataset.role="handle";
+let dragging=false;
+function local(e){const r=canvas.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];}
+handle.addEventListener("pointerdown",e=>{dragging=true;e.preventDefault();handle.setPointerCapture(e.pointerId);});
+handle.addEventListener("pointermove",e=>{
+ if(!dragging)return;
+ const [x,y]=local(e);handle.style.left=(x-width/2)+"px";
+ if(![0,2,4].includes(typeIndex))handle.style.top=(y-height/2)+"px";
+ if(typeIndex===1){
+  const panel=document.querySelector("#pane"); panel.style.width=Math.max(60,x-(sx-100))+"px";panel.style.height=Math.max(65,y-(sy-94))+"px";
+ }
+});
+handle.addEventListener("pointerup",e=>{
+ if(!dragging)return;dragging=false;
+ const [x,y]=local(e);
+ const accepted=Math.abs(x-gx)<=(card?60:19)&&Math.abs(y-gy)<=(card?42:([0,2,4].includes(typeIndex)?42:21));
+ canvas.dataset.success=String(accepted);
+ status.textContent=accepted?"Completed":"Not yet completed";
+});
+handle.addEventListener("pointercancel",()=>dragging=false);
+</script></body></html>
