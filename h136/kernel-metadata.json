@@ -9,8 +9,8 @@
   "enable_internet": true,
   "machine_shape": "NvidiaTeslaT4",
   "dataset_sources": [
-    "abdulazizshehri/hala-h136-private-train288",
-    "abdulazizshehri/hala-h136-private-dev24"
+    "abdulazizshehri/hala-h136-private-train288-zip",
+    "abdulazizshehri/hala-h136-private-dev24-zip"
   ],
   "competition_sources": [],
   "kernel_sources": [],

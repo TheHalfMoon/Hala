@@ -13,7 +13,8 @@ import time
 from pathlib import Path
 
 from h136.source import check,sha
-from h132.grounder_contract import MODEL_ID,MODEL_SHA,instruction_for,native_point
+from h132.grounder_contract import MODEL_ID,MODEL_SHA,native_point
+from h136.prompt import role_prompt
 from h130.browser_env import WIDTH,HEIGHT
 
 DATASET_ROOT=Path("/kaggle/input")
@@ -39,7 +40,7 @@ def admit_private_split(split):
 def make_prompt_and_gold(row,role):
     if role not in ("start","end"):
         raise ValueError("H136 SFT target START or END required")
-    instruction=instruction_for(row["instruction"],role)
+    instruction=role_prompt(row["instruction"],role)
     pixels=row[role+"_px"]
     if type(pixels) is not list or len(pixels)!=2 or any(type(x) is not int for x in pixels):
         raise ValueError("H136 actual owner browser pixel target missing")

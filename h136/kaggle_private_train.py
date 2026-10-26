@@ -69,9 +69,11 @@ def main():
         inputs=Path("/kaggle/input")
         if not inputs.is_dir():
             raise ValueError("H136 Kaggle private datasets root absent")
-        source_admission=identify_owner_splits(inputs)
-        state["admitted_train_and_dev"]=source_admission
-        state["stage"]="SOURCE_128_AND_16_ADMITTED"
+        if (len(list(inputs.rglob("train288.zip")))!=1 or
+            len(list(inputs.rglob("dev24.zip")))!=1 or
+            any("sealed" in p.name.lower() for p in inputs.rglob("*.zip"))):
+            raise ValueError("H136 private TRAIN288 and DEV24 ZIPs required, no sealed archive")
+        state["stage"]="PRIVATE_SOURCE_ZIP_PRESENCE_CHECKED"
         checked(sys.executable,"-m","pip","uninstall","-y","torchao",timeout=90)
         checked(sys.executable,"-m","pip","install","-q",
                 "transformers==5.17.0","peft==0.21.2",
@@ -93,10 +95,15 @@ def main():
         sys.path.insert(0,str(REPO))
         os.environ.update(HALA_NONCOMMERCIAL_RESEARCH="1",
             HF_HUB_DISABLE_TELEMETRY="1",DO_NOT_TRACK="1")
+        from h136.archive_admission import admit_zipped_private_sources
+        unpacked=admit_zipped_private_sources(
+            inputs,Path("/kaggle/tmp/hala-h136-private-source-extracted"))
+        state["admitted_train_and_dev"]=identify_owner_splits(unpacked)
+        from h136 import train_gpu
+        train_gpu.DATASET_ROOT=unpacked
         state["status"]="RUNNING_REAL_PRIVATE_H136_LANGUAGE_LORA"
         save(state)
-        from h136.train_gpu import run
-        result=run(OUTPUT)
+        result=train_gpu.run(OUTPUT)
         if (result.get("status")!="H136_REAL_64_OPTIMIZER_STEP_NATIVE_GUI_LORA_EXPERIMENT" or
             result.get("actual_optimizer_steps")!=64 or
             result.get("sealed_holdout_attached") is not False or
