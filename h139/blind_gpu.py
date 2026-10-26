@@ -17,16 +17,36 @@ ARCHIVE_SHA="7d3ddcb6db22c4fc1974c099a318e8921adcdfc514aae8de0bd37444ed055fc8"
 REDACTED_MANIFEST_SHA="3432b51aa505688b513210ea3ae4dc34ff3d514790f671b532fc84cbc3c83c73"
 OWNER_MANIFEST_SHA="c26c0b1c850bf4fc30c7e04bc16e547f89d69269174751f26ea2b6b824acfac9"
 
+class _DirectoryView:
+    """Strict ZIP-like view over Kaggle's automatically unpacked dataset."""
+    def __init__(self,folder):
+        self.folder=Path(folder)
+    def __enter__(self):
+        return self
+    def __exit__(self,*exc):
+        return False
+    def namelist(self):
+        return [f.name for f in self.folder.iterdir() if f.is_file()]
+    def read(self,name):
+        if not isinstance(name,str) or not name or name in (".","..") or (
+            "/" in name or "\\" in name):
+            raise ValueError("H139 invalid redacted mounted filename")
+        return (self.folder/name).read_bytes()
+
 def admit(root=None):
     root=Path("/kaggle/input" if root is None else root)
     zips=list(root.rglob("blind8-redacted-eval-only.zip"))
+    manifests=[f for f in root.rglob("manifest.json")
+               if sha(f.read_bytes())==REDACTED_MANIFEST_SHA]
     adapter=list(root.rglob("adapter_model.safetensors"))
-    if len(zips)!=1 or len(adapter)!=1:
-        raise ValueError("H139 requires exactly one private redacted BLIND and one frozen adapter")
-    if (sha(zips[0].read_bytes())!=ARCHIVE_SHA or
-        sha(adapter[0].read_bytes())!=ADAPTER_SHA or
+    if len(adapter)!=1 or len(zips)+len(manifests)!=1:
+        raise ValueError("H139 requires exactly one REDACTED payload (ZIP or Kaggle-unpacked) and one frozen adapter")
+    if (sha(adapter[0].read_bytes())!=ADAPTER_SHA or
         not (adapter[0].parent/"adapter_config.json").is_file()):
-        raise ValueError("H139 frozen private inference payload SHA drift")
+        raise ValueError("H139 frozen private adapter SHA drift")
+    payload=zips[0] if zips else manifests[0].parent
+    if zips and sha(zips[0].read_bytes())!=ARCHIVE_SHA:
+        raise ValueError("H139 immutable private blind archive SHA drift")
     forbidden=("train64","dev16","sealed","train896","eval128")
     mounts=[x.name.lower() for x in root.iterdir() if x.is_dir()]
     # Kaggle may expose additional system mount directories. Admit exactly
@@ -34,7 +54,7 @@ def admit(root=None):
     # not rely on an exact directory count for the hosted input root.
     if any(any(f in m for f in forbidden) for m in mounts):
         raise ValueError("H139 blind neural inference only; reject any train/dev/old dataset")
-    with ZipFile(zips[0]) as z:
+    with (ZipFile(payload) if payload.is_file() else _DirectoryView(payload)) as z:
         entries=z.namelist()
         if len(entries)!=9 or len(entries)!=len(set(entries)) or any(
                 "/" in f or "\\" in f or ".." in f for f in entries):
@@ -64,7 +84,7 @@ def admit(root=None):
             case_hashes.add(row["image_sha256"])
         if set(entries)!={"manifest.json"}|{x["image"] for x in doc["cases"]}:
             raise ValueError("H139 inference ZIP contains unexpected private files")
-    return zips[0],doc,adapter[0].parent
+    return payload,doc,adapter[0].parent
 
 def run(output):
     import torch,transformers
@@ -87,7 +107,7 @@ def run(output):
         BASE_MODEL,revision=BASE_REV,torch_dtype=torch.float16,
         trust_remote_code=False,attn_implementation="sdpa").to("cuda:0").eval()
     results=[]
-    with ZipFile(archive) as z:
+    with (ZipFile(archive) if archive.is_file() else _DirectoryView(archive)) as z:
         for arm in ARMS:
             if arm=="h139_adapter":
                 model=PeftModel.from_pretrained(model,adapter_dir,
