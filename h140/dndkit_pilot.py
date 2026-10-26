@@ -62,11 +62,11 @@ def native_geometry_proposal(attempt):
     lang="ar" if attempt%2 else "en"
     return n,source_index,destination_index,scroll_offset,lang
 
-def run(source,output,count=16,max_attempts=100):
+def run(source,output,count=16,max_attempts=100,attempt_offset=0):
     from playwright.sync_api import sync_playwright
     source=Path(source);output=Path(output)
     built=qualified_build(source)
-    if count<16 or count>64 or max_attempts<count:
+    if count<16 or count>128 or max_attempts<count or attempt_offset<0 or attempt_offset%2:
         raise ValueError("H140 DnD original source pilot target count unsupported")
     if output.exists() or not any(p.name=="private-h140" for p in output.parents):
         raise ValueError("H140 DnD source output must be owner private and create-only")
@@ -82,7 +82,7 @@ def run(source,output,count=16,max_attempts=100):
         browser=pw.chromium.launch(**opts,timeout=15000)
         try:
             with serve(built) as url:
-                for attempt in range(max_attempts):
+                for attempt in range(attempt_offset,attempt_offset+max_attempts):
                     if len(accepted)>=count:break
                     n,sidx,eidx,offset,lang=native_geometry_proposal(attempt)
                     board,card_id,title=own_board(attempt,n,sidx)
@@ -177,8 +177,9 @@ if __name__=="__main__":
     p.add_argument("--output",required=True)
     p.add_argument("--count",type=int,default=16)
     p.add_argument("--max-attempts",type=int,default=100)
+    p.add_argument("--attempt-offset",type=int,default=0)
     x=p.parse_args()
-    r=run(x.source,x.output,x.count,x.max_attempts)
+    r=run(x.source,x.output,x.count,x.max_attempts,x.attempt_offset)
     print("H140_DNDKIT_OWNER_DIAGNOSTIC_FINAL",
           json.dumps({"count":r["case_count"],"status":r["status"],
                       "start_bins":r["start_bins"],"end_bins":r["end_bins"],
