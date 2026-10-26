@@ -85,3 +85,41 @@ Original H135 SEALED18 manifest was frozen *before* pilot output:
 Separate once-only free owner-private sealed evaluation will use ONLY these
 18 untouched images and the already frozen H134 adapter, without training or
 mounting the pilot dataset.
+
+## H135 FINAL sealed18 evidence (2026-10-26)
+
+The owner-only **one-time new SEALED18** evaluation completed. The image
+mode `native_960` was frozen on PILOT12 before opening the sealed split
+(frozen pilot decision SHA-256
+`2574aa16e2a4d112793859852fbe5027f9cb15c2699cdb1712946762dc5857fa`).
+The sealed images were all new, disjoint from earlier H131/H133/H134
+sources, and their manifest SHA-256 was fixed before model selection:
+`5dacbcd0dbaaca0f976d0cc342328da9f22a0adf12f3f67401fe88489914ab91`.
+
+PRIVATE FREE Kaggle T4 completed 72 *real neural* inferences, 0 optimizer
+steps; both model variants returned 36/36 parseable native point responses.
+After download, owner Windows validated the model/source revisions, every
+SHA-bound case and role, native JSON point and claimed hit, then actually
+executed all 36 predicted drag gestures in Chromium without oracle
+fallback.
+
+| SEALED18 | Frozen external base 2B | Frozen H134 LoRA |
+| --- | ---: | ---: |
+| START in handle | 7/18 | 6/18 |
+| END in target | 5/18 | 7/18 |
+| BOTH START and END in true boxes | 1/18 | 3/18 |
+| **Actual completed browser drag task** | **1/18** | **3/18** |
+
+The real-task matched-pairs exact two-sided p-value is **0.5** (two
+adapter-only successes and zero base-only). This is exploratory positive
+out-of-pilot evidence for the frozen 24-step research adapter when the
+960×720 original screenshot is fed to the official processor, **not a
+statistically qualified or real-world generalization claim**. The LoRA
+did not beat base START recognition (6 vs 7 hits). It is still not
+an updated Hala 35B flagship model.
+
+Next H136 should increase independently authored GUI training variety,
+specifically tiny/low-contrast handle START targets, and measure primary
+real full-browser task success with new preregistered holdout. Do not tune
+to this exposed SEALED18 set or treat its synthetic scenes as natural
+application data. No paid resources, merge, deployment or model release.
