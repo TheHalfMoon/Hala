@@ -18,7 +18,7 @@ from h140.blind_original_capture import SCHEMA as PRIVATE_SOURCE_SCHEMA
 
 CANDIDATES={
     "ood-vanilla-complete":"blind-candidate-aisha16-v1",
-    "ood-second-drag":"blind-candidate-michael16-v3",
+    "ood-second-drag":"blind-candidate-michael16-v4",
 }
 
 def check_blind_source(root,app):
