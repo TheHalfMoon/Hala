@@ -52,11 +52,11 @@ def visible_box(rect):
             rect["x"]+rect["width"]<=WIDTH and
             rect["y"]+rect["height"]<=HEIGHT)
 
-def owner_pilot(source,output,count=32,max_attempts=160):
+def owner_pilot(source,output,count=32,max_attempts=160,attempt_offset=0):
     from playwright.sync_api import sync_playwright
     source,output=Path(source),Path(output)
     check_source(source)
-    if count<16 or count>64 or max_attempts<count:
+    if count<16 or count>128 or max_attempts<count or attempt_offset<0 or attempt_offset%2:
         raise ValueError("H140 private pilot count/attempts out of bounds")
     if output.exists() or not any(parent.name=="private-h140" for parent in output.parents):
         raise ValueError("H140 capture create-only under owner private-h140")
@@ -75,7 +75,7 @@ def owner_pilot(source,output,count=32,max_attempts=160):
             browser=pw.chromium.launch(**opts,timeout=15000)
             try:
                 with serve(source) as url:
-                    for attempt in range(max_attempts):
+                    for attempt in range(attempt_offset,attempt_offset+max_attempts):
                         if len(records)>=count:
                             break
                         n,source_index,target_index,scroll_offset,lang=proposal(attempt)
@@ -212,8 +212,9 @@ if __name__=="__main__":
     cli.add_argument("--output",required=True)
     cli.add_argument("--cases",type=int,default=32)
     cli.add_argument("--max-attempts",type=int,default=160)
+    cli.add_argument("--attempt-offset",type=int,default=0)
     args=cli.parse_args()
-    result=owner_pilot(args.source,args.output,args.cases,args.max_attempts)
+    result=owner_pilot(args.source,args.output,args.cases,args.max_attempts,args.attempt_offset)
     print("H140_OWNER_PILOT_FINAL",json.dumps({
         "status":result["status"],"count":result["source_count"],
         "start_bins":result["start_geometry_bins"],"end_bins":result["end_geometry_bins"],
