@@ -34,8 +34,11 @@ def checked(*args,timeout=180):
 
 def source_mounts(root):
     actual={p.name for p in root.iterdir() if p.is_dir()}
-    if actual!=APPROVED_MOUNTS:
-        raise ValueError("H140 EXACTLY owner TRAIN+DEV mount slugs; no BLIND/unknown datasets")
+    # Kaggle can inject its own system mounts. Do not assume every
+    # /kaggle/input child is a dataset from our kernel metadata. Admit the
+    # two owner source mounts by EXACT slug, and reject any OOD/BLIND mounts.
+    if not APPROVED_MOUNTS.issubset(actual):
+        raise ValueError("H140 required owner-private TRAIN+DEV mounts missing")
     if any(any(fragment in name.lower() for fragment in
                ("blind","sealed","ood","test")) for name in actual):
         raise ValueError("H140 one-time OOD not permitted as model training input")
