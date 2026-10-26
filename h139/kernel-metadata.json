@@ -1,0 +1,18 @@
+{
+  "id":"abdulazizshehri/hala-h139-private-crossapp-64step-lora-t4",
+  "title":"hala-h139-private-crossapp-64step-lora-t4",
+  "code_file":"kaggle_private_train.py",
+  "language":"python",
+  "kernel_type":"script",
+  "is_private":true,
+  "enable_gpu":true,
+  "enable_internet":true,
+  "machine_shape":"NvidiaTeslaT4",
+  "dataset_sources":[
+    "abdulazizshehri/hala-h139-private-two-fullapps-train64",
+    "abdulazizshehri/hala-h139-private-two-fullapps-dev16"
+  ],
+  "competition_sources":[],
+  "kernel_sources":[],
+  "model_sources":[]
+}

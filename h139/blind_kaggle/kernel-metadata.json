@@ -1,0 +1,18 @@
+{
+  "id":"abdulazizshehri/hala-h139-private-blind-native-32call-t4",
+  "title":"hala-h139-private-blind-native-32call-t4",
+  "code_file":"kaggle_private_blind_eval.py",
+  "language":"python",
+  "kernel_type":"script",
+  "is_private":true,
+  "enable_gpu":true,
+  "enable_internet":true,
+  "machine_shape":"NvidiaTeslaT4",
+  "dataset_sources":[
+    "abdulazizshehri/hala-h139-private-frozen-64step-adapter",
+    "abdulazizshehri/hala-h139-private-blind8-redacted-evalonly"
+  ],
+  "competition_sources":[],
+  "kernel_sources":[],
+  "model_sources":[]
+}
