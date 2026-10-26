@@ -85,6 +85,10 @@ def run(source,output,count=16,max_attempts=100,attempt_offset=0):
                 for attempt in range(attempt_offset,attempt_offset+max_attempts):
                     if len(accepted)>=count:break
                     n,sidx,eidx,offset,lang=native_geometry_proposal(attempt)
+                    # Never let rejected/offscreen attempts skew per-app bilingual balance.
+                    if sum(r["language"]==lang for r in accepted)>=count//2:
+                        rejected["balanced_language_cap"]+=1
+                        continue
                     board,card_id,title=own_board(attempt,n,sidx)
                     ctx=browser.new_context(viewport={"width":WIDTH,"height":HEIGHT},
                                             device_scale_factor=1,service_workers="block")
