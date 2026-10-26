@@ -31,3 +31,22 @@ review remains open for genuine H71 drags.
 Local contracts: `python -m unittest discover -s tests -p 'test_h131*.py' -v`.
 Private Kaggle launch is manual/source-SHA pinned and requires a PRIVATE Kaggle
 dataset. Any model success here describes only four synthetic GUI interactions.
+
+## Owner-private experiment outcome (2026-10-26)
+
+Both private free T4 stages completed with **16 actual pinned ShowUI-2B
+inferences** and SHA-qualified outputs. Owner Chromium replay applied model
+START/END points (4 tasks, 2 attempts each). Tasks succeeded **0/4**
+on pass 1 and **0/4** after feedback; no model updates occurred. Every initial
+post-action screenshot was byte-identical to its original.
+
+Owner-only after-inference DOM scoring (h131/owner_diagnostics.py) found **0/4
+START predictions inside draggable handles**, with median distance **277.41 px**
+to the nearest handle boundary. This audit reads the fixture DOM only AFTER
+model inference and NEVER feeds DOM positions to the model or executor.
+
+This is a negative result on four synthetic GUI tasks, NOT a qualified
+computer-use benchmark. The next experiment must address global visual target
+identification rather than reuse failed local zoom or static-marker refinement.
+H127 independent blinded human review remains open for authentic H71 source
+semantics. Keep raw image and per-case prediction files owner-private and PR Draft.
