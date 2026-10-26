@@ -65,3 +65,64 @@ mandatory model attribution.
 **Training status:** source and tests qualified. GPU optimizer completion,
 adapter weights, independent DEV and SEALED outcomes must each be separately
 verified before any model improvement claim.
+
+## H136 final original-source / GPU / owner-browser qualification (2026-10-26)
+
+**Owner-original source:** exactly 288 TRAIN, 24 DEV, 24 SEALED genuine
+Chromium PNG screenshots/drag labels, all 336 reference drags passed.
+Source manifests each SHA-qualified; no old H131/H133/H134/H135 PNG reuse.
+SEALED24 remained unmounted in GPU training and independent DEV.
+
+**Actual free PRIVATE Kaggle T4 optimizer:** exactly 64 actual language-only
+rank-8 LoRA optimizer steps on original 960x720 images, START:END sample
+frequency 3:1, frozen externally attributed GUI Assist Grounder 2B
+(Qwen3.5, revision `31632edaa20749c7f532868a42635f7240033106`).
+Private newly trained safetensors (21,851,336 bytes) SHA-256:
+`183680c3224b024c546dbbd1428e7a05ffa1491d57c117aec350a11e04cba1a7`.
+Owner Windows independently verified byte SHA, source manifests,
+real optimizer-step evidence, all raw native JSON responses and bounding
+box scoring.
+
+| DEV24, same generator family | Before training | H136 64-step LoRA |
+| --- | ---: | ---: |
+| START hits | 0/24 | **20/24** |
+| END hits | 16/24 | **23/24** |
+| Both target boxes hit | 0/24 | **19/24** |
+| Actual Chrome mouse drag task success | 0/24 | **20/24** |
+
+**ONE-TIME preregistered SEALED24:** this set was held out before
+training/DEV, manifest SHA-256
+`a8d3ea230af8cab8d0902d1f4dfff2f6eded899a7d357bdbc2d4c4273a9e6244`.
+A completely separate private FREE T4 run loaded only the frozen base,
+the exact SHA-verified adapter and original SEALED24 source; **96 real
+neural inference calls, 0 optimizer steps**. Owner Windows independently
+reparsed the 96 real native model predictions, rechecked every original
+Chromium screenshot byte SHA, then performed **48 real model-generated
+mouse drags** with no oracle coordinate correction.
+
+| SEALED24, held-out from training/selection | Before training | H136 LoRA |
+| --- | ---: | ---: |
+| START hits | 1/24 | **16/24** |
+| END hits | 14/24 | **23/24** |
+| Both boxes hit | 0/24 | **15/24** |
+| **Actual complete browser drag successes** | **0/24** | **15/24** |
+
+Exact two-sided matched discordant-pair p-values on this *specific*
+preregistered synthetic test: START p=0.0002746582, END p=0.00390625,
+full completed GUI drags p=0.00006103515625. Under the exact paired
+test, training helped on this new synthetic heldout set. However all
+H136 scenes share a family of owner-authored workstation GUI generators,
+so **these results do not establish generalization to independent real
+applications**, clinical workflows, novel UI frameworks, Arabic-heavy
+tasks, or the separate flagship Hala 35B model. Model origins, external
+attribution, and rights stay intact.
+
+**Decision:** H136 is a valid research-adapter improvement for
+self-authored synthetic small-handle drags. Keep this adapter and
+all original screenshots/outputs privately stored. Do not continue
+optimizing against exposed DEV24 or SEALED24. Next H137 must qualify
+on genuinely different, legally permitted real application or
+third-party-independent task families, Arabic + English, and establish
+a cross-application eval-to-real-GUI action gate before any promotion.
+H127 independent semantic human review on genuine H71 data remains open.
+No publication, merge, deployment, paid cloud or release.
