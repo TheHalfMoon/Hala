@@ -1,6 +1,6 @@
-"""H136 Hala research-adapter: 24 real LoRA optimizer steps on FREE T4.
+"""H136 Hala research-adapter: 64 real LoRA optimizer steps on FREE T4.
 
-Only own original synthetic screenshots, private TRAIN128 and DEV16.
+Only own original synthetic screenshots, private TRAIN288 and DEV24.
 The SEALED TEST dataset is deliberately omitted from Kaggle metadata.
 """
 import importlib.metadata
@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__PIN_H136_SOURCE_COMMIT__"
+SOURCE_SHA="fcff44ad3f252bf76a99e4bc26054787b3fd9825"
 REPO=Path("/kaggle/tmp/hala-h136-source-and-training")
 OUTPUT=Path("/kaggle/working/hala-h136-private-gui-start-end-lora")
 RECEIPT=Path("/kaggle/working/hala-h136-private-training-attempt.json")
