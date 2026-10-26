@@ -129,7 +129,7 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
                         "if(localStorage.getItem("+json.dumps(key)+")===null){"+
                         "localStorage.setItem("+json.dumps(key)+","+state+");"+
                         (("localStorage.setItem('currentBoardId',"+
-                          json.dumps(json.dumps(original["board_id"]))+");")
+                          json.dumps(original["board_id"])+");")
                          if app=="ood-second-drag" else "")+"}")
                     ctx.route("**/*",only_local_requests)
                     try:
