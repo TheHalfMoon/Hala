@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="79587008f0aa373b858d0125c684338c14e3f4d5"
+SOURCE_SHA="42dffd654ab5104f3a104f800c9252bed2438dc1"
 REPO=Path("/kaggle/tmp/hala-h136-source-and-training")
 OUTPUT=Path("/kaggle/working/hala-h136-private-gui-start-end-lora")
 RECEIPT=Path("/kaggle/working/hala-h136-private-training-attempt.json")
