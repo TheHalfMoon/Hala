@@ -26,7 +26,7 @@ class H139BlindGPUContracts(unittest.TestCase):
         self.assertEqual(metadata["machine_shape"],"NvidiaTeslaT4")
         self.assertEqual(len(metadata["dataset_sources"]),2)
         from h139.blind_kaggle.kaggle_private_blind_eval import SOURCE_SHA
-        self.assertEqual(SOURCE_SHA,"d4ac96e2e5f208be3b41c13b7644ba742efb870e")
+        self.assertEqual(SOURCE_SHA,"1e6871a24df29c1ea3199af746e4f07960afeb79")
         self.assertTrue(any("blind8-redacted" in item for item in metadata["dataset_sources"]))
         self.assertTrue(any("frozen-64step-adapter" in item for item in metadata["dataset_sources"]))
         self.assertFalse(any("train64" in x or "dev16" in x for x in metadata["dataset_sources"]))

@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="d4ac96e2e5f208be3b41c13b7644ba742efb870e"
+SOURCE_SHA="1e6871a24df29c1ea3199af746e4f07960afeb79"
 REPO=Path("/kaggle/tmp/hala-h139-frozen-blind-inference-source")
 OUT=Path("/kaggle/working/hala-h139-private-blind-native-output")
 RECEIPT=Path("/kaggle/working/hala-h139-private-blind-run-attempt.json")
