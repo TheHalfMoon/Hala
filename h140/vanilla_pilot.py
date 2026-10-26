@@ -79,6 +79,10 @@ def owner_pilot(source,output,count=32,max_attempts=160,attempt_offset=0):
                         if len(records)>=count:
                             break
                         n,source_index,target_index,scroll_offset,lang=proposal(attempt)
+                        # Never let rejected/offscreen attempts skew per-app bilingual balance.
+                        if sum(r["language"]==lang for r in records)>=count//2:
+                            rejected["balanced_language_cap"]+=1
+                            continue
                         title=f"H140 unique task {attempt:04d}"
                         seed={"todo":[{"title":title if j==source_index else
                                        f"Other todo {attempt:04d}-{j:02d}",
