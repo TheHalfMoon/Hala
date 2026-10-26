@@ -116,7 +116,17 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
             with serve(private_root/app) as url:
                 for attempt in range(attempt_offset,attempt_offset+max_attempts):
                     if len(records)>=count:break
+                    if (attempt-attempt_offset)%24==0:
+                        print("H140_PRIVATE_OOD_SOURCE_ACCEPTANCE_PROGRESS",app,
+                              "attempted",attempt-attempt_offset,
+                              "accepted",len(records),
+                              "refusals",dict(rejected),flush=True)
                     n,si,di,lang,scroll=param(attempt)
+                    if app=="ood-second-drag":
+                        # Tall independent native cards must be drag-visible in
+                        # the SAME row; still vary source row and viewport scroll.
+                        di=si
+                        scroll=(attempt*83)%260
                     if sum(r["language"]==lang for r in records)>=count//2:
                         rejected["bilingual_cap"]+=1
                         continue
@@ -142,7 +152,7 @@ def collect(app,private_root,output,count=16,attempt_offset=30000,max_attempts=1
                         if pre_start is None or pre_end is None:
                             rejected["source_dom_missing"]+=1;continue
                         last=max(center(pre_start)[1],center(pre_end)[1])
-                        page.evaluate("(y)=>window.scrollTo(0,y)",max(0,last-620)+scroll)
+                        page.evaluate("(y)=>window.scrollTo(0,y)",max(0,last-(560 if app=="ood-second-drag" else 620))+scroll)
                         page.wait_for_timeout(120)
                         box1,box2=src.bounding_box(),dest.bounding_box()
                         if not visible_box(box1) or not visible_box(box2):
