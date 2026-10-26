@@ -103,10 +103,21 @@ def owner_browser_replay(source_dir,upstream_root,results_dir,output,expected_ad
                         ctx.route("https://**/*",lambda route:route.abort())
                         page=ctx.new_page()
                         try:
-                            page.goto(url,wait_until="load")
-                            page.locator("textarea").first.wait_for()
-                            if sha(page.screenshot(type="png"))!=row["image_sha256"]:
-                                raise ValueError("H139 independent frozen original React screenshot drift")
+                            # React cards animate their initial opacity after DOM readiness.
+                            # Wait for the EXACT frozen PNG bytes, never relax the SHA gate.
+                            page.goto(url,wait_until="domcontentloaded",timeout=12000)
+                            page.locator("textarea").first.wait_for(timeout=12000)
+                            if (not page.locator('[role="group"]').first.bounding_box() or
+                                not page.locator('.chakra-stack').nth(1).bounding_box()):
+                                raise ValueError("H139 original app card/column not visible")
+                            stable=False
+                            for attempt in range(16):
+                                if sha(page.screenshot(type="png"))==row["image_sha256"]:
+                                    stable=True
+                                    break
+                                page.wait_for_timeout(100)
+                            if not stable:
+                                raise ValueError("H139 original React screenshot never stabilized to frozen SHA")
                             start=coords[arm,row["id"],"start"]
                             end=coords[arm,row["id"],"end"]
                             success=False
