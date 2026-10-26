@@ -31,3 +31,54 @@ never updated. All source, data and adapter assets stay private. No
 paid cloud, publication, deployment or merge. H127 real H71 human
 source-identifiability gate and broader real user workflow qualification
 remain open.
+
+## H138 final frozen external full-app results — 2026-10-26
+
+The exact original two MIT app revisions built unmodified on owner Windows:
+`MSabriBoy/Kanban_Task_Board` SHA
+`553d4e92be3e86e0deb7045f4968152868399eae` (React dnd-kit);
+`9bzero/kanban-board` SHA
+`83413e1f5fab4690bb46b23201a3438a427ef265` (React HTML5 DnD).
+8/8 authentic source-reference mouse drags moved target cards between
+columns AND persisted the desired state. 4 scenarios/app, 2 English and
+2 Arabic external instructions per app; full unmodified UI source stayed
+private. Heldout screenshot manifest SHA256
+`203e5976131e685e296c4cf71edffe3c4332d9103fb7d508b041a850ce07e7c7`.
+
+One private FREE Kaggle T4 eval completed exactly **32 real neural model
+calls**, pretrained external pinned 2B versus frozen H136 64-step LoRA,
+**0 optimizer steps**. Owner Windows checked source/adapter SHAs and raw
+native response-to-point consistency, then executed **16 actual
+model-proposed mouse down/move/up drags** on authentic unchanged app builds,
+with success scored exclusively from persisted application state.
+
+| Frozen H138 out-of-generator full apps | External pretrained 2B | Frozen H136 LoRA |
+| --- | ---: | ---: |
+| START within real dragged card/handle | 6/8 | **0/8** |
+| END within destination column bbox | 0/8 | 0/8 |
+| Actual persisted task success | **0/8** | **0/8** |
+| React dnd-kit English | 0/2 | 0/2 |
+| React dnd-kit Arabic | 0/2 | 0/2 |
+| Native HTML5 board English | 0/2 | 0/2 |
+| Native HTML5 board Arabic | 0/2 | 0/2 |
+
+Exact paired full-task p=**1.0**, no successes in either arm.
+This is a **failure of external full-app transfer for this 8-task sample**.
+There is no defensible claim that the frozen 64-step synthetic-trained
+research LoRA generalizes broadly: despite H136 15/24 full tasks on same-
+generator heldout and H137 17/36 on library wrappers, H138 is 0/8 on
+two independent complete applications. START also regressed in this
+sample from 6/8 external pretrained to 0/8 LoRA (tiny n; exploratory).
+Flagship Hala 35B model has NEVER been changed by H136–H138.
+
+**Decision: NO-GO for promotion.** H138 screenshots and results are now
+exposed for diagnostic analysis only; do not train on them, select a
+new checkpoint with them, tune exact prompts on them, or call them a
+release regression suite for improvement claims. Future H139 needs a
+substantively NEW, app-diverse legally usable TRAIN corpus with multiple
+real independent GUI implementation frameworks and newly preregistered
+private out-of-distribution test applications. Compare frozen base and
+adapter with true START acquisition, END finding, and full persisted
+tasks. Include bilingual tasks, long-horizon recovery and H127
+independent human review before claiming useful Hala skill.
+No paid compute, release, publication, deployment or merge.
