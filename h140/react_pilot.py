@@ -33,12 +33,12 @@ def verify_app(source):
 def midpoint(rect):
     return [rect["x"]+rect["width"]/2,rect["y"]+rect["height"]/2]
 
-def run(source,output,count=16,max_attempts=100):
+def run(source,output,count=16,max_attempts=100,attempt_offset=0):
     from playwright.sync_api import sync_playwright
     source=Path(source)
     built=verify_app(source)
     output=Path(output)
-    if count<16 or count>64 or max_attempts<count:
+    if count<16 or count>128 or max_attempts<count or attempt_offset<0 or attempt_offset%2:
         raise ValueError("H140 React source pilot size not supported")
     if output.exists() or not any(p.name=="private-h140" for p in output.parents):
         raise ValueError("H140 only create new owner-private source pilot")
@@ -54,7 +54,7 @@ def run(source,output,count=16,max_attempts=100):
         browser=pw.chromium.launch(**opts,timeout=15000)
         try:
             with serve(built) as url:
-                for attempt in range(max_attempts):
+                for attempt in range(attempt_offset,attempt_offset+max_attempts):
                     if len(records)>=count:break
                     n,src_idx,dst_idx,offset,language=proposal(attempt)
                     chosen=f"H140 owner React draggable {attempt:04d}"
@@ -157,8 +157,9 @@ if __name__=="__main__":
     parser.add_argument("--output",required=True)
     parser.add_argument("--count",type=int,default=16)
     parser.add_argument("--max-attempts",type=int,default=100)
+    parser.add_argument("--attempt-offset",type=int,default=0)
     a=parser.parse_args()
-    x=run(a.source,a.output,a.count,a.max_attempts)
+    x=run(a.source,a.output,a.count,a.max_attempts,a.attempt_offset)
     print("H140_REACT_PILOT_FINAL",json.dumps({
         "status":x["status"],"count":x["count"],"start_bins":x["start_bins"],
         "end_bins":x["end_bins"],"rejections":x["rejections"]},sort_keys=True))
