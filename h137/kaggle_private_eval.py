@@ -10,7 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_GIT_SHA="__FROZEN_H137_EVAL_SOURCE_SHA__"
+SOURCE_GIT_SHA="10197bae6f63cecd1f57be4bcffd9db93fa21277"
 REPO=Path("/kaggle/tmp/hala-h137-source-once")
 OUTPUT=Path("/kaggle/working/hala-h137-private-crosslib36")
 RECEIPT=Path("/kaggle/working/hala-h137-private-crosslib-attempt.json")

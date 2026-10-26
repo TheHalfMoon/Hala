@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h137-private-crosslibrary-realui-t4",
+  "title": "hala-h137-private-crosslibrary-realui-t4",
+  "code_file": "kaggle_private_eval.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h137-private-crosslib36-evalonly",
+    "abdulazizshehri/hala-h136-private-frozen64-step-adapter"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
