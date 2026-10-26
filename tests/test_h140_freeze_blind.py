@@ -14,7 +14,7 @@ class H140SealedOriginalOODTests(unittest.TestCase):
                             SOURCES["ood-second-drag"]["sha"])
         self.assertEqual(set(CANDIDATES.values()),
                          {"blind-candidate-aisha16-v1",
-                          "blind-candidate-michael16-v2"})
+                          "blind-candidate-michael16-v3"})
 
     def test_refuse_missing_original_train_dev_seal(self):
         with tempfile.TemporaryDirectory() as folder:
