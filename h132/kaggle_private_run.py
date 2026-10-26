@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__SOURCE_COMMIT_SHA__"
+SOURCE_SHA="4073da9615493e83d3b4dd0f03d44c5292f795ad"
 ROOT=Path("/kaggle/tmp/hala-h132-specialist-git")
 OUTPUT=Path("/kaggle/working/hala-h132-private-specialist-2b")
 ATTEMPT=Path("/kaggle/working/hala-h132-attempt.json")
