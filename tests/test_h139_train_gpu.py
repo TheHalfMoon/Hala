@@ -23,4 +23,18 @@ class H139FrozenTrainingGuards(unittest.TestCase):
         self.assertEqual(SPLITS["train"][1],64)
         self.assertEqual(SPLITS["dev"][1],16)
 
+    def test_exact_pinned_private_kaggle_job(self):
+        import json
+        from pathlib import Path
+        from h139.kaggle_private_train import SOURCE_SHA, OUTPUT, identify_owner_splits
+        metadata=json.loads((Path(__file__).parent.parent/"h139"/"kernel-metadata.json").read_text("utf8"))
+        self.assertEqual(SOURCE_SHA,"bef2a0a7ccbeb64f53c6d86d976914b8a7eba8f9")
+        self.assertEqual(len(SOURCE_SHA),40)
+        self.assertTrue(metadata["is_private"])
+        self.assertEqual(metadata["machine_shape"],"NvidiaTeslaT4")
+        self.assertEqual(len(metadata["dataset_sources"]),2)
+        self.assertFalse(any("blind" in x.lower() or "sealed" in x.lower()
+                             for x in metadata["dataset_sources"]))
+        self.assertTrue(str(OUTPUT).replace("\\","/").startswith("/kaggle/working/"))
+
 if __name__=="__main__":unittest.main()

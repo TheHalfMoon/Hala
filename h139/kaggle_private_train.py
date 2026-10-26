@@ -1,7 +1,8 @@
 """H139 Hala research-adapter: 64 real LoRA optimizer steps on FREE T4.
 
-Only own original synthetic screenshots, private TRAIN64 and DEV16.
-The SEALED TEST dataset is deliberately omitted from Kaggle metadata.
+Owner-captured screenshots of three legally qualified unmodified MIT apps.
+Only real-app TRAIN64 and DEV16 are mounted; independent OOD BLIND8 stays
+owner-local and is never available to the training kernel.
 """
 import importlib.metadata
 import json
@@ -10,7 +11,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_SHA="__H139_FROZEN_SOURCE_SHA__"
+SOURCE_SHA="bef2a0a7ccbeb64f53c6d86d976914b8a7eba8f9"
 REPO=Path("/kaggle/tmp/hala-h139-source-and-training")
 OUTPUT=Path("/kaggle/working/hala-h139-private-gui-start-end-lora")
 RECEIPT=Path("/kaggle/working/hala-h139-private-training-attempt.json")
