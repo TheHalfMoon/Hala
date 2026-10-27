@@ -102,12 +102,12 @@ def make_episode(browser, html_root, task, split, index, seed, output):
 
 
 def collect(source, owner):
-    from playwright.sync_api import sync_playwright
     owner = Path(owner)
     app = admit_upstream(source)
     folder = owner / "private-h155" / "source-train-dev-v1"
     if folder.exists():
         raise FileExistsError("H155 source TRAIN/DEV corpus is create-only")
+    from playwright.sync_api import sync_playwright
     excluded = excluded_images(owner)
     folder.mkdir(parents=True, exist_ok=False)
     (folder / "ONE_SHOT_SOURCE_LOCK").write_text(SCHEMA, encoding="utf8")
