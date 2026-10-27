@@ -23,6 +23,14 @@ STRATA={"ar/doing","en/doing","ar/done","en/done"}
 def history(root):
     root=Path(root)
     hashes,_,_=excluded_originals(root)
+    # Refused H142 first-attempt browser frames are NOT independent new
+    # training/eval screenshots; exclude their real native pixel SHA too.
+    failed_root=root/"private-h142"
+    if failed_root.is_dir():
+        for failed in failed_root.glob("*failed*"):
+            if failed.is_dir():
+                for picture in failed.glob("*.png"):
+                    hashes.add(digest(picture.read_bytes()))
     for name in ("original-react-interactive-diagnostic8",
                  "react-original-visible-goal16",
                  "react-original-neural-probe16-v1"):
