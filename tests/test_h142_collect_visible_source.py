@@ -22,6 +22,8 @@ class H142NewVisibleSFTSourceContracts(unittest.TestCase):
             for case in scenes:
                 self.assertEqual(case["destination_column"],
                                  DESTINATIONS[case["destination_status"]])
+                if case["destination_status"]=="done":
+                    self.assertIn(case["destination_index"],(0,1))
                 self.assertIn(case["title"],case["instruction"])
                 self.assertNotIn("point_2d",case["instruction"])
                 self.assertTrue(any(
