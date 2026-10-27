@@ -18,6 +18,7 @@ from h157.action_contract_v3 import parse_v3
 from h157.audit_spatial_source import audit as source_audit
 from h157.audit_gpu_learning import audit as gpu_audit
 from h157.train_gpu import START_ADAPTER_SHA
+from h157.preflight_native_identity import OUTPUT as IDENTITY_RECEIPT
 
 LOCK="H157_MODEL_NATIVE_DEV_ONCE_CONSUMED.lock"
 OUTPUT="H157_MODEL_NATIVE_DEV_BROWSER_REWARD.json"
@@ -28,6 +29,14 @@ def preflight(owner, app_source, result_root, private_archive):
     owner=Path(owner)
     original=admit_upstream(app_source)
     frozen=source_audit(owner)
+    identity=json.loads((owner/"private-h157"/IDENTITY_RECEIPT).read_text("utf8"))
+    if (identity.get("status")!="H157_ORIGINAL_72_DEV_SCREENSHOTS_PIXEL_IDENTICAL"
+        or identity.get("original_dev_screenshots")!=72
+        or identity.get("source_manifest_sha256")!=frozen["manifest_sha256"]
+        or identity.get("actual_model_native_reward_trials")!=0
+        or identity.get("neural_inference_calls")!=0
+        or identity.get("h140_blind_calls")!=0):
+        raise ValueError("H157 frozen original DEV screenshot identity preflight missing")
     verified=gpu_audit(result_root, private_archive)
     if verified["source_manifest_sha256"]!=frozen["manifest_sha256"]:
         raise ValueError("H157 actual model checkpoint/source provenances differ")
