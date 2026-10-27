@@ -114,6 +114,9 @@ def native_pikaday(browser,url,case,execute):
 def old_hashes(owner):
     owner=Path(owner)
     old=prior(owner)
+    proof=json.loads((owner/"private-h164/H164_NEW_DEV_PIXEL_QA.json").read_text("utf8"))
+    if proof.get("status")!="H164_DEV_96_ORIGINAL_APP_EXACT_PIXEL_REPLAY":
+        raise ValueError("H164 no OOD before independently qualified 96 DEV")
     for path in (
         "private-h164/additional-three-app-288-train-v1",
         "private-h164/new-dev-96-v1"

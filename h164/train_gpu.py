@@ -10,8 +10,8 @@ from h156.train_gpu import open_media
 from h164.native_action_contract import parse_action,visible_prompt,supervision
 
 # These MUST be pinned to new private owner source receipts before launch.
-TRAIN_SHA="UNQUALIFIED"
-DEV_SHA="UNQUALIFIED"
+TRAIN_SHA="ed08ef5a7e8b38d6fe8c38c235d93d8fa0625437ca3c67a5578f4fc941db4495"
+DEV_SHA="17adcc78fae62d7de3ae73c2ae7d3863abd0b2f1105edf4f45db7f4c78b503b0"
 PARENT_LORA_SHA="72227e6ca39b5be1052812640e868a17f583367e4a82d03ff6f5ba569f02007c"
 PARENT_ZIP_SHA="8436ab1a9adbdd90b4fe21e6bb389a185994eb0ab631b6408877c2b8c796bb35"
 ACCUM=2
