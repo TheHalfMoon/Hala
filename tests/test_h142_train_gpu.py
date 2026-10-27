@@ -41,7 +41,7 @@ class H142RealVisibleHeadingTrainingContracts(unittest.TestCase):
         self.assertEqual(__import__("json").loads(gold),{
             "point_2d":[812,257]})
         prompt,_=role_prompt_and_gold(row,START_ROLE)
-        self.assertIn("START",prompt)
+        self.assertIn("BEGIN",prompt)
         with self.assertRaises(ValueError):
             role_prompt_and_gold(row,"end")
         with self.assertRaises(ValueError):
