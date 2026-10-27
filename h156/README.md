@@ -63,8 +63,21 @@ and native mouse/keyboard. The app's original reward is read only AFTER
 the model actions. Results remain owner-private and create-once. This is
 12 DEV images, NOT independent BLIND or cross-app transfer.
 
-CPU-only focused H150-H156 tests: **32/32 PASS**. The Kaggle worker was
-still QUEUED at the last status check; no completed training claim.
+CPU-only focused H150-H156 tests: **38/38 PASS** on latest changes.
+GitHub full CPU qualification of the earlier pinned H156 commit passed.
+Kaggle private v3 remained QUEUED at last verification; no completed
+24-step training claim. First Kaggle attempt is preserved as a failed
+0-optimizer-step archival receipt (auto-extracted ZIP source mismatch).
+
+The independent `h156.audit_neural_native_gain` refuses any claimed DEV
+improvement unless both model arms have 12 matching frozen original task
+identities, 24 actual action outcome receipts, a new distinct adapter
+SHA, a consumed one-shot lock, consistent native rewards, and no
+unqualified abstention. It reports actual before/after successes,
+paired wins/regressions, action-family strata and the exact paired
+sign-test probability. It explicitly does **not** claim unseen-app
+generalization, and cannot report a score until the GPU run and the
+native browser replay genuinely complete.
 
 No H140 sealed blind access, flagship Hala 35B update, model publishing,
 main branch merge, or release.
