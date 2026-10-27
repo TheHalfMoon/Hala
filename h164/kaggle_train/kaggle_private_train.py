@@ -7,7 +7,7 @@ import importlib.metadata
 import json,os,subprocess,sys
 from pathlib import Path
 
-SOURCE_COMMIT="UNQUALIFIED"
+SOURCE_COMMIT="545accc6c09db7553fa0bdbe91953c41fbed3bb5"
 ROOT=Path("/kaggle/tmp/hala-h164-pinned-training-source")
 OUT=Path("/kaggle/working/hala-h164-new-original-ui-384-trained-lora")
 RECEIPT=Path("/kaggle/working/h164-free-T4-train-job-receipt.json")
