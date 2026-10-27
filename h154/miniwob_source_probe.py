@@ -103,11 +103,11 @@ def episode(browser, base, task, index, images):
 
 
 def run(source, owner):
-    from playwright.sync_api import sync_playwright
     base = admit_upstream(source)
     private = Path(owner) / "private-h154" / "source-only-miniwob-v2"
     if private.exists():
         raise FileExistsError("H154 source pilot is create-once; do not retune")
+    from playwright.sync_api import sync_playwright
     private.mkdir(parents=True, exist_ok=False)
     (private / "ONE_SHOT_SOURCE.lock").write_text(SCHEMA, encoding="utf8")
     images = private / "screenshots"
