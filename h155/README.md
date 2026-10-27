@@ -43,11 +43,24 @@ repaired with original-app oracle coordinates or text. Frozen H142
 START/visible heading roles are treated as
 `UNSUPPORTED_ACTION_ROLE_ABSTAIN` on all H155 tasks.
 
+## Verified original action supervision — SOURCE ONLY
+
+Owner Windows captured **48 new TRAIN and 12 new DEV** original MiniWoB++
+960×720 source screenshots with supervised click/type/select/submit JSON.
+All 60 reference actions completed with original application reward,
+all 60 image SHA values are distinct and disjoint from the **21 earlier
+H154 source images**. The independent owner audit passed and froze
+manifest SHA-256
+`ad3fc8c74d0601b55f941ce77c8ee57b34101d7f5dfeaf8cc28904161e65ccd1`.
+Private artifacts are `private-h155/source-train-dev-v1/`, not on GitHub.
+This is **single-app, English-only TRAIN/DEV supervision**, not model
+training, unseen-app evaluation or a model performance result.
+
 ## Remaining real work
 
-1. **H155 TRAIN:** create newly generated source-only original GUI
-   training labels and screenshots across action families and at least
-   two independent applications, with true MIT/source pin evidence.
+1. **Additional TRAIN:** expand source-only GUI supervision beyond the
+   current MiniWoB++ originals to at least one other licensed application,
+   and add bilingual tasks. Keep SHA-disjoint TRAIN/DEV/eval splits.
    Keep split IDs and screenshot SHA values disjoint from H137–H154.
 2. **H155 DEV:** independently freeze balanced validation tasks.
    Determine if the model can genuinely emit strictly typed actions,
