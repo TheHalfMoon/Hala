@@ -36,6 +36,14 @@ def replay(owner_root):
                     try:
                         page=ctx.new_page()
                         page.goto(url,wait_until="commit",timeout=18000)
+                        # Reproduce the exact source collector's React
+                        # hydration/visibility synchronization BEFORE pixels.
+                        page.locator(".task_column").nth(0).locator(
+                            ".task_card").nth(seed["source_index"]).wait_for(timeout=18000)
+                        page.locator(".task_column").nth(1).locator(
+                            ".task_column_heading").first.wait_for(timeout=18000)
+                        page.locator(".task_column").nth(1).locator(
+                            ".hide_drop").nth(seed["destination_index"]).wait_for(timeout=18000)
                         if digest(page.screenshot(type="png"))!=row["image_sha256"]:
                             raise ValueError("H141 model actually saw different original native screenshot")
                         count+=1
