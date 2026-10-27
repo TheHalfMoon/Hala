@@ -28,7 +28,7 @@ class H141PrivateVisibleNeuralProbeTests(unittest.TestCase):
     def test_owner_data_mount_exactly_one_probe_no_h140_blind(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
-            with self.assertRaisesRegex(ValueError,"one owner"):
+            with self.assertRaisesRegex(ValueError,"unavailable"):
                 identify_private_source(root)
             ds=root/"hala-h141-private-visible-probe-v1"
             ds.mkdir()
@@ -37,8 +37,10 @@ class H141PrivateVisibleNeuralProbeTests(unittest.TestCase):
             one,two=identify_private_source(root)
             self.assertTrue(one.name.endswith("redacted-v1.zip"))
             self.assertIn("rank8",two.name)
+            (root/"__kaggle_system_data").mkdir()
+            self.assertEqual(identify_private_source(root),(one,two))
             (root/"extra-blind-upload").mkdir()
-            with self.assertRaisesRegex(ValueError,"one owner"):
+            with self.assertRaisesRegex(ValueError,"forbidden"):
                 identify_private_source(root)
 
     def test_private_kernel_is_free_t4_only(self):
