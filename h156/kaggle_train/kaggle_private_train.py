@@ -29,10 +29,22 @@ def store(data):
     path.replace(RECEIPT)
 
 
-def find_file(root,name):
-    matches=[p for p in root.rglob(name) if p.is_file()]
+def find_source(root,name):
+    """Kaggle mounts uploaded ZIP either intact or auto-expanded."""
+    matches=(list(root.rglob(name))+
+             list(root.rglob(name+".zip")))
+    matches=[p for p in matches if p.is_dir() or p.is_file()]
+    if not matches and name=="h156-source-images":
+        matches=[p.parent for p in root.rglob("manifest.json")
+                 if p.is_file() and
+                 json.loads(p.read_text("utf8")).get("schema")==
+                 "hala.h156.private-action-train-dev-v2.v1"]
+    if not matches and name=="h142-private-visible-column-lora":
+        matches=[p.parent for p in root.rglob("adapter_model.safetensors")
+                 if p.is_file()]
+    matches=list(dict.fromkeys(matches))
     if len(matches)!=1:
-        raise ValueError("H156 exactly one private dataset archive required")
+        raise ValueError("H156 exactly one original private model/source needed")
     return matches[0]
 
 
@@ -63,8 +75,8 @@ def main():
                    ("blind","h140","ood","h153","h154","h155"))
                for folder in source_root.iterdir()):
             raise ValueError("H156 unrelated holdout/private dataset mounted")
-        images=find_file(source_root,"h156-source-images.zip")
-        adapter=find_file(source_root,"h142-private-visible-column-lora.zip")
+        images=find_source(source_root,"h156-source-images")
+        adapter=find_source(source_root,"h142-private-visible-column-lora")
         if (DATASET_SLUG not in str(images) or
             images.parent!=adapter.parent):
             raise ValueError("H156 requires one owner-private source dataset")

@@ -14,6 +14,31 @@ from collections import Counter
 from pathlib import Path
 from zipfile import ZipFile
 
+class FolderMedia:
+    """Kaggle may expand a private ZIP into its named directory."""
+    def __init__(self,path):
+        self.root=Path(path)
+    def __enter__(self):
+        return self
+    def __exit__(self,*args):
+        return False
+    def namelist(self):
+        return [p.relative_to(self.root).as_posix()
+                for p in self.root.rglob("*") if p.is_file()]
+    def read(self,name):
+        if (not isinstance(name,str) or name.startswith("/") or
+            ".." in name or "\\" in name):
+            raise ValueError("Unsafe H156 Kaggle original media path")
+        f=self.root/name
+        if not f.is_file():
+            raise ValueError("Missing H156 original image in expanded Kaggle source")
+        return f.read_bytes()
+
+def open_media(path):
+    path=Path(path)
+    return FolderMedia(path) if path.is_dir() else ZipFile(path)
+
+
 SOURCE_SHA="fe274bc48225685ea135137e1607169ef9481903c5848f9bb1e2ede78f509562"
 SCHEMA="hala.h156.private-action-train-dev-v2.v1"
 ADAPTER_SHA="992fa18fead6724329dbe7ec7b95c8acb0a56229c1fa5b56719e5f4829130a68"
@@ -31,9 +56,9 @@ def sha(data):
 def load_source(archive):
     from h156.action_contract_v2 import action_from_dict_v2
     archive=Path(archive)
-    if not archive.is_file():
-        raise ValueError("H156 private source must be a frozen ZIP")
-    with ZipFile(archive) as z:
+    if not (archive.is_file() or archive.is_dir()):
+        raise ValueError("H156 private source archive or expanded folder missing")
+    with open_media(archive) as z:
         names=z.namelist()
         if "manifest.json" not in names:
             raise ValueError("H156 source manifest missing")
@@ -146,7 +171,7 @@ def score(processor,model,torch,archive,dev,checkpoint):
     from h156.action_contract_v2 import parse_v2
     stats=Counter()
     results=[]
-    with ZipFile(archive) as z:
+    with open_media(archive) as z:
         for row in dev:
             with Image.open(io.BytesIO(z.read("images/"+row["image"]))) as im:
                 picture=im.convert("RGB")
@@ -224,7 +249,7 @@ def run(archive,adapter_zip,output):
     random.Random(SEED).shuffle(schedule)
     loss_trace=[]
     start=time.monotonic()
-    with ZipFile(archive) as z:
+    with open_media(archive) as z:
         for step in range(STEPS):
             optimizer.zero_grad(set_to_none=True)
             model.train()
