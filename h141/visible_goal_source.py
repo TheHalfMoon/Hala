@@ -20,9 +20,12 @@ from h141.interactive_source import (
 )
 
 SCHEMA="hala.h141.visible-at-rest-column-original-source-pilot.v1"
+EVAL_SCHEMA="hala.h141.visible-heading-original-neural-probe.v1"
 
-def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160):
+def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160,phase="diagnostic"):
     folder=Path(folder)
+    if phase not in ("diagnostic","neural_probe") or (phase=="neural_probe" and (count!=16 or attempt_offset<48000)):
+        raise ValueError("H141 preregistered model probe needs exactly 16 new original sources with IDs >=48000")
     if (not 4<=count<=32 or count%2 or
         attempt_offset<44000 or attempt_offset%2 or max_attempts<count or
         folder.exists() or folder.with_name(folder.name+".incomplete").exists() or
@@ -118,7 +121,7 @@ def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160):
                             "hidden_exact_drop_point_is_not_output_target":True,
                             "training_eligible":False,
                             "blind_eligible":False,
-                            "model_evaluation_eligible":False,
+                            "model_evaluation_eligible":phase=="neural_probe",
                             "reference_drag_persisted":True,
                             "reference_survived_page_reload":True,
                             "model_input_contains_oracle_coordinates":False,
@@ -134,11 +137,16 @@ def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160):
     if Counter(row["language"] for row in rows)!={"ar":count//2,"en":count//2}:
         raise ValueError("H141 visible original column source bilingual role cap failed")
     doc={
-        "schema":SCHEMA,"status":"VISIBLE_ORIGINAL_COLUMN_DIAGNOSTIC_ONLY",
+        "schema":EVAL_SCHEMA if phase=="neural_probe" else SCHEMA,
+        "status":("PREDECLARED_ORIGINAL_NEURAL_PROBE_NO_TRAIN"
+                  if phase=="neural_probe" else
+                  "VISIBLE_ORIGINAL_COLUMN_DIAGNOSTIC_ONLY"),
         "private":True,"source_original_mit_sha":APP_SHA,
         "target_role":"visible_destination_column_approach_not_release",
         "training_eligible":False,"blind_eligible":False,
-        "model_evaluation_eligible":False,
+        "model_evaluation_eligible":phase=="neural_probe",
+        "eval_scope":"visible_start_and_heading_only_not_hidden_release",
+        "role":"owner_original_neural_probe" if phase=="neural_probe" else "source_diagnostic",
         "real_neural_calls":0,"original_cards_reloaded":count,
         "cases":rows,
     }
@@ -153,6 +161,7 @@ def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160):
         "unique_at_rest_png":len(seen),
         "language_counts":dict(Counter(x["language"] for x in rows)),
         "training_eligible":False,"blind_eligible":False,
+        "model_evaluation_eligible":phase=="neural_probe",
         "refusals":dict(reject),
         "flagship_Hala_35B_updated":False,
     }
@@ -164,8 +173,9 @@ if __name__=="__main__":
     p.add_argument("--count",type=int,default=16)
     p.add_argument("--attempt-offset",type=int,default=44000)
     p.add_argument("--max-attempts",type=int,default=160)
+    p.add_argument("--phase",choices=("diagnostic","neural_probe"),default="diagnostic")
     a=p.parse_args()
     print(json.dumps(collect(a.source,a.output,count=a.count,
                              attempt_offset=a.attempt_offset,
-                             max_attempts=a.max_attempts),
+                             max_attempts=a.max_attempts,phase=a.phase),
                      sort_keys=True,indent=2))
