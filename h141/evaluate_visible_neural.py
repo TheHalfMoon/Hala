@@ -112,6 +112,15 @@ def run(owner_root,predictions):
                     try:
                         page=ctx.new_page()
                         page.goto(url,wait_until="commit",timeout=18000)
+                        # Original capture synchronizes on React card,
+                        # visible destination heading and hidden native slot
+                        # before taking its SHA-frozen at-rest screenshot.
+                        page.locator(".task_column").nth(0).locator(
+                            ".task_card").nth(seed["source_index"]).wait_for(timeout=18000)
+                        page.locator(".task_column").nth(1).locator(
+                            ".task_column_heading").first.wait_for(timeout=18000)
+                        page.locator(".task_column").nth(1).locator(
+                            ".hide_drop").nth(seed["destination_index"]).wait_for(timeout=18000)
                         observed=digest(page.screenshot(type="png"))
                         if observed!=row["image_sha256"]:
                             raise ValueError("H141 original model-observed source screenshot not SHA-identical")
