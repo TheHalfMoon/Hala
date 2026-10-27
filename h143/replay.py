@@ -6,7 +6,6 @@ No model predictions and no gold boxes are exported by this tool.
 import argparse
 import json
 from pathlib import Path
-from playwright.sync_api import sync_playwright
 from h138.probe import serve
 from h130.browser_env import WIDTH,HEIGHT,_chromium_binary
 from h140.qualification import digest
@@ -31,6 +30,7 @@ def reconstruct(page,row):
     return seed
 
 def replay(root):
+    from playwright.sync_api import sync_playwright
     root=Path(root)
     approved=audit(root)
     source=json.loads((root/"private-h143"/FOLDER/"manifest.json").read_text("utf8"))
