@@ -192,7 +192,7 @@ def collect(source,output,split,attempt_offset=None,max_attempts=450):
             "cases":count,"strata":{"/".join(k):v for k,v in strata.items()},
             "unique_original_png":len(images),
             "real_reference_drag_persisted":count,
-            "refusals":dict(reject),"model_calls":0}
+            "refusals":dict(rejects),"model_calls":0}
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
