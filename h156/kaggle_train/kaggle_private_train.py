@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_COMMIT="115493450870b8ba6e27cbe34634e3e6c65d03f4"
+SOURCE_COMMIT="385b3a66317e05922a3a1bfd8ebadc976036844b"
 SOURCE_SHA="fe274bc48225685ea135137e1607169ef9481903c5848f9bb1e2ede78f509562"
 WORK=Path("/kaggle/tmp/hala-h156-typed-action-research-source")
 OUT=Path("/kaggle/working/hala-h156-typed-action-lora")
