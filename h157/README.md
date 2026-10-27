@@ -9,12 +9,18 @@ The source+frozen H156 research LoRA dataset is READY and PRIVATE on
 Kaggle at `abdulazizshehri/hala-h157-private-spatial-action-v1`.
 This is **source/reference success, not H157 model accuracy**.
 
-**Planned H157 SFT:** 152 bounded real optimizer steps at 2 examples per
-update on free non-commercial T4, using 280 unique original TRAIN images
-and repeating the 24 dropdown TRAIN examples once (304 action examples)
-to retain H156's previously improved list-selection ability. Exactly
-72 new DEV images remain optimizer-excluded. No new H157 model checkpoint
-has been verified yet.
+**Completed H157 research training:** 152/152 real optimizer steps on
+free non-commercial Kaggle T4, with 280 unique original TRAIN images and
+24 fresh dropdown TRAIN examples repeated once. All 72 DEV images were
+excluded from optimization. A SHA-distinct new trained LoRA was verified
+independently, and its action predictions achieved **60/72 (83.3%) real
+native MiniWoB++ DEV task successes versus 20/72 (27.8%)** from the
+frozen H156 research LoRA on the exact same tasks, with 41 paired new
+wins, one regression and p=1.955e-11. Full provenance and limitations
+are documented in `h157/VERIFIED_RESULTS.md`.
+
+This is a SAME-APPLICATION DEV result, **not proof of cross-app model
+generalization**, Arabic coverage, or Hala flagship 35B improvement.
 
 **Purpose:** close the demonstrated H156 gaps in button coordinates and
 text-field/submit targeting, while retaining dropdown selection.
