@@ -77,9 +77,11 @@ def main():
             raise ValueError("H156 unrelated holdout/private dataset mounted")
         images=find_source(source_root,"h156-source-images")
         adapter=find_source(source_root,"h142-private-visible-column-lora")
-        if (DATASET_SLUG not in str(images) or
-            images.parent!=adapter.parent):
-            raise ValueError("H156 requires one owner-private source dataset")
+        dataset_root=source_root/DATASET_SLUG
+        if (not dataset_root.is_dir() or
+            not images.resolve().is_relative_to(dataset_root.resolve()) or
+            not adapter.resolve().is_relative_to(dataset_root.resolve())):
+            raise ValueError("H156 must use only one owner-private source dataset")
         checked(sys.executable,"-m","pip","uninstall","-y",
                 "torchao",timeout=90)
         checked(sys.executable,"-m","pip","install","-q",
