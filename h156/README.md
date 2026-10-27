@@ -1,7 +1,8 @@
 # H156 — executable GUI action labels and first true LoRA training pilot
 
-Status: source/action QA COMPLETE, GPU training prepared; no model training
-result should be claimed until Kaggle records real optimizer steps.
+Status: source/action QA COMPLETE; private free-T4 GPU kernel submitted
+and may be queued. No model training result is claimed until Kaggle verifies
+24 actual optimizer steps and a new frozen adapter SHA.
 
 ## Why this follows H155
 
@@ -50,6 +51,20 @@ cross-app benchmark. A valid next gate will replay **new model predictions**
 with DOM-free mouse/keyboard in actual MiniWoB, never supplying model
 the reference points/texts, and only then measure true task completion.
 Unseen apps and Arabic remain unqualified pending separate research.
+
+## Real model DEV browser reward gate
+
+`h156.replay_model_dev` admits exact source SHA, genuine 24-step GPU
+receipt, SHA-pinned before/after model outputs and each original screenshot
+pixel-for-pixel. A source replay of four TRAIN/DEV classes independently
+matched input PNG and rendered instruction exactly. It runs two isolated
+browser contexts per DEV case using ONLY the generated JSON action sequence
+and native mouse/keyboard. The app's original reward is read only AFTER
+the model actions. Results remain owner-private and create-once. This is
+12 DEV images, NOT independent BLIND or cross-app transfer.
+
+CPU-only focused H150-H156 tests: **32/32 PASS**. The Kaggle worker was
+still QUEUED at the last status check; no completed training claim.
 
 No H140 sealed blind access, flagship Hala 35B update, model publishing,
 main branch merge, or release.
