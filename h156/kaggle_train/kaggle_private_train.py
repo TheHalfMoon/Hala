@@ -48,6 +48,27 @@ def find_source(root,name):
     return matches[0]
 
 
+def admit_single_private_mount(source_root, images, adapter):
+    """Kaggle mount basename is NOT stable; source and adapter SHA are."""
+    source_root=Path(source_root)
+    images,adapter=Path(images),Path(adapter)
+    if not source_root.is_dir():
+        raise ValueError("H156 owner private /kaggle/input root missing")
+    input_prefix=source_root.resolve()
+    if (not images.resolve().is_relative_to(input_prefix) or
+        not adapter.resolve().is_relative_to(input_prefix) or
+        images.resolve()==adapter.resolve()):
+        raise ValueError("H156 artifacts outside private Kaggle input")
+    actual_mounts=[p for p in source_root.iterdir() if p.is_dir()]
+    if len(actual_mounts)!=1:
+        raise ValueError("H156 expects exactly one private Kaggle input mount")
+    mount=actual_mounts[0].resolve()
+    if (not images.resolve().is_relative_to(mount) or
+        not adapter.resolve().is_relative_to(mount)):
+        raise ValueError("H156 typed source and LoRA require same private mount")
+    return mount
+
+
 def main():
     receipt={
         "schema":"hala.h156.free-private-t4-typed-gui-training-receipt.v1",
@@ -77,11 +98,14 @@ def main():
             raise ValueError("H156 unrelated holdout/private dataset mounted")
         images=find_source(source_root,"h156-source-images")
         adapter=find_source(source_root,"h142-private-visible-column-lora")
-        dataset_root=source_root/DATASET_SLUG
-        if (not dataset_root.is_dir() or
-            not images.resolve().is_relative_to(dataset_root.resolve()) or
-            not adapter.resolve().is_relative_to(dataset_root.resolve())):
-            raise ValueError("H156 must use only one owner-private source dataset")
+        # Private receipt holds only path basenames, never media or labels.
+        # This is diagnostic if Kaggle alters mounts again.
+        receipt["input_mount_folders"]=[
+            p.name for p in source_root.iterdir() if p.is_dir()]
+        receipt["source_folder"]=images.parent.name
+        receipt["adapter_folder"]=adapter.parent.name
+        store(receipt)
+        admit_single_private_mount(source_root,images,adapter)
         checked(sys.executable,"-m","pip","uninstall","-y",
                 "torchao",timeout=90)
         checked(sys.executable,"-m","pip","install","-q",

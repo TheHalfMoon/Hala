@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 from h156.train_gpu import FolderMedia,open_media
-from h156.kaggle_train.kaggle_private_train import find_source
+from h156.kaggle_train.kaggle_private_train import find_source,admit_single_private_mount
 
 
 class H156KaggleMountTests(unittest.TestCase):
@@ -31,6 +31,26 @@ class H156KaggleMountTests(unittest.TestCase):
             (root/"h156-source-images.zip").write_bytes(b"dummy")
             with self.assertRaises(ValueError):
                 find_source(root,"h156-source-images")
+
+    def test_runtime_mount_slug_may_change_but_never_contain_extra_dataset(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)/"kaggle-input"
+            mount=root/"mounted-dataset-random-slug"
+            mount.mkdir(parents=True)
+            source=(mount/"original_images").mkdir()
+            adapter=(mount/"original_adapter").mkdir()
+            self.assertEqual(admit_single_private_mount(
+                root,mount/"original_images",mount/"original_adapter"),mount)
+            other=root/"unexpected-extra-dataset"
+            other.mkdir()
+            with self.assertRaises(ValueError):
+                admit_single_private_mount(
+                    root,mount/"original_images",mount/"original_adapter")
+            other.rmdir()
+            outside=Path(tmp)/"outside-adapter"
+            outside.mkdir()
+            with self.assertRaises(ValueError):
+                admit_single_private_mount(root,mount/"original_images",outside)
 
 
 if __name__=="__main__":
