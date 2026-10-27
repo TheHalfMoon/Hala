@@ -34,12 +34,20 @@ def identify_private_source(root):
     """No filename guesses from training or H140 blind mounts."""
     if not root.exists():
         raise ValueError("H141 owner source dataset missing")
+    # Kaggle may rebase/private-mount datasets under arbitrary worker folders,
+    # or add system-only directories. Frozen FILE content SHA is independently
+    # verified by h141.gpu_visible_probe.input_admission/adapter_admission.
     children=[p for p in root.iterdir() if p.is_dir()]
-    if len(children)!=1 or children[0].name!=DATASET_SLUG:
-        raise ValueError("H141 only one owner private H141 model-probe dataset permitted")
+    if any(any(word in p.name.lower() for word in ("blind","ood","train256","dev64"))
+           for p in children):
+        raise ValueError("H141 forbidden previously sealed training/BLIND mount")
     candidates={name:list(root.rglob(name)) for name in (INPUT_FILENAME,ADAPTER_FILENAME)}
     if any(len(files)!=1 for files in candidates.values()):
-        raise ValueError("H141 private redacted images or trained adapter not uniquely present")
+        print("H141_VISIBLE_PRIVATE_MOUNT_NAMES",
+              sorted(p.name for p in children)[:15],flush=True)
+        raise ValueError("H141 unique original private probe ZIP/adapter unavailable")
+    if candidates[INPUT_FILENAME][0].parent!=candidates[ADAPTER_FILENAME][0].parent:
+        raise ValueError("H141 split untrusted or unrelated model input mount")
     return candidates[INPUT_FILENAME][0],candidates[ADAPTER_FILENAME][0]
 
 def main():
