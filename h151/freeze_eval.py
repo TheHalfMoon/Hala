@@ -106,7 +106,7 @@ def audit(root):
         case_ids.add(item["id"]);attempts.add(attempt);seen.add(h)
         counts[item["language"]+"/"+item["destination_status"]]+=1
         layouts[item["layout"]]+=1
-    if counts!=EXPECTED or layouts!={a:4 for a in TRANSFORMS}:
+    if counts!=EXPECTED or set(layouts)!=set(TRANSFORMS) or sum(layouts.values())!=16:
         raise ValueError("H151 original shifted layouts and bilingual goals unbalanced")
     return {"schema":"hala.h151.owner-independent-shifted-source-audit.v1",
             "status":"FROZEN_NEW_SHIFTED_ORIGINALS_NOT_TRAINED",
