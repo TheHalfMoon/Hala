@@ -22,14 +22,16 @@ from h141.interactive_source import (
 SCHEMA="hala.h141.visible-at-rest-column-original-source-pilot.v1"
 
 def collect(source,folder,count=16,attempt_offset=44000,max_attempts=160):
-    from playwright.sync_api import sync_playwright
     folder=Path(folder)
     if (not 4<=count<=32 or count%2 or
         attempt_offset<44000 or attempt_offset%2 or max_attempts<count or
         folder.exists() or folder.with_name(folder.name+".incomplete").exists() or
         not any(p.name=="private-h141" for p in folder.parents)):
         raise ValueError("H141 owner-private native at-rest column source create-only")
+    # CPU-only CI must reject invalid requests BEFORE importing the
+    # optional browser/Playwright runtime.
     built=verify_owner_original(source)
+    from playwright.sync_api import sync_playwright
     temp=folder.with_name(folder.name+".incomplete")
     temp.mkdir(parents=True)
     seen=set();rows=[];reject=defaultdict(int)
