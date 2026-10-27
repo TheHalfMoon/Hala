@@ -128,7 +128,7 @@ def native_table(browser,url,case,execute):
         context.close()
 
 
-def native_calculator(browser,url,case,execute):
+def native_calculator(browser,url,case,execute,rest_mouse=False):
     context=browser.new_context(viewport={"width":960,"height":720},
                                 device_scale_factor=1,locale="en-US")
     try:
@@ -146,6 +146,17 @@ def native_calculator(browser,url,case,execute):
         before=page.locator("#expression").inner_text()
         if str(a) not in before:
             raise ValueError("H164 original calculator native seed mismatch")
+        if rest_mouse:
+            # TRAIN/DEV screenshot-only visual normalization: the original
+            # equals button uses a GPU-rasterized blur shadow that varies
+            # by 8 pixels between fresh Chromium contexts on Windows.
+            # Do not modify the upstream application source or its events.
+            page.add_style_tag(content=(
+                ".keypad .equals{box-shadow:none!important}"
+                ".keypad button{transition:none!important;animation:none!important}"
+            ))
+            page.mouse.move(0,0)
+            page.wait_for_timeout(500)
         png=stable_png(page)
         if not execute:
             return png,None,None
