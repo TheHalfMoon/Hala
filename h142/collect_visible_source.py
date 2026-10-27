@@ -38,6 +38,10 @@ def seed_scene(attempt):
     )
     original["destination_status"]=destination
     original["destination_column"]=DESTINATIONS[destination]
+    # Original Done column has only one seeded card/two native slots;
+    # Doing has N seeded cards. Never index an absent hidden drop slot.
+    if destination=="done":
+        original["destination_index"]=attempt%2
     return original
 
 def collect(source,output,split,attempt_offset=None,max_attempts=450):
@@ -196,7 +200,9 @@ if __name__=="__main__":
     p.add_argument("--output",required=True)
     p.add_argument("--split",required=True,choices=tuple(COUNTS))
     p.add_argument("--max-attempts",type=int,default=450)
+    p.add_argument("--attempt-offset",type=int)
     args=p.parse_args()
     print(json.dumps(collect(args.source,args.output,args.split,
+                             attempt_offset=args.attempt_offset,
                              max_attempts=args.max_attempts),
                      sort_keys=True,indent=2))
