@@ -16,8 +16,10 @@ from h156.action_contract_v2 import parse_v2,native_mouse_keyboard
 from h156.audit_train_dev import audit
 from h156.train_gpu import ADAPTER_SHA
 
-LOCK="H156_DEV_NEURAL_NATIVE_REPLAY_CONSUMED.lock"
-RESULT="H156_DEV_ACTUAL_MODEL_BROWSER_REWARDS.json"
+LOCK="H156_DEV_NEURAL_NATIVE_REPLAY_V2_CONSUMED.lock"
+RESULT="H156_DEV_ACTUAL_MODEL_BROWSER_REWARDS_V2.json"
+ABORTED_LOCK="H156_DEV_NEURAL_NATIVE_REPLAY_CONSUMED.lock"
+ABORTED_RESULT="H156_DEV_ACTUAL_MODEL_BROWSER_REWARDS.json"
 
 
 def run(owner,source,model_result):
@@ -54,12 +56,28 @@ def run(owner,source,model_result):
                for row in data):
             raise ValueError("H156 neural DEV task labels mismatched")
         predictions[role]=by_sha
+    # First attempt raised a KeyError BEFORE browser.new_context.
+    # Preserve its lock as an immutable zero-native-action audit trail.
+    old_lock=owner/"private-h156"/ABORTED_LOCK
+    old_result=owner/"private-h156"/ABORTED_RESULT
+    if not old_lock.is_file() or old_result.exists():
+        raise ValueError("Expected original zero-action abort lock and no results")
+    old_receipt=json.loads(old_lock.read_text("utf8"))
+    if (old_receipt.get("source_manifest_sha256")!=check["source_sha256"] or
+        old_receipt.get("model_checkpoint_sha256")!=checkpoint):
+        raise ValueError("Original aborted evaluation provenance mismatch")
+    # Check all model predictions before opening Chromium or writing new lock.
+    for case in dev.values():
+        for role in ("before","after"):
+            if not isinstance(predictions[role][case["image_sha256"]].get("raw"),str):
+                raise ValueError("Model output missing from frozen DEV task")
     output=owner/"private-h156"/RESULT
     lock=owner/"private-h156"/LOCK
     if output.exists() or lock.exists():
         raise FileExistsError("H156 native model DEV cohort consumed")
     lock.write_text(json.dumps({
-        "status":"H156_ONE_SHOT_DEV_USED_FOR_NEURAL_REPLAY",
+        "status":"H156_ONE_SHOT_DEV_USED_FOR_NEURAL_REPLAY_V2",
+        "prior_zero_action_abort_lock":ABORTED_LOCK,
         "source_manifest_sha256":check["source_sha256"],
         "model_checkpoint_sha256":checkpoint,
         "h140_sealed_blind_calls":0
@@ -76,7 +94,7 @@ def run(owner,source,model_result):
             for case in dev.values():
                 for role,model_sha in (("before",ADAPTER_SHA),
                                        ("after",checkpoint)):
-                    raw=predictions[role][case["image_sha"]]["raw"]
+                    raw=predictions[role][case["image_sha256"]]["raw"]
                     context=browser.new_context(
                         viewport={"width":960,"height":720},
                         device_scale_factor=1,locale="en-US",
