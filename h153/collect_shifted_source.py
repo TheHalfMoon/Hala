@@ -20,7 +20,7 @@ from h142.collect_visible_source import seed_scene,APP,APP_SHA
 
 SCHEMA="hala.h153.owner-original-shifted-layout-evaluation.v1"
 CASES=16
-OFFSET=194000
+OFFSET=184000
 # All layouts shift BOTH SOURCE and target columns, so pixel geometry
 # differs from every fixed H142 header and source coordinate.
 TRANSFORMS={
