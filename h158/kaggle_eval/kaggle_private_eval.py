@@ -9,7 +9,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-SOURCE_COMMIT="NOT_COMMITTED_YET"
+SOURCE_COMMIT="4ee35084c74510c167ebbd76e37bc9feb75ebc63"
 WORK=Path("/kaggle/tmp/hala-h158-crossapp-eval-source")
 OUT=Path("/kaggle/working/hala-h158-new-app-inference")
 RECEIPT=Path("/kaggle/working/hala-h158-free-t4-inference-receipt.json")
