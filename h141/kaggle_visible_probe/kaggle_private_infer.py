@@ -41,11 +41,17 @@ def identify_private_source(root):
     if any(any(word in p.name.lower() for word in ("blind","ood","train256","dev64"))
            for p in children):
         raise ValueError("H141 forbidden previously sealed training/BLIND mount")
-    candidates={name:list(root.rglob(name)) for name in (INPUT_FILENAME,ADAPTER_FILENAME)}
+    # Kaggle auto-extracts uploaded ZIP archives into directories. Find
+    # EXACT source subfolders or intact ZIPs; later admission validates
+    # every expected file and the immutable original image/weight SHA.
+    def find_media(name):
+        stem=name[:-4] if name.endswith(".zip") else name
+        return list(root.rglob(name))+[p for p in root.rglob(stem) if p.is_dir()]
+    candidates={name:find_media(name) for name in (INPUT_FILENAME,ADAPTER_FILENAME)}
     if any(len(files)!=1 for files in candidates.values()):
         print("H141_VISIBLE_PRIVATE_MOUNT_NAMES",
               sorted(p.name for p in children)[:15],flush=True)
-        raise ValueError("H141 unique original private probe ZIP/adapter unavailable")
+        raise ValueError("H141 unique original private probe media unavailable")
     if candidates[INPUT_FILENAME][0].parent!=candidates[ADAPTER_FILENAME][0].parent:
         raise ValueError("H141 split untrusted or unrelated model input mount")
     return candidates[INPUT_FILENAME][0],candidates[ADAPTER_FILENAME][0]
