@@ -47,7 +47,7 @@ def used(owner):
 def run(owner,mode):
     owner=Path(owner)
     roots=admitted_apps(owner)
-    history=used(owner)
+    history=used(owner) if mode!="smoke" else prior(owner)
     destination=owner/PRIVATE
     if mode=="capture" and destination.exists():
         raise FileExistsError("H164 NEW DEV once-only source capture")

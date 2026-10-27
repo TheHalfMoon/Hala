@@ -15,6 +15,9 @@ def audit(owner):
     if (doc.get("schema")!=SCHEMA or doc.get("train_only") is not True or
         doc.get("train_count")!=288 or doc.get("native_reference_success")!=288 or
         doc.get("source_git_shas")!=PINS or
+        doc.get("calculator_shadow_normalized") is not True or
+        doc.get("rejected_unqualified_source_sha256")!=
+        "760dd6858ffb253c9f6add9e207423dbeb4bc3518e993a6c7b8dedfa5fa71c53" or
         not isinstance(rows,list) or len(rows)!=288):
         raise ValueError("H164 new TRAIN source frozen header incomplete")
     expected=specs()

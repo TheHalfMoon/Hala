@@ -140,6 +140,7 @@ def run(owner,mode):
     if mode=="capture" and root.exists():raise FileExistsError("H164 scaled TRAIN create-once")
     frozen=json.loads((root/"manifest.json").read_text("utf8")) if mode=="verify" else None
     if mode=="verify" and (frozen.get("schema")!=SCHEMA or
+                            frozen.get("calculator_shadow_normalized") is not True or
                             len(frozen.get("private_cases",[]))!=288):
         raise ValueError("H164 scaled original source frozen structure changed")
     cohort=specs()
