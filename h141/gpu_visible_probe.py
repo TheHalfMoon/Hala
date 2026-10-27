@@ -31,69 +31,85 @@ SCHEMA="hala.h141.private-original-visible-semantic-target-neural-probe.v1"
 def sha(value):
     return hashlib.sha256(value).hexdigest()
 
-def input_admission(path):
-    """All model inputs must be allowlisted and EXACTLY the immutable new 16."""
+def storage_names(path):
+    """Kaggle dataset auto-extracts user ZIP files into directories."""
     path=Path(path)
-    if sha(path.read_bytes())!=EVAL_INPUT_SHA:
-        raise ValueError("H141 frozen model-facing original GUI ZIP SHA drift")
+    if path.is_dir():
+        return {item.name for item in path.iterdir() if item.is_file()}
     with ZipFile(path) as z:
-        raw=z.read("manifest.json")
-        if sha(raw)!=EVAL_MANIFEST_SHA:
-            raise ValueError("H141 owner redacted model manifest changed")
-        manifest=json.loads(raw)
-        rows=manifest.get("cases")
-        if (manifest.get("schema")!=PUBLIC_SCHEMA or
-            manifest.get("status")!="EVAL_ONLY" or
-            manifest.get("source_app_git_sha")!=SOURCE_SHA or
-            manifest.get("model_action_roles")!=["start","visible_column_heading"] or
-            manifest.get("training_eligible") is not False or
-            manifest.get("model_evaluation_eligible") is not True or
-            not isinstance(rows,list) or len(rows)!=16):
-            raise ValueError("H141 only NEW original photo visual heading probe")
-        permitted={"manifest.json"}|{r.get("image") for r in rows}
-        if len(permitted)!=17 or set(z.namelist())!=permitted:
-            raise ValueError("H141 original model input has unauthorized files")
-        languages={"en":0,"ar":0}
-        from PIL import Image
-        for r in rows:
-            if (set(r)!=MODEL_FIELDS or
-                r["app_git_sha"]!=SOURCE_SHA or
-                r["language"] not in languages or
-                not isinstance(r["instruction"],str) or
-                "point_2d" in r["instruction"] or
-                not isinstance(r["image"],str) or
-                not r["image"].endswith(".png") or
-                "/" in r["image"] or "\\" in r["image"] or ".." in r["image"]):
-                raise ValueError("H141 original visual task contains hidden gold or unsafe path")
-            languages[r["language"]]+=1
-            data=z.read(r["image"])
-            if sha(data)!=r["image_sha256"]:
-                raise ValueError("H141 original model-facing screenshot SHA drift")
-            with Image.open(io.BytesIO(data)) as pic:
-                if pic.format!="PNG" or pic.size!=(960,720):
-                    raise ValueError("H141 unchanged native browser screenshot required")
-                pic.load()
-        if languages!={"en":8,"ar":8}:
-            raise ValueError("H141 source original bilingual 16-case audit failed")
+        return set(z.namelist())
+
+def stored_bytes(path,filename):
+    path=Path(path)
+    if (not isinstance(filename,str) or
+        "/" in filename or "\\" in filename or ".." in filename):
+        raise ValueError("H141 original model input requires safe exact flat filenames")
+    if path.is_dir():
+        return (path/filename).read_bytes()
+    with ZipFile(path) as z:
+        return z.read(filename)
+
+def input_admission(path):
+    """Native original image and manifest SHA independent of Kaggle ZIP extraction."""
+    path=Path(path)
+    if path.is_file() and sha(path.read_bytes())!=EVAL_INPUT_SHA:
+        raise ValueError("H141 frozen model-facing original GUI ZIP SHA drift")
+    raw=stored_bytes(path,"manifest.json")
+    if sha(raw)!=EVAL_MANIFEST_SHA:
+        raise ValueError("H141 owner redacted model manifest changed")
+    manifest=json.loads(raw)
+    rows=manifest.get("cases")
+    if (manifest.get("schema")!=PUBLIC_SCHEMA or
+        manifest.get("status")!="EVAL_ONLY" or
+        manifest.get("source_app_git_sha")!=SOURCE_SHA or
+        manifest.get("model_action_roles")!=["start","visible_column_heading"] or
+        manifest.get("training_eligible") is not False or
+        manifest.get("model_evaluation_eligible") is not True or
+        not isinstance(rows,list) or len(rows)!=16):
+        raise ValueError("H141 only NEW original photo visual heading probe")
+    permitted={"manifest.json"}|{r.get("image") for r in rows}
+    if len(permitted)!=17 or storage_names(path)!=permitted:
+        raise ValueError("H141 original model input has unauthorized files")
+    languages={"en":0,"ar":0}
+    from PIL import Image
+    for r in rows:
+        if (set(r)!=MODEL_FIELDS or
+            r["app_git_sha"]!=SOURCE_SHA or
+            r["language"] not in languages or
+            not isinstance(r["instruction"],str) or
+            "point_2d" in r["instruction"] or
+            not isinstance(r["image"],str) or
+            not r["image"].endswith(".png") or
+            "/" in r["image"] or "\\" in r["image"] or ".." in r["image"]):
+            raise ValueError("H141 original visual task contains hidden gold or unsafe path")
+        languages[r["language"]]+=1
+        data=stored_bytes(path,r["image"])
+        if sha(data)!=r["image_sha256"]:
+            raise ValueError("H141 original model-facing screenshot SHA drift")
+        with Image.open(io.BytesIO(data)) as pic:
+            if pic.format!="PNG" or pic.size!=(960,720):
+                raise ValueError("H141 unchanged native browser screenshot required")
+            pic.load()
+    if languages!={"en":8,"ar":8}:
+        raise ValueError("H141 source original bilingual 16-case audit failed")
     return manifest
 
 def adapter_admission(path,target):
-    """Peft source must be exact prior qualified private V2 LoRA weights."""
+    """Exact V2 adapter weights, whether Kaggle extracted ZIP or retained it."""
     path,target=Path(path),Path(target)
-    if sha(path.read_bytes())!=ADAPTER_ZIP_SHA or target.exists():
+    if (target.exists() or
+        (path.is_file() and sha(path.read_bytes())!=ADAPTER_ZIP_SHA)):
         raise ValueError("H141 source research adapter changed or unsafe overwrite")
-    with ZipFile(path) as z:
-        names=z.namelist()
-        if len(names)!=len(ALLOWED_ADAPTER_FILES) or set(names)!=ALLOWED_ADAPTER_FILES:
-            raise ValueError("H141 LoRA adapter ZIP files are unexpected")
-        if sha(z.read("adapter_model.safetensors"))!=V2_ADAPTER_SHA:
-            raise ValueError("H141 only original V2 research adapter SHA qualified")
-        cfg=json.loads(z.read("adapter_config.json"))
-        if cfg.get("r")!=8:
-            raise ValueError("H141 expected language-only original rank-8 adapter")
-        target.mkdir()
-        for name in sorted(ALLOWED_ADAPTER_FILES):
-            (target/name).write_bytes(z.read(name))
+    if storage_names(path)!=ALLOWED_ADAPTER_FILES:
+        raise ValueError("H141 LoRA adapter files are unexpected")
+    if sha(stored_bytes(path,"adapter_model.safetensors"))!=V2_ADAPTER_SHA:
+        raise ValueError("H141 only original V2 research adapter SHA qualified")
+    cfg=json.loads(stored_bytes(path,"adapter_config.json"))
+    if cfg.get("r")!=8:
+        raise ValueError("H141 expected language-only original rank-8 adapter")
+    target.mkdir()
+    for name in sorted(ALLOWED_ADAPTER_FILES):
+        (target/name).write_bytes(stored_bytes(path,name))
     return target
 
 def visible_prompt(instruction,role):
@@ -134,22 +150,21 @@ def run(source_zip,adapter_zip,out_dir):
     model.eval()
     responses=[]
     total=0
-    with ZipFile(source_zip) as z:
-        for row in source["cases"]:
-            with Image.open(io.BytesIO(z.read(row["image"]))) as file:
-                picture=file.convert("RGB")
-            response={"id":row["id"],"app":row["app"],
-                      "language":row["language"]}
-            for role in ("start","visible_column_heading"):
-                prompt=visible_prompt(row["instruction"],role)
-                raw,point=model_predict(processor,model,torch,picture,prompt)
-                response[role+"_point"]=list(point) if point is not None else None
-                response[role+"_output_valid"]=point is not None
-                total+=1
-                if total%8==0:
-                    print("H141_ACTUAL_MODEL_VISUAL_GUI_INFERENCE",total,
-                          "of",32,flush=True)
-            responses.append(response)
+    for row in source["cases"]:
+        with Image.open(io.BytesIO(stored_bytes(source_zip,row["image"]))) as file:
+            picture=file.convert("RGB")
+        response={"id":row["id"],"app":row["app"],
+                  "language":row["language"]}
+        for role in ("start","visible_column_heading"):
+            prompt=visible_prompt(row["instruction"],role)
+            raw,point=model_predict(processor,model,torch,picture,prompt)
+            response[role+"_point"]=list(point) if point is not None else None
+            response[role+"_output_valid"]=point is not None
+            total+=1
+            if total%8==0:
+                print("H141_ACTUAL_MODEL_VISUAL_GUI_INFERENCE",total,
+                      "of",32,flush=True)
+        responses.append(response)
     if len(responses)!=16 or total!=32:
         raise ValueError("H141 exact one original source/heading neural pair per frame")
     result={
