@@ -1,0 +1,17 @@
+{
+  "id": "abdulazizshehri/hala-h157-private-spatial-action-lora-t4",
+  "title": "hala-h157-private-spatial-action-lora-t4",
+  "code_file": "kaggle_private_train.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h157-private-spatial-action-v1"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
