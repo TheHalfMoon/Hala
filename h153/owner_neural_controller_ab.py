@@ -91,7 +91,7 @@ def run(owner_root,predictions_file):
             "status":"H153_NEURAL_MODEL_EVALUATION_CONSUMED",
             "source_manifest_sha256":OWNER_SOURCE_MANIFEST_SHA,
             "adapter_model_sha256":ADAPTER_MODEL_SHA,
-            "sealed_h140_blind_calls":0},indent=2)+"\\n")
+            "sealed_h140_blind_calls":0},indent=2)+"\n")
     original=verify_owner_original(
         owner/"private-h140"/"upstream"/"react-native-board")
     outcomes=[]
@@ -194,7 +194,7 @@ def run(owner_root,predictions_file):
     target=owner/"private-h153"/"H153_TRUE_NEURAL_PAIRED_CONTROLLER_RESULT.json"
     with target.open("x",encoding="utf8") as f:
         f.write(json.dumps({"summary":report,"private_original_episodes":outcomes},
-                           sort_keys=True,indent=2)+"\\n")
+                           sort_keys=True,indent=2)+"\n")
     return report
 
 if __name__=="__main__":
