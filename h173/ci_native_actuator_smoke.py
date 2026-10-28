@@ -14,6 +14,7 @@ from h138.probe import serve
 from h164.native_action_contract import parse_action
 from h173.capture_ood import original_native_scene
 from h173.source_preflight import preregister_provisional_cases, verified_original_source
+from h173.stable_capture import same_original_pixels
 
 # Two modal styles, both carousel directions and distinct slider layouts.
 # This QA is deliberately a small contract smoke, NOT a fresh model OOD.
@@ -59,7 +60,7 @@ def run(upstream):
                         expected_after_index=expected_index,
                     )
                     if (
-                        render != frozen
+                        not same_original_pixels(render, frozen)
                         or task != instruction
                         or state["kind"] != ref_state["kind"]
                         or state["value"] != ref_state["value"]
