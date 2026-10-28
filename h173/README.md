@@ -30,11 +30,53 @@ index). Both local original demos were successfully loaded and
 interacted with in Playwright Chromium using unchanged source HTML,
 original vendor JS/CSS, real browser state, and no live external
 dependency requests. The private owner-only smoke program is
-`D:\Hala-H173-Private\smoke_unseen_apps.py`. **Zero model calls, zero
-new OOD screenshots frozen and zero benchmark scores** at this point.
+`D:\Hala-H173-Private\smoke_unseen_apps.py`. **Zero model calls and zero benchmark scores** at the time of initial source
+preflight. A subsequent private candidate source capture was attempted
+(see quarantine below).
 
 Also researched MicroModal and Glide.js; **neither was admitted** as a
 scored source. They are not part of this H173 OOD, nor the frozen set.
+
+## Source-capture attempt and mandatory quarantine (2026-10-28)
+
+An owner-only source generator (`h173/capture_ood.py` in the owner's
+Windows worktree) attempted 32 distinct screenshots, 16 Tingle modal
+closure scenes and 16 Tiny Slider carousel-navigation scenes, 16 Arabic
+and 16 English. The original browser reference action succeeded on all
+32 candidate cases, and all image SHA-256 values were distinct from the
+previous consumed source registry. Four Tingle browser zoom levels
+(0.85, 1.00, 1.15, 1.30) were used to vary native display state; Tiny
+Slider cases used the original carousel API to establish distinct
+initial indexes. These are explicit browser-state variations, not edits
+to upstream Git source files.
+
+**The entire first H173 OOD capture is QUARANTINED, NOT QUALIFIED.** Its
+independent exact decoded-RGBA replay stopped at Tingle case `173005`:
+the original frozen PNG SHA began `f2ff381cf881`, whereas re-render
+SHA began `c6155737492a`. Image comparison found a substantial modal
+region discrepancy (RGB difference bounding box x=191..768,
+y=235..484, 6,149 distinct RGB pixels), **not a harmless PNG
+compression change**. Candidate source files live on the owner's D
+only. No gold-free OOD ZIP was admitted or uploaded, **zero H173 model
+inferences**, zero OOD native rewards, zero optimizer steps. This
+capture MUST NOT be treated as a benchmark score or used for training.
+
+The local Windows repository has an uncommitted source generator and
+packaging/tests drafted; they were not promoted to GitHub after the
+source failed qualification. Desktop Commander reached its monthly
+usage limit while diagnosing this case; further owner-device execution
+is blocked until that capability becomes available again. Do not retry
+or bypass the quota. The GitHub Draft branch is a source-preflight and
+failure-documentation artifact, not a qualified OOD.
+
+**Recovery protocol:** diagnose Tingle's conditional modal rendering,
+ensure deterministic pre-snapshot mouse/focus and animation state
+without changing the original source, recapture into a *new* private
+folder (never overwrite the quarantined original), verify *all 32/32*
+exact decoded-RGBA pixel replays including the problematic case, then
+and only then freeze a gold-free OOD ZIP and proceed with predeclared
+64 frozen paired model proposals and one-shot native reward. No old
+H172 DEV or prior OOD reuse.
 
 ## Next strict quality gates (NOT YET COMPLETE)
 
