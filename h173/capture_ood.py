@@ -409,10 +409,31 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     dest = Path(destination)
     proof = verified_original_source(upstream)
     prior = previous_image_hashes(owner, h168, h169, h171, h172)
-    if mode == "capture" and dest.exists():
-        raise FileExistsError("H173 cannot overwrite an old quarantined OOD capture")
+    # Reserve the NEW owner-private destination BEFORE the first browser
+    # scene. A failed/aborted partial capture must remain quarantined; the
+    # former end-of-run mkdir allowed an interrupted capture to be retried.
+    if mode == "capture":
+        dest.mkdir(parents=True, exist_ok=False)
+        (dest / "H173_CAPTURE_ATTEMPT_RESERVED.lock").write_text(
+            "H173_CAPTURE_ATTEMPT_RESERVED_NO_RETRY\n", encoding="utf8"
+        )
     frozen = None
     if mode == "verify":
+        if (dest / "owner-source-replay-receipt.json").exists():
+            raise FileExistsError("H173 private OOD source already independently replayed")
+        # A failed independent replay permanently quarantines these 32
+        # candidate images; never run a second pixel-replay attempt on them.
+        replay_lock = dest / "H173_INDEPENDENT_REPLAY_ATTEMPT_CONSUMED.lock"
+        try:
+            with replay_lock.open("x", encoding="utf8") as guard:
+                guard.write("H173_INDEPENDENT_REPLAY_STARTED_NO_RETRY\n")
+                guard.flush()
+                import os
+                os.fsync(guard.fileno())
+        except FileExistsError as exc:
+            raise FileExistsError(
+                "H173 independent replay already attempted; quarantine this capture"
+            ) from exc
         frozen = json.loads(
             (dest / "manifest.json").read_text(encoding="utf8")
         )
@@ -536,7 +557,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
         "schema": "hala.h173.owner-only-original-reference-clicks.v1",
         "owner_reference_actions": actions,
     }
-    dest.mkdir(parents=True, exist_ok=False)
+    # Destination was exclusively reserved before any browser interaction.
     (dest / "images").mkdir()
     for index, raw in pixels.items():
         (dest / "images" / (str(index) + ".png")).write_bytes(raw)
