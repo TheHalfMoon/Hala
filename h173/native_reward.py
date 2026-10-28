@@ -85,11 +85,19 @@ def admit(owner_source, ood_zip, predictions):
     )
     with zipfile.ZipFile(ood_zip) as archive:
         packed = json.loads(archive.read("manifest.json"))
-        if set(archive.namelist()) != {"manifest.json"} | {
+        expected_members = {"manifest.json"} | {
             "images/" + str(c["index"]) + ".png"
             for c in preregister_provisional_cases()
-        }:
-            raise ValueError("H173 OOD ZIP contains non-source or owner gold files")
+        }
+        names = archive.namelist()
+        if len(names) != len(expected_members) or set(names) != expected_members:
+            raise ValueError("H173 OOD ZIP contains duplicate files, non-source or owner gold")
+        # Never trust that a ZIP's manifest SHA describes its actual pixels.
+        # Independently bind all 32 GPU input PNG bytes to owner original source.
+        packaged_sha = {
+            name: sha(archive.read(name))
+            for name in names if name != "manifest.json"
+        }
     if (
         owner_manifest.get("schema") != MANIFEST
         or owner_manifest.get("count") != OOD_COUNT
@@ -131,7 +139,9 @@ def admit(owner_source, ood_zip, predictions):
             or row.get("split") != "OOD"
             or row.get("original_reference_success") is not True
             or pack.get("index") != ix
+            or pack.get("image") != row.get("image")
             or pack.get("image_sha256") != row.get("image_sha256")
+            or packaged_sha.get(row["image"]) != row.get("image_sha256")
             or pack.get("instruction") != row.get("instruction")
             or ref.get("index") != ix
             or ref.get("kind") != "click"
