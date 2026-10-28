@@ -29,6 +29,27 @@ SLIDERS = (
 )
 
 
+def original_carousel_direction_ok(prestate, observed_index):
+    """A reference must move the requested way, not merely change slides.
+
+    H173 seeds each pristine original carousel away from wrap boundaries.
+    Native index changes in the opposite direction are invalid owner gold.
+    This guard uses only original browser state; it never exposes a click
+    coordinate to the model or reads a consumed benchmark.
+    """
+    if type(prestate) is not dict or prestate.get("kind") != "carousel_index":
+        return False
+    before = prestate.get("value")
+    direction = prestate.get("direction")
+    if type(before) is not int or type(observed_index) is not int:
+        return False
+    if direction == "prev":
+        return observed_index < before
+    if direction == "next":
+        return observed_index > before
+    return False
+
+
 def validate_owner_source_and_reference(doc, reference):
     """Check all 32 owner-only real source references BEFORE GPU packaging.
 
@@ -93,7 +114,9 @@ def validate_owner_source_and_reference(doc, reference):
                 )
                 or type(state.get("value")) is not int
                 or type(state.get("reference_after_index")) is not int
-                or state["value"] == state["reference_after_index"]
+                or not original_carousel_direction_ok(
+                    state, state["reference_after_index"]
+                )
             ):
                 raise ValueError("H173 original carousel owner-only post-index missing")
     return OOD_COUNT
@@ -299,7 +322,7 @@ def original_native_scene(
                     "(name) => sliders[name].getInfo().index",
                     name,
                 )
-                success = actual_index != prestate["value"]
+                success = original_carousel_direction_ok(prestate, actual_index)
                 prestate["reference_after_index"] = actual_index
             if not success:
                 raise ValueError("H173 original native reference action failed")

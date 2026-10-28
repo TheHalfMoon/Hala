@@ -199,6 +199,9 @@ def test_visually_identical_images_with_different_png_encoding_refused(tmp_path)
     lambda d: d["owner_reference_actions"][0].update(index=173101),
     lambda d: d["owner_reference_actions"][16]["prestate"].update(direction="wrong"),
     lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_after_index=4),
+    # A changed carousel index is insufficient if it moved opposite to task.
+    lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_after_index=5),
+    lambda d: d["owner_reference_actions"][17]["prestate"].update(reference_after_index=3),
 ])
 def test_pack_rejects_missing_or_forged_owner_reference(tmp_path, mutation):
     base, _, _ = source(tmp_path)
