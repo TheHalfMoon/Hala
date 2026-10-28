@@ -13,6 +13,10 @@ on:
       - 'h173/stable_capture.py'
       - '.github/workflows/h173-original-browser.yml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
