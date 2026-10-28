@@ -45,12 +45,15 @@ def admit_unseen_ood(path):
         raise ValueError("H173 pinned NEW unseen original-app OOD ZIP required")
     frozen = preregister_provisional_cases()
     with zipfile.ZipFile(path) as archive:
-        files = set(archive.namelist())
+        entries = archive.namelist()
+        files = set(entries)
         expected_files = {"manifest.json"} | {
             "images/" + str(row["index"]) + ".png" for row in frozen
         }
-        if files != expected_files:
-            raise ValueError("H173 only original 32 OOD PNGs and manifest accepted")
+        if len(entries) != len(expected_files) or files != expected_files:
+            raise ValueError(
+                "H173 only 32 unique original OOD PNGs and a single manifest accepted"
+            )
         manifest = json.loads(archive.read("manifest.json"))
         rows = manifest.get("private_cases")
         if (
