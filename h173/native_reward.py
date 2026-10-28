@@ -34,6 +34,35 @@ def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def start_consumption_lock(lock, ood_sha, predictions_sha):
+    """Atomically reserve the ONE permitted owner-native OOD scoring attempt.
+
+    Exclusive creation is essential: checking exists() and then write_text()
+    is racy when two scoring processes start at the same time. A crash after
+    exclusive creation intentionally leaves the benchmark consumed.
+    """
+    lock = Path(lock)
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    record = {
+        "schema": "hala.h173.owner-private-ood-consumption-lock.v1",
+        "status": "H173_ONE_SHOT_STARTED_AND_IRREVOCABLY_CONSUMED",
+        "source_ood_zip_sha256": ood_sha,
+        "gpu_proposals_sha256": predictions_sha,
+        "total_browser_rewards_so_far": 0,
+    }
+    try:
+        with lock.open("x", encoding="utf8") as stream:
+            stream.write(json.dumps(record, sort_keys=True) + "\\n")
+            stream.flush()
+            import os
+            os.fsync(stream.fileno())
+    except FileExistsError as exc:
+        raise ValueError(
+            "H173 owner original OOD already started or permanently consumed"
+        ) from exc
+    return record
+
+
 def exact_mcnemar(wins, regressions):
     n = wins + regressions
     if n == 0:
@@ -206,16 +235,11 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     ):
         raise ValueError("H173 genuine independent FREE T4 proposals not qualified")
     verified_original_source(upstream)
-    lock.parent.mkdir(parents=True, exist_ok=True)
-    # Lock at START, before any model action. Interrupted experiments
-    # remain consumed to prevent peeking/retrying a benchmark.
-    lock.write_text(json.dumps({
-        "schema": "hala.h173.owner-private-ood-consumption-lock.v1",
-        "status": "H173_ONE_SHOT_STARTED_AND_IRREVOCABLY_CONSUMED",
-        "source_ood_zip_sha256": OOD_ZIP_SHA,
-        "gpu_proposals_sha256": sha(Path(predictions).read_bytes()),
-        "total_browser_rewards_so_far": 0,
-    }, sort_keys=True) + "\n", encoding="utf8")
+    # Atomic exclusive creation BEFORE the first browser/model action.
+    # Interrupted or concurrent attempts must never re-use the benchmark.
+    start_consumption_lock(
+        lock, OOD_ZIP_SHA, sha(Path(predictions).read_bytes())
+    )
     outcomes, counts = [], Counter()
     with serve(Path(upstream)) as url:
         with sync_playwright() as playwright:
