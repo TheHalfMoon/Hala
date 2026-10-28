@@ -3,7 +3,7 @@ import importlib.metadata
 import json,os,subprocess,sys
 from pathlib import Path
 
-SOURCE_COMMIT="UNQUALIFIED"
+SOURCE_COMMIT="ea6b6f5cf471e2e48896a8f6cd4c74035607cc84"
 WORK=Path("/kaggle/tmp/hala-h166-vision-probe-source")
 OUT=Path("/kaggle/working/hala-h166-synthetic-vision-probe")
 RECEIPT=Path("/kaggle/working/h166-job-receipt.json")
