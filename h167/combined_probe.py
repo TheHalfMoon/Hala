@@ -86,6 +86,22 @@ def is_visual_trainable(name):
 def is_language_adapter(name):
     return ".lora_A.language." in name or ".lora_B.language." in name
 
+def activate_frozen_language_and_trainable_vision(model):
+    """PEFT PeftModel.set_adapter only accepts one name; LoraModel accepts a list.
+
+    Enforce the multi-adapter operation on the underlying tuner, never on the
+    wrapper. Frozen-language trainability is enforced separately afterwards.
+    """
+    if not all(name in model.peft_config for name in ("language","vision")):
+        raise ValueError("H167 both PEFT adapters must be registered")
+    tuner=model.base_model
+    tuner.set_adapter(["language","vision"])
+    active=list(tuner.active_adapters)
+    if active!=["language","vision"] or list(model.active_adapters)!=active:
+        raise ValueError("H167 underlying LoRA tuner did not activate both adapters")
+    return active
+
+
 def check_adapter_partition(named_parameters):
     language=[]
     vision=[]
@@ -151,10 +167,7 @@ def run(package,output):
     model.add_adapter("vision",LoraConfig(
         r=VISUAL_RANK,lora_alpha=8,lora_dropout=0.0,
         target_modules=targets,bias="none",task_type="CAUSAL_LM"))
-    model.set_adapter(["language","vision"])
-    active=list(model.active_adapters)
-    if active!=["language","vision"]:
-        raise ValueError("H167 both language and vision adapters must be active")
+    active=activate_frozen_language_and_trainable_vision(model)
     for name,p in model.named_parameters():
         p.requires_grad_(is_visual_trainable(name))
     language,visual=check_adapter_partition(model.named_parameters())
