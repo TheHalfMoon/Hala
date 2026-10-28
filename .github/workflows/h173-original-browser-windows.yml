@@ -3,12 +3,14 @@ on:
   push:
     paths:
       - 'h173/ci_source_smoke.py'
+      - 'h173/ci_native_actuator_smoke.py'
       - 'h173/capture_ood.py'
       - 'h173/stable_capture.py'
       - '.github/workflows/h173-original-browser-windows.yml'
   pull_request:
     paths:
       - 'h173/ci_source_smoke.py'
+      - 'h173/ci_native_actuator_smoke.py'
       - 'h173/capture_ood.py'
       - 'h173/stable_capture.py'
       - '.github/workflows/h173-original-browser-windows.yml'
@@ -70,5 +72,12 @@ jobs:
           $root = Join-Path $env:RUNNER_TEMP 'h173-upstream'
           python -m h173.ci_source_smoke --upstream $root
           if ($LASTEXITCODE -ne 0) { throw 'H173 Windows original GUI source mismatch' }
+      - name: Exercise real original Windows actuator with ephemeral local reference
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = '.'
+          $root = Join-Path $env:RUNNER_TEMP 'h173-upstream'
+          python -m h173.ci_native_actuator_smoke --upstream $root
+          if ($LASTEXITCODE -ne 0) { throw 'H173 original Windows click/abstain actuator failed' }
       - name: Confirm benchmark boundary
-        run: echo 'SOURCE ONLY - no user private OOD images, no H164/H171 GPU model calls, not a model quality score'
+        run: echo 'SOURCE ONLY - original action/abstain checks, no user private OOD, no H164/H171 GPU, no model quality score'
