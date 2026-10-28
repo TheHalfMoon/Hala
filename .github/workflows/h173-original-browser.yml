@@ -3,12 +3,14 @@ on:
   push:
     paths:
       - 'h173/ci_source_smoke.py'
+      - 'h173/ci_native_actuator_smoke.py'
       - 'h173/capture_ood.py'
       - 'h173/stable_capture.py'
       - '.github/workflows/h173-original-browser.yml'
   pull_request:
     paths:
       - 'h173/ci_source_smoke.py'
+      - 'h173/ci_native_actuator_smoke.py'
       - 'h173/capture_ood.py'
       - 'h173/stable_capture.py'
       - '.github/workflows/h173-original-browser.yml'
@@ -53,5 +55,10 @@ jobs:
         run: |
           set -euo pipefail
           PYTHONPATH=. python -m h173.ci_source_smoke --upstream "$RUNNER_TEMP/h173-original-upstreams"
+      - name: Exercise real pristine original actuator with ephemeral local reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python -m h173.ci_native_actuator_smoke --upstream "$RUNNER_TEMP/h173-original-upstreams"
       - name: Declare scope (source-only, not OOD)
-        run: echo "SOURCE-ONLY original GUI reproducibility; NO owner data, no GPU, no OOD model quality result"
+        run: echo "SOURCE-ONLY original GUI click/abstain QA; NO owner data, no GPU, no OOD model quality result"
