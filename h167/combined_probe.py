@@ -103,6 +103,28 @@ def check_adapter_partition(named_parameters):
         raise ValueError("H167 visual-only trainable partition or frozen H164 language violated")
     return language,vision
 
+def verify_active_lora_modules(named_modules):
+    """Require actual underlying LoRA layer activation, not just PEFT wrapper state."""
+    language=[]
+    vision=[]
+    for name,module in named_modules:
+        registered=getattr(module,"lora_A",None)
+        if registered is None:
+            continue
+        active=list(getattr(module,"active_adapters",[]))
+        if "language_model" in name and "language" in registered:
+            if "language" not in active:
+                raise ValueError("H167 frozen language LoRA not active in model layers")
+            language.append(name)
+        if ".visual.merger." in ("."+name+".") and "vision" in registered:
+            if "vision" not in active:
+                raise ValueError("H167 trainable vision LoRA not active in merger")
+            vision.append(name)
+    if not language or len(vision)!=2 or len(set(vision))!=2:
+        raise ValueError("H167 frozen language or both vision projection adapters absent")
+    return {"active_language_layers":len(language),
+            "active_vision_modules":sorted(vision)}
+
 def tensor_digest(params):
     h=hashlib.sha256()
     for name,param in sorted(params):
@@ -151,10 +173,13 @@ def run(package,output):
     model.add_adapter("vision",LoraConfig(
         r=VISUAL_RANK,lora_alpha=8,lora_dropout=0.0,
         target_modules=targets,bias="none",task_type="CAUSAL_LM"))
-    model.set_adapter(["language","vision"])
-    active=list(model.active_adapters)
+    # PEFT 0.21.2 PeftModel.set_adapter expects a scalar and fails on a list.
+    # Its underlying LoRA tuner supports combined active adapters.
+    model.base_model.set_adapter(["language","vision"])
+    active=list(model.base_model.active_adapters)
     if active!=["language","vision"]:
         raise ValueError("H167 both language and vision adapters must be active")
+    activation=verify_active_lora_modules(model.named_modules())
     for name,p in model.named_parameters():
         p.requires_grad_(is_visual_trainable(name))
     language,visual=check_adapter_partition(model.named_parameters())
@@ -210,6 +235,8 @@ def run(package,output):
         "base_model":MODEL_ID,"base_revision":MODEL_SHA,
         "environment":versions,"gpu":gpu,"active_adapters":active,
         "visual_target_modules":targets,"visual_rank":VISUAL_RANK,
+        "active_language_layers":activation["active_language_layers"],
+        "active_vision_modules":activation["active_vision_modules"],
         "trainable_visual_parameters":sum(p.numel() for _,p in visual),
         "frozen_language_parameters":sum(p.numel() for _,p in language),
         "bilingual_synthetic":results,"optimizer_steps":len(results),

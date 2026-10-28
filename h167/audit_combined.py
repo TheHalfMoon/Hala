@@ -37,6 +37,11 @@ def audit(root):
         or model.get("language_adapter_readme_sha256")!=LANGUAGE_README_SHA
         or model.get("language_adapter_frozen_before_after_match") is not True
         or model.get("active_adapters")!=["language","vision"]
+        or type(model.get("active_language_layers")) is not int
+        or model["active_language_layers"]<1
+        or model.get("active_vision_modules")!=[
+            "base_model.model.model.visual.merger.linear_fc1",
+            "base_model.model.model.visual.merger.linear_fc2"]
         or model.get("visual_rank")!=VISUAL_RANK
         or model.get("trainable_visual_parameters")!=57344
         or not isinstance(model.get("frozen_language_parameters"),int)

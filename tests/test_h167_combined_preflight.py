@@ -52,3 +52,38 @@ def test_synthetic_bilingual_has_same_non_private_gold():
     assert rows[0][1]["training_supervision"]==rows[1][1]["training_supervision"]
     assert rows[0][0].getpixel((480,360))==(255,0,0)
     assert "المربع" in rows[1][1]["instruction"]
+
+class FakeLoRALayer:
+    def __init__(self,adapters,active):
+        self.lora_A={name:object() for name in adapters}
+        self.active_adapters=list(active)
+
+def actual_modules():
+    from h167.combined_probe import verify_active_lora_modules
+    modules=[
+        ("base_model.model.model.language_model.layers.0.self_attn.q_proj",
+         FakeLoRALayer(["language"],["language","vision"])),
+        ("base_model.model.model.visual.merger.linear_fc1",
+         FakeLoRALayer(["vision"],["language","vision"])),
+        ("base_model.model.model.visual.merger.linear_fc2",
+         FakeLoRALayer(["vision"],["language","vision"]))]
+    return verify_active_lora_modules,modules
+
+def test_h167_actual_lora_modules_need_language_and_both_visual_active():
+    verify,modules=actual_modules()
+    qualified=verify(modules)
+    assert qualified["active_language_layers"]==1
+    assert len(qualified["active_vision_modules"])==2
+
+@pytest.mark.parametrize("index,active",[
+    (0,["vision"]),(1,["language"]),(2,[])])
+def test_h167_inactive_underlying_lora_module_rejected(index,active):
+    verify,modules=actual_modules()
+    modules[index][1].active_adapters=active
+    with pytest.raises(ValueError):
+        verify(modules)
+
+def test_h167_missing_visual_layer_rejected():
+    verify,modules=actual_modules()
+    with pytest.raises(ValueError):
+        verify(modules[:2])

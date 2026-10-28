@@ -27,6 +27,10 @@ def fixture(tmp_path):
          "environment":{"torch":"2.11.0","transformers":"5.17.0",
                         "peft":"0.21.2","Pillow":"11.3.0"},
          "gpu":"Tesla T4","active_adapters":["language","vision"],
+         "active_language_layers":2,
+         "active_vision_modules":[
+           "base_model.model.model.visual.merger.linear_fc1",
+           "base_model.model.model.visual.merger.linear_fc2"],
          "visual_target_modules":["model.visual.merger.linear_fc1",
                                   "model.visual.merger.linear_fc2"],
          "visual_rank":4,"trainable_visual_parameters":57344,
