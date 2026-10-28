@@ -161,6 +161,19 @@ opposite-direction movement is counted as failure. Unit tests cover
 invalid modalities, duplicate pixel images, unqualified source metadata,
 mutated GPU receipts, false native successes and interrupted locks.
 
+**Exact Git source pinning correction (2026-10-28):** Git commits cannot
+contain their own SHA as a fixed literal and still keep that SHA valid.
+The private standalone Kaggle runner instead reads the exact frozen
+commit via `HALA_H173_PINNED_SOURCE_SHA` from the owner notebook
+environment. It verifies the detached checkout SHA before importing
+the model, and the independent auditor requires the owner to pass the
+same SHA with `--expected-source-sha` (or via that environment
+variable before native scoring). Mutable branch names or missing SHA
+are rejected. The private ZIP SHA remains `UNQUALIFIED` until a NEW
+32/32 qualified owner source exists. In addition, owner native reward
+now checks every packaged GPU PNG SHA against its corresponding
+frozen original owner PNG rather than trusting only a ZIP manifest.
+
 **No automatic release:** original Windows owner capture, PRIVATE FREE
 T4 64 frozen OOD predictions, real original-app one-shot reward, Hala
 35B training and production-readiness remain unqualified.
