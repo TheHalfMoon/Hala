@@ -24,6 +24,11 @@ def record(state,**details):
 
 def main():
     try:
+        record("H167_INPUT_MOUNT_PRECHECK",optimizer_steps=0,
+               mounted_names=sorted(x.name for x in Path("/kaggle/input").iterdir()),
+               data_dir_present=PACKAGE.is_dir(),
+               data_file_names=sorted(x.name for x in PACKAGE.iterdir()) if PACKAGE.is_dir() else [],
+               kaggle_run_type_present=bool(os.environ.get("KAGGLE_KERNEL_RUN_TYPE")))
         if (len(SOURCE_COMMIT)!=40 or
             len(list(Path("/kaggle/input").iterdir()))!=1 or
             not PACKAGE.is_dir() or
@@ -54,7 +59,11 @@ def main():
                trainable_visual_parameters=result["trainable_visual_parameters"])
     except Exception as e:
         record("H167_SYNTHETIC_COMBINED_T4_UNQUALIFIED",
-               optimizer_steps=0,failure_class=type(e).__name__)
+               optimizer_steps=0,failure_class=type(e).__name__,
+               mounted_names=sorted(x.name for x in Path("/kaggle/input").iterdir()),
+               data_dir_present=PACKAGE.is_dir(),
+               data_file_names=sorted(x.name for x in PACKAGE.iterdir()) if PACKAGE.is_dir() else [],
+               kaggle_run_type_present=bool(os.environ.get("KAGGLE_KERNEL_RUN_TYPE")))
         raise
 
 if __name__=="__main__":
