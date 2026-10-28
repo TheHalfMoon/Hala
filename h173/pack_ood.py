@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from h173.capture_ood import MANIFEST
+from h173.capture_ood import MANIFEST, validate_owner_source_and_reference
 from h173.source_preflight import OOD_COUNT, preregister_provisional_cases
 from h173.stable_capture import original_visual_hash
 
@@ -48,6 +48,8 @@ def pack(source, target):
     gold_path = source / "owner-reference-private.json"
     if not gold_path.is_file():
         raise ValueError("H173 owner native reference evidence must be separate")
+    owner_reference = json.loads(gold_path.read_text("utf8"))
+    validate_owner_source_and_reference(doc, owner_reference)
     if (
         doc.get("schema") != MANIFEST
         or doc.get("split") != "OOD"
