@@ -1,0 +1,17 @@
+{
+  "id": "abdulazizshehri/hala-h164-private-native-ood-t4",
+  "title": "hala-h164-private-native-ood-t4",
+  "code_file": "kaggle_private_ood.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h164-private-native-ood-models-v1"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
