@@ -62,8 +62,12 @@ def main():
                peak_allocated_gib=result["peak_allocated_gib"],
                trainable_visual_parameters=result["trainable_visual_parameters"])
     except Exception as e:
+        import traceback
+        last=traceback.extract_tb(e.__traceback__)[-1]
         record("H167_SYNTHETIC_COMBINED_T4_UNQUALIFIED",
                optimizer_steps=0,failure_class=type(e).__name__,
+               failure_message=str(e)[:300],
+               failure_file=Path(last.filename).name,failure_line=last.lineno,
                mounted_names=sorted(x.name for x in Path("/kaggle/input").iterdir()),
                data_dir_present=PACKAGE.is_dir(),
                data_file_names=sorted(x.name for x in PACKAGE.iterdir()) if PACKAGE.is_dir() else [],

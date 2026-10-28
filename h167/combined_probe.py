@@ -136,10 +136,10 @@ def run(package,output):
     torch.manual_seed(167)
     if Path(package).is_dir():
         frozen=admit_frozen_language_directory(package,
-                            Path("/kaggle/working/h167-private-frozen-language"))
+                            Path("/kaggle/tmp/h167-private-frozen-language"))
     else:
         frozen=admit_frozen_language_zip(package,
-                            Path("/kaggle/working/h167-private-frozen-language"))
+                            Path("/kaggle/tmp/h167-private-frozen-language"))
     processor=AutoProcessor.from_pretrained(
         MODEL_ID,revision=MODEL_SHA,trust_remote_code=False)
     base=AutoModelForImageTextToText.from_pretrained(
