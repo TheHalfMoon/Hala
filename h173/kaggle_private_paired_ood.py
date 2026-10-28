@@ -7,10 +7,10 @@ No old H172 DEV media, H164 historical OOD or owner reference gold.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
-from h173.source_pin import pinned_source_commit
 
 # Do NOT substitute an old DEV/consumed OOD or mutable branch.
 # Source SHA is owner-pinned at runtime: cannot embed a commit into itself.
@@ -51,7 +51,9 @@ def main():
     try:
         # Exact commit is supplied by the PRIVATE owner notebook environment.
         # This avoids the impossible self-hashing Git commit SHA cycle.
-        sha = pinned_source_commit()
+        sha = os.environ.get("HALA_H173_PINNED_SOURCE_SHA", "")
+        if re.fullmatch(r"[0-9a-f]{40}", sha) is None or sha == "0" * 40:
+            raise ValueError("H173 owner supplied exact 40-hex Git SHA required")
         if not os.environ.get("KAGGLE_KERNEL_RUN_TYPE"):
             raise ValueError(
                 "H173 new OOD source/model code must be immutably pinned first"
