@@ -94,6 +94,14 @@ def test_existing_owner_directory_is_never_modified_by_capture(
     destination.mkdir()
     sentinel = destination / "private-evidence.txt"
     sentinel.write_text("do not modify", encoding="utf8")
+    # CPU qualification intentionally does not install Playwright. Provide
+    # its import stub so this test isolates the pre-existing-path guard.
+    fake_package = ModuleType("playwright")
+    fake_package.__path__ = []
+    fake_api = ModuleType("playwright.sync_api")
+    fake_api.sync_playwright = lambda: None
+    monkeypatch.setitem(sys.modules, "playwright", fake_package)
+    monkeypatch.setitem(sys.modules, "playwright.sync_api", fake_api)
     monkeypatch.setattr(capture_ood, "verified_original_source", lambda _: {})
     monkeypatch.setattr(
         capture_ood, "previous_image_hashes", lambda *args: set()
