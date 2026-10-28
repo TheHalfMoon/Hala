@@ -14,6 +14,16 @@ VIEWPORT = (960, 720)
 NEUTRAL_POINT = (0, 0)
 
 
+def original_unmodified_png(page) -> bytes:
+    """Capture the original app with native CSS animations allowed.
+
+    Unlike the historical H159 helper, this MUST NOT pass
+    ``animations='disabled'``: Playwright fast-forwards finite animations
+    and cancels infinite ones in that mode, changing the rendered state.
+    """
+    return page.screenshot(type="png", animations="allow")
+
+
 def same_original_pixels(first: bytes, second: bytes) -> bool:
     """PNG encoding/compression may differ; RGBA pixels may not."""
     try:
@@ -45,7 +55,9 @@ def stabilized_original_png(page, screenshot, *, modal=False) -> bytes:
     consecutive frames must agree and hovered modal controls are forbidden.
     """
     page.mouse.move(*NEUTRAL_POINT)
-    page.wait_for_timeout(160)
+    # Allow original finite open/slide transitions to settle naturally.
+    # No CSS injection, animation cancellation, or best-frame selection.
+    page.wait_for_timeout(650)
     if modal and page.locator(
         ".tingle-modal--visible .tingle-modal__close:hover"
     ).count() != 0:

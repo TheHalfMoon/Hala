@@ -8,6 +8,7 @@ from h173.stable_capture import (
     NEUTRAL_POINT,
     same_original_pixels,
     stabilized_original_png,
+    original_unmodified_png,
 )
 
 
@@ -107,3 +108,35 @@ def test_still_hovered_modal_control_hard_fails():
         stabilized_original_png(
             page, lambda p: png((0, 0, 0, 255)), modal=True
         )
+
+
+def test_original_browser_capture_never_disables_native_css_animations():
+    """H159's animations='disabled' screenshot is not valid for H173."""
+    class OriginalPage(Page):
+        def __init__(self):
+            super().__init__()
+            self.screenshot_options = []
+
+        def screenshot(self, **options):
+            self.screenshot_options.append(options)
+            return png((40, 70, 90, 255))
+
+    page = OriginalPage()
+    result = stabilized_original_png(page, original_unmodified_png, modal=True)
+    assert result == png((40, 70, 90, 255))
+    assert page.screenshot_options == [
+        {"type": "png", "animations": "allow"},
+        {"type": "png", "animations": "allow"},
+    ]
+    assert page.mouse.moves == [NEUTRAL_POINT]
+    assert page.timeouts == [650, 160]
+
+
+def test_h173_original_scene_uses_nonmutating_screenshot_helper():
+    """Guard against accidentally restoring H159's animation-disabling helper."""
+    import inspect
+    from h173.capture_ood import original_native_scene
+
+    source = inspect.getsource(original_native_scene)
+    assert "original_unmodified_png" in source
+    assert "h159.stable_source_qa" not in source
