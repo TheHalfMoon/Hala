@@ -89,3 +89,22 @@ def test_mutated_ood_source_or_gold_refused(tmp_path, monkeypatch, mutate):
     path = sample(tmp_path, monkeypatch, mutate)
     with pytest.raises(ValueError):
         infer_gpu.admit_unseen_ood(path)
+
+
+def test_duplicate_zip_member_never_enters_frozen_gpu(tmp_path, monkeypatch):
+    """ZipFile names as a SET can hide two different manifest entries."""
+    import zipfile
+    import hashlib
+
+    path = sample(tmp_path, monkeypatch)
+    with zipfile.ZipFile(path) as archive:
+        original = archive.read("manifest.json")
+    with zipfile.ZipFile(path, "a") as archive:
+        archive.writestr("manifest.json", original)
+    monkeypatch.setattr(
+        infer_gpu,
+        "OOD_ZIP_SHA",
+        hashlib.sha256(path.read_bytes()).hexdigest(),
+    )
+    with pytest.raises(ValueError, match="unique original OOD PNGs"):
+        infer_gpu.admit_unseen_ood(path)
