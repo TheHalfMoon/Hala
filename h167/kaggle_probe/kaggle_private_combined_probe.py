@@ -29,12 +29,16 @@ def main():
                data_dir_present=PACKAGE.is_dir(),
                data_file_names=sorted(x.name for x in PACKAGE.iterdir()) if PACKAGE.is_dir() else [],
                kaggle_run_type_present=bool(os.environ.get("KAGGLE_KERNEL_RUN_TYPE")))
+        matches=list(Path("/kaggle/input").rglob("adapter_model.safetensors"))
+        if len(matches)!=1:
+            raise ValueError("H167 requires exactly one frozen research LoRA in input mounts")
+        source_dir=matches[0].parent
         if (len(SOURCE_COMMIT)!=40 or
-            len(list(Path("/kaggle/input").iterdir()))!=1 or
-            not PACKAGE.is_dir() or
-            {x.name for x in PACKAGE.iterdir()}!={"README.md","adapter_config.json","adapter_model.safetensors"} or
+            "hala-h167-private-frozen-language-only-v1" not in source_dir.parts or
+            {x.name for x in source_dir.iterdir()}!={"README.md","adapter_config.json","adapter_model.safetensors"} or
+            len([x for x in Path("/kaggle/input").rglob("*") if x.is_file()])!=3 or
             not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")):
-            raise ValueError("H167 private Kaggle and frozen single-source ZIP required")
+            raise ValueError("H167 private Kaggle frozen adapter files not qualified")
         command(sys.executable,"-m","pip","uninstall","-y","torchao")
         command(sys.executable,"-m","pip","install","-q",
                 "transformers==5.17.0","peft==0.21.2","Pillow==11.3.0")
@@ -52,7 +56,7 @@ def main():
                           HF_HUB_DISABLE_TELEMETRY="1",DO_NOT_TRACK="1")
         record("H167_SYNTHETIC_COMBINED_RUNNING",optimizer_steps=0)
         from h167.combined_probe import run
-        result=run(PACKAGE,OUTPUT)
+        result=run(source_dir,OUTPUT)
         record("H167_SYNTHETIC_COMBINED_FREE_T4_PASS",
                optimizer_steps=result["optimizer_steps"],
                peak_allocated_gib=result["peak_allocated_gib"],
