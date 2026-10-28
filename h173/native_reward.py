@@ -16,7 +16,7 @@ from h164.native_action_contract import parse_action
 from h171.image_integrity import same_exact_png_pixels
 from h172.infer_gpu import VISION_WEIGHTS_SHA
 from h173.capture_ood import (
-    MANIFEST, OWNER, original_native_scene
+    MANIFEST, OWNER, SLIDERS, original_native_scene
 )
 from h173.infer_gpu import (
     MODEL_PROPOSALS_SCHEMA, OOD_ZIP_SHA
@@ -129,8 +129,10 @@ def admit(owner_source, ood_zip, predictions):
                 or type(state.get("value")) is not int
                 or type(state.get("reference_after_index")) is not int
                 or state["value"] == state["reference_after_index"]
-                or state.get("direction") not in ("prev", "next")
-                or not state.get("name")
+                or state.get("direction") != (
+                    "prev" if row["variant"] % 2 == 0 else "next"
+                )
+                or state.get("name") != SLIDERS[row["variant"] // 2]
             ):
                 raise ValueError(
                     "H173 expected exact original carousel direction receipt"
@@ -230,6 +232,15 @@ def run(owner, upstream, source, ood_zip, predictions, output):
                             or task != row["instruction"]
                             or before["kind"] != gold["prestate"]["kind"]
                             or before["value"] != gold["prestate"]["value"]
+                            or (
+                                spec["app"] == "tiny-slider"
+                                and (
+                                    before.get("direction")
+                                    != gold["prestate"]["direction"]
+                                    or before.get("name")
+                                    != gold["prestate"]["name"]
+                                )
+                            )
                         ):
                             raise ValueError(
                                 "H173 native screenshot or original prestate drift"
