@@ -18,7 +18,7 @@ def checked_rows(path, role):
     if type(rows) is not list or len(rows)!=96:
         raise ValueError("H164 exact 96 DEV inference outputs absent")
     grouped=Counter()
-    valid=set()
+    valid={}
     for row in rows:
         if (type(row) is not dict or
             set(row)!={"role","app","task","language","image_sha","raw","parsed"} or
@@ -28,10 +28,10 @@ def checked_rows(path, role):
             type(row["image_sha"]) is not str or len(row["image_sha"])!=64 or
             row["parsed"]!=parse_action(row["raw"])):
             raise ValueError("H164 genuine DEV model action/pair invalid")
-        key=(row["image_sha"],row["app"],row["task"],row["language"])
+        key=row["image_sha"]
         if key in valid:
             raise ValueError("H164 same DEV image repeated within model role")
-        valid.add(key)
+        valid[key]=(row["app"],row["task"],row["language"])
         grouped[row["app"]+"/total"]+=1
         grouped[row["app"]+"/valid"]+=int(row["parsed"]["valid"])
         grouped[row["app"]+"/non_abstain"]+=int(
