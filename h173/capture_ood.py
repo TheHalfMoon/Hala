@@ -183,6 +183,59 @@ def previous_image_hashes(owner, h168, h169, h171, h172):
     return previous
 
 
+
+def quarantined_h173_image_shas(destination):
+    """Exclude prior H173 attempts by SHA metadata, never by opening images.
+
+    A fresh destination alone is not a fresh unseen dataset: old quarantined
+    attempts can contain the very same PNGs. Discover all sibling H173
+    captures, including the legacy unmarked ood-32, and reject incomplete
+    attempts whose overlap cannot be established.
+    """
+    import re
+
+    dest = Path(destination)
+    excluded = set()
+    for sibling in dest.parent.iterdir():
+        if sibling == dest:
+            continue
+        marker = sibling / CAPTURE_ATTEMPT_LOCK
+        legacy_name = sibling.name.startswith("ood-32")
+        if sibling.is_symlink():
+            if legacy_name:
+                raise ValueError("H173 quarantined source symlink is not trusted")
+            continue
+        if not sibling.is_dir():
+            if legacy_name:
+                raise ValueError("H173 quarantined source path is not a directory")
+            continue
+        manifest = sibling / "manifest.json"
+        if not (legacy_name or marker.exists()):
+            continue
+        if manifest.is_symlink() or marker.is_symlink():
+            raise ValueError("H173 quarantined source markers cannot be symlinks")
+        if not manifest.is_file():
+            if legacy_name or marker.exists():
+                raise ValueError(
+                    "H173 incomplete quarantined capture: cannot prove image exclusion"
+                )
+            continue
+        doc = json.loads(manifest.read_text(encoding="utf8"))
+        if doc.get("schema") != MANIFEST:
+            if legacy_name or marker.exists():
+                raise ValueError("H173 quarantined source manifest identity changed")
+            continue
+        rows = doc.get("private_cases")
+        if not isinstance(rows, list) or len(rows) != OOD_COUNT:
+            raise ValueError("H173 quarantined source SHA registry incomplete")
+        for row in rows:
+            digest = row.get("image_sha256") if isinstance(row, dict) else None
+            if not isinstance(digest, str) or not re.fullmatch(r"[a-f0-9]{64}", digest):
+                raise ValueError("H173 quarantined image SHA malformed")
+            excluded.add(digest)
+    return excluded
+
+
 def original_native_scene(
     browser, url, spec, *, execute_reference,
     model_action=None, frozen_image=None, expected_after_index=None,
@@ -413,6 +466,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     dest = Path(destination)
     proof = verified_original_source(upstream)
     prior = previous_image_hashes(owner, h168, h169, h171, h172)
+    excluded = set(prior) | quarantined_h173_image_shas(dest)
     # Reserve the NEW owner-private destination BEFORE the first browser
     # scene. A failed/aborted partial capture must remain quarantined; the
     # former end-of-run mkdir allowed an interrupted capture to be retried.
@@ -447,7 +501,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     if mode == "smoke":
         specs = [specs[ix] for ix in (0, 1, 4, 8, 16, 17, 18, 19)]
     scenes, actions, pixels = [], [], {}
-    seen = set(prior)
+    seen = set(excluded)
     seen_visible = set()
     with serve(Path(upstream)) as url:
         with sync_playwright() as playwright:
@@ -542,7 +596,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
             encoding="utf8",
         )
         return receipt
-    if (len(scenes) != OOD_COUNT or len(seen) - len(prior) != OOD_COUNT
+    if (len(scenes) != OOD_COUNT or len(seen) - len(excluded) != OOD_COUNT
         or len(seen_visible) != OOD_COUNT):
         raise ValueError("H173 32 unique actual OOD original app scenes required")
     manifest = {
