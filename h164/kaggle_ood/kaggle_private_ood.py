@@ -5,7 +5,7 @@ import importlib.metadata
 import json,os,subprocess,sys
 from pathlib import Path
 
-SOURCE_COMMIT="UNQUALIFIED"
+SOURCE_COMMIT="644ba511a629863bd7575ac8032122df8445a281"
 WORK=Path("/kaggle/tmp/hala-h164-frozen-ood-eval")
 OUT=Path("/kaggle/working/hala-h164-two-new-app-ood-paired-inference")
 RECEIPT=Path("/kaggle/working/h164-ood-kernel-receipt.json")
