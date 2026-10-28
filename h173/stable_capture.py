@@ -6,6 +6,7 @@ the *external pointer state* and checks two decoded pixel rasters.
 A successful guard is NOT a qualified OOD result.
 """
 from io import BytesIO
+import hashlib
 
 from PIL import Image
 
@@ -26,6 +27,14 @@ def same_original_pixels(first: bytes, second: bytes) -> bool:
             return a.convert("RGBA").tobytes() == b.convert("RGBA").tobytes()
     except (OSError, ValueError, TypeError):
         return False
+
+
+def original_visual_hash(raw: bytes) -> str:
+    """SHA-256 of visible RGBA pixel data (independent of PNG compression)."""
+    with Image.open(BytesIO(raw)) as image:
+        if image.format != "PNG" or image.size != VIEWPORT:
+            raise ValueError("H173 full size original PNG required")
+        return hashlib.sha256(image.convert("RGBA").tobytes()).hexdigest()
 
 
 def stabilized_original_png(page, screenshot, *, modal=False) -> bytes:
