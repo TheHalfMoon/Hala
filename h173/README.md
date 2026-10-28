@@ -82,7 +82,7 @@ position (e.g. `page.mouse.move(0,0)`) after original dialog setup and
 before the screenshot; independently verify both repeated exact RGBA
 raster and the real reference native close action, then diagnose
 remaining modal focus/animation state if discrepancies persist.
-without changing the original source, recapture into a *new* private
+Keep the original source unmodified. Recapture into a *new* private
 folder (never overwrite the quarantined original), verify *all 32/32*
 exact decoded-RGBA pixel replays including the problematic case, then
 and only then freeze a gold-free OOD ZIP and proceed with predeclared
