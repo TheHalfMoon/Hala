@@ -201,16 +201,21 @@ def original_native_scene(
         if model_action is not None:
             if frozen_image is None or not same_original_pixels(frozen_image, image):
                 raise ValueError("H173 original OOD pixel replay changed before model click")
-        point = center(target)
-        if (
-            not isinstance(point, list)
-            or len(point) != 2
-            or any(
-                type(value) is not int or not 0 <= value < bound
-                for value, bound in zip(point, (960, 720))
-            )
-        ):
-            raise ValueError("H173 original reference click offscreen")
+        # The model-action evaluator must NEVER calculate or return any
+        # privileged target-center oracle, even internally. Geometry is
+        # authorized only for offline original source/reference QA.
+        point = None
+        if model_action is None:
+            point = center(target)
+            if (
+                not isinstance(point, list)
+                or len(point) != 2
+                or any(
+                    type(value) is not int or not 0 <= value < bound
+                    for value, bound in zip(point, (960, 720))
+                )
+            ):
+                raise ValueError("H173 original reference click offscreen")
         if execute_reference:
             page.mouse.click(*point)
             page.wait_for_timeout(550 if app == "tiny-slider" else 140)
