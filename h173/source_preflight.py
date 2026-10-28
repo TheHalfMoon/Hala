@@ -16,7 +16,7 @@ SOURCE_PINS={
         "license":"LICENSE",
         "action":"click",
         "family":"native-modal-visibility",
-        "scenario":"open-original-modal"
+        "scenario":"close-original-open-modal"
     },
     "tiny-slider": {
         "git_sha":"4d709735c417c2483e77a22d017fc1b18c04f0d4",
