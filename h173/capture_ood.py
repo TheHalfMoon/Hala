@@ -292,11 +292,26 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     if mode == "verify":
         if len(specs) != OOD_COUNT:
             raise ValueError("H173 replay must cover all 32 original OOD cases")
-        return {
+        receipt_file = dest / "owner-source-replay-receipt.json"
+        if receipt_file.exists():
+            raise FileExistsError("H173 source already independently replayed")
+        private_manifest = (dest / "manifest.json").read_bytes()
+        receipt = {
+            "schema": "hala.h173.original-ood-32-pixel-replay-receipt.v1",
             "status": "H173_PRIVATE_NEW_OOD_32_EXACT_PIXEL_REPLAY_PASS",
+            "source_manifest_sha256": sha(private_manifest),
             "cases": OOD_COUNT,
+            "independent_rgba_pixel_replays": OOD_COUNT,
+            "prior_train_dev_ood_excluded": True,
+            "owner_reference_actions_not_in_model_input": True,
             "model_calls": 0,
+            "optimizer_steps": 0,
         }
+        receipt_file.write_text(
+            json.dumps(receipt, indent=2, sort_keys=True) + "\\n",
+            encoding="utf8",
+        )
+        return receipt
     if len(scenes) != OOD_COUNT or len(seen) - len(prior) != OOD_COUNT:
         raise ValueError("H173 32 unique actual OOD original app scenes required")
     manifest = {
