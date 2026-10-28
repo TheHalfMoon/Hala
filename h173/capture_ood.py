@@ -275,7 +275,10 @@ def original_native_scene(
         # privileged target-center oracle, even internally. Geometry is
         # authorized only for offline original source/reference QA.
         point = None
-        if model_action is None:
+        # Only the owner reference-capture path may resolve target geometry.
+        # Independent screenshot replay must not compute an oracle point,
+        # even transiently; model-action scoring already forbids it.
+        if execute_reference:
             point = center(target)
             if (
                 not isinstance(point, list)
