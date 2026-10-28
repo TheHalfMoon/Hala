@@ -72,6 +72,9 @@ def audit(output, expected_source_sha=None):
         or result.get("real_gpu_calls") != OOD_COUNT * 2
         or result.get("counts") != {"before": OOD_COUNT, "after": OOD_COUNT}
         or result.get("optimizer_steps") != 0
+        or result.get("all_parameters_frozen") is not True
+        or type(result.get("frozen_parameter_tensors")) is not int
+        or result["frozen_parameter_tensors"] <= 0
         or result.get("owner_gold_on_gpu") is not False
         or result.get("previous_consumed_dev_ood_used") is not False
         or result.get("real_browser_reward_measured") is not False
@@ -148,6 +151,7 @@ def audit(output, expected_source_sha=None):
         "after_schema_valid": stats["after/valid"],
         "peak_cuda_allocated_gib": peak,
         "optimizer_steps": 0,
+        "all_model_parameters_frozen": True,
         "native_original_browser_reward_measured": False,
         "previous_consumed_ood_used": False,
         "paid_gpu": False,
