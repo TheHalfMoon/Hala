@@ -26,6 +26,7 @@ from h173.pack_ood import SCHEMA as ZIP_SCHEMA, REPLAY_SCHEMA
 from h173.source_preflight import (
     OOD_COUNT, preregister_provisional_cases, verified_original_source
 )
+from h173.source_pin import verify_clean_local_source_checkout
 
 REWARD_SCHEMA = "hala.h173.unseen-original-ood-one-shot-native-reward.v1"
 LOCK_NAME = "H173_UNSEEN_ORIGINAL_OOD_PERMANENTLY_CONSUMED.lock"
@@ -276,6 +277,7 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     ):
         raise ValueError("H173 genuine independent FREE T4 proposals not qualified")
     verified_original_source(upstream)
+    verify_clean_local_source_checkout()
     if sha(Path(predictions).read_bytes()) != frozen_proposals_sha:
         raise ValueError("H173 audited GPU proposal file changed before irreversible scoring")
     # Atomic exclusive creation BEFORE the first browser/model action.
