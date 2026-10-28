@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h172-private-paired-new-dev-t4",
+  "title": "hala-h172-private-paired-new-dev-t4",
+  "code_file": "kaggle_private_paired_dev.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h172-private-new-dev-only-v1",
+    "abdulazizshehri/hala-h172-private-vision-only-v1",
+    "abdulazizshehri/hala-h167-private-frozen-language-only-v1"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

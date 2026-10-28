@@ -20,9 +20,12 @@ checked before generating the H172 scenes. The first `new-dev32` capture was qua
 real RGB pixel at (118,681) on independent browser replay. The original
 source and first capture remain intact. Replace that single scenario with
 an alternative original Node.js prefix and freeze a fresh `new-dev32-v2`
-capture. If any of the 32 fail actual original native action or exact
-pixel replay, quarantine the entire capture; never relax the check,
-reuse old DEV or edit source screenshots.
+capture. **The replacement `new-dev32-v2` passed all 32/32 exact
+independent original Chromium RGBA pixel replays**, 16 Arabic/16 English
+with all 32 native reference actions successful. Private no-gold DEV-only
+ZIP SHA-256: `0be919e841d737b16a86875e81ab7c640d430a2baceb05596d94e0611a79b231`.
+If a future case fails exact pixel replay, quarantine the entire capture;
+never relax the check, reuse old DEV or edit source screenshots.
 
 Compare on a single preregistered frozen **32 paired cases x two models**:
 (A) H164 frozen language adapter only, (B) same frozen H164 language
