@@ -192,6 +192,19 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     if lock.exists() or output.exists():
         raise ValueError("H173 original OOD already attempted or consumed")
     plan, rows, proposals = admit(source, ood_zip, predictions)
+    # The native scorer must not accept arbitrary prediction JSON.
+    # Independently verify the pinned source commit, FREE T4 job receipt,
+    # frozen adapters, complete proposals and their exact immutable hashes
+    # before writing the irreversible owner OOD consumption lock.
+    from h173.audit_gpu import audit as independently_audit_gpu
+    real_gpu = independently_audit_gpu(Path(predictions).parent.parent)
+    if (
+        real_gpu.get("status")
+        != "H173_INDEPENDENT_64_PRIVATE_FREE_T4_UNSEEN_OOD_PROPOSALS_VERIFIED"
+        or real_gpu.get("model_calls") != OOD_COUNT * 2
+        or real_gpu.get("native_original_browser_reward_measured") is not False
+    ):
+        raise ValueError("H173 genuine independent FREE T4 proposals not qualified")
     verified_original_source(upstream)
     lock.parent.mkdir(parents=True, exist_ok=True)
     # Lock at START, before any model action. Interrupted experiments
