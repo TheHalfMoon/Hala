@@ -54,6 +54,8 @@ def audit(output, owner):
     if not isinstance(outcomes, list) or len(outcomes) != 64:
         raise ValueError("H173 all native one-shot paired outcomes required")
     seen, paired, counts = set(), {}, Counter()
+    same_case_image = {}
+    image_owner = {}
     index = {scene["index"]: scene for scene in scenes}
     for row in outcomes:
         ix, role = row.get("index"), row.get("role")
@@ -72,6 +74,14 @@ def audit(output, owner):
             or len(row["image_sha256"]) != 64
         ):
             raise ValueError("H173 duplicated or forged owner native action outcome")
+        visual_identity = row["image_sha256"]
+        if ix in same_case_image and same_case_image[ix] != visual_identity:
+            raise ValueError("H173 baseline/candidate owner native OOD case images differ")
+        if ix not in same_case_image:
+            if visual_identity in image_owner:
+                raise ValueError("H173 owner OOD source image reused across cases")
+            image_owner[visual_identity] = ix
+            same_case_image[ix] = visual_identity
         seen.add(key)
         paired[key] = row["success"]
         counts[role + "/calls"] += 1
@@ -88,6 +98,8 @@ def audit(output, owner):
             for role in ("before", "after")
         }
         or dict(counts) != record.get("counts")
+        or len(same_case_image) != OOD_COUNT
+        or len(image_owner) != OOD_COUNT
         or counts["before/calls"] != OOD_COUNT
         or counts["after/calls"] != OOD_COUNT
         or counts["before/success"] != record.get("before_success")
