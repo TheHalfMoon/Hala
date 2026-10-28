@@ -94,6 +94,8 @@ def audit(output):
         raise ValueError("H173 64 paired genuine OOD predictions required")
     specs = {item["index"]: item for item in preregister_provisional_cases()}
     seen, stats = set(), Counter()
+    source_image_by_index = {}
+    index_by_source_image = {}
     for item in proposals:
         role, ix = item.get("role"), item.get("case_index")
         spec = specs.get(ix)
@@ -110,13 +112,26 @@ def audit(output):
             or item.get("parsed") != parse_action(item.get("raw"))
         ):
             raise ValueError("H173 GPU proposals malformed/duplicated/tainted")
+        image_sha = item["image_sha256"]
+        if ix in source_image_by_index:
+            if source_image_by_index[ix] != image_sha:
+                raise ValueError("H173 paired baseline and candidate did not see identical pixels")
+        elif image_sha in index_by_source_image:
+            raise ValueError("H173 GPU OOD accepted duplicated cross-case image identity")
+        else:
+            source_image_by_index[ix] = image_sha
+            index_by_source_image[image_sha] = ix
         seen.add(key)
         stats[role + "/valid"] += int(item["parsed"]["valid"])
-    if seen != {
-        (scene["index"], role)
-        for scene in preregister_provisional_cases()
-        for role in ("before", "after")
-    }:
+    if (
+        seen != {
+            (scene["index"], role)
+            for scene in preregister_provisional_cases()
+            for role in ("before", "after")
+        }
+        or len(source_image_by_index) != OOD_COUNT
+        or len(index_by_source_image) != OOD_COUNT
+    ):
         raise ValueError("H173 frozen paired original app OOD GPU coverage incomplete")
     return {
         "status": "H173_INDEPENDENT_64_PRIVATE_FREE_T4_UNSEEN_OOD_PROPOSALS_VERIFIED",
