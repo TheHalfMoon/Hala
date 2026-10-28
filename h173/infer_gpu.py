@@ -103,6 +103,24 @@ def admit_unseen_ood(path):
     return rows
 
 
+def enforce_entire_model_frozen(model):
+    """Force & verify zero gradient-bearing parameters for one-shot OOD.
+
+    PEFT activation may change adapter trainability even after loading
+    weights with is_trainable=False. The OOD evaluator NEVER optimizes.
+    """
+    model.eval()
+    total = 0
+    for parameter in model.parameters():
+        parameter.requires_grad_(False)
+        total += 1
+    if not total or any(p.requires_grad for p in model.parameters()):
+        raise ValueError("H173 frozen original OOD model contains trainable weights")
+    if model.training:
+        raise ValueError("H173 original OOD model not in eval mode")
+    return total
+
+
 def run(ood_zip, frozen_language, frozen_vision, output):
     import torch
     from PIL import Image
@@ -139,7 +157,7 @@ def run(ood_zip, frozen_language, frozen_vision, output):
         base, str(language), adapter_name="language", is_trainable=False
     )
     model.load_adapter(str(visual), adapter_name="vision", is_trainable=False)
-    model.eval()
+    frozen_parameter_tensors = enforce_entire_model_frozen(model)
     predictions = []
     counts = {"before": 0, "after": 0}
     torch.cuda.reset_peak_memory_stats(0)
@@ -153,6 +171,9 @@ def run(ood_zip, frozen_language, frozen_vision, output):
                 active = activate_frozen_language_and_trainable_vision(model)
                 if active != ["language", "vision"]:
                     raise ValueError("H173 H164+H171 dual LoRA not active")
+            # LoRA tuner.set_adapter can toggle trainability: freeze AGAIN.
+            if enforce_entire_model_frozen(model) != frozen_parameter_tensors:
+                raise ValueError("H173 adapter activation changed parameter inventory")
             for row in rows:
                 with Image.open(io.BytesIO(archive.read(row["image"]))) as im:
                     picture = im.convert("RGB")
@@ -198,6 +219,8 @@ def run(ood_zip, frozen_language, frozen_vision, output):
         "gpu": gpu,
         "versions": versions,
         "optimizer_steps": 0,
+        "all_parameters_frozen": True,
+        "frozen_parameter_tensors": frozen_parameter_tensors,
         "owner_gold_on_gpu": False,
         "previous_consumed_dev_ood_used": False,
         "real_browser_reward_measured": False,
