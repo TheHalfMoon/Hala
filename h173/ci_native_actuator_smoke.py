@@ -37,6 +37,7 @@ def run(upstream):
     specs = preregister_provisional_cases()
     count_correct = 0
     count_abstain = 0
+    count_wrong_direction = 0
     with serve(upstream) as url:
         with sync_playwright() as playwright:
             opts = {"headless": True}
@@ -89,6 +90,35 @@ def run(upstream):
                     ):
                         raise ValueError("H173 abstention incorrectly counted as browser success")
                     count_abstain += 1
+                    if spec["app"] == "tiny-slider":
+                        # The sibling source scene has the SAME original
+                        # slider, but opposite native control direction.
+                        # Its button point is used ONLY for this ephemeral
+                        # browser negative test, never for GPU/model input.
+                        opposite = specs[index ^ 1]
+                        if (
+                            opposite["app"] != spec["app"]
+                            or opposite["variant"] // 2 != spec["variant"] // 2
+                        ):
+                            raise ValueError("H173 opposite-direction source fixture invalid")
+                        _, _, opposite_point, _ = original_native_scene(
+                            browser, url, opposite, execute_reference=True
+                        )
+                        contrary_click = checked_click(opposite_point)
+                        _, _, contrary_oracle, _, contrary = original_native_scene(
+                            browser, url, spec, execute_reference=False,
+                            model_action=contrary_click, frozen_image=frozen,
+                            expected_after_index=expected_index,
+                        )
+                        if (
+                            contrary_oracle is not None
+                            or contrary["valid_click"] is not True
+                            or contrary["success"] is not False
+                        ):
+                            raise ValueError(
+                                "H173 WRONG original carousel direction was credited as success"
+                            )
+                        count_wrong_direction += 1
                     print(
                         "H173_EPHEMERAL_NATIVE_ACTUATOR_QA",
                         spec["app"], spec["index"],
@@ -96,12 +126,19 @@ def run(upstream):
                     )
             finally:
                 browser.close()
-    if count_correct != len(INDICES) or count_abstain != len(INDICES):
+    if (
+        count_correct != len(INDICES)
+        or count_abstain != len(INDICES)
+        or count_wrong_direction != sum(
+            specs[ix]["app"] == "tiny-slider" for ix in INDICES
+        )
+    ):
         raise ValueError("H173 independent original actuator smoke incomplete")
     return {
         "status": "H173_PRISTINE_ORIGINAL_NATIVE_ACTUATOR_SOURCE_ONLY_PASS",
         "actual_source_native_click_reward_matches": count_correct,
         "typed_abstain_no_reward_matches": count_abstain,
+        "actual_opposite_direction_no_reward_matches": count_wrong_direction,
         "owner_private_ood_evaluations": 0,
         "model_gpu_calls": 0,
         "optimizer_steps": 0,
