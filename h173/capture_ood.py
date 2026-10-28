@@ -15,7 +15,9 @@ from h173.source_preflight import (
     sha,
     verified_original_source,
 )
-from h173.stable_capture import same_original_pixels, stabilized_original_png
+from h173.stable_capture import (
+    same_original_pixels, stabilized_original_png, original_visual_hash
+)
 
 MANIFEST = "hala.h173.genuine-novel-two-original-app-ood32.v1"
 OWNER = "hala.h173.owner-only-original-reference-clicks.v1"
@@ -270,6 +272,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
         specs = [specs[ix] for ix in (0, 1, 4, 8, 16, 17, 18, 19)]
     scenes, actions, pixels = [], [], {}
     seen = set(prior)
+    seen_visible = set()
     with serve(Path(upstream)) as url:
         with sync_playwright() as playwright:
             options = {"headless": True}
@@ -283,11 +286,13 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
                         browser, url, spec, execute_reference=mode != "verify"
                     )
                     digest = sha(raw)
-                    if digest in seen:
+                    visual = original_visual_hash(raw)
+                    if digest in seen or visual in seen_visible:
                         raise ValueError(
-                            "H173 duplicate OOD pixel image or consumed history"
+                            "H173 duplicate OOD visible pixels or consumed history"
                         )
                     seen.add(digest)
+                    seen_visible.add(visual)
                     entry = {
                         **spec,
                         "split": "OOD",
@@ -363,7 +368,8 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
             encoding="utf8",
         )
         return receipt
-    if len(scenes) != OOD_COUNT or len(seen) - len(prior) != OOD_COUNT:
+    if (len(scenes) != OOD_COUNT or len(seen) - len(prior) != OOD_COUNT
+        or len(seen_visible) != OOD_COUNT):
         raise ValueError("H173 32 unique actual OOD original app scenes required")
     manifest = {
         "schema": MANIFEST,
