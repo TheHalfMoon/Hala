@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SOURCE_COMMIT="UNQUALIFIED"
+SOURCE_COMMIT="3dd565b861dcb18ea48b282243809d6407bf315c"
 PACKAGE=Path("/kaggle/input/hala-h167-private-frozen-language-only-v1/h164-trained-384-lora.zip")
 OUTPUT=Path("/kaggle/working/hala-h167-private-combined-t4")
 JOB=Path("/kaggle/working/h167-combined-job-receipt.json")
