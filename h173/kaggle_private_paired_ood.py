@@ -1,7 +1,8 @@
 """H173 private FREE T4 frozen OOD kernel; intentionally cannot start yet.
 
 Before using on a brand-NEW 32/32 qualified OOD, the owner must pin
-both the gold-free ZIP SHA and this exact *new* Git commit SHA.
+the gold-free ZIP SHA inside source and pass the final, exact Git commit
+via HALA_H173_PINNED_SOURCE_SHA in the private Kaggle notebook environment.
 No old H172 DEV media, H164 historical OOD or owner reference gold.
 """
 import json
@@ -9,9 +10,10 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+from h173.source_pin import pinned_source_commit
 
 # Do NOT substitute an old DEV/consumed OOD or mutable branch.
-SHA = "UNQUALIFIED"
+# Source SHA is owner-pinned at runtime: cannot embed a commit into itself.
 DATA = Path("/kaggle/input")
 OUT = Path("/kaggle/working/hala-h173-private-paired-ood")
 JOB = Path("/kaggle/working/h173-paired-ood-job.json")
@@ -28,7 +30,9 @@ def receipt(status, **values):
     doc = {
         "schema": "hala.h173.owner-private-free-t4-unseen-ood-job.v1",
         "status": status,
-        "source_commit": SHA,
+        "source_commit": os.environ.get(
+            "HALA_H173_PINNED_SOURCE_SHA", "UNQUALIFIED"
+        ),
         "optimizer_steps": 0,
         "real_gpu_calls": 0,
         "owner_gold_uploaded": False,
@@ -45,12 +49,10 @@ def receipt(status, **values):
 
 def main():
     try:
-        # Prevent any Kaggle model call until fresh original app replay
-        # has been fully qualified and both immutable SHAs are frozen.
-        if (
-            len(SHA) != 40
-            or not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")
-        ):
+        # Exact commit is supplied by the PRIVATE owner notebook environment.
+        # This avoids the impossible self-hashing Git commit SHA cycle.
+        sha = pinned_source_commit()
+        if not os.environ.get("KAGGLE_KERNEL_RUN_TYPE"):
             raise ValueError(
                 "H173 new OOD source/model code must be immutably pinned first"
             )
@@ -93,7 +95,7 @@ def main():
             "origin", "https://github.com/TheHalfMoon/Hala.git"
         )
         command(
-            "git", "-C", str(WORK), "fetch", "--depth", "1", "origin", SHA
+            "git", "-C", str(WORK), "fetch", "--depth", "1", "origin", sha
         )
         command("git", "-C", str(WORK), "checkout", "-q",
                 "--detach", "FETCH_HEAD")
@@ -101,7 +103,7 @@ def main():
             ["git", "-C", str(WORK), "rev-parse", "HEAD"],
             text=True,
         ).strip()
-        if identity != SHA:
+        if identity != sha:
             raise ValueError("H173 exact immutable git source not loaded")
         sys.path.insert(0, str(WORK))
         os.environ.update(
