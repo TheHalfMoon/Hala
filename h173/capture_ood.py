@@ -29,6 +29,76 @@ SLIDERS = (
 )
 
 
+def validate_owner_source_and_reference(doc, reference):
+    """Check all 32 owner-only real source references BEFORE GPU packaging.
+
+    This validates the private oracle's *integrity*, not its visibility to
+    the model: the gold file must never be included in the GPU ZIP.
+    """
+    from h173.source_preflight import SOURCE_PINS
+
+    if doc.get("schema") != MANIFEST or reference.get("schema") != OWNER:
+        raise ValueError("H173 frozen original source or private oracle schema missing")
+    expected_source = {}
+    for app, pin in SOURCE_PINS.items():
+        expected_source[app] = {
+            "original_git_sha": pin["git_sha"],
+            "original_html_sha256": pin["original_html_sha256"],
+            "source_license": "MIT",
+            "action_type": pin["action"],
+            "native_state_family": pin["family"],
+            "source_role": "OOD_CANDIDATE_NOT_EVALUATED",
+            "model_gpu_calls": 0,
+            "reference_labels_uploaded": False,
+        }
+    if doc.get("source_proof") != expected_source:
+        raise ValueError("H173 exact pristine upstream source evidence altered")
+    rows = doc.get("private_cases")
+    actions = reference.get("owner_reference_actions")
+    if (
+        not isinstance(rows, list) or len(rows) != OOD_COUNT
+        or not isinstance(actions, list) or len(actions) != OOD_COUNT
+    ):
+        raise ValueError("H173 exactly 32 separate private reference actions required")
+    plan = preregister_provisional_cases()
+    for spec, row, action in zip(plan, rows, actions):
+        if (
+            any(row.get(k) != v for k, v in spec.items() if k != "split")
+            or row.get("split") != "OOD"
+            or row.get("original_reference_success") is not True
+            or action.get("index") != spec["index"]
+            or action.get("kind") != "click"
+            or action.get("original_native_reference_success") is not True
+        ):
+            raise ValueError("H173 owner-only reference differs from source case")
+        point, state = action.get("point"), action.get("prestate")
+        if (
+            type(point) is not list or len(point) != 2
+            or any(
+                type(v) is not int or not 0 <= v < bound
+                for v, bound in zip(point, (960, 720))
+            )
+            or type(state) is not dict
+        ):
+            raise ValueError("H173 private reference click point or prestate invalid")
+        if spec["app"] == "tingle":
+            if state != {"kind": "modal_visible", "value": True}:
+                raise ValueError("H173 original modal reference state invalid")
+        else:
+            if (
+                state.get("kind") != "carousel_index"
+                or state.get("name") != SLIDERS[spec["variant"] // 2]
+                or state.get("direction") != (
+                    "prev" if spec["variant"] % 2 == 0 else "next"
+                )
+                or type(state.get("value")) is not int
+                or type(state.get("reference_after_index")) is not int
+                or state["value"] == state["reference_after_index"]
+            ):
+                raise ValueError("H173 original carousel owner-only post-index missing")
+    return OOD_COUNT
+
+
 def exact_native_reward(app, prestate, *, modal_visible=None,
                         observed_index=None, owner_after_index=None):
     """Reward only correct original browser state, NOT any carousel movement."""
