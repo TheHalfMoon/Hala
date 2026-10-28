@@ -249,7 +249,7 @@ def admit(owner_source, ood_zip, predictions):
 
 def run(owner, upstream, source, ood_zip, predictions, output):
     from playwright.sync_api import sync_playwright
-    from h130.browser_env import _chromium_binary
+    from h173.browser_runtime import original_browser_options
     from h138.probe import serve
 
     owner, output = Path(owner), Path(output)
@@ -288,11 +288,9 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     outcomes, counts = [], Counter()
     with serve(Path(upstream)) as url:
         with sync_playwright() as playwright:
-            opts = {"headless": True}
-            exe = _chromium_binary()
-            if exe:
-                opts["executable_path"] = exe
-            browser = playwright.chromium.launch(**opts)
+            browser = playwright.chromium.launch(
+                **original_browser_options()
+            )
             try:
                 for spec in plan:
                     row, gold = rows[spec["index"]]

@@ -12,6 +12,17 @@ D:\Hala-H173-Private\ood-32. Its Tingle case 173005 had 6,149
 changed RGB pixels on independent replay; the entire first source is
 QUARANTINED. Never use it for training, tuning or OOD scoring.
 
+**Owner Windows 2026-10-29:** The separate `ood-32-v2` attempt captured 32
+original scenes but failed its one-and-only independent replay at Tingle
+`173006`. Its replay-attempt lock is consumed: quarantine the ENTIRE v2,
+never retry, rescore, repack, or upload any v2 artifacts. Public-source-only
+cross-Chromium-process QA reproduced intermittent exact RGBA drift using
+untouched pinned MIT apps on the same owner Windows host. A pinned native
+software rasterizer (`--disable-gpu`) passed one full 32/32 cross-process
+PUBLIC-source run, but this alone is not new owner OOD qualification.
+Do not start a v3 owner capture until exact-head cross-process public-source
+QA and CPU/browser gates are proven; retain all strict pixel/reward checks.
+
 ## Stage 1: source-only checks
 
 GitHub Actions has an isolated public-donor Linux browser job, which
@@ -25,7 +36,7 @@ When authorized Windows device access becomes available WITHOUT
 bypassing its quota, update the H173 Draft worktree from the latest
 GitHub branch and verify the real original pinned MIT donor trees
 remain untouched. Create a completely NEW source directory such as
-D:\Hala-H173-Private\ood-32-v2. Do not overwrite the rejected
+D:\Hala-H173-Private\ood-32-v3. Do not overwrite the rejected
 ood-32. New source must be captured with the updated
 h173.capture_ood --mode capture, then verified with --mode verify
 using the same seven --owner / --upstream / --h168 / --h169 /
@@ -38,7 +49,7 @@ Known owner paths:
 - h169: D:\Hala-H169-Private\new-dev-32
 - h171: D:\Hala-H171-Private\click-train-32-v3
 - h172: D:\Hala-H172-Private\new-dev32-v2
-- dest: D:\Hala-H173-Private\ood-32-v2 (NEW ONLY)
+- dest: D:\Hala-H173-Private\ood-32-v3 (NEW ONLY)
 
 Capture must pass 32/32 true original-app native reference actions:
 16 Tingle close and 16 Tiny Slider correct carousel navigation,
