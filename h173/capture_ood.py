@@ -59,7 +59,10 @@ def previous_image_hashes(owner, h168, h169, h171, h172):
     return previous
 
 
-def original_native_scene(browser, url, spec, *, execute_reference):
+def original_native_scene(
+    browser, url, spec, *, execute_reference,
+    model_action=None, frozen_image=None, expected_after_index=None,
+):
     """Produce genuinely original-browser pixels, then optional owner action.
 
     The reference click is NEVER passed into model input. In replay mode,
@@ -67,6 +70,8 @@ def original_native_scene(browser, url, spec, *, execute_reference):
     """
     from h138.probe import center
     from h159.stable_source_qa import stable_png
+    if execute_reference and model_action is not None:
+        raise ValueError("H173 model cannot see or execute reference action")
 
     context = browser.new_context(
         viewport={"width": 960, "height": 720},
@@ -111,9 +116,9 @@ def original_native_scene(browser, url, spec, *, execute_reference):
             if page.locator(".tingle-modal--visible").count() != 1:
                 raise ValueError("H173 modal not open before model-visible image")
             instruction = (
-                "Close the open Tingle dialog using its close button."
+                "Close the open Tingle dialog."
                 if spec["language"] == "en"
-                else "أغلق نافذة Tingle المفتوحة باستخدام زر الإغلاق."
+                else "أغلق نافذة Tingle المفتوحة."
             )
             prestate = {"kind": "modal_visible", "value": True}
         else:
@@ -168,6 +173,9 @@ def original_native_scene(browser, url, spec, *, execute_reference):
             stable_png,
             modal=app == "tingle",
         )
+        if model_action is not None:
+            if frozen_image is None or not same_original_pixels(frozen_image, image):
+                raise ValueError("H173 original OOD pixel replay changed before model click")
         point = center(target)
         if (
             not isinstance(point, list)
@@ -189,8 +197,51 @@ def original_native_scene(browser, url, spec, *, execute_reference):
                     name,
                 )
                 success = actual_index != prestate["value"]
+                prestate["reference_after_index"] = actual_index
             if not success:
                 raise ValueError("H173 original native reference action failed")
+        if model_action is not None:
+            valid = (
+                type(model_action) is dict
+                and model_action.get("valid") is True
+                and model_action.get("kind") == "click"
+                and type(model_action.get("points")) is list
+                and len(model_action["points"]) == 1
+            )
+            if valid:
+                candidate = model_action["points"][0]
+                valid = (
+                    type(candidate) is list
+                    and len(candidate) == 2
+                    and all(
+                        type(v) in (int, float) and 0 <= v < bound
+                        for v, bound in zip(candidate, (960, 720))
+                    )
+                )
+            observed_index = None
+            success = False
+            if app == "tiny-slider":
+                if (
+                    type(expected_after_index) is not int
+                    or expected_after_index == prestate["value"]
+                ):
+                    raise ValueError("H173 owner-only exact carousel direction gold absent")
+            if valid:
+                page.mouse.click(*candidate)
+                page.wait_for_timeout(550 if app == "tiny-slider" else 140)
+                if app == "tingle":
+                    success = page.locator(".tingle-modal--visible").count() == 0
+                else:
+                    observed_index = page.evaluate(
+                        "(name) => sliders[name].getInfo().index",
+                        prestate["name"],
+                    )
+                    success = observed_index == expected_after_index
+            return image, instruction, point, prestate, {
+                "success": bool(success),
+                "valid_click": bool(valid),
+                "observed_carousel_index": observed_index,
+            }
         return image, instruction, point, prestate
     finally:
         context.close()
