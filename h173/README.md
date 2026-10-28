@@ -69,8 +69,19 @@ is blocked until that capability becomes available again. Do not retry
 or bypass the quota. The GitHub Draft branch is a source-preflight and
 failure-documentation artifact, not a qualified OOD.
 
-**Recovery protocol:** diagnose Tingle's conditional modal rendering,
-ensure deterministic pre-snapshot mouse/focus and animation state
+**Forensic hypothesis, not yet verified:** the replay SHA prefix
+`c6155737492a` exactly matches the earlier independent owner pilot's
+**Tingle modal 2 close-button-hover** screenshot, whereas the original
+capture SHA prefix `f2ff381cf881` matches the pilot's non-hovered modal 2
+screenshot. This makes **browser pointer/hover state persisting across
+original modal scenes** a strong candidate for the 6,149-pixel drift.
+Do not assert it is fixed without a fresh independent complete replay.
+
+**Recovery protocol:** explicitly place the mouse at a stable neutral
+position (e.g. `page.mouse.move(0,0)`) after original dialog setup and
+before the screenshot; independently verify both repeated exact RGBA
+raster and the real reference native close action, then diagnose
+remaining modal focus/animation state if discrepancies persist.
 without changing the original source, recapture into a *new* private
 folder (never overwrite the quarantined original), verify *all 32/32*
 exact decoded-RGBA pixel replays including the problematic case, then
