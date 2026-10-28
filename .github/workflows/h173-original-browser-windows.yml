@@ -46,6 +46,10 @@ jobs:
             $path = Join-Path $root $source[0]
             git init -q $path
             if ($LASTEXITCODE -ne 0) { throw 'Source git init failed' }
+            # Windows global core.autocrlf rewrites original HTML LF -> CRLF.
+            # Keep exact upstream Git blob bytes for independent SHA checks.
+            git -C $path config core.autocrlf false
+            git -C $path config core.eol lf
             git -C $path remote add origin $source[1]
             git -C $path fetch --depth 1 origin $source[2]
             if ($LASTEXITCODE -ne 0) { throw 'Pinned git fetch failed' }
