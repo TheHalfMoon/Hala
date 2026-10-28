@@ -54,13 +54,14 @@ def run(upstream):
                     )
                     expected_index = ref_state.get("reference_after_index")
                     test_action = checked_click(point)
-                    render, task, _, state, result = original_native_scene(
+                    render, task, privileged_point, state, result = original_native_scene(
                         browser, url, spec, execute_reference=False,
                         model_action=test_action, frozen_image=frozen,
                         expected_after_index=expected_index,
                     )
                     if (
-                        not same_original_pixels(render, frozen)
+                        privileged_point is not None
+                        or not same_original_pixels(render, frozen)
                         or task != instruction
                         or state["kind"] != ref_state["kind"]
                         or state["value"] != ref_state["value"]
@@ -76,12 +77,16 @@ def run(upstream):
                     # A typed abstain is safe: no model click and no reward,
                     # even where a known source-native reference would pass.
                     abstain = parse_action('{"actions":[{"kind":"abstain"}]}')
-                    _, _, _, _, negative = original_native_scene(
+                    _, _, abstain_privileged_point, _, negative = original_native_scene(
                         browser, url, spec, execute_reference=False,
                         model_action=abstain, frozen_image=frozen,
                         expected_after_index=expected_index,
                     )
-                    if negative["success"] is not False or negative["valid_click"] is not False:
+                    if (
+                        abstain_privileged_point is not None
+                        or negative["success"] is not False
+                        or negative["valid_click"] is not False
+                    ):
                         raise ValueError("H173 abstention incorrectly counted as browser success")
                     count_abstain += 1
                     print(
