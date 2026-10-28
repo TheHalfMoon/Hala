@@ -27,7 +27,7 @@ from h173.stable_capture import original_visual_hash
 
 # Fill ONLY after a brand-new 32/32 original OOD screenshot replay and
 # private gold-free ZIP. Not a placeholder for an older DEV or prior OOD.
-OOD_ZIP_SHA = "UNQUALIFIED"
+OOD_ZIP_SHA = "9775b2bfaad88a29e3ce4e1722ba86f417ab579c1d1ab1b8de9721e235266c18"
 MODEL_PROPOSALS_SCHEMA = "hala.h173.frozen-paired-unseen-original-ood-predictions.v1"
 
 

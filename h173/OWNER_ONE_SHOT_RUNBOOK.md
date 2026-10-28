@@ -20,8 +20,21 @@ cross-Chromium-process QA reproduced intermittent exact RGBA drift using
 untouched pinned MIT apps on the same owner Windows host. A pinned native
 software rasterizer (`--disable-gpu`) passed one full 32/32 cross-process
 PUBLIC-source run, but this alone is not new owner OOD qualification.
-Do not start a v3 owner capture until exact-head cross-process public-source
-QA and CPU/browser gates are proven; retain all strict pixel/reward checks.
+Those prerequisites subsequently PASSED at Git source SHA
+`692d9475ebfbf57a696088fe269173664d75ddae`: 4/4 hosted
+Python/Linux/Windows jobs and three independent owner-Windows PUBLIC
+cross-process 32/32 replay runs. A completely NEW owner `ood-32-v3`
+then PASSED 32/32 source-native capture and the sole independent exact
+RGBA replay. The private gold-free archive contains precisely 32 original
+PNGs plus manifest.json; owner reference actions remain outside the ZIP.
+Frozen v3 ZIP SHA-256:
+`9775b2bfaad88a29e3ce4e1722ba86f417ab579c1d1ab1b8de9721e235266c18`.
+Owner v3 `capture`, `verify` and `pack` stages are now DONE AND CONSUMED.
+NEVER retry, rescore, recapture or repack v3. v1 and v2 remain quarantined.
+**Still NO model OOD inference, no native model reward, no OOD quality claim.**
+The next and only eligible step is immutable final source pin, private
+zero-cost frozen T4 inference, independent GPU audit, then the separate
+one-shot native reward, with exact source/proposal identity and no old data.
 
 ## Stage 1: source-only checks
 
@@ -32,6 +45,8 @@ qualified. Neither job reads owner-private prior TRAIN, DEV or OOD
 images, nor executes H164/H171 models, so neither is the definitive
 owner OOD result.
 
+HISTORICAL v3 capture steps below are retained only as provenance.
+**DO NOT EXECUTE THEM AGAIN: v3 is already captured/replayed/packed.**
 When authorized Windows device access becomes available WITHOUT
 bypassing its quota, update the H173 Draft worktree from the latest
 GitHub branch and verify the real original pinned MIT donor trees
