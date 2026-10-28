@@ -130,3 +130,27 @@ def test_modified_or_duplicate_unseen_ood_fails_closed(tmp_path, change):
     )
     with pytest.raises(ValueError):
         pack(base, tmp_path / "invalid.zip")
+
+
+def test_visually_identical_images_with_different_png_encoding_refused(tmp_path):
+    """Both raw file SHAs differ, yet exactly identical original pixels."""
+    base, doc, receipt = source(tmp_path)
+    from PIL import Image
+
+    p0 = base / doc["private_cases"][0]["image"]
+    p1 = base / doc["private_cases"][1]["image"]
+    with Image.open(p0) as image:
+        image.save(p1, format="PNG", compress_level=0)
+    p0_raw = p0.read_bytes()
+    p1_raw = p1.read_bytes()
+    assert p0_raw != p1_raw
+    assert sha(p0_raw) != sha(p1_raw)
+    doc["private_cases"][1]["image_sha256"] = sha(p1_raw)
+    manifest = base / "manifest.json"
+    manifest.write_text(json.dumps(doc), encoding="utf8")
+    receipt["source_manifest_sha256"] = sha(manifest.read_bytes())
+    (base / "owner-source-replay-receipt.json").write_text(
+        json.dumps(receipt), encoding="utf8"
+    )
+    with pytest.raises(ValueError, match="visual pixels"):
+        pack(base, tmp_path / "visually-duplicated-ood.zip")
