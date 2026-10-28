@@ -7,9 +7,9 @@ import zipfile
 import pytest
 from PIL import Image
 
-from h173.capture_ood import MANIFEST
+from h173.capture_ood import MANIFEST, OWNER, SLIDERS
 from h173.pack_ood import pack, REPLAY_SCHEMA, SCHEMA
-from h173.source_preflight import preregister_provisional_cases
+from h173.source_preflight import SOURCE_PINS, preregister_provisional_cases
 
 
 def sha(content):
@@ -42,11 +42,46 @@ def source(tmp_path):
         "no_old_train_dev_ood_images": True,
         "no_model_calls_before_frozen_capture": True,
         "owner_gold_uploaded": False, "private_cases": rows,
+        "source_proof": {
+            app: {
+                "original_git_sha": pin["git_sha"],
+                "original_html_sha256": pin["original_html_sha256"],
+                "source_license": "MIT",
+                "action_type": pin["action"],
+                "native_state_family": pin["family"],
+                "source_role": "OOD_CANDIDATE_NOT_EVALUATED",
+                "model_gpu_calls": 0,
+                "reference_labels_uploaded": False,
+            }
+            for app, pin in SOURCE_PINS.items()
+        },
     }
     manifest = base / "manifest.json"
     manifest.write_text(json.dumps(doc), encoding="utf8")
+    reference = {
+        "schema": OWNER,
+        "owner_reference_actions": [],
+    }
+    for spec in preregister_provisional_cases():
+        if spec["app"] == "tingle":
+            state = {"kind": "modal_visible", "value": True}
+        else:
+            previous = spec["variant"] % 2 == 0
+            start = 4
+            state = {
+                "kind": "carousel_index",
+                "name": SLIDERS[spec["variant"] // 2],
+                "direction": "prev" if previous else "next",
+                "value": start,
+                "reference_after_index": start - 1 if previous else start + 1,
+            }
+        reference["owner_reference_actions"].append({
+            "index": spec["index"], "kind": "click",
+            "point": [12, 20], "prestate": state,
+            "original_native_reference_success": True,
+        })
     (base / "owner-reference-private.json").write_text(
-        '{"owner_reference_actions":[{"point":[12,20]}]}', encoding="utf8"
+        json.dumps(reference), encoding="utf8"
     )
     receipt = {
         "schema": REPLAY_SCHEMA,
@@ -154,3 +189,40 @@ def test_visually_identical_images_with_different_png_encoding_refused(tmp_path)
     )
     with pytest.raises(ValueError, match="visual pixels"):
         pack(base, tmp_path / "visually-duplicated-ood.zip")
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda d: d["owner_reference_actions"].pop(),
+    lambda d: d["owner_reference_actions"][0].update(point=[960, 1]),
+    lambda d: d["owner_reference_actions"][0].update(point=[True, 2]),
+    lambda d: d["owner_reference_actions"][0].update(original_native_reference_success=False),
+    lambda d: d["owner_reference_actions"][0].update(index=173101),
+    lambda d: d["owner_reference_actions"][16]["prestate"].update(direction="wrong"),
+    lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_after_index=4),
+])
+def test_pack_rejects_missing_or_forged_owner_reference(tmp_path, mutation):
+    base, _, _ = source(tmp_path)
+    private_path = base / "owner-reference-private.json"
+    data = json.loads(private_path.read_text("utf8"))
+    mutation(data)
+    private_path.write_text(json.dumps(data), encoding="utf8")
+    with pytest.raises(ValueError):
+        pack(base, tmp_path / "invalid-source-owner-gold.zip")
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda d: d["source_proof"]["tingle"].update(original_git_sha="a"*40),
+    lambda d: d["source_proof"]["tiny-slider"].update(reference_labels_uploaded=True),
+    lambda d: d.pop("source_proof"),
+])
+def test_pack_rejects_fake_pristine_original_source_evidence(tmp_path, mutation):
+    base, doc, receipt = source(tmp_path)
+    mutation(doc)
+    source_manifest = base / "manifest.json"
+    source_manifest.write_text(json.dumps(doc), encoding="utf8")
+    receipt["source_manifest_sha256"] = sha(source_manifest.read_bytes())
+    (base / "owner-source-replay-receipt.json").write_text(
+        json.dumps(receipt), encoding="utf8"
+    )
+    with pytest.raises(ValueError):
+        pack(base, tmp_path / "invalid-source-pins.zip")
