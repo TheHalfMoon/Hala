@@ -133,3 +133,23 @@ def test_model_ood_inference_source_sha_must_be_frozen(tmp_path, monkeypatch):
     monkeypatch.setattr(audit_gpu, "SOURCE_SHA", "UNQUALIFIED")
     with pytest.raises(ValueError):
         audit_gpu.audit(root)
+
+
+def test_external_exact_source_git_sha_overrides_untrusted_job_claim(
+    tmp_path, monkeypatch
+):
+    root, job, result = private_receipts(tmp_path, monkeypatch)
+    write_receipts(root, job, result)
+    qualified = audit_gpu.audit(root, expected_source_sha="b" * 40)
+    assert qualified["model_calls"] == 64
+    with pytest.raises(ValueError, match="private pinned original OOD GPU job"):
+        audit_gpu.audit(root, expected_source_sha="c" * 40)
+
+
+def test_invalid_external_commit_cannot_be_bypassed_by_valid_job(
+    tmp_path, monkeypatch
+):
+    root, job, result = private_receipts(tmp_path, monkeypatch)
+    write_receipts(root, job, result)
+    with pytest.raises(ValueError, match="owner must explicitly pin"):
+        audit_gpu.audit(root, expected_source_sha="main")
