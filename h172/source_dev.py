@@ -15,7 +15,7 @@ from h171.image_integrity import same_exact_png_pixels
 SCHEMA="hala.h172.new-four-app-candidate-dev32-owner-only.v1"
 N=32
 NODE_PREFIXES=("No","no","NO","nO","Nod","nod","NOD","nOd",
-               "Node","node","NODE","nOde","NoDe","Node.","node.","Node.j")
+               "Node","node","NODE","nOde","NoDe","nOde.J","node.","Node.j")
 
 def cases():
     results=[]
