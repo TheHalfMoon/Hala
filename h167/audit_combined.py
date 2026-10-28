@@ -10,7 +10,7 @@ from h167.combined_probe import (LANGUAGE_ZIP_SHA,LANGUAGE_WEIGHTS_SHA,
 from h166.vision_probe import (
     EXPECTED_TORCH,EXPECTED_TRANSFORMERS,EXPECTED_PEFT,MAX_PEAK_GIB)
 
-SOURCE_COMMIT="94cb785ad6fcc61bf079d2022337efdc2a3707b1"
+SOURCE_COMMIT="b79143aa3fd1cb7fc6683ff58ed80d4dd384dfb3"
 
 def audit(root):
     root=Path(root)
