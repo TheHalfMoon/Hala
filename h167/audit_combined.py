@@ -12,14 +12,14 @@ from h166.vision_probe import (
 
 SOURCE_COMMIT="94cb785ad6fcc61bf079d2022337efdc2a3707b1"
 
-def audit(root):
+def audit(root,source_commit=SOURCE_COMMIT):
     root=Path(root)
     job=json.loads((root/"h167-combined-job-receipt.json").read_text("utf8"))
     model=json.loads((root/"hala-h167-private-combined-t4"/
                       "h167-combined-synthetic-t4-receipt.json").read_text("utf8"))
     if (job.get("schema")!="hala.h167.private-combined-language-visual-kaggle-job.v1"
         or job.get("status")!="H167_SYNTHETIC_COMBINED_FREE_T4_PASS"
-        or job.get("source_commit")!=SOURCE_COMMIT
+        or job.get("source_commit")!=source_commit
         or job.get("optimizer_steps")!=2
         or job.get("owner_gold_used") is not False
         or job.get("previous_ood_or_dev_used") is not False
