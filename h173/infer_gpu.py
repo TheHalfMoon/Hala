@@ -23,6 +23,7 @@ from h167.combined_probe import (
 from h172.infer_gpu import admit_vision as admit_h171_frozen_vision
 from h173.pack_ood import SCHEMA as OOD_SCHEMA
 from h173.source_preflight import OOD_COUNT, preregister_provisional_cases
+from h173.stable_capture import original_visual_hash
 
 # Fill ONLY after a brand-new 32/32 original OOD screenshot replay and
 # private gold-free ZIP. Not a placeholder for an older DEV or prior OOD.
@@ -68,6 +69,7 @@ def admit_unseen_ood(path):
         ):
             raise ValueError("H173 original unseen-app provenance incomplete")
         seen = set()
+        visible = set()
         for row, expected in zip(rows, frozen):
             if (
                 any(
@@ -88,6 +90,10 @@ def admit_unseen_ood(path):
                 ))
             ):
                 raise ValueError("H173 unseen OOD image/task altered or gold leaked")
+            visual = original_visual_hash(archive.read(row["image"]))
+            if visual in visible:
+                raise ValueError("H173 visually duplicate original app OOD image")
+            visible.add(visual)
             seen.add(row["image_sha256"])
         if len(seen) != OOD_COUNT:
             raise ValueError("H173 incomplete unique original OOD screenshots")
