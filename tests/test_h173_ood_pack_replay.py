@@ -72,6 +72,7 @@ def source(tmp_path):
                 "kind": "carousel_index",
                 "name": SLIDERS[spec["variant"] // 2],
                 "direction": "prev" if previous else "next",
+                "reference_control_hit": "prev" if previous else "next",
                 "value": start,
                 "reference_after_index": start - 1 if previous else start + 1,
             }
@@ -199,9 +200,10 @@ def test_visually_identical_images_with_different_png_encoding_refused(tmp_path)
     lambda d: d["owner_reference_actions"][0].update(index=173101),
     lambda d: d["owner_reference_actions"][16]["prestate"].update(direction="wrong"),
     lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_after_index=4),
-    # A changed carousel index is insufficient if it moved opposite to task.
-    lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_after_index=5),
-    lambda d: d["owner_reference_actions"][17]["prestate"].update(reference_after_index=3),
+    # Reject wrong native button, even if the index happened to change.
+    lambda d: d["owner_reference_actions"][16]["prestate"].update(reference_control_hit="next"),
+    lambda d: d["owner_reference_actions"][17]["prestate"].update(reference_control_hit="prev"),
+    lambda d: d["owner_reference_actions"][16]["prestate"].pop("reference_control_hit"),
 ])
 def test_pack_rejects_missing_or_forged_owner_reference(tmp_path, mutation):
     base, _, _ = source(tmp_path)
