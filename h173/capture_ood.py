@@ -29,6 +29,29 @@ SLIDERS = (
 )
 
 
+def exact_native_reward(app, prestate, *, modal_visible=None,
+                        observed_index=None, owner_after_index=None):
+    """Reward only correct original browser state, NOT any carousel movement."""
+    if app == "tingle":
+        if prestate != {"kind": "modal_visible", "value": True}:
+            raise ValueError("H173 original modal must be initially open")
+        if type(modal_visible) is not bool:
+            raise ValueError("H173 actual original modal visibility unavailable")
+        return modal_visible is False
+    if app == "tiny-slider":
+        if (
+            type(prestate) is not dict
+            or prestate.get("kind") != "carousel_index"
+            or type(prestate.get("value")) is not int
+            or type(observed_index) is not int
+            or type(owner_after_index) is not int
+            or owner_after_index == prestate["value"]
+        ):
+            raise ValueError("H173 owner exact original carousel target missing")
+        return observed_index == owner_after_index
+    raise ValueError("H173 unqualified app for original native reward")
+
+
 def previous_image_hashes(owner, h168, h169, h171, h172):
     """Read only SHA metadata from past datasets, never consumed pixels."""
     from h171.source import prior_hashes
@@ -232,13 +255,22 @@ def original_native_scene(
                 page.mouse.click(*candidate)
                 page.wait_for_timeout(550 if app == "tiny-slider" else 140)
                 if app == "tingle":
-                    success = page.locator(".tingle-modal--visible").count() == 0
+                    success = exact_native_reward(
+                        app, prestate,
+                        modal_visible=page.locator(
+                            ".tingle-modal--visible"
+                        ).count() != 0,
+                    )
                 else:
                     observed_index = page.evaluate(
                         "(name) => sliders[name].getInfo().index",
                         prestate["name"],
                     )
-                    success = observed_index == expected_after_index
+                    success = exact_native_reward(
+                        app, prestate,
+                        observed_index=observed_index,
+                        owner_after_index=expected_after_index,
+                    )
             return image, instruction, point, prestate, {
                 "success": bool(success),
                 "valid_click": bool(valid),
