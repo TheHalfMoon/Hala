@@ -11,7 +11,7 @@ from h166.vision_probe import (
 from h167.combined_probe import LANGUAGE_WEIGHTS_SHA
 from h168.train_gpu import TRAIN_ZIP_SHA
 
-SOURCE_SHA="UNQUALIFIED"
+SOURCE_SHA="d2de3c9cc3cee75e8de55fe73f533fbf5d819c4f"
 NEW_TRAIN_SHA="8690b8bf40db1de82dec3620cdbb02ca1ea7fca953f253b8e4208dd559c81235"
 SCHEMA="hala.h171.64-original-4-app-two-epoch-real-t4-train.v1"
 JOB_SCHEMA="hala.h171.owner-private-free-t4-four-app-job.v1"

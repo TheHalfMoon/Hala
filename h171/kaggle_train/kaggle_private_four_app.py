@@ -2,7 +2,7 @@
 import json,os,subprocess,sys
 from pathlib import Path
 
-SHA="UNQUALIFIED"
+SHA="d2de3c9cc3cee75e8de55fe73f533fbf5d819c4f"
 OUT=Path("/kaggle/working/hala-h171-private-four-original-apps")
 JOB=Path("/kaggle/working/h171-private-train-job.json")
 SOURCE=Path("/kaggle/tmp/h171-pinned-code")
