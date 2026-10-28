@@ -16,7 +16,8 @@ from h173.source_preflight import (
     verified_original_source,
 )
 from h173.stable_capture import (
-    same_original_pixels, stabilized_original_png, original_visual_hash
+    same_original_pixels, stabilized_original_png, original_visual_hash,
+    original_unmodified_png,
 )
 
 MANIFEST = "hala.h173.genuine-novel-two-original-app-ood32.v1"
@@ -188,7 +189,6 @@ def original_native_scene(
     not even the owner reference action is executed.
     """
     from h138.probe import center
-    from h159.stable_source_qa import stable_png
     if execute_reference and model_action is not None:
         raise ValueError("H173 model cannot see or execute reference action")
 
@@ -289,7 +289,7 @@ def original_native_scene(
         # Do NOT disable original CSS animations or alter source files.
         image = stabilized_original_png(
             page,
-            stable_png,
+            original_unmodified_png,
             modal=app == "tingle",
         )
         if model_action is not None:
