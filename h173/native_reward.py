@@ -16,7 +16,8 @@ from h164.native_action_contract import parse_action
 from h171.image_integrity import same_exact_png_pixels
 from h172.infer_gpu import VISION_WEIGHTS_SHA
 from h173.capture_ood import (
-    MANIFEST, OWNER, SLIDERS, original_native_scene
+    MANIFEST, OWNER, SLIDERS, original_native_scene,
+    validate_owner_source_and_reference,
 )
 from h173.infer_gpu import (
     MODEL_PROPOSALS_SCHEMA, OOD_ZIP_SHA
@@ -83,6 +84,7 @@ def admit(owner_source, ood_zip, predictions):
     gold = json.loads(
         (source / "owner-reference-private.json").read_text("utf8")
     )
+    validate_owner_source_and_reference(owner_manifest, gold)
     with zipfile.ZipFile(ood_zip) as archive:
         packed = json.loads(archive.read("manifest.json"))
         expected_members = {"manifest.json"} | {
