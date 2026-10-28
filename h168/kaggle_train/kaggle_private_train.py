@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SOURCE_COMMIT="UNQUALIFIED"
+SOURCE_COMMIT="da7d20367b7bb1db439cf23fbff0700bfb0cab89"
 DATA=Path("/kaggle/input")
 PACKAGE_NAME="h168-training.pkg"
 OUT=Path("/kaggle/working/hala-h168-private-real-original-train")
