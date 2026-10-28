@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 SOURCE_COMMIT="3dd565b861dcb18ea48b282243809d6407bf315c"
-PACKAGE=Path("/kaggle/input/hala-h167-private-frozen-language-only-v1/h164-trained-384-lora.zip")
+PACKAGE=Path("/kaggle/input/hala-h167-private-frozen-language-only-v1")
 OUTPUT=Path("/kaggle/working/hala-h167-private-combined-t4")
 JOB=Path("/kaggle/working/h167-combined-job-receipt.json")
 WORK=Path("/kaggle/tmp/h167-frozen-source")
@@ -26,7 +26,9 @@ def main():
     try:
         if (len(SOURCE_COMMIT)!=40 or
             len(list(Path("/kaggle/input").iterdir()))!=1 or
-            not PACKAGE.is_file() or not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")):
+            not PACKAGE.is_dir() or
+            {x.name for x in PACKAGE.iterdir()}!={"README.md","adapter_config.json","adapter_model.safetensors"} or
+            not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")):
             raise ValueError("H167 private Kaggle and frozen single-source ZIP required")
         command(sys.executable,"-m","pip","uninstall","-y","torchao")
         command(sys.executable,"-m","pip","install","-q",

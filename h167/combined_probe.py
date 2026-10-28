@@ -20,6 +20,8 @@ LANGUAGE_WEIGHTS_SHA="43e0f6a260a40bda0fb5604aabde897d8aa3fdf1ced2877a32babddabb
 EXPECTED_ZIP_FILES={"README.md","adapter_config.json","adapter_model.safetensors"}
 EXPECTED_RANK=8
 VISUAL_RANK=4
+LANGUAGE_CONFIG_SHA="9f2073f5fb0aecaf1d6b3839cc7f354432a10feee3d520d0e9e8ae7a28fc56de"
+LANGUAGE_README_SHA="6bf7dbd80ea45198b177968e7a134e903b26bf5e32c4eb9ba29899cec44a4fd1"
 
 def file_sha(path):
     h=hashlib.sha256()
@@ -51,6 +53,30 @@ def admit_frozen_language_zip(package,destination):
         destination.mkdir(parents=True,exist_ok=False)
         for name in sorted(EXPECTED_ZIP_FILES):
             (destination/name).write_bytes(z.read(name))
+    return destination
+
+def admit_frozen_language_directory(source,destination):
+    """Kaggle unpacks uploaded ZIP: verify all THREE immutable original file hashes."""
+    source=Path(source)
+    destination=Path(destination)
+    expected={"README.md":LANGUAGE_README_SHA,
+              "adapter_config.json":LANGUAGE_CONFIG_SHA,
+              "adapter_model.safetensors":LANGUAGE_WEIGHTS_SHA}
+    if (not source.is_dir() or destination.exists() or
+        {x.name for x in source.iterdir()}!=EXPECTED_ZIP_FILES or
+        any(not (source/name).is_file() or file_sha(source/name)!=digest
+            for name,digest in expected.items())):
+        raise ValueError("H167 auto-extracted owner language adapter file hashes mismatch")
+    config=json.loads((source/"adapter_config.json").read_text("utf8"))
+    if (config.get("r")!=EXPECTED_RANK or
+        config.get("base_model_name_or_path")!=MODEL_ID or
+        config.get("peft_type")!="LORA" or
+        config.get("inference_mode") is not True or
+        not isinstance(config.get("target_modules"),list)):
+        raise ValueError("H167 owner frozen adapter config mismatch")
+    destination.mkdir(parents=True,exist_ok=False)
+    for name in sorted(expected):
+        (destination/name).write_bytes((source/name).read_bytes())
     return destination
 
 def is_visual_trainable(name):
@@ -108,8 +134,12 @@ def run(package,output):
               for name in ("torch","transformers","peft","Pillow")}
     gpu=require_free_t4(torch,versions)
     torch.manual_seed(167)
-    frozen=admit_frozen_language_zip(package,
-                                    Path("/kaggle/working/h167-private-frozen-language"))
+    if Path(package).is_dir():
+        frozen=admit_frozen_language_directory(package,
+                            Path("/kaggle/working/h167-private-frozen-language"))
+    else:
+        frozen=admit_frozen_language_zip(package,
+                            Path("/kaggle/working/h167-private-frozen-language"))
     processor=AutoProcessor.from_pretrained(
         MODEL_ID,revision=MODEL_SHA,trust_remote_code=False)
     base=AutoModelForImageTextToText.from_pretrained(
@@ -173,6 +203,8 @@ def run(package,output):
         "schema":"hala.h167.private-frozen-h164-plus-vision-synthetic-t4.v1",
         "status":"H167_TWO_LANGUAGE_SYNTHETIC_STEPS_PASS",
         "language_adapter_zip_sha256":LANGUAGE_ZIP_SHA,
+        "language_adapter_config_sha256":LANGUAGE_CONFIG_SHA,
+        "language_adapter_readme_sha256":LANGUAGE_README_SHA,
         "language_adapter_weights_sha256":LANGUAGE_WEIGHTS_SHA,
         "language_adapter_frozen_before_after_match":True,
         "base_model":MODEL_ID,"base_revision":MODEL_SHA,

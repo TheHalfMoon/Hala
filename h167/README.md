@@ -12,7 +12,9 @@ whether two adapters compose safely or whether Arabic native success improves.
 ## H167 predeclared scope
 
 - Load **the real frozen H164 trained language LoRA** from the exact private
-  source ZIP SHA `4f03a7520c69f2e4e5f2546ff1c05d975e163089c215bfd935eda674927cf8da`;
+  source ZIP SHA `4f03a7520c69f2e4e5f2546ff1c05d975e163089c215bfd935eda674927cf8da`; Kaggle auto-extracts ZIP uploads, so all three original extracted
+  file SHA-256 values are individually checked on the free T4, including
+  config and README; ZIP hash is verified on the owner device before upload.
   verify its safetensors SHA `43e0f6a260a40bda0fb5604aabde897d8aa3fdf1ced2877a32babddabbcf6b88`,
   pinned model ID and rank-8 config. This package contains ONLY the trained
   adapter + README/config; it contains no screenshot, training gold or OOD.
