@@ -10,7 +10,7 @@ from h167.combined_probe import (LANGUAGE_ZIP_SHA,LANGUAGE_WEIGHTS_SHA,
 from h166.vision_probe import (
     EXPECTED_TORCH,EXPECTED_TRANSFORMERS,EXPECTED_PEFT,MAX_PEAK_GIB)
 
-SOURCE_COMMIT="3dd565b861dcb18ea48b282243809d6407bf315c"
+SOURCE_COMMIT="2d5637e38cb49ae4e4b23796e806c0b363a4d0e1"
 
 def audit(root):
     root=Path(root)
@@ -33,6 +33,8 @@ def audit(root):
         or model.get("base_model")!=MODEL_ID or model.get("base_revision")!=MODEL_SHA
         or model.get("language_adapter_zip_sha256")!=LANGUAGE_ZIP_SHA
         or model.get("language_adapter_weights_sha256")!=LANGUAGE_WEIGHTS_SHA
+        or model.get("language_adapter_config_sha256")!=LANGUAGE_CONFIG_SHA
+        or model.get("language_adapter_readme_sha256")!=LANGUAGE_README_SHA
         or model.get("language_adapter_frozen_before_after_match") is not True
         or model.get("active_adapters")!=["language","vision"]
         or model.get("visual_rank")!=VISUAL_RANK
