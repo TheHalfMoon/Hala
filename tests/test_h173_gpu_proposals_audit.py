@@ -1,4 +1,5 @@
 """H173 GPU auditor proves only frozen 64 private T4 proposals, never success."""
+import hashlib
 import json
 from pathlib import Path
 
@@ -21,7 +22,9 @@ def private_receipts(tmp_path, monkeypatch):
             raw = '{"actions":[{"kind":"click","point":[300,250]}]}'
             rows.append({
                 "role": role, "case_index": case["index"],
-                "image_sha256": "c" * 64,
+                "image_sha256": hashlib.sha256(
+                    str(case["index"]).encode()
+                ).hexdigest(),
                 "app": case["app"], "language": case["language"],
                 "action_type": "click",
                 "raw": raw,
@@ -109,6 +112,10 @@ def test_exact_all_64_frozen_gpu_proposals_audited(tmp_path, monkeypatch):
     lambda j, r: r["predictions"][0].update(raw="not json"),
     lambda j, r: r["predictions"][0].update(app="Pell"),
     lambda j, r: r["predictions"][0].update(language="xx"),
+    lambda j, r: r["predictions"][32].update(image_sha256="0"*64),
+    lambda j, r: r["predictions"][1].update(
+        image_sha256=r["predictions"][0]["image_sha256"]
+    ),
 ])
 def test_incomplete_or_contaminated_free_gpu_receipt_fails(
     tmp_path, monkeypatch, mutation
