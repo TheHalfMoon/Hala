@@ -407,7 +407,7 @@ def original_native_scene(
 def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     """Create only NEW owner-private paths. Quarantines on any failure."""
     from playwright.sync_api import sync_playwright
-    from h130.browser_env import _chromium_binary
+    from h173.browser_runtime import original_browser_options
     from h138.probe import serve
 
     dest = Path(destination)
@@ -451,11 +451,9 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     seen_visible = set()
     with serve(Path(upstream)) as url:
         with sync_playwright() as playwright:
-            options = {"headless": True}
-            executable = _chromium_binary()
-            if executable:
-                options["executable_path"] = executable
-            browser = playwright.chromium.launch(**options)
+            browser = playwright.chromium.launch(
+                **original_browser_options()
+            )
             try:
                 for spec in specs:
                     raw, task, point, state = original_native_scene(

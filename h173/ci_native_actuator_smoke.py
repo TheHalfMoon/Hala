@@ -9,7 +9,7 @@ import argparse
 import json
 from pathlib import Path
 
-from h130.browser_env import _chromium_binary
+from h173.browser_runtime import original_browser_options
 from h138.probe import serve
 from h164.native_action_contract import parse_action
 from h173.capture_ood import original_native_scene
@@ -40,11 +40,9 @@ def run(upstream):
     count_wrong_direction = 0
     with serve(upstream) as url:
         with sync_playwright() as playwright:
-            opts = {"headless": True}
-            chromium = _chromium_binary()
-            if chromium:
-                opts["executable_path"] = chromium
-            browser = playwright.chromium.launch(**opts)
+            browser = playwright.chromium.launch(
+                **original_browser_options()
+            )
             try:
                 for index in INDICES:
                     spec = specs[index]
