@@ -44,13 +44,11 @@ def receipt(status, **values):
 
 
 def main():
-    from h173.infer_gpu import OOD_ZIP_SHA
-
     try:
         # Prevent any Kaggle model call until fresh original app replay
         # has been fully qualified and both immutable SHAs are frozen.
         if (
-            len(SHA) != 40 or len(OOD_ZIP_SHA) != 64
+            len(SHA) != 40
             or not os.environ.get("KAGGLE_KERNEL_RUN_TYPE")
         ):
             raise ValueError(
@@ -111,8 +109,10 @@ def main():
             HF_HUB_DISABLE_TELEMETRY="1",
             DO_NOT_TRACK="1",
         )
+        from h173.infer_gpu import OOD_ZIP_SHA, run
+        if len(OOD_ZIP_SHA) != 64:
+            raise ValueError("H173 qualified exact new OOD ZIP SHA not pinned")
         receipt("H173_32_PAIRED_UNSEEN_OOD_FROZEN_GPU_RUNNING")
-        from h173.infer_gpu import run
         result = run(new_ood[0], language[0].parent, visual[0].parent, OUT)
         if result.get("real_gpu_calls") != 64 or result.get("optimizer_steps") != 0:
             raise ValueError("H173 missing 64 frozen T4 model inferences")
