@@ -308,7 +308,7 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
             "optimizer_steps": 0,
         }
         receipt_file.write_text(
-            json.dumps(receipt, indent=2, sort_keys=True) + "\\n",
+            json.dumps(receipt, indent=2, sort_keys=True) + "\n",
             encoding="utf8",
         )
         return receipt
