@@ -1,6 +1,10 @@
-# H173 — truly unseen ORIGINAL application OOD source preflight (NOT scored)
+# H173 — original-application OOD: independently verified, permanently consumed
 
-**Source-only preparation on owner Windows, 2026-10-28. No model inference.**
+**CURRENT STATUS (2026-10-29):** Owner v3 completed 32/32 original-app capture, 32/32 exact independent pixel replay, 64 real frozen GPU proposals on a PRIVATE FREE T4, and one-and-only 64-action original-browser native reward. Independent GPU and native audits PASSED, and the H173 source is PERMANENTLY CONSUMED. H164 baseline 2/32 (6.25%) versus H164+H171 vision 3/32 (9.375%), one paired win, no regressions, two-sided exact McNemar p=1.0 (NOT significant). Tiny Slider 0/16 for both. **No general computer-use or production qualification.** Owner images, click gold, predictions, and consumption receipts remain private. v1 and v2 permanently quarantined. NEVER rerun, rescore, train on, or select using v3. Future work requires genuinely new TRAIN/DEV/held-out OOD; see h174/README.md. All earlier statements below are preserved as dated source-preflight history, NOT current status.
+
+## Historical 2026-10-28 source-only preflight (superseded)
+
+**Source-only preparation on owner Windows, 2026-10-28. No model inference at that time.**
 
 ## Prior-model selection and strict holdout boundary
 
