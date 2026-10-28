@@ -53,12 +53,13 @@ def run(upstream):
                     print("H173_PUBLIC_SOURCE_CAPTURE_ONLY", index + 1, OOD_COUNT,
                           item["app"], flush=True)
                 for index, item in enumerate(specs):
-                    raw, task, _, state = original_native_scene(
+                    raw, task, replay_oracle, state = original_native_scene(
                         browser, url, item, execute_reference=False
                     )
                     saved, original_task, original_state = first[item["index"]]
                     if (
-                        task != original_task
+                        replay_oracle is not None
+                        or task != original_task
                         or state["kind"] != original_state["kind"]
                         or state["value"] != original_state["value"]
                         or not same_exact_png_pixels(saved, raw)
