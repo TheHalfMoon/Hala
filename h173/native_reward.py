@@ -35,6 +35,29 @@ def sha(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def audited_gpu_proposals_root(predictions):
+    """Require native scorer input to be the EXACT independently-audited job.
+
+    Merely auditing a sibling h173-paired-ood-predictions.json is not
+    sufficient if the scorer then acts on a different file in that folder.
+    Never follow symlinks to a different score-producing input.
+    """
+    predictions = Path(predictions)
+    if (
+        predictions.name != "h173-paired-ood-predictions.json"
+        or predictions.parent.name != "hala-h173-private-paired-ood"
+        or predictions.is_symlink()
+        or predictions.parent.is_symlink()
+        or predictions.parent.parent.is_symlink()
+    ):
+        raise ValueError("H173 native scorer needs exact non-symlink audited GPU proposals file")
+    root = predictions.parent.parent
+    expected = root / "hala-h173-private-paired-ood" / "h173-paired-ood-predictions.json"
+    if predictions.resolve(strict=True) != expected.resolve(strict=True):
+        raise ValueError("H173 proposed clicks are not the exact independently-audited GPU file")
+    return root
+
+
 def start_consumption_lock(lock, ood_sha, predictions_sha):
     """Atomically reserve the ONE permitted owner-native OOD scoring attempt.
 
@@ -232,13 +255,19 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     lock = owner / "private-h173" / LOCK_NAME
     if lock.exists() or output.exists():
         raise ValueError("H173 original OOD already attempted or consumed")
+    # The checked job receipt and the bytes used for every browser click
+    # must refer to ONE unaliased file and remain immutable through audit.
+    gpu_root = audited_gpu_proposals_root(predictions)
+    frozen_proposals_sha = sha(Path(predictions).read_bytes())
     plan, rows, proposals = admit(source, ood_zip, predictions)
+    if sha(Path(predictions).read_bytes()) != frozen_proposals_sha:
+        raise ValueError("H173 GPU proposals changed during owner admission")
     # The native scorer must not accept arbitrary prediction JSON.
     # Independently verify the pinned source commit, FREE T4 job receipt,
     # frozen adapters, complete proposals and their exact immutable hashes
     # before writing the irreversible owner OOD consumption lock.
     from h173.audit_gpu import audit as independently_audit_gpu
-    real_gpu = independently_audit_gpu(Path(predictions).parent.parent)
+    real_gpu = independently_audit_gpu(gpu_root)
     if (
         real_gpu.get("status")
         != "H173_INDEPENDENT_64_PRIVATE_FREE_T4_UNSEEN_OOD_PROPOSALS_VERIFIED"
@@ -247,10 +276,12 @@ def run(owner, upstream, source, ood_zip, predictions, output):
     ):
         raise ValueError("H173 genuine independent FREE T4 proposals not qualified")
     verified_original_source(upstream)
+    if sha(Path(predictions).read_bytes()) != frozen_proposals_sha:
+        raise ValueError("H173 audited GPU proposal file changed before irreversible scoring")
     # Atomic exclusive creation BEFORE the first browser/model action.
     # Interrupted or concurrent attempts must never re-use the benchmark.
     start_consumption_lock(
-        lock, OOD_ZIP_SHA, sha(Path(predictions).read_bytes())
+        lock, OOD_ZIP_SHA, frozen_proposals_sha
     )
     outcomes, counts = [], Counter()
     with serve(Path(upstream)) as url:
@@ -342,7 +373,7 @@ def run(owner, upstream, source, ood_zip, predictions, output):
         "cases": 32,
         "real_original_native_browser_rewards": 64,
         "source_ood_zip_sha256": OOD_ZIP_SHA,
-        "gpu_proposals_sha256": sha(Path(predictions).read_bytes()),
+        "gpu_proposals_sha256": frozen_proposals_sha,
         "trained_vision_sha256": VISION_WEIGHTS_SHA,
         "before_success": counts["before/success"],
         "after_success": counts["after/success"],
