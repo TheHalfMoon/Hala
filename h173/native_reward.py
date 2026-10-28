@@ -52,7 +52,7 @@ def start_consumption_lock(lock, ood_sha, predictions_sha):
     }
     try:
         with lock.open("x", encoding="utf8") as stream:
-            stream.write(json.dumps(record, sort_keys=True) + "\\n")
+            stream.write(json.dumps(record, sort_keys=True) + "\n")
             stream.flush()
             import os
             os.fsync(stream.fileno())
