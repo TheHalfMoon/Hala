@@ -1,7 +1,7 @@
 """H170 private frozen real T4 adapter-forward logit/vision diagnostic."""
 import json,os,subprocess,sys
 from pathlib import Path
-SHA="UNQUALIFIED"
+SHA="b61a807965963ade9305d376020087ed7d1a3fe6"
 WORK=Path("/kaggle/tmp/h170-code")
 OUT=Path("/kaggle/working/hala-h170-private-forward-sensitivity")
 JOB=Path("/kaggle/working/h170-private-forward-job.json")
