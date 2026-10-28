@@ -1,4 +1,5 @@
 """H173 independent one-shot native OOD audit has real paired count guards."""
+import hashlib
 import json
 from collections import Counter
 
@@ -30,7 +31,9 @@ def make_frozen_result(tmp_path, monkeypatch):
                 "role": role,
                 "app": case["app"],
                 "language": case["language"],
-                "image_sha256": "b" * 64,
+                "image_sha256": hashlib.sha256(
+                    str(case["index"]).encode()
+                ).hexdigest(),
                 "success": success,
                 "valid_click": True,
             })
@@ -115,6 +118,10 @@ def test_independent_all_64_native_pair_counts(tmp_path, monkeypatch):
     lambda d: d["private_outcomes"][0].update(valid_click=False),
     lambda d: d["private_outcomes"][0].update(index=9999),
     lambda d: d["private_outcomes"][0].update(language="xx"),
+    lambda d: d["private_outcomes"][32].update(image_sha256="0"*64),
+    lambda d: d["private_outcomes"][2].update(
+        image_sha256=d["private_outcomes"][0]["image_sha256"]
+    ),
 ])
 def test_wrong_or_incomplete_native_ood_receipt_rejected(
     tmp_path, monkeypatch, mutation
