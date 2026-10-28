@@ -130,3 +130,37 @@ turn a source smoke into an OOD pass without all new 32/64 receipts.
 
 No paid models/GPU, no public donor copying, source screenshots, owner
 gold, model weights, output publication or main-branch merge. Draft only.
+
+
+## H173 additional engineering gates (2026-10-28)
+
+The code now contains the **FULL fail-closed candidate evaluation
+pipeline** in `h173/capture_ood.py`, `stable_capture.py`,
+`pack_ood.py`, `infer_gpu.py`, `audit_gpu.py`,
+`kaggle_private_paired_ood.py`, `native_reward.py`, and
+`audit_native.py`. See `OWNER_ONE_SHOT_RUNBOOK.md` for the
+exact private source and dataset boundary. This is **engineering-only**;
+none of these files imply qualified H173 OOD model performance.
+
+The source-only GitHub-hosted original-browser Playwright checks have
+completed **32/32 original Tingle/Tiny Slider source-native actions and
+32/32 independent exact RGBA replay on Linux**. The Windows hosted
+equivalent also independently passed the 32/32 source-only check after
+Git autocrlf was disabled before checking out the pristine upstream.
+Both services use no owner source images, owner reference coordinates,
+GPU model or old benchmark images; they do not replace the missing NEW
+owner-private one-shot OOD and are not model metrics.
+
+The model comparison code stays locked until an entirely fresh qualified
+source ZIP SHA is pinned. The frozen T4 runner and independent GPU auditor
+cannot pass with the literal `UNQUALIFIED` placeholders. Independent
+owner-native scoring rejects any unverified GPU job and records an
+irreversible consumption lock **before the first actual model action**.
+Tiny Slider rewards require the exact reference **post-index**, so an
+opposite-direction movement is counted as failure. Unit tests cover
+invalid modalities, duplicate pixel images, unqualified source metadata,
+mutated GPU receipts, false native successes and interrupted locks.
+
+**No automatic release:** original Windows owner capture, PRIVATE FREE
+T4 64 frozen OOD predictions, real original-app one-shot reward, Hala
+35B training and production-readiness remain unqualified.
