@@ -1,1 +1,1 @@
-﻿"""H173 genuinely unseen original-app OOD source qualification only."""
+# H173 source-only OOD candidate protocol
