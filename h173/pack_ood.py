@@ -14,6 +14,7 @@ from PIL import Image
 
 from h173.capture_ood import MANIFEST
 from h173.source_preflight import OOD_COUNT, preregister_provisional_cases
+from h173.stable_capture import original_visual_hash
 
 SCHEMA = "hala.h173.private-unseen-original-two-app-ood-gold-free.v1"
 REPLAY_SCHEMA = "hala.h173.original-ood-32-pixel-replay-receipt.v1"
@@ -64,7 +65,7 @@ def pack(source, target):
         "index", "split", "app", "family", "task", "action_type", "variant",
         "language", "image", "image_sha256", "instruction"
     )
-    filtered, pictures, seen = [], {}, set()
+    filtered, pictures, seen, visible = [], {}, set(), set()
     for expected, row in zip(plan, rows):
         if (
             any(row.get(k) != v for k, v in expected.items() if k != "split")
@@ -86,6 +87,10 @@ def pack(source, target):
         with Image.open(io.BytesIO(raw)) as im:
             if im.format != "PNG" or im.size != (960, 720):
                 raise ValueError("H173 only 960x720 original PNGs admitted")
+        rgba = original_visual_hash(raw)
+        if rgba in visible:
+            raise ValueError("H173 duplicate original GUI visual pixels with different PNG encoding")
+        visible.add(rgba)
         seen.add(row["image_sha256"])
         pictures[row["image"]] = raw
         filtered.append({field: row[field] for field in fields})
