@@ -1,7 +1,7 @@
 """Native GUI reward must match real requested outcome, not any movement."""
 import pytest
 
-from h173.capture_ood import exact_native_reward
+from h173.capture_ood import exact_native_reward, original_carousel_direction_ok
 
 
 def test_real_modal_closed_is_success_only_from_open_initial_state():
@@ -55,3 +55,24 @@ def test_unsupported_original_app_never_scores():
             "Pikaday", {"kind": "modal_visible", "value": True},
             modal_visible=False,
         )
+
+
+@pytest.mark.parametrize("direction,after,valid", [
+    ("prev", 3, True),
+    ("prev", 5, False),
+    ("next", 5, True),
+    ("next", 3, False),
+    ("prev", 4, False),
+    ("next", 4, False),
+    ("wrong", 5, False),
+    ("next", True, False),
+])
+def test_original_carousel_reference_must_follow_requested_direction(direction, after, valid):
+    prestate = {"kind": "carousel_index", "value": 4, "direction": direction}
+    assert original_carousel_direction_ok(prestate, after) is valid
+
+
+def test_original_carousel_reference_rejects_noninteger_initial_index():
+    assert not original_carousel_direction_ok(
+        {"kind": "carousel_index", "value": True, "direction": "next"}, 5
+    )
