@@ -22,6 +22,10 @@ from h173.stable_capture import (
 
 MANIFEST = "hala.h173.genuine-novel-two-original-app-ood32.v1"
 OWNER = "hala.h173.owner-only-original-reference-clicks.v1"
+CAPTURE_ATTEMPT_LOCK = "H173_CAPTURE_ATTEMPT_RESERVED.lock"
+REPLAY_ATTEMPT_LOCK = "H173_INDEPENDENT_REPLAY_ATTEMPT_CONSUMED.lock"
+CAPTURE_LOCK_CONTENT = "H173_CAPTURE_ATTEMPT_RESERVED_NO_RETRY\n"
+REPLAY_LOCK_CONTENT = "H173_INDEPENDENT_REPLAY_STARTED_NO_RETRY\n"
 ZOOMS = (0.85, 1.00, 1.15, 1.30)
 # Last two carousel variants use different starting slides, not the same image.
 SLIDERS = (
@@ -414,8 +418,8 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
     # former end-of-run mkdir allowed an interrupted capture to be retried.
     if mode == "capture":
         dest.mkdir(parents=True, exist_ok=False)
-        (dest / "H173_CAPTURE_ATTEMPT_RESERVED.lock").write_text(
-            "H173_CAPTURE_ATTEMPT_RESERVED_NO_RETRY\n", encoding="utf8"
+        (dest / CAPTURE_ATTEMPT_LOCK).write_text(
+            CAPTURE_LOCK_CONTENT, encoding="utf8"
         )
     frozen = None
     if mode == "verify":
@@ -423,10 +427,10 @@ def run(owner, upstream, h168, h169, h171, h172, destination, mode):
             raise FileExistsError("H173 private OOD source already independently replayed")
         # A failed independent replay permanently quarantines these 32
         # candidate images; never run a second pixel-replay attempt on them.
-        replay_lock = dest / "H173_INDEPENDENT_REPLAY_ATTEMPT_CONSUMED.lock"
+        replay_lock = dest / REPLAY_ATTEMPT_LOCK
         try:
             with replay_lock.open("x", encoding="utf8") as guard:
-                guard.write("H173_INDEPENDENT_REPLAY_STARTED_NO_RETRY\n")
+                guard.write(REPLAY_LOCK_CONTENT)
                 guard.flush()
                 import os
                 os.fsync(guard.fileno())

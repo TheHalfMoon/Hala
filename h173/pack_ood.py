@@ -7,17 +7,24 @@ import argparse
 import hashlib
 import io
 import json
+import os
 import zipfile
 from pathlib import Path
 
 from PIL import Image
 
-from h173.capture_ood import MANIFEST, validate_owner_source_and_reference
+from h173.capture_ood import (
+    MANIFEST, CAPTURE_ATTEMPT_LOCK, REPLAY_ATTEMPT_LOCK,
+    CAPTURE_LOCK_CONTENT, REPLAY_LOCK_CONTENT,
+    validate_owner_source_and_reference,
+)
 from h173.source_preflight import OOD_COUNT, preregister_provisional_cases
 from h173.stable_capture import original_visual_hash
 
 SCHEMA = "hala.h173.private-unseen-original-two-app-ood-gold-free.v1"
 REPLAY_SCHEMA = "hala.h173.original-ood-32-pixel-replay-receipt.v1"
+PACK_ATTEMPT_LOCK = "H173_GOLD_FREE_PACK_ATTEMPT_CONSUMED.lock"
+PACK_LOCK_CONTENT = "H173_GOLD_FREE_PACK_ATTEMPT_CONSUMED_NO_RETRY\n"
 
 
 def sha(blob):
@@ -28,6 +35,20 @@ def pack(source, target):
     source, target = Path(source), Path(target)
     if target.exists() or target.suffix != ".zip":
         raise ValueError("H173 one-shot private OOD zip must not preexist")
+    # A JSON replay receipt alone is not evidence that the one-shot owner
+    # capture and independent replay entry points were actually reserved.
+    # Require their exact local attempt markers before packaging any image.
+    for name, expected in (
+        (CAPTURE_ATTEMPT_LOCK, CAPTURE_LOCK_CONTENT),
+        (REPLAY_ATTEMPT_LOCK, REPLAY_LOCK_CONTENT),
+    ):
+        marker = source / name
+        if (
+            marker.is_symlink()
+            or not marker.is_file()
+            or marker.read_text(encoding="utf8") != expected
+        ):
+            raise ValueError("H173 owner capture/replay attempt marker missing or altered")
     source_raw = (source / "manifest.json").read_bytes()
     doc = json.loads(source_raw)
     replay = json.loads(
@@ -117,6 +138,20 @@ def pack(source, target):
         ),
         "private_cases": filtered,
     }
+    # Reserve the source itself, not merely the requested output filename:
+    # otherwise a caller could create multiple OOD ZIPs from the same 32
+    # private images by changing --output. This is a fail-closed one-shot
+    # attempt; a crash after reservation permanently consumes this source.
+    pack_marker = source / PACK_ATTEMPT_LOCK
+    try:
+        with pack_marker.open("x", encoding="utf8") as guard:
+            guard.write(PACK_LOCK_CONTENT)
+            guard.flush()
+            os.fsync(guard.fileno())
+    except FileExistsError as exc:
+        raise FileExistsError(
+            "H173 gold-free OOD packaging already attempted; quarantine source"
+        ) from exc
     target.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(target, "x", compression=zipfile.ZIP_DEFLATED) as z:
         z.writestr(
