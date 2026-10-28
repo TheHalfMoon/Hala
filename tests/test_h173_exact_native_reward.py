@@ -57,22 +57,37 @@ def test_unsupported_original_app_never_scores():
         )
 
 
-@pytest.mark.parametrize("direction,after,valid", [
-    ("prev", 3, True),
-    ("prev", 5, False),
-    ("next", 5, True),
-    ("next", 3, False),
-    ("prev", 4, False),
-    ("next", 4, False),
-    ("wrong", 5, False),
-    ("next", True, False),
+@pytest.mark.parametrize("direction,hit,after,valid", [
+    ("prev", "prev", 3, True),
+    ("prev", "prev", 5, True),  # legitimate loop wrap
+    ("next", "next", 5, True),
+    ("next", "next", 3, True),  # legitimate loop wrap
+    ("prev", "next", 3, False),  # opposite button hit
+    ("next", "prev", 5, False),
+    ("prev", "prev", 4, False),  # no native movement
+    ("next", "next", 4, False),
+    ("wrong", "wrong", 5, False),
+    ("next", "next", True, False),
+    ("next", None, 5, False),  # missing hit-test attestation
 ])
-def test_original_carousel_reference_must_follow_requested_direction(direction, after, valid):
-    prestate = {"kind": "carousel_index", "value": 4, "direction": direction}
+def test_original_carousel_reference_must_hit_requested_control(
+    direction, hit, after, valid
+):
+    prestate = {
+        "kind": "carousel_index",
+        "value": 4,
+        "direction": direction,
+        "reference_control_hit": hit,
+    }
     assert original_carousel_direction_ok(prestate, after) is valid
 
 
 def test_original_carousel_reference_rejects_noninteger_initial_index():
     assert not original_carousel_direction_ok(
-        {"kind": "carousel_index", "value": True, "direction": "next"}, 5
+        {
+            "kind": "carousel_index",
+            "value": True,
+            "direction": "next",
+            "reference_control_hit": "next",
+        }, 5
     )

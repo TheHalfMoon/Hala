@@ -30,12 +30,13 @@ SLIDERS = (
 
 
 def original_carousel_direction_ok(prestate, observed_index):
-    """A reference must move the requested way, not merely change slides.
+    """Require an actual click on the requested native control and state change.
 
-    H173 seeds each pristine original carousel away from wrap boundaries.
-    Native index changes in the opposite direction are invalid owner gold.
-    This guard uses only original browser state; it never exposes a click
-    coordinate to the model or reads a consumed benchmark.
+    Tiny Slider loops and rewinds: a correct "next" click can LOWER its
+    internal index after wraparound. Comparing index signs falsely rejects
+    real original-app actions. The private reference capture must first
+    attest which native button was under the actual click point. Neither
+    that attestation nor the point enters the model-visible OOD ZIP.
     """
     if type(prestate) is not dict or prestate.get("kind") != "carousel_index":
         return False
@@ -43,11 +44,11 @@ def original_carousel_direction_ok(prestate, observed_index):
     direction = prestate.get("direction")
     if type(before) is not int or type(observed_index) is not int:
         return False
-    if direction == "prev":
-        return observed_index < before
-    if direction == "next":
-        return observed_index > before
-    return False
+    return (
+        direction in ("prev", "next")
+        and prestate.get("reference_control_hit") == direction
+        and observed_index != before
+    )
 
 
 def validate_owner_source_and_reference(doc, reference):
@@ -313,6 +314,23 @@ def original_native_scene(
             ):
                 raise ValueError("H173 original reference click offscreen")
         if execute_reference:
+            if app == "tiny-slider":
+                # Read-only hit test AFTER the frozen screenshot, before click.
+                # The exact native target button must be the element receiving
+                # the coordinate click, not an overlapping opposite control.
+                hit_control = target.evaluate(
+                    """(button, xy) => {
+                        const hit = document.elementFromPoint(xy[0], xy[1]);
+                        return hit && (hit === button || button.contains(hit))
+                            ? button.getAttribute('data-controls') : null;
+                    }""",
+                    point,
+                )
+                if hit_control != prestate["direction"]:
+                    raise ValueError(
+                        "H173 reference point misses requested original carousel control"
+                    )
+                prestate["reference_control_hit"] = hit_control
             page.mouse.click(*point)
             page.wait_for_timeout(550 if app == "tiny-slider" else 140)
             if app == "tingle":
