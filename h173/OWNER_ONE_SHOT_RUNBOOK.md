@@ -64,10 +64,19 @@ carousel expected AFTER indexes are never uploaded with model input.
 
 Pin NEW_PRIVATE_ZIP SHA-256 in h173.infer_gpu OOD_ZIP_SHA. It is
 deliberately UNQUALIFIED now. Verify local/hosted CI and commit
-the new ZIP SHA on a stacked Draft branch. Pin the exact resulting
-immutable source commit in h173.kaggle_private_paired_ood SHA and
-h173.audit_gpu SOURCE_SHA, and commit again; never use a mutable
-branch in the private inference job.
+the new ZIP SHA on a stacked Draft branch. Freeze the **final actual
+40-hex Git commit SHA AFTER that commit completes**. DO NOT embed this
+source SHA into the files that form that same commit: such a self-pinned
+SHA would change the commit and can never match. Instead, supply it
+through the private owner/Kaggle environment variable:
+`HALA_H173_PINNED_SOURCE_SHA=<final_immutable_commit_sha>`.
+The standalone Kaggle runner checks out exactly this SHA before
+importing H173, then records it in the private job receipt. Independently
+audit with `python -m h173.audit_gpu --output PRIVATE_GPU_DIR
+--expected-source-sha <same_final_immutable_commit_sha>` (or set
+the same private environment variable before native scoring). The
+auditor refuses a missing/mutable/untrusted source identity, even
+when a job record claims a valid commit. NEVER use a mutable branch.
 
 ## Stage 3: private FREE T4 frozen paired inference
 
