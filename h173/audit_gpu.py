@@ -23,14 +23,22 @@ from h173.infer_gpu import (
     MODEL_PROPOSALS_SCHEMA, OOD_ZIP_SHA
 )
 from h173.source_preflight import OOD_COUNT, preregister_provisional_cases
+from h173.source_pin import pinned_source_commit, validate_source_commit
 
-# Freeze to the exact immutable source commit ONLY after new 32/32
-# original OOD screenshot/replay and gold-free ZIP are separately pinned.
+# Owner-provided expected SHA is external to the immutable Git source.
+# SOURCE_SHA retained for existing isolated negative unit tests only.
 SOURCE_SHA = "UNQUALIFIED"
 JOB_SCHEMA = "hala.h173.owner-private-free-t4-unseen-ood-job.v1"
 
 
-def audit(output):
+def audit(output, expected_source_sha=None):
+    # Independent local audit needs the owner's immutable Git SHA as input.
+    # A record cannot corroborate its own untrusted SHA.
+    source_sha = validate_source_commit(
+        expected_source_sha
+        if expected_source_sha is not None
+        else SOURCE_SHA if SOURCE_SHA != "UNQUALIFIED" else pinned_source_commit()
+    )
     root = Path(output)
     job = json.loads((root / "h173-paired-ood-job.json").read_text("utf8"))
     result = json.loads(
@@ -38,11 +46,10 @@ def audit(output):
          / "h173-paired-ood-predictions.json").read_text("utf8")
     )
     if (
-        len(SOURCE_SHA) != 40
-        or len(OOD_ZIP_SHA) != 64
+        len(OOD_ZIP_SHA) != 64
         or job.get("schema") != JOB_SCHEMA
         or job.get("status") != "H173_PRIVATE_64_FROZEN_UNSEEN_OOD_T4_PROPOSALS_PASS"
-        or job.get("source_commit") != SOURCE_SHA
+        or job.get("source_commit") != source_sha
         or job.get("optimizer_steps") != 0
         or job.get("real_gpu_calls") != 64
         or job.get("owner_gold_uploaded") is not False
@@ -150,5 +157,9 @@ def audit(output):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", required=True)
+    parser.add_argument("--expected-source-sha", required=True)
     args = parser.parse_args()
-    print(json.dumps(audit(args.output), indent=2, sort_keys=True))
+    print(json.dumps(
+        audit(args.output, expected_source_sha=args.expected_source_sha),
+        indent=2, sort_keys=True
+    ))
