@@ -1,7 +1,7 @@
 """H172 one-shot private frozen H164/H168 two-adapter DEV inference; no gold."""
 import json,os,subprocess,sys
 from pathlib import Path
-SHA="UNQUALIFIED"
+SHA="494637a141feb68adf64d3e257a4173054a586ff"
 OUT=Path("/kaggle/working/hala-h172-private-paired-dev")
 JOB=Path("/kaggle/working/h172-paired-dev-job.json")
 WORK=Path("/kaggle/tmp/h172-source")

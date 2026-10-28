@@ -12,7 +12,7 @@ from h164.native_action_contract import parse_action
 from h172.source_dev import cases
 from h166.vision_probe import MAX_PEAK_GIB,EXPECTED_TORCH,EXPECTED_TRANSFORMERS,EXPECTED_PEFT
 
-SOURCE_SHA="UNQUALIFIED"
+SOURCE_SHA="494637a141feb68adf64d3e257a4173054a586ff"
 
 def audit(root):
     root=Path(root)
