@@ -61,13 +61,22 @@ only. No gold-free OOD ZIP was admitted or uploaded, **zero H173 model
 inferences**, zero OOD native rewards, zero optimizer steps. This
 capture MUST NOT be treated as a benchmark score or used for training.
 
-The local Windows repository has an uncommitted source generator and
-packaging/tests drafted; they were not promoted to GitHub after the
-source failed qualification. Desktop Commander reached its monthly
-usage limit while diagnosing this case; further owner-device execution
-is blocked until that capability becomes available again. Do not retry
-or bypass the quota. The GitHub Draft branch is a source-preflight and
-failure-documentation artifact, not a qualified OOD.
+The initial Windows source generator remained local when the capture
+failed. The GitHub Draft branch now includes an independently authored
+replacement `h173/capture_ood.py`, `h173/stable_capture.py`,
+`h173/pack_ood.py` and fail-closed unit tests. The replacement
+**normalizes the pointer to (0,0) after target scrolling**, demands
+two identical decoded 960×720 RGBA screenshot rasters, fails if the
+modal close control is still hovered, and writes a private 32/32
+independent-replay receipt. OOD packaging refuses missing, altered or
+partial replay receipts and strips owner native reference actions.
+
+These changes are *engineering safeguards*, **not an owner-device
+qualification**. They have not yet been executed against a fresh
+original Tingle/Tiny Slider capture on Windows. Desktop Commander
+reached its monthly usage limit during diagnosis; do not retry,
+reconnect or bypass that quota. The current Draft PR is a source
+preflight and fail-closed repair candidate, **not qualified OOD**.
 
 **Forensic hypothesis, not yet verified:** the replay SHA prefix
 `c6155737492a` exactly matches the earlier independent owner pilot's
