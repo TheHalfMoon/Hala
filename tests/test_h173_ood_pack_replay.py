@@ -7,8 +7,14 @@ import zipfile
 import pytest
 from PIL import Image
 
-from h173.capture_ood import MANIFEST, OWNER, SLIDERS
-from h173.pack_ood import pack, REPLAY_SCHEMA, SCHEMA
+from h173.capture_ood import (
+    MANIFEST, OWNER, SLIDERS,
+    CAPTURE_ATTEMPT_LOCK, REPLAY_ATTEMPT_LOCK,
+    CAPTURE_LOCK_CONTENT, REPLAY_LOCK_CONTENT,
+)
+from h173.pack_ood import (
+    pack, REPLAY_SCHEMA, SCHEMA, PACK_ATTEMPT_LOCK,
+)
 from h173.source_preflight import SOURCE_PINS, preregister_provisional_cases
 
 
@@ -97,6 +103,12 @@ def source(tmp_path):
     }
     (base / "owner-source-replay-receipt.json").write_text(
         json.dumps(receipt), encoding="utf8"
+    )
+    (base / CAPTURE_ATTEMPT_LOCK).write_text(
+        CAPTURE_LOCK_CONTENT, encoding="utf8"
+    )
+    (base / REPLAY_ATTEMPT_LOCK).write_text(
+        REPLAY_LOCK_CONTENT, encoding="utf8"
     )
     return base, doc, receipt
 
@@ -231,3 +243,60 @@ def test_pack_rejects_fake_pristine_original_source_evidence(tmp_path, mutation)
     )
     with pytest.raises(ValueError):
         pack(base, tmp_path / "invalid-source-pins.zip")
+
+
+@pytest.mark.parametrize("marker", [
+    CAPTURE_ATTEMPT_LOCK,
+    REPLAY_ATTEMPT_LOCK,
+])
+def test_pack_refuses_receipt_without_original_one_shot_attempt_marker(tmp_path, marker):
+    base, _, _ = source(tmp_path)
+    (base / marker).unlink()
+    target = tmp_path / "no-attempt-provenance.zip"
+    with pytest.raises(ValueError, match="attempt marker"):
+        pack(base, target)
+    assert not target.exists()
+    assert not (base / PACK_ATTEMPT_LOCK).exists()
+
+
+@pytest.mark.parametrize("marker", [
+    CAPTURE_ATTEMPT_LOCK,
+    REPLAY_ATTEMPT_LOCK,
+])
+def test_pack_refuses_altered_attempt_marker(tmp_path, marker):
+    base, _, _ = source(tmp_path)
+    (base / marker).write_text("FORGED_OR_TRUNCATED\n", encoding="utf8")
+    with pytest.raises(ValueError, match="attempt marker"):
+        pack(base, tmp_path / "altered-marker.zip")
+    assert not (base / PACK_ATTEMPT_LOCK).exists()
+
+
+def test_pack_same_private_source_cannot_be_frozen_twice_under_new_filename(tmp_path):
+    base, _, _ = source(tmp_path)
+    first = tmp_path / "first-ood.zip"
+    second = tmp_path / "second-ood.zip"
+    assert pack(base, first)["ood_cases"] == 32
+    assert (base / PACK_ATTEMPT_LOCK).is_file()
+    with pytest.raises(FileExistsError, match="already attempted"):
+        pack(base, second)
+    assert first.is_file()
+    assert not second.exists()
+
+
+def test_pack_crash_after_source_reservation_permanently_blocks_retry(
+    tmp_path, monkeypatch
+):
+    base, _, _ = source(tmp_path)
+    import h173.pack_ood as module
+
+    def injected_archive_failure(*args, **kwargs):
+        raise OSError("injected archive open failure")
+
+    with monkeypatch.context() as patch:
+        patch.setattr(module.zipfile, "ZipFile", injected_archive_failure)
+        with pytest.raises(OSError, match="injected archive"):
+            pack(base, tmp_path / "first-attempt.zip")
+    assert (base / PACK_ATTEMPT_LOCK).is_file()
+    with pytest.raises(FileExistsError, match="already attempted"):
+        pack(base, tmp_path / "retry-after-crash.zip")
+    assert not (tmp_path / "retry-after-crash.zip").exists()
