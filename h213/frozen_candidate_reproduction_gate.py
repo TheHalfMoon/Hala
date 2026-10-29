@@ -119,7 +119,17 @@ def verify_checked_in_source() -> dict:
             "frozen research metadata missing or linked")
     require(0 < p.stat().st_size <= MAX_FROZEN_BYTES,
             "frozen research metadata oversize")
-    expected = canonical_frozen_body(candidate_manifest())
+    import sys
+    regenerated = candidate_manifest()
+    expected = canonical_frozen_body(regenerated)
+    # Original Windows was the freezing platform, so exact PNG *bytes*
+    # must still match there. Linux has verified matching decoded pixels
+    # but different PNG codec bytes; it must independently pin the
+    # original Windows JSON SHA and match 96/96 raw RGBA plus all roles.
+    if sys.platform == "linux":
+        from h215.portable_png_rgba_gate import verify_linux_frozen_raster
+        return verify_linux_frozen_raster(p.read_bytes(), regenerated)
+    require(sys.platform == "win32", "unsupported host for Hala source QA")
     actual = p.read_text(encoding="utf-8")
     return verify_exact_metadata_text(actual, expected)
 
@@ -129,7 +139,8 @@ def main() -> None:
     print(
         r["status"],
         "cases="+str(r["candidate_cases_checked"]),
-        "png="+str(r["png_sha_matches"]),
+        "png_sha_matches="+str(r["png_sha_matches"]),
+        "png_encoding_differences="+str(r.get("png_encoding_differences", 0)),
         "rgba="+str(r["rgba_sha_matches"]),
         "official_train=0 dev_sealed=0 official_ood=0",
         "private_media=0 model_calls=0 optimizer_steps=0",
