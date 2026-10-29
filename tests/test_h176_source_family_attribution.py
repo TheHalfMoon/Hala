@@ -16,7 +16,9 @@ from h174.source_history_gate import SCHEMA as HISTORY_SCHEMA
 from h174.split_firewall import (
     BANNED, HISTORY_SCHEMA as PIXEL_HISTORY_SCHEMA, SCHEMA as SPLIT_SCHEMA,
 )
-from h176.source_family_attribution import SCHEMA, audit_attribution
+from h176.source_family_attribution import (
+    SCHEMA, KNOWN_EXTRA_PREVIOUS, FROZEN_OTHER_GIT, audit_attribution,
+)
 from h176.audit_owner_history import run as local_cli_run
 
 
@@ -47,11 +49,12 @@ def _fixture():
         "visual_shas": ["9"*64],
     }
     rows = []
-    for index, app in enumerate(sorted(BANNED), start=1):
+    for index, app in enumerate(sorted(BANNED | KNOWN_EXTRA_PREVIOUS), start=1):
         frozen = SOURCE_PINS.get(app)
         rows.append({
             "app": app, "repo": f"fictional-owner/old-original-{index}",
-            "git_sha": frozen["git_sha"] if frozen else f"{index:040x}",
+            "git_sha": (frozen["git_sha"] if frozen else
+                        FROZEN_OTHER_GIT.get(app, f"{index:040x}")),
             "html_sha256": (frozen["original_html_sha256"] if frozen
                             else f"{index:064x}"),
         })
@@ -69,7 +72,8 @@ def _fixture():
 class SourceFamilyAttributionTests(unittest.TestCase):
     def test_valid_paired_metadata_never_approves_training_or_ood(self):
         result = audit_attribution(*_fixture())
-        self.assertEqual(result["paired_source_families"], len(BANNED))
+        self.assertEqual(result["paired_source_families"], len(BANNED | KNOWN_EXTRA_PREVIOUS))
+        self.assertEqual(result["earlier_source_git_pins_matched"], len(FROZEN_OTHER_GIT))
         self.assertEqual(result["frozen_h173_pairs_matched"], len(SOURCE_PINS))
         self.assertFalse(result["source_history_completeness_proven"])
         self.assertFalse(result["provenance_authenticity_proven"])
@@ -109,6 +113,30 @@ class SourceFamilyAttributionTests(unittest.TestCase):
             ):
                 audit_attribution(meta, pixels, history, attribution)
 
+    def test_newly_recovered_prior_source_cannot_disappear_from_both_manifests(self):
+        meta, pixels, history, attribution = _fixture()
+        # The old independent H174 arrays alone would accept removal of
+        # this H138 eval app because it is not in the old H173 minimum.
+        app = "react-html5-board"
+        row = next(r for r in attribution["families"] if r["app"] == app)
+        attribution["families"].remove(row)
+        history["historical_app_ids"].remove(row["app"])
+        history["historical_repositories"].remove(row["repo"])
+        history["source_git_shas"].remove(row["git_sha"])
+        history["source_html_shas"].remove(row["html_sha256"])
+        with self.assertRaisesRegex(ValueError, "missing known historical"):
+            audit_attribution(meta, pixels, history, attribution)
+
+    def test_older_source_app_git_revision_cannot_be_relabelled(self):
+        for app in FROZEN_OTHER_GIT:
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            row["git_sha"] = "e"*40
+            with self.subTest(app=app), self.assertRaisesRegex(
+                ValueError, "earlier source pilot/eval frozen Git"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
+
     def test_historical_sha_must_be_attributed_to_a_family(self):
         meta, pixels, history, attribution = _fixture()
         history["source_git_shas"].append("d"*40)
@@ -125,7 +153,7 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         meta, pixels, history, attribution = _fixture()
         attribution["families"][0]["repo"] = "FICTIONAL-OWNER/OLD-ORIGINAL-1"
         result = audit_attribution(meta, pixels, history, attribution)
-        self.assertEqual(result["distinct_historical_repositories"], len(BANNED))
+        self.assertEqual(result["distinct_historical_repositories"], len(BANNED | KNOWN_EXTRA_PREVIOUS))
 
     def test_no_images_gold_or_private_fields_in_attribution(self):
         for payload in ({"gold": "fake"}, {"image_sha256": "f"*64},
