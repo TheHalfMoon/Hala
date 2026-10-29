@@ -24,13 +24,17 @@ class _Entrypoint(HTMLParser):
         self.scripts: list[str] = []
         self.styles: list[str] = []
         self.has_base = False
+        self.inline_scripts = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         fields = dict(attrs)
         if tag == "base":
             self.has_base = True
-        if tag == "script" and fields.get("src"):
-            self.scripts.append(fields["src"])
+        if tag == "script":
+            if fields.get("src"):
+                self.scripts.append(fields["src"])
+            else:
+                self.inline_scripts += 1
         if tag == "link" and "stylesheet" in (fields.get("rel") or "").lower().split() and fields.get("href"):
             self.styles.append(fields["href"])
 
@@ -46,32 +50,40 @@ def allow_loopback_request(url: str, port: int) -> bool:
         return False
 
 
+def _require(condition: bool, message: str) -> None:
+    """Fail closed even when Python assertions are disabled with -O."""
+    if not condition:
+        raise ValueError(message)
+
+
 def verify_derived_assets(dist_dir: Path) -> dict[str, str]:
     """Check generated JS/CSS assets exist inside the scratch build, not donor Git."""
     _reject_reparse(dist_dir)
     root = dist_dir.resolve(strict=True)
-    assert root.is_dir() and not dist_dir.is_symlink(), "Invalid derived build root"
+    _require(root.is_dir() and not dist_dir.is_symlink(), "Invalid derived build root")
     html = root / "index.html"
     _reject_reparse(html)
-    assert html.is_file() and not html.is_symlink(), "Missing built index.html"
+    _require(html.is_file() and not html.is_symlink(), "Missing built index.html")
     parser = _Entrypoint()
     parser.feed(html.read_text(encoding="utf-8"))
-    assert not parser.has_base, "HTML base URL not permitted"
-    assert len(parser.scripts) == 1, "Expected exactly one built script"
+    parser.close()
+    _require(not parser.has_base, "HTML base URL not permitted")
+    _require(parser.inline_scripts == 0, "Unexpected inline script in derived HTML")
+    _require(len(parser.scripts) == 1, "Expected exactly one built script")
     local_styles = [s for s in parser.styles if not urlsplit(s).scheme]
-    assert len(local_styles) == 1, "Expected exactly one built stylesheet"
+    _require(len(local_styles) == 1, "Expected exactly one built stylesheet")
     assets: dict[str, str] = {}
     for kind, ref in [("js", parser.scripts[0]), ("css", local_styles[0])]:
-        assert ref.startswith("./assets/") and "%" not in ref and chr(92) not in ref, "Unsafe generated URL"
+        _require(ref.startswith("./assets/") and "%" not in ref and chr(92) not in ref, "Unsafe generated URL")
         parsed = urlsplit(ref)
-        assert not (parsed.query or parsed.fragment or parsed.scheme or parsed.netloc), "Unsafe URL parts"
+        _require(not (parsed.query or parsed.fragment or parsed.scheme or parsed.netloc), "Unsafe URL parts")
         parts = Path(ref[2:]).parts
-        assert ".." not in parts, "Path traversal"
+        _require(".." not in parts, "Path traversal")
         target = root.joinpath(*parts)
         _reject_reparse(target)
         resolved = target.resolve(strict=True)
-        assert resolved.is_relative_to(root) and target.is_file() and not target.is_symlink(), "Asset escaped root"
-        assert resolved.stat().st_size > 0, "Empty generated asset"
+        _require(resolved.is_relative_to(root) and target.is_file() and not target.is_symlink(), "Asset escaped root")
+        _require(resolved.stat().st_size > 0, "Empty generated asset")
         assets[kind] = sha256(resolved.read_bytes()).hexdigest()
     return assets
 
@@ -115,28 +127,28 @@ def run_native_smoke(dist_dir: Path, browser_channel: str) -> tuple[str, dict[st
                         response = page.goto(
                             f"http://127.0.0.1:{server.server_port}/", wait_until="networkidle"
                         )
-                        assert response is not None and response.status == 200
-                        assert page.get_by_role("button", name="classic").count() == 1
+                        _require(response is not None and response.status == 200, "Original demo response not OK")
+                        _require(page.get_by_role("button", name="classic").count() == 1, "Original classic picker missing")
                         button = page.locator(".pcr-button")
-                        assert button.count() >= 1, "Original picker missing"
+                        _require(button.count() >= 1, "Original picker missing")
                         button.first.click()
                         page.locator(".pcr-app.visible").wait_for(timeout=5000)
                         swatches = page.locator(".pcr-app.visible .pcr-swatches button")
-                        assert swatches.count() >= 1, "Original swatches missing"
+                        _require(swatches.count() >= 1, "Original swatches missing")
                         result = page.locator(".pcr-app.visible .pcr-result")
-                        assert result.count() == 1
+                        _require(result.count() == 1, "Original result input missing")
                         before = result.input_value()
                         swatches.first.click()
-                        assert result.input_value() != before, "Native swatch did not change color"
+                        _require(result.input_value() != before, "Native swatch did not change color")
                         page.mouse.move(0, 0)
                         page.wait_for_timeout(350)
                         rgba = Image.open(BytesIO(page.screenshot(animations="disabled"))).convert("RGBA")
-                        assert rgba.size == (960, 720)
+                        _require(rgba.size == (960, 720), "Original screenshot dimension mismatch")
                         digests.append(sha256(rgba.tobytes()).hexdigest())
-                        assert not errors, f"JS page errors: {errors}"
+                        _require(not errors, f"JS page errors: {errors}")
                     finally:
                         context.close()
-                assert digests[0] == digests[1], "Independent RGBA replay mismatch"
+                _require(digests[0] == digests[1], "Independent RGBA replay mismatch")
                 return digests[0], assets
             finally:
                 browser.close()
