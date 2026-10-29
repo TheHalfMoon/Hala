@@ -26,7 +26,16 @@ MAX_DEPTH = 4
 
 # Only exactly named hashes, never generic "sha256", which could be a model
 # checkpoint, reference label, artifact, tokenizer or unrelated provenance.
-RAW = re.compile(rb'"(?:image_sha256|png_sha256)"\s*:\s*"([0-9a-f]{64})"')
+# H141 original source (h141/interactive_source.py, h141/audit.py)
+# recorded TWO genuine PNG frames for each old oracle-guided diagnostic:
+# at_rest_sha256 and during_drag_sha256. Those were never TRAIN/BLIND
+# eligible. Preserve them as additional *old PNG exclusions*, not RGBA.
+# The unrelated generic sha256 / license/model hashes are forbidden.
+RAW = re.compile(
+    rb'"(?P<field>image_sha256|png_sha256|at_rest_sha256|during_drag_sha256)"'
+    rb'\s*:\s*"(?P<sha>[0-9a-f]{64})"'
+)
+DRAG_PHASE_FIELDS = frozenset({"at_rest_sha256", "during_drag_sha256"})
 VISUAL = re.compile(
     rb'"(?:visual_rgba_sha256|rgba_sha256)"\s*:\s*"([0-9a-f]{64})"'
 )
@@ -88,6 +97,8 @@ def scan_legacy_manifest_sha_fields(roots: list[str | Path]) -> dict:
     rgba_manifest_count = 0
     raw_occurrences = 0
     rgba_occurrences = 0
+    drag_phase_occurrences = {"at_rest_sha256": 0, "during_drag_sha256": 0}
+    drag_phase_png: set[str] = set()
     total_bytes = 0
 
     for phase in phases:
@@ -129,11 +140,17 @@ def scan_legacy_manifest_sha_fields(roots: list[str | Path]) -> dict:
             # or decode case payloads; only these four metadata key names.
             blob = target.read_bytes()
             _require(len(blob) == size, "manifest changed while reading")
-            old_raw = {hit.group(1).decode("ascii")
-                       for hit in RAW.finditer(blob)}
+            png_matches = list(RAW.finditer(blob))
+            old_raw = {hit.group("sha").decode("ascii")
+                       for hit in png_matches}
             old_rgba = {hit.group(1).decode("ascii")
                         for hit in VISUAL.finditer(blob)}
-            raw_occurrences += len(list(RAW.finditer(blob)))
+            for hit in png_matches:
+                field = hit.group("field").decode("ascii")
+                if field in DRAG_PHASE_FIELDS:
+                    drag_phase_occurrences[field] += 1
+                    drag_phase_png.add(hit.group("sha").decode("ascii"))
+            raw_occurrences += len(png_matches)
             rgba_occurrences += len(list(VISUAL.finditer(blob)))
             if old_raw:
                 raw_manifest_count += 1
@@ -159,6 +176,11 @@ def scan_legacy_manifest_sha_fields(roots: list[str | Path]) -> dict:
         "png_sha_occurrences": raw_occurrences,
         "decoded_rgba_sha_occurrences": rgba_occurrences,
         "distinct_png_sha_candidates": len(raw),
+        "h141_at_rest_png_sha_occurrences":
+            drag_phase_occurrences["at_rest_sha256"],
+        "h141_during_drag_png_sha_occurrences":
+            drag_phase_occurrences["during_drag_sha256"],
+        "distinct_old_drag_phase_png_sha_candidates": len(drag_phase_png),
         "distinct_decoded_rgba_sha_candidates": len(rgba),
         "sha_only_metadata_fingerprint_sha256": digest,
         # An owner-only caller may use these as conservative EXCLUSIONs,
