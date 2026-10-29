@@ -48,6 +48,9 @@ def pristine(tmp_path, monkeypatch):
     (root / pin["license_path"]).write_bytes(license_bytes)
     answers = {
         ("rev-parse", "HEAD"): pin["git_sha"],
+        ("rev-parse", "--show-toplevel"): str(root),
+        ("ls-files", "--error-unmatch", "--", pin["html_path"]): pin["html_path"],
+        ("ls-files", "--error-unmatch", "--", pin["license_path"]): pin["license_path"],
         ("status", "--porcelain", "--untracked-files=all"): "",
         ("remote", "get-url", "origin"): "https://github.com/" + pin["repo"] + ".git",
     }
@@ -172,4 +175,18 @@ def test_checkout_root_symlink_rejected(pristine, monkeypatch):
     monkeypatch.setattr(type(root), "is_symlink",
                         lambda path: path == root or real_is_symlink(path))
     with pytest.raises(ValueError, match="symlink or junction"):
+        candidates.verify_local_source_only("pickr", root)
+
+
+def test_nested_git_directory_cannot_impersonate_original_checkout(pristine):
+    root, _, answers = pristine
+    answers[("rev-parse", "--show-toplevel")] = str(root.parent)
+    with pytest.raises(ValueError, match="Git checkout root mismatch"):
+        candidates.verify_local_source_only("pickr", root)
+
+
+def test_untracked_original_html_cannot_pass_pinned_byte_check(pristine):
+    root, pin, answers = pristine
+    answers[("ls-files", "--error-unmatch", "--", pin["html_path"])] = ""
+    with pytest.raises(ValueError, match="original file not tracked"):
         candidates.verify_local_source_only("pickr", root)

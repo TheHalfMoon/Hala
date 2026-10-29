@@ -103,6 +103,10 @@ def verify_local_source_only(name, root):
         raise ValueError("H174 candidate Git checkout missing")
     _reject_reparse(root)
     _reject_reparse(root / ".git")
+    # Git -C searches parent directories; an arbitrary nested directory with
+    # a fake .git entry must not impersonate the pinned checkout root.
+    if Path(_git(root, "rev-parse", "--show-toplevel")).resolve() != root.resolve():
+        raise ValueError("H174 candidate Git checkout root mismatch")
     if _git(root, "rev-parse", "HEAD") != pin["git_sha"]:
         raise ValueError("H174 candidate immutable Git revision mismatch")
     if _git(root, "status", "--porcelain", "--untracked-files=all"):
@@ -129,6 +133,15 @@ def verify_local_source_only(name, root):
             _reject_reparse(path)
         if not path.is_file() or not path.resolve().is_relative_to(root.resolve()):
             raise ValueError("H174 candidate original HTML/license path missing or outside checkout")
+        # Pinned bytes alone do not prove a file belongs to this Git commit:
+        # reject ignored or untracked copies before reading source bytes.
+        tracked_path = relative.as_posix()
+        try:
+            tracked = _git(root, "ls-files", "--error-unmatch", "--", tracked_path)
+        except ValueError as exc:
+            raise ValueError("H174 candidate original file not tracked") from exc
+        if tracked != tracked_path:
+            raise ValueError("H174 candidate original file not tracked")
         if hashlib.sha256(path.read_bytes()).hexdigest() != pin[hash_key]:
             raise ValueError("H174 candidate original HTML/license bytes mismatch")
     return {
