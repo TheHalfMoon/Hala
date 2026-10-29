@@ -13,7 +13,9 @@ on:
     paths:
       - ".github/workflows/h201-original-snap-native-executor-linux.yml"
       - "h201/**"
+      - "h203/**"
       - "tests/test_h201_original_native_action_executor.py"
+      - "tests/test_h203_screenshot_bound_dispatch.py"
   workflow_dispatch:
 
 permissions:
@@ -190,6 +192,17 @@ jobs:
           else
             status=$?
             echo "H201_ORIGINAL_SNAP_JSON_EXECUTOR_FAILED exit=$status"
+            tail -80 "$RUNNER_TEMP/h201-interact-snap-static.log"
+            exit "$status"
+          fi
+          # H203: negative real-browser proof on the SAME pinned original
+          # build: change slider/canvas AFTER screenshot, then block a stale
+          # model-shaped action before any extra pointer/keyboard input.
+          if timeout --signal=TERM --kill-after=5s 150s python -u -m h203.original_stale_browser --port 8201 --browser-channel chromium; then
+            echo "H203_REAL_SOURCE_STALE_SCREENSHOT_REJECTED_NO_MODEL_NO_MEDIA"
+          else
+            status=$?
+            echo "H203_ORIGINAL_STALE_SCREENSHOT_BROWSER_FAILED exit=$status"
             tail -80 "$RUNNER_TEMP/h201-interact-snap-static.log"
             exit "$status"
           fi

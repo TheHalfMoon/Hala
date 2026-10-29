@@ -1,0 +1,61 @@
+# H203: screenshot identity must match before native browser dispatch.
+# Synthetic CPU checks only; original browser proof is separate H201 workflow.
+name: H203 screenshot-bound original GUI dispatch (synthetic CPU)
+
+on:
+  push:
+    branches:
+      - ps/h203-screenshot-bound-native-dispatch
+    paths:
+      - ".github/workflows/h203-screenshot-bound-native-dispatch.yml"
+      - "h201/original_native_action_executor.py"
+      - "tests/test_h203_screenshot_bound_dispatch.py"
+  pull_request:
+    paths:
+      - ".github/workflows/h203-screenshot-bound-native-dispatch.yml"
+      - "h201/original_native_action_executor.py"
+      - "tests/test_h203_screenshot_bound_dispatch.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h203-png-binding-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  synthetic-cpu:
+    name: Python ${{ matrix.python-version }} strict preaction screenshot binding
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: H201 H202 H203 source-only CPU normal and optimized
+        shell: bash
+        run: |
+          set -euo pipefail
+          for mode in normal optimized; do
+            args=()
+            if [ "$mode" = optimized ]; then args=(-O); fi
+            for case in h201_original_native_action_executor h202_native_input_failure_guards h203_screenshot_bound_dispatch; do
+              python "${args[@]}" -m unittest discover -s tests -p "test_${case}.py" -q
+            done
+          done
+          python -m compileall -q h201 tests/test_h203_screenshot_bound_dispatch.py
+          echo "H203_HOSTED_SYNTHETIC_SCREENSHOT_BINDING_PASS_NO_MODEL_NO_DATA_NO_GPU"
