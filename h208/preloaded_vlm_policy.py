@@ -108,15 +108,24 @@ class PreloadedVisionPolicy:
                 or not _has_visual_values(batch["pixel_values"])
             ):
                 raise ValueError("missing model-visible image tensor")
+            # A multimodal native action must originate from exactly one task.
+            if len(batch["input_ids"]) != 1:
+                raise ValueError("H209 requires one multimodal input row")
             prefix = _tokens(batch["input_ids"][0], why="prompt")
             if not hasattr(batch, "to"):
                 raise ValueError("multimodal tensor batch cannot move to model")
             batch = batch.to(self.model.device)
+            # Device transfer must not replace, drop or add prompt tokens.
+            # Otherwise generate() could see a different task from the one
+            # whose prefix we later use to accept the returned action.
             if (
-                "pixel_values" not in batch
+                "input_ids" not in batch
+                or len(batch["input_ids"]) != 1
+                or _tokens(batch["input_ids"][0], why="transferred prompt") != prefix
+                or "pixel_values" not in batch
                 or not _has_visual_values(batch["pixel_values"])
             ):
-                raise ValueError("image lost during device transfer")
+                raise ValueError("H209 multimodal input changed during device transfer")
         except (KeyError, TypeError, ValueError, AttributeError, IndexError):
             raise ValueError("H208 multimodal processor rejected screenshot") from None
 
