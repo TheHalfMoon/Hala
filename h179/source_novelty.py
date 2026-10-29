@@ -19,6 +19,9 @@ from h176.source_family_attribution import (
 )
 from h177.public_origin_pins import KNOWN_PUBLIC_REPOS
 from h178.owner_git_inventory import inventory_local_original_sources
+from h184.public_prior_considered_origins import (
+    BLOCKED_REPOSITORIES, BLOCKED_COMMITS, validate_public_previous_ledger,
+)
 
 MAX_CANDIDATES = 100
 PIN_FIELDS = frozenset({
@@ -31,10 +34,12 @@ KNOWN_BURNED_REPOS = (
     KNOWN_PUBLIC_REPOS
     | KNOWN_NPM_UPSTREAM_REPOS
     | frozenset(FROZEN_H173_REPOS.values())
+    | BLOCKED_REPOSITORIES
 )
 KNOWN_BURNED_GIT = (
     frozenset(p["git_sha"] for p in SOURCE_PINS.values())
     | frozenset(FROZEN_OTHER_GIT.values())
+    | BLOCKED_COMMITS
 )
 KNOWN_BURNED_HTML = frozenset(
     p["original_html_sha256"] for p in SOURCE_PINS.values()
@@ -54,6 +59,7 @@ def screen_pins_against_history(
     A source can have been used historically without a surviving checkout,
     and forks may share source even when repository names differ.
     """
+    validate_public_previous_ledger()
     _require(
         type(pins) is dict and 0 < len(pins) <= MAX_CANDIDATES,
         "bounded source-only catalog required",
@@ -134,6 +140,7 @@ def screen_pins_against_history(
         "historical_identity_fingerprint_sha256":
             history["source_identity_fingerprint_sha256"],
         "source_history_completeness_proven": False,
+        "extra_public_historic_source_families_blocked": len(BLOCKED_REPOSITORIES),
         "source_native_qa_qualified": False,
         "train_dev_ood_assigned": False,
         "training_approved": False,

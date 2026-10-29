@@ -108,10 +108,14 @@ def inventory_local_original_sources(roots: list[str | Path]) -> dict:
         if PHASE_NAME.fullmatch(root.name):
             candidates = [root]
         else:
-            candidates = [
-                item for item in root.iterdir()
-                if item.is_dir() and PHASE_NAME.fullmatch(item.name)
-            ]
+            candidates = []
+            for item in root.iterdir():
+                if PHASE_NAME.fullmatch(item.name):
+                    # Check the lexical entry even when a broken symlink or
+                    # Windows reparse point falsely reports is_dir() == False.
+                    _require(_safe_directory(item),
+                             "unsafe historical phase entry")
+                    candidates.append(item)
         for candidate in sorted(candidates, key=lambda p: p.name.casefold()):
             _require(_safe_directory(candidate), "unsafe historical phase folder")
             key = os.path.normcase(str(candidate.resolve()))
@@ -129,6 +133,14 @@ def inventory_local_original_sources(roots: list[str | Path]) -> dict:
                 continue
             _require(_safe_directory(store), "unsafe historical source store")
             for child in sorted(store.iterdir(), key=lambda p: p.name.casefold()):
+                # An unresolved/broken .git checkout link must not disappear
+                # from the census just because Path.is_dir() returns False.
+                st = child.lstat()
+                _require(
+                    not stat.S_ISLNK(st.st_mode)
+                    and not (getattr(st, "st_file_attributes", 0) & 0x400),
+                    "unsafe original source entry",
+                )
                 if not child.is_dir():
                     continue
                 _require(_safe_directory(child), "unsafe original checkout")
