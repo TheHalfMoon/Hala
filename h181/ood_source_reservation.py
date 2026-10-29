@@ -131,6 +131,8 @@ def check_reserved_source_only(
             history["historical_unique_repositories_screened"],
         "owner_historical_git_checkouts_screened":
             history["historical_git_checkouts_screened"],
+        "owner_historical_identity_fingerprint_sha256":
+            history["historical_identity_fingerprint_sha256"],
         "previous_original_app_sources_in_this_branch":
             len(prospective),
         "source_history_completeness_proven": False,
