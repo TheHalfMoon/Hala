@@ -11,6 +11,7 @@ import argparse
 from dataclasses import dataclass
 from hashlib import sha256
 import json
+import re
 from typing import Any
 
 from h199.native_action_sft import parse_actions, WIDTH, HEIGHT
@@ -37,14 +38,25 @@ def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
     This executor deliberately scopes to the pinned original SNAP demo
     until an audited app allowlist and real permission UI exist.
     """
-    require(type(expected_url) is str
-            and expected_url.startswith("http://127.0.0.1:")
-            and expected_url.endswith(ORIGINAL_ROUTE)
-            and expected_url.count("/") == 4,
+    # An exact canonical loopback URL is a capability boundary. Avoid
+    # accepting lookalike hostnames, URL credentials, queries, fragments,
+    # zero/invalid ports, or alternate string spellings.
+    match = (re.fullmatch(
+        r"http://127\.0\.0\.1:([1-9][0-9]{0,4})/snap/index\.html",
+        expected_url,
+    ) if type(expected_url) is str else None)
+    require(match is not None and int(match.group(1)) <= 65535 and
+            exact_original_loopback_url(int(match.group(1))) == expected_url,
             "only registered original static source URL may receive actions")
-    require(page.url == expected_url, "browser left the original app page")
-    require(page.viewport_size == {"width": WIDTH, "height": HEIGHT},
-            "native screenshot coordinate viewport not 960x720")
+
+    def guard_page() -> None:
+        # Recheck *between* native events. A focus-click can navigate to
+        # another page; never send a subsequent keyboard event to it.
+        require(page.url == expected_url, "browser left the original app page")
+        require(page.viewport_size == {"width": WIDTH, "height": HEIGHT},
+                "native screenshot coordinate viewport not 960x720")
+
+    guard_page()
     # H200 rejects duplicate/unicode-escaped keys and NaN/Infinity, not
     # just model actions that happen to parse as valid Python objects.
     action = parse_actions(raw)["actions"][0]
@@ -54,22 +66,36 @@ def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
                 "kind": "abstain"}
     if kind == "click":
         x, y = action["point"]
+        guard_page()
         page.mouse.click(x, y)
+        guard_page()
         count = 1
     elif kind == "drag":
         start = action["start"]
         end = action["end"]
+        guard_page()
         page.mouse.move(*start)
-        page.mouse.down()
-        page.mouse.move(*end, steps=12)
-        page.mouse.up()
+        guard_page()
+        try:
+            # The down() call can fail *after* pressing the button. Always
+            # attempt a release; otherwise a mid-drag failure leaves it held.
+            page.mouse.down()
+            guard_page()
+            page.mouse.move(*end, steps=12)
+            guard_page()
+        finally:
+            page.mouse.up()
+        guard_page()
         count = 4
     elif kind == "key_press":
         # A real browser click, not a hidden DOM focus() or JavaScript
         # value setter, focuses the model-visible control first.
         x, y = action["point"]
+        guard_page()
         page.mouse.click(x, y)
+        guard_page()
         page.keyboard.press(action["key"])
+        guard_page()
         count = 2
     else:
         raise ValueError("H201 impossible action kind")
