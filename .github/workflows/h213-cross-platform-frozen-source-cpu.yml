@@ -15,6 +15,7 @@ on:
     paths:
       - "h213/**"
       - "tests/test_h213_frozen_candidate_reproduction_gate.py"
+      - "tests/test_h214_no_mac_ci_policy.py"
       - ".github/workflows/h213-cross-platform-frozen-source-cpu.yml"
   workflow_dispatch:
 
@@ -60,5 +61,5 @@ jobs:
           python -O -m unittest discover -s tests -p 'test_h213_frozen_candidate_reproduction_gate.py' -q
           python -O -m h213.frozen_candidate_reproduction_gate
           python -O -m unittest discover -s tests -p 'test_h214_no_mac_ci_policy.py' -q
-          python -m compileall -q h213 tests/test_h213_frozen_candidate_reproduction_gate.py
+          python -m compileall -q h213 tests/test_h213_frozen_candidate_reproduction_gate.py tests/test_h214_no_mac_ci_policy.py
           echo "H214_96_BITWISE_PNG_RGBA_WINDOWS_LINUX_ONLY_PASS_NO_MODEL_NO_OWNER_MEDIA"
