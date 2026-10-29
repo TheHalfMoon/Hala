@@ -295,7 +295,7 @@ def test_h174_pickr_isolation_factory_survives_python_optimized_mode(tmp_path):
     env = dict(os.environ)
     env["PYTHONPATH"] = str(package_root) + os.pathsep + env.get("PYTHONPATH", "")
     program = (
-        "from h174.pickr_native_smoke import create_isolated_smoke_context;"
+        "from h174.pickr_native_smoke import create_isolated_smoke_context\n"
         "class FakeContext:\n"
         " def route_web_socket(self, pattern, handler):\n"
         "  self.pattern=pattern; self.handler=handler\n"
