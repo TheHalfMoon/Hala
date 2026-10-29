@@ -19,10 +19,15 @@ The top-level object has exactly schema and families:
 
 - schema: hala.h176.owner-historical-source-family-attribution.v1
 - families: nonempty list, at most 100000 entries
-- Each entry must have precisely: app, repo, git_sha, html_sha256
+- Original Git-source entries have exactly: app, repo, git_sha, html_sha256
 - app: known original app ID; repo: canonical owner/repository
 - git_sha: 40 lowercase hexadecimal characters
 - html_sha256: 64 lowercase hexadecimal characters
+- One H137 npm-only entry (splitjs) has exactly: app, package,
+  version, artifact_sha256. It must be split.js version 1.6.5 with the
+  *actual* 64-character SHA-256 of H137's original split.min.js vendor
+  binary, verified against the owner's existing H137 provenance.json.
+  Do not invent a Git SHA/HTML for this npm source.
 
 These are *field shapes*, not evidence or usable example identities.
 All 11 previously known TRAIN/consumed families and the 2 H173 pinned
@@ -33,6 +38,10 @@ react-html5-board, react-dndkit-board, todomvc-es6 and
 gridstack-original-column-demo. Five of these have exact public source
 Git pins in H138/H140/H158/H163; splitjs was an H137 npm-based evaluation
 library without an equivalent Git-commit identity recorded in that phase.
+It is represented by an npm-package/version/immutable-binary SHA row,
+and does not appear in the legacy Git-repo/Git-sha/HTML-sha arrays. The
+historical_app_ids list still MUST include splitjs. The owner must
+authenticate its old H137 binary SHA without opening consumed media.
 Never fabricate placeholders or infer a repo merely from an application name.
 Two apps originating from the same upstream repository remain one source
 family for future split eligibility, even if their old Git revisions differ.
