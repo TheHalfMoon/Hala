@@ -20,11 +20,13 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
     from PIL import Image
     from playwright.sync_api import sync_playwright
 
+    print("H174_INTERACT_NATIVE_PHASE=launch", flush=True)
     with sync_playwright() as p:
         browser = p.chromium.launch(channel=channel, headless=True)
         try:
             hashes = []
-            for _ in range(2):
+            for context_index in range(2):
+                print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_create", flush=True)
                 context = create_isolated_smoke_context(browser)
                 try:
                     context.route(
@@ -36,12 +38,14 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
                     page = context.new_page()
                     errors = []
                     page.on("pageerror", lambda err: errors.append(str(err)))
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_navigate", flush=True)
                     resp = page.goto(
                         f"http://127.0.0.1:{port}/dropzones/index.html",
                         wait_until="networkidle", timeout=20000,
                     )
                     _require(resp is not None and resp.status == 200,
                              "H174 original interactjs HTML failed")
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_html_pass", flush=True)
                     drag = page.locator("#drag3")
                     drop = page.locator("#drop1")
                     _require(drag.count() == 1 and drop.count() == 1,
@@ -56,6 +60,7 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
                     sy = source["y"] + source["height"]/2
                     tx = target["x"] + target["width"]/2
                     ty = target["y"] + target["height"]/2
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_drag_start", flush=True)
                     page.mouse.move(sx, sy)
                     page.mouse.down()
                     page.mouse.move(tx, ty, steps=30)
@@ -66,6 +71,7 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
                     )
                     _require(drag.inner_text().strip() == "Dropped",
                              "H174 original native drop event not delivered")
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_drop_confirmed", flush=True)
                     page.mouse.move(0, 0)
                     page.wait_for_timeout(400)
                     rgba = Image.open(BytesIO(
@@ -76,6 +82,7 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
                     _require(not errors,
                              "H174 original interactjs page errors: " + repr(errors))
                     hashes.append(sha256(rgba.tobytes()).hexdigest())
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_rgba_captured", flush=True)
                 finally:
                     context.close()
             _require(len(hashes) == 2 and hashes[0] == hashes[1],
