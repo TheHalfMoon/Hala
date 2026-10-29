@@ -2,6 +2,13 @@
 from __future__ import annotations
 
 from hashlib import sha256
+import ast
+import inspect
+import os
+from pathlib import Path
+import subprocess
+import sys
+import h174.pickr_native_smoke as source_module
 import pytest
 from h174.pickr_native_smoke import allow_loopback_request, verify_derived_assets
 
@@ -52,12 +59,12 @@ def test_h174_pickr_allows_exact_ephemeral_loopback():
     "./assets/app.js?cache=1",
 ])
 def test_h174_pickr_rejects_unpinned_scripts(tmp_path, script):
-    with pytest.raises((AssertionError, FileNotFoundError)):
+    with pytest.raises((ValueError, FileNotFoundError)):
         verify_derived_assets(_dist(tmp_path, script=script))
 
 
 def test_h174_pickr_rejects_base_url(tmp_path):
-    with pytest.raises(AssertionError, match="base"):
+    with pytest.raises(ValueError, match="base"):
         verify_derived_assets(_dist(tmp_path, base='<base href="https://evil.example/">' ))
 
 
@@ -78,7 +85,7 @@ def test_h174_pickr_rejects_missing_js(tmp_path):
 def test_h174_pickr_rejects_empty_js(tmp_path):
     root = _dist(tmp_path)
     (root / "assets" / "app.js").write_bytes(b"")
-    with pytest.raises(AssertionError, match="Empty"):
+    with pytest.raises(ValueError, match="Empty"):
         verify_derived_assets(root)
 
 
@@ -106,3 +113,60 @@ def test_h174_pickr_rejects_symlinked_derived_asset(tmp_path):
         pytest.skip("OS does not permit symlink creation")
     with pytest.raises(ValueError, match="symlink or junction"):
         verify_derived_assets(root)
+
+
+def test_h174_pickr_rejects_any_unexpected_inline_script(tmp_path):
+    root = _dist(tmp_path)
+    html = root / "index.html"
+    html.write_text(html.read_text(encoding="utf-8").replace(
+        "</head>", '<script>window.pwned = true</script></head>'
+    ), encoding="utf-8")
+    with pytest.raises(ValueError, match="inline script"):
+        verify_derived_assets(root)
+
+
+def test_h174_pickr_rejects_src_less_module_script(tmp_path):
+    root = _dist(tmp_path)
+    html = root / "index.html"
+    html.write_text(html.read_text(encoding="utf-8").replace(
+        "</head>", '<script type="module">import "./assets/app.js"</script></head>'
+    ), encoding="utf-8")
+    with pytest.raises(ValueError, match="inline script"):
+        verify_derived_assets(root)
+
+
+@pytest.mark.parametrize("violation", ["empty-js", "inline", "base", "traversal"])
+def test_h174_pickr_fail_closed_even_with_python_optimized_mode(tmp_path, violation):
+    root = _dist(tmp_path)
+    html = root / "index.html"
+    if violation == "empty-js":
+        (root / "assets" / "app.js").write_bytes(b"")
+    elif violation == "inline":
+        html.write_text(html.read_text(encoding="utf-8").replace(
+            "</head>", '<script>window.unsafe=true</script></head>'
+        ), encoding="utf-8")
+    elif violation == "base":
+        html.write_text(html.read_text(encoding="utf-8").replace(
+            "<head>", '<head><base href="https://evil.example/">'
+        ), encoding="utf-8")
+    else:
+        html.write_text(html.read_text(encoding="utf-8").replace(
+            "./assets/app.js", "./assets/../app.js"
+        ), encoding="utf-8")
+    package_root = Path(__file__).resolve().parents[1]
+    env = dict(os.environ)
+    env["PYTHONPATH"] = str(package_root) + os.pathsep + env.get("PYTHONPATH", "")
+    result = subprocess.run(
+        [sys.executable, "-O", "-c",
+         "from pathlib import Path; from h174.pickr_native_smoke import verify_derived_assets; "
+         + "verify_derived_assets(Path(" + repr(str(root)) + "))"],
+        cwd=package_root, env=env, capture_output=True, text=True, timeout=20,
+        check=False,
+    )
+    assert result.returncode != 0, "Optimized interpreter silently bypassed asset admission"
+    assert "ValueError" in result.stderr, result.stderr
+
+
+def test_h174_pickr_module_has_no_optimization_skippable_assert_guards():
+    module_ast = ast.parse(inspect.getsource(source_module))
+    assert not any(isinstance(node, ast.Assert) for node in ast.walk(module_ast))
