@@ -3,6 +3,15 @@
 name: H174 pinned Pickr native smoke (research only)
 
 on:
+  # Temporary branch-only trigger: test this new workflow without merging it
+  # into protected main or enabling a deployment.
+  push:
+    branches:
+      - ps/h174-pickr-native-hosted-linux-proof
+    paths:
+      - ".github/workflows/h174-pickr-native-linux.yml"
+      - "h174/**"
+      - "tests/test_h174_pickr_native_smoke.py"
   pull_request:
     paths:
       - "h174/**"
