@@ -1,0 +1,141 @@
+# H174 public pinned original-app native smoke. No model, media uploads, or deploy.
+name: H174 original medium-zoom Linux native smoke (research only)
+
+on:
+  push:
+    branches:
+      - ps/h174-mediumzoom-pinned-original-linux-smoke
+    paths:
+      - ".github/workflows/h174-mediumzoom-native-linux.yml"
+      - "h174/mediumzoom_native_smoke.py"
+      - "tests/test_h174_mediumzoom_native_smoke.py"
+  pull_request:
+    paths:
+      - ".github/workflows/h174-mediumzoom-native-linux.yml"
+      - "h174/mediumzoom_native_smoke.py"
+      - "tests/test_h174_mediumzoom_native_smoke.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h174-mediumzoom-native-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-mediumzoom-linux:
+    name: pinned original medium-zoom click and RGBA replay (Linux only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      H174_MEDIUMZOOM_GIT: dccda8ab5a1f1677cf1f141d1ead4f14780f0ca4
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Establish disposable paths at step runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "H174_DONOR_DIR=$RUNNER_TEMP/h174-mediumzoom-pristine" >> "$GITHUB_ENV"
+          echo "H174_SCRATCH_DIR=$RUNNER_TEMP/h174-mediumzoom-build/source" >> "$GITHUB_ENV"
+
+      - name: Checkout only Hala source without persisted Git token
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Use fixed Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Setup original donor Bun from pinned action
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: "1.4.4"
+
+      - name: Fetch immutable pristine original source; archive into independent scratch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$H174_DONOR_DIR" "$H174_SCRATCH_DIR"
+          git -C "$H174_DONOR_DIR" init
+          git -C "$H174_DONOR_DIR" remote add origin https://github.com/francoischalifour/medium-zoom.git
+          git -C "$H174_DONOR_DIR" fetch --depth=1 origin "$H174_MEDIUMZOOM_GIT"
+          git -C "$H174_DONOR_DIR" checkout --detach "$H174_MEDIUMZOOM_GIT"
+          test "$(git -C "$H174_DONOR_DIR" rev-parse HEAD)" = "$H174_MEDIUMZOOM_GIT"
+          test -z "$(git -C "$H174_DONOR_DIR" status --porcelain --untracked-files=all)"
+          git -C "$H174_DONOR_DIR" archive --format=tar HEAD | tar -xf - -C "$H174_SCRATCH_DIR"
+          test ! -e "$H174_SCRATCH_DIR/.git"
+
+      - name: Independently verify original source Git, tracked HTML and license SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+          import os
+          import subprocess
+          from h174.source_candidates import CANDIDATES, verify_local_source_only
+          pin = CANDIDATES["medium-zoom"]
+          donor = Path(os.environ["H174_DONOR_DIR"])
+          scratch = Path(os.environ["H174_SCRATCH_DIR"])
+          source = verify_local_source_only("medium-zoom", donor)
+          if source["source_git_sha"] != os.environ["H174_MEDIUMZOOM_GIT"]:
+              raise SystemExit("H174 new donor SHA mismatch")
+          for rel, expected in (
+              (pin["html_path"], pin["html_sha256"]),
+              (pin["license_path"], pin["license_sha256"]),
+          ):
+              tracked = subprocess.check_output([
+                  "git", "-C", str(donor), "ls-files", "--error-unmatch", "--", rel
+              ], text=True).strip()
+              if tracked != rel:
+                  raise SystemExit("H174 new donor source untracked")
+              for root in (donor, scratch):
+                  if sha256((root / rel).read_bytes()).hexdigest() != expected:
+                      raise SystemExit("H174 medium-zoom original SHA mismatch")
+          for rel in (
+              "bun.lock", "examples/vanilla/package.json",
+              "examples/vanilla/src/index.js",
+              "examples/vanilla/src/images/image-1.jpg",
+              "examples/vanilla/src/images/image-2.jpg",
+          ):
+              if not (scratch / rel).is_file():
+                  raise SystemExit("H174 pinned original dependency or asset missing: " + rel)
+          print("H174_MEDIUMZOOM_PINNED_ORIGINAL_SOURCE_PASS")
+          PY
+
+      - name: Install pinned Bun original monorepo lockfile in scratch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(bun --version)" = "1.4.4"
+          cd "$H174_SCRATCH_DIR"
+          bun install --frozen-lockfile --ignore-scripts
+
+      - name: Build exactly original vanilla example with locked dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$H174_SCRATCH_DIR/examples/vanilla"
+          bun run build
+          test -f dist/index.html
+          test -z "$(git -C "$H174_DONOR_DIR" status --porcelain --untracked-files=all)"
+
+      - name: Install pinned Python image decoding and Playwright Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install Pillow==12.3.0 playwright==1.64.1
+          python -m playwright install --with-deps chromium
+
+      - name: Real original zoomed photo action and 2-context decoded RGBA replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m h174.mediumzoom_native_smoke \
+            --dist-dir "$H174_SCRATCH_DIR/examples/vanilla/dist" \
+            --browser-channel chromium
+          echo "H174_MEDIUMZOOM_ORIGINAL_NATIVE_ONLY_NO_DATASET_ADMISSION"
