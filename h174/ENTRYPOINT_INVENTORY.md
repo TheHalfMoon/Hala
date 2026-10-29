@@ -26,3 +26,21 @@ in a separate owner-only workspace, verify source-native behavior and
 independent decoded RGBA replay for genuinely new TRAIN/DEV, and reserve
 separate untouched OOD identities **before** training. H173 and every
 historical DEV/OOD are permanently consumed.
+
+## H174 HTML URL resolution and Git-backed asset evidence
+
+A local file existing on disk is **not** evidence that it belongs to the
+immutable original Git commit: clean Git status can omit ignored/generated
+assets. `local_present` now requires `git ls-files --error-unmatch` to match
+the exact original relative path. Existing but untracked/ignored references
+are reported separately in `local_untracked`, never counted as pinned source.
+HTML `<base href>` is rejected before reference inspection because browser
+resolution may redirect an apparently local `script[src]` or stylesheet to
+an external or different base URL. No assets are fetched or executed.
+
+Three independent synthetic negative/contract tests reproduced both false
+assumptions on the parent implementation before repair. Owner Windows H174
+suite after repair: 75 passed; all three pristine source-only donor receipts
+still have zero `local_untracked`. Pickr still requires SCSS build/external
+font, and medium-zoom still lacks three sparse-checkout assets. No donor is
+native-GUI qualified or assigned to TRAIN/DEV/OOD by this inventory.

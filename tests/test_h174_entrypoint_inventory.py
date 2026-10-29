@@ -23,9 +23,12 @@ def test_missing_original_script_is_reported_not_native_qualified(pristine):
 
 
 def test_present_local_script_and_css_are_only_static_evidence(pristine):
+    root, _, answers = pristine
     root = _set_html(pristine, '<script src="app.js"></script><link rel="stylesheet" href="app.css">')
     (root / "app.js").write_text("console.log('new source')", encoding="utf-8")
     (root / "app.css").write_text("body{}", encoding="utf-8")
+    answers[("ls-files", "--error-unmatch", "--", "app.js")] = "app.js"
+    answers[("ls-files", "--error-unmatch", "--", "app.css")] = "app.css"
     result = inventory_entrypoint("pickr", root)
     assert result["local_missing"] == []
     assert result["local_present"] == ["app.css", "app.js"]
@@ -40,8 +43,10 @@ def test_external_dependency_is_not_fetched(pristine):
 
 
 def test_scss_is_not_browser_ready_css(pristine):
+    root, _, answers = pristine
     root = _set_html(pristine, '<link rel="stylesheet" href="theme.scss">')
     (root / "theme.scss").write_text("a{color:red}", encoding="utf-8")
+    answers[("ls-files", "--error-unmatch", "--", "theme.scss")] = "theme.scss"
     result = inventory_entrypoint("pickr", root)
     assert result["nonbrowser_stylesheets"] == ["theme.scss"]
 
