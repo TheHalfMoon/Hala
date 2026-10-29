@@ -27,6 +27,10 @@ NPM_ROW_FIELDS = frozenset({"app", "package", "version", "artifact_sha256"})
 # H137 source.py pinned split.js v1.6.5 as an npm vendor artifact, not
 # as an upstream original Git/HTML demo. Never invent a Git SHA for it.
 KNOWN_NPM_SOURCES = {"splitjs": ("split.js", "1.6.5")}
+# npm registry metadata for the exact historical split.js@1.6.5 names
+# git+https://github.com/nathancahill/split.git as the upstream repo.
+# Future Git original-app candidates must not silently recycle this family.
+KNOWN_NPM_UPSTREAM_REPOS = frozenset({"nathancahill/split"})
 
 # Public source-code attested previous families beyond H173's minimum list.
 # h137/source.py (splitjs eval); h138/probe.py (two Kanban eval apps);
@@ -165,6 +169,12 @@ def audit_attribution(
                 "H173 frozen original app Git/HTML pair mismatch",
             )
             pinned_pairs.add(app)
+
+    for source in metadata["sources"]:
+        _require(
+            source["repo"].casefold() not in KNOWN_NPM_UPSTREAM_REPOS,
+            "fresh candidate reuses historical npm upstream Git repository",
+        )
 
     _require(
         (BANNED | KNOWN_EXTRA_PREVIOUS).issubset(apps)
