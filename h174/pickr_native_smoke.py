@@ -148,7 +148,7 @@ def run_native_smoke(dist_dir: Path, browser_channel: str) -> tuple[str, dict[st
                         _require(not errors, f"JS page errors: {errors}")
                     finally:
                         context.close()
-                _require(digests[0] == digests[1], "Independent RGBA replay mismatch"
+                _require(digests[0] == digests[1], "Independent RGBA replay mismatch")
                 return digests[0], assets
             finally:
                 browser.close()
