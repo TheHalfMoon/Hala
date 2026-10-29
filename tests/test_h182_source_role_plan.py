@@ -12,7 +12,9 @@ import unittest
 from unittest.mock import patch
 
 from h174.source_candidates import CANDIDATES
-from h181.ood_source_reservation import GANTT_PIN, SOURCE_ROLE
+from h181.ood_source_reservation import (
+    GANTT_PIN, SOURCE_ROLE, check_reserved_source_only, preregistered_identity,
+)
 from h182.audit_owner_split_plan import run as owner_cli
 from h182.source_role_plan import (
     SCHEMA, SPEC, audit_preregistered_sources, preregistered_plan,
@@ -129,6 +131,23 @@ class OriginalSourceProspectiveRoleTests(unittest.TestCase):
     def test_historical_missing_root_is_not_approved(self):
         with tempfile.TemporaryDirectory() as root:
             with self.assertRaisesRegex(ValueError, "historical phase"):
+                audit_preregistered_sources(preregistered_plan(), [root])
+
+    def test_same_count_different_history_fingerprint_fails_closed(self):
+        with _fixture() as root:
+            original = check_reserved_source_only(
+                preregistered_identity(), [root]
+            )
+            corrupted = dict(original)
+            corrupted["owner_historical_identity_fingerprint_sha256"] = "f"*64
+            self.assertEqual(
+                corrupted["owner_historical_git_checkouts_screened"],
+                original["owner_historical_git_checkouts_screened"],
+            )
+            with patch(
+                "h182.source_role_plan.check_reserved_source_only",
+                return_value=corrupted,
+            ), self.assertRaisesRegex(ValueError, "inventory drift"):
                 audit_preregistered_sources(preregistered_plan(), [root])
 
     def test_owner_cli_private_paths_never_displayed(self):
