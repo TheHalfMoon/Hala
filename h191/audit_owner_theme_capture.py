@@ -26,6 +26,7 @@ from h191.pickr_three_theme_preaction import (
 )
 from h191.owner_private_theme_capture import (
     SCHEMA, _prior_manifest_source_metadata,
+    _safe_private_directory, _safe_private_regular_file,
 )
 
 TOP_FIELDS = frozenset({
@@ -48,7 +49,7 @@ GOLD_FIELDS = frozenset({
 
 
 def _small_json(path: Path) -> dict:
-    _require(path.is_file() and not path.is_symlink()
+    _require(_safe_private_regular_file(path)
              and 0 < path.stat().st_size < 256*1024,
              "H191 saved owner-private metadata missing or unsafe")
     result = json.loads(path.read_text(encoding="utf-8"))
@@ -61,11 +62,9 @@ def audit_saved_owner_theme_preactions(
     previous_dev_private: Path, history_root: Path,
 ) -> dict:
     _require(isinstance(new_private_dir, Path)
-             and new_private_dir.is_absolute()
              and new_private_dir.name == "Hala-H191-Private"
-             and new_private_dir.is_dir()
-             and not new_private_dir.is_symlink()
-             and not (new_private_dir / ".git").exists(),
+             and _safe_private_directory(new_private_dir)
+             and _safe_private_directory(new_private_dir / "images"),
              "H191 actual original private source folder required")
     doc = _small_json(new_private_dir / "source-prospects-not-admitted.json")
     refs = _small_json(
@@ -108,7 +107,7 @@ def audit_saved_owner_theme_preactions(
                          ("train_eligible", "dev_eligible", "ood_eligible")),
                  "H191 original source task/data role identity modified")
         filename = new_private_dir / row["image"]
-        _require(filename.is_file() and not filename.is_symlink()
+        _require(_safe_private_regular_file(filename)
                  and 0 < filename.stat().st_size < 8*1024*1024,
                  "H191 owner saved source PNG missing or oversized")
         png = filename.read_bytes()
