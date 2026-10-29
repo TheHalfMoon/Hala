@@ -82,6 +82,22 @@ class H199NativeSFTTests(unittest.TestCase):
             with self.subTest(raw=raw[:45]),self.assertRaises(ValueError):
                 parse_actions(raw)
 
+    def test_duplicate_native_json_keys_rejected_at_every_depth(self):
+        # JSON parsers otherwise silently keep the last key, hiding model output.
+        for raw in (
+            '{"actions":[{"kind":"click","point":[1,2],"point":[3,4]}]}',
+            r'{"actions":[{"kind":"click","\u006b\u0069\u006e\u0064":"click","point":[1,2]}]}',
+            '{"actions":[{"kind":"click","point":[1,2]}],"actions":[{"kind":"abstain"}]}',
+        ):
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                parse_actions(raw)
+
+    def test_nonstandard_json_numeric_constants_rejected(self):
+        for constant in ("NaN", "Infinity", "-Infinity"):
+            raw = '{"actions":[{"kind":"click","point":[1,' + constant + ']}]}'
+            with self.subTest(constant=constant), self.assertRaises(ValueError):
+                parse_actions(raw)
+
     def test_abstain_not_valid_supervision(self):
         with self.assertRaisesRegex(ValueError,"abstain"):
             parse_actions(payload({"kind":"abstain"}),training_target=True)

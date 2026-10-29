@@ -69,13 +69,30 @@ def _one_action(item: object, *, training_target: bool) -> dict:
     return item
 
 
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict:
+    """Reject duplicate keys at EVERY JSON object depth, including escaped aliases."""
+    result: dict = {}
+    for key, value in pairs:
+        require(key not in result, "duplicate native JSON object key")
+        result[key] = value
+    return result
+
+
+def _reject_json_constant(value: str) -> None:
+    """Python's permissive NaN/Infinity JSON extensions are not valid JSON."""
+    raise ValueError("H199 native action SFT contract: nonstandard JSON constant")
+
+
 def parse_actions(value: object, *, training_target: bool = False) -> dict:
     """Strict one-step action parser, not a dataset/model qualification."""
     require(type(value) is str, "model must emit bounded JSON text")
     require(len(value.encode("utf-8")) <= MAX_JSON_BYTES,
             "excessive native JSON response")
     try:
-        doc = json.loads(value)
+        doc = json.loads(
+            value, object_pairs_hook=_unique_json_object,
+            parse_constant=_reject_json_constant,
+        )
     except (ValueError, TypeError) as exc:
         raise ValueError("H199 native action SFT contract: malformed native JSON") from exc
     require(type(doc) is dict and set(doc) == {"actions"},
