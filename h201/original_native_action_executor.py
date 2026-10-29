@@ -282,11 +282,30 @@ def _one_snap_original(browser: Any, port: int, spec: dict) -> SnapNativeActionR
             "point": [center[0], center[1]],
             "key": "ArrowRight",
         }]}, separators=(",", ":"))
-        execution = execute_attested_native_action(
-            page, raw, exact_original_loopback_url(port), before_png,
+        # H207 end-to-end bridge smoke: the injected research-only stub
+        # emits a source-known target action, NOT a learned model inference.
+        # It receives only the screen PNG and task prompt (never the page
+        # object or original hidden DOM); the bridge verifies the EXACT PNG
+        # before native dispatch through H203 and H202 guards.
+        from h207.screenshot_prediction_bridge import run_screenshot_only_policy
+        received = []
+        def source_fixture_stub(png: bytes, prompt: str) -> str:
+            require(type(png) is bytes and
+                    b"\x89PNG\r\n\x1a\n" == png[:8] and
+                    "960x720 screenshot" in prompt and "Task:" in prompt,
+                    "source fixture did not receive screenshot-only inputs")
+            received.append(sha256(png).digest())
+            return raw
+
+        execution = run_screenshot_only_policy(
+            page, "Increase the visible original grid slider by one step.",
+            exact_original_loopback_url(port), source_fixture_stub,
         )
-        require(execution["preaction_png_verified"] is True,
-                "original source preaction screenshot was not verified")
+        require(execution["preaction_png_verified"] is True and
+                execution["strict_action_json_verified"] is True and
+                execution["model_identity_attested"] is False and
+                len(received) == 1,
+                "H207 original GUI model-shaped fixture bridge failed")
         page.mouse.move(0, 0)
         page.wait_for_timeout(350)
         after_png = page.screenshot(animations="disabled")
