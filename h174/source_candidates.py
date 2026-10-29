@@ -87,9 +87,16 @@ def _git(root, *args):
 
 
 def _reject_reparse(path):
-    """Never follow Git/HTML/license symlinks or Windows junctions."""
-    if path.is_symlink() or (hasattr(path, "is_junction") and path.is_junction()):
-        raise ValueError("H174 candidate symlink or junction prohibited")
+    """Reject reparse points anywhere in the lexical source path ancestry.
+
+    A checkout leaf may be ordinary while an ancestor is a junction or
+    symlink; resolving the leaf first would silently follow that redirect.
+    """
+    absolute = path.absolute()
+    for component in (absolute, *absolute.parents):
+        if (component.is_symlink() or
+                (hasattr(component, "is_junction") and component.is_junction())):
+            raise ValueError("H174 candidate symlink or junction prohibited")
 
 
 def verify_local_source_only(name, root):
@@ -99,10 +106,11 @@ def verify_local_source_only(name, root):
         raise ValueError("H174 unknown candidate donor")
     pin = CANDIDATES[name]
     root = Path(root)
-    if not root.is_dir() or not (root / ".git").exists():
-        raise ValueError("H174 candidate Git checkout missing")
+    # Do not even probe the directory through an ancestor reparse point.
     _reject_reparse(root)
     _reject_reparse(root / ".git")
+    if not root.is_dir() or not (root / ".git").exists():
+        raise ValueError("H174 candidate Git checkout missing")
     # Git -C searches parent directories; an arbitrary nested directory with
     # a fake .git entry must not impersonate the pinned checkout root.
     if Path(_git(root, "rev-parse", "--show-toplevel")).resolve() != root.resolve():
