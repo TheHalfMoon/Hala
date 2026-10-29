@@ -287,7 +287,10 @@ def create_isolated_calendar_context(browser, port: int):
     return ctx
 
 
-def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
+def _one_context(
+    browser, port: int, spec: dict,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
+) -> DatepickerNativeReceipt:
     import re
 
     ctx = create_isolated_calendar_context(browser, port)
@@ -346,6 +349,18 @@ def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
         _require(field.input_value() == spec["expected_value"]
                  and before_rgba != after_rgba and not errors,
                  "original browser date choice reward or visual change failed")
+        # H197 opt-in owner-only in-memory handoff; CI passes None.
+        # No screenshot/goal escapes before the genuine native date
+        # input reward and actual GUI raster change have succeeded.
+        if capture_preaction is not None:
+            capture_preaction(
+                dict(spec), bytes(before),
+                {
+                    "action_type": "click",
+                    "target_center": [center[0], center[1]],
+                    "native_selected_value": field.input_value(),
+                },
+            )
         return DatepickerNativeReceipt(
             id=spec["id"], language=spec["language"],
             month_step=spec["next_month_clicks"],
@@ -363,6 +378,7 @@ def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
 def run_original_datepicker(
     donor_root: Path, channel: str,
     historical_root: Path | None = None,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
 ) -> dict:
     validate_original_specs()
     provenance = verify_original_source(donor_root, historical_root)
@@ -384,7 +400,9 @@ def run_original_datepicker(
             )
             try:
                 receipts = tuple(
-                    _one_context(browser, server.server_port, spec)
+                    _one_context(
+                        browser, server.server_port, spec, capture_preaction,
+                    )
                     for spec in SCENES for _ in range(REPEATS)
                 )
             finally:
