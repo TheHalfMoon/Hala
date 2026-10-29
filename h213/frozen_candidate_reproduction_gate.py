@@ -77,6 +77,22 @@ def verify_exact_metadata_text(actual_text: str, expected_body: str) -> dict:
             and type(parsed.get("registered_candidate_count")) is int
             and parsed["registered_candidate_count"] == COUNT,
             "unadmitted research-only metadata identity changed")
+    if actual_text != expected_body:
+        # Source-created PUBLIC aggregate categories only: never emit
+        # image hashes, task actions, owner media, or reference labels.
+        expected = json.loads(expected_body)
+        left, right = parsed.get("cases"), expected.get("cases")
+        if type(left) is list and type(right) is list and len(left) == len(right):
+            png = sum(type(a) is dict and a.get("image_png_sha256") != b.get("image_png_sha256")
+                      for a, b in zip(left, right))
+            rgba = sum(type(a) is dict and a.get("image_decoded_rgba_sha256") != b.get("image_decoded_rgba_sha256")
+                       for a, b in zip(left, right))
+            source = parsed.get("generator_source_sha256") != expected.get("generator_source_sha256")
+            raise ValueError(
+                "H213 candidate provenance gate: drift counts "
+                f"png={png} rgba={rgba} generator_source_changed={source}"
+            ) from None
+        raise ValueError("H213 candidate provenance gate: metadata shape drift") from None
     require(actual_text == expected_body,
             "frozen GUI source image / RGBA / role / language drift")
     return {
