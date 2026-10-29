@@ -167,6 +167,17 @@ class SourceFamilyAttributionTests(unittest.TestCase):
             ):
                 audit_attribution(meta, pixels, history, attribution)
 
+    def test_h137_consumed_npm_upstream_rejects_new_git_alias_in_any_split(self):
+        # The H174 legacy repo arrays lack the npm-only family. H176
+        # catches a new Git checkout of the exact npm package's upstream.
+        for index in range(3):
+            meta, pixels, history, attribution = _fixture()
+            meta["sources"][index]["repo"] = "NATHANCAHILL/SPLIT"
+            with self.subTest(split=meta["sources"][index]["split"]), self.assertRaisesRegex(
+                ValueError, "historical npm upstream Git repository"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
+
     def test_h137_npm_cannot_masquerade_as_unpinned_git_source(self):
         meta, pixels, history, attribution = _fixture()
         row = next(r for r in attribution["families"] if r["app"] == "splitjs")
