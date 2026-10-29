@@ -246,16 +246,37 @@ def _png_rgba(png: bytes) -> str:
         return sha256(im.convert("RGBA").tobytes()).hexdigest()
 
 
-def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
-    import re
-
+def create_isolated_calendar_context(browser, port: int):
+    """Fail closed before any page: HTTP, service workers, downloads and WS."""
+    _require(type(port) is int and 0 < port < 65536,
+             "valid local original app port required")
     ctx = browser.new_context(
         viewport={"width": WIDTH, "height": HEIGHT},
         device_scale_factor=1,
         reduced_motion="reduce",
         timezone_id="Asia/Riyadh",
         locale="en-US",
+        service_workers="block",
+        accept_downloads=False,
     )
+    try:
+        ctx.route(
+            "**/*",
+            lambda route: route.continue_()
+            if route.request.url.startswith(f"http://127.0.0.1:{port}/")
+            else route.abort(),
+        )
+        ctx.route_web_socket("**/*", lambda ws: ws.close())
+    except Exception:
+        ctx.close()
+        raise
+    return ctx
+
+
+def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
+    import re
+
+    ctx = create_isolated_calendar_context(browser, port)
     try:
         # Pinned original demo imports highlight.js via a public CDN for
         # code syntax display only. Browser strictly blocks ALL external
@@ -263,12 +284,6 @@ def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
         # original app's initialization to proceed and does not touch
         # Datepicker, DOM values, events, or reward logic.
         ctx.add_init_script("window.hljs={highlightAll:function(){}}")
-        ctx.route(
-            "**/*",
-            lambda route: route.continue_()
-            if route.request.url.startswith(f"http://127.0.0.1:{port}/")
-            else route.abort(),
-        )
         page = ctx.new_page()
         page.clock.install(time=_FROZEN_TIME)
         errors: list[str] = []
