@@ -50,6 +50,13 @@ def _fixture():
     }
     rows = []
     for index, app in enumerate(sorted(BANNED | KNOWN_EXTRA_PREVIOUS), start=1):
+        if app == "splitjs":
+            # Historical H137 npm vendor fixture, not a fabricated Git SHA.
+            rows.append({
+                "app": app, "package": "split.js", "version": "1.6.5",
+                "artifact_sha256": f"{index:064x}",
+            })
+            continue
         frozen = SOURCE_PINS.get(app)
         rows.append({
             "app": app, "repo": f"fictional-owner/old-original-{index}",
@@ -61,9 +68,9 @@ def _fixture():
     history = {
         "schema": HISTORY_SCHEMA,
         "historical_app_ids": [r["app"] for r in rows],
-        "historical_repositories": [r["repo"] for r in rows],
-        "source_git_shas": [r["git_sha"] for r in rows],
-        "source_html_shas": [r["html_sha256"] for r in rows],
+        "historical_repositories": [r["repo"] for r in rows if "repo" in r],
+        "source_git_shas": [r["git_sha"] for r in rows if "git_sha" in r],
+        "source_html_shas": [r["html_sha256"] for r in rows if "html_sha256" in r],
     }
     attribution = {"schema": SCHEMA, "families": rows}
     return metadata, pixels, history, attribution
@@ -74,6 +81,7 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         result = audit_attribution(*_fixture())
         self.assertEqual(result["paired_source_families"], len(BANNED | KNOWN_EXTRA_PREVIOUS))
         self.assertEqual(result["earlier_source_git_pins_matched"], len(FROZEN_OTHER_GIT))
+        self.assertEqual(result["known_npm_packages_paired"], 1)
         self.assertEqual(result["frozen_h173_pairs_matched"], len(SOURCE_PINS))
         self.assertFalse(result["source_history_completeness_proven"])
         self.assertFalse(result["provenance_authenticity_proven"])
@@ -136,6 +144,35 @@ class SourceFamilyAttributionTests(unittest.TestCase):
                 ValueError, "earlier source pilot/eval frozen Git"
             ):
                 audit_attribution(meta, pixels, history, attribution)
+
+    def test_h137_npm_package_has_no_fabricated_git_or_html(self):
+        meta, pixels, history, attribution = _fixture()
+        row = next(r for r in attribution["families"] if r["app"] == "splitjs")
+        self.assertEqual(set(row), {"app", "package", "version", "artifact_sha256"})
+        self.assertFalse(any("split.js" in r for r in history["historical_repositories"]))
+        report = audit_attribution(meta, pixels, history, attribution)
+        self.assertEqual(report["known_npm_packages_paired"], 1)
+
+    def test_h137_npm_version_and_binary_digest_are_mandatory(self):
+        for key, invalid in (
+            ("package", "different-name"), ("version", "9.0.0"),
+            ("artifact_sha256", None), ("artifact_sha256", "0" * 40),
+        ):
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == "splitjs")
+            row[key] = invalid
+            with self.subTest(field=key), self.assertRaisesRegex(
+                ValueError, "npm package or version|artifact SHA-256"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
+
+    def test_h137_npm_cannot_masquerade_as_unpinned_git_source(self):
+        meta, pixels, history, attribution = _fixture()
+        row = next(r for r in attribution["families"] if r["app"] == "splitjs")
+        row.update({"repo": "invented/splitjs", "git_sha": "a"*40,
+                    "html_sha256": "f"*64})
+        with self.assertRaisesRegex(ValueError, "historical npm source requires"):
+            audit_attribution(meta, pixels, history, attribution)
 
     def test_historical_sha_must_be_attributed_to_a_family(self):
         meta, pixels, history, attribution = _fixture()
