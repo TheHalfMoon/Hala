@@ -1,7 +1,13 @@
 # H209 — first public pre-trained VLM on self-generated pixels (CPU baseline)
 
-**Draft-only research** above H208 Draft #229 at exact commit
-`ba8adfbe0fac4ce95ff52d3799076681d815cce0`.
+**Draft-only research**, initially branched above H208 Draft #229 at
+exact commit `ba8adfbe0fac4ce95ff52d3799076681d815cce0`.
+The final branch includes the independent H209 strict prompt-transfer
+Draft #230 `a3ef66130568abcafab7500b0f9e5469e1051b8e`
+via a two-parent, non-force merge commit, and its PR is stacked **above
+#230**. The CPU result below was recorded independently on the
+pre-merge H209 baseline source; the subsequent merge changes H208
+prompt transfer validation, not the tested baseline or weights.
 This is **not Hala training, a new Hala checkpoint, a GUI action model
 accuracy evaluation, TRAIN/DEV admission or official held-out OOD.**
 

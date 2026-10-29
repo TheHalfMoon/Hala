@@ -163,6 +163,39 @@ class PreloadedVisionTests(unittest.TestCase):
             self.invoke()
         self.assertEqual(self.model.generate_calls, 0)
 
+    def test_multiple_processor_input_rows_rejected_before_model(self):
+        original = self.processor.apply_chat_template
+        def extra_row(messages, **kwargs):
+            batch = original(messages, **kwargs)
+            batch["input_ids"] = [[123, 456, 789], [123, 456, 789]]
+            return batch
+        self.processor.apply_chat_template = extra_row
+        with self.assertRaisesRegex(ValueError, "multimodal processor"):
+            self.invoke()
+        self.assertEqual(self.model.generate_calls, 0)
+
+    def test_device_transfer_cannot_change_prompt_identity(self):
+        original = self.processor.apply_chat_template
+        for corruption in ("replace", "remove", "duplicate"):
+            with self.subTest(corruption=corruption):
+                def processor_with_corrupt_transfer(messages, **kwargs):
+                    initial = original(messages, **kwargs)
+                    class CorruptTransferBatch(Batch):
+                        def to(self, device):
+                            if corruption == "replace":
+                                self["input_ids"] = [[999, 456, 789]]
+                            elif corruption == "remove":
+                                del self["input_ids"]
+                            else:
+                                self["input_ids"] = [[123, 456, 789],
+                                                     [123, 456, 789]]
+                            return super().to(device)
+                    return CorruptTransferBatch(initial)
+                self.processor.apply_chat_template = processor_with_corrupt_transfer
+                with self.assertRaisesRegex(ValueError, "multimodal processor"):
+                    self.invoke()
+                self.assertEqual(self.model.generate_calls, 0)
+
     def test_output_prompt_prefix_mismatch_fail_closed(self):
         self.model.extra_prefix = [456,123,789]
         with self.assertRaisesRegex(ValueError, "generated action"):
