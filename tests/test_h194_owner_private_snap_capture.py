@@ -39,6 +39,9 @@ def seed_captures():
 
 
 def fixture(root: Path):
+    # Mocked source builder needs a temporary empty loopback served root;
+    # this is NOT a real source build or real native GUI proof.
+    (root / ".h193-derived-original-snap").mkdir()
     phase = root / "private-h140"
     phase.mkdir()
     (phase / "manifest.json").write_text(
