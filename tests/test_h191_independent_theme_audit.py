@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from PIL import Image
 
@@ -97,6 +99,42 @@ class H191SavedThemeAuditTests(unittest.TestCase):
             self.assertFalse(got["train_dev_admitted"])
             self.assertFalse(got["historical_visual_history_complete"])
             self.assertFalse(got["ood_accessed"])
+
+    def test_reparse_images_directory_rejected_before_any_png_read(self):
+        with tempfile.TemporaryDirectory() as folder:
+            dest, train, dev, _ = prepared(Path(folder))
+            images = dest / "images"
+            original_lstat = Path.lstat
+
+            def flagged(path, *args, **kwargs):
+                stat = original_lstat(path, *args, **kwargs)
+                if path == images:
+                    return SimpleNamespace(
+                        st_mode=stat.st_mode, st_file_attributes=0x400,
+                    )
+                return stat
+
+            with patch.object(Path, "lstat", flagged):
+                with self.assertRaisesRegex(ValueError, "private source folder"):
+                    audit(dest, train, dev)
+
+    def test_reparse_png_file_rejected_before_image_decode(self):
+        with tempfile.TemporaryDirectory() as folder:
+            dest, train, dev, _ = prepared(Path(folder))
+            image_path = dest / "images" / "h191-original-pickr-00.png"
+            original_lstat = Path.lstat
+
+            def flagged(path, *args, **kwargs):
+                stat = original_lstat(path, *args, **kwargs)
+                if path == image_path:
+                    return SimpleNamespace(
+                        st_mode=stat.st_mode, st_file_attributes=0x400,
+                    )
+                return stat
+
+            with patch.object(Path, "lstat", flagged):
+                with self.assertRaisesRegex(ValueError, "PNG missing"):
+                    audit(dest, train, dev)
 
     def test_source_pixel_content_tampering_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
