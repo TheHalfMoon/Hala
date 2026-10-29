@@ -24,6 +24,25 @@ SCHEMA = "hala.h176.owner-historical-source-family-attribution.v1"
 TOP_FIELDS = frozenset({"schema", "families"})
 ROW_FIELDS = frozenset({"app", "repo", "git_sha", "html_sha256"})
 
+# Public source-code attested previous families beyond H173's minimum list.
+# h137/source.py (splitjs eval); h138/probe.py (two Kanban eval apps);
+# h140/dndkit_pilot.py (source pilot); h158/original_todomvc_source.py
+# (previous source); h161/original_apps_source.py (trained app IDs);
+# h163/source.py (previous GridStack original OOD).
+KNOWN_EXTRA_PREVIOUS = frozenset({
+    "splitjs", "react-dnd-kit-board", "react-html5-board",
+    "react-dndkit-board", "todomvc-es6", "gridstack-original-column-demo",
+})
+# Frozen source Git commits copied from the exact public source modules cited
+# above. These are source-only values, not predictions, images or scores.
+FROZEN_OTHER_GIT = {
+    "react-dnd-kit-board": "553d4e92be3e86e0deb7045f4968152868399eae",
+    "react-html5-board": "83413e1f5fab4690bb46b23201a3438a427ef265",
+    "react-dndkit-board": "f3e129998e3140a386f1884faff314345e0eb10b",
+    "todomvc-es6": "ff43b02e59dfa604386bb382034b2cd07c2bcd8a",
+    "gridstack-original-column-demo": "b05b79dcbca21caca046c1e8c4da6e59546ec806",
+}
+
 
 def _require(condition: bool, reason: str) -> None:
     if not condition:
@@ -63,6 +82,7 @@ def audit_attribution(
     html_shas: set[str] = set()
     canonical_rows: list[dict] = []
     pinned_pairs: set[str] = set()
+    historical_git_pairs: set[str] = set()
 
     for row in rows:
         _require(
@@ -97,6 +117,12 @@ def audit_attribution(
             "app": app, "repo": repo.casefold(),
             "git_sha": git_sha, "html_sha256": html,
         })
+        if app in FROZEN_OTHER_GIT:
+            _require(
+                git_sha == FROZEN_OTHER_GIT[app],
+                "earlier source pilot/eval frozen Git SHA mismatch",
+            )
+            historical_git_pairs.add(app)
         if app in SOURCE_PINS:
             frozen = SOURCE_PINS[app]
             _require(
@@ -107,8 +133,10 @@ def audit_attribution(
             pinned_pairs.add(app)
 
     _require(
-        BANNED.issubset(apps) and set(SOURCE_PINS) == pinned_pairs,
-        "missing known TRAIN/DEV/consumed OOD or H173 source pairing",
+        (BANNED | KNOWN_EXTRA_PREVIOUS).issubset(apps)
+        and set(SOURCE_PINS) == pinned_pairs
+        and set(FROZEN_OTHER_GIT) == historical_git_pairs,
+        "missing known historical TRAIN/DEV/OOD app or pinned pairing",
     )
     _require(
         apps == set(source_history["historical_app_ids"]),
@@ -137,6 +165,7 @@ def audit_attribution(
         "paired_source_families": len(apps),
         "distinct_historical_repositories": len(repos),
         "frozen_h173_pairs_matched": len(pinned_pairs),
+        "earlier_source_git_pins_matched": len(historical_git_pairs),
         "attribution_sha256": fingerprint,
         "legacy_history_sha256": legacy["owner_source_registry_fingerprint_sha256"],
         "source_history_completeness_proven": False,
