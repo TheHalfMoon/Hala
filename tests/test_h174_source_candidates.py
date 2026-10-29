@@ -12,6 +12,24 @@ def test_three_distinct_pinned_mit_candidates_without_split_assignment():
     assert candidates.verify_catalog() == 3
     assert len({p["git_sha"] for p in candidates.CANDIDATES.values()}) == 3
     assert len({p["html_sha256"] for p in candidates.CANDIDATES.values()}) == 3
+    assert len({p["repo"].casefold() for p in candidates.CANDIDATES.values()}) == 3
+
+
+def test_different_commits_from_same_upstream_are_not_independent_families(monkeypatch):
+    pins = deepcopy(candidates.CANDIDATES)
+    pins["medium-zoom"]["repo"] = pins["pickr"]["repo"].upper()
+    monkeypatch.setattr(candidates, "CANDIDATES", pins)
+    with pytest.raises(ValueError, match="duplicate upstream repository"):
+        candidates.verify_catalog()
+
+
+@pytest.mark.parametrize("repo", ["owner/repo/extra", "../repo", "owner/../repo", "owner\\repo", "", "owner/"])
+def test_malformed_upstream_repository_identity_rejected(monkeypatch, repo):
+    pins = deepcopy(candidates.CANDIDATES)
+    pins["pickr"]["repo"] = repo
+    monkeypatch.setattr(candidates, "CANDIDATES", pins)
+    with pytest.raises(ValueError, match="invalid upstream repository"):
+        candidates.verify_catalog()
 
 
 @pytest.fixture

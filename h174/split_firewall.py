@@ -8,7 +8,7 @@ Never read historical consumed DEV/OOD media to construct that registry.
 import re
 from h173.source_preflight import TRAIN_AND_CONSUMED_FAMILIES, SOURCE_PINS
 
-SCHEMA = "hala.h174.new-original-app-train-dev-metadata-preflight.v1"
+SCHEMA = "hala.h174.new-original-app-train-dev-metadata-preflight.v2"
 HISTORY_SCHEMA = "hala.h174.owner-only-prior-sha-registry.v1"
 SPLITS = frozenset({"TRAIN", "DEV", "OOD_RESERVED"})
 BANNED = frozenset(TRAIN_AND_CONSUMED_FAMILIES) | frozenset(SOURCE_PINS)
@@ -17,8 +17,9 @@ BANNED_HTML = frozenset(pin["original_html_sha256"] for pin in SOURCE_PINS.value
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 GIT = re.compile(r"[0-9a-f]{40}\Z")
 APP = re.compile(r"[a-z][a-z0-9-]{1,55}\Z")
+REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
 SOURCE_KEYS = frozenset({
-    "app", "split", "git_sha", "html_sha256", "license",
+    "app", "split", "repo", "git_sha", "html_sha256", "license",
 })
 CASE_KEYS = frozenset({
     "index", "app", "split", "image_sha256", "visual_rgba_sha256",
@@ -66,6 +67,7 @@ def validate(metadata, owner_hash_registry):
              "TRAIN, DEV and reserved OOD sources required")
     indexed = {}
     git_seen, html_seen = set(BANNED_GIT), set(BANNED_HTML)
+    repo_seen = set()
     by_split = {split: set() for split in SPLITS}
     for s in sources:
         _require(type(s) is dict and set(s) == SOURCE_KEYS,
@@ -73,6 +75,14 @@ def validate(metadata, owner_hash_registry):
         app, split = s["app"], s["split"]
         _require(type(app) is str and APP.fullmatch(app) is not None,
                  "invalid original app identifier")
+        repo = s["repo"]
+        _require(type(repo) is str and REPO.fullmatch(repo) is not None
+                 and all(part not in (".", "..") for part in repo.split("/")),
+                 "invalid upstream repository identity")
+        canonical_repo = repo.casefold()
+        _require(canonical_repo not in repo_seen,
+                 "duplicate upstream repository across TRAIN DEV or OOD")
+        repo_seen.add(canonical_repo)
         _require(app not in BANNED, "historical source app is forbidden")
         _require(type(split) is str and split in SPLITS,
                  "invalid source split")
