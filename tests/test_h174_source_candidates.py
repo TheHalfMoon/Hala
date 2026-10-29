@@ -136,3 +136,40 @@ def test_no_escaping_candidate_html_path(pristine):
     pin["html_path"] = "../private-gold.json"
     with pytest.raises(ValueError, match="escapes checkout"):
         candidates.verify_local_source_only("pickr", root)
+
+
+def test_original_html_symlink_rejected_before_any_bytes_read(pristine, monkeypatch):
+    root, pin, _ = pristine
+    target = root / pin["html_path"]
+    real_is_symlink = type(root).is_symlink
+
+    def synthetic_symlink(path):
+        return path == target or real_is_symlink(path)
+
+    monkeypatch.setattr(type(root), "is_symlink", synthetic_symlink)
+    def forbid_read(path):
+        if path == target:
+            raise AssertionError("must not follow synthetic source symlink")
+        return original_read(path)
+    original_read = type(root).read_bytes
+    monkeypatch.setattr(type(root), "read_bytes", forbid_read)
+    with pytest.raises(ValueError, match="symlink or junction"):
+        candidates.verify_local_source_only("pickr", root)
+
+
+def test_git_metadata_symlink_rejected_before_git_calls(pristine, monkeypatch):
+    root, _, _ = pristine
+    real_is_symlink = type(root).is_symlink
+    monkeypatch.setattr(type(root), "is_symlink",
+                        lambda path: path == root / ".git" or real_is_symlink(path))
+    with pytest.raises(ValueError, match="symlink or junction"):
+        candidates.verify_local_source_only("pickr", root)
+
+
+def test_checkout_root_symlink_rejected(pristine, monkeypatch):
+    root, _, _ = pristine
+    real_is_symlink = type(root).is_symlink
+    monkeypatch.setattr(type(root), "is_symlink",
+                        lambda path: path == root or real_is_symlink(path))
+    with pytest.raises(ValueError, match="symlink or junction"):
+        candidates.verify_local_source_only("pickr", root)
