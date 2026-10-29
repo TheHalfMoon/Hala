@@ -125,7 +125,7 @@ def inventory_local_original_sources(roots: list[str | Path]) -> dict:
     for phase in phases:
         for name in sorted(SOURCE_STORAGE_NAMES):
             store = phase / name
-            if not store.exists():
+            if not os.path.lexists(store):
                 continue
             _require(_safe_directory(store), "unsafe historical source store")
             for child in sorted(store.iterdir(), key=lambda p: p.name.casefold()):
@@ -133,7 +133,7 @@ def inventory_local_original_sources(roots: list[str | Path]) -> dict:
                     continue
                 _require(_safe_directory(child), "unsafe original checkout")
                 dotgit = child / ".git"
-                if not dotgit.exists():
+                if not os.path.lexists(dotgit):
                     continue
                 _require(_safe_directory(dotgit),
                          "original .git cannot be a symlink or worktree pointer")
