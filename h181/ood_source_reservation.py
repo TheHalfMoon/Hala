@@ -99,11 +99,34 @@ def check_reserved_source_only(
     canonical = json.dumps(
         candidate, sort_keys=True, ensure_ascii=True, separators=(",", ":")
     ).encode("utf8")
+    # A source-only fingerprint cannot attest which owner history was scanned:
+    # identical Gantt pins with omitted/changed historical roots previously
+    # yielded the same receipt. Bind a second fingerprint to the *observed*
+    # Git identity census, without exposing repository names or private paths.
+    observed_sha = history["historical_identity_fingerprint_sha256"]
+    _require(
+        type(observed_sha) is str and len(observed_sha) == 64
+        and all(ch in "0123456789abcdef" for ch in observed_sha)
+        and history["historical_git_checkouts_screened"] > 0
+        and history["historical_unique_repositories_screened"] > 0,
+        "invalid historical source census fingerprint",
+    )
+    bound_receipt = {
+        "source": candidate,
+        "historical_git_identity_sha256": observed_sha,
+        "historical_checkouts": history["historical_git_checkouts_screened"],
+        "historical_repositories": history["historical_unique_repositories_screened"],
+    }
+    binding_sha = sha256(json.dumps(
+        bound_receipt, sort_keys=True, ensure_ascii=True, separators=(",", ":")
+    ).encode("utf8")).hexdigest()
     return {
         "status": "H181_ORIGINAL_GANTT_SOURCE_RESERVED_ONLY_NOT_OOD",
         "reserved_original_repo": source["repo"],
         "reserved_source_git_sha": source["git_sha"],
         "source_reservation_fingerprint_sha256": sha256(canonical).hexdigest(),
+        "source_history_snapshot_binding_sha256": binding_sha,
+        "source_history_snapshot_binding_is_completeness_proof": False,
         "owner_historical_git_repositories_screened":
             history["historical_unique_repositories_screened"],
         "owner_historical_git_checkouts_screened":

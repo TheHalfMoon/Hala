@@ -31,7 +31,8 @@ def run(argv: list[str] | None = None) -> int:
         f"{result['status']} "
         f"old_repositories={result['owner_historical_git_repositories_screened']} "
         f"old_checkouts={result['owner_historical_git_checkouts_screened']} "
-        f"source_reservation_sha256={result['source_reservation_fingerprint_sha256']}"
+        f"source_reservation_sha256={result['source_reservation_fingerprint_sha256']} "
+        f"source_history_binding_sha256={result['source_history_snapshot_binding_sha256']}"
     )
     print("NO_OOD_IMAGES_NO_MODEL_CALLS_HISTORY_COMPLETENESS_UNPROVEN")
     return 0

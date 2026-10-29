@@ -113,6 +113,41 @@ class GanttSourceReservationTests(unittest.TestCase):
             )
             self.assertEqual(len(a["source_reservation_fingerprint_sha256"]), 64)
 
+    def test_history_binding_changes_if_owner_git_roots_change(self):
+        # Synthetic origins only: no owner-private repository identities.
+        with tempfile.TemporaryDirectory() as a_root, tempfile.TemporaryDirectory() as b_root:
+            source_root(a_root, origin="https://github.com/mock-owner/old-source.git")
+            source_root(b_root, origin="https://github.com/mock-owner/different-source.git")
+            a = check_reserved_source_only(preregistered_identity(), [a_root])
+            b = check_reserved_source_only(preregistered_identity(), [b_root])
+            self.assertEqual(
+                a["source_reservation_fingerprint_sha256"],
+                b["source_reservation_fingerprint_sha256"],
+            )
+            self.assertNotEqual(
+                a["source_history_snapshot_binding_sha256"],
+                b["source_history_snapshot_binding_sha256"],
+            )
+            self.assertEqual(len(a["source_history_snapshot_binding_sha256"]), 64)
+            self.assertFalse(
+                a["source_history_snapshot_binding_is_completeness_proof"]
+            )
+            self.assertFalse(
+                b["source_history_snapshot_binding_is_completeness_proof"]
+            )
+
+    def test_history_binding_repeatable_without_old_media(self):
+        with tempfile.TemporaryDirectory() as root:
+            source_root(root)
+            a = check_reserved_source_only(preregistered_identity(), [root])
+            b = check_reserved_source_only(preregistered_identity(), [root])
+            self.assertEqual(
+                a["source_history_snapshot_binding_sha256"],
+                b["source_history_snapshot_binding_sha256"],
+            )
+            self.assertFalse(a["ood_evaluation_approved"])
+            self.assertFalse(a["training_data_admitted"])
+
     def test_cli_prints_counts_not_private_repo_or_root(self):
         with tempfile.TemporaryDirectory() as root:
             source_root(root)
@@ -122,6 +157,7 @@ class GanttSourceReservationTests(unittest.TestCase):
             self.assertEqual(exit_code, 0)
             self.assertIn("NO_OOD_IMAGES_NO_MODEL_CALLS", out.getvalue())
             self.assertIn("old_repositories=1", out.getvalue())
+            self.assertIn("source_history_binding_sha256=", out.getvalue())
             self.assertNotIn(root, out.getvalue())
             self.assertNotIn("mock-owner", out.getvalue())
             self.assertEqual(err.getvalue(), "")
