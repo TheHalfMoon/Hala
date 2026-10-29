@@ -15,6 +15,7 @@ from unittest.mock import patch
 from PIL import Image
 
 from h187.pickr_preaction_native import SPECS
+from h188.audit_owner_private_capture import audit_owner_private_capture
 from h188.owner_private_pickr_capture import (
     _private_destination, _verify_ephemeral_preview,
     quarantine_owner_source_only,
@@ -176,6 +177,98 @@ class H188OwnerPrivateOriginalCaptureTests(unittest.TestCase):
                 captures.append((spec, fake_png("red"), {"x": 1, "y": 2}))
         with self.assertRaisesRegex(ValueError, "not actually different"):
             _verify_ephemeral_preview(captures)
+
+
+    def test_independent_saved_owner_private_rgba_and_png_exact_sha_pass(self):
+        with tempfile.TemporaryDirectory() as root:
+            top = Path(root)
+            (top / "private-h140").mkdir()
+            (top / "private-h140" / "manifest.json").write_text(
+                json.dumps({"image_sha256": "f"*64}), encoding="utf-8"
+            )
+            dest = top / "private-h188"
+            with patch("h188.owner_private_pickr_capture.run_source_only",
+                       side_effect=source_run_proof):
+                quarantine_owner_source_only(
+                    dist_dir=top, browser_channel="chromium",
+                    historical_root=top, owner_private_dir=dest,
+                )
+            result = audit_owner_private_capture(
+                owner_private_dir=dest, historical_root=top,
+            )
+            self.assertEqual(result["distinct_source_preaction_pngs"], 2)
+            self.assertEqual(result["old_owner_png_sha_candidates_compared"], 1)
+            self.assertFalse(result["train_dev_admitted"])
+            self.assertFalse(result["complete_prior_visual_history_proven"])
+
+    def test_independent_saved_image_corruption_fail_closed(self):
+        with tempfile.TemporaryDirectory() as root:
+            top = Path(root)
+            (top / "private-h140").mkdir()
+            (top / "private-h140" / "manifest.json").write_text(
+                json.dumps({"image_sha256": "f"*64}), encoding="utf-8"
+            )
+            dest = top / "private-h188"
+            with patch("h188.owner_private_pickr_capture.run_source_only",
+                       side_effect=source_run_proof):
+                quarantine_owner_source_only(
+                    dist_dir=top, browser_channel="chromium",
+                    historical_root=top, owner_private_dir=dest,
+                )
+            original = dest / "images" / "h188-original-pickr-00.png"
+            original.write_bytes(fake_png("green"))
+            with self.assertRaisesRegex(ValueError, "visual SHA altered"):
+                audit_owner_private_capture(
+                    owner_private_dir=dest, historical_root=top
+                )
+
+    def test_independent_saved_manifest_eligibility_tamper_fail_closed(self):
+        with tempfile.TemporaryDirectory() as root:
+            top = Path(root)
+            (top / "private-h140").mkdir()
+            (top / "private-h140" / "manifest.json").write_text(
+                json.dumps({"image_sha256": "f"*64}), encoding="utf-8"
+            )
+            dest = top / "private-h188"
+            with patch("h188.owner_private_pickr_capture.run_source_only",
+                       side_effect=source_run_proof):
+                quarantine_owner_source_only(
+                    dist_dir=top, browser_channel="chromium",
+                    historical_root=top, owner_private_dir=dest,
+                )
+            manifest_path = dest / "source-prospects-not-admitted.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["cases"][0]["train_eligible"] = True
+            manifest_path.write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+            with self.assertRaisesRegex(ValueError, "admission was altered"):
+                audit_owner_private_capture(
+                    owner_private_dir=dest, historical_root=top
+                )
+
+    def test_independent_saved_owner_gold_mismatch_fail_closed(self):
+        with tempfile.TemporaryDirectory() as root:
+            top = Path(root)
+            (top / "private-h140").mkdir()
+            (top / "private-h140" / "manifest.json").write_text(
+                json.dumps({"image_sha256": "f"*64}), encoding="utf-8"
+            )
+            dest = top / "private-h188"
+            with patch("h188.owner_private_pickr_capture.run_source_only",
+                       side_effect=source_run_proof):
+                quarantine_owner_source_only(
+                    dist_dir=top, browser_channel="chromium",
+                    historical_root=top, owner_private_dir=dest,
+                )
+            gold_path = dest / "OWNER_PRIVATE_REFERENCE_NOT_MODEL_INPUT.json"
+            private = json.loads(gold_path.read_text(encoding="utf-8"))
+            private["rows"][1]["not_for_model_input"] = False
+            gold_path.write_text(json.dumps(private), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "remain separate"):
+                audit_owner_private_capture(
+                    owner_private_dir=dest, historical_root=top
+                )
 
 
 if __name__ == "__main__":
