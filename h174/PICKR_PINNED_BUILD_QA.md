@@ -26,3 +26,29 @@ Owner-only command example: python -m h174.pickr_native_smoke --dist-dir D:\<new
 This is ONLY one donor's build and limited native GUI smoke. It does NOT qualify full bilingual original reference actions, TRAIN/DEV, reserved unseen OOD, full historical SHA-only registry, source-family separation, or model performance. interact.js still requires pinned Yarn/Rollup workspace build; medium-zoom vanilla still requires complete pinned source export and original build. A new unrelated unseen OOD family must be reserved before training.
 
 H173 v1/v2 remain quarantined; H173 v3 and all previous DEV/OOD are permanently consumed, never reopened or reused. H164 language and H171 rank16 vision checkpoints remain frozen. The one-shot H173 result 2/32 versus 3/32 (McNemar p=1.0) is not significant. No GPU, paid models, main merge, release, publication, human review or access to consumed images/gold/weights occurred.
+
+
+## H174 follow-up: isolate browser network before any NEW smoke
+
+The historical owner-native Pickr result above remains a **narrow** original
+GUI smoke from the earlier build. The prior run installed a loopback-only
+`browser_context.route()` handler, but did **not** explicitly disable Service
+Workers. Playwright documents that a Service Worker can bypass portions of
+context routing. Therefore the historical “every browser request was blocked”
+statement must **not** be generalized into a verified total network-egress
+guarantee. It is not proof of train/dev admission or a leak event.
+
+The NEW source-only isolated-context factory (stacked Draft PR) sets
+`service_workers="block"`, `accept_downloads=False`, and closes routed
+WebSockets before any page is created, while the caller still installs the
+exact localhost HTTP route before navigation. Synthetic spy/AST/optimized-mode
+tests prove that source-level policy is wired in; the new policy **has not**
+been re-run on owner Windows/Edge while Desktop Commander is offline. This
+does not claim an OS firewall or comprehensive prevention of WebRTC or
+other non-HTTP networking: independent owner-only native runtime plus egress
+audit must still be completed before upgrading any research status.
+
+Documented Playwright references:
+- https://playwright.dev/python/docs/api/class-browsercontext
+- https://playwright.dev/python/docs/network
+- https://playwright.dev/python/docs/api/class-websocketroute
