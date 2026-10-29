@@ -25,7 +25,11 @@ from threading import Thread
 from typing import Callable
 
 from h174.source_candidates import _reject_reparse
-from h179.source_novelty import screen_pins_against_history
+from h179.source_novelty import (
+    screen_pins_against_history, KNOWN_BURNED_REPOS,
+    KNOWN_BURNED_GIT, KNOWN_BURNED_HTML,
+)
+from h184.public_prior_considered_origins import validate_public_previous_ledger
 from h185.manifest_sha_only import (
     scan_legacy_manifest_sha_fields, screen_unadmitted_new_case_hashes,
 )
@@ -64,8 +68,18 @@ def _require(ok: bool, why: str) -> None:
 
 
 def source_novelty_research_only(historical_root: Path | None) -> dict:
-    """No owner history on public CI is UNKNOWN, never an empty proven inventory."""
+    """Public-only hosted history is UNKNOWN; owner true source census separate."""
     if historical_root is None:
+        # Never pretend hosted GitHub CI has the owner's historical files.
+        # It can still fail-closed on independently published consumed
+        # repo, Git and HTML identities, with ZERO history completeness.
+        validate_public_previous_ledger()
+        _require(
+            PIN["repo"].casefold() not in KNOWN_BURNED_REPOS
+            and PIN["git_sha"] not in KNOWN_BURNED_GIT
+            and PIN["html_sha256"] not in KNOWN_BURNED_HTML,
+            "public previously consumed original source family rejected",
+        )
         return {
             "candidate_source_families": 1,
             "training_approved": False,
