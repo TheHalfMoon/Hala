@@ -4,6 +4,7 @@ All Git roots are synthetic tempfile repositories. Historical owner source
 content, training images, heldout labels, model weights remain untouched.
 """
 from copy import deepcopy
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -11,6 +12,7 @@ from unittest.mock import patch
 
 from h174.source_candidates import CANDIDATES
 from h177.public_origin_pins import KNOWN_PUBLIC_REPOS
+from h178.owner_git_inventory import inventory_local_original_sources
 from h179.source_novelty import (
     screen_h174_candidates, screen_pins_against_history,
 )
@@ -124,6 +126,35 @@ class PublicHistoricalOriginsNoRecyclingTests(unittest.TestCase):
             mutable,
         ), self.assertRaisesRegex(ValueError, "duplicate"):
             validate_public_previous_ledger()
+
+    def test_broken_symlink_old_checkout_not_silently_skipped(self):
+        with tempfile.TemporaryDirectory() as folder:
+            phase = Path(folder) / "private-h140"
+            _synthetic_original(phase)
+            link = phase / "upstream" / "old-clone-broken-link"
+            try:
+                os.symlink(
+                    str(Path(folder) / "nonexistent-private-source"),
+                    str(link), target_is_directory=True,
+                )
+            except (OSError, NotImplementedError):
+                self.skipTest("Windows symlink creation not permitted")
+            with self.assertRaisesRegex(ValueError, "unsafe original source entry"):
+                inventory_local_original_sources([folder])
+
+    def test_broken_symlink_named_historical_phase_not_silently_skipped(self):
+        with tempfile.TemporaryDirectory() as folder:
+            _synthetic_original(Path(folder) / "private-h140")
+            link = Path(folder) / "private-h141"
+            try:
+                os.symlink(
+                    str(Path(folder) / "nonexistent-old-phase"),
+                    str(link), target_is_directory=True,
+                )
+            except (OSError, NotImplementedError):
+                self.skipTest("Windows symlink creation not permitted")
+            with self.assertRaisesRegex(ValueError, "unsafe historical phase entry"):
+                inventory_local_original_sources([folder])
 
     def test_original_public_ledger_contains_no_owner_gold_or_images(self):
         for name, (repo, sha, path, cls) in (
