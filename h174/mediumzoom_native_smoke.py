@@ -6,6 +6,7 @@ at the immutable original upstream commit before building in a scratch tree.
 from __future__ import annotations
 
 import argparse
+import platform
 from functools import partial
 from hashlib import sha256
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -125,8 +126,8 @@ def main() -> None:
     digest, replay = run_native_mediumzoom_smoke(
         args.dist_dir, args.browser_channel
     )
-    print(f"H174_MEDIUMZOOM_ORIGINAL_LINUX_NATIVE_PASS rgba_sha256={digest} "
-          f"independent_contexts={replay}")
+    print(f"H174_MEDIUMZOOM_ORIGINAL_NATIVE_PASS platform={platform.system().lower()} "
+          f"rgba_sha256={digest} independent_contexts={replay}")
     print("NO_TRAIN_DEV_OOD_ADMISSION_NO_MODEL_CALLS_NO_MEDIA_UPLOAD")
 
 
