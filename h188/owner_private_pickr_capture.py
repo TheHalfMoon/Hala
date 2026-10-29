@@ -91,7 +91,7 @@ def quarantine_owner_source_only(
     owner_private_dir: Path,
 ) -> dict:
     """Only actual browser runner can create owner-private quarantined images."""
-    _require(type(historical_root) is Path and historical_root.is_absolute(),
+    _require(isinstance(historical_root, Path) and historical_root.is_absolute(),
              "real owner history root required for known old SHA exclusions")
     dest = _private_destination(owner_private_dir)
     captures: list[tuple[dict, bytes, dict]] = []
