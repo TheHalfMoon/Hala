@@ -25,7 +25,11 @@ from threading import Thread
 from typing import Callable
 
 from h174.source_candidates import _reject_reparse
-from h179.source_novelty import screen_pins_against_history
+from h179.source_novelty import (
+    screen_pins_against_history, KNOWN_BURNED_REPOS,
+    KNOWN_BURNED_GIT, KNOWN_BURNED_HTML,
+)
+from h184.public_prior_considered_origins import validate_public_previous_ledger
 from h185.manifest_sha_only import (
     scan_legacy_manifest_sha_fields, screen_unadmitted_new_case_hashes,
 )
@@ -64,8 +68,18 @@ def _require(ok: bool, why: str) -> None:
 
 
 def source_novelty_research_only(historical_root: Path | None) -> dict:
-    """No owner history on public CI is UNKNOWN, never an empty proven inventory."""
+    """Public-only hosted history is UNKNOWN; owner true source census separate."""
     if historical_root is None:
+        # Never pretend hosted GitHub CI has the owner's historical files.
+        # It can still fail-closed on independently published consumed
+        # repo, Git and HTML identities, with ZERO history completeness.
+        validate_public_previous_ledger()
+        _require(
+            PIN["repo"].casefold() not in KNOWN_BURNED_REPOS
+            and PIN["git_sha"] not in KNOWN_BURNED_GIT
+            and PIN["html_sha256"] not in KNOWN_BURNED_HTML,
+            "public previously consumed original source family rejected",
+        )
         return {
             "candidate_source_families": 1,
             "training_approved": False,
@@ -273,7 +287,10 @@ def create_isolated_calendar_context(browser, port: int):
     return ctx
 
 
-def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
+def _one_context(
+    browser, port: int, spec: dict,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
+) -> DatepickerNativeReceipt:
     import re
 
     ctx = create_isolated_calendar_context(browser, port)
@@ -332,6 +349,18 @@ def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
         _require(field.input_value() == spec["expected_value"]
                  and before_rgba != after_rgba and not errors,
                  "original browser date choice reward or visual change failed")
+        # H197 opt-in owner-only in-memory handoff; CI passes None.
+        # No screenshot/goal escapes before the genuine native date
+        # input reward and actual GUI raster change have succeeded.
+        if capture_preaction is not None:
+            capture_preaction(
+                dict(spec), bytes(before),
+                {
+                    "action_type": "click",
+                    "target_center": [center[0], center[1]],
+                    "native_selected_value": field.input_value(),
+                },
+            )
         return DatepickerNativeReceipt(
             id=spec["id"], language=spec["language"],
             month_step=spec["next_month_clicks"],
@@ -349,6 +378,7 @@ def _one_context(browser, port: int, spec: dict) -> DatepickerNativeReceipt:
 def run_original_datepicker(
     donor_root: Path, channel: str,
     historical_root: Path | None = None,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
 ) -> dict:
     validate_original_specs()
     provenance = verify_original_source(donor_root, historical_root)
@@ -370,7 +400,9 @@ def run_original_datepicker(
             )
             try:
                 receipts = tuple(
-                    _one_context(browser, server.server_port, spec)
+                    _one_context(
+                        browser, server.server_port, spec, capture_preaction,
+                    )
                     for spec in SCENES for _ in range(REPEATS)
                 )
             finally:
