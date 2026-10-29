@@ -129,68 +129,65 @@ jobs:
           python -m pip install Pillow==12.3.0 playwright==1.64.1
           python -m playwright install --with-deps chromium
 
-      - name: Start original Vite alias server and perform original drag/drop and replay
+      - name: Compile ONLY original tracked dropzones HTML with original pinned Vite config
         shell: bash
         run: |
           set -euo pipefail
           cd "$H174_INTERACT_SCRATCH"
-          # Vite's ORIGINAL repo config scans ALL demos and trips on unrelated
-          # React/Vue examples. A QA-only inline override scopes optimizer
-          # discovery to the original tracked dropzones HTML. Load original
-          # vite.config.ts in full and never edit source/git or invent an app.
-          node --input-type=module -e '
-            import { createServer } from "./node_modules/vite/dist/node/index.js";
-            const server = await createServer({
+          # Original dev Vite HMR hangs browser navigation on an unrelated
+          # examples-wide optimizer. Use the pinned original Vite build API,
+          # original config/aliases and tracked HTML as the SOLE rollup input.
+          # QA-only overrides select the input and output path in scratch.
+          timeout --signal=TERM --kill-after=5s 120s node --input-type=module -e '
+            import { build } from "./node_modules/vite/dist/node/index.js";
+            import { resolve } from "node:path";
+            const root = process.cwd();
+            await build({
               configFile: "vite.config.ts",
-              optimizeDeps: {
-                entries: ["dropzones/index.html"],
-                include: [],
-              },
-              server: {
-                host: "127.0.0.1", port: 8181, strictPort: true,
+              build: {
+                outDir: resolve(root, ".h174-derived-dropzones"),
+                emptyOutDir: true,
+                rollupOptions: {
+                  input: resolve(root, "examples/dropzones/index.html"),
+                },
               },
             });
-            await server.listen();
-            console.log("H174_INTERACT_ORIGINAL_SCOPED_VITE_READY");
-          ' > "$RUNNER_TEMP/h174-vite.log" 2>&1 &
+          '
+          test -f ".h174-derived-dropzones/dropzones/index.html"
+          test -n "$(find .h174-derived-dropzones -type f -name '*.js' -print -quit)"
+          test -z "$(git -C "$H174_INTERACT_DONOR" status --porcelain --untracked-files=all)"
+          echo "H174_INTERACT_PINNED_ORIGINAL_VITE_DROPZONES_BUILD_PASS"
+
+      - name: Static-loopback original built dropzone and real native pointer replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+          # This server only reads the ORIGINAL built HTML/JS/CSS. No HMR,
+          # unrelated examples, dev optimizer, or network access.
+          python -m http.server 8181 --bind 127.0.0.1 \
+            --directory "$H174_INTERACT_SCRATCH/.h174-derived-dropzones" \
+            > "$RUNNER_TEMP/h174-interact-static.log" 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           READY=0
-          for i in $(seq 1 70); do
-            if curl -fsS http://127.0.0.1:8181/dropzones/index.html > /dev/null; then
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8181/dropzones/index.html -o /dev/null; then
               READY=1
               break
             fi
             if ! kill -0 "$SERVER_PID" 2>/dev/null; then
-              cat "$RUNNER_TEMP/h174-vite.log"
+              cat "$RUNNER_TEMP/h174-interact-static.log"
               exit 1
             fi
             sleep 1
           done
-          if [ "$READY" != 1 ]; then
-            cat "$RUNNER_TEMP/h174-vite.log"
-            exit 1
-          fi
-          # Vite runs in pristine-derived donor scratch, but Python H174
-          # comes from the independently checked-out Hala repository.
-          export PYTHONPATH="$GITHUB_WORKSPACE"
-          # The HTML route alone returns 200 even if the original module
-          # fails Vite import-analysis. Check the exact original module too.
-          if ! curl --fail --silent --show-error --max-time 15 \
-            http://127.0.0.1:8181/dropzones/index.js -o /dev/null; then
-            echo "H174_INTERACT_ORIGINAL_MODULE_RESOLUTION_FAILED"
-            tail -100 "$RUNNER_TEMP/h174-vite.log"
-            exit 1
-          fi
-          echo "H174_INTERACT_ORIGINAL_JS_RESOLUTION_PASS"
-          # Real original browser smoke must fail in bounded time, never
-          # occupy free runner indefinitely on Vite/HMR or pointer hangs.
-          if timeout --signal=TERM --kill-after=5s 120s python -u -m h174.interact_native_smoke --port 8181 --browser-channel chromium; then
+          test "$READY" = 1
+          if timeout --signal=TERM --kill-after=5s 90s python -u -m h174.interact_native_smoke --port 8181 --browser-channel chromium; then
             echo "H174_INTERACT_ORIGINAL_NATIVE_ONLY_NO_DATASET_ADMISSION"
           else
             status=$?
-            echo "H174_INTERACT_ORIGINAL_NATIVE_FAILED_OR_TIMED_OUT exit=$status"
-            echo "H174_INTERACT_ORIGINAL_VITE_PUBLIC_SOURCE_LOG_TAIL"
-            tail -100 "$RUNNER_TEMP/h174-vite.log"
+            echo "H174_INTERACT_ORIGINAL_STATIC_NATIVE_FAILED exit=$status"
+            tail -80 "$RUNNER_TEMP/h174-interact-static.log"
             exit "$status"
           fi
