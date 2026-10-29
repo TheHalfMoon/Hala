@@ -66,7 +66,7 @@ def _require(ok: bool, why: str) -> None:
 def verify_original_source(
     donor: Path, historical_root: Path | None = None,
 ) -> dict:
-    _require(type(donor) is Path and donor.is_absolute()
+    _require(isinstance(donor, Path) and donor.is_absolute()
              and donor.is_dir(),
              "original Git clone root required")
     _reject_reparse(donor)
