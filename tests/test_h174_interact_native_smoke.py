@@ -24,3 +24,21 @@ def test_h174_interact_original_drop_is_nonmocked_source_native():
     assert not any(isinstance(n, ast.Assert) for n in ast.walk(tree))
     assert "allow_loopback_request" in src
     assert "create_isolated_smoke_context" in src
+
+
+def test_h174_interact_vite_navigation_does_not_wait_for_hmr_network_idle():
+    """Prove no new indefinite HMR wait is introduced into native replay."""
+    src = inspect.getsource(run_native_dropzone_smoke)
+    tree = ast.parse(src)
+    navigations = [
+        n for n in ast.walk(tree)
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+        and n.func.attr == "goto"
+    ]
+    assert len(navigations) == 1
+    options = {k.arg: k.value for k in navigations[0].keywords}
+    assert isinstance(options["wait_until"], ast.Constant)
+    assert options["wait_until"].value == "domcontentloaded"
+    assert isinstance(options["timeout"], ast.Constant)
+    assert options["timeout"].value == 25000
+    assert "networkidle" not in src
