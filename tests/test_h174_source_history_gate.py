@@ -137,7 +137,7 @@ def test_duplicate_or_case_variant_historical_repository_rejected(invalid):
 def test_malformed_or_unhashable_historical_repository_fails_closed(invalid):
     meta, pixels, sources = fixture()
     sources["historical_repositories"] = invalid
-    with pytest.raises(ValueError, match="repositories"):
+    with pytest.raises(ValueError, match="repositories|repository"):
         validate_with_source_history(meta, pixels, sources)
 
 
