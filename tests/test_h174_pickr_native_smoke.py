@@ -80,3 +80,29 @@ def test_h174_pickr_rejects_empty_js(tmp_path):
     (root / "assets" / "app.js").write_bytes(b"")
     with pytest.raises(AssertionError, match="Empty"):
         verify_derived_assets(root)
+
+
+def test_h174_pickr_rejects_symlinked_scratch_ancestor(tmp_path):
+    actual = tmp_path / "actual"
+    _dist(actual)
+    alias = tmp_path / "alias"
+    try:
+        alias.symlink_to(actual, target_is_directory=True)
+    except (OSError, NotImplementedError):
+        pytest.skip("OS does not permit symlink creation")
+    with pytest.raises(ValueError, match="symlink or junction"):
+        verify_derived_assets(alias / "dist")
+
+
+def test_h174_pickr_rejects_symlinked_derived_asset(tmp_path):
+    root = _dist(tmp_path)
+    target = root / "assets" / "app.js"
+    target.unlink()
+    elsewhere = tmp_path / "external.js"
+    elsewhere.write_text("console.log('outside')", encoding="utf-8")
+    try:
+        target.symlink_to(elsewhere)
+    except (OSError, NotImplementedError):
+        pytest.skip("OS does not permit symlink creation")
+    with pytest.raises(ValueError, match="symlink or junction"):
+        verify_derived_assets(root)
