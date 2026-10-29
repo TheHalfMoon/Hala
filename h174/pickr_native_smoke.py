@@ -105,6 +105,26 @@ def verify_derived_assets(dist_dir: Path) -> dict[str, str]:
     return assets
 
 
+def create_isolated_smoke_context(browser):
+    """Create a strict original-GUI context before visiting any page.
+
+    HTTP route interception alone is incomplete when Service Workers are
+    enabled. Explicitly block them, disallow downloads and close any
+    WebSocket without connecting to its destination. The caller installs
+    the exact HTTP loopback request route before page creation.
+    """
+    context = browser.new_context(
+        viewport={"width": 960, "height": 720},
+        device_scale_factor=1,
+        locale="en-US",
+        reduced_motion="reduce",
+        service_workers="block",
+        accept_downloads=False,
+    )
+    context.route_web_socket("**/*", lambda websocket: websocket.close())
+    return context
+
+
 def run_native_smoke(dist_dir: Path, browser_channel: str) -> tuple[str, dict[str, str]]:
     """Real original GUI click+swatch; independent fresh contexts and exact RGBA."""
     assets = verify_derived_assets(dist_dir)
@@ -126,11 +146,7 @@ def run_native_smoke(dist_dir: Path, browser_channel: str) -> tuple[str, dict[st
             try:
                 digests: list[str] = []
                 for _ in range(2):
-                    context = browser.new_context(
-                        viewport={"width": 960, "height": 720},
-                        device_scale_factor=1,
-                        locale="en-US", reduced_motion="reduce",
-                    )
+                    context = create_isolated_smoke_context(browser)
                     try:
                         context.route(
                             "**/*",
