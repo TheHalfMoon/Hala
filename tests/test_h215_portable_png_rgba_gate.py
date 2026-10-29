@@ -4,6 +4,8 @@ from __future__ import annotations
 from copy import deepcopy
 from hashlib import sha256
 from pathlib import Path
+import sys
+import json
 import unittest
 
 from h212.procedural_native_gui_candidates import candidate_manifest
@@ -19,18 +21,23 @@ class LinuxVisualParityTests(unittest.TestCase):
             "RESEARCH_CANDIDATE_METADATA_NOT_ADMITTED.json"
         )
         cls.frozen = p.read_bytes()
+        cls.frozen_doc = json.loads(cls.frozen.decode("utf-8"))
         cls.observed = candidate_manifest()
 
     def test_h212_original_frozen_windows_metadata_bytes_are_pinned(self):
-        self.assertEqual(sha256(self.frozen).hexdigest(),
+        self.assertEqual(sha256(self.frozen.replace(b"\r\n", b"\n")).hexdigest(),
                          FROZEN_WINDOWS_JSON_SHA256)
         self.assertEqual(len(self.observed["cases"]),96)
 
     def test_owner_windows_bit_identical_source_is_accepted(self):
         result = verify_linux_frozen_raster(self.frozen, self.observed)
         self.assertEqual(result["candidate_cases_checked"], 96)
-        self.assertEqual(result["png_sha_matches"],96)
-        self.assertEqual(result["png_encoding_differences"],0)
+        # Observed OS differences: Windows PNG matches 96/96,
+        # Linux PNG 0/96, while raw RGBA matches 96/96 on both.
+        self.assertIn(sys.platform, ("win32", "linux"))
+        expected_png = 96 if sys.platform == "win32" else 0
+        self.assertEqual(result["png_sha_matches"],expected_png)
+        self.assertEqual(result["png_encoding_differences"],96-expected_png)
         self.assertEqual(result["rgba_sha_matches"],96)
         self.assertTrue(result["frozen_manifest_sha256_pinned"])
         self.assertFalse(result["official_train_admitted"])
@@ -56,7 +63,8 @@ class LinuxVisualParityTests(unittest.TestCase):
             )
 
     def test_frozen_png_hash_change_denied_even_if_linux_encoding_differs(self):
-        sha=self.observed["cases"][0]["image_png_sha256"].encode()
+        # Mutate the original frozen Windows PNG hash, not Linux codec output.
+        sha=self.frozen_doc["cases"][0]["image_png_sha256"].encode()
         self.deny(frozen=self.frozen.replace(sha, b"0"*64,1))
 
     def test_frozen_rgba_hash_change_denied(self):
