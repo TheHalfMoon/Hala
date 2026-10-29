@@ -1,0 +1,143 @@
+# H174 SOURCE-ONLY Linux native smoke; no owner/private data or model inference.
+# Public-repository GitHub-hosted runner only; no deployment or uploads.
+name: H188 original Pickr private sink callback native regression (NO private media)
+
+on:
+  push:
+    branches:
+      - ps/h188-private-pickr-preaction-quarantine-writer
+    paths:
+      - ".github/workflows/h188-pickr-private-capture-source-linux.yml"
+      - "h187/**"
+      - "h188/**"
+      - "tests/test_h188_owner_private_pickr_capture.py"
+  pull_request:
+    paths:
+      - "h187/**"
+      - "h188/**"
+      - "tests/test_h188_owner_private_pickr_capture.py"
+      - ".github/workflows/h188-pickr-private-capture-source-linux.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h188-pickr-owner-sink-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-pickr-linux:
+    name: source-native two preaction screenshots with owner sink callback disabled on public CI
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      H174_PICKR_GIT: e8ff88d9161ffc6e3c46a4430be8c328c42d6415
+      H174_PICKR_HTML: 4cc4f0dbcb26e79bbf09202ba3896d5d66953c6d40fb6347eac2c15522712d1e
+      H174_PICKR_LICENSE: 7129bc74b781d3db2979d4617940b00e75885914b8d636a3155a64e57481e5e5
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Establish disposable source/build paths from runtime environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "H174_DONOR_DIR=$RUNNER_TEMP/h174-pickr-pristine" >> "$GITHUB_ENV"
+          echo "H174_SCRATCH_DIR=$RUNNER_TEMP/h174-pickr-build/source" >> "$GITHUB_ENV"
+
+      - name: Checkout Hala source only (no credentials persisted)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Python 3.11 for original GUI evidence
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Node 24 for original pnpm build
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24"
+
+      - name: Retrieve exact pristine public upstream commit, never old Hala OOD
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$H174_DONOR_DIR" "$H174_SCRATCH_DIR"
+          git -C "$H174_DONOR_DIR" init
+          git -C "$H174_DONOR_DIR" remote add origin https://github.com/simonwep/pickr.git
+          git -C "$H174_DONOR_DIR" fetch --depth=1 origin "$H174_PICKR_GIT"
+          git -C "$H174_DONOR_DIR" checkout --detach "$H174_PICKR_GIT"
+          test "$(git -C "$H174_DONOR_DIR" rev-parse HEAD)" = "$H174_PICKR_GIT"
+          test -z "$(git -C "$H174_DONOR_DIR" status --porcelain --untracked-files=all)"
+          git -C "$H174_DONOR_DIR" archive --format=tar HEAD | tar -xf - -C "$H174_SCRATCH_DIR"
+          test ! -e "$H174_SCRATCH_DIR/.git"
+
+      - name: Independently verify original tracked HTML/license and SHA identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+          import os
+          import subprocess
+          from h174.source_candidates import CANDIDATES
+          pin = CANDIDATES["pickr"]
+          donor = Path(os.environ["H174_DONOR_DIR"])
+          scratch = Path(os.environ["H174_SCRATCH_DIR"])
+          assert pin["git_sha"] == os.environ["H174_PICKR_GIT"]
+          for rel, expected in (
+              (pin["html_path"], os.environ["H174_PICKR_HTML"]),
+              (pin["license_path"], os.environ["H174_PICKR_LICENSE"]),
+          ):
+              tracked = subprocess.check_output(
+                  ["git", "-C", str(donor), "ls-files", "--error-unmatch", "--", rel],
+                  text=True,
+              ).strip()
+              if tracked != rel:
+                  raise SystemExit("H174 source is not Git tracked")
+              for root in (donor, scratch):
+                  actual = sha256((root / rel).read_bytes()).hexdigest()
+                  if actual != expected:
+                      raise SystemExit("H174 original source SHA mismatch")
+          print("H174_PICKR_PINNED_ORIGINAL_SOURCE_PASS")
+          PY
+
+      - name: Install original pnpm exactly, fetch public dependency cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$H174_SCRATCH_DIR"
+          corepack enable
+          corepack prepare pnpm@10.27.0 --activate
+          test "$(pnpm --version)" = "10.27.0"
+          pnpm fetch --frozen-lockfile
+          pnpm install --offline --frozen-lockfile --ignore-scripts
+
+      - name: Build original donor library and demo in derived scratch ONLY
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$H174_SCRATCH_DIR"
+          pnpm run build:lib
+          pnpm run build:demo
+          test -f dist/index.html
+          test -z "$(git -C "$H174_DONOR_DIR" status --porcelain --untracked-files=all)"
+
+      - name: Install free Playwright Chromium + pinned Python libraries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install Pillow==12.3.0 playwright==1.64.1
+          python -m playwright install --with-deps chromium
+
+      - name: Original donor click + two-context decoded RGBA replay (in memory)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m h174.pickr_native_smoke \
+            --dist-dir "$H174_SCRATCH_DIR/dist" --browser-channel chromium
+          python -m h187.pickr_preaction_native \
+            --dist-dir "$H174_SCRATCH_DIR/dist" --browser-channel chromium
+          echo "H188_PUBLIC_CI_SOURCE_ONLY_NO_OWNER_PNG_OR_GOLD_UPLOADED"

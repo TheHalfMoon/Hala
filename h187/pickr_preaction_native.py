@@ -21,6 +21,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from io import BytesIO
 from pathlib import Path
 from threading import Thread
+from typing import Callable
 
 from h174.pickr_native_smoke import (
     _require, allow_loopback_request, create_isolated_smoke_context,
@@ -142,7 +143,10 @@ def validate_replayed_preaction_scenes(
     }
 
 
-def _one_browser_preaction(browser, port: int, spec: dict) -> PreactionNativeReceipt:
+def _one_browser_preaction(
+    browser, port: int, spec: dict,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
+) -> PreactionNativeReceipt:
     from PIL import Image
 
     context = create_isolated_smoke_context(browser)
@@ -176,6 +180,16 @@ def _one_browser_preaction(browser, port: int, spec: dict) -> PreactionNativeRec
         page.wait_for_timeout(350)
         selected_before = result.input_value()
         _require(bool(selected_before), "H187 original seed not selected")
+        # Capture only the visible original, BEFORE selecting the goal.
+        # Coordinates are owner-gold, never present in model input.
+        goal_box = swatches.nth(spec["target_index"]).bounding_box()
+        _require(goal_box is not None, "H188 original source target geometry missing")
+        goal = {
+            "x": round(goal_box["x"] + goal_box["width"]/2, 4),
+            "y": round(goal_box["y"] + goal_box["height"]/2, 4),
+        }
+        _require(0 <= goal["x"] < WIDTH and 0 <= goal["y"] < HEIGHT,
+                 "H188 original source goal is off viewport")
         png = page.screenshot(animations="disabled")
         with Image.open(BytesIO(png)) as raw:
             image = raw.convert("RGBA")
@@ -188,6 +202,10 @@ def _one_browser_preaction(browser, port: int, spec: dict) -> PreactionNativeRec
         _require(selected_before != selected_after,
                  "H187 original native color target did not change")
         _require(not errors, "H187 original app emitted browser JS errors")
+        # An H188 owner-private sink MAY retain preaction image+private goal
+        # in RAM, but this callback cannot write anything during public CI.
+        if capture_preaction is not None:
+            capture_preaction(spec, png, goal)
         return PreactionNativeReceipt(
             id=spec["id"], language=spec["language"],
             seed_index=spec["seed_index"],
@@ -203,6 +221,7 @@ def _one_browser_preaction(browser, port: int, spec: dict) -> PreactionNativeRec
 
 def run_source_only(
     dist_dir: Path, channel: str, historical_root: Path | None = None,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
 ) -> dict:
     """Real source GUI proof, no photo persists; optionally reject old SHA."""
     validate_specs()
@@ -223,7 +242,9 @@ def run_source_only(
             browser = p.chromium.launch(channel=channel, headless=True)
             try:
                 results = tuple(
-                    _one_browser_preaction(browser, server.server_port, spec)
+                    _one_browser_preaction(
+                        browser, server.server_port, spec, capture_preaction
+                    )
                     for spec in SPECS for _ in range(REPEATS)
                 )
             finally:
