@@ -23,6 +23,10 @@ from h174.split_firewall import APP, BANNED, GIT, HEX, REPO
 SCHEMA = "hala.h176.owner-historical-source-family-attribution.v1"
 TOP_FIELDS = frozenset({"schema", "families"})
 ROW_FIELDS = frozenset({"app", "repo", "git_sha", "html_sha256"})
+NPM_ROW_FIELDS = frozenset({"app", "package", "version", "artifact_sha256"})
+# H137 source.py pinned split.js v1.6.5 as an npm vendor artifact, not
+# as an upstream original Git/HTML demo. Never invent a Git SHA for it.
+KNOWN_NPM_SOURCES = {"splitjs": ("split.js", "1.6.5")}
 
 # Public source-code attested previous families beyond H173's minimum list.
 # h137/source.py (splitjs eval); h138/probe.py (two Kanban eval apps);
@@ -84,17 +88,49 @@ def audit_attribution(
     pinned_pairs: set[str] = set()
     historical_git_pairs: set[str] = set()
 
+    npm_apps: set[str] = set()
     for row in rows:
-        _require(
-            type(row) is dict and set(row) == ROW_FIELDS,
-            "only app/repo/Git/HTML source identities permitted",
-        )
-        app, repo, git_sha, html = (
-            row["app"], row["repo"], row["git_sha"], row["html_sha256"]
-        )
+        _require(type(row) is dict, "source identity row must be a dictionary")
+        app = row.get("app")
         _require(
             type(app) is str and APP.fullmatch(app) is not None,
             "malformed original source app",
+        )
+        _require(app not in apps, "duplicate historical application attribution")
+        apps.add(app)
+
+        if app in KNOWN_NPM_SOURCES:
+            _require(
+                set(row) == NPM_ROW_FIELDS,
+                "historical npm source requires exact package/version/artifact hash",
+            )
+            package, version, artifact_sha = (
+                row["package"], row["version"], row["artifact_sha256"]
+            )
+            _require(
+                type(package) is str and type(version) is str
+                and (package, version) == KNOWN_NPM_SOURCES[app],
+                "H137 historical npm package or version mismatch",
+            )
+            _require(
+                type(artifact_sha) is str and HEX.fullmatch(artifact_sha) is not None,
+                "H137 historical npm artifact SHA-256 required",
+            )
+            # In the owner H137 provenance.json, verify this artifact SHA
+            # against split.min.js; this function cannot authenticate it.
+            canonical_rows.append({
+                "app": app, "package": package, "version": version,
+                "artifact_sha256": artifact_sha,
+            })
+            npm_apps.add(app)
+            continue
+
+        _require(
+            set(row) == ROW_FIELDS,
+            "only app/repo/Git/HTML source identities permitted",
+        )
+        repo, git_sha, html = (
+            row["repo"], row["git_sha"], row["html_sha256"]
         )
         _require(
             type(repo) is str and REPO.fullmatch(repo) is not None
@@ -106,10 +142,8 @@ def audit_attribution(
             and type(html) is str and HEX.fullmatch(html) is not None,
             "exact source Git/HTML hashes required per historical family",
         )
-        _require(app not in apps, "duplicate historical application attribution")
         # Multiple historical app IDs may share a real upstream repo; they
         # still constitute ONE source family and cannot become new donors.
-        apps.add(app)
         repos.add(repo.casefold())
         git_shas.add(git_sha)
         html_shas.add(html)
@@ -135,7 +169,8 @@ def audit_attribution(
     _require(
         (BANNED | KNOWN_EXTRA_PREVIOUS).issubset(apps)
         and set(SOURCE_PINS) == pinned_pairs
-        and set(FROZEN_OTHER_GIT) == historical_git_pairs,
+        and set(FROZEN_OTHER_GIT) == historical_git_pairs
+        and set(KNOWN_NPM_SOURCES) == npm_apps,
         "missing known historical TRAIN/DEV/OOD app or pinned pairing",
     )
     _require(
@@ -166,6 +201,7 @@ def audit_attribution(
         "distinct_historical_repositories": len(repos),
         "frozen_h173_pairs_matched": len(pinned_pairs),
         "earlier_source_git_pins_matched": len(historical_git_pairs),
+        "known_npm_packages_paired": len(npm_apps),
         "attribution_sha256": fingerprint,
         "legacy_history_sha256": legacy["owner_source_registry_fingerprint_sha256"],
         "source_history_completeness_proven": False,
