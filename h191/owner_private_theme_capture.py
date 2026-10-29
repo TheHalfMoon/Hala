@@ -28,6 +28,31 @@ from h191.pickr_three_theme_preaction import (
 SCHEMA = "hala.h191.original-pickr-three-theme-private-quarantine.v1"
 
 
+def _safe_private_directory(path: Path) -> bool:
+    """Reject junctions/symlinks in every owner-private ancestor, including Git."""
+    if not isinstance(path, Path) or not path.is_absolute():
+        return False
+    try:
+        for part in (path, *path.parents):
+            if (not part.is_dir() or part.is_symlink()
+                    or (getattr(part.lstat(), "st_file_attributes", 0) & 0x400)
+                    or (part / ".git").exists()
+                    or (part / ".git").is_symlink()):
+                return False
+    except OSError:
+        return False
+    return True
+
+
+def _safe_private_regular_file(path: Path) -> bool:
+    """Reject Windows reparse files as well as ordinary symlinks."""
+    try:
+        return (path.is_file() and not path.is_symlink()
+                and not (getattr(path.lstat(), "st_file_attributes", 0) & 0x400))
+    except OSError:
+        return False
+
+
 def _validate_new_private_folder(dest: Path) -> None:
     _require(isinstance(dest, Path) and dest.is_absolute()
              and dest.name == "Hala-H191-Private",
@@ -47,12 +72,11 @@ def _prior_manifest_source_metadata(
     expected_status: str,
 ) -> dict:
     _require(isinstance(owner_private, Path)
-             and owner_private.is_absolute()
              and owner_private.name == expected_name
-             and owner_private.is_dir() and not owner_private.is_symlink(),
+             and _safe_private_directory(owner_private),
              "H191 pinned previous source quarantine directory unavailable")
     p = owner_private / "source-prospects-not-admitted.json"
-    _require(p.is_file() and not p.is_symlink()
+    _require(_safe_private_regular_file(p)
              and 0 < p.stat().st_size < 65536,
              "H191 previous source-only visual metadata missing/oversized")
     doc = json.loads(p.read_text(encoding="utf-8"))
