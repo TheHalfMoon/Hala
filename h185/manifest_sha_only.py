@@ -51,7 +51,7 @@ def _historical_phases(roots: list[str | Path]) -> list[Path]:
     phases: list[Path] = []
     keys: set[str] = set()
     for value in roots:
-        _require(type(value) in (str, Path), "historical root type invalid")
+        _require(isinstance(value, (str, Path)), "historical root type invalid")
         root = Path(value)
         _require(_safe_directory(root), "unsafe historical root")
         if PHASE_NAME.fullmatch(root.name):
