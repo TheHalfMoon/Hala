@@ -38,7 +38,19 @@ def test_h174_interact_vite_navigation_does_not_wait_for_hmr_network_idle():
     assert len(navigations) == 1
     options = {k.arg: k.value for k in navigations[0].keywords}
     assert isinstance(options["wait_until"], ast.Constant)
-    assert options["wait_until"].value == "domcontentloaded"
+    assert options["wait_until"].value == "commit"
     assert isinstance(options["timeout"], ast.Constant)
-    assert options["timeout"].value == 25000
+    assert options["timeout"].value == 12000
+    selectors = [
+        n for n in ast.walk(tree)
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+        and n.func.attr == "wait_for_selector"
+    ]
+    assert len(selectors) == 2
+    assert {n.args[0].value for n in selectors} == {"#drag3", "#drop1"}
+    assert all(
+        any(k.arg == "timeout" and isinstance(k.value, ast.Constant)
+            and k.value.value == 15000 for k in n.keywords)
+        for n in selectors
+    )
     assert "networkidle" not in src

@@ -41,15 +41,18 @@ def run_native_dropzone_smoke(port: int, channel: str) -> str:
                     print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_navigate", flush=True)
                     resp = page.goto(
                         f"http://127.0.0.1:{port}/dropzones/index.html",
-                        # Original Vite runs an HMR development server.
-                        # Do not wait for global network idle / HMR sockets.
-                        # Instead await DOM readiness, then prove the real
-                        # original drag/drop action and no page errors.
-                        wait_until="domcontentloaded", timeout=25000,
+                        # Original Vite module scripts can defer DOMContentLoaded
+                        # while its dev-server dependency graph is still resolving.
+                        # Observe HTTP navigation commit first, then separately
+                        # require visible original controls with bounded waits.
+                        wait_until="commit", timeout=12000,
                     )
                     _require(resp is not None and resp.status == 200,
                              "H174 original interactjs HTML failed")
                     print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_html_pass", flush=True)
+                    page.wait_for_selector("#drag3", state="visible", timeout=15000)
+                    page.wait_for_selector("#drop1", state="visible", timeout=15000)
+                    print(f"H174_INTERACT_NATIVE_PHASE=context_{context_index+1}_dom_ready", flush=True)
                     page.set_default_timeout(10000)
                     drag = page.locator("#drag3")
                     drop = page.locator("#drop1")
