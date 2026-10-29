@@ -3,7 +3,12 @@
 All hashes and pseudo-owner repositories in these tests are fabricated except
 the already-published H173 immutable source pins. Never load consumed media.
 """
+from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
+from io import StringIO
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
 from h173.source_preflight import SOURCE_PINS
@@ -12,6 +17,7 @@ from h174.split_firewall import (
     BANNED, HISTORY_SCHEMA as PIXEL_HISTORY_SCHEMA, SCHEMA as SPLIT_SCHEMA,
 )
 from h176.source_family_attribution import SCHEMA, audit_attribution
+from h176.audit_owner_history import run as local_cli_run
 
 
 def _fixture():
@@ -155,6 +161,65 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         history["source_html_shas"].pop()
         with self.assertRaisesRegex(ValueError, "original HTML SHA attribution"):
             audit_attribution(meta, pixels, history, attribution)
+
+
+    def test_owner_cli_succeeds_without_printing_identity_values(self):
+        files = ("candidate.json", "pixel_hashes.json", "source_history.json",
+                 "paired_history.json")
+        with tempfile.TemporaryDirectory() as root:
+            for name, payload in zip(files, _fixture()):
+                (Path(root) / name).write_text(json.dumps(payload), encoding="utf-8")
+            args = [
+                "--candidates", str(Path(root) / files[0]),
+                "--prior-pixel-hashes", str(Path(root) / files[1]),
+                "--prior-source-history", str(Path(root) / files[2]),
+                "--paired-source-history", str(Path(root) / files[3]),
+            ]
+            output, errors = StringIO(), StringIO()
+            with redirect_stdout(output), redirect_stderr(errors):
+                status = local_cli_run(args)
+            self.assertEqual(status, 0)
+            self.assertEqual(errors.getvalue(), "")
+            self.assertIn("HISTORY_COMPLETENESS_UNPROVEN", output.getvalue())
+            self.assertNotIn("fictional-owner", output.getvalue())
+            self.assertNotIn("freshclick", output.getvalue())
+            self.assertNotIn(str(Path(root)), output.getvalue())
+
+    def test_owner_cli_rejects_duplicate_json_keys_without_leaking_data(self):
+        files = ("candidate.json", "pixel_hashes.json", "source_history.json",
+                 "paired_history.json")
+        with tempfile.TemporaryDirectory() as root:
+            for name, payload in zip(files, _fixture()):
+                (Path(root) / name).write_text(json.dumps(payload), encoding="utf-8")
+            (Path(root) / files[3]).write_text(
+                '{"schema": "sensitive-donor", "schema": "duplicate"}',
+                encoding="utf-8",
+            )
+            args = [
+                "--candidates", str(Path(root) / files[0]),
+                "--prior-pixel-hashes", str(Path(root) / files[1]),
+                "--prior-source-history", str(Path(root) / files[2]),
+                "--paired-source-history", str(Path(root) / files[3]),
+            ]
+            output, errors = StringIO(), StringIO()
+            with redirect_stdout(output), redirect_stderr(errors):
+                status = local_cli_run(args)
+            self.assertEqual(status, 2)
+            self.assertEqual(output.getvalue(), "")
+            self.assertIn("H176_FAIL_CLOSED_OWNER_METADATA_CHECK", errors.getvalue())
+            self.assertNotIn("sensitive-donor", errors.getvalue())
+            self.assertNotIn(str(Path(root)), errors.getvalue())
+
+    def test_owner_cli_rejects_nonfinite_json_and_oversized_inputs(self):
+        from h176.audit_owner_history import _read_metadata_json, MAX_MANIFEST_BYTES
+        with tempfile.TemporaryDirectory() as root:
+            path = Path(root) / "untrusted.json"
+            path.write_text('{"field": NaN}', encoding="utf-8")
+            with self.assertRaises(ValueError):
+                _read_metadata_json(str(path))
+            path.write_bytes(b"x" * (MAX_MANIFEST_BYTES + 1))
+            with self.assertRaises(ValueError):
+                _read_metadata_json(str(path))
 
 
 if __name__ == "__main__":
