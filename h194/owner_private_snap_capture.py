@@ -22,7 +22,7 @@ from threading import Thread
 from PIL import Image
 
 from h174.source_candidates import CANDIDATES, verify_local_source_only
-from h185.manifest_sha_only import scan_legacy_manifest_sha_fields
+from h185.manifest_sha_only import (scan_legacy_manifest_sha_fields, screen_unadmitted_new_case_hashes)
 from h188.owner_private_pickr_capture import _require
 from h193.interact_snap_preaction import (
     REPEATS, SPECS, WIDTH, HEIGHT, run_original_snap,
@@ -212,6 +212,14 @@ def quarantine_original_slider(
              and native["model_calls"] == 0,
              "real original native source/replay/historical SHA gate failed")
     verified = _replay_captures(captures)
+    # Independent owner-private writer check, in addition to the H193
+    # original browser replay receipt: a fabricated callback/metadata
+    # must never bypass the conservative previously known old SHA gate.
+    screen_unadmitted_new_case_hashes([
+        {"image_sha256": row["image_sha256"],
+         "visual_rgba_sha256": row["visual_rgba_sha256"]}
+        for row in verified
+    ], old)
     for row in verified:
         for prior in previous:
             _require(row["image_sha256"] not in prior["png"]
