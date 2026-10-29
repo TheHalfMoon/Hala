@@ -86,6 +86,12 @@ def _git(root, *args):
         raise ValueError("H174 candidate original Git checkout unavailable") from exc
 
 
+def _reject_reparse(path):
+    """Never follow Git/HTML/license symlinks or Windows junctions."""
+    if path.is_symlink() or (hasattr(path, "is_junction") and path.is_junction()):
+        raise ValueError("H174 candidate symlink or junction prohibited")
+
+
 def verify_local_source_only(name, root):
     """Verify one pristine donor checkout; NEVER capture or score its GUI."""
     verify_catalog()
@@ -95,6 +101,8 @@ def verify_local_source_only(name, root):
     root = Path(root)
     if not root.is_dir() or not (root / ".git").exists():
         raise ValueError("H174 candidate Git checkout missing")
+    _reject_reparse(root)
+    _reject_reparse(root / ".git")
     if _git(root, "rev-parse", "HEAD") != pin["git_sha"]:
         raise ValueError("H174 candidate immutable Git revision mismatch")
     if _git(root, "status", "--porcelain", "--untracked-files=all"):
@@ -115,8 +123,13 @@ def verify_local_source_only(name, root):
         relative = Path(pin[path_key])
         if relative.is_absolute() or ".." in relative.parts:
             raise ValueError("H174 candidate source path escapes checkout")
-        path = root / relative
-        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != pin[hash_key]:
+        path = root
+        for component in relative.parts:
+            path = path / component
+            _reject_reparse(path)
+        if not path.is_file() or not path.resolve().is_relative_to(root.resolve()):
+            raise ValueError("H174 candidate original HTML/license path missing or outside checkout")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != pin[hash_key]:
             raise ValueError("H174 candidate original HTML/license bytes mismatch")
     return {
         "status": "H174_PINNED_SOURCE_BYTES_ONLY_NO_NATIVE_QA",
