@@ -61,7 +61,7 @@ class OriginalInteractPreactionTests(unittest.TestCase):
     def test_wrong_drag_drop_seed_language_id_rejected(self):
         for key, value in (
             ("id", "wrong-source"), ("language", "fr"),
-            ("drag", "drag4"), ("drop", "drop1"),
+            ("drag", "drag4"), ("drop", "drop3"),
             ("seed_drop", "drop2"),
         ):
             with self.subTest(key=key):
