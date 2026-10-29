@@ -19,6 +19,7 @@ from h185.manifest_sha_only import (
 )
 from h198.owner_source_metadata_readiness import (
     COHORTS, MAX_METADATA_BYTES, _regular_small, census,
+    parse_source_manifest,
 )
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 
@@ -101,7 +102,11 @@ def training_readiness_gap(
     # validated first-pass bytes, never a second unverified manifest version.
     pairs: list[dict[str, str]] = []
     for folder_name, _count, _family, _status in COHORTS:
-        manifest = json.loads(source_snapshot[folder_name])
+        # Reuse H205's STRICT duplicate-key/NaN-rejecting parser but decode
+        # ONLY the exact bytes snapshotted before H198 validation.
+        manifest = parse_source_manifest(
+            source_snapshot[folder_name].decode("utf-8")
+        )
         for row in manifest["cases"]:
             pairs.append({
                 "image_sha256": row["image_sha256"],

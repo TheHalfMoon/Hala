@@ -1,7 +1,17 @@
-# H205 — verify original-source manifest immutability through the H204 audit
+# H206 — strict original-source JSON plus immutable audit snapshot
 
 **Draft-only, source metadata only. Not a dataset, new checkpoint, model
 training, accuracy evaluation, release or publication.**
+
+H206 integrates the parallel H205 strict manifest parser Draft #226
+(commit `05b5959d50163ba4df20dacd6eab00b4d2b443cc`) with the
+snapshot-first H205 work on the historical
+`ps/h205-fail-closed-manifest-snapshot` branch. The two changes are
+both preserved in the resulting *two-parent merge commit*. Crucially,
+the SHA pairs are now extracted from **the same snapshotted bytes**
+using `parse_source_manifest`, so the H205 duplicate-key/NaN
+firewall cannot be bypassed in the independent H204 collision check.
+This is stacked on #226, not a competing sibling to H204.
 
 ## Real bug repaired
 
@@ -41,11 +51,13 @@ H204 no-media test was updated to admit reads of **only**
 `source-prospects-not-admitted.json` and legacy `manifest.json`;
 it explicitly forbids reading image files or sealed owner gold.
 
-**Actually observed on owner Windows Python 3.11.15:**
-H185 14/14 discovered (2 symlink-privilege skips), H198 14/14,
-H199 16/16, H204 10/10 and H205 6/6, all in normal and
-`python -O` modes; **58 executed passes and 2 skips per mode**,
-116 executed passes plus 4 skips total. `compileall` passed.
+**Actually observed on owner Windows Python 3.11.15 AFTER
+integrating #226 and the snapshot fix:** H185 14 discovered
+(2 symlink-privilege skips), H198 14/14, H199 16/16,
+H204 13/13 (including 3 strict duplicate-key/NaN mutation tests)
+and the snapshot tests 6/6, all in normal and `python -O` modes;
+**61 executed passes and 2 skips per mode**, 122 executed passes
+plus 4 skips total. `compileall` passed.
 The owner-only original-source and historical SHA audit also passed
 with the exact current metadata snapshot: **20** unadmitted case
 metadata, **6** explicitly selected pre-H173 historical phases,

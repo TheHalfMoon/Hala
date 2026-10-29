@@ -1,5 +1,5 @@
 # H205: synthetic-only original source metadata snapshot consistency.
-name: H205 fail-closed original GUI metadata snapshot integrity
+name: H206 strict-source JSON + immutable GUI metadata snapshot
 
 on:
   push:

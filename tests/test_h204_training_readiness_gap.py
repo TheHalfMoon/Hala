@@ -156,6 +156,84 @@ class H204TrainingReadinessGapTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "admission flag changed"):
                 training_readiness_gap(owner, [phase])
 
+    def test_ambiguous_manifest_keys_fail_before_historical_scan(self):
+        """Source JSON aliases cannot conceal contradictory admission flags."""
+        with tempfile.TemporaryDirectory() as tmp:
+            owner, phase = fixtures(Path(tmp))
+            source = owner / COHORTS[0][0] / "source-prospects-not-admitted.json"
+            original = source.read_text(encoding="utf-8")
+            variants = {
+                "top_level": original.replace(
+                    '"official_train_dev_dataset_admitted": false',
+                    '"official_train_dev_dataset_admitted": true, '
+                    '"official_train_dev_dataset_admitted": false', 1),
+                "nested": original.replace(
+                    '"train_eligible": false',
+                    '"train_eligible": true, "train_eligible": false', 1),
+                "unicode_alias": original.replace(
+                    '"train_eligible": false',
+                    '"train_eligible": true, "train_eligibl\\u0065": false', 1),
+            }
+            for label, payload in variants.items():
+                with self.subTest(label=label):
+                    self.assertNotEqual(payload, original)
+                    source.write_text(payload, encoding="utf-8")
+                    with patch(
+                        "h204.training_readiness_gap.scan_legacy_manifest_sha_fields"
+                    ) as scan:
+                        with self.assertRaisesRegex(
+                            ValueError, "duplicate source metadata JSON key"
+                        ):
+                            training_readiness_gap(owner, [phase])
+                        scan.assert_not_called()
+
+    def test_nonstandard_json_constant_fails_before_legacy_scan(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            owner, phase = fixtures(Path(tmp))
+            source = owner / COHORTS[0][0] / "source-prospects-not-admitted.json"
+            original = source.read_text(encoding="utf-8")
+            for token in ("NaN", "Infinity", "-Infinity"):
+                with self.subTest(token=token):
+                    source.write_text(
+                        original.replace(
+                            '"official_train_dev_dataset_admitted": false',
+                            '"unused_decoy": ' + token + ', '
+                            '"official_train_dev_dataset_admitted": false', 1),
+                        encoding="utf-8",
+                    )
+                    with patch(
+                        "h204.training_readiness_gap.scan_legacy_manifest_sha_fields"
+                    ) as scan:
+                        with self.assertRaisesRegex(
+                            ValueError, "nonstandard JSON constant"
+                        ):
+                            training_readiness_gap(owner, [phase])
+                        scan.assert_not_called()
+
+    def test_h204_second_pass_rejects_duplicate_even_if_census_stubbed(self):
+        """Independently guard the second read, not only inherited H198."""
+        with tempfile.TemporaryDirectory() as tmp:
+            owner, phase = fixtures(Path(tmp))
+            source = owner / COHORTS[0][0] / "source-prospects-not-admitted.json"
+            original = source.read_text(encoding="utf-8")
+            source.write_text(original.replace(
+                '"train_eligible": false',
+                '"train_eligible": true, "train_eligible": false', 1),
+                encoding="utf-8")
+            safe_census = {
+                "training_approved": False,
+                "historic_source_and_rgba_history_complete": False,
+                "total_quarantined_original_preaction_png_metadata": 20,
+                "source_implementation_families": 3,
+                "languages": {"ar": 10, "en": 10},
+            }
+            with patch("h204.training_readiness_gap.census",
+                       return_value=safe_census):
+                with self.assertRaisesRegex(
+                    ValueError, "duplicate source metadata JSON key"
+                ):
+                    training_readiness_gap(owner, [phase])
+
     def test_cli_only_aggregate_counts_and_no_identifiers(self):
         with tempfile.TemporaryDirectory() as tmp:
             owner, phase = fixtures(Path(tmp))
