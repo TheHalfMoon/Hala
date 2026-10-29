@@ -10,6 +10,7 @@ from h185.manifest_sha_only import scan_legacy_manifest_sha_fields
 from h195.original_vanilla_datepicker_native import (
     PIN, SCENES, DatepickerNativeReceipt,
     validate_original_specs, validate_replay, source_novelty_research_only,
+    create_isolated_calendar_context,
 )
 
 
@@ -38,6 +39,76 @@ class OriginalCalendarResearchTests(unittest.TestCase):
         self.assertEqual(receipt["historical_git_checkouts_screened"], 0)
         self.assertIs(receipt["training_approved"], False)
         self.assertIs(receipt["source_history_completeness_proven"], False)
+
+    def test_browser_isolation_registered_before_original_page(self):
+        events = []
+        class Context:
+            def route(self, pattern, handler):
+                events.append(("http", pattern))
+                self.http_handler = handler
+            def route_web_socket(self, pattern, handler):
+                events.append(("websocket", pattern))
+                self.ws_handler = handler
+            def close(self):
+                events.append(("closed",))
+        class Browser:
+            def new_context(self, **options):
+                self.options = options
+                self.context = Context()
+                return self.context
+        browser = Browser()
+        ctx = create_isolated_calendar_context(browser, 8181)
+        self.assertIs(ctx, browser.context)
+        self.assertEqual(events, [("http", "**/*"), ("websocket", "**/*")])
+        self.assertEqual(browser.options["service_workers"], "block")
+        self.assertIs(browser.options["accept_downloads"], False)
+        class Request:
+            def __init__(self, url):
+                self.url = url
+        class Route:
+            def __init__(self, url):
+                self.request = Request(url)
+                self.result = None
+            def continue_(self):
+                self.result = "continue"
+            def abort(self):
+                self.result = "abort"
+        for url, expected in (
+            ("http://127.0.0.1:8181/demo/index.html", "continue"),
+            ("https://external.invalid/leak", "abort"),
+            ("http://127.0.0.1:8182/not-this-server", "abort"),
+        ):
+            route = Route(url)
+            ctx.http_handler(route)
+            self.assertEqual(route.result, expected)
+        class WebSocket:
+            def __init__(self):
+                self.closed = False
+            def close(self):
+                self.closed = True
+        ws = WebSocket()
+        ctx.ws_handler(ws)
+        self.assertTrue(ws.closed)
+
+    def test_websocket_route_failure_closes_context_fail_closed(self):
+        class Context:
+            def __init__(self):
+                self.closed = False
+            def route(self, *_):
+                pass
+            def route_web_socket(self, *_):
+                raise RuntimeError("cannot isolate WebSockets")
+            def close(self):
+                self.closed = True
+        class Browser:
+            def __init__(self):
+                self.ctx = Context()
+            def new_context(self, **_):
+                return self.ctx
+        browser = Browser()
+        with self.assertRaisesRegex(RuntimeError, "cannot isolate"):
+            create_isolated_calendar_context(browser, 8181)
+        self.assertTrue(browser.ctx.closed)
 
     def test_immutable_fourth_original_upstream_and_real_months(self):
         validate_original_specs()
