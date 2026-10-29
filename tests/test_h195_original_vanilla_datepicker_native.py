@@ -4,11 +4,12 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from h185.manifest_sha_only import scan_legacy_manifest_sha_fields
 from h195.original_vanilla_datepicker_native import (
     PIN, SCENES, DatepickerNativeReceipt,
-    validate_original_specs, validate_replay,
+    validate_original_specs, validate_replay, source_novelty_research_only,
 )
 
 
@@ -29,6 +30,15 @@ def receipts():
 
 
 class OriginalCalendarResearchTests(unittest.TestCase):
+    def test_public_runner_missing_owner_history_is_unknown_not_approved(self):
+        with patch("h195.original_vanilla_datepicker_native.screen_pins_against_history",
+                   side_effect=AssertionError("must not invent an empty owner inventory")):
+            receipt = source_novelty_research_only(None)
+        self.assertEqual(receipt["candidate_source_families"], 1)
+        self.assertEqual(receipt["historical_git_checkouts_screened"], 0)
+        self.assertIs(receipt["training_approved"], False)
+        self.assertIs(receipt["source_history_completeness_proven"], False)
+
     def test_immutable_fourth_original_upstream_and_real_months(self):
         validate_original_specs()
         self.assertEqual(PIN["repo"], "mymth/vanillajs-datepicker")
