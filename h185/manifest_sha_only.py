@@ -167,9 +167,73 @@ def scan_legacy_manifest_sha_fields(roots: list[str | Path]) -> dict:
         "_owner_only_rgba_sha_candidates": frozenset(rgba),
         "complete_historical_manifest_coverage_proven": False,
         "old_image_integrity_proven": False,
-        "historical_gold_accessed": False,
+        "gold_field_values_parsed": False,
         "old_image_media_opened": False,
         "training_dataset_admitted": False,
+        "ood_evaluation_approved": False,
+        "model_calls": 0,
+    }
+
+
+# Only a conservative known-hash exclusion, never a positive admission.
+NEW_SHA_FIELDS = frozenset({"image_sha256", "visual_rgba_sha256"})
+HEX64 = re.compile(r"[0-9a-f]{64}\Z")
+MAX_NEW_CASES = 100_000
+
+
+def screen_unadmitted_new_case_hashes(
+    new_source_hash_pairs: list[dict], old_manifest_census: dict,
+) -> dict:
+    """Reject known historical PNG/RGBA duplicates, do not admit cases.
+
+    This is useful even if some old manifest SHA fields are missing, but
+    unknown prior media or absent old RGBA hashes remain a hard blocker
+    for any real training/DEV qualification.
+    """
+    _require(
+        type(new_source_hash_pairs) is list
+        and 0 < len(new_source_hash_pairs) <= MAX_NEW_CASES,
+        "bounded new SHA-only candidates required",
+    )
+    _require(
+        type(old_manifest_census) is dict
+        and old_manifest_census.get("status")
+        == "H185_OWNER_MANIFEST_SHA_FIELD_COVERAGE_ONLY_NOT_HISTORY_COMPLETE"
+        and type(old_manifest_census.get("_owner_only_png_sha_candidates"))
+        is frozenset
+        and type(old_manifest_census.get("_owner_only_rgba_sha_candidates"))
+        is frozenset
+        and old_manifest_census.get("complete_historical_manifest_coverage_proven")
+        is False,
+        "owner manifest SHA metadata census required; not complete",
+    )
+    old_png = old_manifest_census["_owner_only_png_sha_candidates"]
+    old_rgba = old_manifest_census["_owner_only_rgba_sha_candidates"]
+    local_png: set[str] = set()
+    local_rgba: set[str] = set()
+    for row in new_source_hash_pairs:
+        _require(type(row) is dict and set(row) == NEW_SHA_FIELDS,
+                 "new SHA-pair metadata only, no source gold or model input")
+        png, rgba = row["image_sha256"], row["visual_rgba_sha256"]
+        _require(type(png) is str and HEX64.fullmatch(png) is not None
+                 and type(rgba) is str and HEX64.fullmatch(rgba) is not None,
+                 "new candidate SHA-256 invalid")
+        _require(png not in old_png and rgba not in old_rgba,
+                 "new scene reuses known old PNG or RGBA visual hash")
+        _require(png not in local_png and rgba not in local_rgba,
+                 "new candidate duplicated within a proposed dataset")
+        local_png.add(png)
+        local_rgba.add(rgba)
+    return {
+        "status": "H185_KNOWN_LEGACY_SHA_REUSE_EXCLUDED_ONLY_NOT_DATA_ADMISSION",
+        "proposed_sha_only_pairs_screened": len(new_source_hash_pairs),
+        "known_legacy_png_hashes_compared": len(old_png),
+        "known_legacy_rgba_hashes_compared": len(old_rgba),
+        "legacy_rgba_sha_coverage_missing":
+            len(old_rgba) == 0,
+        "historical_completeness_proven": False,
+        "native_source_qa_proven": False,
+        "training_approved": False,
         "ood_evaluation_approved": False,
         "model_calls": 0,
     }
