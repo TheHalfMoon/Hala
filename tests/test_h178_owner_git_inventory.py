@@ -198,6 +198,28 @@ class OwnerGitOriginInventoryTests(unittest.TestCase):
             self.assertIn("H178_FAIL_CLOSED", err.getvalue())
             self.assertNotIn(root, err.getvalue())
 
+    def test_broken_git_pointer_and_source_store_symlinks_fail_closed(self):
+        with tempfile.TemporaryDirectory() as root:
+            phase = Path(root) / "private-h139"
+            fake_source = phase / "upstream" / "synthetic-missing-git"
+            fake_source.mkdir(parents=True)
+            try:
+                (fake_source / ".git").symlink_to(
+                    Path(root) / "missing-git-object", target_is_directory=True
+                )
+            except (OSError, NotImplementedError):
+                return  # Windows privilege restriction; Linux CI exercises it.
+            with self.assertRaisesRegex(ValueError, "original \\.git cannot"):
+                inventory_local_original_sources([root])
+        with tempfile.TemporaryDirectory() as root:
+            phase = Path(root) / "private-h139"
+            phase.mkdir()
+            (phase / "upstream").symlink_to(
+                Path(root) / "absent-upstream-store", target_is_directory=True
+            )
+            with self.assertRaisesRegex(ValueError, "unsafe historical source store"):
+                inventory_local_original_sources([root])
+
     def test_invalid_root_and_symlink_does_not_escape_inventory(self):
         with tempfile.TemporaryDirectory() as root:
             phase = Path(root) / "private-h139"
