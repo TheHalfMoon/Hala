@@ -1,5 +1,8 @@
 """H178 tests use disposable local Git repositories, no network or old media."""
+from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
+from io import StringIO
+import json
 from pathlib import Path
 import subprocess
 import tempfile
@@ -9,6 +12,7 @@ from h178.owner_git_inventory import (
     inventory_local_original_sources, audit_source_inventory,
 )
 from test_h177_public_origin_pins import fixture
+from h178.scan_owner_sources import run as local_cli
 
 
 def _run_git(root: Path, *args: str) -> str:
@@ -142,6 +146,57 @@ class OwnerGitOriginInventoryTests(unittest.TestCase):
             self.assertFalse(result["training_approved"])
             self.assertFalse(result["ood_evaluation_approved"])
             self.assertEqual(result["model_calls"], 0)
+
+    def test_inventory_cli_omits_owner_paths_and_remote_names(self):
+        with tempfile.TemporaryDirectory() as root:
+            _synthetic_original(Path(root) / "private-h139")
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = local_cli(["--historical-root", root])
+            self.assertEqual(code, 0)
+            self.assertEqual(err.getvalue(), "")
+            self.assertIn("source_checkouts=1", out.getvalue())
+            self.assertIn("HISTORY_COMPLETENESS_UNPROVEN", out.getvalue())
+            self.assertNotIn(root, out.getvalue())
+            self.assertNotIn("mock-owner", out.getvalue())
+
+    def test_full_owner_cli_checks_only_source_metadata(self):
+        with tempfile.TemporaryDirectory() as root:
+            _src, sha = _synthetic_original(Path(root) / "private-h140")
+            data = _attest_dummy_history(
+                fixture(), "mock-owner/used-board", sha
+            )
+            paths = [Path(root) / ("source-%s.json" % n) for n in range(4)]
+            for path, obj in zip(paths, data):
+                path.write_text(json.dumps(obj), encoding="utf-8")
+            flags = ["--historical-root", root]
+            for label, path in zip((
+                "--candidates", "--prior-pixel-hashes",
+                "--prior-source-history", "--paired-source-history",
+            ), paths):
+                flags.extend([label, str(path)])
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = local_cli(flags)
+            self.assertEqual(code, 0)
+            self.assertEqual(err.getvalue(), "")
+            self.assertIn("H178_OWNER_GIT_ORIGINS_ONLY", out.getvalue())
+            self.assertIn("HISTORY_COMPLETENESS_UNPROVEN", out.getvalue())
+            self.assertNotIn(root, out.getvalue())
+
+    def test_owner_cli_partial_metadata_fails_privately(self):
+        with tempfile.TemporaryDirectory() as root:
+            _synthetic_original(Path(root) / "private-h140")
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = local_cli([
+                    "--historical-root", root,
+                    "--candidates", str(Path(root) / "fake-private.json"),
+                ])
+            self.assertEqual(code, 2)
+            self.assertEqual(out.getvalue(), "")
+            self.assertIn("H178_FAIL_CLOSED", err.getvalue())
+            self.assertNotIn(root, err.getvalue())
 
     def test_invalid_root_and_symlink_does_not_escape_inventory(self):
         with tempfile.TemporaryDirectory() as root:
