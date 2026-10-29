@@ -65,6 +65,32 @@ def _regular_small(path: Path, label: str) -> None:
             "required bounded " + label + " missing or unsafe")
 
 
+def _unique_source_object(pairs: list[tuple[str, object]]) -> dict[str, object]:
+    """Reject ambiguous JSON keys at every depth, including escaped aliases."""
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        require(key not in result, "duplicate source metadata JSON key")
+        result[key] = value
+    return result
+
+
+def _reject_source_constant(value: str) -> None:
+    """NaN/Infinity are Python extensions, not valid JSON provenance."""
+    raise ValueError("H198 private source readiness: nonstandard JSON constant")
+
+
+def parse_source_manifest(raw: str) -> dict:
+    """Fail closed on ambiguous source provenance before inspecting any case."""
+    require(type(raw) is str and len(raw.encode("utf-8")) < MAX_METADATA_BYTES,
+            "source manifest is not bounded")
+    result = json.loads(
+        raw, object_pairs_hook=_unique_source_object,
+        parse_constant=_reject_source_constant,
+    )
+    require(type(result) is dict, "source manifest must be an object")
+    return result
+
+
 def _sha(value: object) -> bool:
     return type(value) is str and len(value) == 64 and all(
         c in "0123456789abcdef" for c in value
@@ -108,7 +134,7 @@ def census(
         # Reference sidecar is ONLY checked for a safe name/regular existence,
         # and NEVER read; an intentionally invalid JSON gold file is fine.
         _regular_small(reference, "sealed private reference sidecar")
-        manifest = json.loads(source.read_text(encoding="utf-8"))
+        manifest = parse_source_manifest(source.read_text(encoding="utf-8"))
         require(type(manifest) is dict
                 and manifest.get("status") == expected_status
                 and manifest.get("official_train_dev_dataset_admitted") is False
