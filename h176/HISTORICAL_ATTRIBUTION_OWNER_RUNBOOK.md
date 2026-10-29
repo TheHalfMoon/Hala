@@ -26,7 +26,13 @@ The top-level object has exactly schema and families:
 
 These are *field shapes*, not evidence or usable example identities.
 All 11 previously known TRAIN/consumed families and the 2 H173 pinned
-families must be included, alongside ALL additional prior source families.
+families, PLUS six independently identified public H137-H163 source IDs,
+must be included, alongside ALL additional prior source families.
+The six extra source names are splitjs, react-dnd-kit-board,
+react-html5-board, react-dndkit-board, todomvc-es6 and
+gridstack-original-column-demo. Five of these have exact public source
+Git pins in H138/H140/H158/H163; splitjs was an H137 npm-based evaluation
+library without an equivalent Git-commit identity recorded in that phase.
 Never fabricate placeholders or infer a repo merely from an application name.
 Two apps originating from the same upstream repository remain one source
 family for future split eligibility, even if their old Git revisions differ.
@@ -59,7 +65,7 @@ counts and fingerprints. Its terminal status remains:
 
 - Independently audit source manifests for *every* historical TRAIN, DEV
   and consumed OOD app, repository, alias, Git and HTML identity, not just
-  the 13 known minimum. Internal matching cannot establish completeness.
+  the 19 known minimum. Internal matching cannot establish completeness.
 - Independently verify original source provenance, legal notices, full
   history and family-disjointness against proposed TRAIN/DEV/OOD.
 - Reproduce authentic original browser-native behavior and independent
