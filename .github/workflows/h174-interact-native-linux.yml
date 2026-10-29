@@ -143,5 +143,8 @@ jobs:
             cat "$RUNNER_TEMP/h174-vite.log"
             exit 1
           fi
+          # Vite runs in pristine-derived donor scratch, but Python H174
+          # comes from the independently checked-out Hala repository.
+          export PYTHONPATH="$GITHUB_WORKSPACE"
           python -m h174.interact_native_smoke --port 8181 --browser-channel chromium
           echo "H174_INTERACT_ORIGINAL_NATIVE_ONLY_NO_DATASET_ADMISSION"
