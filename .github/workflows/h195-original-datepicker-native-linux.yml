@@ -1,0 +1,74 @@
+# H195 true original vanilla datepicker, research-only, never private media.
+name: H195 original vanilla datepicker native PRE-action browser replay (research only)
+on:
+  push:
+    branches:
+      - ps/h195-original-vanilla-datepicker-native-preaction
+    paths:
+      - ".github/workflows/h195-original-datepicker-native-linux.yml"
+      - "h195/**"
+      - "tests/test_h195_original_vanilla_datepicker_native.py"
+  pull_request:
+    paths:
+      - ".github/workflows/h195-original-datepicker-native-linux.yml"
+      - "h195/**"
+      - "tests/test_h195_original_vanilla_datepicker_native.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: h195-original-datepicker
+  cancel-in-progress: true
+jobs:
+  genuine-original-calendar:
+    name: original bilingual calendars and real source-native date click
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      ORIGINAL_REPO: https://github.com/mymth/vanillajs-datepicker.git
+      ORIGINAL_SHA: 358dfaaa3e2b8772e313d71191720f5415c9275c
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout Hala source without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install fixed Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+      - name: Clone exact pristine MIT original app, without publishing data
+        shell: bash
+        run: |
+          set -euo pipefail
+          ORIGINAL_PATH="$RUNNER_TEMP/h195-original-datepicker"
+          echo "ORIGINAL_PATH=$ORIGINAL_PATH" >> "$GITHUB_ENV"
+          mkdir -p "$ORIGINAL_PATH"
+          git -C "$ORIGINAL_PATH" init
+          git -C "$ORIGINAL_PATH" remote add origin "$ORIGINAL_REPO"
+          git -C "$ORIGINAL_PATH" fetch --depth=1 origin "$ORIGINAL_SHA"
+          git -C "$ORIGINAL_PATH" checkout --detach "$ORIGINAL_SHA"
+          test "$(git -C "$ORIGINAL_PATH" rev-parse HEAD)" = "$ORIGINAL_SHA"
+          test -z "$(git -C "$ORIGINAL_PATH" status --porcelain --untracked-files=all)"
+          test -f "$ORIGINAL_PATH/demo/index.html"
+          test -f "$ORIGINAL_PATH/LICENSE"
+          test -f "$ORIGINAL_PATH/demo/live-demo.js"
+          test -f "$ORIGINAL_PATH/dist/js/datepicker-full.js"
+          echo "H195_ORIGINAL_UPSTREAM_PIN_CHECK_PASS"
+      - name: Install fixed free Playwright/Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install Pillow==12.3.0 playwright==1.64.1
+          python -m playwright install --with-deps chromium
+      - name: Real native original calendar bilingual source-only PRE-action QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_h195_original_vanilla_datepicker_native.py -q
+          timeout --signal=TERM --kill-after=5s 180s \
+            python -u -m h195.original_vanilla_datepicker_native \
+              --donor-root "$ORIGINAL_PATH" \
+              --browser-channel chromium
+          test -z "$(git -C "$ORIGINAL_PATH" status --porcelain --untracked-files=all)"
+          echo "H195_TWO_REAL_ORIGINAL_CALENDAR_PREACTIONS_NO_DATASET_NO_OOD_NO_MEDIA"
