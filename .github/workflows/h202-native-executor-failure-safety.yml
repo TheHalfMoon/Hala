@@ -1,0 +1,57 @@
+# H202: source-only, public synthetic tests. No model/data/GPU.
+name: H202 native GUI executor fail-closed safety (synthetic CPU only)
+
+on:
+  push:
+    branches:
+      - ps/h202-native-input-failure-safety
+    paths:
+      - ".github/workflows/h202-native-executor-failure-safety.yml"
+      - "h201/original_native_action_executor.py"
+      - "tests/test_h202_native_input_failure_guards.py"
+  pull_request:
+    paths:
+      - ".github/workflows/h202-native-executor-failure-safety.yml"
+      - "h201/original_native_action_executor.py"
+      - "tests/test_h202_native_input_failure_guards.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h202-native-guards-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-guards:
+    name: Python ${{ matrix.python-version }} native URL/transition guards
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout public code without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Python ${{ matrix.python-version }}
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: H201 regression and H202 negative control tests, both modes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p test_h201_original_native_action_executor.py -q
+          python -m unittest discover -s tests -p test_h202_native_input_failure_guards.py -q
+          python -O -m unittest discover -s tests -p test_h201_original_native_action_executor.py -q
+          python -O -m unittest discover -s tests -p test_h202_native_input_failure_guards.py -q
+          python -m compileall -q h201 tests/test_h202_native_input_failure_guards.py
+          echo "H202_HOSTED_SYNTHETIC_CPU_GUARDS_PASS_NO_MODEL_NO_MEDIA_NO_OOD"
