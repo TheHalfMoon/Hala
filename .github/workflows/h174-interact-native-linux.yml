@@ -109,7 +109,18 @@ jobs:
           corepack prepare yarn@1.22.22 --activate
           yarn --version
           yarn install --frozen-lockfile --ignore-scripts --non-interactive
+          # The pinned original monorepo declares a bootstrap _link and
+          # _add_plugin_indexes, omitted deliberately by --ignore-scripts.
+          # Run only those exact tracked original source scripts in SCRATCH.
+          # Vite cannot resolve original @interactjs/* without their
+          # scratch-local package links and generated original plugin indexes.
+          bash bin/_link
+          node scripts/bin/add_plugin_indexes.js
+          test -L node_modules/@interactjs/interactjs
+          test -f packages/@interactjs/actions/index.ts
+          test -f packages/@interactjs/auto-start/index.ts
           test -z "$(git -C "$H174_INTERACT_DONOR" status --porcelain --untracked-files=all)"
+          echo "H174_INTERACT_ORIGINAL_MONOREPO_LINKS_PASS"
 
       - name: Install free pinned Python Playwright and Chromium
         shell: bash
