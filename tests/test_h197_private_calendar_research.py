@@ -167,9 +167,9 @@ class OwnerOriginalCalendarTests(TestCase):
                        side_effect=mocked_source):
                 capture(root,root,root,root/"Hala-H197-Private","chromium")
             path=root/"Hala-H197-Private"/"source-prospects-not-admitted.json"
-            record=json.loads(path.read_text())
+            record=json.loads(path.read_text(encoding='utf-8'))
             record["cases"][0]["private_action"]={"action_type":"click"}
-            path.write_text(json.dumps(record))
+            path.write_text(json.dumps(record, ensure_ascii=False), encoding='utf-8')
             with self.assertRaisesRegex(ValueError,"source identity"):
                 audit(root/"Hala-H197-Private",root,root)
 
@@ -181,8 +181,8 @@ class OwnerOriginalCalendarTests(TestCase):
                        side_effect=mocked_source):
                 capture(root,root,root,root/"Hala-H197-Private","chromium")
             path=root/"Hala-H197-Private"/"source-prospects-not-admitted.json"
-            record=json.loads(path.read_text())
+            record=json.loads(path.read_text(encoding='utf-8'))
             record["cases"][0]["dev_eligible"]=True
-            path.write_text(json.dumps(record))
+            path.write_text(json.dumps(record, ensure_ascii=False), encoding='utf-8')
             with self.assertRaisesRegex(ValueError,"research-only split"):
                 audit(root/"Hala-H197-Private",root,root)
