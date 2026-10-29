@@ -217,3 +217,98 @@ def test_h174_pickr_active_html_stays_rejected_in_python_optimized_mode(tmp_path
     )
     assert result.returncode != 0, "Optimized Python bypassed active HTML safeguard"
     assert "ValueError: Unsafe active HTML" in result.stderr, result.stderr
+
+
+class _FakeIsolatedContext:
+    def __init__(self):
+        self.websocket_route = None
+
+    def route_web_socket(self, pattern, handler):
+        self.websocket_route = (pattern, handler)
+
+
+class _FakeBrowserForIsolation:
+    def __init__(self):
+        self.options = None
+        self.context = _FakeIsolatedContext()
+
+    def new_context(self, **kwargs):
+        self.options = kwargs
+        return self.context
+
+
+def test_h174_pickr_native_context_disables_service_workers_and_downloads():
+    """Source-only spy checks exact browser options without launching Edge."""
+    fake = _FakeBrowserForIsolation()
+    context = source_module.create_isolated_smoke_context(fake)
+    assert context is fake.context
+    assert fake.options["service_workers"] == "block"
+    assert fake.options["accept_downloads"] is False
+    assert fake.options["viewport"] == {"width": 960, "height": 720}
+    assert fake.options["device_scale_factor"] == 1
+    assert fake.options["locale"] == "en-US"
+    assert fake.options["reduced_motion"] == "reduce"
+
+
+def test_h174_pickr_websocket_connections_closed_without_connecting():
+    """WebSocket route does not proxy private data to any endpoint."""
+    fake = _FakeBrowserForIsolation()
+    context = source_module.create_isolated_smoke_context(fake)
+    pattern, handler = context.websocket_route
+    assert pattern == "**/*"
+
+    class FakeWebSocket:
+        def __init__(self):
+            self.closed = False
+            self.connected = False
+
+        def close(self):
+            self.closed = True
+
+        def connect(self):
+            self.connected = True
+
+    socket = FakeWebSocket()
+    handler(socket)
+    assert socket.closed is True
+    assert socket.connected is False
+
+
+def test_h174_pickr_native_smoke_uses_isolated_context_factory():
+    """Protect against accidentally reverting the original browser callsite."""
+    tree = ast.parse(inspect.getsource(source_module.run_native_smoke))
+    calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)]
+    assert any(
+        isinstance(c.func, ast.Name)
+        and c.func.id == "create_isolated_smoke_context"
+        for c in calls
+    )
+    assert not any(
+        isinstance(c.func, ast.Attribute) and c.func.attr == "new_context"
+        for c in calls
+    )
+
+
+def test_h174_pickr_isolation_factory_survives_python_optimized_mode(tmp_path):
+    """Explicitly check isolation is not an assert-only policy."""
+    package_root = Path(__file__).resolve().parents[1]
+    env = dict(os.environ)
+    env["PYTHONPATH"] = str(package_root) + os.pathsep + env.get("PYTHONPATH", "")
+    program = (
+        "from h174.pickr_native_smoke import create_isolated_smoke_context;"
+        "class FakeContext:\n"
+        " def route_web_socket(self, pattern, handler):\n"
+        "  self.pattern=pattern; self.handler=handler\n"
+        "class FakeBrowser:\n"
+        " def new_context(self, **kwargs):\n"
+        "  if kwargs['service_workers']!='block' or kwargs['accept_downloads'] is not False:\n"
+        "   raise ValueError('isolation context unexpectedly relaxed')\n"
+        "  return FakeContext()\n"
+        "ctx=create_isolated_smoke_context(FakeBrowser());\n"
+        "if ctx.pattern!='**/*': raise ValueError('websocket route missing')\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-O", "-c", program], cwd=package_root,
+        env=env, capture_output=True, text=True, timeout=20, check=False,
+    )
+    assert result.returncode == 0, result.stderr
