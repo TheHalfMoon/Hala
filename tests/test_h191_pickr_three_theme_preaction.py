@@ -82,7 +82,7 @@ class H191OriginalThreeThemeTests(unittest.TestCase):
             with self.subTest(key=key):
                 rows = list(synthetic())
                 rows[1] = replace(rows[1], **{key: value})
-                with self.assertRaisesRegex(ValueError, "replay"):
+                with self.assertRaisesRegex(ValueError, "drift"):
                     validate_replay(tuple(rows))
 
     def test_preaction_duplicate_pixels_even_across_original_themes_rejected(self):
