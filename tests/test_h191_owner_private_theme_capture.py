@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from PIL import Image
 
@@ -16,7 +18,7 @@ from h174.source_candidates import CANDIDATES
 from h191.pickr_three_theme_preaction import SPECS
 from h191.owner_private_theme_capture import (
     _prior_manifest_source_metadata, _validate_new_private_folder,
-    _verified_new_preaction_memory,
+    _verified_new_preaction_memory, _safe_private_directory,
 )
 
 
@@ -122,6 +124,31 @@ class OwnerThemeSourceQuarantineTests(unittest.TestCase):
             (folder / ".git").mkdir()
             with self.assertRaisesRegex(ValueError, "outside Git"):
                 _validate_new_private_folder(folder / "Hala-H191-Private")
+
+    def test_prior_reparse_directory_rejected_before_manifest_read(self):
+        with tempfile.TemporaryDirectory() as root:
+            base = Path(root)
+            prior = fake_prior(
+                base, "Hala-H188-Private", "pickr",
+                "H188_PRIVATE_ORIGINAL_SOURCE_QUARANTINE_NOT_ADMISSION",
+            )
+            original_lstat = Path.lstat
+
+            def flagged(path, *args, **kwargs):
+                stat = original_lstat(path, *args, **kwargs)
+                if path == prior:
+                    return SimpleNamespace(
+                        st_mode=stat.st_mode, st_file_attributes=0x400,
+                    )
+                return stat
+
+            with patch.object(Path, "lstat", flagged):
+                self.assertFalse(_safe_private_directory(prior))
+                with self.assertRaisesRegex(ValueError, "directory unavailable"):
+                    _prior_manifest_source_metadata(
+                        prior, "Hala-H188-Private", "pickr",
+                        "H188_PRIVATE_ORIGINAL_SOURCE_QUARANTINE_NOT_ADMISSION",
+                    )
 
     def test_prior_train_and_dev_original_source_implementations_distinct(self):
         with tempfile.TemporaryDirectory() as root:
