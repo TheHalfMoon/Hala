@@ -140,10 +140,12 @@ def run_real_processor_audit(root: Path, *, all_research: bool = False) -> list[
             and verified["rgba_sha_matches"] == COUNT
             and not verified["official_train_admitted"],
             "H212 frozen source fingerprints not safely qualified")
-    from transformers import AutoProcessor
+    from transformers import AutoProcessor, Qwen3VLProcessor
     proc = AutoProcessor.from_pretrained(
         str(root), local_files_only=True, trust_remote_code=False,
     )
+    require(type(proc) is Qwen3VLProcessor,
+            "loaded processor is not the exact Qwen3VLProcessor class")
     require(getattr(proc,"apply_chat_template",None) is not None
             and getattr(proc,"batch_decode",None) is not None,
             "real Qwen3-VL processor not available")
