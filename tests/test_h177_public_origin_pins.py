@@ -2,13 +2,19 @@
 
 Never open historic OOD media, private gold, inference traces or weights.
 """
+from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
+from io import StringIO
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
 from h177.public_origin_pins import (
     KNOWN_PUBLIC_PREVIOUS, KNOWN_PUBLIC_REPOS, audit_public_origin_pins,
 )
 from test_h176_source_family_attribution import _fixture
+from h177.audit_owner_roots import run as owner_cli
 
 
 def fixture():
@@ -142,6 +148,66 @@ class PublicHistoricalOriginTests(unittest.TestCase):
                 audit_public_origin_pins(
                     metadata, pixel, history, attribution
                 )
+
+    def test_owner_cli_returns_only_safe_counts_and_fingerprint(self):
+        with tempfile.TemporaryDirectory() as root:
+            paths = [
+                Path(root) / name for name in (
+                    "candidate.json", "prior_hash.json",
+                    "historical.json", "paired.json"
+                )
+            ]
+            for path, payload in zip(paths, fixture()):
+                path.write_text(json.dumps(payload), encoding="utf-8")
+            args = [
+                "--candidates", str(paths[0]),
+                "--prior-pixel-hashes", str(paths[1]),
+                "--prior-source-history", str(paths[2]),
+                "--paired-source-history", str(paths[3]),
+            ]
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = owner_cli(args)
+            self.assertEqual(code, 0)
+            self.assertEqual(err.getvalue(), "")
+            self.assertIn("HISTORICAL_COMPLETENESS_UNPROVEN", out.getvalue())
+            self.assertNotIn(str(Path(root)), out.getvalue())
+            self.assertNotIn("fictional-owner", out.getvalue())
+            self.assertNotIn("arce/simple-table", out.getvalue())
+
+    def test_owner_cli_reports_failure_without_private_paths(self):
+        with tempfile.TemporaryDirectory() as root:
+            paths = [
+                Path(root) / name for name in (
+                    "candidate.json", "prior_hash.json",
+                    "historical.json", "paired.json"
+                )
+            ]
+            inputs = list(fixture())
+            false_attribution = deepcopy(inputs[3])
+            row = next(r for r in false_attribution["families"]
+                       if r["app"] == "simple-table")
+            original = row["repo"]
+            row["repo"] = "attacker/original-owner-source"
+            inputs[2]["historical_repositories"].remove(original)
+            inputs[2]["historical_repositories"].append(row["repo"])
+            inputs[3] = false_attribution
+            for path, payload in zip(paths, inputs):
+                path.write_text(json.dumps(payload), encoding="utf-8")
+            args = [
+                "--candidates", str(paths[0]),
+                "--prior-pixel-hashes", str(paths[1]),
+                "--prior-source-history", str(paths[2]),
+                "--paired-source-history", str(paths[3]),
+            ]
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = owner_cli(args)
+            self.assertEqual(code, 2)
+            self.assertEqual(out.getvalue(), "")
+            self.assertIn("H177_FAIL_CLOSED", err.getvalue())
+            self.assertNotIn("attacker", err.getvalue())
+            self.assertNotIn(str(Path(root)), err.getvalue())
 
     def test_h176_source_disjoint_guard_still_applies(self):
         metadata, pixel, history, attribution = fixture()
