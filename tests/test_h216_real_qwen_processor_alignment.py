@@ -17,6 +17,7 @@ from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 from h216.real_qwen_processor_alignment import (
     CASES, QWEN_PROCESSOR_REV, audit_sample, token_ids,
     verify_cached_processor_root, visual_tensor_receipt,
+    run_real_processor_audit,
 )
 
 
@@ -161,6 +162,43 @@ class RealProcessorPolicyUnitTests(unittest.TestCase):
                     "TRANSFORMERS_OFFLINE":"0"}):
                 with self.assertRaises(ValueError):
                     verify_cached_processor_root(root)
+
+    def test_exact_qwen3vl_processor_class_required_before_audit(self):
+        # Synthetic import seam only: no transformers package, weights, or network.
+        class ExpectedQwenProcessor(FakeProcessor):
+            pass
+
+        class ImpostorProcessor(FakeProcessor):
+            pass
+
+        class DerivedQwenProcessor(ExpectedQwenProcessor):
+            pass
+
+        fake_transformers = types.ModuleType("transformers")
+        fake_transformers.Qwen3VLProcessor = ExpectedQwenProcessor
+        fake_transformers.AutoProcessor = types.SimpleNamespace()
+        safe_source = {
+            "candidate_cases_checked": 96,
+            "rgba_sha_matches": 96,
+            "official_train_admitted": False,
+        }
+        with patch.dict(sys.modules, {"transformers": fake_transformers}), \
+             patch("h216.real_qwen_processor_alignment.verify_cached_processor_root"), \
+             patch("h216.real_qwen_processor_alignment.verify_checked_in_source",
+                   return_value=safe_source):
+            for wrong in (ImpostorProcessor, DerivedQwenProcessor):
+                with self.subTest(processor=wrong.__name__):
+                    fake_transformers.AutoProcessor.from_pretrained = (
+                        lambda *args, cls=wrong, **kwargs: cls()
+                    )
+                    with self.assertRaisesRegex(ValueError, "exact Qwen3VLProcessor"):
+                        run_real_processor_audit(Path("/synthetic-no-cache"))
+            fake_transformers.AutoProcessor.from_pretrained = (
+                lambda *args, **kwargs: ExpectedQwenProcessor()
+            )
+            receipts = run_real_processor_audit(Path("/synthetic-no-cache"))
+            self.assertEqual(len(receipts), len(CASES))
+            self.assertTrue(all(r["model_loaded"] is False for r in receipts))
 
     def test_no_admitted_training_release_bypass(self):
         self.assertEqual(ADMITTED_TRAIN_MANIFEST_SHAS,frozenset())
