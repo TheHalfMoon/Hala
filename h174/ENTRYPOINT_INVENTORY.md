@@ -38,6 +38,11 @@ HTML `<base href>` is rejected before reference inspection because browser
 resolution may redirect an apparently local `script[src]` or stylesheet to
 an external or different base URL. No assets are fetched or executed.
 
+After the HTML entrypoint gate, a separate bounded import-edge preflight
+now classifies tracked JavaScript and CSS dependencies without any build or
+browser execution; see [MODULE_EDGE_INVENTORY.md](MODULE_EDGE_INVENTORY.md).
+This does not confer native browser or TRAIN/DEV qualification.
+
 Three independent synthetic negative/contract tests reproduced both false
 assumptions on the parent implementation before repair. Owner Windows H174
 suite after repair: 75 passed; all three pristine source-only donor receipts
