@@ -56,6 +56,8 @@ class OriginalSnapPreaction:
     preaction_png_sha256: str
     preaction_rgba_sha256: str
     postaction_rgba_sha256: str
+    preaction_original_grid_canvas_sha256: str
+    postaction_original_grid_canvas_sha256: str
 
 
 def validate_specs(specs: tuple[dict, ...] = SPECS) -> None:
@@ -109,8 +111,12 @@ def validate_replay(
         _require(_sha(row.preaction_png_sha256)
                  and _sha(row.preaction_rgba_sha256)
                  and _sha(row.postaction_rgba_sha256)
-                 and row.preaction_rgba_sha256 != row.postaction_rgba_sha256,
-                 "H193 native original slider action did not visibly redraw pixels")
+                 and _sha(row.preaction_original_grid_canvas_sha256)
+                 and _sha(row.postaction_original_grid_canvas_sha256)
+                 and row.preaction_rgba_sha256 != row.postaction_rgba_sha256
+                 and row.preaction_original_grid_canvas_sha256
+                     != row.postaction_original_grid_canvas_sha256,
+                 "H193 original slider did not change actual source-rendered grid canvas")
         groups.setdefault(row.id, []).append(row)
     _require(set(groups) == {s["id"] for s in SPECS},
              "H193 one original application source task missing")
@@ -202,6 +208,10 @@ def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
                  "H193 target range control outside model-visible screenshot")
         before_png = page.screenshot(animations="disabled")
         before_rgba = _rgba_digest(before_png)
+        original_grid = page.locator("#grid")
+        grid_before = sha256(
+            original_grid.evaluate("(canvas) => canvas.toDataURL('image/png')").encode("ascii")
+        ).hexdigest()
         # Source-native task via real browser keyboard INPUT, never a
         # fake DOM value assignment or direct canvas drawing.
         target.focus()
@@ -213,8 +223,12 @@ def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
         page.wait_for_timeout(400)
         after_png = page.screenshot(animations="disabled")
         after_rgba = _rgba_digest(after_png)
-        _require(before_rgba != after_rgba and not js_errors,
-                 "H193 source UI did not visibly redraw or emitted JS error")
+        grid_after = sha256(
+            original_grid.evaluate("(canvas) => canvas.toDataURL('image/png')").encode("ascii")
+        ).hexdigest()
+        _require(before_rgba != after_rgba
+                 and grid_before != grid_after and not js_errors,
+                 "H193 original grid canvas did not repaint or browser emitted JS error")
         return OriginalSnapPreaction(
             id=spec["id"], language=spec["language"],
             seeded_slider=spec["seed"], target_slider=spec["target"],
@@ -223,6 +237,8 @@ def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
             preaction_png_sha256=sha256(before_png).hexdigest(),
             preaction_rgba_sha256=before_rgba,
             postaction_rgba_sha256=after_rgba,
+            preaction_original_grid_canvas_sha256=grid_before,
+            postaction_original_grid_canvas_sha256=grid_after,
         )
     finally:
         context.close()
