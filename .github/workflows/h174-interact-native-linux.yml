@@ -146,5 +146,14 @@ jobs:
           # Vite runs in pristine-derived donor scratch, but Python H174
           # comes from the independently checked-out Hala repository.
           export PYTHONPATH="$GITHUB_WORKSPACE"
-          python -m h174.interact_native_smoke --port 8181 --browser-channel chromium
-          echo "H174_INTERACT_ORIGINAL_NATIVE_ONLY_NO_DATASET_ADMISSION"
+          # Real original browser smoke must fail in bounded time, never
+          # occupy free runner indefinitely on Vite/HMR or pointer hangs.
+          if timeout --signal=TERM --kill-after=5s 120s python -u -m h174.interact_native_smoke --port 8181 --browser-channel chromium; then
+            echo "H174_INTERACT_ORIGINAL_NATIVE_ONLY_NO_DATASET_ADMISSION"
+          else
+            status=$?
+            echo "H174_INTERACT_ORIGINAL_NATIVE_FAILED_OR_TIMED_OUT exit=$status"
+            echo "H174_INTERACT_ORIGINAL_VITE_PUBLIC_SOURCE_LOG_TAIL"
+            tail -100 "$RUNNER_TEMP/h174-vite.log"
+            exit "$status"
+          fi
