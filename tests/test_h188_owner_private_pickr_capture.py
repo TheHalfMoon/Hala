@@ -58,14 +58,14 @@ class H188OwnerPrivateOriginalCaptureTests(unittest.TestCase):
             self.assertFalse(proof["train_dev_admitted"])
             self.assertEqual(proof["model_calls"], 0)
             self.assertEqual(proof["public_images_uploaded"], 0)
-            doc = json.loads((dest / "source-prospects-not-admitted.json").read_text())
+            doc = json.loads((dest / "source-prospects-not-admitted.json").read_text(encoding="utf-8"))
             self.assertFalse(doc["official_train_dev_dataset_admitted"])
             self.assertEqual(len(doc["cases"]), 2)
             self.assertEqual({x["language"] for x in doc["cases"]}, {"en", "ar"})
             self.assertEqual(len(list((dest / "images").glob("*.png"))), 2)
             self.assertNotIn("native_source_target_center", str(doc))
             private_gold = json.loads(
-                (dest / "OWNER_PRIVATE_REFERENCE_NOT_MODEL_INPUT.json").read_text()
+                (dest / "OWNER_PRIVATE_REFERENCE_NOT_MODEL_INPUT.json").read_text(encoding="utf-8")
             )
             self.assertTrue(all(row["not_for_model_input"]
                                 for row in private_gold["rows"]))
