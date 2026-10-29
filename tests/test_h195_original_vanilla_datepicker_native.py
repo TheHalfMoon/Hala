@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from unittest.mock import patch
 
 from h185.manifest_sha_only import scan_legacy_manifest_sha_fields
 from h195.original_vanilla_datepicker_native import (
@@ -59,6 +60,21 @@ class OriginalCalendarResearchTests(unittest.TestCase):
         self.assertFalse(r["old_ood_accessed"])
         self.assertFalse(r["historical_source_complete"])
         self.assertEqual(r["model_calls"], 0)
+
+    def test_hosted_public_source_blacklist_rejects_old_upstream(self):
+        from h195.original_vanilla_datepicker_native import (
+            source_novelty_research_only,
+        )
+        with patch(
+            "h195.original_vanilla_datepicker_native.KNOWN_BURNED_REPOS",
+            frozenset({"mymth/vanillajs-datepicker"}),
+        ):
+            with self.assertRaisesRegex(ValueError, "public previously consumed"):
+                source_novelty_research_only(None)
+        public = source_novelty_research_only(None)
+        self.assertEqual(public["historical_git_checkouts_screened"], 0)
+        self.assertFalse(public["source_history_completeness_proven"])
+        self.assertFalse(public["training_approved"])
 
     def test_missing_independent_browser_replay_rejected(self):
         with self.assertRaisesRegex(ValueError, "context missing"):
