@@ -47,6 +47,14 @@ new application label. The
 historical_app_ids list still MUST include splitjs. The owner must
 authenticate its old H137 binary SHA without opening consumed media.
 Never fabricate placeholders or infer a repo merely from an application name.
+The two H173 consumed sources must also retain their **publicly documented
+original upstream repository identities**: `tingle` =
+`robinparisi/tingle`, `tiny-slider` = `ganlanyuan/tiny-slider` (see
+`h173/README.md`). A matching Git/HTML pair attributed to a different
+repository is rejected, even if the legacy owner roster is altered to match.
+This is a source-family metadata check only, not authentication of all
+historical repositories or permission to reopen the consumed evaluation.
+
 Two apps originating from the same upstream repository remain one source
 family for future split eligibility, even if their old Git revisions differ.
 
