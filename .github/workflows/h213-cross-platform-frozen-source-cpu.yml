@@ -10,12 +10,16 @@ on:
       - "h213/**"
       - "tests/test_h213_frozen_candidate_reproduction_gate.py"
       - "tests/test_h214_no_mac_ci_policy.py"
+      - "tests/test_h215_portable_png_rgba_gate.py"
+      - "h215/**"
       - ".github/workflows/h213-cross-platform-frozen-source-cpu.yml"
   pull_request:
     paths:
       - "h213/**"
       - "tests/test_h213_frozen_candidate_reproduction_gate.py"
       - "tests/test_h214_no_mac_ci_policy.py"
+      - "tests/test_h215_portable_png_rgba_gate.py"
+      - "h215/**"
       - ".github/workflows/h213-cross-platform-frozen-source-cpu.yml"
   workflow_dispatch:
 
@@ -61,5 +65,7 @@ jobs:
           python -O -m unittest discover -s tests -p 'test_h213_frozen_candidate_reproduction_gate.py' -q
           python -O -m h213.frozen_candidate_reproduction_gate
           python -O -m unittest discover -s tests -p 'test_h214_no_mac_ci_policy.py' -q
-          python -m compileall -q h213 tests/test_h213_frozen_candidate_reproduction_gate.py tests/test_h214_no_mac_ci_policy.py
-          echo "H214_96_BITWISE_PNG_RGBA_WINDOWS_LINUX_ONLY_PASS_NO_MODEL_NO_OWNER_MEDIA"
+          python -m unittest discover -s tests -p 'test_h215_portable_png_rgba_gate.py' -q
+          python -O -m unittest discover -s tests -p 'test_h215_portable_png_rgba_gate.py' -q
+          python -m compileall -q h213 h215 tests/test_h213_frozen_candidate_reproduction_gate.py tests/test_h214_no_mac_ci_policy.py tests/test_h215_portable_png_rgba_gate.py
+          echo "H215_PINNED_WINDOWS_PNG_LINUX_RGBA_96_WINDOWS_LINUX_ONLY_NO_TRAINING"
