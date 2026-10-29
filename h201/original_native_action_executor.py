@@ -188,8 +188,15 @@ def _one_snap_original(browser: Any, port: int, spec: dict) -> SnapNativeActionR
         page.wait_for_timeout(350)
         box = target.bounding_box()
         require(box is not None, "original source target slider not visible")
+        # A range input's bounding-box midpoint is NOT necessarily the
+        # visible thumb: the pinned original min=20/max=500, value=300,
+        # and real mouse-click-at-center changes the value to 260.
+        # Original Edge research measured a thumb hit 7–17px right of
+        # midpoint that PRESERVES 300 before ArrowRight yields 301.
+        # This is a source-native FIXTURE coordinate, not a learned
+        # model prediction nor data automatically admitted to training.
         center = (
-            float(round(box["x"] + box["width"]*0.5, 4)),
+            float(round(box["x"] + box["width"]*0.5 + 12.0, 4)),
             float(round(box["y"] + box["height"]*0.5, 4)),
         )
         require(0 <= center[0] < WIDTH and 0 <= center[1] < HEIGHT,
