@@ -25,7 +25,11 @@ from threading import Thread
 from typing import Callable
 
 from h174.source_candidates import _reject_reparse
-from h179.source_novelty import screen_pins_against_history
+from h179.source_novelty import (
+    screen_pins_against_history, KNOWN_BURNED_REPOS,
+    KNOWN_BURNED_GIT, KNOWN_BURNED_HTML,
+)
+from h184.public_prior_considered_origins import validate_public_previous_ledger
 from h185.manifest_sha_only import (
     scan_legacy_manifest_sha_fields, screen_unadmitted_new_case_hashes,
 )
