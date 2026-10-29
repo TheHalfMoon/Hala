@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from hashlib import sha256
 from io import BytesIO
 from math import isfinite
+from typing import Callable
 
 from h174.pickr_native_smoke import (
     _require, allow_loopback_request, create_isolated_smoke_context,
@@ -161,7 +162,10 @@ def _rgba_digest(png: bytes) -> str:
         return sha256(im.convert("RGBA").tobytes()).hexdigest()
 
 
-def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
+def _one_native_slider(
+    browser, port: int, spec: dict,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
+) -> OriginalSnapPreaction:
     context = create_isolated_smoke_context(browser)
     try:
         context.route(
@@ -229,6 +233,18 @@ def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
         _require(before_rgba != after_rgba
                  and grid_before != grid_after and not js_errors,
                  "H193 original grid canvas did not repaint or browser emitted JS error")
+        # H194 optional owner-PRIVATE sink receives the ORIGINAL preaction
+        # PNG and key/target geometry only AFTER genuine source reward
+        # passed. Public GitHub CI never enables the sink.
+        if capture_preaction is not None:
+            capture_preaction(
+                dict(spec), bytes(before_png),
+                {
+                    "action_type": "key_press", "key": "ArrowRight",
+                    "slider": spec["target"],
+                    "target_center": [center[0], center[1]],
+                },
+            )
         return OriginalSnapPreaction(
             id=spec["id"], language=spec["language"],
             seeded_slider=spec["seed"], target_slider=spec["target"],
@@ -244,8 +260,11 @@ def _one_native_slider(browser, port: int, spec: dict) -> OriginalSnapPreaction:
         context.close()
 
 
-def run_original_snap(port: int, channel: str,
-                      owner_old_sha_metadata: dict | None = None) -> dict:
+def run_original_snap(
+    port: int, channel: str,
+    owner_old_sha_metadata: dict | None = None,
+    capture_preaction: Callable[[dict, bytes, dict], None] | None = None,
+) -> dict:
     validate_specs()
     _require(type(port) is int and 1 <= port <= 65535,
              "H193 only original pinned source served on local loopback")
@@ -254,7 +273,7 @@ def run_original_snap(port: int, channel: str,
         browser = playwright.chromium.launch(channel=channel, headless=True)
         try:
             rows = tuple(
-                _one_native_slider(browser, port, spec)
+                _one_native_slider(browser, port, spec, capture_preaction)
                 for spec in SPECS for _ in range(REPEATS)
             )
         finally:
