@@ -1,6 +1,6 @@
-"""H214: source-only regression against unauthorized CI operating systems.
+"""H214: fail-closed source-only regression for approved CI hosts.
 
-No owner files, images, GPU, model, or network access.
+No owner files, screenshots, model weights, GPU or private metadata.
 """
 from __future__ import annotations
 
@@ -20,18 +20,21 @@ def require(condition: bool, reason: str) -> None:
 
 
 def validate_workflow_text(text: str) -> None:
-    """Reject host drift before treating a workflow as approved evidence."""
+    """Enforce a fixed Windows/Linux matrix and exact source-only checks."""
     require(type(text) is str and 0 < len(text) <= 20000, "invalid workflow")
-    require(not re.search(r"(?i)\\b(?:macos|darwin|osx)\\b", text),
+    require(not re.search(r"(?i)\b(?:macos|darwin|osx)\b", text),
             "unapproved host")
     matches = re.findall(
-        r"(?m)^\\s*os:\\s*\\[([^\\]\\r\\n]+)\\]\\s*$", text
+        r"(?m)^\s*os:\s*\[([^\]\r\n]+)\]\s*$", text
     )
     require(len(matches) == 1, "one explicit host matrix required")
-    hosts = [v.strip().strip("'\\\"") for v in matches[0].split(",")]
+    hosts = [
+        value.strip().strip(chr(34)).strip(chr(39))
+        for value in matches[0].split(",")
+    ]
     require(hosts == ["ubuntu-24.04", "windows-2025"],
             "only pinned Windows and Linux hosts permitted")
-    runners = re.findall(r"(?m)^\\s*runs-on:\\s*(.+?)\\s*$", text)
+    runners = re.findall(r"(?m)^\s*runs-on:\s*(.+?)\s*$", text)
     require(runners == ["${{ matrix.os }}"], "unapproved extra runner")
     require('python-version: ["3.11", "3.12"]' in text,
             "pinned Python matrix required")
@@ -63,7 +66,7 @@ class NoMacCiPolicyTests(unittest.TestCase):
         self.deny(self.original.replace("windows-2025]", "windows-2025, macos-15]"))
 
     def test_darwin_job_rejected(self) -> None:
-        self.deny(self.original + "\\n  other:\\n    runs-on: darwin\\n")
+        self.deny(self.original + "\n  other:\n    runs-on: darwin\n")
 
     def test_windows_omission_rejected(self) -> None:
         self.deny(self.original.replace("ubuntu-24.04, windows-2025", "ubuntu-24.04"))
@@ -75,7 +78,7 @@ class NoMacCiPolicyTests(unittest.TestCase):
         self.deny(self.original.replace("runs-on: ${{ matrix.os }}", "runs-on: ubuntu-latest"))
 
     def test_duplicate_host_matrix_rejected(self) -> None:
-        self.deny(self.original + "\\n    os: [ubuntu-24.04, windows-2025]\\n")
+        self.deny(self.original + "\n    os: [ubuntu-24.04, windows-2025]\n")
 
     def test_unpinned_pillow_rejected(self) -> None:
         self.deny(self.original.replace("Pillow==12.3.0", "Pillow"))
