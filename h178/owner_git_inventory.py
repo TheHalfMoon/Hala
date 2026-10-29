@@ -102,7 +102,7 @@ def inventory_local_original_sources(roots: list[str | Path]) -> dict:
     phases: list[Path] = []
     seen_phase_paths: set[str] = set()
     for requested in roots:
-        _require(type(requested) in (str, Path), "invalid root type")
+        _require(isinstance(requested, (str, Path)), "invalid root type")
         root = Path(requested)
         _require(_safe_directory(root), "inaccessible or reparse owner root")
         if PHASE_NAME.fullmatch(root.name):
