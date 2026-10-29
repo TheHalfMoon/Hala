@@ -50,6 +50,10 @@ jobs:
           New-Item -ItemType Directory -Path $donor, $scratch -Force | Out-Null
           git -C $donor init
           if ($LASTEXITCODE -ne 0) { throw 'git init failed' }
+          # Windows defaults can rewrite upstream LF bytes to CRLF on checkout.
+          # Preserve immutable Git blob bytes or the SHA-pinned HTML/license fails.
+          git -C $donor config core.autocrlf false
+          if ($LASTEXITCODE -ne 0) { throw 'git checkout byte-preservation config failed' }
           git -C $donor remote add origin https://github.com/taye/interact.js.git
           if ($LASTEXITCODE -ne 0) { throw 'git remote failed' }
           git -C $donor fetch --depth=1 origin $sha
@@ -82,7 +86,8 @@ jobs:
           donor = Path(os.environ["H175_DONOR"])
           scratch = Path(os.environ["H175_SCRATCH"])
           proof = verify_local_source_only("interact-dropzones", donor)
-          assert proof["source_git_sha"] == "a993eb8cd5cbc65f3a19e45ee24b7fedc026174f"
+          if proof["source_git_sha"] != "a993eb8cd5cbc65f3a19e45ee24b7fedc026174f":
+              raise SystemExit("H175 original Git SHA mismatch")
           for rel, expected in (
               (pin["html_path"], pin["html_sha256"]),
               (pin["license_path"], pin["license_sha256"]),
