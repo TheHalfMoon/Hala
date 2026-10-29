@@ -8,7 +8,9 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from h185.manifest_sha_only import scan_legacy_manifest_sha_fields
+from h185.manifest_sha_only import (
+    scan_legacy_manifest_sha_fields, screen_unadmitted_new_case_hashes,
+)
 from h185.audit_manifest_hash_coverage import run as cli_run
 
 
@@ -43,7 +45,7 @@ class LegacyManifestSHAOnlyTests(unittest.TestCase):
                              frozenset({"1"*64}))
             self.assertEqual(result["_owner_only_rgba_sha_candidates"],
                              frozenset({"a"*64}))
-            self.assertFalse(result["historical_gold_accessed"])
+            self.assertFalse(result["gold_field_values_parsed"])
             self.assertFalse(result["old_image_media_opened"])
             self.assertFalse(result["training_dataset_admitted"])
 
@@ -180,6 +182,60 @@ class LegacyManifestSHAOnlyTests(unittest.TestCase):
                 self.skipTest("Windows cannot create a test symlink")
             with self.assertRaisesRegex(ValueError, "unsafe manifest file"):
                 scan_legacy_manifest_sha_fields([root])
+
+    def test_conservative_known_png_reuse_rejected_without_any_training(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _manifest(root, "private-h139", {"image_sha256": "1"*64})
+            old = scan_legacy_manifest_sha_fields([root])
+            with self.assertRaisesRegex(ValueError, "reuses known old PNG"):
+                screen_unadmitted_new_case_hashes([
+                    {"image_sha256": "1"*64, "visual_rgba_sha256": "b"*64}
+                ], old)
+
+    def test_conservative_known_rgba_reuse_rejected_without_any_training(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _manifest(root, "private-h139", {
+                "image_sha256": "1"*64,
+                "visual_rgba_sha256": "a"*64,
+            })
+            old = scan_legacy_manifest_sha_fields([root])
+            with self.assertRaisesRegex(ValueError, "reuses known old PNG or RGBA"):
+                screen_unadmitted_new_case_hashes([
+                    {"image_sha256": "2"*64, "visual_rgba_sha256": "a"*64}
+                ], old)
+
+    def test_new_unique_sha_pairs_cannot_promote_training_on_partial_coverage(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _manifest(root, "private-h139", {"image_sha256": "1"*64})
+            old = scan_legacy_manifest_sha_fields([root])
+            result = screen_unadmitted_new_case_hashes([
+                {"image_sha256": "2"*64, "visual_rgba_sha256": "b"*64},
+            ], old)
+            self.assertTrue(result["legacy_rgba_sha_coverage_missing"])
+            self.assertFalse(result["historical_completeness_proven"])
+            self.assertFalse(result["training_approved"])
+            self.assertFalse(result["ood_evaluation_approved"])
+            self.assertEqual(result["model_calls"], 0)
+
+    def test_new_case_gold_and_duplicate_sha_pairs_cannot_enter_preflight(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _manifest(root, "private-h139", {"image_sha256": "1"*64})
+            old = scan_legacy_manifest_sha_fields([root])
+            item = {"image_sha256": "2"*64, "visual_rgba_sha256": "b"*64}
+            with self.assertRaisesRegex(ValueError, "duplicated"):
+                screen_unadmitted_new_case_hashes([item, dict(item)], old)
+            with self.assertRaisesRegex(ValueError, "metadata only"):
+                screen_unadmitted_new_case_hashes([
+                    dict(item, private_gold_bbox=[4, 5, 6, 7])
+                ], old)
+            with self.assertRaisesRegex(ValueError, "SHA-256 invalid"):
+                screen_unadmitted_new_case_hashes([
+                    dict(item, image_sha256="NOT_SHA")
+                ], old)
 
     def test_ignored_gold_or_model_symlink_subtrees_never_followed(self):
         with tempfile.TemporaryDirectory() as tmp:
