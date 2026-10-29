@@ -43,7 +43,10 @@ def verify_linux_frozen_raster(frozen_bytes: bytes, regenerated: dict) -> dict:
     require(type(frozen_bytes) is bytes and 0 < len(frozen_bytes) <= MAX_BYTES
             and type(regenerated) is dict,
             "bounded immutable source bytes and generated record required")
-    require(sha256(frozen_bytes).hexdigest() == FROZEN_WINDOWS_JSON_SHA256,
+    # Windows Git checkout can replace LF with CRLF. Pin exact
+    # canonical LF research metadata, never a changed document.
+    canonical = frozen_bytes.replace(b"\r\n", b"\n")
+    require(sha256(canonical).hexdigest() == FROZEN_WINDOWS_JSON_SHA256,
             "Windows frozen source metadata changed (including PNG hashes)")
     try:
         doc = json.loads(
