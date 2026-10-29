@@ -134,8 +134,25 @@ jobs:
         run: |
           set -euo pipefail
           cd "$H174_INTERACT_SCRATCH"
-          node node_modules/vite/bin/vite.js --config vite.config.ts \
-            --host 127.0.0.1 --port 8181 --strictPort > "$RUNNER_TEMP/h174-vite.log" 2>&1 &
+          # Vite's ORIGINAL repo config scans ALL demos and trips on unrelated
+          # React/Vue examples. A QA-only inline override scopes optimizer
+          # discovery to the original tracked dropzones HTML. Load original
+          # vite.config.ts in full and never edit source/git or invent an app.
+          node --input-type=module -e '
+            import { createServer } from "./node_modules/vite/dist/node/index.js";
+            const server = await createServer({
+              configFile: "vite.config.ts",
+              optimizeDeps: {
+                entries: ["dropzones/index.html"],
+                include: [],
+              },
+              server: {
+                host: "127.0.0.1", port: 8181, strictPort: true,
+              },
+            });
+            await server.listen();
+            console.log("H174_INTERACT_ORIGINAL_SCOPED_VITE_READY");
+          ' > "$RUNNER_TEMP/h174-vite.log" 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           READY=0
@@ -157,6 +174,15 @@ jobs:
           # Vite runs in pristine-derived donor scratch, but Python H174
           # comes from the independently checked-out Hala repository.
           export PYTHONPATH="$GITHUB_WORKSPACE"
+          # The HTML route alone returns 200 even if the original module
+          # fails Vite import-analysis. Check the exact original module too.
+          if ! curl --fail --silent --show-error --max-time 15 \
+            http://127.0.0.1:8181/dropzones/index.js -o /dev/null; then
+            echo "H174_INTERACT_ORIGINAL_MODULE_RESOLUTION_FAILED"
+            tail -100 "$RUNNER_TEMP/h174-vite.log"
+            exit 1
+          fi
+          echo "H174_INTERACT_ORIGINAL_JS_RESOLUTION_PASS"
           # Real original browser smoke must fail in bounded time, never
           # occupy free runner indefinitely on Vite/HMR or pointer hangs.
           if timeout --signal=TERM --kill-after=5s 120s python -u -m h174.interact_native_smoke --port 8181 --browser-channel chromium; then
