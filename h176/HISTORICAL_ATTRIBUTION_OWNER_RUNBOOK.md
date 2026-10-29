@@ -39,7 +39,11 @@ gridstack-original-column-demo. Five of these have exact public source
 Git pins in H138/H140/H158/H163; splitjs was an H137 npm-based evaluation
 library without an equivalent Git-commit identity recorded in that phase.
 It is represented by an npm-package/version/immutable-binary SHA row,
-and does not appear in the legacy Git-repo/Git-sha/HTML-sha arrays. The
+and does not appear in the legacy Git-repo/Git-sha/HTML-sha arrays.
+The exact npm split.js@1.6.5 registry repository metadata resolves to
+nathancahill/split.git. H176 also rejects future fresh original Git source
+candidates from nathancahill/split regardless of their Git revision or
+new application label. The
 historical_app_ids list still MUST include splitjs. The owner must
 authenticate its old H137 binary SHA without opening consumed media.
 Never fabricate placeholders or infer a repo merely from an application name.
