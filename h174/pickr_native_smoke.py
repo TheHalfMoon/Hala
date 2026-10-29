@@ -15,6 +15,8 @@ from pathlib import Path
 from threading import Thread
 from urllib.parse import urlsplit
 
+from h174.source_candidates import _reject_reparse
+
 
 class _Entrypoint(HTMLParser):
     def __init__(self) -> None:
@@ -46,9 +48,11 @@ def allow_loopback_request(url: str, port: int) -> bool:
 
 def verify_derived_assets(dist_dir: Path) -> dict[str, str]:
     """Check generated JS/CSS assets exist inside the scratch build, not donor Git."""
+    _reject_reparse(dist_dir)
     root = dist_dir.resolve(strict=True)
     assert root.is_dir() and not dist_dir.is_symlink(), "Invalid derived build root"
     html = root / "index.html"
+    _reject_reparse(html)
     assert html.is_file() and not html.is_symlink(), "Missing built index.html"
     parser = _Entrypoint()
     parser.feed(html.read_text(encoding="utf-8"))
@@ -64,6 +68,7 @@ def verify_derived_assets(dist_dir: Path) -> dict[str, str]:
         parts = Path(ref[2:]).parts
         assert ".." not in parts, "Path traversal"
         target = root.joinpath(*parts)
+        _reject_reparse(target)
         resolved = target.resolve(strict=True)
         assert resolved.is_relative_to(root) and target.is_file() and not target.is_symlink(), "Asset escaped root"
         assert resolved.stat().st_size > 0, "Empty generated asset"
