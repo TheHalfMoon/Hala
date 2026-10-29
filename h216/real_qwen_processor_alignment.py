@@ -131,6 +131,13 @@ def verify_cached_processor_root(root: Path) -> None:
     require(os.environ.get("HF_HUB_OFFLINE")=="1"
             and os.environ.get("TRANSFORMERS_OFFLINE")=="1",
             "disallow any online cache/model weight fetch")
+    # H218: assert SHA-256 of the exact eight previously observed PUBLIC
+    # Qwen3-VL processor/tokenizer bytes before any HF processor import.
+    # Neither expected files nor digests can be overridden from the CLI.
+    from h218.pinned_qwen_processor_bytes import verify_pinned_snapshot
+    receipt = verify_pinned_snapshot(root)
+    require(receipt["verified_files"] == 8,
+            "incomplete original public Qwen processor byte receipt")
 
 
 def run_real_processor_audit(root: Path, *, all_research: bool = False) -> list[dict]:
