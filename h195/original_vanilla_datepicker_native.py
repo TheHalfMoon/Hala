@@ -63,6 +63,18 @@ def _require(ok: bool, why: str) -> None:
         raise ValueError("H195 original datepicker PRE-action: " + why)
 
 
+def source_novelty_research_only(historical_root: Path | None) -> dict:
+    """No owner history on public CI is UNKNOWN, never an empty proven inventory."""
+    if historical_root is None:
+        return {
+            "candidate_source_families": 1,
+            "training_approved": False,
+            "source_history_completeness_proven": False,
+            "historical_git_checkouts_screened": 0,
+        }
+    return screen_pins_against_history({SOURCE_KEYS: PIN}, [historical_root])
+
+
 def verify_original_source(
     donor: Path, historical_root: Path | None = None,
 ) -> dict:
@@ -116,10 +128,7 @@ def verify_original_source(
                      text=True, stderr=subprocess.DEVNULL, timeout=20,
                  ).strip(),
                  "original demo JS, compiled datepicker or CSS provenance drift")
-    source = screen_pins_against_history(
-        {SOURCE_KEYS: PIN},
-        [historical_root] if historical_root is not None else [],
-    )
+    source = source_novelty_research_only(historical_root)
     _require(source["candidate_source_families"] == 1
              and source["training_approved"] is False
              and source["source_history_completeness_proven"] is False,
