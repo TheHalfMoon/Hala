@@ -1,0 +1,194 @@
+# H174 pinned original interact.js source-native drag. Never AI/DEV/OOD.
+name: H193 original interact.js SNAP slider PRE-action native replay (research only)
+
+on:
+  push:
+    branches:
+      - ps/h193-original-interact-native-grid-sliders-preaction
+    paths:
+      - ".github/workflows/h193-interact-snap-native-linux.yml"
+      - "h193/**"
+      - "tests/test_h193_interact_snap_preaction.py"
+  pull_request:
+    paths:
+      - ".github/workflows/h193-interact-snap-native-linux.yml"
+      - "h193/**"
+      - "tests/test_h193_interact_snap_preaction.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h193-interact-native-snap-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-interact-linux:
+    name: original two snap slider controls, native redraw and independent PRE-action RGBA
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      H174_INTERACT_GIT: a993eb8cd5cbc65f3a19e45ee24b7fedc026174f
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Establish disposable donor/scratch paths at runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "H174_INTERACT_DONOR=$RUNNER_TEMP/h174-interact-pristine" >> "$GITHUB_ENV"
+          echo "H174_INTERACT_SCRATCH=$RUNNER_TEMP/h174-interact-scratch" >> "$GITHUB_ENV"
+
+      - name: Checkout public Hala source without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install fixed Python 3.11
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11"
+
+      - name: Install Node 24 for original Vite/Yarn
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24"
+
+      - name: Clone exact original donor and archive to separate scratch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$H174_INTERACT_DONOR" "$H174_INTERACT_SCRATCH"
+          git -C "$H174_INTERACT_DONOR" init
+          git -C "$H174_INTERACT_DONOR" remote add origin https://github.com/taye/interact.js.git
+          git -C "$H174_INTERACT_DONOR" fetch --depth=1 origin "$H174_INTERACT_GIT"
+          git -C "$H174_INTERACT_DONOR" checkout --detach "$H174_INTERACT_GIT"
+          test "$(git -C "$H174_INTERACT_DONOR" rev-parse HEAD)" = "$H174_INTERACT_GIT"
+          test -z "$(git -C "$H174_INTERACT_DONOR" status --porcelain --untracked-files=all)"
+          git -C "$H174_INTERACT_DONOR" archive --format=tar HEAD |
+            tar -xf - -C "$H174_INTERACT_SCRATCH"
+          test ! -e "$H174_INTERACT_SCRATCH/.git"
+
+      - name: Pin original HTML/MIT LICENSE and source-only Vite alias
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+          import os
+          from h174.source_candidates import CANDIDATES, verify_local_source_only
+          pin = CANDIDATES["interact-dropzones"]
+          donor = Path(os.environ["H174_INTERACT_DONOR"])
+          scratch = Path(os.environ["H174_INTERACT_SCRATCH"])
+          proof = verify_local_source_only("interact-dropzones", donor)
+          if proof["source_git_sha"] != os.environ["H174_INTERACT_GIT"]:
+              raise SystemExit("H174 interact pinned Git mismatch")
+          for rel, expected in (
+              (pin["html_path"], pin["html_sha256"]),
+              (pin["license_path"], pin["license_sha256"]),
+          ):
+              for root in (donor, scratch):
+                  if sha256((root / rel).read_bytes()).hexdigest() != expected:
+                      raise SystemExit("H174 interact tracked donor SHA mismatch")
+          for name in ("yarn.lock", "vite.config.ts",
+                       "packages/@interactjs/actions/plugin.ts",
+                       "examples/snap/index.html",
+                       "examples/snap/index.js",
+                       "examples/snap/index.css"):
+              if not (scratch / name).is_file():
+                  raise SystemExit("H174 original interact.js source missing " + name)
+          print("H174_INTERACT_PINNED_ORIGINAL_SOURCE_PASS")
+          PY
+
+      - name: Install exactly original Yarn lockfile with lifecycle scripts disabled
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$H174_INTERACT_SCRATCH"
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
+          yarn --version
+          yarn install --frozen-lockfile --ignore-scripts --non-interactive
+          # The pinned original monorepo declares a bootstrap _link and
+          # _add_plugin_indexes, omitted deliberately by --ignore-scripts.
+          # Run only those exact tracked original source scripts in SCRATCH.
+          # Vite cannot resolve original @interactjs/* without their
+          # scratch-local package links and generated original plugin indexes.
+          bash bin/_link
+          node scripts/bin/add_plugin_indexes.js
+          test -L node_modules/@interactjs/interactjs
+          test -f packages/@interactjs/actions/index.ts
+          test -f packages/@interactjs/auto-start/index.ts
+          test -z "$(git -C "$H174_INTERACT_DONOR" status --porcelain --untracked-files=all)"
+          echo "H174_INTERACT_ORIGINAL_MONOREPO_LINKS_PASS"
+
+      - name: Install free pinned Python Playwright and Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install Pillow==12.3.0 playwright==1.64.1
+          python -m playwright install --with-deps chromium
+
+      - name: Compile ONLY original tracked SNAP HTML with original pinned Vite config
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$H174_INTERACT_SCRATCH"
+          # Original dev Vite HMR hangs browser navigation on an unrelated
+          # examples-wide optimizer. Use the pinned original Vite build API,
+          # original config/aliases and tracked HTML as the SOLE rollup input.
+          # QA-only overrides select the input and output path in scratch.
+          timeout --signal=TERM --kill-after=5s 120s node --input-type=module -e '
+            import { build } from "./node_modules/vite/dist/node/index.js";
+            import { resolve } from "node:path";
+            const root = process.cwd();
+            await build({
+              configFile: "vite.config.ts",
+              build: {
+                outDir: resolve(root, ".h193-derived-original-snap"),
+                emptyOutDir: true,
+                rollupOptions: {
+                  input: resolve(root, "examples/snap/index.html"),
+                },
+              },
+            });
+          '
+          test -f ".h193-derived-original-snap/snap/index.html"
+          test -n "$(find .h193-derived-original-snap -type f -name '*.js' -print -quit)"
+          test -z "$(git -C "$H174_INTERACT_DONOR" status --porcelain --untracked-files=all)"
+          echo "H193_PINNED_ORIGINAL_INTERACT_SNAP_BUILD_PASS"
+
+      - name: Loopback source-only original SNAP sliders with real native keyboard action and raster replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$GITHUB_WORKSPACE"
+          # This server only reads the ORIGINAL built HTML/JS/CSS. No HMR,
+          # unrelated examples, dev optimizer, or network access.
+          python -m http.server 8193 --bind 127.0.0.1 \
+            --directory "$H174_INTERACT_SCRATCH/.h193-derived-original-snap" \
+            > "$RUNNER_TEMP/h193-interact-snap-static.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          READY=0
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8193/snap/index.html -o /dev/null; then
+              READY=1
+              break
+            fi
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              cat "$RUNNER_TEMP/h193-interact-snap-static.log"
+              exit 1
+            fi
+            sleep 1
+          done
+          test "$READY" = 1
+          if timeout --signal=TERM --kill-after=5s 150s python -u -m h193.interact_snap_preaction --port 8193 --browser-channel chromium; then
+            echo "H193_SNAP_SOURCE_NATIVE_ONLY_NO_DATASET_ADMISSION_NO_OOD"
+          else
+            status=$?
+            echo "H193_INTERACT_ORIGINAL_SNAP_NATIVE_FAILED exit=$status"
+            tail -80 "$RUNNER_TEMP/h193-interact-snap-static.log"
+            exit "$status"
+          fi
