@@ -22,6 +22,8 @@ def receipts() -> tuple[OriginalSnapPreaction, ...]:
             preaction_png_sha256=("1" if index == 0 else "2")*64,
             preaction_rgba_sha256=("a" if index == 0 else "b")*64,
             postaction_rgba_sha256=("c" if index == 0 else "d")*64,
+            preaction_original_grid_canvas_sha256=("3" if index == 0 else "4")*64,
+            postaction_original_grid_canvas_sha256=("5" if index == 0 else "6")*64,
         )
         for index, spec in enumerate(SPECS) for _ in range(2)
     )
@@ -74,7 +76,17 @@ class OriginalInteractSnapSliderTests(unittest.TestCase):
         rows = list(receipts())
         rows[0] = replace(rows[0],
                           postaction_rgba_sha256=rows[0].preaction_rgba_sha256)
-        with self.assertRaisesRegex(ValueError, "visibly redraw"):
+        with self.assertRaisesRegex(ValueError, "source-rendered grid canvas"):
+            validate_replay(tuple(rows))
+
+    def test_original_canvas_repaint_required_even_if_focus_outline_changes(self):
+        rows = list(receipts())
+        rows[0] = replace(
+            rows[0],
+            postaction_original_grid_canvas_sha256=
+                rows[0].preaction_original_grid_canvas_sha256,
+        )
+        with self.assertRaisesRegex(ValueError, "source-rendered grid canvas"):
             validate_replay(tuple(rows))
 
     def test_independent_replay_geometry_png_or_rgba_drift_detected(self):
@@ -104,8 +116,8 @@ class OriginalInteractSnapSliderTests(unittest.TestCase):
 
     def test_bad_hash_or_invisible_slider_target_rejected(self):
         for key, value, message in (
-            ("preaction_png_sha256", "G"*64, "visibly redraw"),
-            ("preaction_rgba_sha256", "not a sha", "visibly redraw"),
+            ("preaction_png_sha256", "G"*64, "source-rendered grid canvas"),
+            ("preaction_rgba_sha256", "not a sha", "source-rendered grid canvas"),
             ("native_slider_center", (-1.0, 200.0), "viewport"),
         ):
             with self.subTest(key=key):
