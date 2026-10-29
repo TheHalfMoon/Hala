@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 from hashlib import sha256
+from hmac import compare_digest
 import json
 import re
 from typing import Any
@@ -31,16 +32,9 @@ def exact_original_loopback_url(port: int) -> str:
     return f"http://127.0.0.1:{port}{ORIGINAL_ROUTE}"
 
 
-def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
-    """Only native browser pointer/keyboard, no DOM/evaluate/selector access.
-
-    Reject unregistered page destinations before parsing/executing actions.
-    This executor deliberately scopes to the pinned original SNAP demo
-    until an audited app allowlist and real permission UI exist.
-    """
-    # An exact canonical loopback URL is a capability boundary. Avoid
-    # accepting lookalike hostnames, URL credentials, queries, fragments,
-    # zero/invalid ports, or alternate string spellings.
+def require_registered_page(page: Any, expected_url: str) -> None:
+    """Fail closed on the pinned original local page and screenshot viewport."""
+    # Canonical exact URL avoids userinfo, DNS lookalikes and query variants.
     match = (re.fullmatch(
         r"http://127\.0\.0\.1:([1-9][0-9]{0,4})/snap/index\.html",
         expected_url,
@@ -48,13 +42,21 @@ def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
     require(match is not None and int(match.group(1)) <= 65535 and
             exact_original_loopback_url(int(match.group(1))) == expected_url,
             "only registered original static source URL may receive actions")
+    require(page.url == expected_url, "browser left the original app page")
+    require(page.viewport_size == {"width": WIDTH, "height": HEIGHT},
+            "native screenshot coordinate viewport not 960x720")
 
+
+def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
+    """Native test-only dispatch with page guards before/between events.
+
+    Production callers should use execute_attested_native_action, which
+    also compares an in-memory model-visible preaction screenshot.
+    """
     def guard_page() -> None:
-        # Recheck *between* native events. A focus-click can navigate to
-        # another page; never send a subsequent keyboard event to it.
-        require(page.url == expected_url, "browser left the original app page")
-        require(page.viewport_size == {"width": WIDTH, "height": HEIGHT},
-                "native screenshot coordinate viewport not 960x720")
+        # A focus-click can navigate; never send a subsequent keyboard
+        # event to an unrelated page or accept a changed viewport.
+        require_registered_page(page, expected_url)
 
     guard_page()
     # H200 rejects duplicate/unicode-escaped keys and NaN/Infinity, not
@@ -101,6 +103,47 @@ def execute_one_native_action(page: Any, raw: str, expected_url: str) -> dict:
         raise ValueError("H201 impossible action kind")
     return {"status": "NATIVE_GUI_INPUT_DISPATCHED",
             "native_events": count, "kind": kind}
+
+
+# A conservative cap avoids accepting arbitrarily large in-memory media.
+# This is an original public-source browser smoke, never owner-private gold.
+MAX_PREACTION_PNG_BYTES = 8 * 1024 * 1024
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+
+
+def _bounded_preaction_png_digest(value: object) -> bytes:
+    """Validate a bounded PNG identity header; do not decode or save media."""
+    require(type(value) is bytes and 33 <= len(value) <= MAX_PREACTION_PNG_BYTES,
+            "expected bounded model-visible preaction PNG bytes")
+    require(value[:8] == PNG_SIGNATURE and value[12:16] == b"IHDR"
+            and int.from_bytes(value[16:20], "big") == WIDTH
+            and int.from_bytes(value[20:24], "big") == HEIGHT,
+            "preaction screenshot is not the required original viewport PNG")
+    return sha256(value).digest()
+
+
+def execute_attested_native_action(
+    page: Any, raw: str, expected_url: str, model_visible_preaction_png: bytes,
+) -> dict:
+    """Dispatch only when current rendered PNG matches model-visible pixels.
+
+    The caller must supply the SAME original PNG bytes it actually provided
+    to the model. Verification is in memory; no screenshot is persisted.
+    This is a fail-closed stale-image check, NOT an atomic action transaction
+    and NOT proof that a model actually saw the pixels supplied by caller.
+    """
+    require_registered_page(page, expected_url)
+    expected_digest = _bounded_preaction_png_digest(model_visible_preaction_png)
+    # Validate action before taking a fresh screenshot; avoid browser calls
+    # on an invalid/ambiguous model response.
+    parse_actions(raw)
+    current_png = page.screenshot(animations="disabled", full_page=False)
+    current_digest = _bounded_preaction_png_digest(current_png)
+    require_registered_page(page, expected_url)
+    require(compare_digest(expected_digest, current_digest),
+            "model-visible preaction screenshot is stale or changed")
+    result = execute_one_native_action(page, raw, expected_url)
+    return {**result, "preaction_png_verified": True}
 
 
 @dataclass(frozen=True)
@@ -239,9 +282,11 @@ def _one_snap_original(browser: Any, port: int, spec: dict) -> SnapNativeActionR
             "point": [center[0], center[1]],
             "key": "ArrowRight",
         }]}, separators=(",", ":"))
-        execution = execute_one_native_action(
-            page, raw, exact_original_loopback_url(port),
+        execution = execute_attested_native_action(
+            page, raw, exact_original_loopback_url(port), before_png,
         )
+        require(execution["preaction_png_verified"] is True,
+                "original source preaction screenshot was not verified")
         page.mouse.move(0, 0)
         page.wait_for_timeout(350)
         after_png = page.screenshot(animations="disabled")
