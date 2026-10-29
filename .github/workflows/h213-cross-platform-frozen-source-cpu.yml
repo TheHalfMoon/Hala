@@ -53,11 +53,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for mode in normal optimized; do
-            args=()
-            if [ "$mode" = optimized ]; then args=(-O); fi
-            python "${args[@]}" -m unittest discover -s tests -p 'test_h213_frozen_candidate_reproduction_gate.py' -q
-            python "${args[@]}" -m h213.frozen_candidate_reproduction_gate
-          done
+          python -m unittest discover -s tests -p 'test_h213_frozen_candidate_reproduction_gate.py' -q
+          python -m h213.frozen_candidate_reproduction_gate
+          python -O -m unittest discover -s tests -p 'test_h213_frozen_candidate_reproduction_gate.py' -q
+          python -O -m h213.frozen_candidate_reproduction_gate
           python -m compileall -q h213 tests/test_h213_frozen_candidate_reproduction_gate.py
           echo "H213_96_BITWISE_PNG_RGBA_ALL_PLATFORM_REPRODUCTION_PASS_NO_MODEL_NO_OWNER_MEDIA"
