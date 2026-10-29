@@ -170,3 +170,50 @@ def test_h174_pickr_fail_closed_even_with_python_optimized_mode(tmp_path, violat
 def test_h174_pickr_module_has_no_optimization_skippable_assert_guards():
     module_ast = ast.parse(inspect.getsource(source_module))
     assert not any(isinstance(node, ast.Assert) for node in ast.walk(module_ast))
+
+
+@pytest.mark.parametrize("injected_html", [
+    '<button onclick="window.unsafe=true">Click</button>',
+    '<img src="./assets/app.js" onerror="window.unsafe=true">',
+    '<iframe src="./assets/app.js"></iframe>',
+    '<object data="./assets/app.js"></object>',
+    '<embed src="./assets/app.js">',
+    '<meta http-equiv="refresh" content="0;url=./assets/app.js">',
+    '<script src="./assets/app.js" src="https://evil.example/other.js"></script>',
+    '<a href="javascript:alert(1)">Run</a>',
+    '<link rel="import" href="./assets/app.js">',
+    '<svg onload="window.unsafe=true"></svg>',
+])
+def test_h174_pickr_refuses_ambiguous_or_active_derived_html(tmp_path, injected_html):
+    root = _dist(tmp_path)
+    html = root / "index.html"
+    html.write_text(html.read_text(encoding="utf-8").replace(
+        "</head>", injected_html + "</head>"
+    ), encoding="utf-8")
+    with pytest.raises(ValueError, match="Unsafe active HTML"):
+        verify_derived_assets(root)
+
+
+@pytest.mark.parametrize("injected_html", [
+    '<button onclick="window.unsafe=true">Click</button>',
+    '<iframe src="./assets/app.js"></iframe>',
+    '<meta http-equiv="refresh" content="0;url=./assets/app.js">',
+])
+def test_h174_pickr_active_html_stays_rejected_in_python_optimized_mode(tmp_path, injected_html):
+    root = _dist(tmp_path)
+    html = root / "index.html"
+    html.write_text(html.read_text(encoding="utf-8").replace(
+        "</head>", injected_html + "</head>"
+    ), encoding="utf-8")
+    package_root = Path(__file__).resolve().parents[1]
+    env = dict(os.environ)
+    env["PYTHONPATH"] = str(package_root) + os.pathsep + env.get("PYTHONPATH", "")
+    result = subprocess.run(
+        [sys.executable, "-O", "-c",
+         "from pathlib import Path; from h174.pickr_native_smoke import verify_derived_assets; "
+         + "verify_derived_assets(Path(" + repr(str(root)) + "))"],
+        cwd=package_root, env=env, capture_output=True, text=True, timeout=20,
+        check=False,
+    )
+    assert result.returncode != 0, "Optimized Python bypassed active HTML safeguard"
+    assert "ValueError: Unsafe active HTML" in result.stderr, result.stderr

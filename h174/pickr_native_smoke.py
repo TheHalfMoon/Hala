@@ -25,9 +25,25 @@ class _Entrypoint(HTMLParser):
         self.styles: list[str] = []
         self.has_base = False
         self.inline_scripts = 0
+        self.unsafe_active_html: list[str] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         fields = dict(attrs)
+        names = [name for name, _ in attrs]
+        if len(set(names)) != len(names):
+            self.unsafe_active_html.append("duplicate-attributes:" + tag)
+        if tag in ("iframe", "frame", "frameset", "object", "embed", "applet", "portal"):
+            self.unsafe_active_html.append("active-element:" + tag)
+        if tag == "meta" and (fields.get("http-equiv") or "").strip().casefold() == "refresh":
+            self.unsafe_active_html.append("meta-refresh")
+        if tag == "link" and "import" in (fields.get("rel") or "").casefold().split():
+            self.unsafe_active_html.append("html-import")
+        for name, value in attrs:
+            if name.startswith("on"):
+                self.unsafe_active_html.append("event-handler:" + name)
+            if name in ("href", "src", "data", "action", "formaction", "xlink:href"):
+                if (value or "").lstrip().casefold().startswith(("javascript:", "vbscript:")):
+                    self.unsafe_active_html.append("active-url:" + name)
         if tag == "base":
             self.has_base = True
         if tag == "script":
@@ -68,6 +84,7 @@ def verify_derived_assets(dist_dir: Path) -> dict[str, str]:
     parser.feed(html.read_text(encoding="utf-8"))
     parser.close()
     _require(not parser.has_base, "HTML base URL not permitted")
+    _require(not parser.unsafe_active_html, "Unsafe active HTML content: " + ", ".join(parser.unsafe_active_html))
     _require(parser.inline_scripts == 0, "Unexpected inline script in derived HTML")
     _require(len(parser.scripts) == 1, "Expected exactly one built script")
     local_styles = [s for s in parser.styles if not urlsplit(s).scheme]
