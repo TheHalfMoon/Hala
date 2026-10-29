@@ -73,3 +73,31 @@ def test_h174_mediumzoom_refuses_symlinked_scratch_ancestor(tmp_path):
         pytest.skip("OS cannot create symlink in this context")
     with pytest.raises(ValueError, match="symlink or junction"):
         verify_mediumzoom_dist(alias / "dist")
+
+
+@pytest.mark.parametrize("system,expected", [
+    ("Windows", "windows"), ("Linux", "linux"),
+])
+def test_h174_mediumzoom_receipt_truthfully_names_real_platform(
+    monkeypatch, capsys, system, expected
+):
+    import sys
+    from h174 import mediumzoom_native_smoke as smoke
+    observed = []
+    monkeypatch.setattr(smoke.platform, "system", lambda: system)
+
+    def fake_native(dist_dir, channel):
+        observed.append((dist_dir, channel))
+        return "e" * 64, 2
+
+    monkeypatch.setattr(smoke, "run_native_mediumzoom_smoke", fake_native)
+    monkeypatch.setattr(sys, "argv", [
+        "h174.mediumzoom_native_smoke", "--dist-dir", "synthetic-dist",
+        "--browser-channel", "msedge",
+    ])
+    smoke.main()
+    captured = capsys.readouterr().out
+    assert observed == [(Path("synthetic-dist"), "msedge")]
+    assert "H174_MEDIUMZOOM_ORIGINAL_NATIVE_PASS platform=" + expected in captured
+    assert "rgba_sha256=" + "e" * 64 in captured
+    assert "H174_MEDIUMZOOM_ORIGINAL_LINUX_NATIVE_PASS" not in captured
