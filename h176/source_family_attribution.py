@@ -31,6 +31,12 @@ KNOWN_NPM_SOURCES = {"splitjs": ("split.js", "1.6.5")}
 # git+https://github.com/nathancahill/split.git as the upstream repo.
 # Future Git original-app candidates must not silently recycle this family.
 KNOWN_NPM_UPSTREAM_REPOS = frozenset({"nathancahill/split"})
+# Public h173/README.md pins these exact upstream repository families alongside
+# their immutable Git/HTML hashes; a fabricated repo must not hide reuse.
+FROZEN_H173_REPOS = {
+    "tingle": "robinparisi/tingle",
+    "tiny-slider": "ganlanyuan/tiny-slider",
+}
 
 # Public source-code attested previous families beyond H173's minimum list.
 # h137/source.py (splitjs eval); h138/probe.py (two Kanban eval apps);
@@ -163,6 +169,10 @@ def audit_attribution(
             historical_git_pairs.add(app)
         if app in SOURCE_PINS:
             frozen = SOURCE_PINS[app]
+            _require(
+                repo.casefold() == FROZEN_H173_REPOS[app],
+                "H173 frozen original upstream repository mismatch",
+            )
             _require(
                 git_sha == frozen["git_sha"]
                 and html == frozen["original_html_sha256"],

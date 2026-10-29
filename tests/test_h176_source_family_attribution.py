@@ -18,6 +18,7 @@ from h174.split_firewall import (
 )
 from h176.source_family_attribution import (
     SCHEMA, KNOWN_EXTRA_PREVIOUS, KNOWN_NPM_SOURCES, FROZEN_OTHER_GIT,
+    FROZEN_H173_REPOS,
     audit_attribution,
 )
 from h176.audit_owner_history import run as local_cli_run
@@ -60,7 +61,8 @@ def _fixture():
             continue
         frozen = SOURCE_PINS.get(app)
         rows.append({
-            "app": app, "repo": f"fictional-owner/old-original-{index}",
+            "app": app, "repo": (FROZEN_H173_REPOS[app] if frozen else
+                                  f"fictional-owner/old-original-{index}"),
             "git_sha": (frozen["git_sha"] if frozen else
                         FROZEN_OTHER_GIT.get(app, f"{index:040x}")),
             "html_sha256": (frozen["original_html_sha256"] if frozen
@@ -121,6 +123,28 @@ class SourceFamilyAttributionTests(unittest.TestCase):
                 ValueError, "H173 frozen original app"
             ):
                 audit_attribution(meta, pixels, history, attribution)
+
+    def test_h173_original_repo_cannot_be_spoofed_even_with_matching_sha_pair(self):
+        # The legacy unpaired repository roster can be rewritten alongside a
+        # fake row. Exact Git and HTML hashes alone do not establish family.
+        for app in SOURCE_PINS:
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            old_repo = row["repo"]
+            row["repo"] = f"fictional-owner/renamed-{app}"
+            history["historical_repositories"].remove(old_repo)
+            history["historical_repositories"].append(row["repo"])
+            with self.subTest(app=app), self.assertRaisesRegex(
+                ValueError, "H173 frozen original upstream repository"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
+
+    def test_h173_original_repo_case_variant_remains_same_family(self):
+        meta, pixels, history, attribution = _fixture()
+        row = next(r for r in attribution["families"] if r["app"] == "tingle")
+        row["repo"] = row["repo"].upper()
+        report = audit_attribution(meta, pixels, history, attribution)
+        self.assertFalse(report["source_history_completeness_proven"])
 
     def test_newly_recovered_prior_source_cannot_disappear_from_both_manifests(self):
         meta, pixels, history, attribution = _fixture()
