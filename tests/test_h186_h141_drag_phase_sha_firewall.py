@@ -20,6 +20,7 @@ from h185.manifest_sha_only import (
     screen_unadmitted_new_case_hashes,
 )
 from h185.audit_manifest_hash_coverage import run as old_cli
+from h186.audit_old_drag_png_aliases import run as h186_cli
 
 
 def fixture(root: Path) -> None:
@@ -119,6 +120,24 @@ class H186H141LegacyDragPhasePNGTests(unittest.TestCase):
             self.assertEqual(opened, ["manifest.json"])
             self.assertFalse(proof["gold_field_values_parsed"])
             self.assertFalse(proof["old_image_media_opened"])
+
+    def test_h186_cli_reports_only_aggregate_old_frame_alias_counts(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            fixture(root)
+            out, err = StringIO(), StringIO()
+            with redirect_stdout(out), redirect_stderr(err):
+                code = h186_cli(["--historical-root", str(root)])
+            self.assertEqual(code, 0)
+            self.assertEqual(err.getvalue(), "")
+            self.assertIn("h141_at_rest_occurrences=1", out.getvalue())
+            self.assertIn("h141_during_drag_occurrences=1", out.getvalue())
+            self.assertIn("unique_h141_drag_phase_png_hashes=2", out.getvalue())
+            self.assertIn("old_png_hashes=3", out.getvalue())
+            self.assertIn("old_rgba_hashes=1", out.getvalue())
+            for value in (str(root), "1"*64, "2"*64, "3"*64,
+                          "old-private-rest.png", "gold_bbox"):
+                self.assertNotIn(value, out.getvalue())
 
     def test_owner_cli_never_leaks_old_values_paths_and_aliases(self):
         with tempfile.TemporaryDirectory() as tmp:
