@@ -17,7 +17,8 @@ from h174.split_firewall import (
     BANNED, HISTORY_SCHEMA as PIXEL_HISTORY_SCHEMA, SCHEMA as SPLIT_SCHEMA,
 )
 from h176.source_family_attribution import (
-    SCHEMA, KNOWN_EXTRA_PREVIOUS, FROZEN_OTHER_GIT, audit_attribution,
+    SCHEMA, KNOWN_EXTRA_PREVIOUS, KNOWN_NPM_SOURCES, FROZEN_OTHER_GIT,
+    audit_attribution,
 )
 from h176.audit_owner_history import run as local_cli_run
 
@@ -190,7 +191,8 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         meta, pixels, history, attribution = _fixture()
         attribution["families"][0]["repo"] = "FICTIONAL-OWNER/OLD-ORIGINAL-1"
         result = audit_attribution(meta, pixels, history, attribution)
-        self.assertEqual(result["distinct_historical_repositories"], len(BANNED | KNOWN_EXTRA_PREVIOUS))
+        self.assertEqual(result["distinct_historical_repositories"],
+                         len(BANNED | KNOWN_EXTRA_PREVIOUS) - len(KNOWN_NPM_SOURCES))
 
     def test_no_images_gold_or_private_fields_in_attribution(self):
         for payload in ({"gold": "fake"}, {"image_sha256": "f"*64},
