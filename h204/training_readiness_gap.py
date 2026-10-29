@@ -18,7 +18,7 @@ from h185.manifest_sha_only import (
     screen_unadmitted_new_case_hashes,
 )
 from h198.owner_source_metadata_readiness import (
-    COHORTS, _regular_small, census,
+    COHORTS, MAX_METADATA_BYTES, _regular_small, census,
 )
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 
@@ -55,33 +55,63 @@ def _safe_legacy_phases(roots: list[Path]) -> list[Path]:
     return results
 
 
+def _source_manifest_snapshot(owner_root: Path) -> dict[str, bytes]:
+    """Bounded private in-memory source metadata; NEVER media or references.
+
+    A snapshot captures one fixed name per prospective cohort. Comparing
+    exact bytes before/after the existing H198 and H185 checks detects
+    changed case metadata, flags and SHA pairs across audit stages.
+    """
+    snapshot: dict[str, bytes] = {}
+    for folder_name, _count, _family, _status in COHORTS:
+        path = owner_root / folder_name / "source-prospects-not-admitted.json"
+        _regular_small(path, "source SHA provenance")
+        raw = path.read_bytes()
+        require(0 < len(raw) < MAX_METADATA_BYTES,
+                "source metadata mutated or oversized during snapshot")
+        snapshot[folder_name] = raw
+    return snapshot
+
+
+def _require_unchanged_snapshot(
+    owner_root: Path, expected: dict[str, bytes],
+) -> None:
+    # Comparing exact bytes (not just counts) also catches changed labels,
+    # split flags and source hashes that H198 might otherwise count equally.
+    current = _source_manifest_snapshot(owner_root)
+    require(current == expected,
+            "source cohort metadata changed during SHA-only qualification")
+
+
 def training_readiness_gap(
     owner_root: Path, legacy_phase_roots: list[Path],
 ) -> dict:
     """Read only approved manifest metadata; never admit any data/model."""
     require(isinstance(owner_root, Path) and owner_root.is_absolute(),
             "owner root must be absolute")
+    # All source manifests must be exactly unchanged across the TWO
+    # independent qualification passes. Never read goal/reference/media.
+    source_snapshot = _source_manifest_snapshot(owner_root)
     # Validates fixed original sources, status/splits, bilingual composition,
-    # all 20 new PNG/RGBA metadata, and sealed reference existence WITHOUT
-    # ever opening a reference or media file.
+    # new image/RGBA metadata and sealed reference EXISTENCE only.
     current = census(owner_root)
-    historical = scan_legacy_manifest_sha_fields(
-        _safe_legacy_phases(legacy_phase_roots)
-    )
+    _require_unchanged_snapshot(owner_root, source_snapshot)
 
-    # H185's conservative old SHA exclusion is actually applied to every
-    # current original research candidate, NOT just reported as counts.
+    # H185's conservative known-old exclusion uses precisely the same
+    # validated first-pass bytes, never a second unverified manifest version.
     pairs: list[dict[str, str]] = []
     for folder_name, _count, _family, _status in COHORTS:
-        manifest_path = owner_root / folder_name / "source-prospects-not-admitted.json"
-        _regular_small(manifest_path, "source SHA provenance")
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest = json.loads(source_snapshot[folder_name])
         for row in manifest["cases"]:
             pairs.append({
                 "image_sha256": row["image_sha256"],
                 "visual_rgba_sha256": row["visual_rgba_sha256"],
             })
+    historical = scan_legacy_manifest_sha_fields(
+        _safe_legacy_phases(legacy_phase_roots)
+    )
     comparison = screen_unadmitted_new_case_hashes(pairs, historical)
+    _require_unchanged_snapshot(owner_root, source_snapshot)
     require(comparison["proposed_sha_only_pairs_screened"] == 20
             and current["training_approved"] is False
             and current["historic_source_and_rgba_history_complete"] is False,
@@ -111,6 +141,7 @@ def training_readiness_gap(
         "distinct_known_legacy_rgba_sha_candidates":
             historical["distinct_decoded_rgba_sha_candidates"],
         "known_old_png_rgba_overlap_excluded_for_all_new_candidates": True,
+        "current_source_metadata_stable_across_audit": True,
         "complete_historical_source_history_proven": False,
         "complete_historical_old_rgba_proven": False,
         "old_image_integrity_proven": False,

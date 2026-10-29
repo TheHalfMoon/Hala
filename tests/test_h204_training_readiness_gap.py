@@ -107,13 +107,19 @@ class H204TrainingReadinessGapTests(unittest.TestCase):
             paths = []
             def guarded(path):
                 paths.append(path.name)
-                if path.name != "manifest.json":
-                    raise AssertionError("H204 forbidden source/media read")
+                if path.name not in (
+                    "manifest.json", "source-prospects-not-admitted.json",
+                ):
+                    raise AssertionError("H204/H205 forbidden media/gold read")
                 return previous(path)
             with patch.object(Path, "read_bytes", guarded):
                 result = training_readiness_gap(owner, [phase])
             self.assertTrue(result["known_old_png_rgba_overlap_excluded_for_all_new_candidates"])
-            self.assertEqual(paths, ["manifest.json"])
+            self.assertTrue(result["current_source_metadata_stable_across_audit"])
+            self.assertEqual(paths.count("manifest.json"), 1)
+            self.assertEqual(
+                paths.count("source-prospects-not-admitted.json"), 15
+            )
 
     def test_consumed_h173_legacy_root_never_scanned(self):
         with tempfile.TemporaryDirectory() as tmp:
