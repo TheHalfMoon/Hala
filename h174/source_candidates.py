@@ -44,12 +44,24 @@ CANDIDATES = {
 
 _HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 _HEX64 = re.compile(r"[0-9a-f]{64}\Z")
+_REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
 
 
 def verify_catalog():
     """Reject historical aliases and duplicate candidate identities."""
     git_seen, html_seen = set(BANNED_GIT), set(BANNED_HTML)
+    repo_seen = set()
     for name, pin in CANDIDATES.items():
+        repo = pin["repo"]
+        if (type(repo) is not str or _REPO.fullmatch(repo) is None
+                or any(part in (".", "..") for part in repo.split("/"))):
+            raise ValueError("H174 candidate invalid upstream repository identity")
+        # Different commits, case aliases or demos in the same upstream
+        # repository are NOT independent original-app donor families.
+        canonical_repo = repo.casefold()
+        if canonical_repo in repo_seen:
+            raise ValueError("H174 candidate duplicate upstream repository family")
+        repo_seen.add(canonical_repo)
         if (name in BANNED or not _HEX40.fullmatch(pin["git_sha"])
                 or not _HEX64.fullmatch(pin["html_sha256"])
                 or not _HEX64.fullmatch(pin["license_sha256"])

@@ -8,12 +8,12 @@ def sample():
     return ({
         "schema": SCHEMA,
         "sources": [
-            {"app": "newclick", "split": "TRAIN", "git_sha": "1"*40,
-             "html_sha256": "1"*64, "license": "MIT"},
-            {"app": "newdrag", "split": "DEV", "git_sha": "2"*40,
-             "html_sha256": "2"*64, "license": "MIT"},
-            {"app": "newselect", "split": "OOD_RESERVED", "git_sha": "3"*40,
-             "html_sha256": "3"*64, "license": "MIT"},
+            {"app": "newclick", "split": "TRAIN", "repo": "example/train-ui",
+             "git_sha": "1"*40, "html_sha256": "1"*64, "license": "MIT"},
+            {"app": "newdrag", "split": "DEV", "repo": "example/dev-ui",
+             "git_sha": "2"*40, "html_sha256": "2"*64, "license": "MIT"},
+            {"app": "newselect", "split": "OOD_RESERVED", "repo": "example/ood-ui",
+             "git_sha": "3"*40, "html_sha256": "3"*64, "license": "MIT"},
         ],
         "cases": [
             {"index": 1, "app": "newclick", "split": "TRAIN",
@@ -76,6 +76,43 @@ def test_same_source_cannot_appear_in_train_and_dev():
     data, history = sample()
     data["sources"][1]["app"] = "newclick"
     with pytest.raises(ValueError, match="multiple splits"):
+        validate(data, history)
+
+
+@pytest.mark.parametrize("source_index", [1, 2])
+def test_different_commits_of_same_repo_cannot_cross_train_dev_or_ood(source_index):
+    data, history = sample()
+    data["sources"][source_index]["repo"] = "EXAMPLE/TRAIN-UI"
+    with pytest.raises(ValueError, match="duplicate upstream repository"):
+        validate(data, history)
+
+
+@pytest.mark.parametrize("repo", ["../private", "example/../private", "example/ui/extra", "example\\ui", ""])
+def test_invalid_upstream_repo_metadata_rejected(repo):
+    data, history = sample()
+    data["sources"][0]["repo"] = repo
+    with pytest.raises(ValueError, match="upstream repository"):
+        validate(data, history)
+
+
+def test_missing_upstream_repo_is_not_valid_v2_metadata():
+    data, history = sample()
+    data["sources"][0].pop("repo")
+    with pytest.raises(ValueError, match="allowed provenance"):
+        validate(data, history)
+
+
+def test_old_v1_metadata_contract_cannot_bypass_repository_identity():
+    data, history = sample()
+    data["schema"] = "hala.h174.new-original-app-train-dev-metadata-preflight.v1"
+    with pytest.raises(ValueError, match="wrong candidate schema"):
+        validate(data, history)
+
+
+def test_unhashable_repo_metadata_fails_closed():
+    data, history = sample()
+    data["sources"][0]["repo"] = ["example/train-ui"]
+    with pytest.raises(ValueError, match="upstream repository"):
         validate(data, history)
 
 
