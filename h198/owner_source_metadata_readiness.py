@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter
 import json
+import os
 from pathlib import Path
 
 from h174.source_candidates import CANDIDATES
@@ -55,6 +56,10 @@ def require(ok: bool, message: str) -> None:
 
 
 def _regular_small(path: Path, label: str) -> None:
+    # The inherited reparse guard requires lstat on the leaf. Check
+    # missing files first so a missing owner manifest fails CLOSED with
+    # a redacted error instead of leaking the owner path in OSError.
+    require(os.path.lexists(path), "required bounded " + label + " missing or unsafe")
     _safe_lexical_path(path)
     require(path.is_file() and 0 < path.stat().st_size < MAX_METADATA_BYTES,
             "required bounded " + label + " missing or unsafe")
