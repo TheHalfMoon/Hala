@@ -18,7 +18,7 @@ from h185.manifest_sha_only import (
     screen_unadmitted_new_case_hashes,
 )
 from h198.owner_source_metadata_readiness import (
-    COHORTS, _regular_small, census,
+    COHORTS, _regular_small, census, parse_source_manifest,
 )
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 
@@ -75,7 +75,7 @@ def training_readiness_gap(
     for folder_name, _count, _family, _status in COHORTS:
         manifest_path = owner_root / folder_name / "source-prospects-not-admitted.json"
         _regular_small(manifest_path, "source SHA provenance")
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest = parse_source_manifest(manifest_path.read_text(encoding="utf-8"))
         for row in manifest["cases"]:
             pairs.append({
                 "image_sha256": row["image_sha256"],
