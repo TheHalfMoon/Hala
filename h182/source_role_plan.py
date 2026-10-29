@@ -118,7 +118,9 @@ def audit_preregistered_sources(
         reserved["owner_historical_git_checkouts_screened"]
         == original["historical_git_checkouts_screened"]
         and reserved["owner_historical_git_repositories_screened"]
-        == original["historical_unique_repositories_screened"],
+        == original["historical_unique_repositories_screened"]
+        and reserved["owner_historical_identity_fingerprint_sha256"]
+        == original["historical_identity_fingerprint_sha256"],
         "owner historical source inventory drift between gates",
     )
     # The owner manifests and source-root census cannot establish historical
