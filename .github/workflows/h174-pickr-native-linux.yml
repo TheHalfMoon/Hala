@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - ps/h174-pickr-native-hosted-linux-proof
+      - ps/h174-linux-pickr-qualification-protocol
     paths:
       - ".github/workflows/h174-pickr-native-linux.yml"
       - "h174/**"
@@ -35,10 +36,15 @@ jobs:
       H174_PICKR_GIT: e8ff88d9161ffc6e3c46a4430be8c328c42d6415
       H174_PICKR_HTML: 4cc4f0dbcb26e79bbf09202ba3896d5d66953c6d40fb6347eac2c15522712d1e
       H174_PICKR_LICENSE: 7129bc74b781d3db2979d4617940b00e75885914b8d636a3155a64e57481e5e5
-      H174_DONOR_DIR: ${{ runner.temp }}/h174-pickr-pristine
-      H174_SCRATCH_DIR: ${{ runner.temp }}/h174-pickr-build/source
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
+      - name: Establish disposable source/build paths from runtime environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "H174_DONOR_DIR=$RUNNER_TEMP/h174-pickr-pristine" >> "$GITHUB_ENV"
+          echo "H174_SCRATCH_DIR=$RUNNER_TEMP/h174-pickr-build/source" >> "$GITHUB_ENV"
+
       - name: Checkout Hala source only (no credentials persisted)
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -101,9 +107,9 @@ jobs:
 
       - name: Install original pnpm exactly, fetch public dependency cache
         shell: bash
-        working-directory: ${{ env.H174_SCRATCH_DIR }}
         run: |
           set -euo pipefail
+          cd "$H174_SCRATCH_DIR"
           corepack enable
           corepack prepare pnpm@10.27.0 --activate
           test "$(pnpm --version)" = "10.27.0"
@@ -112,9 +118,9 @@ jobs:
 
       - name: Build original donor library and demo in derived scratch ONLY
         shell: bash
-        working-directory: ${{ env.H174_SCRATCH_DIR }}
         run: |
           set -euo pipefail
+          cd "$H174_SCRATCH_DIR"
           pnpm run build:lib
           pnpm run build:demo
           test -f dist/index.html
