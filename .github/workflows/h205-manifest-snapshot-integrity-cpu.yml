@@ -1,0 +1,67 @@
+# H205: synthetic-only original source metadata snapshot consistency.
+name: H206 strict-source JSON + immutable GUI metadata snapshot
+
+on:
+  push:
+    branches:
+      - ps/h205-fail-closed-manifest-snapshot
+    paths:
+      - ".github/workflows/h205-manifest-snapshot-integrity-cpu.yml"
+      - "h204/training_readiness_gap.py"
+      - "tests/test_h204_training_readiness_gap.py"
+      - "tests/test_h205_manifest_snapshot_integrity.py"
+      - "h205/**"
+  pull_request:
+    paths:
+      - ".github/workflows/h205-manifest-snapshot-integrity-cpu.yml"
+      - "h204/training_readiness_gap.py"
+      - "tests/test_h204_training_readiness_gap.py"
+      - "tests/test_h205_manifest_snapshot_integrity.py"
+      - "h205/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h205-snapshot-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  synthetic-cpu:
+    name: Python ${{ matrix.python-version }} mutation and privacy guards
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install fixed Python ${{ matrix.python-version }}
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install metadata parser dependency (no model weights)
+        run: python -m pip install --disable-pip-version-check Pillow==12.3.0
+
+      - name: Synthetic H204 and H205 negative controls plus inherited checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          for mode in normal optimized; do
+            args=()
+            if [ "$mode" = optimized ]; then args=(-O); fi
+            for case in h185_manifest_sha_only h198_source_metadata_readiness h199_native_action_sft h204_training_readiness_gap h205_manifest_snapshot_integrity; do
+              python "${args[@]}" -m unittest discover -s tests -p "test_${case}.py" -q
+            done
+          done
+          python -m compileall -q h204 tests/test_h204_training_readiness_gap.py tests/test_h205_manifest_snapshot_integrity.py
+          echo "H205_SYNTHETIC_SOURCE_SNAPSHOT_FAIL_CLOSED_NO_OWNER_DATA_NO_TRAINING"
