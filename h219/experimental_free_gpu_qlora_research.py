@@ -119,8 +119,10 @@ def real_experimental_qlora_two_steps() -> list[dict]:
     # optimizer gradients on these cases. Future work must implement and
     # independently verify per-case TRAIN admission and sealed DEV first.
     policy = source_policy()
+    from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
     require(
-        policy["official_train_approved"] is True
+        bool(ADMITTED_TRAIN_MANIFEST_SHAS)
+        and policy["official_train_approved"] is True
         and policy["independent_dev_sealed"] is True,
         "unadmitted H212 research candidates and unsealed DEV: "
         "optimizer steps prohibited before independent science admission",
