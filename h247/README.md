@@ -77,6 +77,39 @@ two-step reference/oracle/digest JSON receipt stay **outside Git** and
 must NEVER be published, sent to a connected app, or used with a model
 before full legal/media/history and disjoint split qualification.
 
+## H248 follow-up: model-visible pixel/action fidelity
+
+The previous source-native replay computed screenshot click labels from
+Playwright target boxes but executed the original control through
+`locator.click()`. That could mask a wrongly occluded or off-screen
+recorded pixel: Playwright's locator click may scroll, re-aim, or wait
+instead of actually executing the **recorded screenshot coordinate**.
+
+H248 now computes the finite positive-area center coordinate, requires it
+to be in the fixed 960x720 screenshot bounds and verifies with the
+browser's `document.elementFromPoint(x,y)` that this exact pixel hits
+the original element or its descendant, refusing occluded targets.
+The original calendar selection and original OK confirmation are both
+executed through `page.mouse.click(x,y)` at precisely their recorded
+one-action H199 target coordinates, with the pre/post native state
+assertions still required. Synthetic unit regression tests use mock
+locators/mice, require exact executed pixel equality and reject occluded,
+off-screen, nonfinite, or zero-size targets.
+
+This is **action-label fidelity only**, not an independent source,
+noncontamination proof, admitted TRAIN/DEV/OOD, measured model improvement,
+or model release. Actual owner-private screenshots/receipts are NEVER
+committed or exposed in PRs.
+
+Owner Windows H248 verification: the actual pixel-executed original
+MCDatepicker replay produced **8/8 successful bilingual native cases,
+16 coordinate-executed one-action steps, and 24 owner-private PNGs**;
+no incomplete marker, receipt outside the repository, no network/model/GPU.
+Focused H246/H247: **20 passed**; H247 under `python -O`: **11 passed**;
+broader source/history/split/action QA with isolated writable pytest temp:
+**364 passed, 6 skipped** (2598 out-of-scope deselected). This validates
+source-native replay and CPU contracts, not training-set admission.
+
 ## Still blocked
 
 - H199 `ADMITTED_TRAIN_MANIFEST_SHAS` is EMPTY and remains unchanged.
