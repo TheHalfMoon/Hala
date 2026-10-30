@@ -143,6 +143,9 @@ class PublishedNpmArtifactVerificationTests(unittest.TestCase):
         # Avoid real public network in CI source-only negative tests.
         values=[]
         fixtures=[]
+        expected_assets={}
+        expected_tars={}
+        expected_sris={}
         for i in range(3):
             name=f"synthetic-public-{i}"
             path=f"dist/original-{i}.js"
@@ -157,12 +160,21 @@ class PublishedNpmArtifactVerificationTests(unittest.TestCase):
                         "shasum":pkg.shasum,"integrity":sri}
             }).encode()
             values.append(pkg)
+            expected_assets[f"output-{i}.js"]=sha256(f"original-{i}".encode()).hexdigest()
+            expected_tars[name]=sha256(blob).hexdigest()
+            expected_sris[name]=sri
             fixtures.append((pkg.metadata,meta))
             fixtures.append((pkg.tarball,blob))
         receipt_map=dict(fixtures)
         with patch("h229.verified_published_npm_assets.PACKAGES",tuple(values)),\
              patch("h229.verified_published_npm_assets.ASSET_NAMES",
-                   frozenset(f"output-{i}.js" for i in range(3))):
+                   frozenset(f"output-{i}.js" for i in range(3))),\
+             patch("h229.verified_published_npm_assets.PINNED_PUBLISHED_ORIGINAL_SHA256",
+                   expected_assets),\
+             patch("h229.verified_published_npm_assets.PINNED_PUBLISHED_TARBALL_SHA256",
+                   expected_tars),\
+             patch("h229.verified_published_npm_assets.PINNED_REGISTRY_SRI",
+                   expected_sris):
             result=verify_all_published_public_assets(
                 lambda url, limit: receipt_map[url])
         self.assertEqual(result["registry_tarballs_verified"],3)
