@@ -204,7 +204,7 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         # The H174 legacy repo arrays lack the npm-only family. H176
         # catches a new Git checkout of the exact npm package's upstream.
         for upstream in KNOWN_NPM_UPSTREAM_REPOS:
-            for variant in (upstream.upper(), upstream + ".git", upstream.upper() + ".GIT"):
+            for variant in (upstream.upper(), upstream + ".git", upstream.upper() + ".GIT", upstream + ".git.git"):
                 for index in range(3):
                     meta, pixels, history, attribution = _fixture()
                     meta["sources"][index]["repo"] = variant

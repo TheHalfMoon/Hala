@@ -1,0 +1,66 @@
+# H226: source-only Git clone suffix source-disjointness check.
+name: H226 Git clone alias source family exclusion CPU
+
+on:
+  push:
+    branches:
+      - ps/h226-cross-split-and-historical-git-suffix-source-firewall
+    paths:
+      - "h174/split_firewall.py"
+      - "h174/source_history_gate.py"
+      - "h176/source_family_attribution.py"
+      - "h226/**"
+      - "tests/test_h226_clone_repo_family_aliases.py"
+      - "tests/test_h176_source_family_attribution.py"
+      - ".github/workflows/h226-git-clone-alias-cpu.yml"
+  pull_request:
+    paths:
+      - "h174/split_firewall.py"
+      - "h174/source_history_gate.py"
+      - "h176/source_family_attribution.py"
+      - "h226/**"
+      - "tests/test_h226_clone_repo_family_aliases.py"
+      - "tests/test_h176_source_family_attribution.py"
+      - ".github/workflows/h226-git-clone-alias-cpu.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h226-repo-alias-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-identity:
+    name: ${{ matrix.os }} Python ${{ matrix.python-version }} synthetic source alias firewall
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+        python-version: ["3.11", "3.12"]
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Strict original and historical source alias tests, no dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_h226_clone_repo_family_aliases.py' -q
+          python -O -m unittest discover -s tests -p 'test_h226_clone_repo_family_aliases.py' -q
+          python -m unittest discover -s tests -p 'test_h176_source_family_attribution.py' -q
+          python -O -m unittest discover -s tests -p 'test_h176_source_family_attribution.py' -q
+          python -m compileall -q h174 h176 tests/test_h226_clone_repo_family_aliases.py
+          echo "H226_GIT_CLONE_ALIAS_SOURCE_FAMILY_FIREWALL_PASS_NO_OWNER_MEDIA_NO_MODEL"

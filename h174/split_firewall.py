@@ -36,6 +36,24 @@ def _require(condition, message):
         raise ValueError("H174 metadata firewall: " + message)
 
 
+def canonical_repository_family(repo: str) -> str:
+    """Resolve GitHub clone .git suffix aliases to ONE source family.
+
+    Canonicalization is a conservative duplicate/old-source firewall,
+    not provenance authenticity or an approval for TRAIN/DEV/OOD.
+    Multiple .git clone suffixes cannot create distinct donors.
+    """
+    _require(type(repo) is str and REPO.fullmatch(repo) is not None
+             and all(part not in (".", "..") for part in repo.split("/")),
+             "invalid upstream repository identity")
+    canonical = repo.casefold()
+    while canonical.endswith(".git"):
+        canonical = canonical[:-4]
+    _require(canonical.split("/")[1] not in ("", ".", ".."),
+             "invalid upstream repository identity after clone alias")
+    return canonical
+
+
 def validate(metadata, owner_hash_registry):
     """Check only NEW metadata; consumed benchmark pixels are forbidden.
 
@@ -79,7 +97,7 @@ def validate(metadata, owner_hash_registry):
         _require(type(repo) is str and REPO.fullmatch(repo) is not None
                  and all(part not in (".", "..") for part in repo.split("/")),
                  "invalid upstream repository identity")
-        canonical_repo = repo.casefold()
+        canonical_repo = canonical_repository_family(repo)
         _require(canonical_repo not in repo_seen,
                  "duplicate upstream repository across TRAIN DEV or OOD")
         repo_seen.add(canonical_repo)
