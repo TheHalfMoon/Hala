@@ -12,6 +12,7 @@ from __future__ import annotations
 from hashlib import sha256
 import json
 import math
+import unicodedata
 from typing import Any
 
 WIDTH, HEIGHT = 960, 720
@@ -19,7 +20,7 @@ ALLOWED_KEYS = frozenset({
     "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown",
     "Enter", "Escape", "Tab", "Space",
 })
-KINDS = frozenset({"click", "drag", "key_press", "abstain"})
+KINDS = frozenset({"click", "drag", "key_press", "type_text", "scroll", "abstain"})
 MAX_JSON_BYTES = 1200
 # Intentional: no original GUI source manifests have been admitted.
 # Future independent release qualification MUST modify this on a
@@ -65,6 +66,23 @@ def _one_action(item: object, *, training_target: bool) -> dict:
         _point(item["point"])
         require(type(item["key"]) is str and item["key"] in ALLOWED_KEYS,
                 "unsafe/unregistered keyboard key")
+    elif kind == "type_text":
+        # A prior screenshot-observed focus action is required separately.
+        # This parser proposes actions; it never executes or grants focus.
+        require(set(item) == {"kind", "text"}, "type_text needs literal text only")
+        value = item["text"]
+        require(type(value) is str and 1 <= len(value) <= 160
+                and all(unicodedata.category(c) not in {
+                    "Cc", "Cf", "Cs", "Co", "Cn", "Zl", "Zp"
+                } for c in value)
+                and len(value.encode("utf-8")) <= 512,
+                "unsafe text/control/bidi character or oversized typed text")
+    elif kind == "scroll":
+        require(set(item) == {"kind", "point", "dy"},
+                "scroll requires visible pointer target and vertical pixel delta")
+        _point(item["point"])
+        require(type(item["dy"]) is int and 0 < abs(item["dy"]) <= HEIGHT,
+                "scroll delta must be a bounded, nonzero integer")
     # Return only bounded normal JSON-compatible native action keys.
     return item
 
@@ -86,7 +104,11 @@ def _reject_json_constant(value: str) -> None:
 def parse_actions(value: object, *, training_target: bool = False) -> dict:
     """Strict one-step action parser, not a dataset/model qualification."""
     require(type(value) is str, "model must emit bounded JSON text")
-    require(len(value.encode("utf-8")) <= MAX_JSON_BYTES,
+    try:
+        size = len(value.encode("utf-8"))
+    except UnicodeError as exc:
+        raise ValueError("H199 native action SFT contract: malformed Unicode JSON") from exc
+    require(size <= MAX_JSON_BYTES,
             "excessive native JSON response")
     try:
         doc = json.loads(
@@ -122,7 +144,14 @@ def source_task_prompt(task: str) -> str:
         "to focus a visible control and press a key use "
         "{\"kind\":\"key_press\",\"point\":[x,y],\"key\":\"ArrowRight\"}, "
         "with key in ArrowLeft/ArrowRight/ArrowUp/ArrowDown/Enter/"
-        "Escape/Tab/Space. All coordinates are screenshot pixels. "
+        "Escape/Tab/Space. To type text in an already-focused input "
+        "use {\"kind\":\"type_text\",\"text\":\"literal text\"} "
+        "as a SEPARATE step after the focused field is observed. "
+        "To scroll use {\"kind\":\"scroll\",\"point\":[x,y],\"dy\":240} "
+        "where positive dy scrolls down and negative dy scrolls up, "
+        "nonzero vertical pixels bounded to +/-720. "
+        "Never combine focus and type or scroll and click in one step. "
+        "All coordinates are screenshot pixels. "
         "If unsafe or uncertain, output {\"actions\":[{\"kind\":\"abstain\"}]}. "
         "Task: " + task
     )
