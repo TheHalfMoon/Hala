@@ -191,9 +191,10 @@ def audit_attribution(
             )
             pinned_pairs.add(app)
 
+    # Git clone URL repository suffix is not a distinct upstream family.
     for source in metadata["sources"]:
         _require(
-            source["repo"].casefold() not in KNOWN_NPM_UPSTREAM_REPOS,
+            source["repo"].casefold().removesuffix(".git") not in KNOWN_NPM_UPSTREAM_REPOS,
             "fresh candidate reuses historical npm upstream Git repository",
         )
 
