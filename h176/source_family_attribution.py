@@ -69,6 +69,16 @@ FROZEN_OTHER_GIT = {
 }
 
 
+FROZEN_OTHER_REPOS = {
+    # Independently verified upstream GitHub commit repositories at the
+    # exact immutable FROZEN_OTHER_GIT SHAs, 2026-10-30.
+    "react-dnd-kit-board": "msabriboy/kanban_task_board",
+    "react-html5-board": "9bzero/kanban-board",
+    "react-dndkit-board": "tomcani/kanban-dndkit-localstorage",
+    "todomvc-es6": "tastejs/todomvc",
+    "gridstack-original-column-demo": "gridstack/gridstack.js",
+}
+
 def _require(condition: bool, reason: str) -> None:
     if not condition:
         raise ValueError("H176 family attribution firewall: " + reason)
@@ -178,6 +188,10 @@ def audit_attribution(
             _require(
                 git_sha == FROZEN_OTHER_GIT[app],
                 "earlier source pilot/eval frozen Git SHA mismatch",
+            )
+            _require(
+                canonical_repository_family(repo) == FROZEN_OTHER_REPOS[app],
+                "earlier source pilot/eval original upstream repository mismatch",
             )
             historical_git_pairs.add(app)
         if app in SOURCE_PINS:
