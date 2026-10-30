@@ -1,0 +1,58 @@
+# H227 exact previous original upstream repo+Git SHA pairings.
+name: H227 historical five original Git source pairings no-model CPU
+
+on:
+  push:
+    branches:
+      - ps/h227-five-immutable-original-source-repo-pairings
+    paths:
+      - "h176/source_family_attribution.py"
+      - "h227/**"
+      - "tests/test_h176_source_family_attribution.py"
+      - ".github/workflows/h227-pinned-legacy-repo-sha-pairs-cpu.yml"
+  pull_request:
+    paths:
+      - "h176/source_family_attribution.py"
+      - "h227/**"
+      - "tests/test_h176_source_family_attribution.py"
+      - ".github/workflows/h227-pinned-legacy-repo-sha-pairs-cpu.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h227-prior-repo-git-pairs-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-only:
+    name: ${{ matrix.os }} Python ${{ matrix.python-version }} original historical source pair denials
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+        python-version: ["3.11", "3.12"]
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout private source without persist credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Strict historical original repo+Git SHA metadata regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_h176_source_family_attribution.py' -q
+          python -O -m unittest discover -s tests -p 'test_h176_source_family_attribution.py' -q
+          python -m compileall -q h174 h176 tests/test_h176_source_family_attribution.py
+          echo "H227_HISTORICAL_GIT_REPO_SHA_PAIRINGS_SOURCE_ONLY_NO_MEDIA_NO_TRAINING"

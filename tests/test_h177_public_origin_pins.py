@@ -80,8 +80,13 @@ class PublicHistoricalOriginTests(unittest.TestCase):
             row["repo"] = "forger/source"
             history["historical_repositories"].remove(before)
             history["historical_repositories"].append(row["repo"])
+            # Five H176-pinned original repos are now rejected earlier
+            # than H177's independently pinned broader source inventory.
+            # Both pathways must reject the forgery; neither is admission.
             with self.subTest(app=app), self.assertRaisesRegex(
-                ValueError, "source-repository or Git pin contradicts"
+                ValueError,
+                "source-repository or Git pin contradicts|"
+                "earlier source pilot/eval original upstream repository mismatch",
             ):
                 audit_public_origin_pins(
                     metadata, pixel, history, attribution

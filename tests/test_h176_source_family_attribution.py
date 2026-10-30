@@ -18,7 +18,7 @@ from h174.split_firewall import (
 )
 from h176.source_family_attribution import (
     SCHEMA, KNOWN_EXTRA_PREVIOUS, KNOWN_NPM_SOURCES,
-    KNOWN_NPM_UPSTREAM_REPOS, FROZEN_OTHER_GIT,
+    KNOWN_NPM_UPSTREAM_REPOS, FROZEN_OTHER_GIT, FROZEN_OTHER_REPOS,
     FROZEN_H173_REPOS,
     audit_attribution,
 )
@@ -64,7 +64,7 @@ def _fixture():
         frozen = SOURCE_PINS.get(app)
         rows.append({
             "app": app, "repo": (FROZEN_H173_REPOS[app] if frozen else
-                                  f"fictional-owner/old-original-{index}"),
+                FROZEN_OTHER_REPOS.get(app, f"fictional-owner/old-original-{index}")),
             "git_sha": (frozen["git_sha"] if frozen else
                         FROZEN_OTHER_GIT.get(app, f"{index:040x}")),
             "html_sha256": (frozen["original_html_sha256"] if frozen
@@ -165,6 +165,64 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         history["source_html_shas"].remove(row["html_sha256"])
         with self.assertRaisesRegex(ValueError, "missing known historical"):
             audit_attribution(meta, pixels, history, attribution)
+
+    def test_all_five_pinned_earlier_git_sources_require_exact_original_repos(self):
+        # The original SHA alone was not enough: a forged repo + rewritten
+        # unpaired history previously passed H176. Reject every such pairing.
+        self.assertEqual(set(FROZEN_OTHER_REPOS), set(FROZEN_OTHER_GIT))
+        self.assertEqual(len(FROZEN_OTHER_REPOS), 5)
+        for app, upstream in FROZEN_OTHER_REPOS.items():
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            original_repo = row["repo"]
+            self.assertEqual(original_repo.casefold(), upstream)
+            fake_repo = "malicious-owner/other-upstream-" + app
+            row["repo"] = fake_repo
+            history["historical_repositories"].remove(original_repo)
+            history["historical_repositories"].append(fake_repo)
+            # This keeps the already pinned Git SHA unchanged and rewrites
+            # both historical manifests consistently to reveal the old flaw.
+            self.assertEqual(row["git_sha"], FROZEN_OTHER_GIT[app])
+            with self.subTest(app=app), self.assertRaisesRegex(
+                ValueError, "earlier source pilot/eval original upstream repository"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
+
+    def test_pinned_original_repos_accept_only_real_clone_aliases_not_renames(self):
+        from h174.split_firewall import canonical_repository_family
+        for app, upstream in FROZEN_OTHER_REPOS.items():
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            original_repo = row["repo"]
+            row["repo"] = upstream.upper() + ".GIT"
+            history["historical_repositories"].remove(original_repo)
+            history["historical_repositories"].append(row["repo"])
+            self.assertEqual(canonical_repository_family(row["repo"]), upstream)
+            result = audit_attribution(meta, pixels, history, attribution)
+            self.assertFalse(result["model_training_approved"])
+            self.assertFalse(result["provenance_authenticity_proven"])
+
+    def test_historical_repo_swaps_do_not_pass_even_when_source_roster_unchanged(self):
+        apps = tuple(FROZEN_OTHER_REPOS)[:2]
+        meta, pixels, history, attribution = _fixture()
+        a = next(r for r in attribution["families"] if r["app"] == apps[0])
+        b = next(r for r in attribution["families"] if r["app"] == apps[1])
+        a["repo"], b["repo"] = b["repo"], a["repo"]
+        # Unpaired historical repo and SHA sets are unchanged. Only exact
+        # app-to-source pairing can detect this semantic substitution.
+        with self.assertRaisesRegex(
+            ValueError, "earlier source pilot/eval original upstream repository"
+        ):
+            audit_attribution(meta, pixels, history, attribution)
+
+    def test_public_original_repos_are_fixed_immutable_exact_pairs(self):
+        self.assertEqual(FROZEN_OTHER_REPOS, {
+            "react-dnd-kit-board": "msabriboy/kanban_task_board",
+            "react-html5-board": "9bzero/kanban-board",
+            "react-dndkit-board": "tomcani/kanban-dndkit-localstorage",
+            "todomvc-es6": "tastejs/todomvc",
+            "gridstack-original-column-demo": "gridstack/gridstack.js",
+        })
 
     def test_older_source_app_git_revision_cannot_be_relabelled(self):
         for app in FROZEN_OTHER_GIT:
