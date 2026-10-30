@@ -53,10 +53,12 @@ FROZEN_H173_REPOS = {
 # h137/source.py (splitjs eval); h138/probe.py (two Kanban eval apps);
 # h140/dndkit_pilot.py (source pilot); h158/original_todomvc_source.py
 # (previous source); h161/original_apps_source.py (trained app IDs);
-# h163/source.py (previous GridStack original OOD).
+# h163/source.py (previous GridStack original OOD); h140/freeze_train_dev.py
+# (original Kanban TRAIN/DEV); h164/four_app_train_pilot.py (table/calculator).
 KNOWN_EXTRA_PREVIOUS = frozenset({
     "splitjs", "react-dnd-kit-board", "react-html5-board",
     "react-dndkit-board", "todomvc-es6", "gridstack-original-column-demo",
+    "vanilla-native-board", "react-native-board", "simple-table", "calculator",
 })
 # Frozen source Git commits copied from the exact public source modules cited
 # above. These are source-only values, not predictions, images or scores.
@@ -66,6 +68,10 @@ FROZEN_OTHER_GIT = {
     "react-dndkit-board": "f3e129998e3140a386f1884faff314345e0eb10b",
     "todomvc-es6": "ff43b02e59dfa604386bb382034b2cd07c2bcd8a",
     "gridstack-original-column-demo": "b05b79dcbca21caca046c1e8c4da6e59546ec806",
+    "vanilla-native-board": "47cfba359a71b70a6a23e511e554416aec006474",
+    "react-native-board": "fa047f7a32afb57750ed5246456dc282ea7befcd",
+    "simple-table": "7580270d18fb764bbf437a5e5b88ea66d63fc449",
+    "calculator": "8f27a92072dde9658d8d94db8918a184ed7bd416",
 }
 
 
@@ -77,6 +83,10 @@ FROZEN_OTHER_REPOS = {
     "react-dndkit-board": "tomcani/kanban-dndkit-localstorage",
     "todomvc-es6": "tastejs/todomvc",
     "gridstack-original-column-demo": "gridstack/gridstack.js",
+    "vanilla-native-board": "anantagarwal1307/drag-drop-kanban-board",
+    "react-native-board": "dandemslay/react-kanbanboard",
+    "simple-table": "arce/simple-table",
+    "calculator": "ashishxa/calculator",
 }
 
 def _require(condition: bool, reason: str) -> None:

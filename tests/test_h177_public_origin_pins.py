@@ -80,8 +80,8 @@ class PublicHistoricalOriginTests(unittest.TestCase):
             row["repo"] = "forger/source"
             history["historical_repositories"].remove(before)
             history["historical_repositories"].append(row["repo"])
-            # Five H176-pinned original repos are now rejected earlier
-            # than H177's independently pinned broader source inventory.
+            # All nine known public Git originals are rejected by H176
+            # before the H177 independently pinned broader source check.
             # Both pathways must reject the forgery; neither is admission.
             with self.subTest(app=app), self.assertRaisesRegex(
                 ValueError,
@@ -107,7 +107,9 @@ class PublicHistoricalOriginTests(unittest.TestCase):
             ):
                 history[key].remove(val)
             with self.subTest(app=app), self.assertRaisesRegex(
-                ValueError, "known prior TRAIN/DEV/OOD source attribution missing"
+                ValueError,
+                "known prior TRAIN/DEV/OOD source attribution missing|"
+                "missing known historical TRAIN/DEV/OOD app or pinned pairing",
             ):
                 audit_public_origin_pins(
                     metadata, pixel, history, attribution

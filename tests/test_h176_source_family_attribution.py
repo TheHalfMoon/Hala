@@ -166,11 +166,11 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "missing known historical"):
             audit_attribution(meta, pixels, history, attribution)
 
-    def test_all_five_pinned_earlier_git_sources_require_exact_original_repos(self):
+    def test_all_nine_pinned_earlier_git_sources_require_exact_original_repos(self):
         # The original SHA alone was not enough: a forged repo + rewritten
         # unpaired history previously passed H176. Reject every such pairing.
         self.assertEqual(set(FROZEN_OTHER_REPOS), set(FROZEN_OTHER_GIT))
-        self.assertEqual(len(FROZEN_OTHER_REPOS), 5)
+        self.assertEqual(len(FROZEN_OTHER_REPOS), 9)
         for app, upstream in FROZEN_OTHER_REPOS.items():
             meta, pixels, history, attribution = _fixture()
             row = next(r for r in attribution["families"] if r["app"] == app)
@@ -222,6 +222,10 @@ class SourceFamilyAttributionTests(unittest.TestCase):
             "react-dndkit-board": "tomcani/kanban-dndkit-localstorage",
             "todomvc-es6": "tastejs/todomvc",
             "gridstack-original-column-demo": "gridstack/gridstack.js",
+            "vanilla-native-board": "anantagarwal1307/drag-drop-kanban-board",
+            "react-native-board": "dandemslay/react-kanbanboard",
+            "simple-table": "arce/simple-table",
+            "calculator": "ashishxa/calculator",
         })
 
     def test_older_source_app_git_revision_cannot_be_relabelled(self):
@@ -297,7 +301,12 @@ class SourceFamilyAttributionTests(unittest.TestCase):
 
     def test_case_variant_repo_alias_same_family(self):
         meta, pixels, history, attribution = _fixture()
-        attribution["families"][0]["repo"] = "FICTIONAL-OWNER/OLD-ORIGINAL-1"
+        # Pick a known prior source not covered by an immutable public pair;
+        # immutable nine real upstreams cannot be replaced with a fake repo.
+        target = next(row for row in attribution["families"]
+                      if "repo" in row and row["app"] not in FROZEN_OTHER_REPOS
+                      and row["app"] not in FROZEN_H173_REPOS)
+        target["repo"] = target["repo"].swapcase()
         result = audit_attribution(meta, pixels, history, attribution)
         self.assertEqual(result["distinct_historical_repositories"],
                          len(BANNED | KNOWN_EXTRA_PREVIOUS) - len(KNOWN_NPM_SOURCES))
