@@ -1,0 +1,58 @@
+# H219: NO CUDA, NO model weights, NO hosted research training in GitHub CI.
+name: H219 free-GPU research QLoRA source-only no-training safety
+
+on:
+  push:
+    branches:
+      - ps/h219-research-only-free-gpu-qlora-probe
+    paths:
+      - "h219/**"
+      - "tests/test_h219_experimental_qlora_preflight.py"
+      - ".github/workflows/h219-research-qlora-preflight-no-model.yml"
+  pull_request:
+    paths:
+      - "h219/**"
+      - "tests/test_h219_experimental_qlora_preflight.py"
+      - ".github/workflows/h219-research-qlora-preflight-no-model.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h219-no-model-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fail-closed:
+    name: ${{ matrix.os }} Python ${{ matrix.py }} research-only safety
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+        py: ["3.11", "3.12"]
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout private source without persisted credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.py }}
+      - name: Reject unauthorized GPU / source promotion in standard Python
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_h219_experimental_qlora_preflight.py' -q
+          python -O -m unittest discover -s tests -p 'test_h219_experimental_qlora_preflight.py' -q
+          python -m h219.experimental_free_gpu_qlora_research --source-only-preflight
+          python -O -m h219.experimental_free_gpu_qlora_research --source-only-preflight
+          python -m compileall -q h219 tests/test_h219_experimental_qlora_preflight.py
+          echo "H219_SOURCE_ONLY_NO_MODEL_NO_TRAIN_NO_OWNER_MEDIA_NO_OOD_PASS"
