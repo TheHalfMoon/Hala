@@ -6,6 +6,7 @@ no model inference and no owner/media/ood access.
 from __future__ import annotations
 
 import os
+import inspect
 from pathlib import Path
 import tempfile
 import unittest
@@ -96,6 +97,18 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
                 cwd=Path.cwd(),
                 token_present=False,
             )
+
+    def test_no_false_optimizer_success_or_model_publication(self):
+        from h219.experimental_free_gpu_qlora_research import (
+            real_experimental_qlora_two_steps,
+        )
+        source=inspect.getsource(real_experimental_qlora_two_steps)
+        self.assertIn("optimizer.step()",source)
+        self.assertIn("not torch.equal(before, after)",source)
+        self.assertIn("labels=labels",source)
+        self.assertNotIn("push_to_hub(",source)
+        self.assertNotIn("save_pretrained(",source)
+        self.assertNotIn("model.generate(",source)
 
     def test_original_training_can_never_be_implicitly_opened(self):
         from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
