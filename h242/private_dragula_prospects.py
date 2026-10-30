@@ -19,6 +19,7 @@ from h236.original_dragula_native import (
     COMMIT, PINNED, REPO, preflight, require,
 )
 from h241.expanded_pre173_metadata import find_pre_h173_phases
+from h243.browser_offline import require_browser_offline
 
 CASE_COUNT = 8
 CASES = tuple({
@@ -132,6 +133,7 @@ def make_private_research_prospects(source: Path, output: Path,
                     context = browser.new_context(viewport={"width":960,"height":720},
                         device_scale_factor=1, service_workers="block",
                         locale="ar-SA" if case["lang"] == "ar" else "en-US")
+                    require_browser_offline(context)
                     attempts: list[str] = []
                     def block(route):
                         attempts.append(route.request.url)

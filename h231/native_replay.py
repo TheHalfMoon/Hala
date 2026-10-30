@@ -15,6 +15,8 @@ import subprocess
 from urllib.parse import urlsplit
 from urllib.request import url2pathname
 
+from h243.browser_offline import require_browser_offline
+
 SCHEMA = "hala.h231.private-native-replay.v1"
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")
@@ -210,6 +212,7 @@ def replay(manifest_path: Path, source_root: Path, output_dir: Path) -> dict:
                 ctx = browser.new_context(
                     viewport={"width": 1100, "height": 760},
                     device_scale_factor=1, service_workers="block")
+                require_browser_offline(ctx)
                 attempted_network = []
                 def isolate(route):
                     url = route.request.url

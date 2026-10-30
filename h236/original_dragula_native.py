@@ -12,6 +12,7 @@ from pathlib import Path
 import subprocess
 
 from h231.native_replay import _rgba_sha
+from h243.browser_offline import require_browser_offline
 from h174.split_firewall import (
     canonical_repository_family, FROZEN_PRIOR_ORIGINAL_REPOS,
 )
@@ -139,6 +140,7 @@ def replay(root: Path, output: Path) -> dict:
                         viewport={"width": 960, "height": 720},
                         device_scale_factor=1, service_workers="block",
                     )
+                    require_browser_offline(ctx)
                     attempted = []
                     ctx.route("**/*", lambda route: (
                         attempted.append(route.request.url), route.abort()))
