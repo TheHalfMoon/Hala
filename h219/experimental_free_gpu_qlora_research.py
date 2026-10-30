@@ -204,18 +204,26 @@ def real_experimental_qlora_two_steps() -> list[dict]:
             loss = model(**full, labels=labels).loss
         require(bool(torch.isfinite(loss).item()),
                 "nonfinite supervised research loss before backward")
-        before = params[0].detach().float().cpu().clone()
         loss.backward()
-        require(any(p.grad is not None and bool(torch.isfinite(p.grad).all().item())
-                    and bool((p.grad != 0).any().item()) for p in params),
+        with_grads = [
+            p for p in params
+            if p.grad is not None
+            and bool(torch.isfinite(p.grad).all().item())
+            and bool((p.grad != 0).any().item())
+        ]
+        require(len(with_grads) > 0,
                 "no finite nonzero gradient on LoRA parameters")
+        # The first LoRA tensor might have zero gradient on initialization.
+        # Track a parameter with a *proven* nonzero gradient instead.
+        tracked = with_grads[0]
+        before = tracked.detach().float().cpu().clone()
         torch.nn.utils.clip_grad_norm_(params, max_norm=1.0)
         optimizer.step()
-        after = params[0].detach().float().cpu()
-        # In some LoRA configs the first tensor may not update on step 1;
-        # instead explicitly require any LoRA tensor to have valid grads.
-        require(bool(torch.isfinite(after).all().item()),
-                "LoRA parameter became nonfinite after optimizer step")
+        after = tracked.detach().float().cpu()
+        require(bool(torch.isfinite(after).all().item())
+                and not torch.equal(before, after),
+                "optimizer failed to change a finite trainable LoRA tensor")
+        del before, after
         receipts.append({
             "step": i + 1, "language": "en" if i == 0 else "ar",
             "supervised_tokens": len(mask)-len(prefix),
