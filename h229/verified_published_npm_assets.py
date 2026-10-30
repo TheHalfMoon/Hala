@@ -72,6 +72,26 @@ ASSET_NAMES = frozenset({
     "split.min.js",
 })
 
+# Real published tarball receipts from exact public registry 2026-10-30,
+# verified by completed GitHub Actions H229 real-registry run 41039507011.
+# These hardcoded values are distinct from owner-controlled H137 history.
+PINNED_PUBLISHED_ORIGINAL_SHA256 = {
+    "nouislider.min.js": "79222927cb7695f403144b58e31da6a7082d82e08d310b0cd776264d311abe7d",
+    "nouislider.min.css": "9dc9155cfd6331d1f5629881ac0bc63928243fa4c1d83b17ce4921b5200be0ae",
+    "sortable.min.js": "6d0a831fc19b4bae851797ad3393157e861afb7862459c11226359b27e2c4337",
+    "split.min.js": "c32bd277fed98cd8a04033d4eef37201d9b50886189b4bb4d099d133feaf16dc",
+}
+PINNED_PUBLISHED_TARBALL_SHA256 = {
+    "nouislider": "1d51198034f4df9f9496cd5a0a04c74efba281f6b365b105a1a5f6c2922913b6",
+    "sortablejs": "7a5de41e4a184f43178f3b7cfd4e22f9ac2945a4b7c715ddc3e1c752b5a631dd",
+    "split.js": "6c193ff0c1670b95c91c39b9ea18f7ec175b009e52b581a17e4d196e65469cfd",
+}
+PINNED_REGISTRY_SRI = {
+    "nouislider": "sha512-93TweAi8kqntHJSPiSWQ1o/uZ29VWOmal9YKb6KKGGlCkugaNfAupT7o1qTHqdJvNQ7S0su5rO6qRFCjP8fxtw==",
+    "sortablejs": "sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==",
+    "split.js": "sha512-mPTnGCiS/RiuTNsVhCm9De9cCAUsrNFFviRbADdKiiV+Kk8HKp/0fWu7Kr8pi3/yBmsqLFHuXGT9UUZ+CNLwFw==",
+}
+
 
 def _require(ok: bool, message: str) -> None:
     if not ok:
@@ -238,6 +258,16 @@ def verify_all_published_public_assets(
         report = examine_original_published_archive(
             tarball, package, integrity,
         )
+        _require(
+            integrity == PINNED_REGISTRY_SRI[package.name]
+            and report["tarball_sha256"] ==
+                PINNED_PUBLISHED_TARBALL_SHA256[package.name],
+            "previously verified full published tarball SHA256/SRI drift",
+        )
+        _require(all(
+            PINNED_PUBLISHED_ORIGINAL_SHA256.get(name) == digest
+            for name, digest in report["original_public_asset_sha256"].items()
+        ), "previously verified original public asset SHA256 drift")
         _require(not (set(observed) & set(report["original_public_asset_sha256"])),
                  "published vendor asset output name reused")
         observed.update(report["original_public_asset_sha256"])
