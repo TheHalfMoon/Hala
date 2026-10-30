@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from hashlib import sha256
 import json
+import math
 from pathlib import Path
 import re
 
@@ -145,6 +146,35 @@ def validate_two_step_replay(row:dict, case:dict)->None:
         rgba.add(img["rgba_sha256"])
 
 
+def visible_native_pixel(locator:object)->list[int]:
+    """A recorded pixel must hit the original visible DOM target, not a locator shortcut."""
+    box=locator.bounding_box()
+    require(type(box) is dict
+            and all(type(box.get(k)) in (int,float) for k in
+                    ("x","y","width","height"))
+            and all(math.isfinite(box[k]) for k in
+                    ("x","y","width","height"))
+            and box["width"]>0 and box["height"]>0,
+            "original native click target lacks a finite visible bounding box")
+    point=[int(box["x"]+box["width"]/2),
+           int(box["y"]+box["height"]/2)]
+    one_click_action(point)
+    hit=locator.evaluate(
+        """(element, pixel) => {
+            const at = document.elementFromPoint(pixel[0], pixel[1]);
+            return at !== null && (at === element || element.contains(at));
+        }""",point)
+    require(hit is True,
+            "recorded screenshot pixel is occluded or does not hit original target")
+    return point
+
+
+def native_pixel_click(page:object,point:object)->None:
+    """Execute exactly the screen pixel stored as the H199 one-action label."""
+    one_click_action(point)
+    page.mouse.click(point[0],point[1])
+
+
 def capture(source:Path,output:Path,historical_parent:Path,owner_root:Path,
             h236:Path,h242:Path,h245:Path,h246:Path)->dict:
     require(output.name.startswith("mcdatepicker-private-research-h247-"),
@@ -203,23 +233,18 @@ def capture(source:Path,output:Path,historical_parent:Path,owner_root:Path,
                         target=page.locator(".mc-date.mc-date--active").filter(
                             has_text=re.compile(r"^"+str(case["day"])+r"$"))
                         require(target.count()==1,"target calendar day not visible once")
-                        def center(locator):
-                            b=locator.bounding_box()
-                            require(b is not None, "original click target not visible")
-                            return [int(b["x"]+b["width"]/2),
-                                    int(b["y"]+b["height"]/2)]
-                        select_point=center(target)
+                        select_point=visible_native_pixel(target)
                         first=page.screenshot(type="png")
-                        target.click(timeout=5000)
+                        native_pixel_click(page,select_point)
                         require(page.locator("#datepicker").input_value()==""
                                 and page.locator(".mc-calendar--opened").count()==1,
                                 "date click already confirmed or native dialog vanished")
                         confirm=page.locator(".mc-btn--success").filter(
                             has_text=re.compile(r"^OK$"))
                         require(confirm.count()==1,"native confirmation target missing")
-                        confirm_point=center(confirm)
+                        confirm_point=visible_native_pixel(confirm)
                         intermediate=page.screenshot(type="png")
-                        confirm.click(timeout=5000)
+                        native_pixel_click(page,confirm_point)
                         value=page.locator("#datepicker").input_value()
                         require(re.fullmatch(r"\d{4}-\d{2}-\d{2}",value) is not None
                                 and int(value[-2:])==case["day"],

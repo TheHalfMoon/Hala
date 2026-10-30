@@ -5,8 +5,9 @@ import unittest
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS,parse_actions
 from h246.original_calendar_native import CASES,COMMIT,FILES,REPO
 from h247.two_step_calendar_replay import (
-    STAGES,STATUS,one_click_action,validate_two_step_replay,
-    verify_original_h246_research,
+    STAGES,STATUS,native_pixel_click,one_click_action,
+    validate_two_step_replay,verify_original_h246_research,
+    visible_native_pixel,
 )
 
 
@@ -168,6 +169,61 @@ class H247TwoStepCalendarActionHorizonTests(unittest.TestCase):
                 one_click_action(bad)
         for spec in CASES:
             self.assertTrue(spec["instruction"])
+
+    def test_true_screenshot_pixel_executes_exact_native_mouse_click(self):
+        class Locator:
+            def __init__(self,box,hit):
+                self.box=box
+                self.hit=hit
+            def bounding_box(self):
+                return self.box
+            def evaluate(self,script,pixel):
+                self.assertion=("elementFromPoint" in script,pixel)
+                return self.hit
+
+        class Mouse:
+            def __init__(self):
+                self.pixels=[]
+            def click(self,x,y):
+                self.pixels.append((x,y))
+
+        class Page:
+            def __init__(self):
+                self.mouse=Mouse()
+
+        locator=Locator({"x":199.25,"y":249.5,
+                         "width":45.5,"height":31.5},True)
+        pixel=visible_native_pixel(locator)
+        self.assertEqual(pixel,[222,265])
+        self.assertEqual(locator.assertion,(True,pixel))
+        page=Page()
+        native_pixel_click(page,pixel)
+        self.assertEqual(page.mouse.pixels,[(222,265)])
+        self.assertEqual(one_click_action(pixel),
+                         {"actions":[{"kind":"click","point":[222,265]}]})
+
+    def test_occluded_offscreen_or_forged_pixel_never_clicked(self):
+        class Locator:
+            def __init__(self,box,hit=True):
+                self.box=box
+                self.hit=hit
+            def bounding_box(self):
+                return self.box
+            def evaluate(self,script,pixel):
+                return self.hit
+
+        ok={"x":100,"y":120,"width":40,"height":40}
+        for box,hit in (
+            (ok,False),
+            (ok,"true"),
+            (None,True),
+            ({"x":float("nan"),"y":1,"width":8,"height":8},True),
+            ({"x":960,"y":1,"width":8,"height":8},True),
+            ({"x":5,"y":5,"width":0,"height":8},True),
+            ({"x":5,"y":5,"width":8,"height":-2},True),
+        ):
+            with self.subTest(box=box,hit=hit),self.assertRaises(ValueError):
+                visible_native_pixel(Locator(box,hit))
 
 
 if __name__=="__main__":
