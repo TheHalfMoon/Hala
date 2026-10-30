@@ -49,7 +49,11 @@ def source_policy(indices: tuple[int, ...] = RESEARCH_INDICES) -> dict:
         "language_assignments": ("en", "ar"),
         "official_train_approved": False,
         "independent_dev_sealed": False,
-        "true_ood_consumed": False,
+        # H173 original OOD was permanently consumed on 2026-10-29.
+        # This source-only probe does not run a NEW OOD evaluation.
+        "true_ood_consumed": True,
+        "historical_h173_ood_permanently_consumed": True,
+        "new_ood_evaluations": 0,
         "model_calls": 0,
         "optimizer_steps": 0,
     }
