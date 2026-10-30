@@ -12,7 +12,9 @@ from pathlib import Path
 import subprocess
 
 from h231.native_replay import _rgba_sha
-from h174.split_firewall import canonical_repository_family
+from h174.split_firewall import (
+    canonical_repository_family, FROZEN_PRIOR_ORIGINAL_REPOS,
+)
 from h176.source_family_attribution import (
     FROZEN_H173_REPOS, FROZEN_OTHER_REPOS, KNOWN_NPM_UPSTREAM_REPOS,
 )
@@ -79,7 +81,7 @@ def preflight(root: Path, output: Path) -> dict:
         set(FROZEN_H173_REPOS.values())
         | set(FROZEN_OTHER_REPOS.values())
         | set(KNOWN_NPM_UPSTREAM_REPOS)
-        | {"choices-js/choices"}  # already recorded by H168
+        | set(FROZEN_PRIOR_ORIGINAL_REPOS)  # H168/H169/H171/H172 historical source floor
     )
     require(canonical_repository_family(REPO) not in old,
             "historical known source family reuse")

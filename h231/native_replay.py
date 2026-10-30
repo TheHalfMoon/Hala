@@ -104,10 +104,12 @@ def preflight(manifest: dict, root: Path, output: Path) -> dict:
     # Explicit minimum source-history exclusions: NOT a complete history proof.
     from h176.source_family_attribution import (
         FROZEN_H173_REPOS, FROZEN_OTHER_REPOS, KNOWN_NPM_UPSTREAM_REPOS)
-    from h174.split_firewall import canonical_repository_family
+    from h174.split_firewall import (
+        canonical_repository_family, FROZEN_PRIOR_ORIGINAL_REPOS)
     family = canonical_repository_family(repo)
     old = (set(FROZEN_H173_REPOS.values()) |
-           set(FROZEN_OTHER_REPOS.values()) | set(KNOWN_NPM_UPSTREAM_REPOS))
+           set(FROZEN_OTHER_REPOS.values()) | set(KNOWN_NPM_UPSTREAM_REPOS) |
+           set(FROZEN_PRIOR_ORIGINAL_REPOS))
     _require(family not in old, "known historical original source reused")
     _require(_origin_family(root) == family, "source repository must match origin")
     license_path = _file(root, manifest["license"])

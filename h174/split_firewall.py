@@ -18,6 +18,22 @@ HEX = re.compile(r"[0-9a-f]{64}\Z")
 GIT = re.compile(r"[0-9a-f]{40}\Z")
 APP = re.compile(r"[a-z][a-z0-9-]{1,55}\Z")
 REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
+# Source-family floor recoverable from PUBLIC H168/H169/H171/H172 evidence.
+# H168 TRAIN + H169 DEV: Choices.js @e132628ac74dd427a9a454caf042c65d3065d170,
+# noUiSlider @57033672d07e8bac527d7147721a4a2e07e0d699.
+# H171 TRAIN + H172 DEV: flatpickr @548330e6e18871d6ca1ca78746c0e89cb12a0303,
+# Awesomplete @596bc5d5916266437970ecbf65434077d3950a3d.
+# Awesomplete's historic LeaVerou/awesomplete and nudeui/awesomplete are
+# ONE GitHub repository (ID 30987756). BOTH aliases must be blocked.
+# This floor is incomplete with respect to private unlisted historical data;
+# adding these names does NOT authorize any new dataset or model training.
+FROZEN_PRIOR_ORIGINAL_REPOS = frozenset({
+    "choices-js/choices",
+    "leongersen/nouislider",
+    "flatpickr/flatpickr",
+    "leaverou/awesomplete",
+    "nudeui/awesomplete",
+})
 SOURCE_KEYS = frozenset({
     "app", "split", "repo", "git_sha", "html_sha256", "license",
 })
@@ -98,6 +114,8 @@ def validate(metadata, owner_hash_registry):
                  and all(part not in (".", "..") for part in repo.split("/")),
                  "invalid upstream repository identity")
         canonical_repo = canonical_repository_family(repo)
+        _require(canonical_repo not in FROZEN_PRIOR_ORIGINAL_REPOS,
+                 "previous original TRAIN/DEV source family reused")
         _require(canonical_repo not in repo_seen,
                  "duplicate upstream repository across TRAIN DEV or OOD")
         repo_seen.add(canonical_repo)

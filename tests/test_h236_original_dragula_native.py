@@ -91,7 +91,9 @@ class H236OriginalDragulaSourceTests(unittest.TestCase):
                          self.out.resolve())
 
     def test_known_historical_git_family_denied(self):
-        for original in ("choices-js/choices", "sortablejs/sortable",
+        for original in ("choices-js/choices", "flatpickr/flatpickr",
+                         "leongersen/nouislider", "leaverou/awesomplete",
+                         "nudeui/awesomplete", "sortablejs/sortable",
                          "robinparisi/tingle"):
             with self.subTest(original=original), patch.object(qa, "REPO", original):
                 with self.assertRaisesRegex(ValueError, "historical"):
