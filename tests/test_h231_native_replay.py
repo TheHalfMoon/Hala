@@ -51,6 +51,8 @@ class H231SourceOnlyTests(unittest.TestCase):
         (self.source / "fixture.html").write_text(HTML, encoding="utf-8")
         (self.source / "LICENSE").write_text("ORIGINAL TEST-ONLY FIXTURE, NOT THIRD-PARTY LICENSE\n", encoding="utf-8")
         git(self.source, "init", "-q")
+        git(self.source, "remote", "add", "origin",
+            "https://github.com/hala-test/new-synthetic-fixture.git")
         git(self.source, "add", "fixture.html", "LICENSE")
         git(self.source, "-c", "user.name=H231 QA", "-c", "user.email=synthetic@example.invalid",
             "commit", "-q", "-m", "original synthetic GUI fixture")
@@ -80,6 +82,25 @@ class H231SourceOnlyTests(unittest.TestCase):
         self.manifest["html_sha256"] = "f" * 64
         with self.assertRaisesRegex(ValueError, "html_sha256"):
             preflight(self.manifest, self.source, self.output)
+
+    def test_forged_origin_claim_fails_even_with_identical_git_sha(self):
+        self.manifest["repo"] = "invented-owner/renamed-source"
+        with self.assertRaisesRegex(ValueError, "match origin"):
+            preflight(self.manifest, self.source, self.output)
+
+    def test_offsite_git_origin_denied(self):
+        git(self.source, "remote", "set-url", "origin",
+            "https://example.invalid/hala-test/new-synthetic-fixture.git")
+        with self.assertRaisesRegex(ValueError, "Git origin must be"):
+            preflight(self.manifest, self.source, self.output)
+
+    def test_git_clone_alias_of_same_origin_accepted(self):
+        git(self.source, "remote", "set-url", "origin",
+            "git@github.com:HALA-TEST/NEW-SYNTHETIC-FIXTURE.GIT")
+        self.assertEqual(
+            preflight(self.manifest, self.source, self.output)["repo"],
+            "hala-test/new-synthetic-fixture",
+        )
 
     def test_no_evidence_in_source_repo(self):
         with self.assertRaisesRegex(ValueError, "outside source"):
