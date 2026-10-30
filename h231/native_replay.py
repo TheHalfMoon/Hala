@@ -110,7 +110,9 @@ def preflight(manifest: dict, root: Path, output: Path) -> dict:
     old = (set(FROZEN_H173_REPOS.values()) |
            set(FROZEN_OTHER_REPOS.values()) | set(KNOWN_NPM_UPSTREAM_REPOS) |
            set(FROZEN_PRIOR_ORIGINAL_REPOS))
-    _require(family not in old, "known historical original source reused")
+    from h238.historical_family_floor import known_public_source_family_floor
+    _require(family not in (old | known_public_source_family_floor()),
+             "known historical original source reused")
     _require(_origin_family(root) == family, "source repository must match origin")
     license_path = _file(root, manifest["license"])
     html_path = _file(root, manifest["html"], ".html")

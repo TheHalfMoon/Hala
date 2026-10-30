@@ -113,8 +113,10 @@ class GithubCloneSuffixAliasRegression(unittest.TestCase):
                 with self.subTest(alias=alias):
                     meta,pixels,hist=fixture()
                     meta["sources"][0]["repo"]=alias
+                    # H238 rejects consumed H173 sources at the base H174
+                    # preflight, before the historical SHA-only crosscheck.
                     with self.assertRaisesRegex(
-                        ValueError,"historical upstream repository family reused"
+                        ValueError,"historical upstream repository family reused|public historical original source family reused"
                     ):
                         validate_with_source_history(meta,pixels,hist)
 

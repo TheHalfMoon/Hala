@@ -150,7 +150,7 @@ class PublicHistoricalOriginTests(unittest.TestCase):
             metadata, pixel, history, attribution = fixture()
             metadata["sources"][0]["repo"] = repo.upper()
             with self.subTest(app=app), self.assertRaisesRegex(
-                ValueError, "historical upstream repository"
+                ValueError, "historical upstream repository|public historical original source family reused"
             ):
                 audit_public_origin_pins(
                     metadata, pixel, history, attribution

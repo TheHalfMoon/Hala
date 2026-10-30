@@ -12,7 +12,7 @@ from pathlib import Path
 
 from h173.source_preflight import SOURCE_PINS
 from h174.source_candidates import CANDIDATES, verify_catalog, verify_local_source_only
-from h174.split_firewall import APP, GIT, HEX, REPO, BANNED
+from h174.split_firewall import APP, GIT, HEX, REPO, BANNED, canonical_repository_family
 from h176.source_family_attribution import (
     FROZEN_H173_REPOS, FROZEN_OTHER_GIT, KNOWN_EXTRA_PREVIOUS,
     KNOWN_NPM_UPSTREAM_REPOS,
@@ -106,9 +106,11 @@ def screen_pins_against_history(
                 ).split("/")),
                 "unsafe original source relative path",
             )
-        canonical_repo = repo.casefold()
+        canonical_repo = canonical_repository_family(repo)
+        from h238.historical_family_floor import known_public_source_family_floor
         _require(
-            canonical_repo not in (KNOWN_BURNED_REPOS | observed_repos),
+            canonical_repo not in (KNOWN_BURNED_REPOS | observed_repos |
+                                   known_public_source_family_floor()),
             "candidate upstream previously observed in historical app",
         )
         _require(

@@ -83,7 +83,8 @@ def preflight(root: Path, output: Path) -> dict:
         | set(KNOWN_NPM_UPSTREAM_REPOS)
         | set(FROZEN_PRIOR_ORIGINAL_REPOS)  # H168/H169/H171/H172 historical source floor
     )
-    require(canonical_repository_family(REPO) not in old,
+    from h238.historical_family_floor import known_public_source_family_floor
+    require(canonical_repository_family(REPO) not in (old | known_public_source_family_floor()),
             "historical known source family reuse")
     require(not output.exists(), "owner output must be create-only")
     require(not output.is_relative_to(root), "output must leave original source")
