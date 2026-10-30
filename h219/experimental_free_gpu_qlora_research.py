@@ -125,7 +125,8 @@ def real_experimental_qlora_two_steps() -> list[dict]:
     # A separate, independently admitted source-disjoint TRAIN/DEV pathway
     # must be designed for future experiments; never unlock this one.
     require(False, "H212 research candidates permanently barred from "
-            "optimizer gradients; no TRAIN/DEV admission")
+            "optimizer gradients; optimizer steps prohibited before "
+            "TRAIN/DEV admission")
     # Retain the original feasibility recipe below as inert source evidence.
     policy = source_policy()
     from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
