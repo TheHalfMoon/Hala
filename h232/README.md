@@ -4,7 +4,7 @@
 
 ## Genuine original upstream source
 
-- Original MIT source: canonical GitHub `nudeui/awesomplete` (immutable repository ID `30987756`), Git commit `596bc5d5916266437970ecbf65434077d3950a3d` (`gh-pages`). The historic `LeaVerou/awesomplete` URL redirects to this SAME repository ID; both aliases are checked against the known historical-family floor. A cloned Git remote may still show the old URL. GitHub API commit and repository identity were independently verified 2026-10-30.
+- Original MIT source: canonical GitHub `nudeui/awesomplete` (immutable repository ID `30987756`), Git commit `596bc5d5916266437970ecbf65434077d3950a3d` (`gh-pages`). The historic `LeaVerou/awesomplete` URL redirects to this SAME repository ID; H171 TRAIN and H172 consumed DEV had already used this same source family; H237 blocks BOTH aliases from future NEW data qualification. H232 is a historical-library runtime QA only. A cloned Git remote may still show the old URL. GitHub API commit and repository identity were independently verified 2026-10-30.
 - `LICENSE` SHA-256: `3358ef750899fd62ec44637f2a23719a89bb7a8a0b4225d72488d2483359cf1d`.
 - Original upstream `test/fixtures/options.html` SHA-256: `907c1a85936ac6f0a0eaaa7ad4867d44fbd7c3d2dcc179dfccd405f87b098c07`.
 - Original `awesomplete.js` SHA-256: `5f5b922b7945bf4a58487080ef075bf7e2734c953063886276cd386d760803f8`.
@@ -37,6 +37,6 @@ Private output: `D:\Hala-H232-Private\awesomplete-native-01`, 6 local PNG files 
 
 ## Limits and scientific firewall
 
-This independently pins **one new public source** and proves an authored QA path through genuine original JS in Windows Edge. It **does not prove** complete historical source/fork/npm inventory, decoded historical RGBA inventory, absence of this family from all prior private experiments, complete transitive license/media rights, or original-app full demo behavior. It is not an admitted TRAIN/DEV/OOD example and never updates H199. H212 gradients remain blocked by H222; H173 owner OOD remains permanently consumed (2/32 vs 3/32; exact McNemar p=1.0, not significant).
+This pins **one previously used public source family** and proves an authored QA path through genuine original JS in Windows Edge. It **does not prove** complete historical source/fork/npm inventory, decoded historical RGBA inventory, absence of this family from all prior private experiments, complete transitive license/media rights, or original-app full demo behavior. It is not an admitted TRAIN/DEV/OOD example and never updates H199. H212 gradients remain blocked by H222; H173 owner OOD remains permanently consumed (2/32 vs 3/32; exact McNemar p=1.0, not significant).
 
-GitHub Actions on the private repository remain blocked at account billing/spending infrastructure before job steps (H231 run 41075493441). Do not rerun blindly, pay, make public or claim hosted CI green. Qualification here is **owner-local Windows only** until zero-cost hosted CI actually executes.
+H232 hosted CPU qualification **passed** on exact PR #253 head `d1c37ef5dce68356c24931f956bec02608545116` (run 41080191337, both Python 3.11 and 3.12). This verifies source QA code, NOT new original source independence, dataset admission, model training or model gain.
