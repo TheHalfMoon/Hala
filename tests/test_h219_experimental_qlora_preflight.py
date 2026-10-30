@@ -85,7 +85,7 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
         # Mock only dir presence; never train or allocate torch resources.
         original=Path.is_dir
         def patched(p):
-            if str(p)=="/kaggle/working":
+            if p==Path("/kaggle/working"):
                 return True
             return original(p)
         with patch.object(Path,"is_dir",autospec=True,side_effect=patched):
@@ -93,7 +93,7 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
                 acknowledged=ACKNOWLEDGEMENT, free_session=True,
                 gpu_count=1, vram_bytes=16*1024**3,
                 output_dir=Path("/kaggle/working/Hala-H219-Research-Only"),
-                cwd=Path("/kaggle/working"),
+                cwd=Path.cwd(),
                 token_present=False,
             )
 
