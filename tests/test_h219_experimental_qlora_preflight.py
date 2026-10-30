@@ -145,6 +145,33 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
                                             "optimizer steps prohibited"):
                     real_experimental_qlora_two_steps()
 
+    def test_h222_permanent_h212_gradient_denial_survives_forged_admission(self):
+        # An unrelated future admitted TRAIN manifest cannot authorize the
+        # hardcoded H212 research-only cases, even with a forged policy.
+        # This must fail before model imports, GPU access or owner data.
+        from h219.experimental_free_gpu_qlora_research import (
+            real_experimental_qlora_two_steps,
+        )
+        with patch("h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS",
+                   frozenset({"unrelated-future-admitted-train"})):
+            with patch(
+                "h219.experimental_free_gpu_qlora_research.source_policy",
+                return_value={
+                    "official_train_approved": True,
+                    "independent_dev_sealed": True,
+                },
+            ) as forged_policy:
+                with patch.dict("sys.modules", {
+                    "torch": None, "transformers": None,
+                    "huggingface_hub": None,
+                }):
+                    with self.assertRaisesRegex(
+                        ValueError,
+                        "H212 research candidates permanently barred",
+                    ):
+                        real_experimental_qlora_two_steps()
+                forged_policy.assert_not_called()
+
     def _deny(self, **overrides):
         settings={
             "acknowledged":ACKNOWLEDGEMENT,
