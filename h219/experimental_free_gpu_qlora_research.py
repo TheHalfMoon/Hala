@@ -117,11 +117,16 @@ def _fetch_public_processor_assets(directory: Path) -> Path:
 
 def real_experimental_qlora_two_steps() -> list[dict]:
     """At most two real optimizer steps; never run during CI or on Windows."""
-    # SCIENCE FIREWALL: source-only safety checks do not admit TRAIN.
-    # The H212 examples are research candidates, and independent DEV is not
-    # sealed. Even a genuinely free GPU and a valid ACK must never authorize
-    # optimizer gradients on these cases. Future work must implement and
-    # independently verify per-case TRAIN admission and sealed DEV first.
+    # SCIENCE FIREWALL: this historical H219 entrypoint is permanently
+    # non-executable. It hardcodes H212 research-only indices (0, 1).
+    # Even if a future unrelated TRAIN allowlist is populated, or source
+    # receipts are accidentally changed to say admitted, these fixed H212
+    # candidates cannot become training data through this legacy function.
+    # A separate, independently admitted source-disjoint TRAIN/DEV pathway
+    # must be designed for future experiments; never unlock this one.
+    require(False, "H212 research candidates permanently barred from "
+            "optimizer gradients; no TRAIN/DEV admission")
+    # Retain the original feasibility recipe below as inert source evidence.
     policy = source_policy()
     from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
     require(
