@@ -204,13 +204,14 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         # The H174 legacy repo arrays lack the npm-only family. H176
         # catches a new Git checkout of the exact npm package's upstream.
         for upstream in KNOWN_NPM_UPSTREAM_REPOS:
-            for index in range(3):
-                meta, pixels, history, attribution = _fixture()
-                meta["sources"][index]["repo"] = upstream.upper()
-                with self.subTest(upstream=upstream, split=meta["sources"][index]["split"]), self.assertRaisesRegex(
-                    ValueError, "historical npm upstream Git repository"
-                ):
-                    audit_attribution(meta, pixels, history, attribution)
+            for variant in (upstream.upper(), upstream + ".git", upstream.upper() + ".GIT"):
+                for index in range(3):
+                    meta, pixels, history, attribution = _fixture()
+                    meta["sources"][index]["repo"] = variant
+                    with self.subTest(repo=variant, split=meta["sources"][index]["split"]), self.assertRaisesRegex(
+                        ValueError, "historical npm upstream Git repository"
+                    ):
+                        audit_attribution(meta, pixels, history, attribution)
 
     def test_h137_npm_cannot_masquerade_as_unpinned_git_source(self):
         meta, pixels, history, attribution = _fixture()
