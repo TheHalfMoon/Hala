@@ -114,6 +114,33 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
         from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
         self.assertEqual(ADMITTED_TRAIN_MANIFEST_SHAS,frozenset())
 
+    def test_h220_unadmitted_gradient_path_blocks_before_ml_imports(self):
+        from h219.experimental_free_gpu_qlora_research import (
+            real_experimental_qlora_two_steps,
+        )
+        # A forged free-session acknowledgement must never be sufficient.
+        # No Torch, Transformers, weights, model, or GPU are imported.
+        with patch.dict("sys.modules", {
+            "torch": None, "transformers": None, "huggingface_hub": None,
+        }):
+            with self.assertRaisesRegex(ValueError,
+                                        "optimizer steps prohibited"):
+                real_experimental_qlora_two_steps()
+
+    def test_h220_forged_source_policy_cannot_override_empty_allowlist(self):
+        from h219.experimental_free_gpu_qlora_research import (
+            real_experimental_qlora_two_steps,
+        )
+        with patch("h219.experimental_free_gpu_qlora_research.source_policy",
+                   return_value={
+                       "official_train_approved": True,
+                       "independent_dev_sealed": True,
+                   }):
+            with patch.dict("sys.modules", {"torch": None}):
+                with self.assertRaisesRegex(ValueError,
+                                            "optimizer steps prohibited"):
+                    real_experimental_qlora_two_steps()
+
     def _deny(self, **overrides):
         settings={
             "acknowledged":ACKNOWLEDGEMENT,
