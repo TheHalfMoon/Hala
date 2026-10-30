@@ -8,6 +8,7 @@ on:
     paths:
       - "h229/**"
       - "tests/test_h229_published_npm_tarball_integrity.py"
+      - "tests/test_h229_owner_published_four_asset_match.py"
       - ".github/workflows/h229-verified-published-public-npm-cpu.yml"
   pull_request:
     paths:
@@ -52,7 +53,9 @@ jobs:
           set -euo pipefail
           python -m unittest discover -s tests -p 'test_h229_published_npm_tarball_integrity.py' -q
           python -O -m unittest discover -s tests -p 'test_h229_published_npm_tarball_integrity.py' -q
-          python -m compileall -q h229 tests/test_h229_published_npm_tarball_integrity.py
+          python -m unittest discover -s tests -p 'test_h229_owner_published_four_asset_match.py' -q
+          python -O -m unittest discover -s tests -p 'test_h229_owner_published_four_asset_match.py' -q
+          python -m compileall -q h229 tests/test_h229_published_npm_tarball_integrity.py tests/test_h229_owner_published_four_asset_match.py
           echo "H229_SYNTHETIC_NO_NETWORK_NO_MODEL_NO_OWNER_MEDIA_PASS"
 
   original-published-registry:
