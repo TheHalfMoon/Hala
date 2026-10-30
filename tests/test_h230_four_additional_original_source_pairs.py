@@ -87,8 +87,13 @@ class FourRemainingHistoricalOriginalSourceTests(unittest.TestCase):
                 ("source_html_shas", row["html_sha256"]),
             ):
                 history[field].remove(value)
+            # calculator is already covered by H174's older BANNED floor.
+            # The other source labels are guarded by the new H176 floor.
+            # Both correct early/late denials remain mandatory.
             with self.subTest(app=app), self.assertRaisesRegex(
-                ValueError, "missing known historical TRAIN/DEV/OOD app or pinned pairing"
+                ValueError,
+                "missing known historical TRAIN/DEV/OOD app or pinned pairing|"
+                "known historical TRAIN/DEV/OOD application missing from registry",
             ):
                 audit_attribution(meta, pixels, history, attribution)
 
