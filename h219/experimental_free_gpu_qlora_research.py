@@ -16,7 +16,7 @@ from pathlib import Path
 MODEL_ID = "Qwen/Qwen3-VL-2B-Instruct"
 MODEL_REVISION = "89644892e4d85e24eaac8bacfd4f463576704203"
 RESEARCH_INDICES = (0, 1)
-ACKNOWLEDGEMENT = "SELF_AUTHORED_RESEARCH_ONLY_NOT_HALА_OFFICIAL"
+ACKNOWLEDGEMENT = "SELF_AUTHORED_RESEARCH_ONLY_NOT_HALA_OFFICIAL"
 MIN_VRAM_BYTES = 14 * 1024**3
 MAX_VRAM_BYTES = 25 * 1024**3
 
@@ -72,7 +72,7 @@ def check_runtime_request(*, acknowledged: str, free_session: bool,
             "explicit nonpublishing experiment acknowledgment required")
     require(free_session is True and token_present is False,
             "public free GPU session without private HF token required")
-    require(gpu_count == 1 and type(vram_bytes) is int
+    require(type(gpu_count) is int and gpu_count == 1 and type(vram_bytes) is int
             and MIN_VRAM_BYTES <= vram_bytes <= MAX_VRAM_BYTES,
             "one free 14-25GiB CUDA GPU, never a laptop CPU")
     require(isinstance(output_dir, Path)
