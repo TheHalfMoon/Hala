@@ -116,6 +116,9 @@ def validate(metadata, owner_hash_registry):
         canonical_repo = canonical_repository_family(repo)
         _require(canonical_repo not in FROZEN_PRIOR_ORIGINAL_REPOS,
                  "previous original TRAIN/DEV source family reused")
+        from h238.historical_family_floor import known_public_source_family_floor
+        _require(canonical_repo not in known_public_source_family_floor(),
+                 "public historical original source family reused")
         _require(canonical_repo not in repo_seen,
                  "duplicate upstream repository across TRAIN DEV or OOD")
         repo_seen.add(canonical_repo)

@@ -82,7 +82,8 @@ def test_renamed_consumed_h173_upstream_rejected_with_new_source_hashes(known_re
     meta, pixels, sources = fixture()
     # App, Git SHA and HTML SHA are all new; upstream repo family is not.
     meta["sources"][0]["repo"] = known_repo.upper()
-    with pytest.raises(ValueError, match="historical upstream repository family"):
+    # H238 rejects this known H173 family even earlier at H174 base preflight.
+    with pytest.raises(ValueError, match="historical upstream repository family|public historical original source family reused"):
         validate_with_source_history(meta, pixels, sources)
 
 

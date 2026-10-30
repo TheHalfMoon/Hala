@@ -272,7 +272,7 @@ class SourceFamilyAttributionTests(unittest.TestCase):
                     meta, pixels, history, attribution = _fixture()
                     meta["sources"][index]["repo"] = variant
                     with self.subTest(repo=variant, split=meta["sources"][index]["split"]), self.assertRaisesRegex(
-                        ValueError, "historical npm upstream Git repository|previous original TRAIN/DEV source family reused"
+                        ValueError, "historical npm upstream Git repository|previous original TRAIN/DEV source family reused|public historical original source family reused"
                     ):
                         audit_attribution(meta, pixels, history, attribution)
 
