@@ -63,6 +63,27 @@ def _run_git(root: Path, *args: str) -> str:
     return result.stdout.strip()
 
 
+def _origin_family(root: Path) -> str:
+    """Require the claimed donor to match its local Git origin identity.
+
+    This is a fail-closed source-consistency check, NOT independent proof that
+    GitHub created or authenticated the checkout, or that old aliases are absent.
+    """
+    raw = _run_git(root, "remote", "get-url", "origin")
+    if raw.startswith("git@github.com:"):
+        slug = raw[len("git@github.com:"):]
+    else:
+        parts = urlsplit(raw)
+        _require(parts.scheme in ("https", "ssh") and
+                 parts.netloc in ("github.com", "git@github.com") and
+                 not parts.query and not parts.fragment and
+                 parts.path.startswith("/"),
+                 "Git origin must be an exact GitHub repository URL")
+        slug = parts.path[1:]
+    from h174.split_firewall import canonical_repository_family
+    return canonical_repository_family(slug)
+
+
 def preflight(manifest: dict, root: Path, output: Path) -> dict:
     root = root.resolve(strict=True)
     output = output.resolve()
@@ -88,6 +109,7 @@ def preflight(manifest: dict, root: Path, output: Path) -> dict:
     old = (set(FROZEN_H173_REPOS.values()) |
            set(FROZEN_OTHER_REPOS.values()) | set(KNOWN_NPM_UPSTREAM_REPOS))
     _require(family not in old, "known historical original source reused")
+    _require(_origin_family(root) == family, "source repository must match origin")
     license_path = _file(root, manifest["license"])
     html_path = _file(root, manifest["html"], ".html")
     for field, path in (("license_sha256", license_path), ("html_sha256", html_path)):
