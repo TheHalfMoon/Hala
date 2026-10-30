@@ -114,7 +114,18 @@ def _fetch_public_processor_assets(directory: Path) -> Path:
 def real_experimental_qlora_two_steps() -> list[dict]:
     """At most two real optimizer steps; never run during CI or on Windows."""
     from h213.frozen_candidate_reproduction_gate import verify_checked_in_source
-    source_policy()
+    # SCIENCE FIREWALL: source-only safety checks do not admit TRAIN.
+    # The H212 examples are research candidates, and independent DEV is not
+    # sealed. Even a genuinely free GPU and a valid ACK must never authorize
+    # optimizer gradients on these cases. Future work must implement and
+    # independently verify per-case TRAIN admission and sealed DEV first.
+    policy = source_policy()
+    require(
+        policy["official_train_approved"] is True
+        and policy["independent_dev_sealed"] is True,
+        "unadmitted H212 research candidates and unsealed DEV: "
+        "optimizer steps prohibited before independent science admission",
+    )
     source_receipt = verify_checked_in_source()
     require(source_receipt["candidate_cases_checked"] == 96
             and source_receipt["rgba_sha_matches"] == 96
