@@ -27,7 +27,11 @@ class FreeGpuResearchOnlyPreflightTests(unittest.TestCase):
         self.assertEqual(r["synthetic_examples"], 2)
         self.assertFalse(r["official_train_approved"])
         self.assertFalse(r["independent_dev_sealed"])
-        self.assertFalse(r["true_ood_consumed"])
+        # Historical H173 OOD was scored exactly once and is consumed.
+        # A new source-only probe must not misstate that history.
+        self.assertTrue(r["true_ood_consumed"])
+        self.assertTrue(r["historical_h173_ood_permanently_consumed"])
+        self.assertEqual(r["new_ood_evaluations"], 0)
         self.assertEqual(r["optimizer_steps"], 0)
 
     def test_model_revision_and_provenance_cannot_drift(self):
