@@ -32,7 +32,8 @@ def source_policy(indices: tuple[int, ...] = RESEARCH_INDICES) -> dict:
     from h212.procedural_native_gui_candidates import COUNT, enumerate_specs
     require(not ADMITTED_TRAIN_MANIFEST_SHAS,
             "official original GUI TRAIN allowlist unexpectedly opened")
-    require(type(indices) is tuple and indices == RESEARCH_INDICES,
+    require(type(indices) is tuple and all(type(i) is int for i in indices)
+            and indices == RESEARCH_INDICES,
             "one fixed new bilingual training CANDIDATE pair only")
     roster = enumerate_specs()
     require(COUNT == 96 and len(roster) == 96,
