@@ -32,6 +32,45 @@ registry metadata, crosschecked via a read-only npm registry metadata lookup
 on 2026-10-30 (all versions exist, all declare MIT). These are the exact
 versions and relative vendor member paths previously pinned in H137.
 
+## First **real** independent published npm run — SUCCESS
+
+[GitHub Actions run 41039507011, original published-registry job](https://github.com/TheHalfMoon/Hala/actions/runs/41039507011)
+independently fetched all three **actual** npm registry tarballs (not
+GitHub source and not owner files), validated their previously recorded
+official registry SHA-1, observed exact `dist.integrity` SHA-512 SRI,
+and extracted the following original **published JS/CSS bytes**.
+The runner printed only public digests; no original owner data was
+read or uploaded.
+
+| npm package@version | Exact original H137 vendor filename | Published file SHA-256 |
+| --- | --- | --- |
+| nouislider@15.8.1 | `nouislider.min.js` | `79222927cb7695f403144b58e31da6a7082d82e08d310b0cd776264d311abe7d` |
+| nouislider@15.8.1 | `nouislider.min.css` | `9dc9155cfd6331d1f5629881ac0bc63928243fa4c1d83b17ce4921b5200be0ae` |
+| sortablejs@1.15.6 | `sortable.min.js` | `6d0a831fc19b4bae851797ad3393157e861afb7862459c11226359b27e2c4337` |
+| split.js@1.6.5 | `split.min.js` | `c32bd277fed98cd8a04033d4eef37201d9b50886189b4bb4d099d133feaf16dc` |
+
+Pinned entire published tarball SHA-256 receipts from that run:
+
+- `nouislider@15.8.1` `1d51198034f4df9f9496cd5a0a04c74efba281f6b365b105a1a5f6c2922913b6`
+- `sortablejs@1.15.6` `7a5de41e4a184f43178f3b7cfd4e22f9ac2945a4b7c715ddc3e1c752b5a631dd`
+- `split.js@1.6.5` `6c193ff0c1670b95c91c39b9ea18f7ec175b009e52b581a17e4d196e65469cfd`
+
+The publication's exact SHA-512 SRI strings were also pinned
+in `h229/verified_published_npm_assets.py`. A subsequent publisher
+audit rejects a registry tarball or individual original JS/CSS asset
+that drifts even if registry metadata changed consistently.
+
+`h229/verify_original_h137_against_published.py` now integrates
+H228's strict owner original four-asset/provenance/three-H176-app
+checks and compares EACH of those four owner-local public binary
+SHA-256s to these independently verified, hardcoded **published**
+SHA-256s. There are **no CLI runtime flags** to override them.
+Its unit tests use synthetic fabricated bytes and patch their mock
+SHA constants only inside the disposable test fixture.
+**Do not claim the owner original H137 runtime passed this
+final comparison**; the real H137 runtime and private H176
+paired attribution have not been independently located.
+
 ## Implemented evidence
 
 - `h229/verified_published_npm_assets.py` provides a hardcoded
