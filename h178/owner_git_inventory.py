@@ -19,6 +19,7 @@ import re
 import stat
 import subprocess
 
+from h174.split_firewall import canonical_repository_family
 from h176.source_family_attribution import KNOWN_NPM_UPSTREAM_REPOS
 from h177.public_origin_pins import audit_public_origin_pins
 
@@ -81,13 +82,16 @@ def _github_root(origin: str) -> str:
         path = origin[len("git@github.com:"):]
     else:
         raise ValueError("untrusted historical Git origin scheme or host")
-    path = path.removesuffix(".git").rstrip("/")
+    # H174/H226/H238 treat repeated .git clone suffixes as a single
+    # GitHub family. An owner-old remote with .git.git must not evade
+    # an admission candidate using the unsuffixed or once-suffixed name.
+    path = path.rstrip("/")
     _require(
         GITHUB_REPO.fullmatch(path) is not None
         and all(part not in (".", "..") for part in path.split("/")),
         "untrusted historical Git repository identity",
     )
-    return path.casefold()
+    return canonical_repository_family(path)
 
 
 def inventory_local_original_sources(roots: list[str | Path]) -> dict:
@@ -203,11 +207,12 @@ def audit_source_inventory(
     )
     local = inventory_local_original_sources(roots)
     prior = {
-        name.casefold()
+        canonical_repository_family(name)
         for name in historical_source_registry["historical_repositories"]
-    } | KNOWN_NPM_UPSTREAM_REPOS
+    } | {canonical_repository_family(name) for name in KNOWN_NPM_UPSTREAM_REPOS}
     candidate_repos = {
-        row["repo"].casefold() for row in candidate_metadata["sources"]
+        canonical_repository_family(row["repo"])
+        for row in candidate_metadata["sources"]
     }
     observed = {
         repo for repo, _git_sha in local["_owner_only_repository_shas"]
