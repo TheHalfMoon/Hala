@@ -24,13 +24,22 @@ SCHEMA = "hala.h176.owner-historical-source-family-attribution.v1"
 TOP_FIELDS = frozenset({"schema", "families"})
 ROW_FIELDS = frozenset({"app", "repo", "git_sha", "html_sha256"})
 NPM_ROW_FIELDS = frozenset({"app", "package", "version", "artifact_sha256"})
-# H137 source.py pinned split.js v1.6.5 as an npm vendor artifact, not
-# as an upstream original Git/HTML demo. Never invent a Git SHA for it.
-KNOWN_NPM_SOURCES = {"splitjs": ("split.js", "1.6.5")}
-# npm registry metadata for the exact historical split.js@1.6.5 names
-# git+https://github.com/nathancahill/split.git as the upstream repo.
-# Future Git original-app candidates must not silently recycle this family.
-KNOWN_NPM_UPSTREAM_REPOS = frozenset({"nathancahill/split"})
+# H137 source.py pins three MIT npm vendor binaries, not upstream original
+# Git/HTML demos. Never invent Git SHAs for these historical artifacts.
+KNOWN_NPM_SOURCES = {
+    "nouislider": ("nouislider", "15.8.1"),
+    "sortablejs": ("sortablejs", "1.15.6"),
+    "splitjs": ("split.js", "1.6.5"),
+}
+# H137 source.py pins all three MIT npm vendors and exact versions.
+# Their public upstream Git families must not re-enter TRAIN/DEV/OOD_RESERVED
+# under renamed app IDs or different Git revisions. Source-only evidence:
+# leongersen/noUiSlider and SortableJS/Sortable package.json repository fields;
+# split.js@1.6.5 registry points to nathancahill/split.
+# H137 owner-only binary and CSS hashes are NOT authenticated here.
+KNOWN_NPM_UPSTREAM_REPOS = frozenset({
+    "leongersen/nouislider", "sortablejs/sortable", "nathancahill/split",
+})
 # Public h173/README.md pins these exact upstream repository families alongside
 # their immutable Git/HTML hashes; a fabricated repo must not hide reuse.
 FROZEN_H173_REPOS = {
@@ -126,8 +135,10 @@ def audit_attribution(
                 type(artifact_sha) is str and HEX.fullmatch(artifact_sha) is not None,
                 "H137 historical npm artifact SHA-256 required",
             )
-            # In the owner H137 provenance.json, verify this artifact SHA
-            # against split.min.js; this function cannot authenticate it.
+            # In owner H137 provenance.json, independently verify this
+            # artifact SHA against nouislider.min.js / sortable.min.js /
+            # split.min.js respectively. noUiSlider also used a separate
+            # CSS asset, which this metadata-only check does not verify.
             canonical_rows.append({
                 "app": app, "package": package, "version": version,
                 "artifact_sha256": artifact_sha,

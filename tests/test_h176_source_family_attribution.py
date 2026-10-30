@@ -17,7 +17,8 @@ from h174.split_firewall import (
     BANNED, HISTORY_SCHEMA as PIXEL_HISTORY_SCHEMA, SCHEMA as SPLIT_SCHEMA,
 )
 from h176.source_family_attribution import (
-    SCHEMA, KNOWN_EXTRA_PREVIOUS, KNOWN_NPM_SOURCES, FROZEN_OTHER_GIT,
+    SCHEMA, KNOWN_EXTRA_PREVIOUS, KNOWN_NPM_SOURCES,
+    KNOWN_NPM_UPSTREAM_REPOS, FROZEN_OTHER_GIT,
     FROZEN_H173_REPOS,
     audit_attribution,
 )
@@ -52,10 +53,11 @@ def _fixture():
     }
     rows = []
     for index, app in enumerate(sorted(BANNED | KNOWN_EXTRA_PREVIOUS), start=1):
-        if app == "splitjs":
+        if app in KNOWN_NPM_SOURCES:
             # Historical H137 npm vendor fixture, not a fabricated Git SHA.
+            package, version = KNOWN_NPM_SOURCES[app]
             rows.append({
-                "app": app, "package": "split.js", "version": "1.6.5",
+                "app": app, "package": package, "version": version,
                 "artifact_sha256": f"{index:064x}",
             })
             continue
@@ -84,7 +86,7 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         result = audit_attribution(*_fixture())
         self.assertEqual(result["paired_source_families"], len(BANNED | KNOWN_EXTRA_PREVIOUS))
         self.assertEqual(result["earlier_source_git_pins_matched"], len(FROZEN_OTHER_GIT))
-        self.assertEqual(result["known_npm_packages_paired"], 1)
+        self.assertEqual(result["known_npm_packages_paired"], len(KNOWN_NPM_SOURCES))
         self.assertEqual(result["frozen_h173_pairs_matched"], len(SOURCE_PINS))
         self.assertFalse(result["source_history_completeness_proven"])
         self.assertFalse(result["provenance_authenticity_proven"])
@@ -176,43 +178,51 @@ class SourceFamilyAttributionTests(unittest.TestCase):
 
     def test_h137_npm_package_has_no_fabricated_git_or_html(self):
         meta, pixels, history, attribution = _fixture()
-        row = next(r for r in attribution["families"] if r["app"] == "splitjs")
-        self.assertEqual(set(row), {"app", "package", "version", "artifact_sha256"})
-        self.assertFalse(any("split.js" in r for r in history["historical_repositories"]))
+        for app in KNOWN_NPM_SOURCES:
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            self.assertEqual(set(row), {"app", "package", "version", "artifact_sha256"})
+        self.assertFalse(any(r in KNOWN_NPM_UPSTREAM_REPOS
+                             for r in history["historical_repositories"]))
         report = audit_attribution(meta, pixels, history, attribution)
-        self.assertEqual(report["known_npm_packages_paired"], 1)
+        self.assertEqual(report["known_npm_packages_paired"], len(KNOWN_NPM_SOURCES))
 
     def test_h137_npm_version_and_binary_digest_are_mandatory(self):
         for key, invalid in (
             ("package", "different-name"), ("version", "9.0.0"),
             ("artifact_sha256", None), ("artifact_sha256", "0" * 40),
         ):
-            meta, pixels, history, attribution = _fixture()
-            row = next(r for r in attribution["families"] if r["app"] == "splitjs")
-            row[key] = invalid
-            with self.subTest(field=key), self.assertRaisesRegex(
-                ValueError, "npm package or version|artifact SHA-256"
-            ):
-                audit_attribution(meta, pixels, history, attribution)
+            for app in KNOWN_NPM_SOURCES:
+                meta, pixels, history, attribution = _fixture()
+                row = next(r for r in attribution["families"] if r["app"] == app)
+                row[key] = invalid
+                with self.subTest(app=app, field=key), self.assertRaisesRegex(
+                    ValueError, "npm package or version|artifact SHA-256"
+                ):
+                    audit_attribution(meta, pixels, history, attribution)
 
     def test_h137_consumed_npm_upstream_rejects_new_git_alias_in_any_split(self):
         # The H174 legacy repo arrays lack the npm-only family. H176
         # catches a new Git checkout of the exact npm package's upstream.
-        for index in range(3):
-            meta, pixels, history, attribution = _fixture()
-            meta["sources"][index]["repo"] = "NATHANCAHILL/SPLIT"
-            with self.subTest(split=meta["sources"][index]["split"]), self.assertRaisesRegex(
-                ValueError, "historical npm upstream Git repository"
-            ):
-                audit_attribution(meta, pixels, history, attribution)
+        for upstream in KNOWN_NPM_UPSTREAM_REPOS:
+            for index in range(3):
+                meta, pixels, history, attribution = _fixture()
+                meta["sources"][index]["repo"] = upstream.upper()
+                with self.subTest(upstream=upstream, split=meta["sources"][index]["split"]), self.assertRaisesRegex(
+                    ValueError, "historical npm upstream Git repository"
+                ):
+                    audit_attribution(meta, pixels, history, attribution)
 
     def test_h137_npm_cannot_masquerade_as_unpinned_git_source(self):
         meta, pixels, history, attribution = _fixture()
-        row = next(r for r in attribution["families"] if r["app"] == "splitjs")
-        row.update({"repo": "invented/splitjs", "git_sha": "a"*40,
-                    "html_sha256": "f"*64})
-        with self.assertRaisesRegex(ValueError, "historical npm source requires"):
-            audit_attribution(meta, pixels, history, attribution)
+        for app in KNOWN_NPM_SOURCES:
+            meta, pixels, history, attribution = _fixture()
+            row = next(r for r in attribution["families"] if r["app"] == app)
+            row.update({"repo": "invented/" + app, "git_sha": "a"*40,
+                        "html_sha256": "f"*64})
+            with self.subTest(app=app), self.assertRaisesRegex(
+                ValueError, "historical npm source requires"
+            ):
+                audit_attribution(meta, pixels, history, attribution)
 
     def test_historical_sha_must_be_attributed_to_a_family(self):
         meta, pixels, history, attribution = _fixture()
