@@ -18,7 +18,9 @@ from h173.source_preflight import SOURCE_PINS
 from h174.source_history_gate import (
     SCHEMA as HISTORY_SCHEMA, MAX_ENTRIES, validate_with_source_history,
 )
-from h174.split_firewall import APP, BANNED, GIT, HEX, REPO
+from h174.split_firewall import (
+    APP, BANNED, GIT, HEX, REPO, canonical_repository_family,
+)
 
 SCHEMA = "hala.h176.owner-historical-source-family-attribution.v1"
 TOP_FIELDS = frozenset({"schema", "families"})
@@ -194,7 +196,7 @@ def audit_attribution(
     # Git clone URL repository suffix is not a distinct upstream family.
     for source in metadata["sources"]:
         _require(
-            source["repo"].casefold().removesuffix(".git") not in KNOWN_NPM_UPSTREAM_REPOS,
+            canonical_repository_family(source["repo"]) not in KNOWN_NPM_UPSTREAM_REPOS,
             "fresh candidate reuses historical npm upstream Git repository",
         )
 

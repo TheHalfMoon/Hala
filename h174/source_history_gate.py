@@ -13,7 +13,8 @@ import hashlib
 import json
 
 from h174.split_firewall import (
-    APP, BANNED, BANNED_GIT, BANNED_HTML, GIT, HEX, REPO, validate,
+    APP, BANNED, BANNED_GIT, BANNED_HTML, GIT, HEX, REPO,
+    canonical_repository_family, validate,
 )
 
 SCHEMA = "hala.h174.owner-prior-source-identity-history.v1"
@@ -70,7 +71,7 @@ def validate_with_source_history(metadata, owner_hash_registry, source_history):
                  for repo in repos), "invalid historical upstream repository path")
 
     # Case variants of one upstream repository are the SAME donor family.
-    repository_ids = {repo.casefold() for repo in repos}
+    repository_ids = {canonical_repository_family(repo) for repo in repos}
     _require(len(repository_ids) == len(repos),
              "historical repositories contain case-variant aliases")
     _require(KNOWN_H173_REPOSITORIES.issubset(repository_ids),
@@ -86,7 +87,7 @@ def validate_with_source_history(metadata, owner_hash_registry, source_history):
     for source in metadata["sources"]:
         _require(source["app"] not in apps,
                  "historical source app name reused")
-        _require(source["repo"].casefold() not in repository_ids,
+        _require(canonical_repository_family(source["repo"]) not in repository_ids,
                  "historical upstream repository family reused under new SHA")
         _require(source["git_sha"] not in gits,
                  "historical original source Git SHA reused")
