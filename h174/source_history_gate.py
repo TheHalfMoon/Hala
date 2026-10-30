@@ -23,6 +23,14 @@ FIELDS = frozenset({
 })
 MAX_ENTRIES = 100_000
 
+# Independently pinned consumed original H173 upstream families (source only).
+# Exact public commits: robinparisi/tingle@9eadca70c72ef9adb9144cc23a4104978d3bc63b
+# and ganlanyuan/tiny-slider@4d709735c417c2483e77a22d017fc1b18c04f0d4.
+# This mandatory floor does NOT prove the complete older TRAIN/DEV/OOD history.
+KNOWN_H173_REPOSITORIES = frozenset({
+    "robinparisi/tingle", "ganlanyuan/tiny-slider",
+})
+
 
 def _require(condition, why):
     if not condition:
@@ -65,6 +73,8 @@ def validate_with_source_history(metadata, owner_hash_registry, source_history):
     repository_ids = {repo.casefold() for repo in repos}
     _require(len(repository_ids) == len(repos),
              "historical repositories contain case-variant aliases")
+    _require(KNOWN_H173_REPOSITORIES.issubset(repository_ids),
+             "known consumed H173 upstream repository family missing from registry")
     # These known H173 and prior names/hashes must never disappear from
     # a claimed history. Additional historical sources remain owner supplied.
     _require(BANNED.issubset(set(apps)),

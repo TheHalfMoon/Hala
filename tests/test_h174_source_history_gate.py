@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pytest
 from h174.source_history_gate import (
-    SCHEMA, validate_with_source_history,
+    SCHEMA, KNOWN_H173_REPOSITORIES, validate_with_source_history,
 )
 from h174.split_firewall import (
     BANNED, BANNED_GIT, BANNED_HTML,
@@ -40,7 +40,8 @@ def fixture():
     old_sources = {
         "schema": SCHEMA,
         "historical_app_ids": sorted(BANNED),
-        "historical_repositories": ["history/other-donor"],
+        "historical_repositories": ["history/other-donor",
+                                    *sorted(KNOWN_H173_REPOSITORIES)],
         "source_git_shas": sorted(BANNED_GIT),
         "source_html_shas": sorted(BANNED_HTML),
     }
@@ -50,7 +51,7 @@ def fixture():
 def test_new_source_history_crosscheck_is_not_dataset_admission():
     meta, pixels, sources = fixture()
     receipt = validate_with_source_history(meta, pixels, sources)
-    assert receipt["historical_repositories_compared"] == 1
+    assert receipt["historical_repositories_compared"] == 3
     assert receipt["source_history_completeness_proven"] is False
     assert receipt["original_app_native_qa_proven"] is False
     assert receipt["training_approved"] is False
@@ -64,6 +65,23 @@ def test_renamed_prior_repo_different_revision_rejected_in_any_split(index):
     # Neither the new name, git_sha nor original HTML SHA is historically known.
     # The same upstream repository remains historically burned regardless.
     meta["sources"][index]["repo"] = "HISTORY/OTHER-DONOR"
+    with pytest.raises(ValueError, match="historical upstream repository family"):
+        validate_with_source_history(meta, pixels, sources)
+
+
+@pytest.mark.parametrize("known_repo", sorted(KNOWN_H173_REPOSITORIES))
+def test_known_consumed_h173_repository_cannot_be_omitted(known_repo):
+    meta, pixels, sources = fixture()
+    sources["historical_repositories"].remove(known_repo)
+    with pytest.raises(ValueError, match="known consumed H173 upstream"):
+        validate_with_source_history(meta, pixels, sources)
+
+
+@pytest.mark.parametrize("known_repo", sorted(KNOWN_H173_REPOSITORIES))
+def test_renamed_consumed_h173_upstream_rejected_with_new_source_hashes(known_repo):
+    meta, pixels, sources = fixture()
+    # App, Git SHA and HTML SHA are all new; upstream repo family is not.
+    meta["sources"][0]["repo"] = known_repo.upper()
     with pytest.raises(ValueError, match="historical upstream repository family"):
         validate_with_source_history(meta, pixels, sources)
 

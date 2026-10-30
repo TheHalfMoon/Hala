@@ -104,7 +104,12 @@ class SourceFamilyAttributionTests(unittest.TestCase):
 
     def test_legacy_placeholder_repository_cannot_fake_family_coverage(self):
         meta, pixels, history, attribution = _fixture()
-        history["historical_repositories"] = ["fictional-owner/placeholder"]
+        # Preserve the mandatory consumed H173 repository floor so this
+        # tests H176's *paired attribution* rather than H174's early guard.
+        for i, repo in enumerate(history["historical_repositories"]):
+            if repo.casefold() not in set(FROZEN_H173_REPOS.values()):
+                history["historical_repositories"][i] = "fictional-owner/placeholder"
+                break
         with self.assertRaisesRegex(ValueError, "repository attribution"):
             audit_attribution(meta, pixels, history, attribution)
 
@@ -130,10 +135,9 @@ class SourceFamilyAttributionTests(unittest.TestCase):
         for app in SOURCE_PINS:
             meta, pixels, history, attribution = _fixture()
             row = next(r for r in attribution["families"] if r["app"] == app)
-            old_repo = row["repo"]
+            # Keep the independently pinned legacy history intact; H176
+            # must reject a forged app-to-repo pair on its own.
             row["repo"] = f"fictional-owner/renamed-{app}"
-            history["historical_repositories"].remove(old_repo)
-            history["historical_repositories"].append(row["repo"])
             with self.subTest(app=app), self.assertRaisesRegex(
                 ValueError, "H173 frozen original upstream repository"
             ):
