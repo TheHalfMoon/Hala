@@ -164,5 +164,23 @@ class H231SourceOnlyTests(unittest.TestCase):
         self.assertTrue((self.output / "INCOMPLETE_NO_ADMISSION").exists())
         self.assertFalse((self.output / "report.json").exists())
 
+    def test_wrong_native_oracle_outcome_fails_closed(self):
+        try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as p:
+                edge = Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+                if not Path(p.chromium.executable_path).exists() and not edge.is_file():
+                    self.skipTest("Hosted browser unavailable")
+        except ImportError:
+            self.skipTest("Optional Playwright unavailable")
+        self.manifest["cases"] = [copy.deepcopy(CASES[0])]
+        self.manifest["cases"][0]["expect_value"] = "never-matches"
+        manifest_file = self.base / "source-manifest.json"
+        manifest_file.write_text(json.dumps(self.manifest, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "native oracle outcome mismatch"):
+            replay(manifest_file, self.source, self.output)
+        self.assertTrue((self.output / "INCOMPLETE_NO_ADMISSION").exists())
+        self.assertFalse((self.output / "report.json").exists())
+
 if __name__ == "__main__":
     unittest.main()

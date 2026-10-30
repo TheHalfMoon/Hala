@@ -223,6 +223,8 @@ def replay(manifest_path: Path, source_root: Path, output_dir: Path) -> dict:
                 _require(not attempted_network, "network or out-of-root file access attempted")
                 report["all_native_oracle_outcomes_passed"] = all(
                     c["native_outcome_matches_oracle"] for c in report["cases"])
+                _require(report["all_native_oracle_outcomes_passed"],
+                         "native oracle outcome mismatch")
                 ctx.close()
             finally:
                 browser.close()
