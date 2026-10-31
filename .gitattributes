@@ -45,3 +45,6 @@ specs/H18-adaptation-readiness.md -text
 
 # Keep pinned first-party H262 GUI bytes stable on Windows Edge checkouts.
 h262/stockroom.html -text
+
+# Preserve the exact original H281 clinic-grid GUI bytes across checkout OS.
+h281/clinicgrid.html -text
