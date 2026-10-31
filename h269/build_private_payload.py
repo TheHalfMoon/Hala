@@ -26,6 +26,28 @@ subprocess.run([sys.executable, '-m','pip','install',
     check=True)
 if pkg_version("torch") != old_torch:
     raise RuntimeError("H269 refuses replacement of Kaggle CUDA PyTorch")
+# Kaggle's optional torchao==0.10.0 is incompatible with PEFT==0.20.0
+# (PEFT requires torchao>0.16 when torchao is present). This pilot does
+# not use torchao quantization. Remove ONLY that exact optional package
+# inside this ephemeral private Kaggle runtime, never owner Windows/Mac.
+from importlib.metadata import PackageNotFoundError
+try:
+    _torchao = pkg_version("torchao")
+except PackageNotFoundError:
+    _torchao = None
+if _torchao is not None:
+    if _torchao != "0.10.0":
+        raise RuntimeError("H269 will not alter unknown optional torchao version")
+    subprocess.run([sys.executable, "-m", "pip", "uninstall",
+                    "--yes", "torchao"], check=True, capture_output=True)
+    try:
+        pkg_version("torchao")
+    except PackageNotFoundError:
+        pass
+    else:
+        raise RuntimeError("H269 optional torchao removal did not complete")
+if pkg_version("torch") != old_torch:
+    raise RuntimeError("H269 CUDA PyTorch changed during optional package repair")
 """
 
 

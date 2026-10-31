@@ -117,3 +117,30 @@ multi-family TRAIN/DEV set, a newly never-exposed sealed blind OOD,
 genuine adapter training with independent paired BASE/ADAPTED real
 GUI task-state gain, and release qualification. No paid inference,
 no publishing model/adapter until those gates.
+
+## Owner-private Kaggle v1 actual failure (2026-10-31)
+
+The owner-authenticated private free-T4 Kaggle kernel version 1 was
+successfully submitted, entered RUNNING, then ended **ERROR before any
+new LoRA optimizer update could be verified**. The sanitized kernel
+traceback identified a runtime dependency mismatch inside
+`peft/tuners/lora/torchao.py`:
+`ImportError: Found an incompatible version of torchao. Found version
+0.10.0, but only versions above 0.16.0 are supported`.
+
+This is an **optional dependency conflict**, not a failed scientific
+comparison. No numeric loss, adapter update, or post-training GUI task
+success is claimed for v1. The owner Windows source CI at exact H269
+source commit `625ce27fa244adc08fa82e42cb4986239bd8030d`
+[GitHub Actions #41198124306](https://github.com/TheHalfMoon/Hala/actions/runs/41198124306)
+**COMPLETED SUCCESS** on Python 3.11.14 and 3.12.14; this is
+CPU/source qualification only.
+
+For private v2, only the reviewed **exact optional
+`torchao==0.10.0`** package is uninstalled inside the new ephemeral
+Kaggle session after PEFT dependency installation. The experimental
+LoRA does **not** require torchao, quantized weights, or QLoRA.
+The launcher refuses unknown torchao versions and checks that Kaggle's
+CUDA PyTorch version remains unchanged. There is no local package
+installation or cleanup on owner Windows/Mac. A separate v2 real
+training result must be verified; do not count v1 as 2 optimizer steps.
