@@ -149,14 +149,23 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
         self.assertTrue(safe["protocol_failed_terminal"])
         self.assertFalse(safe["protocol_terminal"])
 
-    def test_real_native_wrong_code_never_becomes_task_success(self):
-        scene=SCENES[7]
-        summary=run_fixed_original_source_research(
-            self.browser,SOURCE,
-            StubProcessor(self.preprogrammed_inputs(scene,code="FIC-99")),
-            StubModel(),scene)
-        self.assertEqual(summary["native_actions"],2)
-        self.assertFalse(summary["source_original_gui_state_success"])
+    def test_real_native_wrong_code_is_never_dispatched_en_ar(self):
+        for scene in (SCENES[1], SCENES[7]):
+            with self.subTest(language=scene[1]):
+                fake_model=StubModel()
+                summary=run_fixed_original_source_research(
+                    self.browser,SOURCE,
+                    StubProcessor(self.preprogrammed_inputs(scene,code="FIC-99")),
+                    fake_model,scene)
+                self.assertEqual(summary["native_actions"],2)
+                self.assertEqual(fake_model.calls,2)
+                self.assertFalse(summary["source_original_gui_state_success"])
+                self.assertTrue(summary["source_write_guard_refused"])
+                safe=summary["preloaded_model_contract"]
+                self.assertEqual(safe["type_calls"],1)
+                self.assertEqual(safe["model_generations_via_wrapped_generate"],2)
+                self.assertTrue(safe["protocol_terminal"])
+                self.assertTrue(safe["protocol_failed_terminal"])
 
     def test_real_native_abstention_does_not_type_or_fabricate_success(self):
         scene=SCENES[2]
