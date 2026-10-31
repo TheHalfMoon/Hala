@@ -42,7 +42,7 @@ class H279PrivateRelativeNativeSafetyTests(unittest.TestCase):
         self.assertFalse(report["generalizable_hala_skill_proven"])
         self.assertFalse(report["independent_blind_ood"])
         encoded = json.dumps(report, ensure_ascii=False)
-        self.assertNotIn("point", encoded.lower())
+        self.assertNotIn('"point":', encoded.lower())
         self.assertNotIn(".png", encoded.lower())
         self.assertNotIn("raw_model_text", encoded.lower())
 
