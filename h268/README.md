@@ -164,3 +164,39 @@ tokenizer traversed both complete native grammar alternatives, allowed EOS
 only after completion, and rejected an invalid first token. This is a
 compatibility check, **not Qwen inference or task accuracy**. A new private
 free-T4 run must still prove actual model generation and task-state outcome.
+
+## Verified private Kaggle v3 — genuine constrained inference, no task success
+
+The third run of the **same owner-private FREE T4x2** Kaggle kernel ended
+`COMPLETE`. Only the exact 960-byte aggregate JSON was retrieved and
+allowlist-validated; no screenshots, coordinates, raw model text, source
+receipts, weights, or gold were exported. The Kaggle CLI returned exit
+code 1 while the requested report was present and valid; its non-report
+console output is not used as scientific evidence.
+
+Verified aggregate (one **real pinned pretrained** Qwen3-VL-2B-Instruct
+multimodal `generate` on the original first-party H262 Stockroom scene):
+
+| Observable | Private v3 result |
+| --- | --- |
+| Actual `model.generate` completions | 1 |
+| Token-filtered generation calls | 1 |
+| Raw-format class, without raw text | `STRICT_NATIVE_JSON` |
+| Strict H199 action kind | `click` |
+| Real native browser action dispatched | true |
+| First-item stock count increased by exactly one | **false** |
+| First-party task-state success | **false (0/1)** |
+| Actual free GPU | 2 x NVIDIA T4 |
+| New optimizer steps / trained model gain | **0 / false** |
+| Independent blind OOD / admitted TRAIN-DEV-OOD | **false / false** |
+
+This demonstrates **one successful format-constrained generation**, in
+contrast to the two earlier H267 unconstrained markdown-fenced outputs.
+The token filter produced an H199-parseable action that reached the browser;
+these tiny, differently decoded runs are not an accuracy comparison.
+It does **not** prove better visual grounding, task performance, training,
+multilingual skill or generalization. The click failed the actual state
+oracle; do not relabel dispatch as success or infer its coordinates.
+The model is still the **unadapted pretrained baseline**. Further same-
+family prompt tweaking is not a substitute for qualified source-diverse
+TRAIN/DEV, a newly sealed independent OOD and measured adapted-model gain.
