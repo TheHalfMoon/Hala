@@ -1,5 +1,7 @@
 # H292 — prospective private 24-step cross-family native GUI research
 
+> **Parallel experiment coordination (2026-10-31):** [Draft #316](https://github.com/TheHalfMoon/Hala/pull/316) already defines a distinct H292 8-step six-case RouteBoard extension of H291. This Draft #317 is an **alternate 24-step/four-case prospective dose experiment**, not its replacement and not a directly controlled causal ablation. **Do not submit its separate private T4 kernel while #316 is pending, queued or running.** Verify #316's terminal status, exact source and sanitized outcome first; do not tune scene selection after viewing its results. The four scenes and training order here were frozen before any H292-alt GPU run. No H292-alt GPU result exists at the time of this note.
+
 **Research only. No official TRAIN/DEV/OOD admission, independent blind evaluation, release or model improvement is claimed.** This source-only Draft PR extends the verified H291 8-step trial (Queueboard BASE 1/2, ADAPTED 1/2, paired delta 0) with a deliberately different, preregistered experiment. Do not reinterpret H291 as a model-quality win.
 
 ## Frozen protocol, before GPU inference
