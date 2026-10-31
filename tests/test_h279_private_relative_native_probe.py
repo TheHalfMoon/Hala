@@ -7,7 +7,8 @@ import json
 import unittest
 
 from h279.private_relative_native_probe import (
-    SCENES, MODEL_SHA, classify_strict_model_text, summarize,
+    SCENES, MODEL_SHA, RelativePrevalidationProcessor,
+    classify_strict_model_text, summarize,
 )
 from h279.build_private_payload import build, SCRIPT_NAME, META_NAME
 
@@ -80,7 +81,8 @@ class H279PrivateRelativeNativeSafetyTests(unittest.TestCase):
             script = (target / SCRIPT_NAME).read_text("utf-8")
             self.assertEqual(script.count("from __future__ import annotations"), 1)
             self.assertIn("execute_one(page,strict_native)", script)
-            self.assertIn("normalize_strict_action(raw)", script)
+            self.assertIn("RelativePrevalidationProcessor(", script)
+            self.assertIn("native = self.converter(raw)", script)
 
     def test_relative_format_classes_stay_closed(self):
         self.assertEqual(
@@ -90,6 +92,49 @@ class H279PrivateRelativeNativeSafetyTests(unittest.TestCase):
             "STRICT_EXACT_VALID",
         )
         self.assertEqual(classify_strict_model_text('BAD DATA', 'x'), "NOT_JSON_OR_NONCANONICAL_PREFIX")
+
+
+    def test_relative_999_y_is_converted_before_native_validation(self):
+        from h273.relative_native_bridge import (
+            normalize_strict_action, NORMALIZED_REGEX)
+        from h199.native_action_sft import parse_actions
+
+        class FakeRelativeOutput:
+            def batch_decode(self, *args, **kwargs):
+                return ['{"actions":[{"kind":"click","point":[999,999]}]}']
+
+            def apply_chat_template(self, *args, **kwargs):
+                raise AssertionError("not needed in decoding unit test")
+
+        decoder = RelativePrevalidationProcessor(
+            FakeRelativeOutput(), normalize_strict_action, NORMALIZED_REGEX)
+        native = decoder.batch_decode([[]])[0]
+        parsed = parse_actions(native)["actions"][0]
+        self.assertEqual(parsed["kind"], "click")
+        self.assertEqual(parsed["point"], [959, 719])
+        self.assertEqual(decoder.converted_calls, 1)
+        self.assertEqual(decoder.format_class, "STRICT_EXACT_VALID")
+        self.assertFalse(decoder.format_rejected)
+
+    def test_relative_decoder_never_repairs_invalid_json(self):
+        from h273.relative_native_bridge import (
+            normalize_strict_action, NORMALIZED_REGEX)
+
+        class FakeInvalid:
+            def batch_decode(self, *args, **kwargs):
+                return ['{"actions":[{"kind":"click","point":[1000,999]}]}']
+
+            def apply_chat_template(self, *args, **kwargs):
+                raise AssertionError("not needed in decoding unit test")
+
+        decoder = RelativePrevalidationProcessor(
+            FakeInvalid(), normalize_strict_action, NORMALIZED_REGEX)
+        with self.assertRaisesRegex(ValueError, "normalized model format refused"):
+            decoder.batch_decode([[]])
+        self.assertTrue(decoder.format_rejected)
+        self.assertEqual(decoder.converted_calls, 0)
+        self.assertNotEqual(decoder.format_class, "STRICT_EXACT_VALID")
+
 
 
 if __name__ == "__main__":
