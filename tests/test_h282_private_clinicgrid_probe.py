@@ -166,7 +166,8 @@ class H282PrivateProspectiveSafetyTests(unittest.TestCase):
             self.assertEqual(names,
                 ["h282_private_clinicgrid_native.py", "kernel-metadata.json"])
             metadata = json.loads((dest / "kernel-metadata.json").read_text("utf-8"))
-            self.assertTrue(info["private"])\n            self.assertEqual(metadata["id"], "abdulazizshehri/hala-h282-private-pretrained-clinicgrid-t4")
+            self.assertTrue(info["private"])
+            self.assertEqual(metadata["id"], "abdulazizshehri/hala-h282-private-pretrained-clinicgrid-t4")
             self.assertEqual(info["uploaded_private_media_or_weights"], 0)
             self.assertEqual(metadata["is_private"], "true")
             self.assertEqual(metadata["machine_shape"], "NvidiaTeslaT4")
