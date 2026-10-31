@@ -123,6 +123,10 @@ class TestH265PrivateFreeGPUBaseline(unittest.TestCase):
             self.assertEqual(metadata["model_sources"], [])
             self.assertTrue(script.startswith("from __future__ import annotations"))
             self.assertIn("HALA_H265_NONCOMMERCIAL_FREE_GPU", script)
+            # Kaggle's first actual remote attempt failed before GUI execution:
+            # Chromium lacked libatk-1.0.so.0. The private payload must install
+            # system libraries as well as the browser binary (Playwright docs).
+            self.assertIn("'--with-deps', 'chromium'", script)
             self.assertIn("Qwen/Qwen3-VL-2B-Instruct", script)
             self.assertEqual({p.name for p in stage.iterdir()}, {SCRIPT_NAME, META_NAME})
             with self.assertRaises(ValueError):
