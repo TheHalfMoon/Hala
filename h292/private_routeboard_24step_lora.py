@@ -338,6 +338,7 @@ def verified_report(
     a = sum(x["task_success"] for x in adapted)
     return {
         "status": STATUS, "source_commit": PIN,
+        "eval_source_commit": EVAL_SOURCE_SHA,
         "train_original_blob": SHIFT_BLOB,
         "eval_original_blob": ROUTE_BLOB,
         "model_id": MODEL, "model_revision": MODEL_REV,
