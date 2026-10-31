@@ -22,6 +22,28 @@ predeclared independent fresh Queueboard browser context:
 | `en_priority_q118` | English | Complete fictional ticket Q-118 | priority filter on |
 | `ar_all_q142` | Arabic RTL | أكمل الطلب الخيالي Q-142 | all tickets |
 
+### Critical coordinate-frame validation ordering
+
+During source review after the first private submission, a concrete
+integration hazard was found: H208's `PreloadedVisionPolicy` calls H199's
+**pixel-frame** `parse_actions` on decoded text. Raw Qwen-relative
+coordinates permit y=720..999, which H199 correctly rejects as invalid
+**pixels**. Converting only after H208 returns can therefore discard a
+syntactically valid relative click. This is a demonstrable code-path
+mismatch, **not proof** that it caused H273's previous failures.
+
+H279 repairs this narrowly by wrapping only the pretrained processor's
+`batch_decode`: H273's exact strict relative parser and deterministic
+coordinate bridge convert the volatile model text **before** H208's
+unchanged native pixel validator. All H208 genuine image-tensor,
+model-prefix, single-sequence and strict-native-action guards remain
+active. Malformed relative output is never relabeled as abstention.
+Invented-only regression verifies that normalized [999,999] becomes
+native [959,719], while invalid text fails closed. The initial private
+H279 v1 submission preceded this correction and must **not** be
+represented as a fully qualified normalized-coordinate evaluation;
+only a subsequent exact-source v2 run can qualify that protocol.
+
 A single model call receives **only** the screenshot and exact task
 plus a fixed relative-coordinate instruction. The source-owned target
 ID is not separately passed to the model. No DOM, reference bounding
