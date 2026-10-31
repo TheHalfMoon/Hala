@@ -106,8 +106,10 @@ class RelativePrevalidationProcessor:
     before H208 applies its unchanged native H199 parse guard. The
     raw generated string never leaves this private decoder.
     """
-    def __init__(self, base):
+    def __init__(self, base, converter, relative_regex):
         self.base = base
+        self.converter = converter
+        self.relative_regex = relative_regex
         self.format_class = None
         self.format_rejected = False
         self.converted_calls = 0
@@ -122,9 +124,9 @@ class RelativePrevalidationProcessor:
             self.format_rejected = True
             raise ValueError("H279 private normalized output not a single string")
         raw = texts[0]
-        self.format_class = classify_strict_model_text(raw, NORMALIZED_REGEX)
+        self.format_class = classify_strict_model_text(raw, self.relative_regex)
         try:
-            native = normalize_strict_action(raw)
+            native = self.converter(raw)
         except (TypeError, ValueError):
             self.format_rejected = True
             raise ValueError("H279 normalized model format refused") from None
@@ -245,7 +247,8 @@ def run():
                     demand(scene[0] in SCENES,"only original preregistered scenes")
                     ctx=None
                     wrapped=NativeGrammarModel(model,filter_fn)
-                    decoder=RelativePrevalidationProcessor(processor)
+                    decoder=RelativePrevalidationProcessor(
+                        processor,normalize_strict_action,NORMALIZED_REGEX)
                     policy=PreloadedVisionPolicy(
                         decoder,wrapped,max_new_tokens=160)
                     try:
