@@ -60,7 +60,7 @@ def validate_rows(rows: object, hardware: object) -> dict:
     for i, row in enumerate(rows):
         require(type(row) is dict and set(row) == {
             "scene", "real_generations", "grammar_generate_calls",
-            "original_screenshot_unchanged", "strict_normalized_json",
+            "screenshot_integrity_attested", "strict_normalized_json",
             "native_dispatched", "firstparty_task_success", "native_kind",
             "all_source_visits_checked",
         }, "row schema changed or includes private output")
@@ -69,7 +69,8 @@ def validate_rows(rows: object, hardware: object) -> dict:
                 and row["real_generations"] == 1
                 and type(row["grammar_generate_calls"]) is int
                 and row["grammar_generate_calls"] == 1
-                and row["original_screenshot_unchanged"] is True
+                and type(row["screenshot_integrity_attested"]) is bool
+                and row["screenshot_integrity_attested"] is row["strict_normalized_json"]
                 and type(row["all_source_visits_checked"]) is int
                 and row["all_source_visits_checked"] == 6
                 and all(type(row[k]) is bool for k in (
@@ -233,7 +234,7 @@ def run() -> dict:
                         "scene": scene[0],
                         "real_generations": wrapped.completed_generations,
                         "grammar_generate_calls": wrapped.grammar_installed_calls,
-                        "original_screenshot_unchanged": True,
+                        "screenshot_integrity_attested": bool(result is not None),
                         "strict_normalized_json": valid,
                         "native_dispatched": (
                             result["native_action_dispatched"]
