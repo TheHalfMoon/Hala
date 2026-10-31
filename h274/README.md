@@ -120,3 +120,44 @@ passed 150 relevant owner Windows regressions, 3 optimized H274 tests
 and hosted [GitHub Actions #41207595784](https://github.com/TheHalfMoon/Hala/actions/runs/41207595784)
 **COMPLETED SUCCESS** Python 3.11 and 3.12. These CPU/source tests
 do NOT qualify private GPU v1 or imply a trained model gain.
+
+## Verified private FREE T4 v2 execution — 2026-10-31
+
+The owner's authorized Windows Kaggle CLI submitted **private code-only
+kernel version 2** to the existing private
+[H274 Kaggle experiment](https://www.kaggle.com/code/abdulazizshehri/hala-h274-private-relative-format-reasons-t4),
+using exact checked-in H274 diagnostic source
+`5fada3c96eec799140b173bb6d0b740eb1a7ce24`.
+The source packager's synthetic tests passed **3/3** on Windows before
+submission. Kaggle returned `Kernel version 2 successfully pushed`,
+then `RUNNING`, then `COMPLETE` (not `ERROR`).
+
+Downloaded **only** the whitelisted private aggregate JSON file; it
+was exactly **1,104 bytes**, and the strict shape/status/model-source/
+free-T4/prediction-count/pixel-integrity checks passed. This private
+aggregate is not checked in. The two owner-private aggregate scene
+categories, which include **no raw predictions or coordinates**, were:
+
+| Previously exposed original RTL scene | Genuine Qwen generate | Token grammar generate | Stable screenshot | Output category |
+| --- | ---: | ---: | --- | --- |
+| `ar_sorted_tape` | 1 | 1 | yes | `STRICT_EXACT_VALID` |
+| `ar_sorted_gloves` | 1 | 1 | yes | `STRICT_EXACT_VALID` |
+
+Pinned model revision remained
+`89644892e4d85e24eaac8bacfd4f463576704203`, free Kaggle T4
+confirmed, total **2 actual pretrained image-conditioned generations**,
+**zero native clicks**, **zero optimizer updates**, **zero model/adapter
+weights published**, and **zero screenshots, target points or raw model
+texts saved**. The only downloaded report was read through a closed
+category/schema validator and deleted, along with the transient Windows
+source checkout and private packaging folder. No persistent local scratch.
+
+**Interpretation:** H274 v2 produced strict-valid normalized JSON on
+both scenes; prior H273 native relative-coordinate trial produced strict
+format failures on both scenes. The v2 success establishes that a
+constrained output can be generated in this distinct private run, **NOT**
+that earlier failures' root cause is known, NOT that coordinate targets
+were correct, NOT a GUI task success, NOT any paired base/adapted
+improvement or generalization. No live actuation or first-button bbox
+was tested in H274. Independent, lawful OOD/train admission gates remain
+unchanged. Do not infer `2/2 accuracy` from `2/2 syntax-valid`.
