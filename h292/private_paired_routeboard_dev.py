@@ -71,7 +71,7 @@ def verified_free_t4(torch) -> dict:
          and all("T4" in torch.cuda.get_device_name(i)
                  for i in range(torch.cuda.device_count()))
          and shutil.disk_usage("/tmp").free >= 8 * 1024**3
-         and not (Path("/kaggle/working") / REPORT).exists(),
+         and not (Path("/kaggle/working") / COMPOUND_REPORT).exists(),
          "authorized owner-private noncommercial FREE T4 only")
     return {"free_t4": True, "devices": torch.cuda.device_count()}
 
