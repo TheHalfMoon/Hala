@@ -71,8 +71,8 @@ def validate_rows(rows: object, hardware: object) -> dict:
                 and row["grammar_generate_calls"] == 1
                 and type(row["screenshot_integrity_attested"]) is bool
                 and row["screenshot_integrity_attested"] is row["strict_normalized_json"]
-                and type(row["all_source_visits_checked"]) is int
-                and row["all_source_visits_checked"] == 6
+                and row["all_source_visits_checked"] == (
+                    6 if row["strict_normalized_json"] else None)
                 and all(type(row[k]) is bool for k in (
                     "strict_normalized_json", "native_dispatched",
                     "firstparty_task_success"))
@@ -245,7 +245,7 @@ def run() -> dict:
                         "native_kind": (
                             result["native_action_kind"] if result else None),
                         "all_source_visits_checked": (
-                            result["all_source_visits_checked"] if result else 6),
+                            result["all_source_visits_checked"] if result else None),
                     })
             finally:
                 browser.close()
