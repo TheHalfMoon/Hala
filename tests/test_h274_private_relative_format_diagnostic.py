@@ -78,6 +78,11 @@ class H274PrivateFormatTests(unittest.TestCase):
             self.assertEqual(info["model_sources"],[])
             compile(script,"private_h274_merged","exec")
             self.assertIn("/tmp/hala-h274-private-format-reasons",script)
+            self.assertIn('page.locator("#search").evaluate("(el) => el.blur()")',script)
+            self.assertLess(script.index('page.locator("#search").evaluate'),
+                            script.index("raw=policy(png,RELATIVE_PROMPT)"))
+            self.assertIn("png=_observed_png(page)",script)
+            self.assertIn("original_screenshot_unchanged",script)
             self.assertNotIn('HF_HOME="/kaggle/working',script)
             with self.assertRaises(ValueError):
                 build(root/"h274"/"private_relative_format_diagnostic.py",
