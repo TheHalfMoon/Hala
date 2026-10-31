@@ -8,6 +8,7 @@ or evidence that an adapted Qwen model improved.
 """
 from __future__ import annotations
 
+from contextlib import contextmanager
 from hashlib import sha1, sha256
 from hmac import compare_digest
 from io import BytesIO
@@ -80,6 +81,7 @@ def inspect_all_eight(page: Any) -> dict[str, bool]:
     return result
 
 
+@contextmanager
 def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
     context = new_offline_context(browser)
     try:
@@ -104,7 +106,7 @@ def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
         need(page.locator("html").get_attribute("dir") ==
              ("rtl" if lang == "ar" else "ltr"),
              "bilingual original GUI rendering mismatch")
-        yield context, page
+        yield page
     finally:
         context.close()
 
@@ -112,7 +114,7 @@ def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
 def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
     from PIL import Image
 
-    for _, page in _open_scene(browser, source, url, scene):
+    with _open_scene(browser, source, url, scene) as page:
         before = inspect_all_eight(page)
         need(not any(before.values()), "TRAIN source must reset each scene")
         target = scene[-1]
