@@ -69,6 +69,27 @@ class H283PrivateClinicGridEvidenceTests(unittest.TestCase):
                           '"image"', '"weights"', '"gold"'):
             self.assertNotIn(forbidden, safe)
 
+    def test_h282_actual_source_emitter_contract_compatible(self):
+        """Check actual H282 formatter -> independent H283 verifier parity.
+
+        All evidence fields remain invented synthetic values; no GPU/model.
+        """
+        from h282.private_clinicgrid_pretrained_probe import validate_rows
+        source = validate_rows(
+            invented_rows(), {"free_t4": True, "devices": 2})
+        self.assertEqual(verify_bytes(encoded(source))["counts"]["task_successes"], 1)
+        rejected_rows = invented_rows()
+        rejected_rows[1].update(
+            strict_normalized_json=False,
+            screenshot_integrity_attested=False,
+            native_dispatched=False, firstparty_task_success=False,
+            native_kind=None, all_source_visits_checked=None)
+        rejected = validate_rows(
+            rejected_rows, {"free_t4": True, "devices": 1})
+        verified = verify_bytes(encoded(rejected))
+        self.assertEqual(verified["counts"]["state_oracle_attested"], 1)
+        self.assertEqual(verified["counts"]["task_successes"], 1)
+
     def test_invalid_model_format_cannot_forge_screenshot_or_oracle(self):
         d = synthetic_report()
         d["rows"][1].update(
