@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from h273.build_private_payload import INSTALL_H273
 
-KERNEL_ID = "abdulazizshehri/hala-h282-private-clinicgrid-native-t4"
+KERNEL_ID = "abdulazizshehri/hala-h282-private-pretrained-clinicgrid-t4"
 SOURCE_NAME = "private_clinicgrid_pretrained_probe.py"
 SCRIPT_NAME = "h282_private_clinicgrid_native.py"
 INSTALL_H282 = INSTALL_H273.replace(
