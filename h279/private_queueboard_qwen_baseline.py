@@ -42,6 +42,35 @@ class FormatRejected(ValueError):
     """Only strict model format failure; no raw text in exception."""
 
 
+class RelativeDecodingProcessor:
+    """Convert normalized Qwen output BEFORE H208's pixel-only H199 parser.
+
+    H208 correctly validates *pixel* actions, but it cannot accept a raw
+    0..999 normalized y coordinate above 719. Conversion must therefore
+    happen in batch_decode, not after PreloadedVisionPolicy returns.
+    """
+    def __init__(self, base, converter):
+        self.base = base
+        self.converter = converter
+        self.converted_calls = 0
+        self.format_rejected = False
+
+    def apply_chat_template(self, *args, **kwargs):
+        return self.base.apply_chat_template(*args, **kwargs)
+
+    def batch_decode(self, *args, **kwargs):
+        texts = self.base.batch_decode(*args, **kwargs)
+        if type(texts) is not list or len(texts) != 1 or type(texts[0]) is not str:
+            raise ValueError("H279 invalid decoded model continuation")
+        try:
+            native = self.converter(texts[0])
+        except ValueError:
+            self.format_rejected = True
+            raise FormatRejected("H279 strict normalized model format rejected") from None
+        self.converted_calls += 1
+        return [native]
+
+
 def require(ok: bool, reason: str) -> None:
     if not ok:
         raise ValueError("H279 fail-closed: " + reason)
@@ -186,19 +215,22 @@ def run() -> dict:
                     name, language, priority_only, ticket = scene
                     task = source_task(scene)
                     wrapped = NativeGrammarModel(model, token_filter)
+                    decoder = RelativeDecodingProcessor(
+                        processor, normalize_strict_action)
                     policy = PreloadedVisionPolicy(
-                        processor, wrapped, max_new_tokens=160)
+                        decoder, wrapped, max_new_tokens=160)
                     def predict(png: bytes, prompt: str) -> str:
                         require(prompt == source_task_prompt(task),
                                 "policy prompt identity drift")
-                        # Model sees only screenshot and task, never DOM or gold.
-                        raw = policy(png, task + RELATIVE_SUFFIX)
+                        # H208 sees already converted strict native PIXELS;
+                        # raw relative model text never leaves decoder RAM.
                         try:
-                            return normalize_strict_action(raw)
+                            return policy(png, task + RELATIVE_SUFFIX)
                         except ValueError:
-                            raise FormatRejected("H279 strict normalized format rejected") from None
-                        finally:
-                            del raw
+                            if decoder.format_rejected:
+                                raise FormatRejected(
+                                    "H279 strict normalized format rejected") from None
+                            raise
                     valid = True
                     outcome = None
                     try:
@@ -208,8 +240,9 @@ def run() -> dict:
                     except FormatRejected:
                         valid = False
                     require(wrapped.completed_generations == 1 and
-                            wrapped.grammar_installed_calls == 1,
-                            "real image-conditioned model/grammar not attested")
+                            wrapped.grammar_installed_calls == 1 and
+                            decoder.converted_calls == (1 if valid else 0),
+                            "real model/grammar and relative conversion not attested")
                     rows.append({
                         "scene": name,
                         "real_generations": wrapped.completed_generations,
