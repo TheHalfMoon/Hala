@@ -55,8 +55,21 @@ class PreloadedTwoStageVisualPolicy:
         self._png_digests: list[str] = []
         self._model_calls = 0
         self._installed_grammar_calls = 0
+        self._terminal_failure = False
 
     def __call__(self, png: bytes, native_source_prompt: str) -> str:
+        """Fail closed PERMANENTLY after any malformed model/source turn."""
+        require(not self._terminal_failure,
+                "failed policy must not resume on another screenshot")
+        try:
+            return self._qualified_turn(png, native_source_prompt)
+        except (ValueError, TypeError, RuntimeError, OSError):
+            self._terminal_failure = True
+            raise ModelContractRefused(
+                "H298 model-time visual grammar or source policy terminal failure"
+            ) from None
+
+    def _qualified_turn(self, png: bytes, native_source_prompt: str) -> str:
         """Use a FRESH rendered screenshot on EACH source callback."""
         require(type(png) is bytes and png.startswith(b"\x89PNG\r\n\x1a\n")
                 and 100 <= len(png) <= 4 * 1024 * 1024,
@@ -149,6 +162,7 @@ class PreloadedTwoStageVisualPolicy:
             "type_calls": safe["type_calls"],
             "abstained": safe["abstained"],
             "protocol_terminal": safe["terminal"],
+            "protocol_failed_terminal": self._terminal_failure,
             "pretrained_model_identity_attested": False,
             "real_owner_private_gpu_run_attested": False,
             "native_source_task_success_attested": False,
