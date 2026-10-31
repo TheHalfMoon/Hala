@@ -54,3 +54,6 @@ h285/shiftdesk.html -text
 
 # Freeze original H289 DEV-only synthetic GUI byte identity on Windows/Linux.
 h289/routeboard.html -text
+
+# Freeze the author-owned H296 original bilingual offline GUI bytes.
+h296/fieldport.html -text

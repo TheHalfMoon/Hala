@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldPort | Original fictional form research</title>
+<style>
+*{box-sizing:border-box}
+html,body{width:960px;height:720px;margin:0;overflow:hidden}
+body{font-family:Arial,Tahoma,sans-serif;background:#eef2ed;color:#20383d}
+header{height:120px;padding:24px 36px;background:#204c4b;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:850;font-size:31px;letter-spacing:.5px}
+.tagline{font-size:13px;margin-top:9px;color:#c9ece8}
+header .badge{font-size:13px;font-weight:750;border:1px solid #8dcebe;padding:12px 16px;border-radius:25px}
+main{margin:24px 36px}
+h1{margin:0 0 7px;font-size:25px}
+.description{color:#5c7776;margin:0 0 25px;font-size:14px}
+.panel{background:white;border:1px solid #cbdcd7;border-radius:18px;padding:18px 24px;box-shadow:0 6px 14px #1a525416}
+.row{display:flex;align-items:center;gap:20px;padding:13px 0;border-bottom:1px solid #e3eae6;height:88px}
+.row:last-child{border-bottom:none}
+.field-label{width:140px;min-width:140px;font-weight:800;font-size:17px}
+.field-hint{width:210px;font-size:13px;color:#68817f}
+.row input{flex:1;min-width:0;font-size:20px;font-weight:bold;height:48px;border:2px solid #b4c9c4;border-radius:10px;outline:none;padding:7px 15px;color:#1e4343;background:#f9fbfa;direction:ltr;text-align:left}
+.row input:focus{border-color:#087f78;outline:3px solid #83d7cf;outline-offset:2px;background:#fff}
+/* Keep screenshot observation byte-stable during focus; typing still works. */
+.row input{caret-color:transparent}
+.row input:disabled{background:#f2f4f2}
+.notice{font-size:12px;margin-top:17px;color:#68817f;line-height:1.7}
+footer{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:11px;color:#879d99}
+body.night{background:#1b3034;color:#e8f5f0}
+body.night header{background:#0d242b}
+body.night .panel{background:#2d4347;border-color:#536d6a}
+body.night .description,body.night .field-hint,body.night .notice{color:#b5c9c4}
+body.night .row{border-color:#496366}
+body.night .row input{background:#22393d;color:#e9f8f6;border-color:#6e8d87}
+body.night .row input:focus{border-color:#78f0dc;outline-color:#427b72}
+body.night footer{color:#9ab9b0}
+</style>
+</head>
+<body>
+<header><div><div class="logo">FieldPort</div><div class="tagline" id="tagline">Fictional service entry · source-owned research</div></div><div class="badge" id="badge">OFFLINE • SYNTHETIC</div></header>
+<main><h1 id="heading">Enter a fictional routing code</h1><p id="description" class="description">Select the specified form field before typing. No records are submitted.</p><section class="panel" id="panel"></section><p class="notice" id="notice">Use only synthetic codes. No names, addresses, patients, accounts or real services.</p></main>
+<footer>HALA H296 • FIRST-PARTY EXPOSED DEV RESEARCH • NOT BLIND OOD</footer>
+<script>
+"use strict";
+const IDS=["F-10","F-20","F-30","F-40"];
+const EN=["Arrival","Archive","Transfer","Dispatch"];
+const AR=["الوصول","الأرشيف","التحويل","الإرسال"];
+const ORDERS=[[0,1,2,3],[2,0,3,1],[3,1,0,2]];
+let setup={lang:"en",order:0,night:false};
+let touched=false;
+function fieldPortState(){
+ return IDS.map(id=>{const e=document.querySelector('input[data-field-id="'+id+'"]');return {id,value:e.value};});
+}
+function configureFieldPort(data){
+ if(!data||!["en","ar"].includes(data.lang)||
+    !Number.isInteger(data.order)||data.order<0||data.order>2||
+    typeof data.night!=="boolean")throw Error("invalid fictional scene");
+ if(touched||fieldPortState().some(e=>e.value))throw Error("original scene immutable after interaction");
+ setup={lang:data.lang,order:data.order,night:data.night};
+ render();
+}
+function render(){
+ const ar=setup.lang==="ar";
+ document.documentElement.lang=ar?"ar":"en";
+ document.documentElement.dir=ar?"rtl":"ltr";
+ document.body.className=setup.night?"night":"";
+ document.getElementById("tagline").textContent=ar?"نموذج خدمة خيالية • بحث أصلي":"Fictional service entry · source-owned research";
+ document.getElementById("heading").textContent=ar?"إدخال رمز توجيه خيالي":"Enter a fictional routing code";
+ document.getElementById("description").textContent=ar?"اختر الحقل المطلوب أولًا ثم اكتب الرمز. لا يتم إرسال أي سجلات.":"Select the specified form field before typing. No records are submitted.";
+ document.getElementById("notice").textContent=ar?"رموز خيالية فقط، دون أسماء أو عناوين أو سجلات أو خدمات حقيقية.":"Use only synthetic codes. No names, addresses, patients, accounts or real services.";
+ const host=document.getElementById("panel");host.replaceChildren();
+ ORDERS[setup.order].forEach(index=>{
+  const row=document.createElement("div");row.className="row";row.dataset.fieldId=IDS[index];
+  const label=document.createElement("label");label.className="field-label";label.textContent=IDS[index];
+  const hint=document.createElement("span");hint.className="field-hint";hint.textContent=(ar?AR:EN)[index];
+  const input=document.createElement("input");input.type="text";input.maxLength=12;
+  input.autocomplete="off";input.spellcheck=false;input.placeholder=ar?"رمز خيالي":"Fictional code";
+  input.dataset.fieldId=IDS[index];input.id="f"+index;label.htmlFor=input.id;
+  input.addEventListener("input",()=>{touched=true;});
+  row.append(label,hint,input);host.append(row);
+ });
+}
+Object.defineProperty(window,"configureFieldPort",{value:configureFieldPort,writable:false});
+Object.defineProperty(window,"fieldPortState",{value:fieldPortState,writable:false});
+render();
+</script>
+</body>
+</html>
