@@ -8,7 +8,7 @@ import unittest
 
 from h279.private_queueboard_qwen_baseline import (
     SCENES, SOURCE_BLOB, FormatRejected, clone_pinned_source,
-    source_task, validate_rows)
+    source_task, validate_rows, RelativeDecodingProcessor)
 from h279.build_private_payload import build
 
 
@@ -78,6 +78,41 @@ class H279SourceOnlyTests(unittest.TestCase):
         source = Path(__file__).resolve().parents[1] / "h275" / "queueboard.html"
         checked_queueboard(source)
         self.assertEqual(SOURCE_BLOB, QUEUEBOARD_GIT_BLOB_SHA1)
+
+    def test_normalized_y999_converted_before_h208_pixel_parser(self):
+        from h273.relative_native_bridge import normalize_strict_action
+        from h199.native_action_sft import parse_actions
+
+        class InventedDecoder:
+            def batch_decode(self, *args, **kwargs):
+                return ['{"actions":[{"kind":"click","point":[999,999]}]}']
+            def apply_chat_template(self, *args, **kwargs):
+                return None
+
+        adapter = RelativeDecodingProcessor(
+            InventedDecoder(), normalize_strict_action)
+        native = adapter.batch_decode([[1]])
+        self.assertEqual(len(native), 1)
+        action = parse_actions(native[0])["actions"][0]
+        self.assertEqual(action["point"], [959, 719])
+        self.assertEqual(adapter.converted_calls, 1)
+        self.assertFalse(adapter.format_rejected)
+
+    def test_invalid_relative_model_text_rejected_without_native_fallback(self):
+        from h273.relative_native_bridge import normalize_strict_action
+
+        class InventedBadDecoder:
+            def batch_decode(self, *args, **kwargs):
+                return ['not-json']
+            def apply_chat_template(self, *args, **kwargs):
+                return None
+
+        adapter = RelativeDecodingProcessor(
+            InventedBadDecoder(), normalize_strict_action)
+        with self.assertRaises(FormatRejected):
+            adapter.batch_decode([[1]])
+        self.assertTrue(adapter.format_rejected)
+        self.assertEqual(adapter.converted_calls, 0)
 
     def test_private_code_only_packager(self):
         with tempfile.TemporaryDirectory() as tmp:
