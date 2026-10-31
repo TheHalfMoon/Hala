@@ -132,7 +132,7 @@ def clone_pinned_source(destination: Path) -> Path:
     require(html.is_file() and not html.is_symlink(),
             "original Queueboard source missing")
     data = html.read_bytes()
-    blob = sha1(b"blob " + str(len(data)).encode("ascii") + b"\\x00" + data).hexdigest()
+    blob = sha1(b"blob " + str(len(data)).encode("ascii") + b"\x00" + data).hexdigest()
     require(blob == SOURCE_BLOB, "original source bytes drift")
     return html
 
