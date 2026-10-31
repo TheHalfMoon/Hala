@@ -175,6 +175,14 @@ def run():
                     try:
                         ctx,page,png,_,_=original_case(
                             browser,html,scene,training=False)
+                        # The search field is the last element focused by
+                        # source-owned scene setup. Its blinking caret can
+                        # alter screenshot pixels over a GPU generation.
+                        # Blur ONLY that input; do not inspect target DOM,
+                        # reference coordinates or image content.
+                        page.locator("#search").evaluate("(el) => el.blur()")
+                        from h264.screenshot_locked_research import _observed_png
+                        png=_observed_png(page)
                         # ONLY volatile raw model string; never log or save it.
                         raw=policy(png,RELATIVE_PROMPT)
                         category=classify_strict_model_text(
