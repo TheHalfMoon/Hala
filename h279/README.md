@@ -165,3 +165,35 @@ using unchanged originally preregistered scenes/model/prompt/grammar
 and no reference-point conditioning. It must report its own
 fresh private aggregate; cannot retroactively improve V1.
 
+
+## Verified corrected V2 private FREE T4 real native outcome (2026-10-31)
+
+Kaggle private Stockroom **kernel version 2** was submitted after V1
+completed. It finished **COMPLETE**. The owner retrieved only the
+same exact whitelisted report name with Kaggle `--file-pattern`,
+verified the private 1,703-byte V2 aggregate against a closed
+top-level and per-case schema, original source SHA, model revision,
+GPU hardware, genuine model-time grammar counts, immutable screenshot
+guards, causal boolean invariants, and aggregate sums.
+The ephemeral downloaded private JSON was then deleted.
+
+| Original scene | V1 (original validation order) | V2 (strict conversion before H208) |
+| --- | --- | --- |
+| `ar_sorted_tape` | 1/1 real task success | 1/1 real task success |
+| `ar_sorted_gloves` | 0/1 real task success | 0/1 real task success |
+| **Total** | **1/2** | **1/2** |
+
+V2 has exactly **two real pretrained image-conditioned generations**,
+**two model-time constrained exact JSON outputs**, **two actual
+native Chromium clicks**, **one correct first-+1 bounding-box hit**,
+and **one actual source-owned state success**. Source, task prompt,
+model checkpoint, original two exposed research scenes, and grammar
+remain frozen. Both versions have equal observed 1/2 results; **this
+is not evidence of improvement from the decoding fix**, nor proof
+that the previous validation-order defect caused historical failures.
+No optimizer step occurred and no Hala LoRA gain is demonstrated.
+The original Stockroom research family is publicly exposed; there is
+no independent blind OOD result. No media/points/weights logged to
+GitHub. The experiment's private temporary D: report, checkout
+and upload directories were removed and verified absent.
+
