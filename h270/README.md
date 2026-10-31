@@ -50,3 +50,87 @@ code paths. No change to model, GPU hardware, target coords,
 loss weights, allowed-token grammar, original source, or dataset
 admission. Real v2 success must be reverified independently; this
 source repair does NOT itself demonstrate a valid LoRA step.
+
+## Verified private free-T4 v2 result (2026-10-31)
+
+The owner-private Kaggle H270 v2 **COMPLETED**. The exact-file-filtered
+2,342-byte private aggregate was inspected on the authorized Windows owner
+machine; no raw model text, screenshots, target coordinates, labels, or
+adapter files were transferred or committed. The aggregate verified:
+
+- Free NVIDIA T4 GPUs: **2**; pinned Qwen3-VL-2B-Instruct.
+- Eight distinct original first-party Stockroom training screenshots:
+  six English and two Arabic; **8 real optimizer steps** with 8x
+  coordinate-token weighting. Every step had finite nonzero gradients,
+  supervised coordinate tokens, and nonzero adapter changes; **896
+  changed adapter-tensor instances across steps** (not 896 unique tensors).
+- Two paired Arabic RTL research-only tasks, both pixel-identical before
+  and after LoRA and byte-disjoint from the eight training screenshots.
+  Actual model inference, strict JSON click, and real native browser
+  dispatch succeeded on **both tasks** for both versions, but final
+  inventory-state success was **BASE 0/2; ADAPTED 0/2; delta 0**.
+- No consumed H173 OOD used, no official TRAIN/DEV/OOD admitted, no
+  independent blind OOD established, no model/generalizable quality gain
+  demonstrated, and no weights published.
+
+**Decision:** This is real gradient-based LoRA training with a verified
+negative GUI outcome, not a successful visual grounding improvement.
+Further same-source short-step experiments must not be presented as a
+model-quality milestone. Prioritize lawful source-family-diverse training,
+independent blind evaluation, and paired native task-state improvement
+rather than increasing optimizer-step counts without heldout evidence.
+
+
+## Verified owner-private FREE T4 v2 result — 2026-10-31
+
+The repaired Kaggle v2 kernel (owner-private
+abdulazizshehri/hala-h270-private-coordinate-weighted-lora-t4)
+**COMPLETED** using two genuine FREE NVIDIA T4 GPUs. Only the exact
+allowlisted 2,342-byte private JSON
+hala-h270-private-weighted-firstparty-aggregate.json was retrieved
+and inspected. No raw model generation, original media, gold pixel
+locations, checkpoint or weights was downloaded or made public.
+
+| Actual measurement | Verified result |
+| --- | --- |
+| Real FP16 rank4 coordinate-weighted LoRA optimizer steps | **8/8** |
+| Actual nonzero adapter update at every step | true |
+| Finite positive gradient on every step | true |
+| Nonzero supervised coordinate tokens on every step | true |
+| Sum of per-step changed-adapter tensor counts | **896** (NOT 896 distinct parameters) |
+| Original firstparty TRAIN screenshots | 8, each byte distinct (6 EN/2 AR) |
+| Heldout original firstparty screenshots | 2 AR, no exact TRAIN PNG duplicates |
+| Paired BASE vs ADAPTED screenshot pixels | exact equal in both scenarios |
+| Qwen real generations, strict H199 JSON, native clicks | true before/after, both scenarios |
+| Arabic sorted Paper tape native task | BASE failed / ADAPTED failed |
+| Arabic sorted Exam gloves native task | BASE failed / ADAPTED failed |
+| Firstparty native task-state success totals | **BASE 0/2, ADAPTED 0/2** |
+| Observed firstparty success delta | **0** |
+| New source-disjoint blind OOD qualified | false |
+| Generalizable trained Hala model improvement demonstrated | **false** |
+| Official TRAIN/DEV/OOD dataset admission | false |
+| Private images, reference targets or adapter weights published | false |
+
+The model produced strict JSON and dispatched a real browser click in
+all four evaluation trials, but NONE increased the requested first
+inventory quantity. Eight genuine weighted optimizer updates are
+proved, but **no measured native task gain** is proved. The Arabic
+scenes and the original Stockroom source were previously visible in
+research, so this is NOT a new blind independent evaluation and must
+NOT be promoted to release or quality benchmark status.
+
+This evidence rules out the claim that merely switching from H269's
+two language LoRA updates to H270's eight coordinate-weighted updates
+was sufficient to fix the already observed native targeting failure.
+Next substantive research must investigate genuine image grounding
+and lawful independent source families rather than over-tune these
+two exposed firstparty evaluation scenes. H173 consumed scored OOD
+remains permanently SEALED.
+
+The H270 v1 high-default-gradient-scaler failure and conservative
+Hala-trainer init_scale=1.0 repair remain documented above.
+[Hosted source-only CI #41200364504](https://github.com/TheHalfMoon/Hala/actions/runs/41200364504)
+**COMPLETED SUCCESS** at repair head
+8cadcbf2e1e506260609457fb9ce21a882aa7ec1
+on both Python 3.11.14 and 3.12.14, independent of this GPU result.
+A separate hosted check is required for the later documentation head.
