@@ -45,6 +45,10 @@ selector or known coordinates enter the model policy callback.
 Fail closed on source/model/hardware/viewport/PNG drift and unchanged
 screen guard. Require **strict exact normalized JSON** (0..999)
 and use the ALREADY preregistered H273 relative-to-pixel converter.
+The conversion MUST occur inside a strict decoding adapter **before H208's
+unchanged H199 pixel-only parser**: otherwise a valid Qwen relative
+y=999 can incorrectly fail as out-of-range for pixel y=719. The raw
+normalized string never exits this volatile private decoding adapter.
 Malformed JSON triggers **zero** actions; do not repair it or use a
 fallback target. On valid action, dispatch at most one genuinely native
 H263 browser action with screenshot locked; `abstain` is non-action.
@@ -92,3 +96,24 @@ model response, coordinate, screenshot/pixels, or model weights.
 
 At plan freeze, **no H279 GPU result yet**. All future claims must
 cite exact Kaggle completion and strictly validated aggregate.
+
+## V1 prospective integration defect, identified before GPU result
+
+Initial private FREE Kaggle **V1** code-only upload was accepted but
+remained `QUEUED` at the time this source audit found that
+`h208/preloaded_vlm_policy.py` calls H199's **native pixel**
+`parse_actions` inside the policy, before H273 relative-to-pixel
+conversion in the H279 caller. Consequently Qwen-relative y=999
+would be rejected before the caller could convert it. This is a
+source-inspection finding, **not** a measured V1 result and does NOT
+establish the cause of earlier H273 scoring failures.
+
+H279 V2 code now performs strict H273 relative parsing and conversion
+inside `RelativePrevalidationProcessor.batch_decode` (still before
+H208's unchanged H199 native validator), preserving the same model,
+visual tensor, pinned constrained grammar, task, scene, and native
+browser guards. A synthetic contract test proves original relative
+[999,999] converts into native [959,719]; malformed relative [1000,999]
+remains refused without coordinate repair. No source/user/prompt/split
+or gold-target change. **Do not submit V2 until V1 finishes**; V1 must
+not be called a qualified relative action test merely for being queued.
