@@ -15,9 +15,9 @@ INSTALL_H279 = INSTALL_H274.replace(
 
 
 def build(source: Path, destination: Path) -> dict:
-    if (type(source) is not Path or not source.is_file()
+    if (not isinstance(source, Path) or not source.is_file()
             or source.name != SOURCE or source.parent.name != "h279"
-            or type(destination) is not Path or destination.exists()
+            or not isinstance(destination, Path) or destination.exists()
             or destination.is_relative_to(source.parent)
             or ".git" in destination.parts):
         raise ValueError("H279 checked-in source and fresh scratch only")
