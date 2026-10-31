@@ -93,3 +93,30 @@ admitted until source/media lineage and transitive licensing are
 qualified. H262 is a single previously exposed author-owned
 source, NOT fresh blind OOD. No proof of generalized Hala skill or
 model release follows from this diagnostic.
+
+## Actual owner-private FREE T4 v1 failure and fail-closed repair
+
+The H274 v1 code-only private Kaggle notebook ran on a real free GPU,
+but ended **ERROR** with the *sanitized* exception class
+`ValueError: H274 fail-closed: original screenshot changed during generate`.
+It therefore produced **NO valid format categories**; no raw Qwen
+generation, private screenshot, reference point, or model weights were
+downloaded or published. This was a correct strict snapshot-integrity
+failure, **not** a model localization or training result.
+
+A likely cause is an intermittently blinking text caret in the
+first-party Stockroom search field, which is the last control focused
+during query entry. V2 removes focus **only from this known search
+input**, then uses H264's existing fully decoded original screenshot
+capture `_observed_png(page)` before real inference. After generation,
+the exact observed-pixels digest must still match, or the experiment
+again aborts without publishing a format reason. No target DOM,
+reference point, evaluation gold, model text, source variant, prompt
+or token grammar is changed. Hypothesis and code repair still
+require a fresh owner-private v2 run, not a retrospective correction.
+
+The original H274 source at `99c59354c99f85047d28e941dfe5b3320eb37311`
+passed 150 relevant owner Windows regressions, 3 optimized H274 tests
+and hosted [GitHub Actions #41207595784](https://github.com/TheHalfMoon/Hala/actions/runs/41207595784)
+**COMPLETED SUCCESS** Python 3.11 and 3.12. These CPU/source tests
+do NOT qualify private GPU v1 or imply a trained model gain.
