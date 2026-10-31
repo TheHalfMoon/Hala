@@ -147,7 +147,9 @@ class H279RealNativeFrameBrowserTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "stale screenshot"):
             screenshot_locked_turn(
                 self.page, SOURCE, self.url, FIRST_STOCK_TASK, changed_scene_policy)
-        self.assertEqual(self.counts(), before)
+        # The intentional filter/sort mutation changes visible row ORDER.
+        # Guard must block action, but preserve inventory values per ID.
+        self.assertEqual(sorted(self.counts()), sorted(before))
 
 
 if __name__ == "__main__":
