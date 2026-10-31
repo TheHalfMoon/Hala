@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: Apache-2.0
+# A real ephemeral Chromium run for original Hala first-party Queueboard.
+# No private data, GPU, model weights, screenshots or artifacts.
+name: h276-browser-qualification
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "h275/**"
+      - "h276/**"
+      - "tests/test_h276_queueboard_browser.py"
+      - ".github/workflows/h276-browser-qualification.yml"
+  push:
+    branches:
+      - "ps/h276-queueboard-browser-qualification"
+    paths:
+      - "h275/**"
+      - "h276/**"
+      - "tests/test_h276_queueboard_browser.py"
+      - ".github/workflows/h276-browser-qualification.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: h276-original-browser-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  original-queueboard-chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Read code only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned Playwright (no GPU or model)
+        run: python -m pip install "playwright==1.58.0"
+      - name: Install ephemeral Chromium and Linux dependencies
+        run: python -m playwright install --with-deps chromium
+      - name: Verify real original Chromium actions and stability
+        run: |
+          python -c "from playwright.sync_api import sync_playwright; print('H276 actual Playwright import OK')"
+          python -m unittest discover -s tests -p "test_h276_queueboard_browser.py" -v
+      - name: No persisted screenshots, model or upload step
+        run: |
+          test ! -d screenshots
+          test ! -d test-results
+          test ! -d playwright-report
+          echo "H276 zero screenshots, zero model weights, no release"
