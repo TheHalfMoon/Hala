@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 from h280.verify_private_native_aggregate import (
-    EvidenceRejected, decode_bounded, exact_keys, need, flag, count,
+    EvidenceRejected, exact_keys, need, flag, count,
 )
 from h288.verify_private_lora_receipt import closed_report as verify_queue
 from h292.private_paired_routeboard_dev import (
@@ -131,8 +131,32 @@ def verify_object(obj: object) -> dict:
     }
 
 
+def _unique(pairs: list[tuple[str, object]]) -> dict:
+    out = {}
+    for key, value in pairs:
+        if key in out:
+            raise EvidenceRejected("H292 duplicate/escaped private JSON key")
+        out[key] = value
+    return out
+
+
+def _bad_constant(_: str) -> None:
+    raise EvidenceRejected("H292 nonstandard JSON constant refused")
+
+
 def verify_bytes(raw: bytes) -> dict:
-    return verify_object(decode_bounded(raw))
+    # H280's original bound is intentionally 4096 bytes; H292 is a
+    # separate composite containing TWO independently checked families.
+    # Preserve its duplicate-key/NaN/privacy controls with an 8500B cap.
+    need(type(raw) is bytes and 250 <= len(raw) <= 8500,
+         "H292 private compound aggregate size refused")
+    try:
+        obj = json.loads(raw.decode("utf-8", errors="strict"),
+                         object_pairs_hook=_unique,
+                         parse_constant=_bad_constant)
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        raise EvidenceRejected("H292 malformed private JSON") from None
+    return verify_object(obj)
 
 
 def verify_private_file(path: Path) -> dict:
