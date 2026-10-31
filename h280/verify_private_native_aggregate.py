@@ -284,7 +284,7 @@ def validate_bytes(raw: bytes, *, family: str) -> dict:
 
 
 def validate_local_file(path: Path, *, family: str) -> dict:
-    need(type(path) is Path and family in ("stockroom", "queueboard"),
+    need(isinstance(path, Path) and family in ("stockroom", "queueboard"),
          "invalid requested input")
     expected = STOCKROOM_NAME if family == "stockroom" else QUEUEBOARD_NAME
     need(path.name == expected and path.is_file() and not path.is_symlink(),
