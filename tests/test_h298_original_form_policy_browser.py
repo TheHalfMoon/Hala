@@ -134,14 +134,20 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
 
     def test_real_native_wrong_field_never_becomes_task_success(self):
         scene=SCENES[1]
+        fake_model=StubModel()
         summary=run_fixed_original_source_research(
             self.browser,SOURCE,
             StubProcessor(self.preprogrammed_inputs(scene,wrong=True)),
-            StubModel(),scene)
-        self.assertEqual(summary["native_actions"],2)
+            fake_model,scene)
+        self.assertEqual(summary["native_actions"],1)
+        self.assertEqual(fake_model.calls,1)
+        self.assertTrue(summary["source_focus_guard_refused"])
         self.assertFalse(summary["source_original_gui_state_success"])
-        self.assertEqual(
-            summary["preloaded_model_contract"]["type_calls"],1)
+        safe=summary["preloaded_model_contract"]
+        self.assertEqual(safe["type_calls"],0)
+        self.assertEqual(safe["model_generations_via_wrapped_generate"],1)
+        self.assertTrue(safe["protocol_failed_terminal"])
+        self.assertFalse(safe["protocol_terminal"])
 
     def test_real_native_wrong_code_never_becomes_task_success(self):
         scene=SCENES[7]

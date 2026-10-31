@@ -131,7 +131,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
         self.assertEqual(len(set(ids)), 12)
         self.assertEqual(len(first_sha), 12)
 
-    def test_wrong_neighbor_focus_then_type_dispatch_is_task_failure(self):
+    def test_wrong_neighbor_focus_stops_before_second_prediction(self):
         scene = SCENES[0]
         calls = []
         def wrong(png, task):
@@ -143,9 +143,26 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
             ]})
         result = run_original_form_sequence(
             self.browser, HTML, scene, wrong, role=ROLE)
-        self.assertEqual(result["native_actions"], 2)
+        self.assertEqual(result["native_actions"], 1)
+        self.assertEqual(len(calls), 1)
         self.assertTrue(result["focus_click_dispatched"])
-        self.assertTrue(result["type_dispatched"])
+        self.assertFalse(result["type_dispatched"])
+        self.assertFalse(result["source_task_success"])
+        self.assertTrue(result["source_focus_guard_refused"])
+
+    def test_arabic_wrong_neighbor_also_refuses_before_type(self):
+        scene = SCENES[8]
+        calls = []
+        def wrong(png, task):
+            calls.append(1)
+            if len(calls) > 1:
+                self.fail("unsafe second model prediction after wrong focus")
+            return self.action_click(scene, wrong=True)
+        result = run_original_form_sequence(
+            self.browser, HTML, scene, wrong, role=ROLE)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(result["native_actions"], 1)
+        self.assertTrue(result["source_focus_guard_refused"])
         self.assertFalse(result["source_task_success"])
 
     def test_wrong_code_still_type_dispatches_but_fails_task(self):

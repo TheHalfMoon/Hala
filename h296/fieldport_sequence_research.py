@@ -162,6 +162,25 @@ def run_original_form_sequence(
             }
         need(first_outcome == {"kind": "click", "executed": True},
              "first native step must be focus-click or abstain")
+        # Source-owned safety gate, NEVER passed to the neural callback.
+        # A wrong-field click must count as a failed task without letting
+        # the second-stage model type into a different editable field.
+        focused = page.evaluate("""() => {
+            const element = document.activeElement;
+            return element instanceof HTMLInputElement
+                ? (element.dataset.fieldId || null) : null;
+        }""")
+        if focused != target:
+            return {
+                "role": ROLE, "scene": scene[0], "native_actions": 1,
+                "focus_click_dispatched": True, "type_dispatched": False,
+                "source_task_success": False,
+                "source_focus_guard_refused": True,
+                "all_four_fields_checked": 4, "screen_lock_each_step": True,
+                "actual_neural_generation_proven": False,
+                "official_train_dev_admitted": False,
+                "independent_blind_ood": False,
+            }
         second = _screen_locked_predict(page, predict, task)
         second_outcome = execute_one(page, second)
         need(second_outcome["kind"] in ("type_text", "abstain"),
