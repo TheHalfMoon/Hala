@@ -135,20 +135,31 @@ class H298PreloadedFormPolicyTests(TestCase):
         self.assertTrue(safe["protocol_terminal"])
 
     def test_duplicate_or_fake_screenshot_and_prompt_refused_without_generation(self):
-        model = StubModel()
-        policy = PreloadedTwoStageVisualPolicy(
-            StubProcessor([FOCUS, TYPE]), model, self.task)
         for png,prompt in (
             (b"not PNG" * 50, self.native_prompt),
             (PNG_A, source_task_prompt(exact_task(SCENES[1]))),
             (PNG_A, self.task),
         ):
+            model = StubModel()
+            policy = PreloadedTwoStageVisualPolicy(
+                StubProcessor([FOCUS, TYPE]), model, self.task)
             with self.subTest(reason=prompt[:12]), self.assertRaises(ModelContractRefused):
                 policy(png, prompt)
-        self.assertEqual(model.calls, 0)
+            self.assertEqual(model.calls, 0)
+            self.assertTrue(policy.safe_contract_summary()["protocol_failed_terminal"])
+            with self.assertRaises(ModelContractRefused):
+                policy(PNG_A, self.native_prompt)
+            self.assertEqual(model.calls, 0)
+        model = StubModel()
+        policy = PreloadedTwoStageVisualPolicy(
+            StubProcessor([FOCUS, TYPE]), model, self.task)
         policy(PNG_A, self.native_prompt)
         with self.assertRaises(ModelContractRefused):
             policy(PNG_A, self.native_prompt)
+        self.assertEqual(model.calls, 1)
+        self.assertTrue(policy.safe_contract_summary()["protocol_failed_terminal"])
+        with self.assertRaises(ModelContractRefused):
+            policy(PNG_B, self.native_prompt)
         self.assertEqual(model.calls, 1)
 
     def test_model_raw_format_error_is_sanitized_with_no_success(self):
@@ -163,6 +174,7 @@ class H298PreloadedFormPolicyTests(TestCase):
         self.assertEqual(safe["model_generations_via_wrapped_generate"], 0)
         self.assertEqual(safe["focus_clicks"], 0)
         self.assertFalse(safe["protocol_terminal"])
+        self.assertTrue(safe["protocol_failed_terminal"])
 
     def test_second_stage_does_not_accept_click_or_private_text(self):
         for invalid in (
@@ -178,6 +190,7 @@ class H298PreloadedFormPolicyTests(TestCase):
                 policy(PNG_B, self.native_prompt)
             self.assertEqual(policy.safe_contract_summary()["type_calls"], 0)
             self.assertFalse(policy.safe_contract_summary()["protocol_terminal"])
+            self.assertTrue(policy.safe_contract_summary()["protocol_failed_terminal"])
 
     def test_unregistered_model_source_and_task_never_fake_attestation(self):
         for fake in (object(), None):
