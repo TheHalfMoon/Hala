@@ -51,36 +51,6 @@ loss weights, allowed-token grammar, original source, or dataset
 admission. Real v2 success must be reverified independently; this
 source repair does NOT itself demonstrate a valid LoRA step.
 
-## Verified private free-T4 v2 result (2026-10-31)
-
-The owner-private Kaggle H270 v2 **COMPLETED**. The exact-file-filtered
-2,342-byte private aggregate was inspected on the authorized Windows owner
-machine; no raw model text, screenshots, target coordinates, labels, or
-adapter files were transferred or committed. The aggregate verified:
-
-- Free NVIDIA T4 GPUs: **2**; pinned Qwen3-VL-2B-Instruct.
-- Eight distinct original first-party Stockroom training screenshots:
-  six English and two Arabic; **8 real optimizer steps** with 8x
-  coordinate-token weighting. Every step had finite nonzero gradients,
-  supervised coordinate tokens, and nonzero adapter changes; **896
-  changed adapter-tensor instances across steps** (not 896 unique tensors).
-- Two paired Arabic RTL research-only tasks, both pixel-identical before
-  and after LoRA and byte-disjoint from the eight training screenshots.
-  Actual model inference, strict JSON click, and real native browser
-  dispatch succeeded on **both tasks** for both versions, but final
-  inventory-state success was **BASE 0/2; ADAPTED 0/2; delta 0**.
-- No consumed H173 OOD used, no official TRAIN/DEV/OOD admitted, no
-  independent blind OOD established, no model/generalizable quality gain
-  demonstrated, and no weights published.
-
-**Decision:** This is real gradient-based LoRA training with a verified
-negative GUI outcome, not a successful visual grounding improvement.
-Further same-source short-step experiments must not be presented as a
-model-quality milestone. Prioritize lawful source-family-diverse training,
-independent blind evaluation, and paired native task-state improvement
-rather than increasing optimizer-step counts without heldout evidence.
-
-
 ## Verified owner-private FREE T4 v2 result — 2026-10-31
 
 The repaired Kaggle v2 kernel (owner-private
