@@ -1,6 +1,6 @@
 # H262 — First-party, media-free native inventory GUI (research only)
 
-This is a **new Hala-authored source application**, not a copied donor. It is a self-contained offline HTML/CSS/JavaScript inventory interface with no third-party fonts, icons, logos, media, packages, external URLs, or network requests. The page uses system fonts and native HTML controls. This eliminates *this application's* transitive media-licensing uncertainty, but does not retroactively clear H250/H251/H260 or historical contamination.
+This is a **new Hala-authored source application**, not a copied donor. It is a self-contained offline HTML/CSS/JavaScript inventory interface with no bundled or remotely requested fonts, icons, logos, media, packages, external URLs, or network requests. The page uses host-installed system fonts and native HTML controls. This avoids bundled/remote media dependencies, but rendered system-font/browser/OS assets still need appropriate capture-use review before any screenshot admission. It does not retroactively clear H250/H251/H260 or historical contamination.
 
 ## Real stateful browser behaviors
 
