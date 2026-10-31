@@ -35,7 +35,7 @@ H299 code-only private kernel ID:
 Original cloned author-owned source branch:
 `ps/h298-preloaded-qwen-two-stage-form-policy`,
 immutable **exact** source HEAD
-`55dc586b611a46958e525c5f505755cad41e030c`.
+`2babf8c91ffb63dd1123070449d1cbc240ab0859`.
 Verify the HTML Git blob above and clean exact HEAD before
 loading the processor/model. Model:
 `Qwen/Qwen3-VL-2B-Instruct`, immutable pretrained revision
