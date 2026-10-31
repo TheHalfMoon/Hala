@@ -54,9 +54,8 @@ python -m unittest discover -s tests -p test_h283_clinicgrid_evidence.py -v
 python -m compileall -q h283
 ```
 
-Owner Windows clean short-lived D: checkout: **9/9 synthetic/adversarial
-tests PASS**, compileall PASS at initial H283 tests head
-`ec4be1a1a0ce02c502b1d934cc0ac23acd03877e`.
+Owner Windows clean short-lived D: checkout: **10/10 synthetic/adversarial tests PASS**, compileall PASS at initial H283 tests head
+`d8aae21ee9b22be04f875234843cd82d7831a80d`.
 These tests **do not invoke Qwen, produce an adapter, evaluate a blind
 OOD task or admit training data**.
 
