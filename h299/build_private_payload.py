@@ -46,7 +46,7 @@ except Exception as _error:
                 "failure_stage":"DEPENDENCIES",
                 "exception_class":_kind if _kind in _allowed
                                   else "OTHER_ERROR_CLASS",
-                "source_commit":"2babf8c91ffb63dd1123070449d1cbc240ab0859",
+                "source_commit":"55dc586b611a46958e525c5f505755cad41e030c",
                 "model_id":"Qwen/Qwen3-VL-2B-Instruct",
                 "model_revision":"89644892e4d85e24eaac8bacfd4f463576704203",
                 "verified_model_skill_scores":False,
@@ -74,7 +74,7 @@ def build(source: Path, destination: Path) -> dict:
     body = source.read_text("utf-8")
     future = "from __future__ import annotations\n"
     markers = (
-        'SOURCE_SHA = "2babf8c91ffb63dd1123070449d1cbc240ab0859"',
+        'SOURCE_SHA = "55dc586b611a46958e525c5f505755cad41e030c"',
         'SOURCE_BLOB = "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80"',
         'KERNEL_FLAG = "HALA_H299_PRIVATE_NONCOMMERCIAL_FREE_T4"',
         "def clone_original_source(", "def verified_report(",
