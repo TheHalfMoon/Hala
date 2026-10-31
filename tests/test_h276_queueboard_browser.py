@@ -75,7 +75,7 @@ class H276RealBrowserQualification(unittest.TestCase):
     @staticmethod
     def invented_policy(point):
         def predict(png, prompt):
-            if not png.startswith(b"\\x89PNG\\r\\n\\x1a\\n"):
+            if not png[:4] == bytes((137, 80, 78, 71)):
                 raise ValueError("missing real screenshot")
             if "Task:" not in prompt:
                 raise ValueError("missing screenshot-only instruction")
