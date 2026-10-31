@@ -7,6 +7,8 @@ execution, lawful TRAIN/DEV admission, blind OOD or skill gain.
 from __future__ import annotations
 
 import types
+from io import BytesIO
+from PIL import Image
 from unittest import TestCase, mock
 
 from h199.native_action_sft import source_task_prompt, parse_actions
@@ -16,8 +18,14 @@ from h298.preloaded_form_two_stage_policy import (
     run_fixed_original_source_research,
 )
 
-PNG_A = b"\x89PNG\r\n\x1a\n" + b"A" * 180
-PNG_B = b"\x89PNG\r\n\x1a\n" + b"B" * 180
+def invented_png(color):
+    buffer = BytesIO()
+    Image.new("RGB", (960, 720), color).save(buffer, format="PNG")
+    return buffer.getvalue()
+
+
+PNG_A = invented_png((21, 42, 63))
+PNG_B = invented_png((63, 42, 21))
 FOCUS = '{"actions":[{"kind":"click","point":[500,500]}]}'
 ABSTAIN = '{"actions":[{"kind":"abstain"}]}'
 TYPE = '{"actions":[{"kind":"type_text","text":"FIC-23"}]}'
