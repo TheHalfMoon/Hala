@@ -6,6 +6,8 @@ inference, training, GUI success, blind OOD, or release qualification.
 from __future__ import annotations
 
 import unittest
+from io import BytesIO
+from PIL import Image
 from unittest import mock
 
 from h199.native_action_sft import source_task_prompt
@@ -14,7 +16,9 @@ from h298.preloaded_form_two_stage_policy import (
     PreloadedTwoStageVisualPolicy,
 )
 
-PNG = b"\x89PNG\r\n\x1a\n" + b"X" * 180
+_image_buffer = BytesIO()
+Image.new("RGB", (960, 720), (13, 17, 19)).save(_image_buffer, format="PNG")
+PNG = _image_buffer.getvalue()
 TASK = "Enter fictional code FIC-11 into field F-10."
 
 
