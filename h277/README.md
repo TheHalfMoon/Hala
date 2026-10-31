@@ -75,3 +75,36 @@ steps, scored native model improvement, model/adapter release, or
 publication is claimed. Completing a real model requires a
 legally admitted multi-family TRAIN/DEV dataset, an independent
 new untouched blind OOD and genuine paired native task-state gains.
+
+## Real hosted browser qualification result — 2026-10-31
+
+**VERIFIED**: the exact original H277 implementation head
+`314643d3942e58250b0f6594c4cab9294caa8bac` passed
+the [read-only GitHub Actions browser job #41210533702](https://github.com/TheHalfMoon/Hala/actions/runs/41210533702)
+**COMPLETED SUCCESS** on hosted Ubuntu 24.04 with Python 3.11,
+pinned Playwright 1.58.0, Pillow 11.3.0 and actual installed Chromium.
+
+The real job log explicitly reports:
+- H276 Queueboard native English/RTL/control/stable-PNG tests
+  **5/5 PASSED**, actual original source browser, not mocks.
+- H277 actual original Stockroom+Queueboard combined tests
+  **2/2 PASSED**, including **8/8 PNG byte-distinct and 8/8
+  decoded RGBA pixel-distinct screenshots** across the two
+  original source families, EN/Arabic, real live native clicks
+  and independent post-action source state changes.
+- The workflow's no-persisted-screenshots/no-upload step
+  **COMPLETED SUCCESS**. No PNG files, private gold, raw model
+  output, third-party media or weights were retained by this
+  workflow.
+
+This source-family visual QA is experimentally proven for
+the audited Linux/Chromium version only. **Not** an owner
+Windows Edge confirmation, **not** a trained Hala skill
+measurement, **not** legal admission to official TRAIN/DEV
+and **not** an untouched independent blind OOD evaluation.
+The H199 admitted manifests remain EMPTY, and all preexisting
+scientific restrictions above continue unchanged.
+
+The broader CPU source suite has a separate hosted workflow
+and must be verified independently at the final result head;
+do not infer its status from this Chromium success.
