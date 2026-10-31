@@ -108,3 +108,25 @@ scientific restrictions above continue unchanged.
 The broader CPU source suite has a separate hosted workflow
 and must be verified independently at the final result head;
 do not infer its status from this Chromium success.
+
+## H274 screenshot-caret safety preflight (additional Chromium-only)
+
+H274's private T4 format-category diagnostic v1 aborted when its
+original Stockroom screenshot changed during generation. Its
+narrow prospective v2 repair blurs only the original firstparty
+search input before taking the snapshot. To independently check
+the specific **source-browser stability** assumption despite the
+owner Windows RDC monthly quota, H277 now also tests the ACTUAL
+H262 Stockroom in real hosted Chromium with the "Gauze" search,
+explicitly calls `#search.blur()`, asserts the field really loses
+focus, then compares both PNG and fully decoded RGBA frame
+fingerprints **1.8 seconds apart**.
+
+This is **a real browser source-level stability check only**,
+not a real private Qwen `model.generate` and not a substitute
+for H274 v2 Kaggle T4 run, which has **NOT yet been submitted**.
+A passing frame test would support that blurred search screenshots
+are stable in this specific hosted Linux Chromium environment;
+it cannot establish the prior H274 GPU failure's cause without
+an actual private GPU rerun. Keep the hard source/pixel guard
+strict and never substitute DOM oracle clicks or guess success.
