@@ -82,8 +82,10 @@ class OriginalQueueboardSourceTests(unittest.TestCase):
         self.assertIn("استلام المستندات",h)
         self.assertIn("min-height:54px",h)
         self.assertIn("width:min(960px,100%)",h)
-        self.assertIn("prefers-reduced-motion" if "prefers-reduced-motion" in h else "animations-disabled-by-design", 
-                      h if "prefers-reduced-motion" in h else h+" animations-disabled-by-design")
+        self.assertNotIn("@keyframes",h)
+        self.assertNotIn("animation:",h)
+        self.assertNotIn("setInterval(",h)
+        self.assertNotIn("setTimeout(",h)
 
 if __name__=="__main__":
     unittest.main()
