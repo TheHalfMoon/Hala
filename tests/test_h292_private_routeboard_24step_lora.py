@@ -3,11 +3,15 @@ from __future__ import annotations
 
 import copy
 import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
 from h280.verify_private_native_aggregate import EvidenceRejected
 from h292 import private_routeboard_24step_lora as pilot
 from h292 import verify_private_routeboard_lora as verifier
+from h292 import verify_stage_diagnostic as stage_verifier
+from h292 import build_private_payload as packager
 
 
 def invented_report() -> dict:
@@ -134,6 +138,46 @@ class H292ClosedPrivateResearch(unittest.TestCase):
         self.assertFalse(report["paired_gui_task_score_verified"])
         self.assertFalse(report["model_improvement_proven"])
         self.assertNotIn("raw_model_output", report)
+
+    def test_pinned_eval_commit_cannot_be_relabelled(self):
+        doc = invented_report()
+        self.assertEqual(doc["eval_source_commit"], pilot.EVAL_SOURCE_SHA)
+        doc["eval_source_commit"] = "0" * 40
+        with self.assertRaises(EvidenceRejected):
+            verifier.closed_report(doc)
+
+    def test_stage_only_failure_and_fake_success_refused(self):
+        doc = pilot.failure_receipt("SOURCE", "ValueError")
+        safe = stage_verifier.check_stage_receipt(doc)
+        self.assertEqual(safe["failure_stage"], "SOURCE")
+        self.assertFalse(safe["verified_paired_gui_scores"])
+        doc["optimizer_steps_verified"] = 24
+        with self.assertRaises(EvidenceRejected):
+            stage_verifier.check_stage_receipt(doc)
+
+    def test_code_only_private_free_t4_package(self):
+        source = Path(__file__).resolve().parents[1] / "h292" / (
+            "private_routeboard_24step_lora.py")
+        with TemporaryDirectory() as temporary:
+            destination = Path(temporary) / "private"
+            info = packager.build(source, destination)
+            self.assertTrue(info["private"])
+            self.assertEqual(info["upload_files"], 2)
+            self.assertEqual(info["uploaded_media_weights_or_gold"], 0)
+            self.assertEqual(
+                {p.name for p in destination.iterdir()},
+                {packager.SCRIPT_NAME, "kernel-metadata.json"})
+            metadata = json.loads(
+                (destination / "kernel-metadata.json").read_text("utf-8"))
+            self.assertEqual(metadata["id"], packager.KERNEL_ID)
+            self.assertEqual(metadata["is_private"], "true")
+            self.assertEqual(metadata["machine_shape"], "NvidiaTeslaT4")
+            self.assertEqual(metadata["model_sources"], [])
+            self.assertEqual(metadata["dataset_sources"], [])
+            bundle = (destination / packager.SCRIPT_NAME).read_text("utf-8")
+            compile(bundle, "<private-code-only-h292>", "exec")
+            self.assertIn(pilot.REPORT, bundle)
+            self.assertIn(pilot.DIAGNOSTIC_REPORT, bundle)
 
 
 if __name__ == "__main__":
