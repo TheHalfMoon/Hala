@@ -48,7 +48,7 @@ class FakeOnlyVisualPolicy:
         self.processor, self.model = processor, model
 
     def __call__(self, png, prompt):
-        assert png.startswith(b"\\x89PNG") and "screenshot" in prompt.lower()
+        assert png[:4] == bytes((137, 80, 78, 71)) and "screenshot" in prompt.lower()
         self.model.eval()
         self.model.generate(input_ids=[[1]])
         return self.processor.batch_decode([[10, 11]])[0]
