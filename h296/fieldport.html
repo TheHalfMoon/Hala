@@ -21,6 +21,8 @@ h1{margin:0 0 7px;font-size:25px}
 .field-hint{width:210px;font-size:13px;color:#68817f}
 .row input{flex:1;min-width:0;font-size:20px;font-weight:bold;height:48px;border:2px solid #b4c9c4;border-radius:10px;outline:none;padding:7px 15px;color:#1e4343;background:#f9fbfa;direction:ltr;text-align:left}
 .row input:focus{border-color:#087f78;outline:3px solid #83d7cf;outline-offset:2px;background:#fff}
+/* Keep screenshot observation byte-stable during focus; typing still works. */
+.row input{caret-color:transparent}
 .row input:disabled{background:#f2f4f2}
 .notice{font-size:12px;margin-top:17px;color:#68817f;line-height:1.7}
 footer{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:11px;color:#879d99}
