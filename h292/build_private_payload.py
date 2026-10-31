@@ -14,8 +14,8 @@ import textwrap
 
 from h270.build_private_payload import INSTALL_H270
 
-KERNEL_TITLE = "Hala H292 Private ShiftDesk RouteBoard 24Step LoRA T4"
-KERNEL_ID = "abdulazizshehri/hala-h292-private-shiftdesk-routeboard-24step-lora-t4"
+KERNEL_TITLE = "Hala H292 Shift24 Route4 T4"
+KERNEL_ID = "abdulazizshehri/hala-h292-shift24-route4-t4"
 SOURCE_NAME = "private_routeboard_24step_lora.py"
 SCRIPT_NAME = "h292_private_routeboard_24step_lora.py"
 FAIL_REPORT = "hala-h292-private-routeboard-stage-diagnostic.json"
@@ -79,7 +79,7 @@ def build(source: Path, destination: Path) -> dict:
             or ".git" in destination.parts):
         raise ValueError("H292 exact checked-in source and fresh tmp only")
     slug = re.sub(r"[^a-z0-9]+", "-", KERNEL_TITLE.lower()).strip("-")
-    if KERNEL_ID != "abdulazizshehri/" + slug:
+    if len(slug) > 40 or KERNEL_ID != "abdulazizshehri/" + slug:
         raise ValueError("H292 owner-private Kaggle title/ID mismatch")
     body = source.read_text("utf-8")
     future = "from __future__ import annotations\n"
