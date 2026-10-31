@@ -100,3 +100,40 @@ parameter improvement or generalizable GUI skill. A scientifically
 complete Hala still needs qualified independent original data,
 actual free GPU LoRA weights/optimization, and paired baseline vs
 adapter task-state success on a never exposed blind OOD cohort.
+
+## Actual private Kaggle T4 result — 2026-10-31
+
+Owner-verified private kernel version 1 at
+`abdulazizshehri/hala-h267-private-real-vlm-json-diagnostic`
+**COMPLETED**, then only exact aggregate
+`hala-h267-private-real-vlm-formats.json` was retrieved (1096 bytes).
+No source PNG, original label, raw model text, gold or pretrained weights
+was downloaded to the owner's PC. Verified aggregate:
+
+| Predeclared arm | Completed pretrained model.generate | Format class | Native dispatch | First-party inventory success |
+| --- | ---: | --- | --- | --- |
+| original_h199 | 1 | MARKDOWN_FENCE | false | false |
+| strict_json_reminder | 1 | MARKDOWN_FENCE | false | false |
+
+**Two genuine pretrained Qwen3-VL-2B visual generations on FREE T4 x2**,
+**both rejected** by the unchanged strict H199 parser; **0/2** native
+Stockroom task-state successes. No model adaptation, optimizer steps,
+official TRAIN/DEV/OOD admission, new blind OOD or trained skill gain.
+Crucially, H267 proves that a stronger textual JSON reminder **did not**
+eliminate the fenced-code response on this first-party case. It does NOT
+prove the model lacked visual target knowledge; raw text was intentionally
+not persisted, so any coordinates inside the fence are UNKNOWN.
+
+The correct next research direction is prospective **pre-registered
+grammar-constrained decoding** (or separately trained strictly
+formatted response adapter) on a new private research run, without
+retrospectively stripping fences, accepting loose JSON, manufacturing
+a reference click or re-opening H173 scored OOD. The model must
+produce an exact H199 action at generation time or the browser must
+continue to abstain.
+
+Only this aggregate-only finding is recorded publicly, not private
+screenshots or model text. Owner H267 local suite was 118 regression
+PASS + 6 optimized H267 PASS as documented above; **hosted exact-head
+CI outcome must be checked independently** after this documentation
+commit.
