@@ -63,7 +63,9 @@ class PreloadedTwoStageVisualPolicy:
                 "failed policy must not resume on another screenshot")
         try:
             return self._qualified_turn(png, native_source_prompt)
-        except (ValueError, TypeError, RuntimeError, OSError):
+        except Exception:
+            # Any unexpected tokenizer/processor/model exception is terminal.
+            # Do not leak exception messages or allow a second model action.
             self._terminal_failure = True
             raise ModelContractRefused(
                 "H298 model-time visual grammar or source policy terminal failure"
