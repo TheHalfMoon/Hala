@@ -200,6 +200,31 @@ class H298PreloadedFormPolicyTests(TestCase):
             self.assertFalse(policy.safe_contract_summary()["protocol_terminal"])
             self.assertTrue(policy.safe_contract_summary()["protocol_failed_terminal"])
 
+    def test_source_focus_refusal_latches_after_first_click_only(self):
+        model = StubModel()
+        policy = PreloadedTwoStageVisualPolicy(
+            StubProcessor([FOCUS, TYPE]), model, self.task)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_focus_refusal()
+        self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
+        policy(PNG_A, self.native_prompt)
+        self.assertEqual(model.calls, 1)
+        policy.seal_source_focus_refusal()
+        self.assertTrue(policy.safe_contract_summary()["protocol_failed_terminal"])
+        self.assertEqual(policy.safe_contract_summary()["type_calls"], 0)
+        with self.assertRaises(ModelContractRefused):
+            policy(PNG_B, self.native_prompt)
+        self.assertEqual(model.calls, 1)
+
+    def test_source_focus_refusal_cannot_rewrite_completed_type(self):
+        policy = PreloadedTwoStageVisualPolicy(
+            StubProcessor([FOCUS, TYPE]), StubModel(), self.task)
+        policy(PNG_A, self.native_prompt)
+        policy(PNG_B, self.native_prompt)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_focus_refusal()
+        self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
+
     def test_unregistered_model_source_and_task_never_fake_attestation(self):
         for fake in (object(), None):
             with self.assertRaises(ModelContractRefused):
