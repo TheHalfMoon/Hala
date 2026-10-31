@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 KERNEL_ID = "abdulazizshehri/hala-h265-private-qwen3vl-firstparty-t4"
-TITLE = "Hala H265 Private Qwen3-VL First-Party T4"
+TITLE = "Hala H265 Private Qwen3VL Firstparty T4"
 SCRIPT_NAME = "h265_private_kaggle.py"
 META_NAME = "kernel-metadata.json"
 INSTALL = """# Kaggle entry: start only on private, opted-in noncommercial FREE T4

@@ -78,3 +78,18 @@ inference only if the Kaggle remote run returns an independently checked
 `real_pretrained_model_generations=1` with genuine CUDA qualification.
 Even if first-party task success is true, this is **not** a source-disjoint
 blind OOD, a trained Hala adapter, or an independent model gain.
+
+## Verified source-only progress — 2026-10-31
+
+Owner Windows focused H265/H264/H208 suite: **31 PASSED**. H265 tests
+with optimized Python -O: **6 PASSED** (expected pytest warning). Broader
+H199/H201/H207/H208/H249/H262/H263/H264/H265 suite: **112 PASSED**, 3019
+unrelated deselected, 0 failures; source compiled and Git whitespace clean.
+These are NOT actual neural accuracy tests.
+
+Owner Kaggle CLI authentication **verified without revealing credentials**.
+Private kernel version 1 was successfully uploaded with Kaggle's
+NvidiaTeslaT4 accelerator. Exact owner-only kernel reference:
+`abdulazizshehri/hala-h265-private-qwen3vl-firstparty-t4`.
+At submission it entered `RUNNING` status; **no model generation result may
+be claimed before the remote run finishes and output is inspected**.
