@@ -18,7 +18,7 @@ KERNEL_TITLE = "Hala H292 Private ShiftDesk RouteBoard Paired T4"
 KERNEL_ID = "abdulazizshehri/hala-h292-private-shiftdesk-routeboard-paired-t4"
 SOURCE_NAME = "private_paired_routeboard_dev.py"
 SCRIPT_NAME = "h292_private_paired_routeboard_dev.py"
-FAIL_REPORT = "hala-h292-private-lora-stage-diagnostic.json"
+FAIL_REPORT = "hala-h292-private-routeboard-stage-diagnostic.json"
 INSTALL_H292 = INSTALL_H270.replace(
     "HALA_H270_PRIVATE_NONCOMMERCIAL_FREE_T4",
     "HALA_H292_PRIVATE_NONCOMMERCIAL_FREE_T4",
@@ -61,7 +61,7 @@ except Exception as _diag_exc:
             'raw_exception_logs_images_points_or_weights_saved': False,
         }
         _diag_dest = _diag_Path('/kaggle/working') / (
-            'hala-h292-private-lora-stage-diagnostic.json')
+            'hala-h292-private-routeboard-stage-diagnostic.json')
         if not _diag_dest.exists():
             _diag_dest.write_text(
                 _diag_json.dumps(_diag_data, sort_keys=True) + '\\n',
@@ -84,7 +84,7 @@ def build(source: Path, destination: Path) -> dict:
     body = source.read_text("utf-8")
     future = "from __future__ import annotations\n"
     markers = (
-        'DIAGNOSTIC_REPORT = "hala-h292-private-lora-stage-diagnostic.json"',
+        'DIAGNOSTIC_REPORT = "hala-h292-private-routeboard-stage-diagnostic.json"',
         'STAGE_ENUM = frozenset(', "def failure_receipt(",
         "def write_private_failure_receipt(", "def verified_report(",
         "def evaluate_queueboard_pair(", "def evaluate_routeboard_dev(", "if __name__ == \"__main__\":",
