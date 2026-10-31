@@ -1,0 +1,233 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: Apache-2.0; original Hala-owned first-party demo -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>Queueboard | Original Hala GUI Research</title>
+<style>
+  :root{color-scheme:light;--ink:#1d2a37;--muted:#64748b;--line:#e1e8ee;--panel:#fff;--accent:#196d6c;--soft:#e7f5f2;--bg:#f4f7f9;--urgent:#bc542d}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+  button,input{font:inherit}
+  button{cursor:pointer;border:1px solid var(--line);background:white;color:var(--ink);border-radius:9px;padding:9px 13px}
+  button:focus-visible,input:focus-visible{outline:3px solid #66aaa2;outline-offset:2px}
+  button:disabled{cursor:default;opacity:.6}
+  .shell{width:min(960px,100%);min-height:720px;margin:0 auto;padding:13px 22px 18px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:13px}
+  .mark{width:43px;height:43px;display:grid;place-items:center;background:#215a59;color:white;border-radius:12px;font-weight:800;font-size:15px}
+  .brand-name{font-size:19px;font-weight:750;letter-spacing:-.025em}
+  .sub{color:var(--muted);font-size:12px;margin-top:1px}
+  .controls{display:flex;gap:8px;align-items:center}
+  .language{background:#f9fcfc;font-weight:700}
+  .headline{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-top:12px}
+  h1{font-size:23px;letter-spacing:-.04em;line-height:1.12;margin:0 0 4px}
+  .intro{color:var(--muted);margin:0;font-size:13px}
+  .date-chip{padding:8px 13px;border:1px solid var(--line);border-radius:20px;background:white;color:#475569;font-size:12px;white-space:nowrap}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px 0}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:9px 14px}
+  .stat-label{color:var(--muted);font-size:12px}
+  .stat-value{font-weight:750;font-size:25px;line-height:1.2;margin-top:3px;font-variant-numeric:tabular-nums}
+  .stat:nth-child(2) .stat-value{color:var(--urgent)}
+  .stat:nth-child(3) .stat-value{color:var(--accent)}
+  .board{background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden}
+  .board-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+  .board-title{font-size:16px;font-weight:750}
+  .board-subtitle{font-size:12px;color:var(--muted);margin-top:2px}
+  .filterbar{display:flex;gap:8px;align-items:center}
+  .filterbar button{font-size:12px;padding:8px 12px}
+  .filterbar button[aria-pressed="true"]{background:var(--soft);border-color:#b5dad2;color:#155c59;font-weight:700}
+  .search{width:139px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;outline:none;font-size:12px}
+  .columns{display:grid;grid-template-columns:89px 1fr 112px 109px 113px;gap:8px;padding:6px 14px;background:#fafcfd;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.07em;color:#83919e;font-size:10px;font-weight:750}
+  .ticket-row{display:grid;grid-template-columns:89px 1fr 112px 109px 113px;gap:8px;align-items:center;min-height:54px;padding:5px 14px;border-bottom:1px solid #edf1f4}
+  .ticket-row:last-child{border-bottom:0}
+  .ticket-id{font-variant-numeric:tabular-nums;font-weight:750;font-size:13px;letter-spacing:.025em}
+  .ticket-detail{font-weight:650;font-size:13px}
+  .ticket-note{font-size:11px;color:var(--muted);margin-top:2px}
+  .lane{font-size:12px;color:#526371}
+  .badge{display:inline-block;border-radius:5px;padding:5px 8px;font-size:11px;font-weight:700}
+  .badge.urgent{color:#a04425;background:#fff0e8}
+  .badge.standard{color:#5b6773;background:#edf1f4}
+  .badge.done{color:#176b58;background:#e1f5e9}
+  .complete-btn{padding:8px 10px;background:#1b6b68;color:white;border-color:#1b6b68;font-size:12px;font-weight:700}
+  .complete-btn:disabled{background:#eef4f2;color:#487a6c;border-color:#d8e9e5}
+  .empty{padding:32px;text-align:center;color:var(--muted)}
+  .footer{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:11px;color:#7d8c99}
+  html[dir="rtl"] .ticket-row,html[dir="rtl"] .columns{text-align:right}
+  html[dir="rtl"] .brand-name{letter-spacing:0}
+  @media(max-width:730px){
+    .shell{padding:16px}
+    .top,.headline,.board-heading{flex-wrap:wrap}
+    .columns{display:none}
+    .ticket-row{grid-template-columns:72px 1fr 96px;gap:8px}
+    .ticket-row .lane,.ticket-row .badge{display:none}
+    .stats{gap:8px}
+    .stat{padding:12px}
+    .filterbar{flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+<main class="shell" id="queueboard" data-source-family="hala-original-queueboard-h275">
+  <header class="top">
+    <div class="brand"><div class="mark" aria-hidden="true">QB</div>
+      <div><div class="brand-name">Queueboard</div><div class="sub" id="brand-sub">Original synthetic service desk</div></div>
+    </div>
+    <div class="controls">
+      <button type="button" id="lang" class="language" aria-label="Switch display language">العربية</button>
+      <button type="button" id="reset" aria-label="Restore original fictional tickets">Reset sample</button>
+    </div>
+  </header>
+  <section class="headline">
+    <div><h1 id="heading">Today’s service tickets</h1><p class="intro" id="intro">Fictional demo tasks — no real customers or accounts</p></div>
+    <div class="date-chip" id="sample-date">Static sample · 01</div>
+  </section>
+  <section class="stats" aria-label="Sample queue counters">
+    <div class="stat"><div class="stat-label" id="total-label">Total tickets</div><div class="stat-value" id="total-count">6</div></div>
+    <div class="stat"><div class="stat-label" id="urgent-label">Priority waiting</div><div class="stat-value" id="urgent-count">2</div></div>
+    <div class="stat"><div class="stat-label" id="done-label">Completed</div><div class="stat-value" id="completed-count" aria-live="polite">0</div></div>
+  </section>
+  <section class="board">
+    <div class="board-heading">
+      <div><div class="board-title" id="board-title">Queue overview</div><div class="board-subtitle" id="board-subtitle">Complete the intended ticket, not a neighboring row</div></div>
+      <div class="filterbar">
+        <button type="button" id="all" aria-pressed="true">All</button>
+        <button type="button" id="priority" aria-pressed="false">Priority</button>
+        <input id="search" class="search" type="search" placeholder="Search ticket ID" aria-label="Search fictional ticket IDs" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="columns" aria-hidden="true">
+      <span id="col-id">Ticket</span><span id="col-topic">Request</span><span id="col-lane">Desk</span><span id="col-priority">Priority</span><span id="col-action">Action</span>
+    </div>
+    <div id="ticket-list" role="list" aria-label="Fictional tickets"></div>
+  </section>
+  <footer class="footer"><span id="footer-left">Offline-only original research interface</span><span id="footer-right">Six invented tickets · no third-party assets</span></footer>
+</main>
+<script>
+"use strict";
+// Fully original, purpose-authored first-party source. No donor code/assets.
+const SEED=Object.freeze([
+  {id:"Q-104",en:"Document pickup",ar:"استلام المستندات",desk:"A",urgent:false,note:"Paperwork"},
+  {id:"Q-118",en:"Permit inquiry",ar:"استفسار عن تصريح",desk:"C",urgent:true,note:"Verification"},
+  {id:"Q-126",en:"Address update",ar:"تحديث العنوان",desk:"B",urgent:false,note:"Profile update"},
+  {id:"Q-137",en:"Application review",ar:"مراجعة الطلب",desk:"A",urgent:true,note:"New submission"},
+  {id:"Q-142",en:"Certificate copy",ar:"نسخة الشهادة",desk:"D",urgent:false,note:"Records"},
+  {id:"Q-153",en:"General request",ar:"طلب عام",desk:"B",urgent:false,note:"Help desk"}
+]);
+const TEXT={
+ en:{brand:"Original synthetic service desk",reset:"Reset sample",heading:"Today’s service tickets",
+ intro:"Fictional demo tasks — no real customers or accounts",date:"Static sample · 01",
+ total:"Total tickets",urgent:"Priority waiting",done:"Completed",
+ board:"Queue overview",boardSub:"Complete the intended ticket, not a neighboring row",
+ all:"All",priority:"Priority",search:"Search ticket ID",
+ id:"Ticket",topic:"Request",lane:"Desk",urgency:"Priority",action:"Action",
+ urgentBadge:"Priority",normalBadge:"Standard",doneBadge:"Done",
+ complete:"Complete",completed:"Completed",empty:"No matching fictional tickets",
+ foot1:"Offline-only original research interface",foot2:"Six invented tickets · no third-party assets",
+ task:"Fictional request",deskName:"Counter"},
+ ar:{brand:"مكتب خدمات تجريبي اصطناعي",reset:"إعادة المثال",heading:"طلبات الخدمة اليوم",
+ intro:"بيانات تخيلية للتجربة، ولا توجد حسابات أو بيانات عملاء حقيقية",date:"مثال ثابت · ٠١",
+ total:"إجمالي الطلبات",urgent:"طلبات الأولوية",done:"المكتمل",
+ board:"قائمة الانتظار",boardSub:"أكمل الطلب المطلوب، وليس الصف المجاور",
+ all:"الكل",priority:"الأولوية",search:"ابحث برقم الطلب",
+ id:"الطلب",topic:"الخدمة",lane:"المكتب",urgency:"الأولوية",action:"الإجراء",
+ urgentBadge:"عاجل",normalBadge:"عادي",doneBadge:"مكتمل",
+ complete:"إكمال",completed:"تم الإكمال",empty:"لا توجد طلبات خيالية مطابقة",
+ foot1:"واجهة بحث أصلية تعمل دون إنترنت",foot2:"ستة طلبات خيالية دون أصول خارجية",
+ task:"طلب خيالي",deskName:"شباك"}
+};
+const byId=id=>document.getElementById(id);
+let tickets=SEED.map(ticket=>({...ticket,done:false}));
+let language="en";
+let priorityOnly=false;
+let query="";
+
+function renderRow(ticket,t){
+  const row=document.createElement("article");
+  row.className="ticket-row";
+  row.setAttribute("role","listitem");
+  row.dataset.ticketId=ticket.id;
+  row.dataset.status=ticket.done?"done":"waiting";
+  const code=document.createElement("span");
+  code.className="ticket-id";code.textContent=ticket.id;
+  const detail=document.createElement("div");
+  const title=document.createElement("div");
+  title.className="ticket-detail";
+  title.textContent=language==="ar"?ticket.ar:ticket.en;
+  const note=document.createElement("div");
+  note.className="ticket-note";
+  note.textContent=t.deskName+" "+ticket.desk+" · "+t.task;
+  detail.append(title,note);
+  const desk=document.createElement("span");
+  desk.className="lane";desk.textContent=ticket.desk;
+  const badge=document.createElement("span");
+  badge.className="badge "+(ticket.done?"done":(ticket.urgent?"urgent":"standard"));
+  badge.dataset.role="priority-or-status";
+  badge.textContent=ticket.done?t.doneBadge:(ticket.urgent?t.urgentBadge:t.normalBadge);
+  const action=document.createElement("button");
+  action.type="button";
+  action.className="complete-btn";
+  action.dataset.action="complete";
+  action.dataset.ticketId=ticket.id;
+  action.disabled=ticket.done;
+  action.textContent=ticket.done?t.completed:t.complete;
+  action.setAttribute("aria-label",t.complete+" "+ticket.id);
+  action.addEventListener("click",()=>{
+    if(ticket.done)return;
+    ticket.done=true;
+    render();
+  });
+  row.append(code,detail,desk,badge,action);
+  return row;
+}
+function render(){
+  const t=TEXT[language];
+  document.documentElement.lang=language;
+  document.documentElement.dir=language==="ar"?"rtl":"ltr";
+  byId("lang").textContent=language==="ar"?"English":"العربية";
+  for(const [id,key] of Object.entries({
+    "brand-sub":"brand","reset":"reset","heading":"heading","intro":"intro",
+    "sample-date":"date","total-label":"total","urgent-label":"urgent",
+    "done-label":"done","board-title":"board","board-subtitle":"boardSub",
+    "all":"all","priority":"priority","col-id":"id","col-topic":"topic",
+    "col-lane":"lane","col-priority":"urgency","col-action":"action",
+    "footer-left":"foot1","footer-right":"foot2"
+  })){byId(id).textContent=t[key]}
+  byId("search").placeholder=t.search;
+  byId("search").setAttribute("aria-label",t.search);
+  byId("total-count").textContent=String(tickets.length);
+  byId("urgent-count").textContent=String(tickets.filter(x=>x.urgent&&!x.done).length);
+  byId("completed-count").textContent=String(tickets.filter(x=>x.done).length);
+  byId("all").setAttribute("aria-pressed",String(!priorityOnly));
+  byId("priority").setAttribute("aria-pressed",String(priorityOnly));
+  const list=byId("ticket-list");
+  list.replaceChildren();
+  const visible=tickets.filter(x=>(!priorityOnly||x.urgent)
+    &&(!query||x.id.toLowerCase().includes(query.toLowerCase())));
+  if(!visible.length){
+    const empty=document.createElement("div");
+    empty.className="empty";
+    empty.textContent=t.empty;
+    list.append(empty);
+  }else{
+    for(const ticket of visible)list.append(renderRow(ticket,t));
+  }
+}
+byId("lang").addEventListener("click",()=>{language=language==="en"?"ar":"en";render()});
+byId("reset").addEventListener("click",()=>{
+  tickets=SEED.map(x=>({...x,done:false}));
+  priorityOnly=false;query="";byId("search").value="";
+  byId("search").blur();
+  render();
+});
+byId("all").addEventListener("click",()=>{priorityOnly=false;render()});
+byId("priority").addEventListener("click",()=>{priorityOnly=true;render()});
+byId("search").addEventListener("input",event=>{
+  query=event.target.value.trim();render()
+});
+render();
+</script>
+</body>
+</html>
