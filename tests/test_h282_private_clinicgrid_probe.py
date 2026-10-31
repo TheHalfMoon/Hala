@@ -134,6 +134,18 @@ class H282PrivateProspectiveSafetyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "owner-private"):
             verify_free(FakeTorch)
 
+    def test_private_kaggle_title_resolves_to_existing_verified_slug(self):
+        """Avoid creating an unintended second T4 kernel on subsequent push."""
+        import re
+        from h282.build_private_payload import KERNEL_ID, KERNEL_TITLE
+
+        derived = re.sub(r"[^a-z0-9]+", "-", KERNEL_TITLE.lower()).strip("-")
+        self.assertEqual(KERNEL_ID, "abdulazizshehri/" + derived)
+        self.assertEqual(
+            KERNEL_ID,
+            "abdulazizshehri/hala-h282-private-pretrained-clinicgrid-t4",
+        )
+
     def test_code_only_kaggle_payload_no_attached_models_or_media(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -155,6 +167,7 @@ class H282PrivateProspectiveSafetyTests(unittest.TestCase):
                 ["h282_private_clinicgrid_native.py", "kernel-metadata.json"])
             metadata = json.loads((dest / "kernel-metadata.json").read_text("utf-8"))
             self.assertTrue(info["private"])
+            self.assertEqual(metadata["id"], "abdulazizshehri/hala-h282-private-pretrained-clinicgrid-t4")
             self.assertEqual(info["uploaded_private_media_or_weights"], 0)
             self.assertEqual(metadata["is_private"], "true")
             self.assertEqual(metadata["machine_shape"], "NvidiaTeslaT4")
