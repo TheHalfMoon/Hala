@@ -14,9 +14,45 @@ from h296.fieldport_sequence_research import (
     ROLE, SCENES, IDS, checked_source, original_scene,
 )
 from h298.preloaded_form_two_stage_policy import run_fixed_original_source_research
-from tests.test_h298_preloaded_form_two_stage_policy import (
-    StubProcessor, StubModel, FakeOnlyVisualPolicy, ABSTAIN,
-)
+ABSTAIN = '{"actions":[{"kind":"abstain"}]}'
+
+
+class StubProcessor:
+    tokenizer = object()
+    def __init__(self, responses):
+        self.responses = list(responses)
+        self.apply_chat_template = lambda *args, **kwargs: None
+
+    def batch_decode(self, *args, **kwargs):
+        if not self.responses:
+            raise ValueError("No further fake model actions")
+        return [self.responses.pop(0)]
+
+
+class StubModel:
+    device = "cpu"
+    def __init__(self):
+        self.calls = 0
+    def eval(self):
+        return self
+    def generate(self, **kwargs):
+        assert callable(kwargs.get("prefix_allowed_tokens_fn"))
+        self.calls += 1
+        return [[10, 11]]
+
+
+class FakeOnlyVisualPolicy:
+    """Test-only preloaded VLM stub, never a Qwen performance result."""
+    def __init__(self, processor, model, *, max_new_tokens=160):
+        assert max_new_tokens == 160
+        self.processor, self.model = processor, model
+
+    def __call__(self, png, prompt):
+        assert png.startswith(b"\\x89PNG") and "screenshot" in prompt.lower()
+        self.model.eval()
+        self.model.generate(input_ids=[[1]])
+        return self.processor.batch_decode([[10, 11]])[0]
+
 
 SOURCE = Path(__file__).resolve().parents[1] / "h296" / "fieldport.html"
 
