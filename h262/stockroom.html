@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'none'; font-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Hala Stockroom — original native GUI research</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#202b35;background:#f2f5f4}
+*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer;border:1px solid #b7cbc4;background:#fff;border-radius:9px;padding:9px 13px;color:#163d35}
+button:focus-visible,input:focus-visible,[draggable]:focus-visible{outline:3px solid #e99b42;outline-offset:2px}
+header{background:#174e42;color:white;padding:20px clamp(18px,4vw,54px);display:flex;justify-content:space-between;gap:12px;align-items:center}
+header h1{margin:0;font-size:25px;letter-spacing:-.5px}header p{margin:4px 0 0;opacity:.86;font-size:13px}
+header button{background:#fff;color:#174e42}
+main{max-width:1200px;margin:26px auto;padding:0 18px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:18px}
+.panel{background:white;border:1px solid #dce6e1;border-radius:15px;padding:20px;box-shadow:0 2px 7px #1c4e3d0a}
+.panel h2{font-size:19px;margin:0 0 15px}
+.toolbar{display:flex;gap:9px;margin-bottom:15px;align-items:center}
+.toolbar input{flex:1;min-width:90px}
+input{border:1px solid #a9c1b7;border-radius:9px;padding:10px;color:#202b35;max-width:100%}
+#items{display:grid;gap:10px;min-height:210px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #d5e5df;border-radius:12px;padding:13px;background:#fafdfb}
+.item:focus{background:#e9f8f0}
+.item h3{font-size:16px;margin:0 0 4px}
+.item small{color:#557369}
+.count{font-variant-numeric:tabular-nums;font-weight:750;font-size:20px;color:#175d48}
+.actions{display:flex;gap:10px;align-items:center}
+.dropzone{margin-top:16px;padding:28px 14px;border:2px dashed #6ca78b;border-radius:13px;text-align:center;background:#f3fbf6;min-height:94px}
+.dropzone.over{background:#d7f1e1;border-color:#22634b}
+form{display:grid;grid-template-columns:1fr 90px auto;gap:8px}
+form label{font-size:12px;color:#4a6d5f;display:grid;gap:5px}
+form button{align-self:end;background:#174e42;color:white}
+#activity{height:245px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #dbe7e0;border-radius:10px;padding:0 12px}
+#activity p{margin:0;padding:10px 0;border-bottom:1px solid #e6eee8;font-size:13px}
+#status{font-size:13px;color:#416c5d;margin-top:12px;min-height:18px}
+.sidebar{display:grid;gap:18px;align-content:start}
+.muted{color:#59776b;font-size:13px}
+@media(max-width:800px){main{grid-template-columns:1fr}form{grid-template-columns:1fr 80px auto}}
+@media(max-width:480px){form{grid-template-columns:1fr 1fr}form button{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header><div><h1 id="title">Stockroom</h1><p id="subtitle">Offline inventory operations · Original Hala research interface</p></div><button id="lang" type="button" aria-label="Switch language">العربية</button></header>
+<main>
+<section class="panel" aria-labelledby="inventory-title">
+<h2 id="inventory-title">Inventory</h2>
+<div class="toolbar"><input id="search" type="search" aria-label="Search inventory" placeholder="Search inventory"><button id="sort" type="button">Sort by stock</button></div>
+<div id="items" aria-live="polite"></div>
+<div id="dropzone" class="dropzone" role="region" aria-label="Receiving area" tabindex="0">Drop an item here to receive two units</div>
+<p id="status" role="status"></p>
+</section>
+<div class="sidebar">
+<section class="panel" aria-labelledby="add-title"><h2 id="add-title">New item</h2>
+<form id="add"><label id="name-label">Item name<input id="name" required maxlength="48" autocomplete="off"></label>
+<label id="quantity-label">Quantity<input id="quantity" type="number" min="0" max="999" value="1" required></label>
+<button id="add-button" type="submit">Add</button></form></section>
+<section class="panel" aria-labelledby="history-title"><h2 id="history-title">Activity</h2><p id="history-help" class="muted">Scroll to inspect older events.</p><div id="activity" tabindex="0" aria-label="Activity log"></div></section>
+</div>
+</main>
+<script>
+"use strict";
+// Entire interface is first-party authored for Hala; no external assets or requests.
+const dictionary={
+en:{title:"Stockroom",subtitle:"Offline inventory operations · Original Hala research interface",inventory:"Inventory",search:"Search inventory",sort:"Sort by stock",unsort:"Sort by name",receive:"Drop an item here to receive two units",addTitle:"New item",name:"Item name",quantity:"Quantity",add:"Add",history:"Activity",help:"Scroll to inspect older events.",restock:"Add one",empty:"No matching items",total:"Total units",received:"Received two units",added:"Added one unit",created:"Created item",sample:"Sample history",switch:"Switch language",activity:"Activity log",area:"Receiving area",stock:"units"},
+ar:{title:"المخزن",subtitle:"عمليات مخزون دون اتصال · واجهة أصلية لأبحاث هالا",inventory:"المخزون",search:"ابحث في المخزون",sort:"رتب حسب الكمية",unsort:"رتب حسب الاسم",receive:"اسحب الصنف إلى هنا لاستلام وحدتين",addTitle:"صنف جديد",name:"اسم الصنف",quantity:"الكمية",add:"أضف",history:"النشاط",help:"مرر لعرض العمليات الأقدم.",restock:"أضف واحدة",empty:"لا توجد أصناف مطابقة",total:"إجمالي الوحدات",received:"تم استلام وحدتين",added:"تمت إضافة وحدة",created:"تم إنشاء صنف",sample:"سجل تجريبي",switch:"تبديل اللغة",activity:"سجل النشاط",area:"منطقة الاستلام",stock:"وحدة"}
+};
+const inventory=[
+{id:"gauze",en:"Gauze pads",ar:"ضمادات شاش",count:4},
+{id:"tape",en:"Paper tape",ar:"شريط ورقي",count:7},
+{id:"gloves",en:"Exam gloves",ar:"قفازات فحص",count:2},
+{id:"labels",en:"Shelf labels",ar:"ملصقات الرفوف",count:11}
+];
+const state={lang:"en",query:"",sorted:false,events:Array.from({length:28},(_,i)=>({type:"sample",value:28-i}))};
+const $=id=>document.getElementById(id);
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tr=()=>dictionary[state.lang];
+const nameOf=item=>item[state.lang]||item.en;
+function record(type,item){state.events.unshift({type,nameEn:item.en,nameAr:item.ar,value:item.count});}
+function renderItems(){
+const q=state.query.trim().toLocaleLowerCase();
+const selected=inventory.filter(item=>(item.en+" "+item.ar).toLocaleLowerCase().includes(q));
+if(state.sorted)selected.sort((a,b)=>a.count-b.count||a.en.localeCompare(b.en));
+$("items").innerHTML=selected.length?selected.map(item=>`<article class="item" tabindex="0" draggable="true" data-id="${safe(item.id)}"><div><h3>${safe(nameOf(item))}</h3><small>${safe(tr().stock)}</small></div><div class="actions"><span class="count" data-count="${item.count}">${item.count}</span><button type="button" data-restock="${safe(item.id)}" aria-label="${safe(tr().restock+" "+nameOf(item))}">+1</button></div></article>`).join(""):`<p id="empty">${safe(tr().empty)}</p>`;
+$("status").textContent=tr().total+": "+inventory.reduce((n,item)=>n+item.count,0);
+}
+function renderActivity(){
+$("activity").innerHTML=state.events.map(event=>{
+let message=event.type==="sample"?tr().sample+" "+event.value:
+(event.type==="received"?tr().received:event.type==="added"?tr().added:tr().created)+" — "+(state.lang==="ar"?event.nameAr:event.nameEn);
+return "<p>"+safe(message)+"</p>";
+}).join("");
+}
+function render(){
+document.documentElement.lang=state.lang;document.documentElement.dir=state.lang==="ar"?"rtl":"ltr";
+const t=tr();
+for(const [id,key] of Object.entries({"title":"title","subtitle":"subtitle","inventory-title":"inventory","add-title":"addTitle","name-label":"name","quantity-label":"quantity","add-button":"add","history-title":"history","history-help":"help","dropzone":"receive"})){
+if(id==="name-label"||id==="quantity-label")$(id).firstChild.textContent=t[key];else $(id).textContent=t[key];
+}
+$("search").placeholder=t.search;$("search").setAttribute("aria-label",t.search);$("search").value=state.query;
+$("sort").textContent=t[state.sorted?"unsort":"sort"];$("lang").textContent=state.lang==="en"?"العربية":"English";
+$("lang").setAttribute("aria-label",t.switch);$("activity").setAttribute("aria-label",t.activity);$("dropzone").setAttribute("aria-label",t.area);
+renderItems();renderActivity();
+}
+function restock(id,amount,type){const item=inventory.find(x=>x.id===id);if(!item)return;item.count+=amount;record(type,item);render();}
+$("items").addEventListener("click",e=>{const button=e.target.closest("button[data-restock]");if(button)restock(button.dataset.restock,1,"added");});
+$("items").addEventListener("dragstart",e=>{const card=e.target.closest("[data-id]");if(card){e.dataTransfer.setData("text/plain",card.dataset.id);e.dataTransfer.effectAllowed="move";}});
+$("dropzone").addEventListener("dragover",e=>{e.preventDefault();e.dataTransfer.dropEffect="move";$("dropzone").classList.add("over");});
+$("dropzone").addEventListener("dragleave",()=>{$("dropzone").classList.remove("over");});
+$("dropzone").addEventListener("drop",e=>{e.preventDefault();$("dropzone").classList.remove("over");const id=e.dataTransfer.getData("text/plain");if(inventory.some(item=>item.id===id))restock(id,2,"received");});
+$("search").addEventListener("input",e=>{state.query=e.target.value;renderItems();});
+$("sort").addEventListener("click",()=>{state.sorted=!state.sorted;render();});
+$("lang").addEventListener("click",()=>{state.lang=state.lang==="en"?"ar":"en";render();});
+$("add").addEventListener("submit",e=>{e.preventDefault();const raw=$("name").value.trim();const amount=Number($("quantity").value);if(!raw||!Number.isInteger(amount)||amount<0||amount>999)return;const id="custom-"+(inventory.length+1);const item={id,en:raw,ar:raw,count:amount};inventory.push(item);record("created",item);state.query="";render();$("name").value="";$("quantity").value="1";});
+document.addEventListener("keydown",e=>{
+if(e.key==="/"&&!["INPUT","TEXTAREA"].includes(document.activeElement.tagName)){e.preventDefault();$("search").focus();}
+if(e.key==="Escape"&&document.activeElement===$("search")){state.query="";$("search").value="";renderItems();}
+});
+render();
+</script>
+</body>
+</html>
