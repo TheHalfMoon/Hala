@@ -21,8 +21,12 @@ labels.
 Before creating a browser context or calling `predict`, require a
 bounded printable task with exactly one complete `Q-###` ticket ID,
 matching the separate evaluator's already-approved `target_ticket`.
-Reject a missing ID, a different ID, duplicate IDs, embedded suffixes,
-and control characters. The source-owned pre/post state oracle still
+Further restrict wording to the two preregistered original-source
+single-step templates: `Complete fictional ticket Q-###` and
+`أكمل الطلب الخيالي Q-###`. Reject a missing ID, a different ID,
+duplicate IDs, embedded suffixes, control characters, or appended
+instructions even when the one correct ID is present. Other prompts
+require an explicit new research protocol. The source-owned pre/post state oracle still
 checks all six tickets, even those hidden by a priority filter. Neither
 the oracle's target nor DOM/source code is supplied to the screenshot
 policy.
@@ -45,3 +49,15 @@ OOD consumed and SEALED; H212 previously scored rows barred;
 H250/H251 external assets quarantined pending provenance. H262/H275
 original public sources are not independent blind OOD. No merge,
 deployment, release, GPU spend, or published private media.
+
+## Real CI repair
+
+Initial exact-head browser workflow
+[run #41213806324](https://github.com/TheHalfMoon/Hala/actions/runs/41213806324)
+**FAILED** on both Ubuntu Chromium and Windows Edge at one adversarial
+case: a syntactically valid ID followed by a literal extra instruction
+reached the fixed-action policy. Rejecting only malformed IDs was too
+weak for a preregistered one-step task. Repair explicitly requires one
+of two preregistered bilingual task templates; the screenshot/actuator
+and source oracle remain unchanged. Re-run exact-head live browser and
+CPU checks before calling the H278 repair qualified.
