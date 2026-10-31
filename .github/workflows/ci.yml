@@ -25,4 +25,5 @@ jobs:
       - run: python -m pip install Pillow==12.3.0 pytest==9.0.2
       - run: python -m unittest discover -s tests -v
       - run: python -m pytest -q tests -k "h16 or h170 or h171 or h172 or h173 or h174"
-      - run: python -m compileall -q hala evaluation training data experiments h173 h174
+      - run: python -m pytest -q tests/test_h256_pre173_visual_history.py
+      - run: python -m compileall -q hala evaluation training data experiments h173 h174 h256
