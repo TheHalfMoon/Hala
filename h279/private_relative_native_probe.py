@@ -95,6 +95,43 @@ def clone_source(root):
     return html
 
 
+
+class RelativePrevalidationProcessor:
+    """Strict relative -> native conversion BEFORE H208's pixel parser.
+
+    H208 is correctly fail-closed for H199 PIXEL actions. A raw model
+    Qwen relative y in 720..999 is not an H199 pixel y; directly using
+    H208 with relative output incorrectly rejects it. This adapter
+    converts only a strict original relative action during decoding,
+    before H208 applies its unchanged native H199 parse guard. The
+    raw generated string never leaves this private decoder.
+    """
+    def __init__(self, base):
+        self.base = base
+        self.format_class = None
+        self.format_rejected = False
+        self.converted_calls = 0
+
+    def apply_chat_template(self, *args, **kwargs):
+        return self.base.apply_chat_template(*args, **kwargs)
+
+    def batch_decode(self, *args, **kwargs):
+        texts = self.base.batch_decode(*args, **kwargs)
+        if type(texts) is not list or len(texts) != 1:
+            self.format_class = "NON_STRING"
+            self.format_rejected = True
+            raise ValueError("H279 private normalized output not a single string")
+        raw = texts[0]
+        self.format_class = classify_strict_model_text(raw, NORMALIZED_REGEX)
+        try:
+            native = normalize_strict_action(raw)
+        except (TypeError, ValueError):
+            self.format_rejected = True
+            raise ValueError("H279 normalized model format refused") from None
+        self.converted_calls += 1
+        return [native]
+
+
 def summarize(rows, hardware):
     """Publish bounded aggregate booleans only; never coordinates or model text."""
     demand(hardware.get("free_t4") is True
@@ -208,8 +245,9 @@ def run():
                     demand(scene[0] in SCENES,"only original preregistered scenes")
                     ctx=None
                     wrapped=NativeGrammarModel(model,filter_fn)
+                    decoder=RelativePrevalidationProcessor(processor)
                     policy=PreloadedVisionPolicy(
-                        processor,wrapped,max_new_tokens=160)
+                        decoder,wrapped,max_new_tokens=160)
                     try:
                         ctx,page,_,_,_=original_case(
                             browser,html,scene,training=False)
@@ -226,21 +264,27 @@ def run():
                                "missing original first-party visible items")
                         # ONLY the PNG and text prompt enter the actual
                         # pretrained model; NEVER a DOM/target/gold/bbox.
-                        raw=policy(png,RELATIVE_PROMPT)
-                        category=classify_strict_model_text(
-                            raw,NORMALIZED_REGEX)
+                        # H208's native pixel parser sees ONLY already
+                        # converted native JSON from the strict decoder.
+                        # A relative y=999 is valid model grammar and must
+                        # be converted to 0..719 BEFORE H208 validation.
+                        strict_native=None
+                        try:
+                            strict_native=policy(png,RELATIVE_PROMPT)
+                        except ValueError:
+                            if not decoder.format_rejected:
+                                raise  # GPU/visual tensor/other failure: fail closed
+                        category=decoder.format_class
                         unchanged=(sha256(png).digest()==sha256(
                             _observed_png(page)).digest())
                         demand(unchanged,"original screenshot changed during generate")
-                        # Frame conversion is the exact prospective H273
-                        # relative 0..999 -> 960x720 bridge. Invalid JSON
-                        # causes NO action; no silent cleanup or gold click.
-                        strict_native=None
-                        try:
-                            strict_native=normalize_strict_action(raw)
-                        except ValueError:
-                            pass
-                        del raw
+                        demand(category is not None
+                               and wrapped.completed_generations==1
+                               and wrapped.grammar_installed_calls==1,
+                               "missing true constrained generation")
+                        demand(decoder.converted_calls == int(
+                            strict_native is not None),
+                               "inconsistent strict model conversion")
                         valid=(strict_native is not None)
                         kind=None
                         dispatched=False
