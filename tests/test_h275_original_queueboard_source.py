@@ -49,7 +49,7 @@ class OriginalQueueboardSourceTests(unittest.TestCase):
         self.assertIn("no real customers or accounts",h)
         self.assertNotIn("patient",h.lower())
         self.assertNotIn("diagnosis",h.lower())
-        self.assertIn("h275-original-queueboard",h)
+        self.assertIn('data-source-family="hala-original-queueboard-h275"',h)
 
     def test_native_button_actions_have_independent_state_oracle(self):
         h=self.html
