@@ -101,7 +101,9 @@ def run_firstparty_queueboard_probe(
     Success is exactly the intended row becoming done, no neighbor changed,
     and the completed counter incrementing once. It is NOT blind OOD.
     """
-    if target_ticket not in TICKETS or language not in ("en", "ar") or type(priority_only) is not bool:
+    if (type(target_ticket) is not str or target_ticket not in TICKETS
+            or type(language) is not str or language not in ("en", "ar")
+            or type(priority_only) is not bool):
         raise ValueError("H276 unsupported invented research scene")
     source, url = checked_queueboard(source_path)
     context = new_offline_context(browser)
