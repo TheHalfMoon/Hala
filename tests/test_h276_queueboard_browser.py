@@ -33,8 +33,13 @@ class H276RealBrowserQualification(unittest.TestCase):
         from playwright.sync_api import sync_playwright
         cls.playwright = sync_playwright().start()
         try:
-            cls.browser = cls.playwright.chromium.launch(
-                headless=True, args=["--no-sandbox"])
+            channel = os.environ.get("HALA_H276_BROWSER_CHANNEL", "chromium")
+            if channel not in ("chromium", "msedge"):
+                raise ValueError("H276 unsupported browser channel")
+            options = ({"headless": True, "channel": "msedge"}
+                       if channel == "msedge"
+                       else {"headless": True, "args": ["--no-sandbox"]})
+            cls.browser = cls.playwright.chromium.launch(**options)
         except Exception:
             cls.playwright.stop()
             raise
