@@ -90,3 +90,68 @@ already-exposed original first-party source. No qualification for
 release without lawful multiple-original-family source-disjoint
 TRAIN/DEV, brand new untouched blind OOD, and a genuinely measured
 native GUI benefit.
+
+
+## Actual owner-private FREE T4 outcome — verified 2026-10-31
+
+The owner-private H271 kernel
+(https://www.kaggle.com/code/abdulazizshehri/hala-h271-private-vision-lora-native-t4)
+v1 **COMPLETED** on real **NVIDIA T4 x2** (free, noncommercial).
+Only the exact filtered 2,806-byte aggregate report
+hala-h271-private-vision-native-aggregate.json was inspected. No raw
+model text, click coordinates, target rectangles, screenshots, gold,
+checkpoint, weights or private media were downloaded/published.
+
+| Verified real inference/training measure | Outcome |
+| --- | --- |
+| Genuine rank-4 LAST-FOUR vision LoRA optimizer steps | **8/8** |
+| Exactly eight visual Linear layers selected | true |
+| Trainable vision LoRA A/B tensors | **16** |
+| Trainable language LoRA tensors | **0** |
+| Each step has supervised coordinate tokens and finite nonzero gradients | true |
+| Changed adapter tensors counted across eight steps | **128 total per-step counts** (NOT 128 unique tensors) |
+| Source-owned original TRAIN PNGs | 8, 6 EN + 2 AR |
+| Two Arabic heldout scenes byte-disjoint from TRAIN | true |
+| Same exact heldout screenshot PNG before/after | true |
+| Real Qwen generation and model-time strict JSON | true on all four paired calls |
+| Arabic sorted Paper tape native task | BASE failed / VISION LORA failed |
+| Arabic sorted Exam gloves native task | BASE failed / VISION LORA failed |
+| Actual correct FIRST +1 button bounding-box hits | **BASE 0/2, VISION LORA 0/2** |
+| Real native clicks dispatched | BASE 1/2, VISION LORA 2/2 |
+| Actual GUI task-state success | **BASE 0/2, VISION LORA 0/2**, delta 0 |
+| Independent source-family blind OOD / official training admission | false / false |
+| Generalizable Hala GUI skill improvement proven | **false** |
+| Model or original private media published | false |
+
+The new independent post-inference first-button hit scorer **confirms
+the observed failure is model-chosen click geometry missing the first
++1 stock button** in these two previously-exposed first-party
+research scenes; it is not caused merely by the JSON contract.
+The H271 vision-only adaptation genuinely changed the intended
+parameters, but did NOT improve correct hit or task-state outcome.
+
+The BASE Paper tape arm produced a real strict-format generation but no
+browser input; BASE Exam gloves and both adapted arms dispatched
+clicks, with no correct target hits. Raw model action text and exact
+points were never saved; do not infer why the first BASE arm did not
+dispatch beyond the known coarse flags.
+
+**Research scope limitation:** This original H262 first-party
+Stockroom source and these two Arabic tasks have been inspected
+in prior stages. Exact train/eval screenshot byte-disjointness is NOT
+an independent source-family split; neither 0/2 nor any eventual
+positive result can qualify as new blind OOD.
+
+**Next required scientific work:** use qualified original legally
+reusable GUI families (historical fork/npm/transitive visual asset
+rights and PNG+decoded-RGBA identity exclusions), TRAIN/DEV distinct
+from NEW source-heldout sealed blind OOD, and compare model-based
+2-D visual grounding with a causal native browser task-state reward.
+Do not keep retuning these same already exposed Stockroom tasks until
+they happen to succeed; no production/release claim.
+
+The hosted source-only exact initial H271 CI run
+[GitHub Actions #41202254204](https://github.com/TheHalfMoon/Hala/actions/runs/41202254204)
+**COMPLETED SUCCESS** for Python 3.11.14/3.12.14 on source head
+af102f07fcff150f7429315b22a2239992b87fd7. A subsequent
+README-only evidence head requires an independent hosted CI check.
