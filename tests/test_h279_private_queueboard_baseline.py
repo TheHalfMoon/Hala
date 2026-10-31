@@ -124,7 +124,8 @@ class H279SourceOnlyTests(unittest.TestCase):
                 "from __future__ import annotations\n"
                 "def validate_rows(): pass\n"
                 "def run_firstparty_queueboard_probe(): pass\n"
-                "def normalize_strict_action(raw): pass\n"
+                "class RelativeDecodingProcessor: pass\n"
+                "def stub():\n    decoder = RelativeDecodingProcessor(None, None)\n"
                 'if __name__ == "__main__": pass\n', encoding="utf-8")
             destination = root / "payload"
             result = build(source, destination)
