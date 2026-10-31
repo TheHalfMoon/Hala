@@ -117,3 +117,51 @@ browser guards. A synthetic contract test proves original relative
 remains refused without coordinate repair. No source/user/prompt/split
 or gold-target change. **Do not submit V2 until V1 finishes**; V1 must
 not be called a qualified relative action test merely for being queued.
+
+## Verified owner-private FREE T4 H279 V1 real native outcome (2026-10-31)
+
+**A real result, but only FIRSTPARTY RESEARCH, not blind OOD or model gain.**
+Kaggle owner-private [Stockroom H279](https://www.kaggle.com/code/abdulazizshehri/hala-h279-private-relative-native-actions-t4)
+V1 finished **COMPLETE**. The only downloaded aggregate was the
+precisely whitelisted `hala-h279-private-relative-native-aggregate.json`
+(**1,703 bytes**), validated in the owner's short-lived D: folder
+against the CLOSED permitted schema, pinned original source
+`53d7fb25e113f8f2cd337bb4aebeafac026d1a22`, pinned
+Qwen3-VL-2B-Instruct revision
+`89644892e4d85e24eaac8bacfd4f463576704203`,
+free NVIDIA T4, two actual generations, two genuine
+model-time grammar invocations, unchanged screenshots and
+consistent exact count/boolean fields. No private raw JSON,
+model text, screenshots, coordinates, or weights published.
+
+| Previously exposed original Arabic scene | Exact relative output | Real native dispatch | First `+1` target hit | Source task-state success |
+| --- | --- | --- | --- | --- |
+| `ar_sorted_tape` | PASS | 1 | **PASS** | **PASS** |
+| `ar_sorted_gloves` | PASS | 1 | FAIL | FAIL |
+| **TOTAL** | **2/2** | **2/2** | **1/2** | **1/2** |
+
+This is **one verified genuine pretrained image-conditioned native
+task-state success** on known original Stockroom research scenes;
+H273's earlier native pixel arm had 0/2 target hits. The protocols
+are NOT a controlled paired comparison, scenes were previously
+exposed, the sample is extremely small, and **no adapter was trained
+in H279**. The evidence therefore **does not establish** adapted
+Hala model gain, generalization, independent blind OOD, or production
+qualification.
+
+**Important protocol qualification:** V1 used the original H208
+pre-conversion native-pixel parse guard. This was later shown by
+source review to be mismatched for some perfectly legal relative
+coordinates (e.g. relative y=999) and V2 code fixes it prior to
+H208 validation. V1 nonetheless produced two genuine
+strict-format native dispatched actions, as independently verified
+from the closed bounded aggregate. Do not quietly relabel V1
+as V2 or change its recorded metric.
+
+The owner's ephemeral filtered local JSON and the harmless
+0-byte Kaggle CLI log were deleted after strict validation.
+Any corrected V2 should run as a **distinct Kaggle kernel version**,
+using unchanged originally preregistered scenes/model/prompt/grammar
+and no reference-point conditioning. It must report its own
+fresh private aggregate; cannot retroactively improve V1.
+
