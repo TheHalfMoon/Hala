@@ -25,8 +25,8 @@ def build(source:Path,destination:Path)->dict:
     if (text.count(future)!=1
         or 'if __name__=="__main__":' not in text
         or "def classify_strict_model_text(" not in text
-        or "raw=policy(png,RELATIVE_PROMPT)" not in text
-        or "strict_native=normalize_strict_action(raw)" not in text
+        or "strict_native=policy(png,RELATIVE_PROMPT)" not in text
+        or "native = self.converter(raw)" not in text
         or "outcome=execute_one(page,strict_native)" not in text):
         raise ValueError("H279 private diagnostic source contract drift")
     full_script=future+INSTALL_H279+"\n"+text.replace(future,"",1)
