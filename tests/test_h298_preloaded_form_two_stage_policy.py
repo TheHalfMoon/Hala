@@ -225,6 +225,39 @@ class H298PreloadedFormPolicyTests(TestCase):
             policy.seal_source_focus_refusal()
         self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
 
+    def test_source_write_refusal_requires_two_real_generated_actions(self):
+        model = StubModel()
+        policy = PreloadedTwoStageVisualPolicy(
+            StubProcessor([FOCUS, TYPE]), model, self.task)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_write_refusal()
+        self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
+        policy(PNG_A, self.native_prompt)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_write_refusal()
+        self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
+        policy(PNG_B, self.native_prompt)
+        policy.seal_source_write_refusal()
+        safe = policy.safe_contract_summary()
+        self.assertTrue(safe["protocol_terminal"])
+        self.assertTrue(safe["protocol_failed_terminal"])
+        self.assertEqual(safe["type_calls"], 1)
+        self.assertEqual(safe["model_generations_via_wrapped_generate"], 2)
+        with self.assertRaises(ModelContractRefused):
+            policy(PNG_A, self.native_prompt)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_write_refusal()
+        self.assertEqual(model.calls, 2)
+
+    def test_abstention_cannot_be_labeled_as_refused_write(self):
+        policy = PreloadedTwoStageVisualPolicy(
+            StubProcessor([FOCUS, ABSTAIN]), StubModel(), self.task)
+        policy(PNG_A, self.native_prompt)
+        policy(PNG_B, self.native_prompt)
+        with self.assertRaises(ModelContractRefused):
+            policy.seal_source_write_refusal()
+        self.assertFalse(policy.safe_contract_summary()["protocol_failed_terminal"])
+
     def test_unregistered_model_source_and_task_never_fake_attestation(self):
         for fake in (object(), None):
             with self.assertRaises(ModelContractRefused):

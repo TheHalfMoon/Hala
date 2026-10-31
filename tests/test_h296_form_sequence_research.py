@@ -165,18 +165,24 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
         self.assertTrue(result["source_focus_guard_refused"])
         self.assertFalse(result["source_task_success"])
 
-    def test_wrong_code_still_type_dispatches_but_fails_task(self):
-        scene = SCENES[1]
-        calls = []
-        def wrong(png, task):
-            calls.append(1)
-            if len(calls) == 1:
-                return self.action_click(scene)
-            return '{"actions":[{"kind":"type_text","text":"FIC-99"}]}'
-        result = run_original_form_sequence(
-            self.browser, HTML, scene, wrong, role=ROLE)
-        self.assertTrue(result["type_dispatched"])
-        self.assertFalse(result["source_task_success"])
+    def test_wrong_code_is_refused_before_native_write_en_and_ar(self):
+        for scene in (SCENES[1], SCENES[8]):
+            with self.subTest(language=scene[1]):
+                calls = []
+                def wrong(png, task):
+                    calls.append(1)
+                    if len(calls) == 1:
+                        return self.action_click(scene)
+                    return '{"actions":[{"kind":"type_text","text":"FIC-99"}]}'
+                result = run_original_form_sequence(
+                    self.browser, HTML, scene, wrong, role=ROLE)
+                self.assertEqual(len(calls), 2)
+                self.assertEqual(result["native_actions"], 2)
+                self.assertTrue(result["focus_click_dispatched"])
+                self.assertFalse(result["type_dispatched"])
+                self.assertFalse(result["source_task_success"])
+                self.assertTrue(result["source_write_guard_refused"])
+                self.assertEqual(result["all_four_fields_checked"], 4)
 
     def test_abstain_at_first_or_second_step_never_fabricates_success(self):
         scene = SCENES[2]
