@@ -173,6 +173,21 @@ class PreloadedTwoStageVisualPolicy:
         self._installed_grammar_calls += 1
         return native
 
+    def seal_source_focus_refusal(self) -> None:
+        """Stop after a wrong native focus, without a second model call.
+
+        This is invoked only by the separate source-owned browser oracle;
+        neither the target identity nor its DOM value reaches the model.
+        """
+        require(not self._terminal_failure
+                and self.state.stage == STAGE_TYPE
+                and self.state.generations == 1
+                and self.state.native_clicks == 1
+                and self.state.native_types == 0
+                and self._model_calls == 1,
+                "only a completed first focus click may be source-refused")
+        self._terminal_failure = True
+
     def safe_contract_summary(self) -> dict:
         """Only categorical counters, NO model outputs or image hashes."""
         safe = self.state.categorical_state()
@@ -215,8 +230,17 @@ def run_fixed_original_source_research(
         processor, model, exact_task(scene))
     outcome = run_original_form_sequence(
         browser, source, scene, policy, role=ROLE)
+    source_refused = outcome.get("source_focus_guard_refused") is True
+    if source_refused:
+        policy.seal_source_focus_refusal()
     counters = policy.safe_contract_summary()
-    require(counters["protocol_terminal"]
+    require((counters["protocol_terminal"]
+             or (source_refused
+                 and counters["protocol_failed_terminal"]
+                 and not counters["protocol_terminal"]
+                 and outcome["native_actions"] == 1
+                 and not outcome["type_dispatched"]
+                 and not outcome["source_task_success"]))
             and counters["model_generations_via_wrapped_generate"]
                 == outcome["native_actions"]
             and counters["model_time_token_filters_installed"]
@@ -234,6 +258,7 @@ def run_fixed_original_source_research(
         "source_original_gui_state_success":
             bool(outcome["source_task_success"]),
         "native_actions": outcome["native_actions"],
+        "source_focus_guard_refused": source_refused,
         "preloaded_model_contract": counters,
         "source_public_exposed_not_blind": True,
         "independent_model_identity_proven": False,
