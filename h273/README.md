@@ -116,3 +116,59 @@ H262 only exposed author-owned one-family research.
 No public adapters/weights/release without lawful
 source-independent TRAIN/DEV, new sealed blind OOD
 and genuine paired native task-state improvement.
+
+
+## Verified real private T4 v1 A/B (2026-10-31)
+
+Owner-private Kaggle v1
+\`abdulazizshehri/hala-h273-private-relative-pixel-comparison-t4\`
+**COMPLETED** on two actual FREE NVIDIA T4 GPUs. Read only exact
+allowlisted **2,655-byte sanitized private aggregate JSON**
+\`hala-h273-private-normalized-vs-native-aggregate.json\`;
+no raw model text, gold points, screenshots, original source media,
+weights or adapters exported.
+
+Four actual pretrained Qwen3-VL visual \`model.generate\` calls
+and four genuine model-time token-filter generate invocations
+completed. Both paired scenarios used identical image bytes
+across pixel and relative arms.
+
+| Result | Native pixel arm | Qwen-relative 0..999 arm |
+| --- | --- | --- |
+| Actual completed image-conditioned Qwen generations | 2/2 | 2/2 |
+| Model-time token filter applied | 2/2 | 2/2 |
+| Valid H199 native format after prospective conversion | 2/2 | **0/2** |
+| Actual native browser clicks | 2/2 | **0/2** |
+| Correct FIRST +1 button bbox hits | **0/2** | **0/2** |
+| Actual source-owned inventory task-state success | **0/2** | **0/2** |
+
+Per-scenario original firstparty Arabic \`ar_sorted_tape\` and
+\`ar_sorted_gloves\`: absolute-pixel arm produced a strict \`click\`
+and dispatched native input, but missed the target. Relative arm
+completed a real constrained model generation, yet the resulting
+string **did not pass the preregistered strict normalized format
+gate**; no converted action or browser input was executed.
+As a result, relative hit/task scores **must NOT be interpreted as
+visual-coordinate localization accuracy**. These are format-gate
+failures upstream of actuation, not evidence of a spatial miss.
+
+**No useful GUI gain is demonstrated by the normalized arm in
+this run**, and this experiment neither proves nor falsifies
+coordinate-frame mismatch as an explanation of baseline misses.
+Do NOT introduce posthoc Markdown cleanup, relaxed schemas,
+oracle-derived points, invented results, or reinterpret these
+previously exposed firstparty scenes as a sealed blind OOD test.
+A next experiment may diagnose coarse shape/termination classes
+in an owner-private aggregate only, with no raw model text or
+points saved, before pursuing meaningful spatial localization.
+
+H273 source commit
+\`bd7584ea0265c3a0d5c43084fd468a963becefc6\`
+[hosted GitHub Actions #41205031424](https://github.com/TheHalfMoon/Hala/actions/runs/41205031424)
+**COMPLETED SUCCESS** on both Python 3.11 and Python 3.12.
+This is source-only qualification, not native GPU success.
+
+Permanent gates remain unchanged: **0 new optimizer steps**,
+no officially admitted TRAIN/DEV/OOD, no new independent blind
+OOD, no generalizable Hala trained skill proven, and no weights
+or release published.
