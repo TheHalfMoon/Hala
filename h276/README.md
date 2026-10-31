@@ -54,13 +54,14 @@ a browser/actuator correctness test, not a model prediction or
 scientific task success.** It does not use old H173/H212 scored data,
 owner-private media, original third-party assets, or model weights.
 
-`.github/workflows/h276-queueboard-browser.yml` runs these tests
-on a standard GitHub-hosted Ubuntu runner using pinned Playwright and
-Chromium dependencies. It does not upload artifacts or screenshots.
-This provides independent Linux Chromium engineering evidence without
-touching the owner's Windows Remote Desktop Commander monthly quota.
-The existing CPU workflow skips this opt-in browser suite; it must not
-be misreported as live browser qualification.
+`.github/workflows/h276-queueboard-browser.yml` runs the same tests
+on standard GitHub-hosted Ubuntu Chromium and Windows Microsoft Edge
+runners. The Windows job uses machine-installed Edge, not the owner's
+remote computer. Neither job uploads artifacts or screenshots. These
+are real browser/actuator engineering checks, not model inference.
+The owner's Windows Remote Desktop Commander monthly quota is not
+touched. The existing CPU workflow skips this opt-in browser suite;
+its results must not be misreported as live browser qualification.
 
 ## Scientific limits
 
