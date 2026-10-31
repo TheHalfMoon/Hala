@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=960, initial-scale=1">
+<title>ClinicGrid — fictional offline research</title>
+<style>
+:root{color-scheme:light; font-family:Arial,Tahoma,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:960px;height:720px;overflow:hidden;background:#f1f5f9;color:#14213b}
+header{height:104px;background:#11243f;color:white;display:flex;align-items:center;justify-content:space-between;padding:20px 42px}
+.brand{font-size:26px;letter-spacing:.5px;font-weight:800}
+.tagline{font-size:13px;color:#b7cbe6;margin-top:4px}
+.toolbar{display:flex;align-items:center;gap:13px}
+.toolbar button{border:1px solid #a3b6cf;border-radius:11px;background:#f7fafc;padding:13px 17px;font-size:15px;font-weight:700;color:#223e62;cursor:pointer}
+main{padding:22px 36px}
+.summary{display:flex;justify-content:space-between;align-items:center;height:62px;margin-bottom:14px}
+.summary h1{font-size:23px;margin:0;font-weight:750}
+.counter{background:#dceefa;color:#08476d;padding:10px 15px;border-radius:11px;font-size:15px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,207px);gap:16px}
+.visit{border:2px solid #e1e8f2;border-radius:17px;background:white;padding:20px;box-shadow:0 4px 9px rgba(14,35,65,.055)}
+.visit.urgent{border-top:6px solid #d58d24}
+.visit .topline{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.visit-id{font-size:24px;font-weight:800;letter-spacing:1px;direction:ltr;unicode-bidi:isolate}
+.urgent-flag{font-size:11px;color:#985500;background:#fff1d4;padding:6px 9px;border-radius:10px;font-weight:800}
+.visit .service{font-size:15px;color:#33516e;font-weight:700;margin-top:13px;min-height:40px}
+.visit .state{font-size:13px;color:#5c7287;margin-bottom:8px}
+.visit .action{background:#087f78;color:white;border:0;padding:10px 16px;border-radius:9px;font-size:15px;font-weight:800;cursor:pointer;min-width:100px}
+.visit .action:disabled{background:#a9bac5;color:#f4f7fa;cursor:default}
+footer{margin-top:17px;color:#66788c;font-size:12px;text-align:center;direction:ltr}
+[dir="rtl"] .visit{text-align:right}
+[dir="rtl"] .visit-id{direction:ltr}
+</style>
+</head>
+<body>
+<header><div><div class="brand">ClinicGrid</div><div class="tagline" id="subtitle">Offline fictional scheduling research</div></div><div class="toolbar"><button id="urgent" type="button">Urgent only: OFF</button><button id="lang" type="button">العربية</button></div></header>
+<main><div class="summary"><h1 id="heading">Visits awaiting approval</h1><div class="counter" id="approved-count">Approved: 0</div></div><div class="grid" id="visits"></div><footer>HALA H281 — SYNTHETIC FIRST-PARTY RESEARCH — NO PATIENT DATA</footer></main>
+<script>
+"use strict";
+const visits = [
+  {id:"C-214", urgent:true,  service:"Radiology review",     done:false},
+  {id:"C-308", urgent:false, service:"Laboratory appointment",done:false},
+  {id:"C-117", urgent:true,  service:"Clinic follow-up",     done:false},
+  {id:"C-426", urgent:false, service:"Wellness consultation",done:false},
+  {id:"C-552", urgent:false, service:"Vision check",        done:false},
+  {id:"C-633", urgent:false, service:"Physical therapy",    done:false}
+];
+let language = "en";
+let urgentOnly = false;
+const translations = {
+  en: {subtitle:"Offline fictional scheduling research",heading:"Visits awaiting approval",total:"Approved",urgent:"Urgent only",yes:"ON",no:"OFF",toggle:"العربية",flag:"URGENT",waiting:"Awaiting approval",approved:"Approved",accept:"Approve",
+      services:["Radiology review","Laboratory appointment","Clinic follow-up","Wellness consultation","Vision check","Physical therapy"]},
+  ar: {subtitle:"جدول خيالي يعمل دون اتصال",heading:"مواعيد بانتظار الاعتماد",total:"تم الاعتماد",urgent:"العاجل فقط",yes:"مفعّل",no:"متوقف",toggle:"English",flag:"عاجل",waiting:"بانتظار الاعتماد",approved:"تم الاعتماد",accept:"اعتماد",
+      services:["مراجعة الأشعة","موعد المختبر","متابعة العيادة","استشارة عامة","فحص النظر","العلاج الطبيعي"]}
+};
+function render(){
+  const t=translations[language];
+  document.documentElement.lang=language;
+  document.documentElement.dir=language==="ar"?"rtl":"ltr";
+  document.getElementById("subtitle").textContent=t.subtitle;
+  document.getElementById("heading").textContent=t.heading;
+  document.getElementById("lang").textContent=t.toggle;
+  document.getElementById("urgent").textContent=t.urgent+": "+(urgentOnly?t.yes:t.no);
+  document.getElementById("approved-count").textContent=t.total+": "+visits.filter(v=>v.done).length;
+  const holder=document.getElementById("visits");
+  holder.replaceChildren();
+  for(const visit of visits.filter(v=>!urgentOnly||v.urgent)){
+    const index=visits.indexOf(visit);
+    const card=document.createElement("article");
+    card.className="visit"+(visit.urgent?" urgent":"");
+    card.dataset.visitId=visit.id;
+    const top=document.createElement("div");
+    top.className="topline";
+    const id=document.createElement("strong");
+    id.className="visit-id";
+    id.textContent=visit.id;
+    top.append(id);
+    if(visit.urgent){const flag=document.createElement("span");flag.className="urgent-flag";flag.textContent=t.flag;top.append(flag);}
+    const service=document.createElement("div");service.className="service";service.textContent=t.services[index];
+    const state=document.createElement("div");state.className="state";state.textContent=visit.done?t.approved:t.waiting;
+    const action=document.createElement("button");
+    action.className="action";action.type="button";action.textContent=visit.done?t.approved:t.accept;
+    action.disabled=visit.done;
+    action.addEventListener("click",()=>{
+      if(!visit.done){visit.done=true;render();}
+    });
+    card.append(top,service,state,action);
+    holder.append(card);
+  }
+}
+document.getElementById("lang").addEventListener("click",()=>{language=language==="en"?"ar":"en";render();});
+document.getElementById("urgent").addEventListener("click",()=>{urgentOnly=!urgentOnly;render();});
+render();
+</script>
+</body>
+</html>
