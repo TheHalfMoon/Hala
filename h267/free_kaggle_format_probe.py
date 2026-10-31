@@ -140,7 +140,6 @@ def make_private_report(rows: list[dict], hardware:dict) -> dict:
                 and not (row["native_input_dispatched"] and
                          (row["format"] != "STRICT_NATIVE_JSON"
                           or row["generate_calls"] != 1)),
-                
                 "unsafe aggregate outcome")
     require(hardware.get("free_t4_gpu_verified") is True, "unverified hardware")
     return {
