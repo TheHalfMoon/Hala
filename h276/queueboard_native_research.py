@@ -9,6 +9,7 @@ from __future__ import annotations
 from hashlib import sha1, sha256
 from hmac import compare_digest
 from pathlib import Path
+import re
 from typing import Any, Callable
 
 from h199.native_action_sft import HEIGHT, WIDTH, parse_actions, source_task_prompt
@@ -106,6 +107,32 @@ def _ticket_state(page: Any) -> dict[str, str]:
     return found
 
 
+
+def _require_single_task_target(task: str, expected: str) -> None:
+    """Reject ambiguous or mismatched public-source task/answer pairings.
+
+    The text is user-task data, never a DOM/target coordinate. Requiring
+    exactly one complete fictional ticket ID prevents the evaluator from
+    silently scoring the wrong ticket or multiple incompatible requests.
+    """
+    if (type(task) is not str or not 8 <= len(task) <= 240
+            or any(ord(c) < 32 or ord(c) == 127 for c in task)):
+        raise ValueError("H278 invalid first-party task text")
+    ticket_ids = re.findall(
+        r"(?<![A-Za-z0-9-])Q-[0-9]{3}(?![A-Za-z0-9-])", task
+    )
+    if ticket_ids != [expected]:
+        raise ValueError("H278 task-target mismatch or ambiguous ticket IDs")
+    # Pre-registered one-step source task phrasing only. An extra
+    # instruction after a correct Q-ID can still alter policy behavior.
+    # Broader task paraphrases require a new explicit research protocol.
+    if task not in (
+        f"Complete fictional ticket {expected}",
+        f"أكمل الطلب الخيالي {expected}",
+    ):
+        raise ValueError("H278 non-preregistered task text")
+
+
 def run_firstparty_queueboard_probe(
     browser: Any, source_path: Path, task: str,
     target_ticket: str, predict: Callable[[bytes, str], str],
@@ -121,6 +148,7 @@ def run_firstparty_queueboard_probe(
             or type(language) is not str or language not in ("en", "ar")
             or type(priority_only) is not bool):
         raise ValueError("H276 unsupported invented research scene")
+    _require_single_task_target(task, target_ticket)
     source, url = checked_queueboard(source_path)
     context = new_offline_context(browser)
     try:
