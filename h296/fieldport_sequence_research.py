@@ -18,7 +18,7 @@ from h199.native_action_sft import WIDTH, HEIGHT, parse_actions, source_task_pro
 from h263.native_browser_executor import execute_one, new_offline_context
 from h264.screenshot_locked_research import _observed_png
 
-BLOB = "52135ef3f3a68922b82be7bcb95a337a89982b18"
+BLOB = "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80"
 ROLE = "PUBLIC_EXPOSED_ORIGINAL_FORM_SEQUENCE_DEV_RESEARCH_NOT_ADMITTED_NOT_OOD"
 IDS = ("F-10", "F-20", "F-30", "F-40")
 SCENES = tuple(
