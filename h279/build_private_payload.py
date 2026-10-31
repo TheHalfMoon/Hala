@@ -27,7 +27,8 @@ def build(source: Path, destination: Path) -> dict:
             or 'if __name__ == "__main__":' not in body
             or "def validate_rows(" not in body
             or "run_firstparty_queueboard_probe(" not in body
-            or "normalize_strict_action(raw)" not in body):
+            or "class RelativeDecodingProcessor:" not in body
+            or "decoder = RelativeDecodingProcessor(" not in body):
         raise ValueError("H279 private source contract drift")
     metadata = {
         "id": KERNEL_ID, "title": "Hala H279 Private Queueboard Native T4",
