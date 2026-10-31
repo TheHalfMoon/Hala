@@ -165,5 +165,22 @@ class OriginalTwoFamilyPixelAudit(unittest.TestCase):
         queue.close()
 
 
+    def test_original_stockroom_blurred_search_is_stable_across_delay(self):
+        # This qualifies only the source-owned Chromium screenshot
+        # stability premise for H274. No Qwen inference or OOD scored.
+        stock=self.page(STOCKROOM)
+        stock.locator("#search").fill("Gauze")
+        self.assertGreaterEqual(stock.locator(".item").count(),1)
+        stock.locator("#search").evaluate("(el) => el.blur()")
+        self.assertFalse(stock.locator("#search").evaluate(
+            "(el) => document.activeElement === el"))
+        first=self.fingerprint(stock)
+        stock.wait_for_timeout(1800)
+        second=self.fingerprint(stock)
+        self.assertEqual(first,second,
+                         "Blurred original Stockroom screen drifted during idle")
+        stock.close()
+
+
 if __name__=="__main__":
     unittest.main()
