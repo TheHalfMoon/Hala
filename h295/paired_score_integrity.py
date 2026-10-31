@@ -162,7 +162,7 @@ def analyze_bytes(raw: bytes) -> dict:
 
 
 def analyze_aggregate_file(path: Path) -> dict:
-    require(type(path) is Path and path.name.endswith(".h295-public-score.json")
+    require(isinstance(path, Path) and path.name.endswith(".h295-public-score.json")
             and path.is_file() and not path.is_symlink(),
             "AGGREGATE_FILE_IDENTITY")
     try:
