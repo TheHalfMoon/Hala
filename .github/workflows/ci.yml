@@ -32,4 +32,5 @@ jobs:
       - run: python -m pytest -q tests/test_h260_independent_family_screen.py
       - run: python -m pytest -q tests/test_h261_historical_family_collision.py
       - run: python -m pytest -q tests/test_h262_original_stockroom_source.py
-      - run: python -m compileall -q hala evaluation training data experiments h173 h174 h256 h257 h258 h259 h260 h261 h262
+      - run: python -m pytest -q tests/test_h263_native_browser_executor.py
+      - run: python -m compileall -q hala evaluation training data experiments h173 h174 h256 h257 h258 h259 h260 h261 h262 h263
