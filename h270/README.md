@@ -29,3 +29,24 @@ Reproduce on the already authorized owner Windows Kaggle CLI by building the pri
 ## Permanent scientific barriers
 
 H199 ADMITTED_TRAIN_MANIFEST_SHAS EMPTY. H173 old 32 scored cases permanently CONSUMED and SEALED. H212 scored procedural rows barred. H250/H251 other original apps private and not admitted due missing transitive assets licenses/fork/npm provenance and PNG+decoded RGBA visual exclusion. A real Hala release needs legally qualified multi-original-family TRAIN/DEV, newly untouched blind independent OOD and reproducibly measured generalizable native task-state improvement.
+
+
+## Real private Kaggle v1 failure and exact FP16 repair
+
+The owner-private H270 Kaggle FREE T4 v1 was genuinely RUNNING and then
+ended ERROR before completing the eight-step qualification. The
+sanitized Python traceback showed H270's explicit fail-closed
+ValueError "nonfinite/zero coordinate gradient"; no optimizer success
+or base/adapted score is claimed for v1.
+
+Source audit found the difference from the pre-existing successfully
+qualified Hala trainer: training/scripts/train_adapter.py sets the
+FP16 GradScaler initial scale to **1.0**; H270 v1 had inherited
+PyTorch's high default scale, which can overflow in coordinate-weighted
+FP16 backprop. The isolated H270 private kernel now uses
+GradScaler("cuda", init_scale=1.0, enabled=True), exactly the
+previous Hala trainer setting; the regression suite compares both
+code paths. No change to model, GPU hardware, target coords,
+loss weights, allowed-token grammar, original source, or dataset
+admission. Real v2 success must be reverified independently; this
+source repair does NOT itself demonstrate a valid LoRA step.

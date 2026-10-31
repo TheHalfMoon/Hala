@@ -336,7 +336,10 @@ def run():
                         and sum(p.numel() for p in params)<=2_000_000,
                         "only rank4 bounded language LoRA permitted")
                 optimizer=torch.optim.AdamW(params,lr=5e-5)
-                scaler=torch.amp.GradScaler("cuda",enabled=True)
+                # Match the actual Hala trainer conservative FP16 scaling.
+                # Default 65536 overflowed H270 weighted coordinate grads.
+                scaler=torch.amp.GradScaler(
+                    "cuda",init_scale=1.0,enabled=True)
                 model.train()
                 steps=[]
                 for i,row in enumerate(train_rows):

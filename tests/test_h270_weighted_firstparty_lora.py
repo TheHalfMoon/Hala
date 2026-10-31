@@ -109,6 +109,9 @@ class H270SourceBoundTests(unittest.TestCase):
             self.assertEqual(meta["model_sources"],[])
             self.assertIn('torchao',data)
             self.assertIn("coordinate_weighted",data)
+            self.assertIn("init_scale=1.0",data)
+            owner_trainer=(root/"training"/"scripts"/"train_adapter.py").read_text("utf-8")
+            self.assertIn("init_scale=1.0",owner_trainer)
             self.assertIn("shutil.rmtree(root",data)
             with self.assertRaises(ValueError):
                 make(source,path)
