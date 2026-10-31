@@ -10,7 +10,7 @@ from pathlib import Path
 
 from h265.build_private_kaggle_payload import INSTALL
 
-KERNEL_ID = "abdulazizshehri/hala-h268-private-token-grammar-t4"
+KERNEL_ID = "abdulazizshehri/hala-h268-private-constrained-native-t4"
 SOURCE_NAME = "free_t4_constrained_native.py"
 SCRIPT_NAME = "h268_private_t4.py"
 META_NAME = "kernel-metadata.json"

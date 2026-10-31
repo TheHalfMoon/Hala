@@ -80,7 +80,7 @@ On authorized owner Windows checkout with connected Kaggle CLI:
 
     python -m h268.build_private_payload --source h268/free_t4_constrained_native.py --destination D:\Hala-H268-Private-Upload
     kaggle kernels push -p D:\Hala-H268-Private-Upload --accelerator NvidiaTeslaT4
-    kaggle kernels status abdulazizshehri/hala-h268-private-token-grammar-t4
+    kaggle kernels status abdulazizshehri/hala-h268-private-constrained-native-t4
 
 The generated local upload staging directory must be removed once
 the private kernel is successfully submitted. Download **ONLY** the
@@ -111,3 +111,34 @@ Broader H199/H201/H207/H208/H249/H262/H263/H264/H265/H267/H268
 regression: **122 passed**, 3019 unrelated deselected, zero failures;
 Python compileall passed. These are CPU-only contracts and cannot establish
 that the remote model implements the constrained decoding successfully.
+
+## First Kaggle runtime result and narrow compatibility repair
+
+Private Kaggle v1 (correct actual slug
+`abdulazizshehri/hala-h268-private-constrained-native-t4`) ended
+`ERROR` **before any constrained model generation**, with a verified,
+sanitized error class:
+
+`ImportError: cannot import name 'PreTrainedTokenizerBase' from
+'transformers.tokenization_utils'`.
+
+The old `lm-format-enforcer==0.11.3` integration imports the tokenizer
+base from this legacy module; Transformers 5.16.1 moved the canonical
+class to `transformers.tokenization_utils_base`. The package's
+misleading secondary error claimed Transformers was not installed,
+although H267 had already proved it was installed and ran real Qwen.
+
+H268 now verifies **exact Transformers 5.16.1**, and before importing
+the pinned LMFE integration, adds only the SAME canonical class as an
+alias in the old module. This compatibility shim:
+- never modifies tokenizer contents, logits, output text, model weights,
+  strict native JSON checks or coordinates;
+- is idempotent and refuses conflicting existing class definitions;
+- exists **only in this ephemeral remote research process**;
+- has new CPU-only regression coverage.
+
+No neural or GUI result can be claimed for v1. A fresh private v2 run
+must show real completed `model.generate` and actual format/task
+outcomes before interpretation. The Kaggle metadata ID has also been
+corrected to the actual stable slug derived from its title, preventing
+later attempts to reference a nonexistent/private wrong ID.

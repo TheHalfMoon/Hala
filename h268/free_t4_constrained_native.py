@@ -70,6 +70,24 @@ def strict_grammar_proof() -> None:
                 "native grammar accepts disallowed action or markdown")
 
 
+def attest_legacy_tokenizer_alias(legacy_module, canonical_type) -> bool:
+    """A narrowly scoped HF5 API alias required by pinned LMFE 0.11.3.
+
+    This neither modifies token IDs, model outputs nor parsing behavior.
+    Reject a conflicting class instead of overwriting existing exports.
+    """
+    require(isinstance(canonical_type, type),
+            "expected canonical Hugging Face tokenizer base class")
+    before = getattr(legacy_module,"PreTrainedTokenizerBase",None)
+    require(before is None or before is canonical_type,
+            "unexpected tokenizer base class would be overwritten")
+    if before is None:
+        setattr(legacy_module,"PreTrainedTokenizerBase",canonical_type)
+    require(getattr(legacy_module,"PreTrainedTokenizerBase",None)
+            is canonical_type,"HF5 tokenizer alias not installed")
+    return before is None
+
+
 class NativeGrammarModel:
     """Wraps the REAL loaded model, not a simulator or oracle.
 
@@ -208,6 +226,13 @@ def run() -> dict:
             "verified H265 transformers compatibility required")
     require(importlib.metadata.version("lm-format-enforcer")==LMFE_VERSION,
             "exact token grammar library version required")
+    # LMFE 0.11.3 predates the Transformers 5 module split and imports
+    # PreTrainedTokenizerBase from tokenization_utils (the old path).
+    # On verified HF 5.16.1, expose ONLY the canonical unchanged class
+    # through that historic module before loading LMFE. No model patch.
+    import transformers.tokenization_utils as tokenizer_legacy
+    from transformers.tokenization_utils_base import PreTrainedTokenizerBase
+    attest_legacy_tokenizer_alias(tokenizer_legacy,PreTrainedTokenizerBase)
     from transformers import AutoProcessor,Qwen3VLForConditionalGeneration
     from lmformatenforcer import RegexParser
     from lmformatenforcer.integrations.transformers import (

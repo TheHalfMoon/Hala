@@ -4,6 +4,7 @@ Never load Qwen weights or read original private screenshots, historical OOD,
 raw model answers, or GPU state in this module.
 """
 from pathlib import Path
+from types import SimpleNamespace
 from tempfile import TemporaryDirectory
 from unittest.mock import Mock
 import json
@@ -14,6 +15,7 @@ from h199.native_action_sft import parse_actions
 from h268.free_t4_constrained_native import (
     X,Y,NATIVE_REGEX,MODEL_ID,MODEL_REVISION,
     LMFE_VERSION,NativeGrammarModel,measure,strict_grammar_proof,
+    attest_legacy_tokenizer_alias,
 )
 from h268.build_private_payload import (
     build_payload,KERNEL_ID,META_NAME,SCRIPT_NAME,
@@ -46,6 +48,22 @@ class H268ConstrainedNativeTests(unittest.TestCase):
         self.assertEqual(MODEL_ID,"Qwen/Qwen3-VL-2B-Instruct")
         self.assertEqual(len(MODEL_REVISION),40)
         self.assertEqual(LMFE_VERSION,"0.11.3")
+
+    def test_only_canonical_transformers5_tokenizer_class_is_aliased(self):
+        class CanonicalTokenizer:
+            pass
+        class ConflictingTokenizer:
+            pass
+        legacy=SimpleNamespace()
+        self.assertTrue(attest_legacy_tokenizer_alias(legacy,CanonicalTokenizer))
+        self.assertIs(legacy.PreTrainedTokenizerBase,CanonicalTokenizer)
+        self.assertFalse(attest_legacy_tokenizer_alias(legacy,CanonicalTokenizer))
+        conflict=SimpleNamespace(PreTrainedTokenizerBase=ConflictingTokenizer)
+        with self.assertRaises(ValueError):
+            attest_legacy_tokenizer_alias(conflict,CanonicalTokenizer)
+        self.assertIs(conflict.PreTrainedTokenizerBase,ConflictingTokenizer)
+        with self.assertRaises(ValueError):
+            attest_legacy_tokenizer_alias(SimpleNamespace(),object())
 
     def test_token_filter_present_during_real_generate_not_posthoc(self):
         model=Mock()
