@@ -12,7 +12,13 @@ from pathlib import Path
 import struct
 import unittest
 
-from playwright.sync_api import sync_playwright
+try:
+    from playwright.sync_api import sync_playwright
+except ModuleNotFoundError:
+    # The broad Hala CPU job intentionally has no browser dependency.
+    # Dedicated H276 browser CI explicitly installs Playwright and
+    # refuses a skipped test run.
+    sync_playwright = None
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML = ROOT / "h275" / "queueboard.html"
@@ -20,6 +26,7 @@ TICKET_IDS = ("Q-104", "Q-118", "Q-126", "Q-137", "Q-142", "Q-153")
 WIDTH, HEIGHT = 960, 720
 
 
+@unittest.skipIf(sync_playwright is None, "optional Playwright; dedicated H276 workflow required")
 class QueueboardOriginalBrowserQualification(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
