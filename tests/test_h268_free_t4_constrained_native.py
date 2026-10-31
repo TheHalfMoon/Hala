@@ -65,6 +65,27 @@ class H268ConstrainedNativeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             attest_legacy_tokenizer_alias(SimpleNamespace(),object())
 
+    def test_lmfe_vcs_receipt_must_match_pinned_source(self):
+        from h268.free_t4_constrained_native import (
+            LMFE_SOURCE_SHA,verify_exact_lmfe_installed_source)
+        class Dist:
+            def __init__(self,receipt):
+                self.receipt=receipt
+            def read_text(self,name):
+                return json.dumps(self.receipt) if name=="direct_url.json" else None
+        valid={"url":"https://github.com/noamgat/lm-format-enforcer.git",
+               "vcs_info":{"vcs":"git","commit_id":LMFE_SOURCE_SHA}}
+        verify_exact_lmfe_installed_source(Dist(valid))
+        with self.assertRaises(ValueError):
+            verify_exact_lmfe_installed_source(Dist({
+                "url":valid["url"],"vcs_info":{"commit_id":"0"*40}}))
+        with self.assertRaises(ValueError):
+            verify_exact_lmfe_installed_source(Dist({
+                "url":"https://example.invalid/other",
+                "vcs_info":{"commit_id":LMFE_SOURCE_SHA}}))
+        with self.assertRaises(ValueError):
+            verify_exact_lmfe_installed_source(Dist({}))
+
     def test_token_filter_present_during_real_generate_not_posthoc(self):
         model=Mock()
         model.device="cuda:0"
@@ -131,7 +152,9 @@ class H268ConstrainedNativeTests(unittest.TestCase):
             self.assertEqual(meta["machine_shape"],"NvidiaTeslaT4")
             self.assertEqual(meta["dataset_sources"],[])
             self.assertEqual(meta["model_sources"],[])
-            self.assertIn("'lm-format-enforcer==0.11.3'",code)
+            self.assertIn("git+https://github.com/noamgat/lm-format-enforcer.git@817f944fcc8851917c40300a47f62d1defc3ffc3",code)
+            self.assertIn("build_core_token_filter(processor.tokenizer)",code)
+            self.assertNotIn("from lmformatenforcer.integrations.transformers import",code)
             self.assertIn("install', '--with-deps', 'chromium'",code)
             self.assertIn("HF_HOME=str(root/\"hf\")",code)
             self.assertIn('"/tmp/hala-h268-research"',code)

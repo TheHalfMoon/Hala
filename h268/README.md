@@ -128,17 +128,39 @@ class to `transformers.tokenization_utils_base`. The package's
 misleading secondary error claimed Transformers was not installed,
 although H267 had already proved it was installed and ran real Qwen.
 
-H268 now verifies **exact Transformers 5.16.1**, and before importing
-the pinned LMFE integration, adds only the SAME canonical class as an
-alias in the old module. This compatibility shim:
+H268 **v2** verified exact Transformers 5.16.1 and attempted a narrow
+legacy tokenizer class alias before loading LMFE. That historical shim:
 - never modifies tokenizer contents, logits, output text, model weights,
   strict native JSON checks or coordinates;
 - is idempotent and refuses conflicting existing class definitions;
 - exists **only in this ephemeral remote research process**;
 - has new CPU-only regression coverage.
 
-No neural or GUI result can be claimed for v1. A fresh private v2 run
-must show real completed `model.generate` and actual format/task
-outcomes before interpretation. The Kaggle metadata ID has also been
-corrected to the actual stable slug derived from its title, preventing
-later attempts to reference a nonexistent/private wrong ID.
+No neural or GUI result can be claimed for v1. The Kaggle metadata ID
+was corrected to the stable owner-private slug.
+
+## Second real Kaggle failure and v3 core-grammar repair
+
+Private Kaggle **v2** also ended `ERROR` before a successful constrained
+model generation. Its sanitized traceback still identified
+`lmformatenforcer/integrations/transformers.py:6` importing
+`PreTrainedTokenizerBase` from the removed Transformers 5 legacy path.
+The pulled private Kaggle source was verified to contain the v2 alias,
+so this was not merely a stale upload. No aggregate result was produced;
+no native action or model improvement can be claimed for v2.
+
+The next private revision bypasses **only the old LMFE Transformers adapter**
+while retaining the pinned LMFE `RegexParser`, `TokenEnforcer`, and
+`TokenEnforcerTokenizerData` core. It constructs the vocabulary/decoder
+adapter following the upstream MIT-licensed integration and passes the
+resulting callback to real `model.generate(prefix_allowed_tokens_fn=...)`.
+No gold coordinates, DOM data or retrospective JSON repair are introduced.
+The LMFE Git source is pinned to commit
+`817f944fcc8851917c40300a47f62d1defc3ffc3` and checked via its
+installed `direct_url.json` receipt.
+
+An owner-private **real LMFE 0.11.3 core** CPU check with an invented ASCII
+tokenizer traversed both complete native grammar alternatives, allowed EOS
+only after completion, and rejected an invalid first token. This is a
+compatibility check, **not Qwen inference or task accuracy**. A new private
+free-T4 run must still prove actual model generation and task-state outcome.

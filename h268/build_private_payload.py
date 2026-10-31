@@ -22,7 +22,7 @@ INSTALL_H268 = INSTALL.replace(
 # MIT-licensed version, NEVER replaces Kaggle's CUDA PyTorch.
 subprocess.run([sys.executable, '-m', 'pip', 'install',
     '--disable-pip-version-check', '-q',
-    'lm-format-enforcer==0.11.3'], check=True)
+    'git+https://github.com/noamgat/lm-format-enforcer.git@817f944fcc8851917c40300a47f62d1defc3ffc3'], check=True)
 """
 
 

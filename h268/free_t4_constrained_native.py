@@ -24,6 +24,7 @@ HTML_SHA256 = "3ece76b7f884c96de53a5a4f30d1d24984f01f13b059d4e495ccadd7eb08848a"
 MODEL_ID = "Qwen/Qwen3-VL-2B-Instruct"
 MODEL_REVISION = "89644892e4d85e24eaac8bacfd4f463576704203"
 LMFE_VERSION = "0.11.3"
+LMFE_SOURCE_SHA = "817f944fcc8851917c40300a47f62d1defc3ffc3"
 MODEL_TASK = ("Click the +1 button belonging to the first inventory item "
               "to add one unit. Return ONLY one JSON actions object with "
               "a single click or abstain action. Use screenshot pixels.")
@@ -86,6 +87,72 @@ def attest_legacy_tokenizer_alias(legacy_module, canonical_type) -> bool:
     require(getattr(legacy_module,"PreTrainedTokenizerBase",None)
             is canonical_type,"HF5 tokenizer alias not installed")
     return before is None
+
+
+def verify_exact_lmfe_installed_source(distribution) -> None:
+    """Reject a wheel/tag/main drift; require exact public Git commit receipt."""
+    try:
+        receipt=json.loads(distribution.read_text("direct_url.json"))
+        origin=receipt["url"].rstrip("/")
+        vcs=receipt["vcs_info"]["vcs"]
+        sha=receipt["vcs_info"]["commit_id"]
+    except (TypeError,ValueError,KeyError,AttributeError):
+        raise ValueError("H268 LMFE provenance receipt missing") from None
+    require(origin in (
+        "https://github.com/noamgat/lm-format-enforcer.git",
+        "https://github.com/noamgat/lm-format-enforcer",
+    ) and vcs == "git" and sha == LMFE_SOURCE_SHA,
+            "LMFE source SHA, VCS or remote is not pinned")
+
+
+def build_core_token_filter(tokenizer):
+    """Use pinned LMFE's core, avoiding its HF4-era Transformers adapter.
+
+    Token vocabulary and decoder rules follow LMFE 0.11.3's MIT-licensed
+    transformers integration (no model weights, predictions or references).
+    This is a genuine per-step prefix filter, not output cleanup.
+    Upstream: https://github.com/noamgat/lm-format-enforcer
+    """
+    from lmformatenforcer import RegexParser, TokenEnforcer, TokenEnforcerTokenizerData
+
+    require(callable(getattr(tokenizer, "encode", None))
+            and callable(getattr(tokenizer, "decode", None))
+            and getattr(tokenizer, "eos_token_id", None) is not None,
+            "tokenizer cannot support strict core grammar")
+    vocab_size=len(tokenizer)
+    require(type(vocab_size) is int and 0 < vocab_size <= 300000,
+            "unexpected tokenizer vocabulary size")
+    zero_tokens=tokenizer.encode("0")
+    require(zero_tokens and type(zero_tokens[-1]) is int,
+            "tokenizer zero anchor unavailable")
+    anchor=zero_tokens[-1]
+    special_ids=set(tokenizer.all_special_ids)
+    regular=[]
+    for idx in range(vocab_size):
+        if idx in special_ids:
+            continue
+        decoded_with_anchor=tokenizer.decode([anchor,idx])[1:]
+        decoded_alone=tokenizer.decode([idx])
+        regular.append((idx,decoded_with_anchor,
+                        len(decoded_with_anchor)>len(decoded_alone)))
+
+    def decode(tokens):
+        return tokenizer.decode(tokens).rstrip("\ufffd")
+
+    data=TokenEnforcerTokenizerData(
+        regular,decode,tokenizer.eos_token_id,False,vocab_size)
+    enforcer=TokenEnforcer(data,RegexParser(NATIVE_REGEX))
+
+    def prefix_allowed_tokens_fn(batch_id,sent):
+        require(batch_id==0,"only one private research sequence permitted")
+        ids=sent.tolist()
+        require(isinstance(ids,list) and bool(ids),
+                "missing generated token sequence")
+        allowed=enforcer.get_allowed_tokens(ids).allowed_tokens
+        require(bool(allowed),"token grammar has no legal continuation")
+        return allowed
+
+    return prefix_allowed_tokens_fn
 
 
 class NativeGrammarModel:
@@ -226,17 +293,13 @@ def run() -> dict:
             "verified H265 transformers compatibility required")
     require(importlib.metadata.version("lm-format-enforcer")==LMFE_VERSION,
             "exact token grammar library version required")
-    # LMFE 0.11.3 predates the Transformers 5 module split and imports
-    # PreTrainedTokenizerBase from tokenization_utils (the old path).
-    # On verified HF 5.16.1, expose ONLY the canonical unchanged class
-    # through that historic module before loading LMFE. No model patch.
-    import transformers.tokenization_utils as tokenizer_legacy
-    from transformers.tokenization_utils_base import PreTrainedTokenizerBase
-    attest_legacy_tokenizer_alias(tokenizer_legacy,PreTrainedTokenizerBase)
+    verify_exact_lmfe_installed_source(
+        importlib.metadata.distribution("lm-format-enforcer"))
+    # LMFE 0.11.3's Transformers adapter is incompatible with HF 5.16.1:
+    # bypass that legacy adapter and use LMFE's unmodified core directly.
+    # The adapter's token vocabulary/decoder semantics are reproduced in
+    # build_core_token_filter, with the same strict parser and EOS policy.
     from transformers import AutoProcessor,Qwen3VLForConditionalGeneration
-    from lmformatenforcer import RegexParser
-    from lmformatenforcer.integrations.transformers import (
-        build_transformers_prefix_allowed_tokens_fn)
     from playwright.sync_api import sync_playwright
     sys.path.insert(0,str(source.parents[1]))
     from h208.preloaded_vlm_policy import PreloadedVisionPolicy
@@ -249,15 +312,16 @@ def run() -> dict:
     processor=AutoProcessor.from_pretrained(
         MODEL_ID,revision=MODEL_REVISION,trust_remote_code=False,
         cache_dir=cache)
+    token_filter=build_core_token_filter(processor.tokenizer)
+    require(callable(token_filter), "failed real grammar filter")
+    # Fail early on grammar/tokenizer incompatibility BEFORE downloading
+    # pretrained model weights into the ephemeral free-T4 environment.
     model=Qwen3VLForConditionalGeneration.from_pretrained(
         MODEL_ID,revision=MODEL_REVISION,trust_remote_code=False,
         torch_dtype=torch.float16,attn_implementation="sdpa",
         cache_dir=cache).to("cuda:0").eval()
     require(getattr(model.config,"model_type",None)=="qwen3_vl",
             "wrong pretrained model architecture")
-    token_filter=build_transformers_prefix_allowed_tokens_fn(
-        processor.tokenizer, RegexParser(NATIVE_REGEX))
-    require(callable(token_filter), "failed real grammar filter")
     counted=NativeGrammarModel(model,token_filter)
     classified=ClassifyingProcessor(processor)
     policy=PreloadedVisionPolicy(classified,counted,
