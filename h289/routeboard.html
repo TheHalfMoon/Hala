@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RouteBoard — original synthetic DEV-only research</title>
+<style>
+*{box-sizing:border-box}
+html,body{width:960px;height:720px;overflow:hidden;margin:0}
+body{font-family:Arial,Tahoma,sans-serif;background:#f1f0e9;color:#162d35}
+header{height:110px;background:#193d46;color:white;padding:22px 35px;display:flex;align-items:center;justify-content:space-between}
+header .logo{font-size:31px;font-weight:850;letter-spacing:.4px}
+header .detail{font-size:12px;margin-top:4px;opacity:.86}
+header .counter{background:#f7fffc28;border:1px solid #ffffff55;border-radius:9px;padding:13px 16px;font-size:15px;font-weight:bold}
+main{padding:24px 36px}
+h1{font-size:22px;margin:0 0 13px;font-weight:800}
+p{font-size:13px;margin:0 0 15px;color:#53696d}
+.rows{display:flex;flex-direction:column;gap:9px}
+.row{height:75px;background:white;border:2px solid #cbd9d9;border-radius:10px;display:flex;align-items:center;gap:15px;padding:10px 16px}
+.marker{height:42px;width:8px;background:#eb9e51;border-radius:4px;flex-shrink:0}
+.id{font-size:21px;font-weight:850;min-width:100px;direction:ltr;text-align:center;unicode-bidi:isolate}
+.desc{flex:1;font-size:14px;min-width:0;font-weight:650}
+.status{min-width:82px;text-align:center;font-size:12px}
+.row button{border:0;border-radius:8px;background:#176c76;color:white;font-size:14px;font-weight:800;cursor:pointer;width:105px;height:39px}
+.row button:disabled{background:#95a7ad;cursor:default}
+body.night{background:#172833;color:#e8f4f5}
+body.night header{background:#0e1b27}
+body.night .row{background:#2e414b;border-color:#496472}
+body.night p{color:#bacdd1}
+body.night .row button{background:#65babc;color:#10292e}
+body.night .row button:disabled{background:#5d737b;color:white}
+footer{position:absolute;bottom:15px;width:100%;text-align:center;font-size:11px;opacity:.65;direction:ltr}
+</style>
+</head>
+<body>
+<header><div><div class="logo">RouteBoard</div><div id="tagline" class="detail">Fictional routing queue · author-owned DEV research</div></div><div id="counter" class="counter">Routed: 0</div></header>
+<main><h1 id="heading">Assign a fictional route</h1><p id="hint">Six synthetic route records · no users, services or addresses</p><section class="rows" id="rows"></section></main>
+<footer>HALA H289 · ORIGINAL OFFLINE SOURCE · PUBLIC RESEARCH DEV ONLY · NOT BLIND OOD</footer>
+<script>
+"use strict";
+const IDS=["R-602","R-617","R-625","R-638","R-644","R-659"];
+const EN=["East sector","Intake hall","North staging","Supply dock","West sector","Final check"];
+const AR=["القطاع الشرقي","قاعة الاستلام","التحضير الشمالي","رصيف الإمداد","القطاع الغربي","الفحص النهائي"];
+const ORDERS=[[0,1,2,3,4,5],[4,2,0,5,3,1],[1,5,3,0,4,2]];
+const items=IDS.map((id,index)=>({id,index,routed:false,priority:index%2===0}));
+let layout={language:"en",sort:0,urgentOnly:false,night:false};
+function configureRouteBoard(next){
+  if(!next||!["en","ar"].includes(next.language)||
+      !Number.isInteger(next.sort)||next.sort<0||next.sort>2||
+      typeof next.urgentOnly!=="boolean"||typeof next.night!=="boolean") throw Error("invalid original DEV scene");
+  if(items.some(x=>x.routed)) throw Error("DEV scene cannot change after action");
+  layout={language:next.language,sort:next.sort,urgentOnly:next.urgentOnly,night:next.night};
+  render();
+}
+function routeBoardState(){return items.map(x=>({id:x.id,routed:x.routed}));}
+function render(){
+  const ar=layout.language==="ar";
+  document.documentElement.lang=ar?"ar":"en";
+  document.documentElement.dir=ar?"rtl":"ltr";
+  document.body.className=layout.night?"night":"";
+  document.getElementById("tagline").textContent=ar?"قائمة توجيه خيالية للبحث":"Fictional routing queue · author-owned DEV research";
+  document.getElementById("heading").textContent=ar?"اختر المسار الخيالي":"Assign a fictional route";
+  document.getElementById("hint").textContent=ar?"سجلات خيالية فقط، دون معلومات مستخدمين أو عناوين":"Six synthetic route records · no users, services or addresses";
+  document.getElementById("counter").textContent=(ar?"تم التوجيه: ":"Routed: ")+items.filter(x=>x.routed).length;
+  const host=document.getElementById("rows");host.replaceChildren();
+  ORDERS[layout.sort].forEach(index=>{
+    const item=items[index];
+    if(layout.urgentOnly&&!item.priority)return;
+    const el=document.createElement("article");el.className="row";el.dataset.routeId=item.id;
+    const marker=document.createElement("div");marker.className="marker";
+    const id=document.createElement("div");id.className="id";id.textContent=item.id;
+    const desc=document.createElement("div");desc.className="desc";desc.textContent=(ar?AR:EN)[index];
+    const status=document.createElement("div");status.className="status";status.textContent=item.routed?(ar?"موجّه":"Routed"):(ar?"بانتظار":"Pending");
+    const btn=document.createElement("button");btn.type="button";btn.textContent=item.routed?(ar?"اكتمل":"Done"):(ar?"وجّه":"Route");
+    btn.disabled=item.routed;
+    btn.addEventListener("click",()=>{if(!item.routed){item.routed=true;render();}});
+    el.append(marker,id,desc,status,btn);host.append(el);
+  });
+}
+Object.defineProperty(window,"configureRouteBoard",{value:configureRouteBoard,writable:false});
+Object.defineProperty(window,"routeBoardState",{value:routeBoardState,writable:false});
+render();
+</script>
+</body>
+</html>

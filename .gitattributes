@@ -51,3 +51,6 @@ h281/clinicgrid.html -text
 
 # Preserve exact original H285 synthetic TRAIN-candidate GUI bytes across Windows/Linux.
 h285/shiftdesk.html -text
+
+# Freeze original H289 DEV-only synthetic GUI byte identity on Windows/Linux.
+h289/routeboard.html -text
