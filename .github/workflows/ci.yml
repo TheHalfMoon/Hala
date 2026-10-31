@@ -29,4 +29,5 @@ jobs:
       - run: python -m pytest -q tests/test_h257_private_visual_collision_gate.py
       - run: python -m pytest -q tests/test_h258_tall_historical_rgba.py
       - run: python -m pytest -q tests/test_h259_inline_icon_provenance.py
-      - run: python -m compileall -q hala evaluation training data experiments h173 h174 h256 h257 h258 h259
+      - run: python -m pytest -q tests/test_h260_independent_family_screen.py
+      - run: python -m compileall -q hala evaluation training data experiments h173 h174 h256 h257 h258 h259 h260
