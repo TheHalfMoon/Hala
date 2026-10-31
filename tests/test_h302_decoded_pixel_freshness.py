@@ -134,7 +134,7 @@ class PixelFreshnessTests(TestCase):
 
     def test_malformed_but_png_prefixed_media_refused_before_generate(self):
         policy, model = self.new_policy()
-        fake = b"\\x89PNG\\r\\n\\x1a\\n" + b"not-decoded-image" * 12
+        fake = b"\x89PNG\r\n\x1a\n" + b"not-decoded-image" * 12
         with self.assertRaises(ModelContractRefused):
             policy(fake, source_task_prompt(TASK))
         self.assertEqual(model.calls, 0)
