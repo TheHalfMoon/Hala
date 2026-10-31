@@ -48,3 +48,6 @@ h262/stockroom.html -text
 
 # Preserve the exact original H281 clinic-grid GUI bytes across checkout OS.
 h281/clinicgrid.html -text
+
+# Preserve exact original H285 synthetic TRAIN-candidate GUI bytes across Windows/Linux.
+h285/shiftdesk.html -text
