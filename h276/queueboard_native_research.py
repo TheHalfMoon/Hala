@@ -76,17 +76,33 @@ def screenshot_locked_queueboard_turn(
             "screenshot_locked": True, "model_identity_attested": False}
 
 
+
 def _ticket_state(page: Any) -> dict[str, str]:
-    """Private after-action state oracle; never called by the policy."""
-    rows = page.locator('article.ticket-row[data-ticket-id]')
-    found = {}
-    for index in range(rows.count()):
-        row = rows.nth(index)
-        key = row.get_attribute("data-ticket-id")
-        state = row.get_attribute("data-status")
-        if key not in TICKETS or key in found or state not in ("waiting", "done"):
-            raise ValueError("H276 unexpected first-party ticket state")
-        found[key] = state
+    """Private source-owned all-ticket oracle, never passed to predict().
+
+    Reading only rendered rows would silently omit four tickets under
+    the priority filter. The exact-pinned original H275 script owns a
+    lexical 'tickets' array; inspect its six fictional ticket states
+    without switching filters or altering the model-visible scene.
+    This oracle is for source-development checks, NOT blind OOD.
+    """
+    records = page.evaluate(
+        "() => tickets.map(({id, done}) => ({id, done}))"
+    )
+    if type(records) is not list or len(records) != len(TICKETS):
+        raise ValueError("H277 incomplete first-party ticket state")
+    found: dict[str, str] = {}
+    for record in records:
+        if (type(record) is not dict
+                or set(record) != {"id", "done"}
+                or type(record["id"]) is not str
+                or type(record["done"]) is not bool
+                or record["id"] not in TICKETS
+                or record["id"] in found):
+            raise ValueError("H277 invalid first-party ticket state")
+        found[record["id"]] = "done" if record["done"] else "waiting"
+    if set(found) != TICKETS:
+        raise ValueError("H277 changed first-party ticket identities")
     return found
 
 

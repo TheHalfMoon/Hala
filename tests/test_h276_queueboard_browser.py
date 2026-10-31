@@ -17,8 +17,8 @@ import unittest
 from h263.native_browser_executor import new_offline_context
 from h264.screenshot_locked_research import _observed_png
 from h276.queueboard_native_research import (
-    checked_queueboard, run_firstparty_queueboard_probe,
-    screenshot_locked_queueboard_turn,
+    TICKETS, _ticket_state, checked_queueboard,
+    run_firstparty_queueboard_probe, screenshot_locked_queueboard_turn,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -164,6 +164,40 @@ class H276RealBrowserQualification(unittest.TestCase):
                 b"Queueboard | Changed Test Source"))
             with self.assertRaisesRegex(ValueError, "source identity drift"):
                 checked_queueboard(modified)
+
+
+    def test_full_state_oracle_sees_priority_hidden_tickets_and_fails_closed(self):
+        """Source oracle inspects all six synthetic tickets, not just two rows."""
+        context, page = self.fresh(priority=True)
+        try:
+            self.assertEqual(page.locator("article.ticket-row").count(), 2)
+            self.assertEqual(
+                _ticket_state(page),
+                {ticket: "waiting" for ticket in TICKETS},
+            )
+            # Test-only mutation to an invisible ticket, no render; the
+            # pinned first-party internal state is intentionally probed.
+            page.evaluate("tickets.find(x => x.id === 'Q-104').done = true")
+            self.assertEqual(page.locator("article.ticket-row").count(), 2)
+            self.assertEqual(_ticket_state(page)["Q-104"], "done")
+            page.evaluate(
+                "tickets.push({id: 'Q-999', done: false})"
+            )
+            with self.assertRaisesRegex(ValueError, "incomplete first-party"):
+                _ticket_state(page)
+        finally:
+            context.close()
+
+    def test_full_state_oracle_rejects_duplicate_visible_identity(self):
+        context, page = self.fresh(priority=True)
+        try:
+            # Exactly six entries, but one fictional identity duplicated.
+            # A visible-row-only oracle would silently miss this anomaly.
+            page.evaluate("tickets[0].id = 'Q-118'")
+            with self.assertRaisesRegex(ValueError, "invalid first-party"):
+                _ticket_state(page)
+        finally:
+            context.close()
 
 
 if __name__ == "__main__":
