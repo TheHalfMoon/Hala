@@ -18,7 +18,7 @@ from h280.verify_private_native_aggregate import (
     need, flag, count,
 )
 
-REPORT_NAME = "hala-h287-private-shiftdesk-crossfamily-lora-aggregate.json"
+REPORT_NAME = "hala-h292-private-routeboard-24step-lora-aggregate.json"
 STATUS = "H292_SHIFT24_ROUTE4_RESEARCH_NOT_ADMITTED_NOT_BLIND_OOD"
 SOURCE_COMMIT = "76a4ebb204d825b280fd4d332ad75591c5f13007"
 TRAIN_BLOB = "f0ac89b2be6b6cc5200ce4a220dbf0c2e00aeaac"
