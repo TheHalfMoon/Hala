@@ -123,6 +123,14 @@ def _require_single_task_target(task: str, expected: str) -> None:
     )
     if ticket_ids != [expected]:
         raise ValueError("H278 task-target mismatch or ambiguous ticket IDs")
+    # Pre-registered one-step source task phrasing only. An extra
+    # instruction after a correct Q-ID can still alter policy behavior.
+    # Broader task paraphrases require a new explicit research protocol.
+    if task not in (
+        f"Complete fictional ticket {expected}",
+        f"أكمل الطلب الخيالي {expected}",
+    ):
+        raise ValueError("H278 non-preregistered task text")
 
 
 def run_firstparty_queueboard_probe(
