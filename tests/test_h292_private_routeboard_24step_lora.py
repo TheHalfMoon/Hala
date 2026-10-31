@@ -170,6 +170,7 @@ class H292ClosedPrivateResearch(unittest.TestCase):
             metadata = json.loads(
                 (destination / "kernel-metadata.json").read_text("utf-8"))
             self.assertEqual(metadata["id"], packager.KERNEL_ID)
+            self.assertLessEqual(len(packager.KERNEL_ID.split("/")[-1]), 40)
             self.assertEqual(metadata["is_private"], "true")
             self.assertEqual(metadata["machine_shape"], "NvidiaTeslaT4")
             self.assertEqual(metadata["model_sources"], [])
