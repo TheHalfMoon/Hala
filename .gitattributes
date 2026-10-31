@@ -42,3 +42,6 @@ tests/test_adaptation.py -text
 experiments/adaptation/** -text
 docs/H18_ADAPTATION.md -text
 specs/H18-adaptation-readiness.md -text
+
+# Preserve exact H275 first-party HTML bytes across Windows/Unix checkouts.
+h275/queueboard.html -text
