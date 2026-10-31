@@ -42,7 +42,7 @@ def classify_strict_model_text(raw,regex):
     try:
         parsed=json.loads(raw)
     except (json.JSONDecodeError,ValueError):
-        if raw.startswith('{"actions":[') and not raw.endswith("]}"):
+        if (raw.startswith('{"actions":[') and (raw.count("{")>raw.count("}") or raw.count("[")>raw.count("]"))):
             return "INCOMPLETE_OR_UNCLOSED_JSON"
         return "NOT_JSON_OR_NONCANONICAL_PREFIX"
     if type(parsed) is not dict or set(parsed)!={"actions"}:
