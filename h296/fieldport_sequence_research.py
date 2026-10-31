@@ -182,9 +182,36 @@ def run_original_form_sequence(
                 "independent_blind_ood": False,
             }
         second = _screen_locked_predict(page, predict, task)
-        second_outcome = execute_one(page, second)
-        need(second_outcome["kind"] in ("type_text", "abstain"),
+        second_action = parse_actions(second)["actions"][0]
+        need(second_action["kind"] in ("type_text", "abstain"),
              "second step must be type into focused field or abstain")
+        if second_action["kind"] == "type_text":
+            # A source-owned PRE-DISPATCH safety gate, not a model hint.
+            # A model can emit a syntactically valid but WRONG fictional
+            # code, or the browser focus can drift after its screenshot.
+            # Neither is permission to write to the live browser.
+            still_focused = page.evaluate("""() => {
+                const element = document.activeElement;
+                return element instanceof HTMLInputElement
+                    ? (element.dataset.fieldId || null) : null;
+            }""")
+            if (second_action["text"] != scene[5]
+                    or still_focused != target):
+                need(inspect_all_fields(page) == {id: "" for id in IDS},
+                     "write refusal must preserve all four original fields")
+                return {
+                    "role": ROLE, "scene": scene[0], "native_actions": 2,
+                    "focus_click_dispatched": True,
+                    "type_dispatched": False,
+                    "source_task_success": False,
+                    "source_write_guard_refused": True,
+                    "all_four_fields_checked": 4,
+                    "screen_lock_each_step": True,
+                    "actual_neural_generation_proven": False,
+                    "official_train_dev_admitted": False,
+                    "independent_blind_ood": False,
+                }
+        second_outcome = execute_one(page, second)
         states = inspect_all_fields(page)
         task_success = (
             second_outcome == {"kind": "type_text", "executed": True}
