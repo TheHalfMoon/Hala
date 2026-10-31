@@ -27,7 +27,7 @@ MODEL_ID = "Qwen/Qwen3-VL-2B-Instruct"
 MODEL_REVISION = "89644892e4d85e24eaac8bacfd4f463576704203"
 ORIGINAL_SCENES = ("dev_00", "dev_05", "dev_08", "dev_11")
 TOP = frozenset({
-    "status", "source_commit", "train_original_blob", "eval_original_blob",
+    "status", "source_commit", "eval_source_commit", "train_original_blob", "eval_original_blob",
     "model_id", "model_revision", "hardware",
     "original_train_candidates_verified", "research_train_optimizer_steps",
     "changed_lora_tensors_each_step", "coordinate_supervision_each_step",
@@ -53,6 +53,7 @@ def closed_report(data: object) -> dict:
          "H292 closed report status mismatch")
     for field, expected in (
         ("source_commit", SOURCE_COMMIT),
+        ("eval_source_commit", "5a7608f533897ac9c10d41b3d97c4a0b245a000b"),
         ("train_original_blob", TRAIN_BLOB),
         ("eval_original_blob", EVAL_BLOB),
         ("model_id", MODEL_ID),
