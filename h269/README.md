@@ -144,3 +144,55 @@ The launcher refuses unknown torchao versions and checks that Kaggle's
 CUDA PyTorch version remains unchanged. There is no local package
 installation or cleanup on owner Windows/Mac. A separate v2 real
 training result must be verified; do not count v1 as 2 optimizer steps.
+
+## Verified owner-private Kaggle v2 outcome — real LoRA, no task improvement
+
+The exact owner-private H269 Kaggle kernel v2
+`abdulazizshehri/hala-h269-private-firstparty-lora-t4`
+completed on **two actual FREE NVIDIA T4 GPUs**. An allowlisted,
+**1590-byte aggregate-only JSON** report was privately inspected.
+There was no pretrained weight, private screenshot, raw completion,
+training gold, point coordinate, or adapter upload. No model release.
+
+The aggregated real-training evidence is:
+
+| Measure | Verified outcome |
+| --- | --- |
+| Real bounded optimizer steps | **2/2** |
+| Finite positive gradient norm per step | **true / true** |
+| Finite positive training loss per step | **true / true** |
+| Actually modified adapter tensors per step | **112 / 112** |
+| Actual base model heldout Arabic image-conditioned `generate` | **true** |
+| Actual adapted LoRA heldout Arabic `generate` | **true** |
+| Inference-time constrained strict native H199 JSON in both | **true / true** |
+| Real original browser `click` dispatched | **true / true** |
+| First-party heldout Arabic Stockroom task-state success | **BASE false / LoRA false (0/1 each)** |
+| Independently heldout source-family OOD | **false** |
+| Official TRAIN/DEV/OOD admission | **false** |
+| Generalizable learned GUI improvement proven | **false** |
+| Owner weight/adapter or private media published | **false** |
+
+**Interpretation:** H269 goes materially beyond H15's two-step
+training mechanism qualification because it actually paired frozen
+pretrained and newly trained adapted models with one genuine native
+browser task-state measurement on an image different from the two
+training images. Yet **there is NO measured GUI task gain** in this
+research result. Do not claim model alignment from nonzero gradients,
+valid JSON, action dispatch, loss finiteness or a first-party sample.
+
+No raw target points or reference labels were put into the public
+report. No missing task outcome was filled in from invented
+coordinates, model text, or oracle knowledge. The task remains
+unqualified. The next research work should focus on true visual
+grounding quality and **source-diverse legally qualified original
+TRAIN/DEV** and a new untouched blind OOD, not automatically lengthen
+this first-party micro-training run or expose H173's consumed 32 cases.
+
+The hosted initial H269 source CI
+[GitHub Actions #41198124306](https://github.com/TheHalfMoon/Hala/actions/runs/41198124306)
+**COMPLETED SUCCESS** for both Python 3.11 and 3.12. The narrow
+torchao v2 repair source commit `31d9da8078412a3effe4a3ac5cf5eded462cee9e`
+was also **COMPLETED SUCCESS** on hosted
+[GitHub Actions #41198608845](https://github.com/TheHalfMoon/Hala/actions/runs/41198608845)
+for Python 3.11.14 and 3.12.14. A later documentation-only head
+requires its own independent hosted check.
