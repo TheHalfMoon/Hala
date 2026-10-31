@@ -19,7 +19,7 @@ HTML = ROOT / "h296" / "fieldport.html"
 
 class H296AuthorOwnedSourceTests(unittest.TestCase):
     def test_source_pin_and_balanced_original_bilingual_sequences(self):
-        self.assertEqual(BLOB, "52135ef3f3a68922b82be7bcb95a337a89982b18")
+        self.assertEqual(BLOB, "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80")
         path, url = checked_source(HTML)
         self.assertEqual(path, HTML)
         self.assertTrue(url.startswith("file:"))
