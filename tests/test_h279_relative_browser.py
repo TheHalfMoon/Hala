@@ -76,8 +76,22 @@ class H279RealNativeFrameBrowserTests(unittest.TestCase):
         finally:
             self.context.close()
 
-    def counts(self):
-        return [int(s) for s in self.page.locator(".item .count").all_inner_texts()]
+    def stock_by_id(self):
+        """First-party TEST oracle, never passed to pretrained policy.
+
+        Browser rendering/sorting changes row positions; correct state
+        evidence must bind each visible stock count to its stable ID.
+        """
+        rows = self.page.locator(".item")
+        state = {}
+        for index in range(rows.count()):
+            row = rows.nth(index)
+            item_id = row.get_attribute("data-id")
+            self.assertIsNotNone(item_id)
+            self.assertNotIn(item_id, state, "duplicate stock identity")
+            state[item_id] = int(row.locator(".count").inner_text())
+        self.assertGreaterEqual(len(state), 2)
+        return state
 
     def fixture_relative_action(self, row_index):
         """Private test fixture: inverse coordinate for a source-owned button.
@@ -103,44 +117,50 @@ class H279RealNativeFrameBrowserTests(unittest.TestCase):
         )
 
     def test_correct_first_row_fixture_native_click_changes_only_first(self):
-        before = self.counts()
-        self.assertGreaterEqual(len(before), 2)
+        before = self.stock_by_id()
+        intended_id = self.page.locator(".item").first.get_attribute("data-id")
+        self.assertIn(intended_id, before)
         relative = self.fixture_relative_action(0)
         result = self.do_fixed_native_action(relative)
-        after = self.counts()
+        after = self.stock_by_id()
         self.assertEqual(result["kind"], "click")
         self.assertTrue(result["executed"])
-        self.assertEqual(after[0], before[0]+1)
-        self.assertEqual(after[1:], before[1:])
+        expected = before.copy()
+        expected[intended_id] += 1
+        self.assertEqual(after, expected)
 
     def test_wrong_neighbor_fixture_remains_wrong_not_oracle_retargeted(self):
-        before = self.counts()
+        before = self.stock_by_id()
+        first_id = self.page.locator(".item").first.get_attribute("data-id")
+        neighbor_id = self.page.locator(".item").nth(1).get_attribute("data-id")
+        self.assertNotEqual(neighbor_id, first_id)
         relative = self.fixture_relative_action(1)
         result = self.do_fixed_native_action(relative)
-        after = self.counts()
+        after = self.stock_by_id()
         self.assertTrue(result["executed"])
-        self.assertEqual(after[0], before[0])
-        self.assertEqual(after[1], before[1]+1)
-        self.assertEqual(after[2:], before[2:])
+        expected = before.copy()
+        expected[neighbor_id] += 1
+        self.assertEqual(after, expected)
+        self.assertEqual(after[first_id], before[first_id])
 
     def test_invalid_relative_coordinate_rejected_before_native_click(self):
-        before = self.counts()
+        before = self.stock_by_id()
         invalid = '{"actions":[{"kind":"click","point":[1000,999]}]}'
         with self.assertRaisesRegex(ValueError, "invalid strict normalized"):
             self.do_fixed_native_action(invalid)
-        self.assertEqual(self.counts(), before)
+        self.assertEqual(self.stock_by_id(), before)
 
     def test_abstain_does_not_change_native_gui(self):
-        before = self.counts()
+        before = self.stock_by_id()
         result = self.do_fixed_native_action('{"actions":[{"kind":"abstain"}]}')
         self.assertEqual(result["kind"], "abstain")
         self.assertFalse(result["executed"])
-        self.assertEqual(self.counts(), before)
+        self.assertEqual(self.stock_by_id(), before)
 
     def test_stale_screenshot_blocks_click_after_mutated_scene(self):
         relative = self.fixture_relative_action(0)
         native = normalize_strict_action(relative)
-        before = self.counts()
+        before = self.stock_by_id()
         def changed_scene_policy(png, task):
             self.page.locator("#sort").click()
             return native
@@ -149,7 +169,23 @@ class H279RealNativeFrameBrowserTests(unittest.TestCase):
                 self.page, SOURCE, self.url, FIRST_STOCK_TASK, changed_scene_policy)
         # The intentional filter/sort mutation changes visible row ORDER.
         # Guard must block action, but preserve inventory values per ID.
-        self.assertEqual(sorted(self.counts()), sorted(before))
+        self.assertEqual(self.stock_by_id(), before)
+
+
+    def test_identity_oracle_catches_swapped_counts_with_same_multiset(self):
+        """Sorting value multisets can silently miss two swapped items."""
+        before = self.stock_by_id()
+        self.page.evaluate("""() => {
+            const a = inventory[0], b = inventory[1];
+            const original = a.count;
+            a.count = b.count;
+            b.count = original;
+            renderItems();
+        }""")
+        after = self.stock_by_id()
+        self.assertEqual(sorted(after.values()), sorted(before.values()))
+        self.assertNotEqual(after, before)
+
 
 
 if __name__ == "__main__":
