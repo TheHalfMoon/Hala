@@ -31,7 +31,9 @@ os.environ['HALA_H265_NONCOMMERCIAL_FREE_GPU'] = '1'
 subprocess.run([sys.executable, '-m', 'pip', 'install',
     '--disable-pip-version-check', '-q',
     'transformers==5.16.1', 'playwright==1.58.0'], check=True)
-subprocess.run([sys.executable, '-m', 'playwright', 'install', 'chromium'], check=True)
+# Kaggle's minimal Linux image lacks libatk-1.0.so.0; installing only
+# browser binaries is insufficient. Install Chromium's OS libraries too.
+subprocess.run([sys.executable, '-m', 'playwright', 'install', '--with-deps', 'chromium'], check=True)
 """
 
 def build_payload(source: Path, destination: Path) -> dict:
