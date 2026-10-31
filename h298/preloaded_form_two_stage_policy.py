@@ -188,6 +188,23 @@ class PreloadedTwoStageVisualPolicy:
                 "only a completed first focus click may be source-refused")
         self._terminal_failure = True
 
+    def seal_source_write_refusal(self) -> None:
+        """Terminally refuse a generated but UNSAFE second-stage write.
+
+        The separate source-owned browser evaluator has compared the
+        proposed code and current focus with the original user request.
+        No reference value, field identity or refusal feedback is sent
+        back to the model; the task is scored failed, not silently fixed.
+        """
+        require(not self._terminal_failure
+                and self.state.stage == STAGE_DONE
+                and self.state.generations == 2
+                and self.state.native_clicks == 1
+                and self.state.native_types == 1
+                and self._model_calls == 2,
+                "only a completed predicted type may be source-refused")
+        self._terminal_failure = True
+
     def safe_contract_summary(self) -> dict:
         """Only categorical counters, NO model outputs or image hashes."""
         safe = self.state.categorical_state()
@@ -231,8 +248,13 @@ def run_fixed_original_source_research(
     outcome = run_original_form_sequence(
         browser, source, scene, policy, role=ROLE)
     source_refused = outcome.get("source_focus_guard_refused") is True
+    write_refused = outcome.get("source_write_guard_refused") is True
+    require(not (source_refused and write_refused),
+            "only one source-owned refusal stage allowed")
     if source_refused:
         policy.seal_source_focus_refusal()
+    elif write_refused:
+        policy.seal_source_write_refusal()
     counters = policy.safe_contract_summary()
     require((counters["protocol_terminal"]
              or (source_refused
@@ -249,8 +271,16 @@ def run_fixed_original_source_research(
                 == outcome["native_actions"]
             and counters["focus_clicks"]
                 == int(outcome["focus_click_dispatched"])
+            # The second grammar can produce a valid but unauthorized
+            # type action. Count its REAL generation without falsely
+            # counting the refused browser write as dispatched.
             and counters["type_calls"]
-                == int(outcome["type_dispatched"]),
+                == int(outcome["type_dispatched"]) + int(write_refused)
+            and (not write_refused
+                 or (counters["protocol_failed_terminal"]
+                     and counters["protocol_terminal"]
+                     and outcome["native_actions"] == 2
+                     and not outcome["source_task_success"])),
             "model-time and source-owned native dispatch counts diverge")
     # Explicitly do NOT claim genuine model identity without separate
     # owner-private pinned model/revision/GPU verification.
@@ -259,6 +289,7 @@ def run_fixed_original_source_research(
             bool(outcome["source_task_success"]),
         "native_actions": outcome["native_actions"],
         "source_focus_guard_refused": source_refused,
+        "source_write_guard_refused": write_refused,
         "preloaded_model_contract": counters,
         "source_public_exposed_not_blind": True,
         "independent_model_identity_proven": False,
