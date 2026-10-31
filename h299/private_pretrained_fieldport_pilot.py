@@ -18,7 +18,7 @@ import sys
 
 SOURCE_REPO = "https://github.com/TheHalfMoon/Hala.git"
 SOURCE_BRANCH = "ps/h298-preloaded-qwen-two-stage-form-policy"
-SOURCE_SHA = "2babf8c91ffb63dd1123070449d1cbc240ab0859"
+SOURCE_SHA = "55dc586b611a46958e525c5f505755cad41e030c"
 SOURCE_BLOB = "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80"
 MODEL_ID = "Qwen/Qwen3-VL-2B-Instruct"
 MODEL_REV = "89644892e4d85e24eaac8bacfd4f463576704203"
