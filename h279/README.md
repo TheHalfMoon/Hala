@@ -107,3 +107,38 @@ transitive licensing, history/forks/npm and PNG/decoded-RGBA checks.
 No learned visual grounding gain has been measured in H269–H272
 paired LoRA trials. Even a successful H279 firstparty click would
 **not** be a model improvement or unseen blind benchmark result.
+
+## Verified owner-private free-T4 run status — 2026-10-31
+
+**V1 completed (before decoder correction):** the owner's private Kaggle
+kernel ran on verified **2× free NVIDIA T4**. The exact whitelisted
+aggregate `hala-h279-private-queueboard-native-aggregate.json` was
+retrieved; closed schema, pinned H278 source, pinned Qwen revision,
+real generation/grammar counts and no extra raw fields were verified.
+The actual previously exposed **first-party** native browser outcomes:
+
+| Source-owned original scene | Real model generation | Native click dispatched | Task-state success |
+| --- | ---: | ---: | ---: |
+| English priority Q-118 | 1 | yes | **1/1** |
+| Arabic RTL Q-142 | 1 | yes | **0/1** |
+
+Both generated strict JSON according to the V1 report; **1/2 actual
+Queueboard task-state successes**, not 1/2 independent OOD accuracy.
+This is the first observed successful Qwen-driven native state change
+on this *previously exposed first-party family* in this protocol.
+No adapter/training was involved, so it is **not learned improvement**.
+**Important selection limitation:** V1's H208 pixel parser was applied
+to raw relative output before conversion. It can reject valid
+normalized points with y>=720 or x>=960. V1's successful rows happened
+to pass this narrower validation; the experiment does not establish
+the unbiased normalized-coordinate acceptance rate.
+
+**V2 submitted:** the corrected H279 source wraps the processor's
+`batch_decode` to perform strict normalized-to-pixel conversion
+*before* unchanged H208/H199 pixel validation. A new private,
+code-only version 2 was successfully pushed to the **same private
+free-T4 kernel**, with no media/dataset/model attachments. At this
+documentation point, the v2 result is **pending**; do not infer v2
+accuracy or claim that H273's old format failures have been explained.
+The v1 report is private and must not be published. Public source,
+documentation and invented CPU tests only.
