@@ -8,6 +8,7 @@ evidence. Never loads a checkpoint or reads DOM/gold from a policy.
 from __future__ import annotations
 
 from hashlib import sha256
+from io import BytesIO
 from typing import Any
 
 from h199.native_action_sft import parse_actions, source_task_prompt
@@ -25,6 +26,22 @@ class ModelContractRefused(ValueError):
 def require(ok: bool, reason: str) -> None:
     if not ok:
         raise ModelContractRefused("H298 original two-stage research refused: " + reason)
+
+
+def _model_visible_rgb_digest(png: bytes) -> str:
+    """Digest EXACT RGB pixels seen by H208; never save or expose media."""
+    try:
+        from PIL import Image
+        with Image.open(BytesIO(png)) as original:
+            require(original.format == "PNG" and original.size == (960, 720),
+                    "original 960x720 PNG required")
+            rgb = original.convert("RGB")
+            rgb.load()
+            return sha256(rgb.tobytes()).hexdigest()
+    except (OSError, ValueError, RuntimeError):
+        raise ModelContractRefused(
+            "H298 model-visible PNG pixels invalid"
+        ) from None
 
 
 class PreloadedTwoStageVisualPolicy:
@@ -82,9 +99,13 @@ class PreloadedTwoStageVisualPolicy:
         stage = self.state.stage
         require(stage in (STAGE_FOCUS, STAGE_TYPE),
                 "no model call after abstention or two native steps")
-        digest = sha256(png).hexdigest()
+        # H208 passes decoded RGB pixels to the actual vision processor.
+        # Compressed PNG bytes are NOT a visual identity: ancillary metadata
+        # or re-encoding can change their SHA without changing a single pixel.
+        # The second model turn must observe genuinely different RGB pixels.
+        digest = _model_visible_rgb_digest(png)
         require(digest not in self._png_digests,
-                "fresh source screenshot required after first native action")
+                "fresh model-visible pixels required after first native action")
 
         # These imports are the genuine existing preloaded real visual
         # processor, native grammar wrapper and H279 prevalidation bridge.
