@@ -59,6 +59,9 @@ def classify_first_click(state: object, focus: object, target: object) -> str:
     if opened[0] != target:
         need(focus in (None, opened[0]))
         return "wrong_station_open"
+    # With exactly one open station, a different station's hidden input
+    # cannot legitimately own focus in this original offline source.
+    need(focus in (None, target))
     return ("correct_open_and_focus" if focus == target
             else "correct_open_wrong_focus")
 
