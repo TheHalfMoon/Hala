@@ -10,13 +10,13 @@ from contextlib import contextmanager
 from hashlib import sha1, sha256
 from hmac import compare_digest
 from pathlib import Path
+from io import BytesIO
 import json
 import re
 from typing import Any, Callable
 
 from h199.native_action_sft import WIDTH, HEIGHT, parse_actions, source_task_prompt
 from h263.native_browser_executor import execute_one, new_offline_context
-from h264.screenshot_locked_research import _observed_png
 
 BLOB = "6e8467e123c7f0fbac77ea553622ab8e659f9c16"
 ROLE = "PUBLIC_AUTHOR_ORIGINAL_DYNAMIC_RESEARCH_NOT_ADMITTED_NOT_OOD"
@@ -32,6 +32,22 @@ CODE = re.compile(r"SIM-[0-9]{2}\Z")
 def need(ok: bool) -> None:
     if not ok:
         raise ValueError("H319 PUBLIC_DYNAMIC_RESEARCH_REFUSED")
+
+
+
+def _observed_png(page: Any) -> bytes:
+    """Bounded real screenshot; no media is stored or returned in receipts."""
+    from PIL import Image
+    png = page.screenshot(animations="disabled", full_page=False)
+    need(type(png) is bytes and 100 < len(png) < 4 * 1024 * 1024
+         and png.startswith(b"\\x89PNG\\r\\n\\x1a\\n"))
+    try:
+        with Image.open(BytesIO(png)) as image:
+            need(image.format == "PNG" and image.size == (WIDTH, HEIGHT))
+            image.load()
+    except (OSError, ValueError):
+        raise ValueError("H319 INVALID_SCREENSHOT") from None
+    return png
 
 
 def checked_source(path: Path) -> tuple[Path, str]:
