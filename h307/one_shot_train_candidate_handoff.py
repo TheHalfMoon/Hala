@@ -56,7 +56,7 @@ def handoff_train_candidate_batch_once(
         nonlocal total_bytes
         need(type(png) is bytes
              and 100 <= len(png) < MAX_FRAME_BYTES
-             and png.startswith(b"\\x89PNG\\r\\n\\x1a\\n")
+             and png.startswith(b"\x89PNG\r\n\x1a\n")
              and type(prompt) is str and 0 < len(prompt) <= 2000
              and type(completion) is str and 0 < len(completion) <= 1200,
              "INVALID_PRIVATE_CANDIDATE_SHAPE")
