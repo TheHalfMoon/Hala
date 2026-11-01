@@ -50,6 +50,19 @@ def _observed_png(page: Any) -> bytes:
     return png
 
 
+def _model_visible_rgb_digest(png: bytes) -> bytes:
+    """Compare decoded model-visible RGB, not PNG metadata/compression bytes."""
+    from PIL import Image
+    try:
+        with Image.open(BytesIO(png)) as image:
+            need(image.format == "PNG" and image.size == (WIDTH, HEIGHT))
+            rgb = image.convert("RGB")
+            rgb.load()
+            return sha256(rgb.tobytes()).digest()
+    except (OSError, ValueError, RuntimeError):
+        raise ValueError("H319 INVALID_MODEL_VISIBLE_FRAME") from None
+
+
 def checked_source(path: Path) -> tuple[Path, str]:
     need(isinstance(path, Path))
     try:
@@ -121,15 +134,19 @@ def original_scene(browser: Any, source: Path, url: str, scene: tuple):
 
 
 def _observed_predict(page: Any, predict: Callable[[bytes, str], str],
-                      task: str) -> dict:
+                      task: str, seen_rgb: set[bytes]) -> dict:
     png = _observed_png(page)
     need(type(png) is bytes and png.startswith(b"\x89PNG\r\n\x1a\n"))
-    before = sha256(png).digest()
+    before = _model_visible_rgb_digest(png)
+    # A second model turn must see a genuinely new rendered GUI state.
+    # Check BEFORE invoking a potentially costly genuine VLM callback.
+    need(before not in seen_rgb)
     url = page.url
     answer = predict(png, source_task_prompt(task))
     parsed = parse_actions(answer)
     need(page.url == url and compare_digest(
-        before, sha256(_observed_png(page)).digest()))
+        before, _model_visible_rgb_digest(_observed_png(page))))
+    seen_rgb.add(before)
     return parsed["actions"][0]
 
 
@@ -147,11 +164,12 @@ def run_original_dynamic_sequence(
     dispatched = 0
     success = False
     refusal = "none"
+    seen_rgb: set[bytes] = set()
     try:
         with original_scene(browser, source, url, scene) as page:
             need(inspect_all_stations(page) ==
                  {station: (False, "") for station in IDS})
-            action = _observed_predict(page, predict, task)
+            action = _observed_predict(page, predict, task, seen_rgb)
             seen_steps = 1
             need(action["kind"] in ("click", "abstain"))
             if action["kind"] == "abstain":
@@ -171,7 +189,7 @@ def run_original_dynamic_sequence(
                     }""") != target):
                     refusal = "wrong_focus_or_state"
                 else:
-                    action = _observed_predict(page, predict, task)
+                    action = _observed_predict(page, predict, task, seen_rgb)
                     seen_steps = 2
                     need(action["kind"] in ("type_text", "abstain"))
                     if action["kind"] == "abstain":
