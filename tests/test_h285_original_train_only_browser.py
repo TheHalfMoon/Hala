@@ -18,7 +18,7 @@ from h199.native_action_sft import (
 )
 from h285.train_only_browser_candidates import (
     IDS, ROLE, SCENES, SOURCE_BLOB, checked_source,
-    exact_task, produce_train_only_batch,
+    exact_task, produce_train_only_batch, settle_original_source_paint,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +26,24 @@ ORIGINAL = ROOT / "h285" / "shiftdesk.html"
 
 
 class H285TrainOnlySourceContractTests(unittest.TestCase):
+    def test_two_source_paint_frames_refuse_incomplete_render(self):
+        class DummyPage:
+            def __init__(self, value):
+                self.value = value
+                self.calls = 0
+            def evaluate(self, javascript):
+                self.calls += 1
+                assert javascript.count("requestAnimationFrame(") == 2
+                return self.value
+        page = DummyPage(True)
+        settle_original_source_paint(page)
+        self.assertEqual(page.calls, 1)
+        for result in (None, False, 1):
+            with self.subTest(result=result), self.assertRaisesRegex(
+                ValueError, "compositor"
+            ):
+                settle_original_source_paint(DummyPage(result))
+
     def test_authored_original_bytes_and_24_registered_scenes(self):
         path, url = checked_source(ORIGINAL)
         self.assertEqual(path, ORIGINAL)
