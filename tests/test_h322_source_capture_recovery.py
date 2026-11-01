@@ -76,10 +76,18 @@ class H322CaptureTests(unittest.TestCase):
             self.assertEqual(validator.call_count, 1)
 
     def test_source_research_paths_use_shared_helper(self):
-        from h285 import train_only_browser_candidates as train
-        from h309 import exposed_source_rgb_split as split
-        self.assertIs(train.source_capture_png, source_capture_png)
-        self.assertIs(split.source_capture_png, source_capture_png)
+        # Static import/call-site check without invoking optional browser deps.
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[1]
+        for source, expected in (
+            ("h285/train_only_browser_candidates.py", 2),
+            ("h309/exposed_source_rgb_split.py", 1),
+        ):
+            with self.subTest(source=source):
+                body = (root / source).read_text(encoding="utf-8")
+                self.assertIn(
+                    "from h322.source_capture import source_capture_png", body)
+                self.assertEqual(body.count("source_capture_png(page)"), expected)
 
 
 if __name__ == "__main__":
