@@ -12,6 +12,37 @@ from pathlib import Path
 
 _SHA = re.compile(r"^[a-f0-9]{40}$")
 _DIGEST = re.compile(r"^sha256:[a-f0-9]{64}$")
+_REPO = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}$")
+
+
+def _canonical_repo(value: object) -> bool:
+    if not isinstance(value, str) or not _REPO.fullmatch(value):
+        return False
+    return all(not part.endswith(".") for part in value.split("/"))
+
+
+def _canonical_asset_path(value: object) -> bool:
+    """Conservative POSIX-relative identifier, never resolved or opened."""
+    if not isinstance(value, str) or not 1 <= len(value) <= 512:
+        return False
+    for part in value.split("/"):
+        if (not part or part in {".", ".."} or part.startswith(" ")
+                or part.endswith((" ", "."))):
+            return False
+        if not all(ch.isalnum() or ch in "._- +@" for ch in part):
+            return False
+    return True
+
+
+def _strict_json_object(pairs: list[tuple[str, object]]) -> dict:
+    """Reject duplicate JSON keys at every level, including the envelope."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON metadata key")
+        result[key] = value
+    return result
+
 _ALLOWED = {"source_repo", "source_commit", "asset_path", "asset_sha256",
             "license_spdx", "license_evidence_commit", "author_attestation",
             "rendered_digest", "historical_provenance_review",
@@ -36,6 +67,10 @@ def audit(payload: object) -> dict:
         if any(not isinstance(item[k], str) or not item[k] or len(item[k]) > 512
                for k in ("source_repo", "asset_path", "license_spdx")):
             raise ValueError("invalid asset identifier")
+        if not _canonical_repo(item["source_repo"]):
+            raise ValueError("invalid repository identifier")
+        if not _canonical_asset_path(item["asset_path"]):
+            raise ValueError("invalid relative asset identifier")
         if any(not isinstance(item[k], str) or not _SHA.fullmatch(item[k])
                for k in ("source_commit", "license_evidence_commit")):
             raise ValueError("invalid source identity")
@@ -73,7 +108,8 @@ def main() -> None:
         # Fixed upper bound; metadata only, no path traversal from values.
         if args.manifest.stat().st_size > 1_000_000:
             raise ValueError("oversized manifest")
-        payload = json.loads(args.manifest.read_text(encoding="utf-8"))
+        payload = json.loads(args.manifest.read_text(encoding="utf-8"),
+                             object_pairs_hook=_strict_json_object)
         result = audit(payload)
         print(json.dumps(result, sort_keys=True))
     except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError):
