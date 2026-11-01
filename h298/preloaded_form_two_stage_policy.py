@@ -228,32 +228,53 @@ class PreloadedTwoStageVisualPolicy:
 
 
 def _native_dispatch_accounting_valid(outcome: dict, counters: dict) -> bool:
-    """Reject fabricated browser dispatch counts; policy turns are NOT writes.
+    """Accept only realizable two-stage native browser dispatch transitions.
 
-    Legacy native_actions counts policy predictions (including abstain
-    and a source-refused type). native_dispatched_actions counts only
-    actual source-owned browser click/type dispatches.
+    A sum of booleans alone can accept impossible evidence, such as a
+    type dispatch without a preceding focus click or simultaneous source
+    refusals. Legacy native_actions means model/policy turns, not clicks.
     """
     if (type(outcome) is not dict or type(counters) is not dict
             or type(outcome.get("native_actions")) is not int
             or type(outcome.get("native_dispatched_actions")) is not int
             or type(outcome.get("focus_click_dispatched")) is not bool
             or type(outcome.get("type_dispatched")) is not bool
+            or type(outcome.get("source_focus_guard_refused", False)) is not bool
             or type(outcome.get("source_write_guard_refused", False)) is not bool
             or type(counters.get("abstained")) is not bool):
         return False
     turns = outcome["native_actions"]
     dispatched = outcome["native_dispatched_actions"]
+    focus = outcome["focus_click_dispatched"]
+    typed = outcome["type_dispatched"]
+    abstained = counters["abstained"]
+    focus_refused = outcome.get("source_focus_guard_refused", False)
+    write_refused = outcome.get("source_write_guard_refused", False)
+    if (turns not in (1, 2)
+            or dispatched != int(focus) + int(typed)
+            or turns != dispatched + int(abstained) + int(write_refused)
+            or (focus_refused and write_refused)):
+        return False
+    if turns == 1:
+        # No type is ever dispatched on the first visual observation.
+        return (
+            not typed and not write_refused
+            and (
+                (abstained and not focus and not focus_refused
+                 and dispatched == 0)
+                or (not abstained and focus and dispatched == 1)
+            )
+        )
+    # A second prediction is possible only after a real first focus click.
+    if not focus or focus_refused:
+        return False
     return (
-        1 <= turns <= 2
-        and 0 <= dispatched <= turns
-        and dispatched == (
-            int(outcome["focus_click_dispatched"])
-            + int(outcome["type_dispatched"]))
-        and turns == (
-            dispatched
-            + int(counters["abstained"])
-            + int(outcome.get("source_write_guard_refused", False)))
+        (abstained and not typed and not write_refused
+         and dispatched == 1)
+        or (not abstained and write_refused and not typed
+            and dispatched == 1)
+        or (not abstained and not write_refused and typed
+            and dispatched == 2)
     )
 
 
@@ -287,6 +308,16 @@ def run_fixed_original_source_research(
         policy.seal_source_write_refusal()
     counters = policy.safe_contract_summary()
     require(_native_dispatch_accounting_valid(outcome, counters)
+            and type(outcome.get("source_task_success")) is bool
+            # After a non-abstaining first click the source must have
+            # terminally refused a wrong focus, not silently continued.
+            and (outcome["native_actions"] != 1
+                 or counters["abstained"] or source_refused)
+            # A source-owned success requires BOTH real browser dispatches.
+            and (not outcome["source_task_success"]
+                 or (outcome["native_dispatched_actions"] == 2
+                     and not counters["abstained"]
+                     and not source_refused and not write_refused))
             and (counters["protocol_terminal"]
              or (source_refused
                  and counters["protocol_failed_terminal"]
