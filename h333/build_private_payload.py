@@ -50,7 +50,6 @@ except Exception as _error:
                 "model_id":"Qwen/Qwen3-VL-2B-Instruct",
                 "model_revision":"89644892e4d85e24eaac8bacfd4f463576704203",
                 "model_skill_verified":False,
-                "official_train_dev_ood_admitted":False,
                 "blind_ood_proven":False,
                 "private_media_or_raw_exception_saved":False,
             },sort_keys=True)+"\\n",encoding="utf-8")
