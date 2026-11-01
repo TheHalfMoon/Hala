@@ -13,8 +13,8 @@ import textwrap
 
 from h282.build_private_payload import INSTALL_H282
 
-KERNEL_TITLE = "Hala H324 Private Pretrained BeaconBoard Two Case T4"
-KERNEL_ID = "abdulazizshehri/hala-h324-private-pretrained-beaconboard-two-case-t4"
+KERNEL_TITLE = "Hala H324 BeaconBoard Qwen Private T4"
+KERNEL_ID = "abdulazizshehri/hala-h324-beaconboard-qwen-private-t4"
 SOURCE_NAME = "private_pretrained_beaconboard_two_case.py"
 SCRIPT_NAME = "h324_private_pretrained_beaconboard_two_case.py"
 INSTALL = INSTALL_H282.replace(
@@ -68,7 +68,7 @@ def build(source: Path, destination: Path) -> dict:
             or ".git" in destination.parts):
         raise ValueError("H324 fresh code-only private payload path")
     slug = re.sub(r"[^a-z0-9]+","-",KERNEL_TITLE.lower()).strip("-")
-    if KERNEL_ID != "abdulazizshehri/" + slug:
+    if len(KERNEL_TITLE) > 50 or KERNEL_ID != "abdulazizshehri/" + slug:
         raise ValueError("H324 exact owner private title and slug mismatch")
     body = source.read_text("utf-8")
     future = "from __future__ import annotations\n"
