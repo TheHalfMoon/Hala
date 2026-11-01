@@ -10,6 +10,7 @@ from contextlib import contextmanager
 from hashlib import sha1, sha256
 from hmac import compare_digest
 from pathlib import Path
+import json
 import re
 from typing import Any, Callable
 
@@ -34,7 +35,7 @@ def need(ok: bool) -> None:
 
 
 def checked_source(path: Path) -> tuple[Path, str]:
-    need(type(path) is Path)
+    need(isinstance(path, Path))
     try:
         p = path.absolute()
         need(p.name == "beaconboard.html" and p.parent.name == "h319"
@@ -141,7 +142,7 @@ def run_original_dynamic_sequence(
                 refusal = "abstain"
             else:
                 outcome = execute_one(page, '{"actions":['
-                    + __import__("json").dumps(action, separators=(",", ":"))
+                    + json.dumps(action, separators=(",", ":"))
                     + ']}')
                 need(outcome == {"kind": "click", "executed": True})
                 dispatched += 1
