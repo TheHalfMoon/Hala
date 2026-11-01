@@ -13,7 +13,7 @@ from unittest.mock import patch
 
 from h338.original_large_train_candidates import (
     ROLE, SCENES, IDS, SOURCE_BLOB, checked_source, exact_task,
-    produce_large_train_candidates,
+    produce_large_train_candidates, settle_original_source_paint,
 )
 
 SOURCE = Path(__file__).resolve().parents[1] / "h338" / "signaldesk.html"
@@ -31,6 +31,23 @@ def fake_source_case(browser, url, scene):
 
 
 class H338InventedOnlyContracts(unittest.TestCase):
+    def test_source_paint_settle_requires_two_real_frames_without_action(self):
+        class DummyPage:
+            def __init__(self, result):
+                self.result = result
+                self.calls = 0
+            def evaluate(self, source):
+                self.calls += 1
+                self_source = source
+                assert self_source.count("requestAnimationFrame(") == 2
+                return self.result
+        good = DummyPage(True)
+        settle_original_source_paint(good)
+        self.assertEqual(good.calls, 1)
+        for result in (False, None, 1):
+            with self.subTest(result=result), self.assertRaises(ValueError):
+                settle_original_source_paint(DummyPage(result))
+
     def test_128_frozen_bilingual_all_cartesian_combinations(self):
         self.assertEqual(len(SCENES), 128)
         self.assertEqual(len({scene[0] for scene in SCENES}), 128)
