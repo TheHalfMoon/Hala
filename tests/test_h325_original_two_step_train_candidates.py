@@ -138,5 +138,26 @@ class H325RealBrowser(unittest.TestCase):
         self.assertFalse(result["model_skill_gain_proven"])
 
 
+    def test_all_16_real_two_step_scenarios_one_shot(self):
+        # Opt-in source-only qualification, never a model or persisted sink.
+        calls = [0]
+
+        def atomic_in_memory_sink(batch):
+            calls[0] += 1
+            self.assertIsInstance(batch, tuple)
+            self.assertEqual(len(batch), 32)
+            self.assertTrue(all(image.startswith(b"\\x89PNG\\r\\n\\x1a\\n")
+                                for image, _, _ in batch))
+            return True
+
+        result = produce_two_step_train_candidates(
+            self.browser, SOURCE, role=ROLE,
+            trusted_batch_sink=atomic_in_memory_sink)
+        self.assertEqual(calls[0], 1)
+        self.assertEqual(result["candidate_handoff_mode"], "one_shot")
+        self.assertEqual(result["original_native_action_states_verified"], 32)
+        self.assertFalse(result["official_train_admitted"])
+
+
 if __name__ == "__main__":
     unittest.main()
