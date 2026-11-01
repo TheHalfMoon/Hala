@@ -60,3 +60,5 @@ h296/fieldport.html -text
 
 # Freeze the H319 original BeaconBoard source Git blob on Windows and Linux.
 h319/beaconboard.html -text
+# Lock original H325 research HTML bytes across Windows and Linux.
+h325/railkit.html -text
