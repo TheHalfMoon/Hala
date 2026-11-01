@@ -134,7 +134,7 @@ class H333PrivateContract(unittest.TestCase):
             details = build(ROOT / "h333" / "private_paired_exposed_qwen.py",
                             path)
             files = sorted(p.name for p in path.iterdir())
-            self.assertEqual(files, ["kernel-metadata.json", SCRIPT_NAME])
+            self.assertEqual(files, sorted(["kernel-metadata.json", SCRIPT_NAME]))
             metadata = json.loads((path / "kernel-metadata.json").read_text())
             self.assertEqual(metadata["id"], KERNEL_ID)
             self.assertEqual(metadata["is_private"], "true")
