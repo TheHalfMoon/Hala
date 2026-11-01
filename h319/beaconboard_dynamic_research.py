@@ -23,7 +23,7 @@ ROLE = "PUBLIC_AUTHOR_ORIGINAL_DYNAMIC_RESEARCH_NOT_ADMITTED_NOT_OOD"
 IDS = ("B-11", "B-22", "B-33", "B-44")
 SCENES = tuple((
     "beacon_%02d" % i, "en" if i < 6 else "ar",
-    i % 3, (i // 3) % 2 == 1, (i * 5 + i // 3) % 4,
+    i % 3, (i // 3) % 2 == 1, (i * 5 + i // 4) % 4,
     "SIM-%02d" % (i + 21),
 ) for i in range(12))
 CODE = re.compile(r"SIM-[0-9]{2}\Z")
