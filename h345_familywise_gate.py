@@ -1,9 +1,12 @@
 ﻿from __future__ import annotations
+from fractions import Fraction
 from math import comb
+
+MAX_FAMILIES = 64  # Match H340's independent-family bound.
 
 def familywise_paired_gate(rows: object) -> dict:
     # Invented-only family-level comparison. Does not load images or weights.
-    if type(rows) is not tuple or len(rows) < 6:
+    if type(rows) is not tuple or not 6 <= len(rows) <= MAX_FAMILIES:
         raise ValueError('H345_REFUSED')
     seen = set()
     wins = losses = ties = 0
@@ -22,10 +25,11 @@ def familywise_paired_gate(rows: object) -> dict:
         ties += base == adapted
     n = wins + losses
     # Exact two-sided sign test across independent held-out families.
-    p = min(1.0, 2 * sum(comb(n, i) for i in range(min(wins, losses) + 1)) / 2**n) if n else 1.0
+    p = min(Fraction(1), Fraction(2 * sum(comb(n, i) for i in range(min(wins, losses) + 1)), 2**n)) if n else Fraction(1)
     return {
         'families': len(rows), 'wins': wins, 'losses': losses, 'ties': ties,
-        'two_sided_exact_sign_p': p,
+        'two_sided_exact_sign_p': float(p),
+        'two_sided_exact_sign_ratio': {'numerator': p.numerator, 'denominator': p.denominator},
         'research_only': True, 'training_admitted': False,
         'blind_ood_verified': False, 'model_gain_claim_allowed': False,
         'release_allowed': False,

@@ -23,9 +23,9 @@ class FamilywiseGateTests(unittest.TestCase):
         self.assertEqual(a['two_sided_exact_sign_p'], 1.0)
 
     def test_ties_do_not_inflate_sign_test(self):
-        a = familywise_paired_gate(tuple((f'family{i}', True, True) for i in range(100)))
+        a = familywise_paired_gate(tuple((f'family{i}', True, True) for i in range(64)))
         self.assertEqual(a['two_sided_exact_sign_p'], 1.0)
-        self.assertEqual(a['ties'], 100)
+        self.assertEqual(a['ties'], 64)
         self.assertFalse(a['blind_ood_verified'])
 
     def test_ties_cannot_rescue_insufficient_discordance(self):
@@ -35,9 +35,18 @@ class FamilywiseGateTests(unittest.TestCase):
         self.assertEqual(a['two_sided_exact_sign_p'], 1.0)
         self.assertEqual((a['wins'], a['losses'], a['ties']), (1, 1, 50))
 
+    def test_exact_large_family_bound_is_symmetric(self):
+        win = familywise_paired_gate(tuple((f'f{i}', False, True) for i in range(64)))
+        loss = familywise_paired_gate(tuple((f'f{i}', True, False) for i in range(64)))
+        self.assertEqual(win['two_sided_exact_sign_ratio'], {'numerator': 1, 'denominator': 2**63})
+        self.assertEqual(win['two_sided_exact_sign_p'], 2**-63)
+        self.assertEqual(win['two_sided_exact_sign_ratio'], loss['two_sided_exact_sign_ratio'])
+        self.assertFalse(win['model_gain_claim_allowed'])
+
     def test_refuse_invalid(self):
         cases = (
             (), [('a', False, True)] * 6,
+            tuple((f'f{i}', False, True) for i in range(65)),
             (('a', 1, True),) * 6,
             tuple(('same', False, True) for _ in range(6)),
             tuple((f'f{i}', False, True, 'leak') for i in range(6)),
