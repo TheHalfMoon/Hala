@@ -137,7 +137,7 @@ def audit_git_history(root: Path, *, expected_head: str) -> dict:
     try:
         root = root.resolve(strict=True)
         need(root.is_dir()
-             and _git(root, "rev-parse", "--show-toplevel") == str(root)
+             and Path(_git(root, "rev-parse", "--show-toplevel")).resolve() == root
              and _git(root, "rev-parse", "HEAD") == expected_head
              and _git(root, "status", "--porcelain", "--untracked-files=normal")
              == ""
