@@ -78,7 +78,7 @@ class H333PrivateContract(unittest.TestCase):
                            {"free_owner_private_t4": True, "t4_count": 1})
         with TemporaryDirectory() as work:
             report = Path(work) / REPORT
-            report.write_text(json.dumps(data, sort_keys=True) + "\\n",
+            report.write_text(json.dumps(data, sort_keys=True) + chr(10),
                               encoding="utf-8")
             summary = verify_file(report)
             self.assertEqual(summary["public_exposed_pairs"], 4)
