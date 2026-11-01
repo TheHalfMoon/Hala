@@ -143,7 +143,7 @@ class H336InventedOnly(TestCase):
                          ["correct_open_and_focus"], 6)
         self.assertFalse(result["genuine_model_identity_independently_attested"])
         self.assertFalse(result["can_release"])
-        self.assertNotIn("scene", str(result))
+        self.assertNotIn("scene_id", str(result))
         self.assertNotIn("point", str(result))
 
     def test_one_bad_private_case_refuses_entire_cohort_without_partial_result(self):
