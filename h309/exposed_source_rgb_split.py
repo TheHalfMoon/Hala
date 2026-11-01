@@ -115,6 +115,7 @@ def audit_original_exposed_rgb_split(
     """
     from h285.train_only_browser_candidates import checked_source as checked_train
     registry = ExposedSplitRegistry()
+    stage = "SOURCE_PREFLIGHT"
     try:
         _need(type(train_source) is Path and type(dev_source) is Path)
         checked_train(train_source)
@@ -123,8 +124,10 @@ def audit_original_exposed_rgb_split(
         def only_frame(png: bytes, _private_task: str, _private_label: str) -> None:
             registry.add_train_candidate(png)
 
+        stage = "TRAIN_SOURCE_BROWSER"
         proof = produce_train_only_batch(
             browser, train_source, only_frame, role=TRAIN_ROLE)
+        stage = "TRAIN_SOURCE_PROOF"
         _need(type(proof) is dict
               and proof.get("role") == TRAIN_ROLE
               and proof.get("original_source_blob") == TRAIN_BLOB
@@ -137,10 +140,13 @@ def audit_original_exposed_rgb_split(
               and proof.get("optimizer_steps") == 0
               and proof.get("public_private_media_or_labels_saved") is False)
         _need(DEV_BLOB == "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80")
+        stage = "DEV_SOURCE_BROWSER"
         for scene in SCENES:
             with original_scene(browser, dev_path, dev_url, scene) as page:
                 _need(inspect_all_fields(page) == {item: "" for item in IDS})
                 registry.add_exposed_dev_research(_observed_png(page))
+        stage = "SPLIT_FINALIZE"
         return registry.finish()
     except Exception:
-        raise SplitAuditRefused("H309 SOURCE_SPLIT_AUDIT_FAILED") from None
+        # Safe fixed stage only: never expose raw source or per-case detail.
+        raise SplitAuditRefused("H309 SOURCE_SPLIT_AUDIT_FAILED_" + stage) from None
