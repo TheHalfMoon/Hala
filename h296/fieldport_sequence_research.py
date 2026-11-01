@@ -153,6 +153,7 @@ def run_original_form_sequence(
         if first_outcome["kind"] == "abstain":
             return {
                 "role": ROLE, "scene": scene[0], "native_actions": 1,
+                "native_dispatched_actions": 0,
                 "focus_click_dispatched": False, "type_dispatched": False,
                 "source_task_success": False,
                 "all_four_fields_checked": 4, "screen_lock_each_step": True,
@@ -173,6 +174,7 @@ def run_original_form_sequence(
         if focused != target:
             return {
                 "role": ROLE, "scene": scene[0], "native_actions": 1,
+                "native_dispatched_actions": 1,
                 "focus_click_dispatched": True, "type_dispatched": False,
                 "source_task_success": False,
                 "source_focus_guard_refused": True,
@@ -201,6 +203,7 @@ def run_original_form_sequence(
                      "write refusal must preserve all four original fields")
                 return {
                     "role": ROLE, "scene": scene[0], "native_actions": 2,
+                    "native_dispatched_actions": 1,
                     "focus_click_dispatched": True,
                     "type_dispatched": False,
                     "source_task_success": False,
@@ -220,6 +223,8 @@ def run_original_form_sequence(
         )
         return {
             "role": ROLE, "scene": scene[0], "native_actions": 2,
+            "native_dispatched_actions": 1 + int(
+                second_outcome == {"kind": "type_text", "executed": True}),
             "focus_click_dispatched": True,
             "type_dispatched": bool(second_outcome["executed"]),
             "source_task_success": bool(task_success),

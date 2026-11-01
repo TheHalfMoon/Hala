@@ -123,6 +123,7 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
                     fake_model,scene)
                 self.assertTrue(summary["source_original_gui_state_success"])
                 self.assertEqual(summary["native_actions"],2)
+                self.assertEqual(summary["native_dispatched_actions"],2)
                 self.assertEqual(fake_model.calls,2)
                 safe=summary["preloaded_model_contract"]
                 self.assertEqual(safe["model_generations_via_wrapped_generate"],2)
@@ -140,6 +141,7 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
             StubProcessor(self.preprogrammed_inputs(scene,wrong=True)),
             fake_model,scene)
         self.assertEqual(summary["native_actions"],1)
+        self.assertEqual(summary["native_dispatched_actions"],1)
         self.assertEqual(fake_model.calls,1)
         self.assertTrue(summary["source_focus_guard_refused"])
         self.assertFalse(summary["source_original_gui_state_success"])
@@ -158,6 +160,7 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
                     StubProcessor(self.preprogrammed_inputs(scene,code="FIC-99")),
                     fake_model,scene)
                 self.assertEqual(summary["native_actions"],2)
+                self.assertEqual(summary["native_dispatched_actions"],1)
                 self.assertEqual(fake_model.calls,2)
                 self.assertFalse(summary["source_original_gui_state_success"])
                 self.assertTrue(summary["source_write_guard_refused"])
@@ -174,6 +177,7 @@ class H298TwoStageFakeModelRealBrowserTests(TestCase):
             StubModel(),scene)
         self.assertFalse(summary["source_original_gui_state_success"])
         self.assertEqual(summary["native_actions"],1)
+        self.assertEqual(summary["native_dispatched_actions"],0)
         self.assertTrue(summary["preloaded_model_contract"]["abstained"])
         self.assertEqual(
             summary["preloaded_model_contract"]["type_calls"],0)
