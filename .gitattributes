@@ -57,3 +57,6 @@ h289/routeboard.html -text
 
 # Freeze the author-owned H296 original bilingual offline GUI bytes.
 h296/fieldport.html -text
+
+# Freeze the H319 original BeaconBoard source Git blob on Windows and Linux.
+h319/beaconboard.html -text
