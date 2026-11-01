@@ -8,11 +8,13 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 _SHA = re.compile(r"^[a-f0-9]{40}$")
 _DIGEST = re.compile(r"^sha256:[a-f0-9]{64}$")
 _REPO = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}$")
+_WIN_DEVICE = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.|$)", re.IGNORECASE)
 
 
 def _canonical_repo(value: object) -> bool:
@@ -23,13 +25,17 @@ def _canonical_repo(value: object) -> bool:
 
 def _canonical_asset_path(value: object) -> bool:
     """Conservative POSIX-relative identifier, never resolved or opened."""
-    if not isinstance(value, str) or not 1 <= len(value) <= 512:
+    if (not isinstance(value, str) or not 1 <= len(value) <= 512
+            or unicodedata.normalize("NFC", value) != value):
         return False
     for part in value.split("/"):
         if (not part or part in {".", ".."} or part.startswith(" ")
                 or part.endswith((" ", "."))):
             return False
         if not all(ch.isalnum() or ch in "._- +@" for ch in part):
+            return False
+        # Windows device basenames, including Unicode superscript aliases.
+        if _WIN_DEVICE.match(unicodedata.normalize("NFKC", part)):
             return False
     return True
 
@@ -81,7 +87,10 @@ def audit(payload: object) -> dict:
                ("author_attestation", "historical_provenance_review",
                 "independent_rights_review")):
             raise ValueError("invalid evidence flag")
-        identity = (item["source_repo"], item["source_commit"], item["asset_path"])
+        # Windows case-insensitivity and Unicode compatibility aliases must
+        # not cause separate custody records for the same logical name.
+        identity = (item["source_repo"].casefold(), item["source_commit"],
+                    unicodedata.normalize("NFKC", item["asset_path"]).casefold())
         if identity in seen:
             raise ValueError("duplicate asset identity")
         seen.add(identity)
