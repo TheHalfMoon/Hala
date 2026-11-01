@@ -108,7 +108,7 @@ def verify_failure(data: object) -> dict:
 
 def verify_file(path: Path, *, diagnostic: bool = False) -> dict:
     expected = DIAG if diagnostic else REPORT
-    need(type(path) is Path and path.name == expected
+    need(isinstance(path, Path) and path.name == expected
          and path.is_file() and not path.is_symlink())
     try:
         return (verify_failure if diagnostic else verify_success)(
