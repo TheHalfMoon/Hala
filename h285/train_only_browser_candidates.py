@@ -111,6 +111,23 @@ def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
         context.close()
 
 
+def settle_original_source_paint(page: Any) -> None:
+    """Require two real compositor frames before source-owned screenshot.
+
+    A browser paint fence is not a screenshot substitute or retry bypass:
+    all existing H322 validated screenshot, URL/state, RGB/PDF-independent
+    and native action checks still run unchanged.
+    """
+    need(page.evaluate("""() => new Promise(resolve => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)));
+    })""") is True, "source compositor did not confirm two frames")
+
+
+def _source_capture_after_paint(page: Any) -> bytes:
+    settle_original_source_paint(page)
+    return source_capture_png(page)
+
+
 def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
     from PIL import Image
 
@@ -131,6 +148,7 @@ def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
         ]
         need(0 <= point[0] < WIDTH and 0 <= point[1] < HEIGHT,
              "TRAIN target outside model screenshot")
+        settle_original_source_paint(page)
         png = source_capture_png(page)
         with Image.open(BytesIO(png)) as im:
             need(im.format == "PNG" and im.size == (WIDTH, HEIGHT),
@@ -148,7 +166,7 @@ def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
         # Image + task alone are policy inputs. The reference point was
         # extracted here ONLY because this is a self-authored TRAIN fixture.
         need(page.url == url and
-             sha256(source_capture_png(page)).hexdigest() == byte_digest,
+             sha256(_source_capture_after_paint(page)).hexdigest() == byte_digest,
              "TRAIN screenshot changed between oracle extraction and action")
         outcome = execute_one(page, completion)
         after = inspect_all_eight(page)

@@ -1,0 +1,13 @@
+# H343 — Independent rights-review handoff for RailKit and SignalDesk
+
+**Status: REVIEW REQUEST ONLY. No legal approval, no TRAIN admission, no model gain.**
+
+H329/H339 verified pinned Git introduction and Apache-2.0 LICENSE metadata, not independent copyright title or permission to use *rendered screenshots* in machine learning. H343 turns the two exact public original HTML source identities into a deterministic, SHA-256-bound **question packet** for an external qualified reviewer. It reads only the pinned HTML bytes, validates original no-external-asset source parsers, and emits public metadata only. It never renders or stores a screenshot, action, task, gold label, model text, point, private receipt, or credential.
+
+The request covers RailKit (16 publicly exposed candidate scenes, 32 action stages) and SignalDesk (128 scenes, 256 action stages). These are only **two highly correlated synthetic families**, not independent training samples or OOD. Its eight questions explicitly separate source copyright title, contributor history, rendered-image ML training rights, adapter/weight distribution, commercial scope, third-party assets/privacy and **independent reviewer identity and evidence custody**.
+
+Run `python -m unittest discover -s tests -p test_h343_independent_rights_review_request.py -v` from the repository root, or call `build_public_review_request(Path.cwd())` in a trusted public-source checkout. The packet includes a canonical digest, but **a digest is not a signature, a legal opinion, or proof of reviewer independence**. The verifier accepts only the exact unmodified public request and always returns `can_train=False` and `official_train_admission=False`. It intentionally has no approval/override endpoint.
+
+**Actual next external decision:** an independent qualified rights reviewer must verify title, historical contributions and explicit rendered-image ML rights for each source, including derivative model usage. The independent decision and scope must be authenticated and custodied through a separately reviewed process; a self-authored checkbox, Git author name, Apache license, source-only CI or this packet cannot substitute. Only a later explicitly reviewed Draft PR may consider an H199 manifest change. Until then H199 `ADMITTED_TRAIN_MANIFEST_SHAS` remains empty, no real Qwen training or GPU is authorized. Independently held-out source-family DEV and new never-exposed blind OOD are separately required.
+
+H173 sealed, H212 barred, H250/H251 quarantined, H293/H294 safety blocked. Google EGM independent Goldfish review has **not** run. Do not merge, release, deploy, publish weights or private outputs. The packet is a concrete external-review handoff, **not scientific model improvement**.
