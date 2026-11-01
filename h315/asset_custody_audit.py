@@ -14,7 +14,7 @@ from pathlib import Path
 _SHA = re.compile(r"^[a-f0-9]{40}$")
 _DIGEST = re.compile(r"^sha256:[a-f0-9]{64}$")
 _REPO = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}$")
-_WIN_DEVICE = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.|$)", re.IGNORECASE)
+_WIN_DEVICE = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)", re.IGNORECASE)
 
 
 def _canonical_repo(value: object) -> bool:
