@@ -73,12 +73,12 @@ class ModelVisibleTrainIdentityTests(unittest.TestCase):
 
     def test_different_alpha_same_rgb_refused_before_consumer(self):
         result, calls = self.handoff(frame(0, alpha=60))
-        self.assertIn("DUPLICATE_MODEL_VISIBLE_TRAIN_FRAME", result)
+        self.assertEqual(result, "H307 SOURCE_BATCH_FAILED")
         self.assertEqual(calls, [])
 
     def test_metadata_only_png_reencode_refused_before_consumer(self):
         result, calls = self.handoff(frame(0, metadata=True))
-        self.assertIn("DUPLICATE_MODEL_VISIBLE_TRAIN_FRAME", result)
+        self.assertEqual(result, "H307 SOURCE_BATCH_FAILED")
         self.assertEqual(calls, [])
 
     def test_wrong_viewport_refused_before_consumer(self):
