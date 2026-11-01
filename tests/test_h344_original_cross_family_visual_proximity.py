@@ -86,5 +86,54 @@ class H344InventedOnlyContracts(unittest.TestCase):
         self.assertEqual(summary["cross_family_rgb_identical"], 0)
 
 
+@unittest.skipUnless(
+    __import__("os").environ.get("HALA_H344_ORIGINAL_BROWSER") == "1",
+    "Full source-only browser qualification is explicit and opt-in",
+)
+class H344OriginalThreeFamilyBrowser(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from playwright.sync_api import sync_playwright
+        import os
+        cls.pw = sync_playwright().start()
+        try:
+            channel = os.environ.get("HALA_H344_BROWSER_CHANNEL", "chromium")
+            if channel not in ("chromium", "msedge"):
+                raise ValueError("H344 browser not allowlisted")
+            cls.browser = cls.pw.chromium.launch(
+                headless=True, **(
+                    {"channel": "msedge"} if channel == "msedge"
+                    else {"args": ["--no-sandbox"]}
+                ))
+        except Exception:
+            cls.pw.stop()
+            raise
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.close()
+        cls.pw.stop()
+
+    def test_all_312_true_source_frames_and_15104_pairs(self):
+        from pathlib import Path
+        from h344.original_cross_family_visual_proximity import (
+            ROLE, audit_original_three_family_images,
+        )
+        root = Path(__file__).resolve().parents[1]
+        result = audit_original_three_family_images(
+            self.browser,
+            root / "h325" / "railkit.html",
+            root / "h338" / "signaldesk.html",
+            root / "h319" / "beaconboard.html",
+            role=ROLE,
+        )
+        self.assertEqual(result["total_source_frames"], 312)
+        self.assertEqual(result["cross_family_frame_pairs_tested"], 15104)
+        self.assertEqual(result["cross_family_rgb_identical"], 0)
+        self.assertFalse(result["training_admitted"])
+        self.assertFalse(result["independent_dev_or_blind_ood"])
+        self.assertEqual(result["actual_pretrained_or_adapted_generations"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
