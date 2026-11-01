@@ -119,10 +119,19 @@ def verify_counts(result: object, counters: object) -> dict:
 
 def run_preloaded_dynamic_source_research(
     browser: Any, source: Any, processor: Any, model: Any, scene: tuple,
+    *, prompt_variant: str = "control",
 ) -> dict:
     """Owner-private caller must attest pinned model/revision/GPU separately."""
     need(type(scene) is tuple and scene in SCENES)
-    policy = PreloadedDynamicVisualPolicy(processor, model, exact_task(scene))
+    from h331.click_prompt_candidate import VARIANTS
+    need(type(prompt_variant) is str and prompt_variant in VARIANTS)
+    if prompt_variant == "control":
+        # The entire legacy three-argument call is preserved exactly.
+        policy = PreloadedDynamicVisualPolicy(processor, model, exact_task(scene))
+    else:
+        policy = PreloadedDynamicVisualPolicy(
+            processor, model, exact_task(scene),
+            prompt_variant=prompt_variant)
     try:
         result = run_original_dynamic_sequence(
             browser, source, scene, policy, role=ROLE)
