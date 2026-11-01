@@ -135,6 +135,84 @@ def cross_family_counts(families: object) -> dict:
     }
 
 
+
+def source_only_public_band_receipt(report: object) -> dict:
+    """Allowlist only tiny aggregate PUBLIC source-owned perceptual bins.
+
+    No frame or sample fingerprint, source gold, raw image, prediction, or
+    private model action can be accepted or serialized by this receipt.
+    An observed histogram is *not* evidence of rights, semantic OOD,
+    trained model gain, or independent sample size.
+    """
+    need(type(report) is dict and set(report) == {
+        "status", "public_source_frame_counts", "candidate_source_families",
+        "public_exposed_not_blind_research_families",
+        "total_source_frames", "cross_family_frame_pairs_tested",
+        "cross_family_rgb_identical",
+        "cross_family_lossy_perceptual_zero_pairs",
+        "per_family_pair",
+        "perceptual_distance_is_lossy_not_semantic_or_rights_evidence",
+        "training_admitted", "independent_dev_or_blind_ood",
+        "actual_pretrained_or_adapted_generations", "new_optimizer_steps",
+        "measured_model_gain", "can_release",
+    })
+    need(report["status"] == ROLE
+         and report["public_source_frame_counts"] == COUNTS
+         and report["candidate_source_families"] == 2
+         and report["public_exposed_not_blind_research_families"] == 1
+         and report["total_source_frames"] == 312
+         and report["cross_family_frame_pairs_tested"] == 15104
+         and report["cross_family_rgb_identical"] == 0
+         and report[
+             "perceptual_distance_is_lossy_not_semantic_or_rights_evidence"
+         ] is True
+         and all(report[k] is False for k in (
+             "training_admitted", "independent_dev_or_blind_ood",
+             "measured_model_gain", "can_release",
+         ))
+         and type(report["actual_pretrained_or_adapted_generations"]) is int
+         and report["actual_pretrained_or_adapted_generations"] == 0
+         and type(report["new_optimizer_steps"]) is int
+         and report["new_optimizer_steps"] == 0)
+    original = report["per_family_pair"]
+    expected_keys = {left + "_vs_" + right for left, right in PAIRS}
+    need(type(original) is dict and set(original) == expected_keys)
+    safe_bins: dict[str, dict[str, int]] = {}
+    total_exact = 0
+    for left, right in PAIRS:
+        name = left + "_vs_" + right
+        entry = original[name]
+        n = COUNTS[left] * COUNTS[right]
+        need(type(entry) is dict and set(entry) == {
+            "pairs", "perceptual_distance_histogram",
+            "perceptual_near_0_to_32_pairs", "rgb_identical_pairs",
+        } and type(entry["pairs"]) is int and entry["pairs"] == n
+             and type(entry["rgb_identical_pairs"]) is int
+             and entry["rgb_identical_pairs"] == 0)
+        hist = entry["perceptual_distance_histogram"]
+        need(type(hist) is dict and set(hist) == set(BANDS)
+             and all(type(hist[k]) is int and 0 <= hist[k] <= n
+                     for k in BANDS)
+             and sum(hist.values()) == n
+             and type(entry["perceptual_near_0_to_32_pairs"]) is int
+             and entry["perceptual_near_0_to_32_pairs"]
+                 == sum(hist[k] for k in BANDS[:3]))
+        safe_bins[name] = {k: hist[k] for k in BANDS}
+        total_exact += hist["zero"]
+    need(type(report["cross_family_lossy_perceptual_zero_pairs"]) is int
+         and report["cross_family_lossy_perceptual_zero_pairs"] == total_exact)
+    return {
+        "status": "H344_PUBLIC_EXPOSED_SOURCE_ONLY_AGGREGATE_BANDS",
+        "public_source_frames": 312,
+        "cross_family_compared_pairs": 15104,
+        "decoded_rgb_identical_frames_refused": True,
+        "per_family_pair_bins": safe_bins,
+        "not_rights_or_semantic_ood_or_model_gain": True,
+        "train_admitted": False, "blind_ood": False,
+        "trained_gain": False, "release": False,
+    }
+
+
 def _trusted_batch_frames(batch: tuple, count: int) -> tuple:
     need(type(batch) is tuple and len(batch) == count)
     values = []
