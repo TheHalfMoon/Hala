@@ -28,6 +28,8 @@ def audit(payload: object) -> dict:
         raise ValueError("invalid asset collection")
     blocked = 0
     seen = set()
+    seen_bytes = set()
+    seen_rendered = set()
     for item in assets:
         if not isinstance(item, dict) or set(item) != _REQUIRED:
             raise ValueError("invalid asset metadata")
@@ -48,6 +50,14 @@ def audit(payload: object) -> dict:
         if identity in seen:
             raise ValueError("duplicate asset identity")
         seen.add(identity)
+        # Same bytes under another repo/path must never bypass custody review.
+        # Also reject reused rendered captures from different source identities.
+        if item["asset_sha256"] in seen_bytes:
+            raise ValueError("duplicate asset content")
+        if item["rendered_digest"] in seen_rendered:
+            raise ValueError("duplicate rendered content")
+        seen_bytes.add(item["asset_sha256"])
+        seen_rendered.add(item["rendered_digest"])
         # This audit can NEVER authorize admission, even for all-true evidence.
         blocked += 1
     return {"schema": "hala-h315-custody-v1", "asset_count": len(assets),
