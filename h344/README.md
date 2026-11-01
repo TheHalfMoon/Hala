@@ -21,3 +21,22 @@ python -m unittest discover -s tests -p test_h344_original_cross_family_visual_p
 For complete source evidence set `HALA_H344_ORIGINAL_BROWSER=1` on an installed native Playwright Chromium or Edge. All **312 real source frames** and **15,104 inter-family comparisons** must pass without skipped scenarios, image substitution or generated data files. Workflow `.github/workflows/h344-original-three-family-visual.yml` runs the full source-only browser test on Ubuntu Chromium and Windows Edge. It uses no paid API or GPU, uploads no artifacts, writes no screenshots and cannot establish learned model improvement.
 
 **Acceptance:** exact-head GitHub CI succeeds on both platforms with 312 source-derived frames, exact all-family RGB disjointness and bounded aggregate-only perceptual-distance reports; source roles still fail closed. Until the browser test passes, only invented-only test logic is qualified. Do not promote these numbers to observed visual similarity merely because the pair arithmetic is correct. Keep Draft and avoid merging or releasing.
+
+
+## Safe observed aggregate output
+
+The full source-browser test now prints one **H344_ACTUAL_PUBLIC_SOURCE_BANDS**
+record only AFTER all 312 original source frames and all 15,104
+cross-family comparisons have passed. The emitted record contains only
+five nonnegative integer dHash distance-band counts per fixed pair of
+public source families, the constant public cohort sizes, and explicit
+FALSE TRAIN/OOD/model-gain/release flags. `source_only_public_band_receipt`
+validates an exact bounded schema, impossible counts and any injected
+raw image, point, gold or extra field fail closed. Results must be
+read from the real exact-head Ubuntu/Windows source-browser CI run:
+invented-only unit fixtures do not establish an observed histogram.
+
+The 1,024-bit perceptual distance is **lossy** and can be zero between
+distinct decoded-RGB images. Report only the actual numerical source
+histogram and never turn a particular threshold into a claim of source
+independence, legal screenshot ML use, blinded OOD or Qwen accuracy.
