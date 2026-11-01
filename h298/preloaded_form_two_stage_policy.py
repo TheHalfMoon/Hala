@@ -227,6 +227,36 @@ class PreloadedTwoStageVisualPolicy:
         }
 
 
+def _native_dispatch_accounting_valid(outcome: dict, counters: dict) -> bool:
+    """Reject fabricated browser dispatch counts; policy turns are NOT writes.
+
+    Legacy native_actions counts policy predictions (including abstain
+    and a source-refused type). native_dispatched_actions counts only
+    actual source-owned browser click/type dispatches.
+    """
+    if (type(outcome) is not dict or type(counters) is not dict
+            or type(outcome.get("native_actions")) is not int
+            or type(outcome.get("native_dispatched_actions")) is not int
+            or type(outcome.get("focus_click_dispatched")) is not bool
+            or type(outcome.get("type_dispatched")) is not bool
+            or type(outcome.get("source_write_guard_refused", False)) is not bool
+            or type(counters.get("abstained")) is not bool):
+        return False
+    turns = outcome["native_actions"]
+    dispatched = outcome["native_dispatched_actions"]
+    return (
+        1 <= turns <= 2
+        and 0 <= dispatched <= turns
+        and dispatched == (
+            int(outcome["focus_click_dispatched"])
+            + int(outcome["type_dispatched"]))
+        and turns == (
+            dispatched
+            + int(counters["abstained"])
+            + int(outcome.get("source_write_guard_refused", False)))
+    )
+
+
 def run_fixed_original_source_research(
     browser: Any, source: Any, processor: Any,
     model: Any, scene: tuple,
@@ -256,7 +286,8 @@ def run_fixed_original_source_research(
     elif write_refused:
         policy.seal_source_write_refusal()
     counters = policy.safe_contract_summary()
-    require((counters["protocol_terminal"]
+    require(_native_dispatch_accounting_valid(outcome, counters)
+            and (counters["protocol_terminal"]
              or (source_refused
                  and counters["protocol_failed_terminal"]
                  and not counters["protocol_terminal"]
@@ -288,6 +319,7 @@ def run_fixed_original_source_research(
         "source_original_gui_state_success":
             bool(outcome["source_task_success"]),
         "native_actions": outcome["native_actions"],
+        "native_dispatched_actions": outcome["native_dispatched_actions"],
         "source_focus_guard_refused": source_refused,
         "source_write_guard_refused": write_refused,
         "preloaded_model_contract": counters,
