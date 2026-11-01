@@ -146,7 +146,7 @@ class H325RealBrowser(unittest.TestCase):
             calls[0] += 1
             self.assertIsInstance(batch, tuple)
             self.assertEqual(len(batch), 32)
-            self.assertTrue(all(image.startswith(b"\\x89PNG\\r\\n\\x1a\\n")
+            self.assertTrue(all(image.startswith(b"\x89PNG\r\n\x1a\n")
                                 for image, _, _ in batch))
             return True
 
