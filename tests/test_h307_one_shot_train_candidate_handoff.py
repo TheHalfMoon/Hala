@@ -1,16 +1,23 @@
 """H307 invented-only tests: no real media, labels, GPU or browser."""
 import unittest
+from functools import lru_cache
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
+
+from PIL import Image
 
 from h285.train_only_browser_candidates import ROLE, SOURCE_BLOB
 from h307 import one_shot_train_candidate_handoff as unit
 
 
+@lru_cache(maxsize=32)
 def invented_frame(i):
-    # Synthetic byte shape only. Never a real source screenshot.
-    return b"\x89PNG\r\n\x1a\n" + bytes([65 + i]) * 112
-
+    # Invented in-memory PNG pixels only; no real source screenshot.
+    with BytesIO() as stream:
+        Image.new("RGBA", (960, 720), (i, 18, 35, 255)).save(
+            stream, format="PNG")
+        return stream.getvalue()
 
 def valid_proof():
     return {
