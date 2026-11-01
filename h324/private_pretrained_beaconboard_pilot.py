@@ -217,9 +217,14 @@ def run() -> None:
         report = aggregate(rows, hardware)
         del rows, model, processor
     finally:
-        _STAGE = "CLEANUP"
-        shutil.rmtree(root)
-        require(not root.exists())
+        # Preserve the real failing stage unless cleanup itself fails.
+        # Never report a MODEL_LOAD/SOURCE error as a cleanup failure.
+        try:
+            shutil.rmtree(root)
+            require(not root.exists())
+        except Exception:
+            _STAGE = "CLEANUP"
+            raise RuntimeError("H324 PRIVATE SCRATCH CLEANUP REFUSED") from None
     require(report is not None)
     write_create_only(Path("/kaggle/working") / RESULT, report)
 
