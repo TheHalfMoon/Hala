@@ -100,7 +100,11 @@ def analyze_paired_families(families: object) -> dict:
             "family_ties": signs[lang]["ties"],
             "exact_two_sided_family_sign_p": _fraction(raw_p[lang]),
             "holm_adjusted_p": _fraction(adjusted[lang]),
-            "holm_below_0_05": adjusted[lang] < ALPHA,
+            "holm_at_or_below_0_05": adjusted[lang] <= ALPHA,
+            "positive_direction_and_holm": (
+                adjusted[lang] <= ALPHA
+                and signs[lang]["wins"] > signs[lang]["losses"]
+                and c["adapted_only"] > c["base_only"]),
             "base_abstentions": c["base_abstain"],
             "adapted_abstentions": c["adapted_abstain"],
             "base_unsafe": c["base_unsafe"],
@@ -111,8 +115,9 @@ def analyze_paired_families(families: object) -> dict:
         "analysis_unit": "independent_source_family_not_scene",
         "family_count": len(families),
         "language_endpoints": results,
-        "all_language_holm_below_0_05": all(
-            results[lang]["holm_below_0_05"] for lang in LANGUAGES),
+        "all_language_positive_direction_and_holm": all(
+            results[lang]["positive_direction_and_holm"]
+            for lang in LANGUAGES),
         "independent_family_custody_verified": False,
         "rights_and_train_admission_verified": False,
         "new_never_exposed_blind_ood_verified": False,
