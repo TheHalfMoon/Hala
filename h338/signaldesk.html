@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SignalDesk — fictional dispatch practice</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:960px;height:720px;overflow:hidden}
+body{font-family:Arial,Tahoma,sans-serif;color:#14293a;background:#e5ebe5}
+header{height:128px;background:#152f41;color:#f2f6e9;padding:22px 37px}
+header .brand{display:inline-block;font-size:31px;font-weight:900;letter-spacing:1px}
+header .scene{float:right;font-size:17px;font-weight:800;padding:11px 16px;background:#355463;border:1px solid #8ac4bf}
+header p{font-size:15px;margin:9px 0 0;color:#cde4dc}
+main{padding:25px 38px 20px}
+h1{font-size:25px;margin:0 0 8px}
+.lead{font-size:14px;color:#375963;margin:0 0 16px}
+#rows{display:flex;flex-direction:column;gap:10px}
+.row{height:96px;background:#fff;border:2px solid #4c6e79;display:flex;align-items:center;padding:11px 17px;gap:18px;border-radius:14px;box-shadow:4px 4px 0 #b1c9c7}
+.row .indicator{height:54px;width:54px;flex:none;border-radius:50%;background:#c8e0d9;border:3px solid #317478;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900}
+.row .body{flex:1;min-width:0}
+.row .id{font-weight:900;font-size:15px;color:#315869}
+.row .label{font-weight:850;font-size:20px;margin-top:3px}
+.row .control{width:220px;flex:none}
+.row button,.row input{display:block;width:100%;height:56px;border-radius:8px;font-size:18px;font-weight:900}
+.row button{background:#e7b157;color:#172e3d;border:2px solid #325667;cursor:pointer}
+.row button:focus{outline:4px solid #5aa49f}
+.row input{background:#dcefe8;color:#152d39;border:3px solid #397c7a;padding:0 10px;caret-color:transparent}
+.row input:focus{outline:4px solid #eab65b}
+body.dense #rows{gap:4px}
+body.dense .row{height:86px;border-radius:3px}
+body.dark{background:#233b4a;color:#eff8ec}
+body.dark header{background:#101e2b}
+body.dark .row{background:#304c59;border-color:#c1a85d;box-shadow:4px 4px 0 #101e2b}
+body.dark .lead{color:#d3e1d9}
+body.dark .row .id{color:#cde5cd}
+body.dark .row .indicator{background:#627e7f;color:#fff}
+body.dark .row button{background:#d7c47b}
+body[dir=rtl] .scene{float:left}
+body[dir=rtl] .row{flex-direction:row-reverse}
+body[dir=rtl] .row .body{text-align:right}
+footer{margin-top:15px;font-size:11px;color:#667a7c}
+body.dark footer{color:#b4c6c5}
+</style>
+</head>
+<body>
+<header><div class="brand">SignalDesk</div><div class="scene" id="scenario">SIM 000</div><p id="subtitle">Offline fictional dispatch simulator. No accounts or patient data.</p></header>
+<main><h1 id="heading">Connect the assigned signal</h1><p class="lead" id="lead">Choose the matching button and enter the provided fictional code.</p><section id="rows"></section><footer id="notice">SIMULATED ROUTING ONLY — TRAIN CANDIDATE, NOT APPROVED</footer></main>
+<script>
+"use strict";
+const IDS=["S-14","S-28","S-42","S-56"];
+const EN=["Bay signal","Harbor signal","Mesa signal","North signal"];
+const AR=["إشارة الخليج","إشارة الميناء","إشارة الهضبة","إشارة الشمال"];
+const ORDERS=[[0,1,2,3],[2,0,3,1],[3,1,0,2],[1,3,2,0]];
+let prefs={lang:"en",order:0,dark:false,dense:false,run:0};
+let interacted=false;
+const opened=new Set();
+function signalDeskState(){
+ return IDS.map(id=>{
+  const inp=document.querySelector('input[data-signal="'+id+'"]');
+  return {id,open:opened.has(id),value:inp?inp.value:""};
+ });
+}
+function configureSignalDesk(x){
+ if(interacted||!x||!["en","ar"].includes(x.lang)
+    ||!Number.isInteger(x.order)||x.order<0||x.order>3
+    ||typeof x.dark!=="boolean"||typeof x.dense!=="boolean"
+    ||!Number.isInteger(x.run)||x.run<0||x.run>=128){
+   throw Error("fictional scenario refused");
+ }
+ prefs={lang:x.lang,order:x.order,dark:x.dark,dense:x.dense,run:x.run};
+ opened.clear();render();
+}
+function render(){
+ const ar=prefs.lang==="ar";
+ document.documentElement.lang=ar?"ar":"en";
+ document.documentElement.dir=ar?"rtl":"ltr";
+ document.body.dir=ar?"rtl":"ltr";
+ document.body.className=[prefs.dark?"dark":"",prefs.dense?"dense":""].join(" ").trim();
+ document.getElementById("scenario").textContent="SIM "+String(prefs.run).padStart(3,"0");
+ document.getElementById("subtitle").textContent=ar?
+  "محاكي إشارات خيالي دون حسابات أو بيانات شخصية.":
+  "Offline fictional dispatch simulator. No accounts or patient data.";
+ document.getElementById("heading").textContent=ar?"اربط الإشارة المطلوبة":"Connect the assigned signal";
+ document.getElementById("lead").textContent=ar?
+  "اضغط زر الإشارة المطلوبة ثم اكتب الرمز الخيالي في الحقل الجديد.":
+  "Click the requested signal button, then type the fictional code in the new field.";
+ document.getElementById("notice").textContent=ar?
+  "تدريب اصطناعي غير معتمد — دون حسابات أو سجلات":
+  "SIMULATED ROUTING ONLY — TRAIN CANDIDATE, NOT APPROVED";
+ const rows=document.getElementById("rows");rows.replaceChildren();
+ for(const index of ORDERS[prefs.order]){
+  const id=IDS[index];
+  const row=document.createElement("article");row.className="row";row.dataset.signal=id;
+  const icon=document.createElement("div");icon.className="indicator";
+  icon.textContent=String(index+1).padStart(2,"0");
+  const body=document.createElement("div");body.className="body";
+  const marker=document.createElement("div");marker.className="id";marker.textContent=id;
+  const label=document.createElement("div");label.className="label";label.textContent=(ar?AR:EN)[index];
+  body.append(marker,label);
+  const control=document.createElement("div");control.className="control";
+  const button=document.createElement("button");button.type="button";button.dataset.signal=id;
+  button.textContent=(ar?"فعّل ":"Activate ")+id;
+  button.addEventListener("click",()=>{
+   interacted=true;opened.add(id);
+   const input=document.createElement("input");
+   input.type="text";input.autocomplete="off";input.spellcheck=false;
+   input.maxLength=14;input.dataset.signal=id;
+   input.placeholder=ar?"الرمز الخيالي":"Fictional code";
+   control.replaceChildren(input);input.focus();
+  },{once:true});
+  control.append(button);row.append(icon,body,control);rows.append(row);
+ }
+}
+Object.defineProperty(window,"configureSignalDesk",{value:configureSignalDesk,writable:false});
+Object.defineProperty(window,"signalDeskState",{value:signalDeskState,writable:false});
+render();
+</script>
+</body>
+</html>
