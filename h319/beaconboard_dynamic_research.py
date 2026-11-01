@@ -40,7 +40,7 @@ def _observed_png(page: Any) -> bytes:
     from PIL import Image
     png = page.screenshot(animations="disabled", full_page=False)
     need(type(png) is bytes and 100 < len(png) < 4 * 1024 * 1024
-         and png.startswith(b"\\x89PNG\\r\\n\\x1a\\n"))
+         and png.startswith(b"\x89PNG\r\n\x1a\n"))
     try:
         with Image.open(BytesIO(png)) as image:
             need(image.format == "PNG" and image.size == (WIDTH, HEIGHT))
