@@ -110,6 +110,72 @@ def write_private_failure(stage: str, err: BaseException) -> None:
             sort_keys=True) + "\n", encoding="utf-8")
 
 
+def validate_aggregate(result: object) -> dict:
+    """Verify fixed arithmetic of low-entropy paired source-only summary."""
+    from h332.paired_exposed_prompt_research import ROLE, OUTCOMES
+    need(type(result) is dict and set(result) == {
+        "status", "frozen_public_scene_count", "matched_model_source_runs",
+        "english_scene_pairs", "arabic_rtl_scene_pairs",
+        "counterbalanced_orders", "by_language",
+        "source_public_exposed_not_blind",
+        "genuine_model_identity_requires_external_attestation",
+        "official_train_dev_ood_admitted", "optimizer_steps",
+        "adapted_model_gain_proven", "fresh_blind_ood_proven", "can_release",
+    })
+    for key, value in (
+        ("status", ROLE), ("frozen_public_scene_count", 4),
+        ("matched_model_source_runs", 8), ("english_scene_pairs", 2),
+        ("arabic_rtl_scene_pairs", 2), ("counterbalanced_orders", True),
+        ("source_public_exposed_not_blind", True),
+        ("genuine_model_identity_requires_external_attestation", True),
+        ("official_train_dev_ood_admitted", False), ("optimizer_steps", 0),
+        ("adapted_model_gain_proven", False), ("fresh_blind_ood_proven", False),
+        ("can_release", False),
+    ):
+        need(type(result[key]) is type(value) and result[key] == value)
+    groups = result["by_language"]
+    need(type(groups) is dict and set(groups) == {"en", "ar"})
+    for language in ("en", "ar"):
+        group = groups[language]
+        need(type(group) is dict and set(group) == {
+            "control", "candidate", "pair_outcomes"})
+        wins = group["pair_outcomes"]
+        need(type(wins) is dict and set(wins) == {"control", "candidate", "tie"}
+             and all(type(n) is int and 0 <= n <= 2 for n in wins.values())
+             and sum(wins.values()) == 2)
+        for arm in ("control", "candidate"):
+            item = group[arm]
+            need(type(item) is dict and set(item) == {
+                "tasks", "task_success", "model_generations",
+                "native_actions", "failure_counts"})
+            failure = item["failure_counts"]
+            need(type(failure) is dict and set(failure) == set(OUTCOMES)
+                 and all(type(n) is int and 0 <= n <= 2
+                         for n in failure.values())
+                 and sum(failure.values()) == 2)
+            need(type(item["tasks"]) is int and item["tasks"] == 2
+                 and type(item["task_success"]) is int
+                 and item["task_success"] == failure["none"])
+            min_gen = (2*failure["none"] + failure["abstain"]
+                       + failure["wrong_focus_or_state"]
+                       + 2*failure["wrong_code"]
+                       + 2*failure["source_state_mismatch"])
+            min_dispatch = (2*failure["none"]
+                            + failure["wrong_focus_or_state"]
+                            + failure["wrong_code"]
+                            + 2*failure["source_state_mismatch"])
+            generations, actions = item["model_generations"], item["native_actions"]
+            need(type(generations) is int and type(actions) is int
+                 and 2 <= generations <= 4 and 0 <= actions <= 4
+                 and 0 <= generations - min_gen <= failure["abstain"]
+                 and generations - min_gen == actions - min_dispatch)
+        need(group["candidate"]["task_success"]
+             - group["control"]["task_success"]
+             == wins["candidate"] - wins["control"])
+    return {"matched_model_source_runs": 8,
+            "public_exposed_not_blind": True, "adapted_gain_proven": False}
+
+
 def safe_report(source_aggregate: object, hardware: object) -> dict:
     # Source-side real evaluator owns aggregation; independent verifier
     # must check exact external private job/code and internal schema.
@@ -129,8 +195,7 @@ def safe_report(source_aggregate: object, hardware: object) -> dict:
          and hardware.get("free_owner_private_t4") is True
          and type(hardware.get("t4_count")) is int
          and hardware["t4_count"] in (1, 2))
-    from h333.verify_private_paired_receipt import verify_aggregate
-    verified = verify_aggregate(source_aggregate)
+    verified = validate_aggregate(source_aggregate)
     need(verified["matched_model_source_runs"] == 8)
     return {
         "status": STATUS,
