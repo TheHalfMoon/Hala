@@ -1,0 +1,21 @@
+﻿name: H345 familywise paired invented-only
+on:
+  push:
+    branches:
+      - ps/h345-familywise-paired-sign-test
+  pull_request:
+    paths:
+      - h345_familywise_gate.py
+      - test_h345_familywise_gate.py
+      - .github/workflows/h345-familywise-paired.yml
+  workflow_dispatch:
+jobs:
+  invented-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run invented-only familywise gate
+        run: python -m unittest test_h345_familywise_gate -v
