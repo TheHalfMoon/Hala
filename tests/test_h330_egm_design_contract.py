@@ -57,7 +57,7 @@ class H330DesignContract(unittest.TestCase):
         self.assertIn("fresh isolated", self.guide)
         self.assertIn("NO parent conversation", self.guide)
         self.assertIn("NOT REVIEWED", self.spec)
-        self.assertIn("not a Goldfish review", self.spec)
+        self.assertIn("must not** be marked as a Goldfish review", self.spec)
         self.assertIn("Goldfish reviewers", self.agents)
         self.assertIn("No upstream files are copied", self.guide)
 
