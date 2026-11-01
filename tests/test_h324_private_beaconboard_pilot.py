@@ -94,7 +94,11 @@ class H324PrivateTests(unittest.TestCase):
             verify_failure(changed)
 
     def test_builder_code_only_private_payload_and_compilable_script(self):
-        from h324.build_private_payload import build, KERNEL_ID, SCRIPT_NAME
+        from h324.build_private_payload import (build, KERNEL_ID, KERNEL_TITLE, SCRIPT_NAME)
+        import re
+        self.assertLessEqual(len(KERNEL_TITLE), 50)
+        self.assertEqual(KERNEL_ID, "abdulazizshehri/" +
+                         re.sub(r"[^a-z0-9]+", "-", KERNEL_TITLE.lower()).strip("-"))
         root = Path(__file__).resolve().parents[1]
         with TemporaryDirectory() as tmp:
             target = Path(tmp) / "new-private-code-only"
