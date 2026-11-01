@@ -40,7 +40,8 @@ def rgb_digest(png: bytes) -> bytes:
 
 
 class PreloadedDynamicVisualPolicy:
-    def __init__(self, processor: Any, model: Any, task: str):
+    def __init__(self, processor: Any, model: Any, task: str, *,
+                 prompt_variant: str = "control"):
         need(callable(getattr(processor, "apply_chat_template", None))
              and callable(getattr(processor, "batch_decode", None))
              and hasattr(processor, "tokenizer"))
@@ -48,6 +49,9 @@ class PreloadedDynamicVisualPolicy:
              and callable(getattr(model, "eval", None))
              and getattr(model, "device", None) is not None)
         need(type(task) is str and 10 <= len(task) <= 500)
+        from h331.click_prompt_candidate import VARIANTS
+        need(type(prompt_variant) is str and prompt_variant in VARIANTS)
+        self.prompt_variant = prompt_variant
         self.processor, self.model, self.task = processor, model, task
         self.state = DynamicPolicyState()
         self._seen: set[bytes] = set()
@@ -85,7 +89,10 @@ class PreloadedDynamicVisualPolicy:
         else:
             decoder = self.processor
         policy = PreloadedVisionPolicy(decoder, wrapper, max_new_tokens=160)
-        native = policy(png, model_visible_prompt(self.task, stage))
+        from h331.click_prompt_candidate import build_stage_prompt
+        model_prompt = build_stage_prompt(
+            self.task, stage, variant=self.prompt_variant)
+        native = policy(png, model_prompt)
         need(wrapper.grammar_installed_calls == 1
              and wrapper.completed_generations == 1)
         parsed = parse_actions(native)
