@@ -45,7 +45,17 @@ def verify_first_turn(summary: object, source_row: object) -> None:
     })
     need(type(source_row) is dict and source_row.get("status") == SOURCE_ROLE
          and source_row.get("category") in CATEGORIES
-         and type(source_row.get("native_actions_dispatched")) is int)
+         and type(source_row.get("native_actions_dispatched")) is int
+         and set(source_row) == {
+             "status", "language", "category", "source_public_exposed",
+             "native_actions_dispatched", "genuine_model_identity_attested",
+             "official_train_admitted", "fresh_blind_ood",
+             "adapted_model_gain_proven", "can_release"}
+         and source_row["source_public_exposed"] is True
+         and source_row["language"] in ("en", "ar")
+         and all(source_row[k] is False for k in (
+             "genuine_model_identity_attested", "official_train_admitted",
+             "fresh_blind_ood", "adapted_model_gain_proven", "can_release")))
     abstain = source_row["category"] == "abstain"
     need(summary["model_generations_via_wrapped_generate"] == 1
          and type(summary["model_generations_via_wrapped_generate"]) is int
