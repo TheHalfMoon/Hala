@@ -71,6 +71,23 @@ class H333PrivateContract(unittest.TestCase):
         self.assertFalse(summary["can_release"])
         self.assertNotIn("click", json.dumps(summary))
 
+    def test_actual_pathlib_private_report_file_strictly_verified(self):
+        # pathlib.Path(...) yields WindowsPath or PosixPath, not type Path.
+        from h333.verify_private_paired_receipt import verify_file
+        data = safe_report(invented_aggregate(),
+                           {"free_owner_private_t4": True, "t4_count": 1})
+        with TemporaryDirectory() as work:
+            report = Path(work) / REPORT
+            report.write_text(json.dumps(data, sort_keys=True) + chr(10),
+                              encoding="utf-8")
+            summary = verify_file(report)
+            self.assertEqual(summary["public_exposed_pairs"], 4)
+            self.assertFalse(summary["adapted_gain_proven"])
+            renamed = Path(work) / "unauthorized-private-artifact.json"
+            renamed.write_bytes(report.read_bytes())
+            with self.assertRaises(ValueError):
+                verify_file(renamed)
+
     def test_impossible_category_arithmetic_rejected(self):
         data = invented_aggregate()
         for key, value in (
