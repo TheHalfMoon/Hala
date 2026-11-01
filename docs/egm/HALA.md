@@ -30,7 +30,7 @@ Start a **fresh isolated, read-only** reviewer with only:
 - Standards: upstream pinned `resources/document_standards/feature-spec-standard.md` and `implementation-readiness-standard.md`
 - Reviewers: pinned upstream `agents/zoom_out.md`, `agents/comprehension.md`, `agents/design_critic.md`, `agents/implementation_readiness.md`; use native EGM `egm-review` workflow, not a homemade simulation
 - Hala source-only reading list: `AGENTS.md`, `h199/native_action_sft.py`, `h319/beaconboard_dynamic_research.py`, `h325/two_step_train_candidates.py`, `h326/rtl_relative_geometry_audit.py`, `h328/original_family_visual_split.py`, `h329/railkit_source_provenance.py`.
-- Context boundary: NO parent conversation, memory, private H324 receipts, raw images/screenshots, gold action/points, model predictions, hidden H173 OOD or quarantined H250/H251 assets.
+- Context boundary: NO parent conversation, memory, private H324 receipts, raw images/screenshots, gold action/points, model predictions, hidden H173 OOD, quarantined H250/H251 assets, or H293/H294 blocked private retrieval.
 
 Reviewer outputs: findings grouped by **Blocker / Major / Nit**, with source path/section and evidence, alternatives, failed assumptions, potential counterexamples, test needs and unresolved questions. Empty findings alone do **not** qualify; isolation and actual source/standards reads must be trace-verifiable. If fresh-context tools are missing, or the reviewer did not read source or standards, record **REVIEW_BLOCKED**, not PASS. Parent assertions, prompt summaries and a normal same-thread assistant critique are not Goldfish review evidence.
 
