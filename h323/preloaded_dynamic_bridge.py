@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from h298.preloaded_form_two_stage_policy import PreloadedTwoStageVisualPolicy
+from h323.preloaded_dynamic_visual_policy import PreloadedDynamicVisualPolicy
 from h319.beaconboard_dynamic_research import (
     ROLE, SCENES, exact_task, run_original_dynamic_sequence,
 )
@@ -84,10 +84,11 @@ def verify_counts(result: object, counters: object) -> dict:
     need(focus in (0, 1) and typed in (0, 1)
          and typed <= focus and dispatched <= n)
     if n == 1:
-        need(typed == 0 and not terminal
-             and ((focus == 0 and abstain and dispatched == 0
-                   and why == "abstain" and not success)
+        need(typed == 0
+             and ((focus == 0 and abstain and terminal and not failed
+                   and dispatched == 0 and why == "abstain" and not success)
                   or (focus == 1 and dispatched == 1 and not abstain
+                      and not terminal and failed
                       and why == "wrong_focus_or_state" and not success)))
     else:
         need(focus == 1 and terminal and dispatched >= 1
@@ -121,7 +122,7 @@ def run_preloaded_dynamic_source_research(
 ) -> dict:
     """Owner-private caller must attest pinned model/revision/GPU separately."""
     need(type(scene) is tuple and scene in SCENES)
-    policy = PreloadedTwoStageVisualPolicy(processor, model, exact_task(scene))
+    policy = PreloadedDynamicVisualPolicy(processor, model, exact_task(scene))
     try:
         result = run_original_dynamic_sequence(
             browser, source, scene, policy, role=ROLE)
