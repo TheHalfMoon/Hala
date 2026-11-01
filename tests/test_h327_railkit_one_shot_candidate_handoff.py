@@ -56,12 +56,13 @@ class OneShotCandidateHandoff(unittest.TestCase):
     def test_mid_source_failure_has_zero_external_calls(self):
         calls = []
         count = [0]
+        fresh = invented_case_factory()
 
         def fail_later(browser, url, scene):
             count[0] += 1
             if count[0] == 9:
                 raise ValueError("invented source failure")
-            return invented_case_factory()(browser, url, scene)
+            return fresh(browser, url, scene)
 
         with patch("h325.two_step_train_candidates.one_source_case",
                    side_effect=fail_later):
