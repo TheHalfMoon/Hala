@@ -117,7 +117,7 @@ def audit_original_exposed_rgb_split(
     registry = ExposedSplitRegistry()
     stage = "SOURCE_PREFLIGHT"
     try:
-        _need(type(train_source) is Path and type(dev_source) is Path)
+        _need(isinstance(train_source, Path) and isinstance(dev_source, Path))
         checked_train(train_source)
         dev_path, dev_url = checked_dev_source(dev_source)
 
