@@ -35,6 +35,8 @@ class H344InventedOnlyContracts(unittest.TestCase):
         self.assertEqual(sum(COUNTS.values()), 312)
         self.assertEqual(sum(COUNTS[a] * COUNTS[b] for a, b in PAIRS),
                          15104)
+        self.assertEqual(
+            sum(n * (n - 1) // 2 for n in COUNTS.values()), 33412)
 
     def test_bounded_aggregates_do_not_promote_train_or_ood(self):
         summary = cross_family_counts(fictional_fingerprints())
@@ -42,6 +44,10 @@ class H344InventedOnlyContracts(unittest.TestCase):
         self.assertEqual(summary["total_source_frames"], 312)
         self.assertEqual(summary["cross_family_frame_pairs_tested"], 15104)
         self.assertEqual(summary["cross_family_rgb_identical"], 0)
+        self.assertEqual(summary["within_family_frame_pairs_tested"], 33412)
+        self.assertEqual(
+            sum(sum(row["perceptual_distance_histogram"].values())
+                for row in summary["within_family_pair"].values()), 33412)
         self.assertEqual(
             sum(sum(item["perceptual_distance_histogram"].values())
                 for item in summary["per_family_pair"].values()),
@@ -57,6 +63,10 @@ class H344InventedOnlyContracts(unittest.TestCase):
         safe = source_only_public_band_receipt(result)
         self.assertEqual(safe["public_source_frames"], 312)
         self.assertEqual(safe["cross_family_compared_pairs"], 15104)
+        self.assertEqual(safe["within_family_compared_pairs"], 33412)
+        self.assertEqual(
+            sum(sum(h.values()) for h in
+                safe["within_family_pair_bins"].values()), 33412)
         self.assertTrue(safe["not_rights_or_semantic_ood_or_model_gain"])
         self.assertFalse(safe["train_admitted"])
         self.assertEqual(
@@ -73,6 +83,14 @@ class H344InventedOnlyContracts(unittest.TestCase):
                 ValueError
             ):
                 source_only_public_band_receipt(dict(result, **injection))
+        corrupted = dict(result)
+        altered = dict(result["within_family_pair"])
+        rail = dict(altered["RailKit"])
+        rail["pairs"] = 497
+        altered["RailKit"] = rail
+        corrupted["within_family_pair"] = altered
+        with self.assertRaises(ValueError):
+            source_only_public_band_receipt(corrupted)
         corrupted = dict(result)
         corrupted["training_admitted"] = True
         with self.assertRaises(ValueError):
@@ -161,6 +179,7 @@ class H344OriginalThreeFamilyBrowser(unittest.TestCase):
         )
         self.assertEqual(result["total_source_frames"], 312)
         self.assertEqual(result["cross_family_frame_pairs_tested"], 15104)
+        self.assertEqual(result["within_family_frame_pairs_tested"], 33412)
         self.assertEqual(result["cross_family_rgb_identical"], 0)
         self.assertFalse(result["training_admitted"])
         self.assertFalse(result["independent_dev_or_blind_ood"])
