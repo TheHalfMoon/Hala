@@ -122,6 +122,21 @@ def decoded_rgb_hash(png: bytes) -> bytes:
         return sha256(rgb.tobytes()).digest()
 
 
+def settle_original_source_paint(page: Any) -> None:
+    """Wait for two actual browser paint frames before source screenshot.
+
+    The original inline JS reflows all four rows synchronously when a scene
+    is configured, and again when its input replaces the button. On hosted
+    headless Linux, racing the compositor can cause the exact known H322
+    CDP screenshot-refused event. Waiting for TWO rAF callbacks makes no
+    DOM changes, dispatches no native action, and relaxes NONE of the
+    screenshot, RGB uniqueness, URL, focus or source-state checks.
+    """
+    need(page.evaluate("""() => new Promise(resolve => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)));
+    })""") is True)
+
+
 def one_original_case(browser: Any, url: str, scene: tuple) -> list[dict]:
     need(type(scene) is tuple and scene in SCENES)
     _, _, _, _, _, idx, code, _ = scene
@@ -137,6 +152,7 @@ def one_original_case(browser: Any, url: str, scene: tuple) -> list[dict]:
         point = [int(box["x"] + box["width"] / 2),
                  int(box["y"] + box["height"] / 2)]
         need(0 <= point[0] < WIDTH and 0 <= point[1] < HEIGHT)
+        settle_original_source_paint(page)
         first = source_capture_png(page)
         first_rgb = decoded_rgb_hash(first)
         click = json.dumps({"actions": [{"kind": "click", "point": point}]},
@@ -151,6 +167,7 @@ def one_original_case(browser: Any, url: str, scene: tuple) -> list[dict]:
             return e instanceof HTMLInputElement ? e.dataset.signal : null;
         }""")
         need(focused == target)
+        settle_original_source_paint(page)
         second = source_capture_png(page)
         second_rgb = decoded_rgb_hash(second)
         need(second_rgb != first_rgb)
