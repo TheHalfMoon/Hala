@@ -3,6 +3,24 @@
 import math
 import re
 from dataclasses import dataclass
+from hashlib import sha256
+
+def require_admitted_gui_training_manifest(raw_manifest: object) -> str:
+    """Reject GUI SFT before model/processor/GPU use unless H199 pins these exact bytes.
+
+    A self-declared rights_cleared field, an environment opt-in or a
+    privately supplied path cannot independently authorize model training.
+    Registry changes require separate source, rights, and split review.
+    """
+    from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
+
+    if type(raw_manifest) is not bytes or not 1 <= len(raw_manifest) <= 4 * 1024 * 1024:
+        raise ValueError('H346_OFFICIAL_GUI_TRAIN_MANIFEST_NOT_ADMITTED')
+    digest = sha256(raw_manifest).hexdigest()
+    if digest not in ADMITTED_TRAIN_MANIFEST_SHAS:
+        raise ValueError('H346_OFFICIAL_GUI_TRAIN_MANIFEST_NOT_ADMITTED')
+    return digest
+
 
 # Optional configuration fields. A configuration that omits them keeps the
 # original behaviour, so an existing experiment configuration still validates.
