@@ -62,3 +62,6 @@ h296/fieldport.html -text
 h319/beaconboard.html -text
 # Lock original H325 research HTML bytes across Windows and Linux.
 h325/railkit.html -text
+
+# Lock original H338 SignalDesk research source bytes across browser OS checkouts.
+h338/signaldesk.html -text
