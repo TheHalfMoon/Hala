@@ -167,17 +167,27 @@ def one_source_case(browser: Any, url: str, scene: tuple) -> list[dict]:
 
 def produce_two_step_train_candidates(
     browser: Any, source_path: Path,
-    trusted_sink: Callable[[bytes, str, str], None], *,
+    trusted_sink: Callable[[bytes, str, str], None] | None = None, *,
     role: str,
+    trusted_batch_sink: Callable[[tuple[tuple[bytes, str, str], ...]], bool]
+    | None = None,
 ) -> dict:
     """Validate ALL cases and distinct model-visible frames before sink.
 
     Sink is only a trusted transient TRAIN-candidate consumer. It must not
     be an eval/OOD model callback or a public/private file writer. A caller
     must separately prove ownership, custody and future data admission.
+
+    Opt-in trusted_batch_sink receives one immutable tuple of 32 immutable
+    (PNG, task, label) tuples after ALL source checks. It must return the
+    literal True. One callback invocation is NOT a storage transaction:
+    the consumer must independently ensure all-or-nothing effects and
+    rollback on errors. Legacy trusted_sink retains its 32 calls.
     """
     need(type(role) is str and role == ROLE)
-    need(callable(trusted_sink))
+    need((trusted_sink is None) != (trusted_batch_sink is None))
+    need(callable(trusted_batch_sink if trusted_batch_sink is not None
+                  else trusted_sink))
     _, url = checked_source(source_path)
     rows = []
     all_rgb = set()
@@ -190,9 +200,18 @@ def produce_two_step_train_candidates(
             all_rgb.add(digest)
             rows.append(row)
     need(len(rows) == 32 and len(all_rgb) == 32)
-    # No partial sink delivery when a source or image validation fails.
-    for row in rows:
-        trusted_sink(row["png"], row["task"], row["native_label"])
+    # All source checks precede any consumer invocation. Legacy calls can
+    # still partially deliver if a consumer fails; opt in to one-shot.
+    if trusted_batch_sink is not None:
+        batch = tuple((row["png"], row["task"], row["native_label"])
+                      for row in rows)
+        need(len(batch) == 32 and all(
+            type(png) is bytes and type(task) is str and type(label) is str
+            for png, task, label in batch))
+        need(trusted_batch_sink(batch) is True)
+    else:
+        for row in rows:
+            trusted_sink(row["png"], row["task"], row["native_label"])
     return {
         "status": "H325_ORIGINAL_TWO_STEP_TRAIN_CANDIDATE_ONLY",
         "source_html_git_blob": SOURCE_BLOB,
@@ -200,6 +219,8 @@ def produce_two_step_train_candidates(
         "original_native_action_states_verified": len(SCENES) * 2,
         "distinct_decoded_rgb_frames": len(all_rgb),
         "train_candidate_messages": len(rows),
+        "candidate_handoff_mode": ("one_shot" if trusted_batch_sink is not None
+                                   else "legacy_per_row"),
         "english_scenes": 8, "arabic_scenes": 8,
         "official_train_admitted": False,
         "independent_dev_ood_qualified": False,
