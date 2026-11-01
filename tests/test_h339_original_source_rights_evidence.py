@@ -55,6 +55,7 @@ def trusted_source_shapes() -> tuple[dict, dict]:
         "external_css_resources": 0,
         "source_author_or_title_independently_proven": False,
         "introduction_commit_cryptographically_signed": False,
+        "adapted_model_gain_proven": False,
         "model_generations": 0, "optimizer_steps": 0,
         "external_html_assets_or_links": 0,
         "dynamic_network_loaders": 0,
