@@ -17,7 +17,7 @@ from typing import Any, Callable
 
 from h199.native_action_sft import WIDTH, HEIGHT, parse_actions, source_task_prompt
 from h263.native_browser_executor import execute_one, new_offline_context
-from h264.screenshot_locked_research import _observed_png
+from h322.source_capture import source_capture_png
 
 SOURCE_BLOB = "f0ac89b2be6b6cc5200ce4a220dbf0c2e00aeaac"
 IDS = ("S-401", "S-415", "S-428", "S-439",
@@ -131,7 +131,7 @@ def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
         ]
         need(0 <= point[0] < WIDTH and 0 <= point[1] < HEIGHT,
              "TRAIN target outside model screenshot")
-        png = _observed_png(page)
+        png = source_capture_png(page)
         with Image.open(BytesIO(png)) as im:
             need(im.format == "PNG" and im.size == (WIDTH, HEIGHT),
                  "TRAIN original full screenshot invalid")
@@ -148,7 +148,7 @@ def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
         # Image + task alone are policy inputs. The reference point was
         # extracted here ONLY because this is a self-authored TRAIN fixture.
         need(page.url == url and
-             sha256(_observed_png(page)).hexdigest() == byte_digest,
+             sha256(source_capture_png(page)).hexdigest() == byte_digest,
              "TRAIN screenshot changed between oracle extraction and action")
         outcome = execute_one(page, completion)
         after = inspect_all_eight(page)
