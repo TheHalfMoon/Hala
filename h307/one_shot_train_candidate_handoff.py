@@ -3,13 +3,15 @@
 This is NOT a dataset admission, trainer, or guarantee of downstream
 transactional storage. The owner-provided consumer MUST itself be atomic:
 a consumer that writes and then raises may leave partial external state.
-Unlike H286's per-row sink, this boundary calls the external consumer
+It also rejects duplicate model-visible decoded RGB frames, not just
+compressed PNG-byte duplicates. Unlike H286's per-row sink, this boundary calls the external consumer
 only ONCE, after all 24 source-browser candidates pass qualification.
 Never use this for DEV, OOD, model scoring, or public media export.
 """
 from __future__ import annotations
 
 from hashlib import sha256
+from io import BytesIO
 from pathlib import Path
 from typing import Callable
 
@@ -50,6 +52,7 @@ def handoff_train_candidate_batch_once(
     need(callable(trusted_atomic_consumer), "ATOMIC_BATCH_CONSUMER_REQUIRED")
     staged: list[tuple[bytes, str, str]] = []
     seen: set[str] = set()
+    seen_model_pixels: set[str] = set()
     total_bytes = 0
 
     def collect(png: bytes, prompt: str, completion: str) -> None:
@@ -65,7 +68,21 @@ def handoff_train_candidate_batch_once(
         need(total_bytes <= MAX_BATCH_BYTES, "BATCH_MEMORY_LIMIT")
         digest = sha256(png).hexdigest()
         need(digest not in seen, "DUPLICATE_CANDIDATE_IMAGE")
+        # PNG metadata, alpha, or re-encoding can change PNG/RGBA hashes
+        # while preserving the exact RGB pixels the Qwen processor sees.
+        # H285's upstream RGBA uniqueness is not an RGB uniqueness proof.
+        # Decode bounded original screenshots BEFORE any external handoff.
+        from PIL import Image
+        with Image.open(BytesIO(png)) as original:
+            need(original.format == "PNG" and original.size == (960, 720),
+                 "INVALID_MODEL_VISIBLE_TRAIN_FRAME")
+            rgb = original.convert("RGB")
+            rgb.load()
+            pixel_digest = sha256(rgb.tobytes()).hexdigest()
+        need(pixel_digest not in seen_model_pixels,
+             "DUPLICATE_MODEL_VISIBLE_TRAIN_FRAME")
         seen.add(digest)
+        seen_model_pixels.add(pixel_digest)
         staged.append((png, prompt, completion))
 
     try:
@@ -96,7 +113,8 @@ def handoff_train_candidate_batch_once(
          and proof.get("source_disjoint_blind_ood") is False
          and proof.get("adapted_gui_gain_proven") is False
          and proof.get("media_or_labels_saved_to_public_output") is False
-         and len(staged) == COUNT and len(seen) == COUNT,
+         and len(staged) == COUNT and len(seen) == COUNT
+         and len(seen_model_pixels) == COUNT,
          "UNQUALIFIED_OR_INCOMPLETE_TRAIN_CANDIDATES")
 
     # Exactly one external handoff, never 24 independent partial writes.
