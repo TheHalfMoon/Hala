@@ -119,6 +119,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
                 self.browser, HTML, scene, fixture, role=ROLE)
             self.assertEqual(len(called), 2)
             self.assertEqual(output["native_actions"], 2)
+            self.assertEqual(output["native_dispatched_actions"], 2)
             self.assertTrue(output["focus_click_dispatched"])
             self.assertTrue(output["type_dispatched"])
             self.assertTrue(output["source_task_success"])
@@ -144,6 +145,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
         result = run_original_form_sequence(
             self.browser, HTML, scene, wrong, role=ROLE)
         self.assertEqual(result["native_actions"], 1)
+        self.assertEqual(result["native_dispatched_actions"], 1)
         self.assertEqual(len(calls), 1)
         self.assertTrue(result["focus_click_dispatched"])
         self.assertFalse(result["type_dispatched"])
@@ -162,6 +164,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
             self.browser, HTML, scene, wrong, role=ROLE)
         self.assertEqual(len(calls), 1)
         self.assertEqual(result["native_actions"], 1)
+        self.assertEqual(result["native_dispatched_actions"], 1)
         self.assertTrue(result["source_focus_guard_refused"])
         self.assertFalse(result["source_task_success"])
 
@@ -178,6 +181,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
                     self.browser, HTML, scene, wrong, role=ROLE)
                 self.assertEqual(len(calls), 2)
                 self.assertEqual(result["native_actions"], 2)
+                self.assertEqual(result["native_dispatched_actions"], 1)
                 self.assertTrue(result["focus_click_dispatched"])
                 self.assertFalse(result["type_dispatched"])
                 self.assertFalse(result["source_task_success"])
@@ -196,6 +200,7 @@ class H296RealOriginalNativeFormTests(unittest.TestCase):
             result = run_original_form_sequence(
                 self.browser, HTML, scene, policy, role=ROLE)
             self.assertEqual(result["native_actions"], abstain_step)
+            self.assertEqual(result["native_dispatched_actions"], abstain_step - 1)
             self.assertFalse(result["source_task_success"])
             self.assertFalse(result["type_dispatched"])
             self.assertEqual(len(called), abstain_step)
