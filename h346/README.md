@@ -30,9 +30,11 @@ to that registry or certify independent review.
   baseline access, GPU use or output creation, even with a forged rights flag.
 - Positive digest matching is exercised **only** under a locally patched,
   invented unittest registry; production H199 remains empty.
-- Existing training integrity tests use a test-scoped invented allowlist solely
-  to reach downstream media-corruption and completed-resume checks.
-- Hosted H346 CI covers Windows and Ubuntu / Python 3.11 and 3.12.
+- Existing training integrity and H82 orphan-checkpoint tests use a test-scoped
+  invented allowlist solely to reach downstream media-corruption and
+  checkpoint-recovery checks; no production admission or optimizer step.
+- Hosted H346 CI covers Windows and Ubuntu / Python 3.11 and 3.12,
+  including downstream H82 orphan checkpoint regression tests.
 - No private source, gold, media, weights, credentials or receipts are added.
 
 This gate applies to the legacy `train_adapter.py` GUI SFT entrypoint; it
