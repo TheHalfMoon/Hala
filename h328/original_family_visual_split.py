@@ -156,7 +156,7 @@ def audit_original_train_exposed_split(
         callback_count += 1
         for png, task, label in rows:
             need(type(task) is str and type(label) is str
-                 and 10 < len(task) <= 700
+                 and 10 < len(task) <= 2000
                  and 20 < len(label) <= 150)
             train_fingerprints.append(decoded_rgb_digest(png))
         return True
