@@ -3,10 +3,12 @@
 All fingerprints here are invented, not screenshots or Qwen output.
 """
 from hashlib import sha256
+import json
 import unittest
 
 from h344.original_cross_family_visual_proximity import (
     BANDS, COUNTS, PAIRS, ROLE, cross_family_counts,
+    source_only_public_band_receipt,
 )
 
 
@@ -49,6 +51,36 @@ class H344InventedOnlyContracts(unittest.TestCase):
         for key in ("training_admitted", "independent_dev_or_blind_ood",
                     "measured_model_gain", "can_release"):
             self.assertIs(summary[key], False)
+
+    def test_frozen_source_only_receipt_cannot_expose_private_fields(self):
+        result = cross_family_counts(fictional_fingerprints())
+        safe = source_only_public_band_receipt(result)
+        self.assertEqual(safe["public_source_frames"], 312)
+        self.assertEqual(safe["cross_family_compared_pairs"], 15104)
+        self.assertTrue(safe["not_rights_or_semantic_ood_or_model_gain"])
+        self.assertFalse(safe["train_admitted"])
+        self.assertEqual(
+            sum(sum(v.values()) for v in
+                safe["per_family_pair_bins"].values()), 15104)
+        self.assertNotIn("model_output", json.dumps(safe))
+        self.assertNotIn("source_gold", json.dumps(safe))
+        for injection in (
+            {"raw_model_point": [1, 2]},
+            {"pixel_data": "PRIVATE"},
+            {"generated_model_gain": True},
+        ):
+            with self.subTest(injection=injection), self.assertRaises(
+                ValueError
+            ):
+                source_only_public_band_receipt(dict(result, **injection))
+        corrupted = dict(result)
+        corrupted["training_admitted"] = True
+        with self.assertRaises(ValueError):
+            source_only_public_band_receipt(corrupted)
+        corrupted = dict(result)
+        corrupted["cross_family_lossy_perceptual_zero_pairs"] = 15104
+        with self.assertRaises(ValueError):
+            source_only_public_band_receipt(corrupted)
 
     def test_duplicate_rgb_cross_family_rejected(self):
         sample = fictional_fingerprints()
@@ -133,6 +165,13 @@ class H344OriginalThreeFamilyBrowser(unittest.TestCase):
         self.assertFalse(result["training_admitted"])
         self.assertFalse(result["independent_dev_or_blind_ood"])
         self.assertEqual(result["actual_pretrained_or_adapted_generations"], 0)
+        safe = source_only_public_band_receipt(result)
+        self.assertEqual(safe["cross_family_compared_pairs"], 15104)
+        self.assertFalse(safe["blind_ood"])
+        # Public aggregate-only evidence, never model actions/images/points.
+        print("H344_ACTUAL_PUBLIC_SOURCE_BANDS="
+              + json.dumps(safe, sort_keys=True, separators=(",", ":")),
+              flush=True)
 
 
 if __name__ == "__main__":
