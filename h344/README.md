@@ -40,3 +40,24 @@ The 1,024-bit perceptual distance is **lossy** and can be zero between
 distinct decoded-RGB images. Report only the actual numerical source
 histogram and never turn a particular threshold into a claim of source
 independence, legal screenshot ML use, blinded OOD or Qwen accuracy.
+
+
+## Within-family versus cross-family synthetic similarity
+
+Without rendering additional screenshots or using any model, H344 now
+also computes source-only dHash distance histograms for all **33,412
+within-family image pairs**: RailKit **496**, SignalDesk **32,640**,
+BeaconBoard **276**. All decoded-RGB digests remain unique, and the same
+five frozen lossy hash bands are used for these *within* populations and
+for the **15,104 cross-family pairs**. The same strict aggregate-only
+receipt reports all six fixed histograms, with exact pair-total checks,
+no per-image or scene outputs.
+
+This helps detect correlated synthetic variations in the 256
+SignalDesk images relative to differences across different GUI
+families. Pair frequencies are **not** independent Bernoulli observations:
+many pairs reuse the same 312 images, so do not calculate binomial
+confidence intervals or infer independent data size from 48,516 pair
+comparisons. The two TRAIN-candidate source families still require
+independent original image-training rights and an H199 approval; none
+is a fresh blind OOD family.
