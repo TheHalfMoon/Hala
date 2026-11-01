@@ -21,7 +21,7 @@ from h296.fieldport_sequence_research import (
     checked_source as checked_dev_source,
     inspect_all_fields, original_scene,
 )
-from h264.screenshot_locked_research import _observed_png
+from h322.source_capture import source_capture_png
 
 MAX_PNG_BYTES = 4 * 1024 * 1024
 FRAME_SIZE = (960, 720)
@@ -149,7 +149,7 @@ def audit_original_exposed_rgb_split(
         for scene in SCENES:
             with original_scene(browser, dev_path, dev_url, scene) as page:
                 _need(inspect_all_fields(page) == {item: "" for item in IDS})
-                registry.add_exposed_dev_research(_observed_png(page))
+                registry.add_exposed_dev_research(source_capture_png(page))
         stage = "SPLIT_FINALIZE"
         return registry.finish()
     except Exception as error:
