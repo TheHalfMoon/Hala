@@ -117,6 +117,28 @@ def cross_family_counts(families: object) -> dict:
         cross_total += n
         cross_exact += bands["zero"]
     need(cross_total == (32 * 256 + 32 * 24 + 256 * 24))
+    # Same visual pipeline and screenshot custody: compare all source
+    # permutations *within* each original GUI family, with no new renders.
+    # This reveals synthetic monoculture risk without assuming that a
+    # perceptual hash defines independent samples.
+    within_reports = {}
+    within_total = 0
+    for family, originals in families.items():
+        histogram = {band: 0 for band in BANDS}
+        for i, left in enumerate(originals):
+            for right in originals[i + 1:]:
+                histogram[_band((left[0] ^ right[0]).bit_count())] += 1
+        n = len(originals) * (len(originals) - 1) // 2
+        need(sum(histogram.values()) == n)
+        within_reports[family] = {
+            "pairs": n,
+            "perceptual_distance_histogram": histogram,
+            "perceptual_near_0_to_32_pairs": sum(
+                histogram[band] for band in BANDS[:3]),
+            "rgb_identical_pairs": 0,
+        }
+        within_total += n
+    need(within_total == 33412)
     return {
         "status": ROLE,
         "public_source_frame_counts": dict(COUNTS),
@@ -124,6 +146,8 @@ def cross_family_counts(families: object) -> dict:
         "public_exposed_not_blind_research_families": 1,
         "total_source_frames": 312,
         "cross_family_frame_pairs_tested": cross_total,
+        "within_family_frame_pairs_tested": within_total,
+        "within_family_pair": within_reports,
         "cross_family_rgb_identical": 0,
         "cross_family_lossy_perceptual_zero_pairs": cross_exact,
         "per_family_pair": reports,
@@ -148,6 +172,7 @@ def source_only_public_band_receipt(report: object) -> dict:
         "status", "public_source_frame_counts", "candidate_source_families",
         "public_exposed_not_blind_research_families",
         "total_source_frames", "cross_family_frame_pairs_tested",
+        "within_family_frame_pairs_tested", "within_family_pair",
         "cross_family_rgb_identical",
         "cross_family_lossy_perceptual_zero_pairs",
         "per_family_pair",
@@ -162,6 +187,8 @@ def source_only_public_band_receipt(report: object) -> dict:
          and report["public_exposed_not_blind_research_families"] == 1
          and report["total_source_frames"] == 312
          and report["cross_family_frame_pairs_tested"] == 15104
+         and type(report["within_family_frame_pairs_tested"]) is int
+         and report["within_family_frame_pairs_tested"] == 33412
          and report["cross_family_rgb_identical"] == 0
          and report[
              "perceptual_distance_is_lossy_not_semantic_or_rights_evidence"
@@ -201,12 +228,36 @@ def source_only_public_band_receipt(report: object) -> dict:
         total_exact += hist["zero"]
     need(type(report["cross_family_lossy_perceptual_zero_pairs"]) is int
          and report["cross_family_lossy_perceptual_zero_pairs"] == total_exact)
+    within_original = report["within_family_pair"]
+    need(type(within_original) is dict
+         and set(within_original) == set(COUNTS))
+    safe_within = {}
+    for family, count in COUNTS.items():
+        item = within_original[family]
+        n = count * (count - 1) // 2
+        need(type(item) is dict and set(item) == {
+            "pairs", "perceptual_distance_histogram",
+            "perceptual_near_0_to_32_pairs", "rgb_identical_pairs",
+        } and type(item["pairs"]) is int and item["pairs"] == n
+             and type(item["rgb_identical_pairs"]) is int
+             and item["rgb_identical_pairs"] == 0)
+        hist = item["perceptual_distance_histogram"]
+        need(type(hist) is dict and set(hist) == set(BANDS)
+             and all(type(hist[k]) is int and 0 <= hist[k] <= n
+                     for k in BANDS)
+             and sum(hist.values()) == n
+             and type(item["perceptual_near_0_to_32_pairs"]) is int
+             and item["perceptual_near_0_to_32_pairs"]
+                 == sum(hist[k] for k in BANDS[:3]))
+        safe_within[family] = {k: hist[k] for k in BANDS}
     return {
         "status": "H344_PUBLIC_EXPOSED_SOURCE_ONLY_AGGREGATE_BANDS",
         "public_source_frames": 312,
         "cross_family_compared_pairs": 15104,
+        "within_family_compared_pairs": 33412,
         "decoded_rgb_identical_frames_refused": True,
         "per_family_pair_bins": safe_bins,
+        "within_family_pair_bins": safe_within,
         "not_rights_or_semantic_ood_or_model_gain": True,
         "train_admitted": False, "blind_ood": False,
         "trained_gain": False, "release": False,
