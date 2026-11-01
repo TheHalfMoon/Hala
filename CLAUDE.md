@@ -17,3 +17,7 @@ Use signed DCO commits; no shared-history rewriting. Feature branches and review
 - GPU: free Colab T4 has actual frozen FP16/int8/NF4 evaluation, two-step LoRA save/reload/resume and bounded real loopback smoke evidence. Representative model quality, native tasks and release remain unqualified. Original ephemeral adapters expired; numerical records remain. Existing local d1 diagnostics do not qualify a Hala foundation or learned routing adoption.
 
 Graft telemetry is disabled. Its installed build/check/blast commands qualify source graph freshness and impact; it is not an isolated execution sandbox or correctness verifier. Jev makes typed judgments and cannot produce prose review findings; pair it with independent PStack review.
+
+## Source-pinned Google EGM architecture review
+
+For substantial new training, evaluation or safety architecture changes, read `docs/egm/HALA.md` and `docs/designs/hala-rtl-visual-action-learning-egm.md` before implementation. EGM is a design-review tool, not a GUI or vision-language model. Use the **full pinned upstream EGM plugin** in an authorized harness and native **fresh-context, read-only** Goldfish reviewer with verified source/standards reads; do not call the same-session response a Goldfish review. If no verified independent reviewer is available, record `REVIEW_BLOCKED`. A design or review cannot substitute for existing PStack/Jev/Graft, founder approvals, real source rights, H199 TRAIN admission, blinded evaluation, or genuine measured LoRA gain. Do not reveal hidden gold/private media or bypass H293/H294.
