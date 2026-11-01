@@ -154,24 +154,44 @@ def combined_candidacy_report(
              == "3303396b77dc7671cd97f425c644f71b6b0b664e"
          and railkit.get("source_pinned_git_blob") is True
          and railkit.get("source_new_in_origin_parent") is True
+         and railkit.get("origin_is_ancestor_of_checked_head") is True
          and railkit.get("apache_2_license_blob_unchanged_from_origin") is True
+         and railkit.get("external_html_assets_or_links") == 0
+         and railkit.get("external_css_imports_or_urls") == 0
+         and railkit.get("dynamic_script_network_loader_patterns") == 0
+         and railkit.get("inline_script_count") == 1
+         and railkit.get("inline_style_count") == 1
          and signaldesk.get("introduction_commit") == ORIGIN
          and signaldesk.get("previous_parent_lacks_source") is True
+         and signaldesk.get("introduction_is_ancestor_of_current_commit") is True
          and signaldesk.get("unchanged_apache_2_license_git_blob") is True
+         and signaldesk.get("inline_script_count") == 1
+         and signaldesk.get("inline_style_count") == 1
+         and signaldesk.get("external_css_resources") == 0
          and signaldesk.get("pinned_original_html_git_blob") == SOURCE_BLOB
          and signaldesk.get("external_html_assets_or_links") == 0
          and signaldesk.get("dynamic_network_loaders") == 0)
     need(all(railkit.get(k) is False for k in (
+        "verified_github_commit_cryptographic_signature",
+        "complete_external_source_history_proven",
+        "adapted_model_gain_proven",
         "independent_copyright_title_reviewed",
         "generated_screenshot_license_scope_independently_reviewed",
         "legal_train_use_authorized", "official_h199_train_admitted",
         "independent_dev_or_blind_ood_qualified", "can_release"))
          and all(signaldesk.get(k) is False for k in (
+             "source_author_or_title_independently_proven",
+             "introduction_commit_cryptographically_signed",
+             "adapted_model_gain_proven",
              "full_external_copyright_title_proven",
              "generated_screenshot_training_rights_independently_granted",
              "independent_source_family_rights_review_completed",
              "official_h199_train_admitted", "dev_or_blind_ood_qualified",
              "can_release"))
+         and railkit.get("model_generations") == 0
+         and railkit.get("optimizer_steps") == 0
+         and signaldesk.get("model_generations") == 0
+         and signaldesk.get("optimizer_steps") == 0
          and len(SCENES) == 128
          and sum(x[1] == "en" for x in SCENES) == 64
          and sum(x[1] == "ar" for x in SCENES) == 64
