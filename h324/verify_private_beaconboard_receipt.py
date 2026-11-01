@@ -107,6 +107,7 @@ def verify_success(data: object) -> dict:
         "owner_private_kernel_identity_external_verification_required": True,
         "public_source_exposed_not_blind": True,
         "official_train_dev_ood_admitted": False,
+        "blind_ood_proven": False,
         "adapted_gain_proven": False,
     }
 
