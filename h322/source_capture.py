@@ -9,7 +9,10 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
-from h264.screenshot_locked_research import _observed_png
+def _observed_png(page: Any) -> bytes:
+    # Keep the original validated H264 capture, loaded only on browser use.
+    from h264.screenshot_locked_research import _observed_png as validated
+    return validated(page)
 
 _CAPTURE_ERROR = (
     "Page.screenshot: Protocol error (Page.captureScreenshot): "
