@@ -56,7 +56,7 @@ class H331PromptContracts(unittest.TestCase):
             self.assertIn(word, FIRST_CLICK_ONLY)
         for forbidden in ("B-11", "B-22", "B-33", "B-44", "SIM-",
                           "pixel_values", "beaconboard", "railkit",
-                          "[[", "point":[,):
+                          "[[", "point\":["):
             self.assertNotIn(str(forbidden), FIRST_CLICK_ONLY.lower())
         self.assertIn("x=0", FIRST_CLICK_ONLY)
         self.assertIn("x=999", FIRST_CLICK_ONLY)
