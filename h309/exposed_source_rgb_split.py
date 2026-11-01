@@ -68,9 +68,14 @@ class ExposedSplitRegistry:
             limit = DEV_COUNT if dev else TRAIN_COUNT
             _need(len(target) < limit)
             digest = model_visible_rgb_fingerprint(png)
-            _need(digest not in target)
-            _need(not dev or digest not in self._train)
+            if digest in target:
+                raise SplitAuditRefused("H309 DUPLICATE_MODEL_VISIBLE_RGB")
+            if dev and digest in self._train:
+                raise SplitAuditRefused("H309 CROSS_ROLE_MODEL_VISIBLE_RGB_COLLISION")
             target.add(digest)
+        except SplitAuditRefused:
+            self._sealed = True
+            raise
         except Exception:
             self._sealed = True
             raise SplitAuditRefused("H309 SOURCE_SPLIT_REFUSED") from None
@@ -147,6 +152,15 @@ def audit_original_exposed_rgb_split(
                 registry.add_exposed_dev_research(_observed_png(page))
         stage = "SPLIT_FINALIZE"
         return registry.finish()
-    except Exception:
-        # Safe fixed stage only: never expose raw source or per-case detail.
-        raise SplitAuditRefused("H309 SOURCE_SPLIT_AUDIT_FAILED_" + stage) from None
+    except Exception as error:
+        # Fixed categorical stage and cause only. No scene, image, hash,
+        # source task, private label, browser exception text or coordinates.
+        safe_causes = {
+            "H309 DUPLICATE_MODEL_VISIBLE_RGB": "DUPLICATE_RGB",
+            "H309 CROSS_ROLE_MODEL_VISIBLE_RGB_COLLISION": "CROSS_ROLE_RGB",
+            "H309 INVALID_MODEL_VISIBLE_FRAME": "INVALID_FRAME",
+        }
+        cause = safe_causes.get(str(error), "SOURCE_RUNTIME_OR_CONTRACT")
+        raise SplitAuditRefused(
+            "H309 SOURCE_SPLIT_AUDIT_FAILED_" + stage + "_" + cause
+        ) from None
