@@ -13,6 +13,7 @@ import subprocess
 import sys
 
 from h370.browser_failure_stage import STAGES
+from h373.screenshot_error_buckets import CAPTURE_BUCKETS
 
 CASES = (
     ("h319", "test_h319_original_dynamic_bilingual_browser.py", 9),
@@ -22,7 +23,7 @@ SUMMARY = re.compile(r"Ran (\d+) tests? in [\d.]+s")
 CODES = re.compile(
     r"(H319 DYNAMIC_SOURCE_OR_POLICY_REFUSED|"
     r"H337 SOURCE_ONLY_MISS_GEOMETRY_REFUSED) "
-    r"stage=([a-z_]+) kind=([a-z_]+)"
+    r"stage=([a-z_]+) kind=([a-z_]+)(?: capture=([a-z_]+))?"
 )
 ALLOWED_KINDS = {
     "value", "assertion", "type", "key", "index", "runtime",
@@ -32,10 +33,15 @@ ALLOWED_KINDS = {
 
 def scrub_failure(output: str, flow: str) -> str:
     """Return only allowlisted stage and exception class from raw logs."""
-    for prefix, stage, kind in CODES.findall(output):
+    for prefix, stage, kind, capture in CODES.findall(output):
         if (stage in STAGES[flow] and kind in ALLOWED_KINDS
                 and prefix.startswith(flow.upper())):
-            return "stage=" + stage + " kind=" + kind
+            safe = "stage=" + stage + " kind=" + kind
+            if (capture in CAPTURE_BUCKETS and
+                    kind in {"browser_error", "browser_timeout"} and
+                    stage.endswith(("_image_capture", "_post_policy_frame"))):
+                safe += " capture=" + capture
+            return safe
     return "stage=unclassified kind=unclassified"
 
 

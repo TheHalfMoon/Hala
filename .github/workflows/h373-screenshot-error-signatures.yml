@@ -1,0 +1,39 @@
+name: H373 screenshot error signature redaction (NO TRAIN)
+
+on:
+  pull_request:
+    paths:
+      - h373/**
+      - h370/browser_failure_stage.py
+      - h371/run_browser_repeats.py
+      - tests/test_h373_screenshot_error_buckets.py
+      - .github/workflows/h373-screenshot-error-signatures.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-source-browser-signature-categories:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve source Git identity
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Test only invented errors and strictly redacted public phase summaries
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -S -B -m unittest tests.test_h373_screenshot_error_buckets tests.test_h372_first_frame_diagnostics tests.test_h370_browser_failure_stage tests.test_h371_browser_repeats -q
+      - name: Reject source tree modification
+        run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
