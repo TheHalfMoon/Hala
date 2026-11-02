@@ -56,6 +56,12 @@ It reports only low-entropy bilingual aggregate baseline successes,
 candidate successes, snap-change counts and paired win/loss/tie totals,
 with strictly validated arithmetic and no per-case images, points,
 model output, task identifiers, source oracle, weights or logits.
+A **no-op snap cannot claim a paired win or loss**: if the candidate
+native action is byte-identical to baseline, any discordant source
+outcome aborts the entire study instead of attributing browser
+nondeterminism to the pixel rule. The private aggregate verifier also
+rejects more paired discordances than actual action changes. This is
+a falsifiability gate, not evidence of improved Qwen performance.
 
 Source: original `h319/beaconboard.html` Git blob
 `6e8467e123c7f0fbac77ea553622ab8e659f9c16` at exact H351
