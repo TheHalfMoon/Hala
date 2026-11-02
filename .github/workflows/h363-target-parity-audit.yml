@@ -1,0 +1,40 @@
+name: H363 original-source target parity adversarial audit (NO MODEL)
+
+on:
+  pull_request:
+    paths:
+      - h357/source_candidate.py
+      - h362/**
+      - h363/**
+      - tests/test_h362_source_balance.py
+      - tests/test_h363_target_parity.py
+      - .github/workflows/h363-target-parity-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parity-audit:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve original Git bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Adversarial source arithmetic only (no browser, GPU or model)
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -m unittest tests.test_h363_target_parity tests.test_h362_source_balance -q
+      - name: No generated media, gold or model artifacts
+        run: python -c "import subprocess; assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True)"
