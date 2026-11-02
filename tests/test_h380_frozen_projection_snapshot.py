@@ -24,10 +24,10 @@ def sha(raw: bytes) -> str:
 def fixture(root: Path):
     settings = b'{"model":"invented-cpu-only","flags":[]}'
     rows = (
-        {"id":"invented-001", "family":"A", "language":"en",
+        {"id":"invented-001", "family":"A", "language":"en", "split":"train",
          "component":"mind", "prompt":"Select Save", "completion":"ok",
          "image":None, "image_sha256":None},
-        {"id":"invented-002", "family":"B", "language":"ar",
+        {"id":"invented-002", "family":"B", "language":"ar", "split":"train",
          "component":"type", "prompt":"اختر حفظ", "completion":"تم",
          "image":"images/invented.png", "image_sha256":"a"*64},
     )
