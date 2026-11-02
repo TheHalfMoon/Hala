@@ -37,7 +37,8 @@ from h75.processor_audit import select_processor_audit_rows, audit_summary
 from training.checkpoints import (IDENTITY_FIELDS, atomic_json, completed_checkpoint_result,
                                   load_checkpoint, publish_checkpoint)
 from training.masking import completion_labels
-from training.preflight import TrainingConfig, qualify_environment, validate_experiment
+from training.preflight import (TrainingConfig, qualify_environment,
+                                require_admitted_gui_training_manifest, validate_experiment)
 from h85.model_cache import HF_HOME, pinned_cache_kwargs
 from h99.sampler import STRATEGY as H99_SAMPLER, build_balanced_plan
 from h106.training_plan import STRATEGY as H106_SAMPLER, get_plan as get_h106_joint_plan
@@ -107,11 +108,20 @@ def create_training_scaler(torch, precision):
     return torch.amp.GradScaler('cuda', init_scale=1.0, enabled=precision == 'fp16')
 
 
-def load_json(path):
+def load_json(path, *, require_gui_admission=False):
     path = Path(path)
-    if path.stat().st_size > 4 * 1024 * 1024:
+    if require_gui_admission and path.is_symlink():
+        raise ValueError('H346_OFFICIAL_GUI_TRAIN_MANIFEST_NOT_ADMITTED')
+    size = path.stat().st_size
+    if not 1 <= size <= 4 * 1024 * 1024:
         raise ValueError('Bounded experiment JSON required')
-    return strict_json(path.read_text(encoding='utf-8'))
+    with path.open('rb') as handle:
+        raw = handle.read(4 * 1024 * 1024 + 1)
+    if len(raw) != size or len(raw) > 4 * 1024 * 1024:
+        raise ValueError('Experiment JSON changed during bounded read')
+    if require_gui_admission:
+        require_admitted_gui_training_manifest(raw)
+    return strict_json(raw.decode('utf-8'))
 
 
 def media_format(row, native_drag_jpeg=False) -> str:
@@ -344,7 +354,9 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         reject_kaggle_runtime()
     if config.model_id != 'Qwen/Qwen3-VL-2B-Instruct':
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
-    manifest = load_json(manifest_path)
+    # A manifest's own rights_cleared flag is never official H199 admission.
+    # Compare the SAME bytes that are parsed, before any weights or GPU use.
+    manifest = load_json(manifest_path, require_gui_admission=True)
     baseline = load_json(baseline_path)
     if manifest.get('source_schema') == H54_DRAG_SCHEMA:
         validate_drag_baseline(baseline)

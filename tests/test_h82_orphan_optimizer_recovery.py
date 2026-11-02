@@ -210,7 +210,11 @@ class OrphanRecovery(unittest.TestCase):
             self.assertFalse((output / "latest.json").exists())
             # H61 must identify the checkpoint-version directory and route
             # back into resume, not refuse the output as a fresh run.
-            with (mock.patch("training.scripts.train_adapter.platform.system",
+            # Invented test-only admission reaches downstream orphan recovery;
+            # H199's real registry stays empty and no GPU is used.
+            with (mock.patch("h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS",
+                             frozenset({sha256_file(paths[1])})),
+                  mock.patch("training.scripts.train_adapter.platform.system",
                              return_value="Linux"),
                   mock.patch.dict(os.environ, {"HALA_REMOTE_TRAINING_ALLOWED": "1"}),
                   mock.patch("training.scripts.train_adapter.probe") as gpu_probe):

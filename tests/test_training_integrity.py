@@ -187,7 +187,11 @@ class TrainingIntegrityTests(unittest.TestCase):
             examples, image, _, manifest = self.artifact(directory)
             _, paths = self.write_runner_inputs(directory, manifest)
             image.write_bytes(b'replaced')
-            with patch('training.scripts.train_adapter.platform.system', return_value='Linux'), \
+            # In-memory invented allowlist exercises the downstream media guard;
+            # it never modifies the production H199 admission registry.
+            with patch('h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS',
+                       frozenset({sha256_file(paths[1])})), \
+                    patch('training.scripts.train_adapter.platform.system', return_value='Linux'), \
                     patch.dict('os.environ', {'HALA_REMOTE_TRAINING_ALLOWED': '1'}), \
                     patch('training.scripts.train_adapter.probe') as probe:
                 with self.assertRaisesRegex(ValueError, 'digest'):
@@ -205,7 +209,10 @@ class TrainingIntegrityTests(unittest.TestCase):
                          dataset_sha256=manifest['dataset_sha256'], manifest_sha256=sha256_file(paths[1]))
             output = directory / 'output'
             publish_checkpoint(output, state, self.write_checkpoint)
-            with patch('training.scripts.train_adapter.platform.system', return_value='Linux'), \
+            # A test-scoped fictitious admission isolates checkpoint finalization.
+            with patch('h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS',
+                       frozenset({sha256_file(paths[1])})), \
+                    patch('training.scripts.train_adapter.platform.system', return_value='Linux'), \
                     patch.dict('os.environ', {'HALA_REMOTE_TRAINING_ALLOWED': '1'}), \
                     patch('training.scripts.train_adapter.probe') as probe:
                 result = train(paths[0], examples, paths[1], paths[2], output, resume=True)
