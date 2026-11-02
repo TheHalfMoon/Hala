@@ -5,6 +5,7 @@ on:
     paths:
       - h367/**
       - tests/test_h367_four_row_preflight.py
+      - tests/test_h368_pad_integrity.py
       - h364/native_batch.py
       - h364/run_real_cpu_batch.py
       - .github/workflows/h367-four-row-source-selector.yml
@@ -35,6 +36,6 @@ jobs:
       - name: Verify source-selector, action masks and int64 overflow refusal (stdlib only)
         env:
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python -S -m unittest tests.test_h367_four_row_preflight tests.test_h364_native_batch tests.test_h199_native_action_sft -q
+        run: python -S -m unittest tests.test_h368_pad_integrity tests.test_h367_four_row_preflight tests.test_h364_native_batch tests.test_h199_native_action_sft -q
       - name: Verify no synthetic screenshot or gold is written
         run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
