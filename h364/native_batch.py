@@ -112,6 +112,7 @@ def real_cpu_visual_batch(examples: list[dict], pad_id: int) -> dict:
             and all(type(x) is dict and set(x) == EXPECTED_KEYS
                     for x in examples))
     from h216.real_qwen_processor_alignment import visual_tensor_receipt
+    from h369.image_token_contract import image_token_cardinality
     import torch
     require(torch.version.cuda is None and not torch.cuda.is_available())
     plan = padded_token_plan(examples, pad_id)
@@ -145,6 +146,11 @@ def real_cpu_visual_batch(examples: list[dict], pad_id: int) -> dict:
         # geometry points at fewer/more patch rows or a reordered image.
         require(grid.dtype in (torch.int32, torch.int64))
         verified_grid_patch_volume(grid[0].tolist(), int(raw_pixels.shape[0]))
+        # The exact pinned Qwen3-VL processor must expose one image
+        # placeholder per 2x2 merged visual patch, in BOTH prompt+full.
+        # Prefix equality alone misses forged/truncated vision tokens.
+        image_token_cardinality(sample["prefix_ids"], sample["full_ids"],
+                                int(raw_pixels.shape[0]))
         pixels.append(raw_pixels)
         grids.append(grid)
     batch = {

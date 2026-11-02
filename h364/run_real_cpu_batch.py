@@ -24,7 +24,8 @@ from h357.source_candidate import capture_source_candidate
 from h358.source_candidate import capture_candidate
 from h359.native_candidate_bridge import PREFIX, audit_review_bundle, safe_regular
 from h361.original_qwen_processor import _candidate_rows
-from h364.native_batch import SCHEMA, ROLE, real_cpu_visual_batch
+from h364.native_batch import SCHEMA, ROLE, real_cpu_visual_batch, padded_token_plan
+from h369.image_token_contract import PINNED_IMAGE_TOKEN_ID
 
 
 def require(ok: bool):
@@ -151,6 +152,24 @@ def main() -> None:
         except ValueError:
             mixed_dtype_refused = True
         require(mixed_dtype_refused)
+        # H369: source image tensors/grid can remain intact while a
+        # forged token prefix+full removes a Qwen image placeholder.
+        # H368 prefix/padding rules alone cannot catch that mismatch.
+        original_image_position = first["prefix_ids"].index(PINNED_IMAGE_TOKEN_ID)
+        bad_prefix = first["prefix_ids"].copy()
+        bad_full = first["full_ids"].copy()
+        bad_prefix[original_image_position] = 42
+        bad_full[original_image_position] = 42
+        no_image_token = dict(first, prefix_ids=bad_prefix, full_ids=bad_full)
+        # Demonstrate the old CPU-only right-pad plan still accepts the
+        # mutually consistent forged prefix (a real vulnerability).
+        padded_token_plan([no_image_token, second], pad)
+        image_placeholder_mismatch_refused = False
+        try:
+            real_cpu_visual_batch([no_image_token, second], pad)
+        except ValueError:
+            image_placeholder_mismatch_refused = True
+        require(image_placeholder_mismatch_refused)
         supervised = int((batch["labels"] != -100).sum().item())
         padded = int((batch["attention_mask"] == 0).sum().item())
         require(supervised > 0 and padded >= 0 and
@@ -173,6 +192,7 @@ def main() -> None:
             "truncated_patch_mismatch_refused": patch_count_mismatch_refused,
             "wrapped_int64_grid_refused": wrapped_grid_refused,
             "mixed_patch_dtype_refused": mixed_dtype_refused,
+            "missing_image_placeholder_refused": image_placeholder_mismatch_refused,
             "model_weights_loaded": False,
             "model_forward_calls": 0,
             "optimizer_steps": 0,
