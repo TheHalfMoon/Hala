@@ -1,6 +1,7 @@
 """H352 invented-only paired study contracts; NO actual model/GPU here."""
 import copy
 import json
+from hashlib import sha256
 import tempfile
 import unittest
 from pathlib import Path
@@ -110,6 +111,8 @@ class H352InventedPairedProtocolTests(unittest.TestCase):
                            root / "pixel_button_snap.py", out)
             self.assertFalse(status["gpu_job_submitted"])
             self.assertEqual(status["uploaded_files"], 2)
+            self.assertEqual(status["uploaded_code_sha256"],
+                             sha256((out / SCRIPT).read_bytes()).hexdigest())
             self.assertEqual(status["media_weights_gold_uploaded"], 0)
             self.assertEqual({f.name for f in out.iterdir()},
                              {SCRIPT, "kernel-metadata.json"})

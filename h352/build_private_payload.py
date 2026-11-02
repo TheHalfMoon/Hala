@@ -74,7 +74,7 @@ def build(source: Path, snap: Path, destination: Path) -> dict:
         encoding="utf-8")
     return {
         "status": "H352_PRIVATE_PAIRED_CODE_ONLY_NOT_SUBMITTED",
-        "uploaded_code_sha256": sha256(compiled.encode()).hexdigest(),
+        "uploaded_code_sha256": sha256((destination / SCRIPT).read_bytes()).hexdigest(),
         "pixel_policy_sha256": sha256(pixel.encode()).hexdigest(),
         "private": True, "free_t4_requested": True,
         "uploaded_files": 2, "media_weights_gold_uploaded": 0,
