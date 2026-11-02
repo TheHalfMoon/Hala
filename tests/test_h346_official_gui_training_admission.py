@@ -63,6 +63,67 @@ class OfficialAdmissionTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, DENIAL):
                     load_json(path, require_gui_admission=True)
 
+    def test_checkpoint_identity_uses_admitted_bytes_not_reopened_path(self):
+        # Entirely invented fixture: patch only this test's H199 allowlist.
+        # A source loader can observe a replaced local path AFTER the original
+        # bytes were admitted. Recovery must use the originally admitted SHA.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.json"
+            config.write_text(json.dumps({
+                "model_id": "Qwen/Qwen3-VL-2B-Instruct", "revision": "a" * 40,
+                "precision": "fp16", "max_steps": 1, "batch_size": 1,
+                "gradient_accumulation": 1, "learning_rate": 0.0001,
+                "lora_rank": 4, "platform": "kaggle", "download_remote_weights": True
+            }), encoding="utf-8")
+            baseline = root / "baseline.json"
+            baseline.write_text(json.dumps({
+                "model_id": "Qwen/Qwen3-VL-2B-Instruct", "revision": "a" * 40,
+                "evidence": "real_inference", "evaluated_tasks": 1,
+                "verified_success_rate": 0.0, "deficit": "Invented test baseline"
+            }), encoding="utf-8")
+            manifest = root / "manifest.json"
+            manifest.write_bytes(json.dumps({
+                "schema": "hala.training.manifest.v1", "split": "train",
+                "rights_cleared": True, "source_kind": "synthetic",
+                "dataset_sha256": "b" * 64,
+                "families": ["invented-train"], "held_out_families": ["invented-dev"]
+            }, sort_keys=True).encode("utf-8"))
+            admitted = sha256(manifest.read_bytes()).hexdigest()
+
+            def swap_manifest(*_args):
+                manifest.write_bytes(b'{"unadmitted": true}')
+                return []  # never used: resume recovery intercepts before GPU
+
+            with patch("h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS",
+                       frozenset({admitted})), \
+                 patch("h87.research_runtime.require_training_provider",
+                       return_value="kaggle_noncommercial_research"), \
+                 patch("training.scripts.train_adapter.load_authoring_records",
+                       side_effect=swap_manifest), \
+                 patch("h82.orphan_recovery.recover_orphaned_checkpoint",
+                       side_effect=RuntimeError("CAPTURED_ADMITTED_IDENTITY")) as recover, \
+                 patch("training.scripts.train_adapter.probe") as gpu_probe:
+                with self.assertRaisesRegex(RuntimeError, "CAPTURED_ADMITTED_IDENTITY"):
+                    train(config, root / "invented.jsonl", manifest, baseline,
+                          root / "output", resume=True)
+                self.assertEqual(recover.call_args.args[1]["manifest_sha256"], admitted)
+                self.assertNotEqual(sha256(manifest.read_bytes()).hexdigest(), admitted)
+                gpu_probe.assert_not_called()
+
+    def test_only_admitted_loader_can_expose_digest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "manifest.json"
+            path.write_bytes(self.raw)
+            with self.assertRaisesRegex(ValueError, "Only an H199-admitted"):
+                load_json(path, with_admitted_digest=True)
+            with patch("h199.native_action_sft.ADMITTED_TRAIN_MANIFEST_SHAS",
+                       frozenset({self.digest})):
+                parsed, digest = load_json(
+                    path, require_gui_admission=True, with_admitted_digest=True)
+            self.assertEqual(digest, self.digest)
+            self.assertTrue(parsed["rights_cleared"])
+
 
 if __name__ == "__main__":
     unittest.main()
