@@ -35,12 +35,28 @@ class H357PublicOriginalSourceCandidateTests(unittest.TestCase):
         # Source-backed leakage regression: target position must not be
         # predicted from language parity, nor target color from language.
         slots = Counter((r["language"], r["oracle_tile"]) for r in specs)
+        shapes = Counter((r["language"],
+                          r["source_tiles"][r["oracle_tile"]][0])
+                         for r in specs)
         colors = Counter((r["language"],
                           r["source_tiles"][r["oracle_tile"]][1])
                          for r in specs)
+        slot_shapes = Counter((r["language"], r["oracle_tile"],
+                               r["source_tiles"][r["oracle_tile"]][0])
+                              for r in specs)
+        slot_colors = Counter((r["language"], r["oracle_tile"],
+                               r["source_tiles"][r["oracle_tile"]][1])
+                              for r in specs)
+        self.assertEqual(len({str(r["source_tiles"]) for r in specs}), COUNT)
         for language in ("en", "ar"):
             for slot in range(4):
                 self.assertEqual(slots[(language, slot)], 8)
+                for shape in ("circle", "square", "triangle", "diamond"):
+                    self.assertEqual(slot_shapes[(language,slot,shape)], 2)
+                for color in ("red", "blue", "green", "gold"):
+                    self.assertEqual(slot_colors[(language,slot,color)], 2)
+            for shape in ("circle", "square", "triangle", "diamond"):
+                self.assertEqual(shapes[(language, shape)], 8)
             for color in ("red", "blue", "green", "gold"):
                 self.assertEqual(colors[(language, color)], 8)
         for row in specs:

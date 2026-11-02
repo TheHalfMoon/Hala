@@ -29,7 +29,12 @@ def require(ok: bool) -> None:
 def scenes():
     result = []
     for index in range(CASES):
-        code = chr(ord("A") + index % 26) + str(1000 + index * 73)
+        # Pair each Arabic and English task with the SAME invented code,
+        # workspace and theme. The former index-based code first letter
+        # and workspace parity made language directly predictable from
+        # nonlinguistic context before reading any UI text.
+        paired_case = index // 2
+        code = chr(ord("A") + paired_case) + str(1000 + paired_case * 73)
         require(len(code) == 5 and code[1:].isdigit())
         language = "ar" if index % 2 else "en"
         task = (("أنشئ ملاحظة بالرمز " + code + " ثم احفظها")
@@ -41,12 +46,19 @@ def scenes():
             "language": language, "task": task,
             "code": code,
             "theme": "dark" if (index // 2) % 2 else "light",
-            "workspace": index + 1,
+            "workspace": paired_case + 1,
             "split": ROLE,
         })
     require(len(result) == CASES and
             len({item["case_id"] for item in result}) == CASES
-            and len({item["code"] for item in result}) == CASES
+            and len({item["code"] for item in result}) == CASES // 2
+            and all(
+                (result[2*j]["code"], result[2*j]["workspace"],
+                 result[2*j]["theme"]) ==
+                (result[2*j+1]["code"], result[2*j+1]["workspace"],
+                 result[2*j+1]["theme"])
+                for j in range(CASES // 2)
+            )
             and {item["language"] for item in result} == {"en", "ar"}
             and {item["theme"] for item in result} == {"dark", "light"})
     return result

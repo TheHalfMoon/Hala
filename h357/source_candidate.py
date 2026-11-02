@@ -10,6 +10,7 @@ from hashlib import sha256
 from itertools import permutations
 import json
 from pathlib import Path
+import random
 
 from h199.native_action_sft import parse_actions, source_task_prompt
 
@@ -37,19 +38,31 @@ def candidate_specs():
     roster = []
     shape_orders = tuple(permutations(SHAPES))
     color_orders = tuple(permutations(COLORS))
+    used_layouts = set()
     for index in range(COUNT):
-        # Collision-free enumeration of original screenshot layouts.
-        # Random shuffles can repeat, silently oversampling one visual layout.
-        shapes = shape_orders[index % len(shape_orders)]
-        colors = color_orders[(index // len(shape_orders)) % len(color_orders)]
-        tiles = [[s, c] for s, c in zip(shapes, colors)]
-        # Language alternates by index parity. Using index % 4 would confound
-        # English with even target slots and Arabic with odd target slots.
-        # Rotate per bilingual pair: 8 examples per slot and per color in
-        # EACH language, without changing original HTML or source identity.
-        chosen = (index // 2) % 4
-        shape, color = tiles[chosen]
+        # Each bilingual arm has 32 items: two observations per (slot, shape)
+        # and eight per slot, shape and color. H360 balanced slot/color
+        # margins but accidentally retained asymmetric shape frequencies.
+        bilingual_pair = index // 2
+        chosen = bilingual_pair % 4
+        shape = SHAPES[(bilingual_pair // 4) % 4]
+        color = COLORS[(chosen + (bilingual_pair // 4) % 4
+                        + 2 * (bilingual_pair // 16)) % 4]
         language = "ar" if index % 2 else "en"
+        # A deterministic public permutation of the *non-target* tiles
+        # prevents identical screenshot layouts without deriving the
+        # answer from language, color, shape or source ordering.
+        options = [
+            tuple((s, c) for s, c in zip(shapes, colors))
+            for shapes in shape_orders if shapes[chosen] == shape
+            for colors in color_orders if colors[chosen] == color
+        ]
+        random.Random(357001 + index).shuffle(options)
+        selection = next((layout for layout in options
+                          if layout not in used_layouts), None)
+        require(selection is not None)
+        used_layouts.add(selection)
+        tiles = [[s, c] for s, c in selection]
         if language == "ar":
             color_word = AR_COLORS[color][0 if shape == "circle" else 1]
             instruction = "اختر " + AR_SHAPES[SHAPES.index(shape)] + " " + color_word
