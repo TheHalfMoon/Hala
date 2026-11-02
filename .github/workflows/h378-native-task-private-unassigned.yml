@@ -1,0 +1,38 @@
+name: H378 native task private-use and unassigned Unicode (NO TRAIN)
+
+on:
+  pull_request:
+    paths:
+      - h199/native_action_sft.py
+      - h378/**
+      - tests/test_h378_private_unassigned_task.py
+      - .github/workflows/h378-native-task-private-unassigned.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-task-unassigned-private-guard:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve exact Git source identity
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Check invented-only H378 and inherited native task contracts
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -S -B -m unittest tests.test_h378_private_unassigned_task tests.test_h377_unicode_format_controls tests.test_h376_native_task_unicode tests.test_h199_native_action_sft -q
+      - name: Assert no generated media or model artifacts
+        run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
