@@ -1,0 +1,36 @@
+name: H364 native multimodal SFT batch label masking (NO TRAINING)
+
+on:
+  pull_request:
+    paths:
+      - h364/**
+      - tests/test_h364_native_batch.py
+      - .github/workflows/h364-native-batch-preflight.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pure-cpu-h199-token-pad-only:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve original source bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Test H199 assistant-only labels, right padding, malformed prefix without any model
+        run: python -S -m unittest tests.test_h364_native_batch tests.test_h199_native_action_sft -q
+      - name: Verify no generated artifact, gold, model weights or media committed
+        run: python -c "import subprocess; assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True), 'unexpected untracked output'"
