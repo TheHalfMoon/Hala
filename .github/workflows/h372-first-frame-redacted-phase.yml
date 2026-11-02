@@ -1,0 +1,40 @@
+name: H372 source browser granular phase safety (NO TRAIN)
+
+on:
+  pull_request:
+    paths:
+      - h319/beaconboard_dynamic_research.py
+      - h337/source_miss_distance_bands.py
+      - h370/browser_failure_stage.py
+      - h372/**
+      - tests/test_h372_first_frame_diagnostics.py
+      - .github/workflows/h372-first-frame-redacted-phase.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-redacted-first-frame-phase:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve public source pin identity
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Verify first/second capture and callback exceptions never leak
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -S -B -m unittest tests.test_h372_first_frame_diagnostics tests.test_h370_browser_failure_stage -q
+      - name: Verify no images, labels, or private gold were written
+        run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"

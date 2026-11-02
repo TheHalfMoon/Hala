@@ -100,6 +100,9 @@ def source_first_click_distance(
          and type(scene) is tuple and scene in SCENES
          and callable(predict))
     stage = "initial_original_scene"
+    def _record_stage(value: str) -> None:
+        nonlocal stage
+        stage = value
     try:
         source, url = checked_source(source)
         target = IDS[scene[4]]
@@ -107,7 +110,9 @@ def source_first_click_distance(
             need(inspect_all_stations(page)
                  == {id_: (False, "") for id_ in IDS})
             stage = "first_render_and_policy"
-            action = _observed_predict(page, predict, exact_task(scene), set())
+            action = _observed_predict(
+                page, predict, exact_task(scene), set(),
+                stage_sink=_record_stage, phase="first")
             need(action["kind"] in ("click", "abstain"))
             if action["kind"] == "abstain":
                 need(inspect_all_stations(page)
