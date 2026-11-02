@@ -19,6 +19,23 @@ provenance boundary. This is a *potential local artifact substitution*
 when the old development trainer becomes eligible; it is **not** a report
 of an observed attack, a legally admitted dataset, or an actual model run.
 
+## Independent frozen manifest SHA-to-parse TOCTOU
+
+Auditing the upstream verifier also revealed `development.freeze.verify_bundle`
+computed the externally pinned hash of `manifest.json` using one `read_bytes`
+call and **then separately reopened** the same path with `read_text`
+to obtain the manifest fields. A substituted manifest between those reads
+could make the returned source/file claims differ from the externally
+pinned bytes, undermining even the downstream snapshot hashes.
+
+H380 therefore parses the **same in-memory manifest bytes already hashed**,
+without the second metadata read. A deterministic invented test uses a
+temporary public synthetic frozen bundle and patches the manifest read
+to replace the file immediately after providing the originally hashed
+bytes; the verifier must still return the original signed-identity
+snapshot, not the forged metadata. A wrong external digest is still refused.
+This is a local file-integrity defense, not an independent signing authority.
+
 ## Minimal source-only change
 
 After the original full `verify_bundle` check, H380 obtains each
@@ -43,7 +60,9 @@ Invented-only in-memory bilingual Mind/Type rows and temporary files
 prove exact valid hash-bound projection, forged training row substitution
 after the verifier returns, changed settings after verification,
 duplicate keys, oversize projection, malformed manifest digest, unknown
-filenames and symlink refusal where supported. Dedicated hosted
+filenames and symlink refusal where supported. Additional invented tests check
+manifest substitution between SHA verification and JSON parsing, and a
+forged external SHA. Dedicated hosted
 Windows/Ubuntu Python3.11/3.12 source-only CI also checks inherited
 H350 legal-admission fail-closed behavior.
 
