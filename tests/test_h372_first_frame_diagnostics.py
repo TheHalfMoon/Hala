@@ -49,7 +49,7 @@ class H372GranularSourceDiagnosticTests(unittest.TestCase):
             raise TimeoutError("SECRET DO NOT PRINT")
         with patch(
             "h319.beaconboard_dynamic_research._observed_png",
-            return_value=b"invented png bytes"
+            return_value=b"\x89PNG\r\n\x1a\nsynthetic"
         ), patch(
             "h319.beaconboard_dynamic_research._model_visible_rgb_digest",
             return_value=b"fake invented RGB digest"
@@ -64,7 +64,7 @@ class H372GranularSourceDiagnosticTests(unittest.TestCase):
         stage = []
         class FakePage:
             url = "file:///public-synthetic"
-        calls = [b"invented png bytes", TimeoutError("PRIVATE POST FRAME")]
+        calls = [b"\x89PNG\r\n\x1a\nsynthetic", TimeoutError("PRIVATE POST FRAME")]
         with patch(
             "h319.beaconboard_dynamic_research._observed_png",
             side_effect=calls
