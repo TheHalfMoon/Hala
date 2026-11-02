@@ -56,7 +56,8 @@ class H372GranularSourceDiagnosticTests(unittest.TestCase):
         ):
             with self.assertRaises(TimeoutError):
                 _observed_predict(
-                    object(), fake_policy, "synthetic public task", set(),
+                    type("FakePage", (), {"url": "file:///public"})(),
+                    fake_policy, "synthetic public task", set(),
                     stage_sink=stage.append, phase="first")
         self.assertEqual(stage[-1], "first_policy_callback")
 
