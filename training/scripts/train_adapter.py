@@ -108,7 +108,9 @@ def create_training_scaler(torch, precision):
     return torch.amp.GradScaler('cuda', init_scale=1.0, enabled=precision == 'fp16')
 
 
-def load_json(path, *, require_gui_admission=False):
+def load_json(path, *, require_gui_admission=False, with_admitted_digest=False):
+    if with_admitted_digest and not require_gui_admission:
+        raise ValueError('Only an H199-admitted GUI manifest can return its identity')
     path = Path(path)
     if require_gui_admission and path.is_symlink():
         raise ValueError('H346_OFFICIAL_GUI_TRAIN_MANIFEST_NOT_ADMITTED')
@@ -119,9 +121,10 @@ def load_json(path, *, require_gui_admission=False):
         raw = handle.read(4 * 1024 * 1024 + 1)
     if len(raw) != size or len(raw) > 4 * 1024 * 1024:
         raise ValueError('Experiment JSON changed during bounded read')
-    if require_gui_admission:
-        require_admitted_gui_training_manifest(raw)
-    return strict_json(raw.decode('utf-8'))
+    admitted_digest = (require_admitted_gui_training_manifest(raw)
+                       if require_gui_admission else None)
+    parsed = strict_json(raw.decode('utf-8'))
+    return (parsed, admitted_digest) if with_admitted_digest else parsed
 
 
 def media_format(row, native_drag_jpeg=False) -> str:
@@ -356,7 +359,10 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         raise ValueError('Only the candidate Qwen3-VL processor path is implemented')
     # A manifest's own rights_cleared flag is never official H199 admission.
     # Compare the SAME bytes that are parsed, before any weights or GPU use.
-    manifest = load_json(manifest_path, require_gui_admission=True)
+    # H347: checkpoint identity must use the exact admitted bytes, not a
+    # later reopen of a path which could have been replaced after admission.
+    manifest, admitted_manifest_digest = load_json(
+        manifest_path, require_gui_admission=True, with_admitted_digest=True)
     baseline = load_json(baseline_path)
     if manifest.get('source_schema') == H54_DRAG_SCHEMA:
         validate_drag_baseline(baseline)
@@ -577,7 +583,7 @@ def train(config_path, examples_path, manifest_path, baseline_path, output_path,
         # checkpoint was published against.
         signature = hashlib.sha256((signature + init_digest).encode()).hexdigest()
     identity = {'config_sha256': signature, 'dataset_sha256': manifest['dataset_sha256'],
-                'manifest_sha256': sha256_file(manifest_path), 'max_steps': config.max_steps}
+                'manifest_sha256': admitted_manifest_digest, 'max_steps': config.max_steps}
     output = Path(output_path)
     if output.exists() and any(output.iterdir()) and not resume:
         raise ValueError('Refusing to overwrite existing experiment output')
