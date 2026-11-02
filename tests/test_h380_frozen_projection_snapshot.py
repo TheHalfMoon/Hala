@@ -43,8 +43,10 @@ class H380FrozenProjectionTests(unittest.TestCase):
         with TemporaryDirectory() as folder:
             root=Path(folder)
             manifest, rows=fixture(root)
-            with patch("training.development_data.verify_bundle", return_value=manifest) as verify, (
-                 patch("training.development_data.check_settings") as settings):
+            with (
+                patch("training.development_data.verify_bundle", return_value=manifest) as verify,
+                patch("training.development_data.check_settings") as settings,
+            ):
                 actual, metadata=load_rows(root, "b"*64)
             self.assertEqual(actual[0]["prompt"], rows[0]["prompt"])
             self.assertEqual(actual[1]["prompt"], rows[1]["prompt"])
@@ -62,8 +64,10 @@ class H380FrozenProjectionTests(unittest.TestCase):
                 # In-place same length, different model-visible goal/target.
                 (root/"training-rows.jsonl").write_bytes(data.replace(b"Select Save", b"Select Halt"))
                 return manifest
-            with patch("training.development_data.verify_bundle", side_effect=after_verified), (
-                 patch("training.development_data.check_settings") as settings):
+            with (
+                patch("training.development_data.verify_bundle", side_effect=after_verified),
+                patch("training.development_data.check_settings") as settings,
+            ):
                 with self.assertRaisesRegex(ValueError,"Frozen projection bytes differ"):
                     load_rows(root,"b"*64)
                 settings.assert_not_called()
@@ -75,8 +79,10 @@ class H380FrozenProjectionTests(unittest.TestCase):
             def after_verified(*_args, **_kwargs):
                 (root/"settings.json").write_bytes(b'{"model":"UNTRUSTED","flags":[]}')
                 return manifest
-            with patch("training.development_data.verify_bundle", side_effect=after_verified), (
-                 patch("training.development_data.check_settings") as settings):
+            with (
+                patch("training.development_data.verify_bundle", side_effect=after_verified),
+                patch("training.development_data.check_settings") as settings,
+            ):
                 with self.assertRaisesRegex(ValueError,"Frozen projection bytes differ"):
                     load_rows(root,"b"*64)
                 settings.assert_not_called()
@@ -88,8 +94,10 @@ class H380FrozenProjectionTests(unittest.TestCase):
             duplicate=b'{"model":"invented","model":"override"}'
             (root/"settings.json").write_bytes(duplicate)
             manifest["files"]["settings.json"]=sha(duplicate)
-            with patch("training.development_data.verify_bundle", return_value=manifest), (
-                 patch("training.development_data.check_settings") as settings):
+            with (
+                patch("training.development_data.verify_bundle", return_value=manifest),
+                patch("training.development_data.check_settings") as settings,
+            ):
                 with self.assertRaisesRegex(ValueError,"Duplicate JSON key"):
                     load_rows(root,"b"*64)
                 settings.assert_not_called()
