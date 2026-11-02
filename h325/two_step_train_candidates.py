@@ -79,6 +79,28 @@ def inspected_state(page: Any) -> dict[str, tuple[bool, str]]:
     return rows
 
 
+
+def await_railkit_first_paint(page: Any) -> None:
+    """Bounded source-owned render barrier, NEVER a screenshot retry.
+
+    The already-pinned public source must have completed two animation frames
+    and still expose all four original controls before the first capture.
+    """
+    ready = page.evaluate("""() => new Promise(resolve => {
+        let settled = false;
+        const finish = value => {
+            if (!settled) { settled = true; resolve(value); }
+        };
+        const timer = setTimeout(() => finish(false), 3000);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            clearTimeout(timer);
+            finish(document.readyState === 'complete' &&
+                document.querySelectorAll('button[data-route]').length === 4);
+        }));
+    })""")
+    need(ready is True)
+
+
 @contextmanager
 def open_original(browser: Any, url: str, scene: tuple):
     context = new_offline_context(browser)
@@ -99,6 +121,8 @@ def open_original(browser: Any, url: str, scene: tuple):
              and page.locator("html").get_attribute("dir") ==
              ("rtl" if lang == "ar" else "ltr")
              and page.locator("button[data-route]").count() == 4)
+        await_railkit_first_paint(page)
+        need(page.url == url)
         yield page
     finally:
         context.close()
