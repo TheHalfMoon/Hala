@@ -146,7 +146,7 @@ def validate_model_visible_task(task: object) -> str:
             "single bounded user-visible original GUI task required")
     require(all(
         (unicodedata.category(char) != "Cs")
-        and (unicodedata.category(char) != "Cc" or char in ("\\n", "\\t"))
+        and (unicodedata.category(char) != "Cc" or char in ("\n", "\t"))
         and char not in UNSAFE_TASK_BIDI_CONTROLS
         and char not in UNSAFE_TASK_INVISIBLE
         for char in task
