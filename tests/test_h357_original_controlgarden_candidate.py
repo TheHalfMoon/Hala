@@ -32,6 +32,17 @@ class H357PublicOriginalSourceCandidateTests(unittest.TestCase):
                          {"TRAIN_DEV_CANDIDATE_NOT_ADMITTED"})
         self.assertEqual(len({r["case_id"] for r in specs}), COUNT)
         self.assertEqual(specs, candidate_specs())  # deterministic
+        # Source-backed leakage regression: target position must not be
+        # predicted from language parity, nor target color from language.
+        slots = Counter((r["language"], r["oracle_tile"]) for r in specs)
+        colors = Counter((r["language"],
+                          r["source_tiles"][r["oracle_tile"]][1])
+                         for r in specs)
+        for language in ("en", "ar"):
+            for slot in range(4):
+                self.assertEqual(slots[(language, slot)], 8)
+            for color in ("red", "blue", "green", "gold"):
+                self.assertEqual(colors[(language, color)], 8)
         for row in specs:
             self.assertEqual(len(row["source_tiles"]), 4)
             self.assertEqual(len({shape for shape, _ in row["source_tiles"]}), 4)

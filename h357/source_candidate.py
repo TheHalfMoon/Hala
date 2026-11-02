@@ -43,7 +43,11 @@ def candidate_specs():
         shapes = shape_orders[index % len(shape_orders)]
         colors = color_orders[(index // len(shape_orders)) % len(color_orders)]
         tiles = [[s, c] for s, c in zip(shapes, colors)]
-        chosen = index % 4
+        # Language alternates by index parity. Using index % 4 would confound
+        # English with even target slots and Arabic with odd target slots.
+        # Rotate per bilingual pair: 8 examples per slot and per color in
+        # EACH language, without changing original HTML or source identity.
+        chosen = (index // 2) % 4
         shape, color = tiles[chosen]
         language = "ar" if index % 2 else "en"
         if language == "ar":
