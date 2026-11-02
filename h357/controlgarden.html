@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ControlGarden — Original Source-Only Candidate</title>
+<style>
+:root{color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Arial,sans-serif;background:#eef2f6;color:#182234}
+.shell{margin:38px 46px;padding:28px 34px;border:2px solid #c6d2df;border-radius:18px;background:#ffffff;height:638px}
+h1{margin:0;font-size:27px;letter-spacing:-.6px}
+p{margin:10px 0 40px;font-size:16px;color:#586374}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.board button{height:278px;border:3px solid #94a4b7;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#f8fafc;cursor:pointer;padding:0}
+.board button:focus{outline:none}
+.board button:active{background:#f8fafc}
+.glyph{display:block;width:98px;height:98px;flex:none}
+.circle{border-radius:50%}
+.square{border-radius:5px}
+.triangle{clip-path:polygon(50% 2%,1% 97%,99% 97%)}
+.diamond{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.red{background:#c63c45}
+.blue{background:#2c67ce}
+.green{background:#288b63}
+.gold{background:#d49817}
+.footer{margin-top:34px;padding:15px 0;border-top:2px solid #d9e1e8;color:#647084;font-size:15px}
+</style>
+</head>
+<body>
+<main class="shell">
+<h1>ControlGarden</h1>
+<p>Choose one item from the four shape tiles.</p>
+<div class="board" id="board"></div>
+<div class="footer" id="status" role="status">No selection</div>
+</main>
+<script>
+"use strict";
+const SHAPES=["circle","square","triangle","diamond"];
+const COLORS=["red","blue","green","gold"];
+let selection=null;
+window.configureOriginalScene=function(spec){
+  if(!Array.isArray(spec)||spec.length!==4)throw Error("exactly four controls");
+  const seen=new Set();
+  const board=document.getElementById("board");
+  board.replaceChildren();
+  selection=null;
+  document.getElementById("status").textContent="No selection";
+  for(const entry of spec){
+    if(!Array.isArray(entry)||entry.length!==2)throw Error("invalid control");
+    const [shape,color]=entry;
+    if(!SHAPES.includes(shape)||!COLORS.includes(color)||seen.has(shape+"-"+color))throw Error("invalid or repeated");
+    seen.add(shape+"-"+color);
+    const button=document.createElement("button");
+    button.type="button";
+    button.dataset.control=shape+"-"+color;
+    button.setAttribute("aria-label",color+" "+shape);
+    const glyph=document.createElement("span");
+    glyph.className="glyph "+shape+" "+color;
+    glyph.setAttribute("aria-hidden","true");
+    button.append(glyph);
+    button.addEventListener("click",()=>{
+      selection=shape+"-"+color;
+      document.getElementById("status").textContent="Selected";
+    });
+    board.append(button);
+  }
+};
+window.getOriginalSelection=()=>selection;
+</script>
+</body>
+</html>

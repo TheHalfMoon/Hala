@@ -1,0 +1,46 @@
+name: H357 original ControlGarden source-only candidate browser qualification
+
+on:
+  pull_request:
+    paths:
+      - h357/**
+      - tests/test_h357_original_controlgarden_candidate.py
+      - .github/workflows/h357-original-controlgarden.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-native-browser-train-dev-candidate-only:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Keep exact source bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install original-source browser client
+        run: python -m pip install playwright==1.64.1
+      - name: Install original browser (Ubuntu)
+        if: runner.os == 'Linux'
+        run: python -m playwright install --with-deps chromium
+      - name: Assert browser client installed
+        run: python -c "from playwright.sync_api import sync_playwright; assert callable(sync_playwright)"
+      - name: Verify all 64 original-native controls and fail-closed TRAIN admission
+        env:
+          HALA_H357_BROWSER_QA: '1'
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -m unittest tests.test_h357_original_controlgarden_candidate tests.test_h356_sealed_ood_custody tests.test_h199_native_action_sft -q
+      - name: No persistent dataset/weights/artifacts committed
+        run: git status --porcelain
