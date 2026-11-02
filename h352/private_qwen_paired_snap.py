@@ -161,6 +161,10 @@ def aggregate_pairs(rows):
              and row["language"] in groups
              and all(type(row[k]) is bool for k in (
                  "baseline", "candidate", "changed")))
+        # Identical native actions in identical source contexts cannot
+        # legitimately be counted as a calibration win or loss.
+        # Reject browser nondeterminism instead of inflating snap gains.
+        need(row["changed"] or row["baseline"] == row["candidate"])
         group = groups[row["language"]]
         group["scenes"] += 1
         group["baseline_success"] += int(row["baseline"])
