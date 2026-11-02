@@ -1,6 +1,7 @@
 """Reviewed semantic Mind/Type training projection; historical action loader unchanged."""
 import hashlib
 import json
+from io import BytesIO
 from pathlib import Path
 
 from development.freeze import verify_bundle
@@ -45,7 +46,9 @@ def encode_row(row, processor, root, image_open, token_budget=4096):
         if (not 8 <= len(raw) <= 2 * 1024 * 1024 or not raw.startswith(b'\x89PNG\r\n\x1a\n') or
                 len(raw) != size or hashlib.sha256(raw).hexdigest() != row['image_sha256']):
             raise ValueError('Current PNG digest/byte budget mismatch')
-        with image_open(path) as source:
+        # H349: decode the exact bytes we just hash-verified, not a second
+        # mutable-path read that could substitute unapproved model pixels.
+        with image_open(BytesIO(raw)) as source:
             if source.format != 'PNG' or source.size != (800, 600):
                 raise ValueError('Qualified PNG dimensions required')
             image = source.convert('RGB')
