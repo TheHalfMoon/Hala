@@ -13,8 +13,15 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+try:
+    from cryptography.hazmat.primitives import serialization
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+except ImportError:
+    # The repository-wide stdlib-only suite has no cryptography dependency.
+    # The dedicated H355 4-way CI matrix installs the pinned package and
+    # MUST run every adversarial test without skips.
+    serialization = None
+    Ed25519PrivateKey = None
 
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 from h343.independent_rights_review_request import build_public_review_request
@@ -74,6 +81,8 @@ def envelope(payload, private, key_id):
     }, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
+@unittest.skipIf(Ed25519PrivateKey is None,
+                 "H355 signed key tests require optional cryptography; dedicated CI installs it")
 class H355RightsSignatureTests(unittest.TestCase):
     def test_trusted_registry_is_empty_and_train_is_still_denied(self):
         self.assertEqual(len(intake.TRUSTED_REVIEWERS), 0)
