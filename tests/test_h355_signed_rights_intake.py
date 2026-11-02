@@ -6,7 +6,7 @@ Tests are about verifier behavior. Production trusted key registry stays EMPTY.
 from __future__ import annotations
 
 from base64 import b64encode
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def material(*, permission: bool = True):
     req = build_public_review_request(ROOT)
-    issued = date.today()
+    issued = datetime.now(timezone.utc).date()
     payload = {
         "schema": intake.SCHEMA,
         "review_request_sha256": req["request_sha256"],
@@ -136,12 +136,12 @@ class H355RightsSignatureTests(unittest.TestCase):
         foreign["reviewed_families"][0]["source_git_blob"] = "0"*40
         variants.append(foreign)
         stale = json.loads(json.dumps(payload))
-        stale["expiry_date_utc"] = (date.today()-timedelta(days=1)).isoformat()
-        stale["signed_date_utc"] = (date.today()-timedelta(days=30)).isoformat()
+        stale["expiry_date_utc"] = (datetime.now(timezone.utc).date()-timedelta(days=1)).isoformat()
+        stale["signed_date_utc"] = (datetime.now(timezone.utc).date()-timedelta(days=30)).isoformat()
         variants.append(stale)
         future = json.loads(json.dumps(payload))
-        future["signed_date_utc"] = (date.today()+timedelta(days=2)).isoformat()
-        future["expiry_date_utc"] = (date.today()+timedelta(days=40)).isoformat()
+        future["signed_date_utc"] = (datetime.now(timezone.utc).date()+timedelta(days=2)).isoformat()
+        future["expiry_date_utc"] = (datetime.now(timezone.utc).date()+timedelta(days=40)).isoformat()
         variants.append(future)
         invalid = json.loads(json.dumps(payload))
         invalid["reviewed_families"].reverse()
