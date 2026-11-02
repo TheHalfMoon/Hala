@@ -68,6 +68,24 @@ def digest(path):
     return hashlib.sha256(bounded_bytes(path)).hexdigest()
 
 
+def require_official_development_training_admission(bundle, manifest_sha256):
+    """Block the executable Mind/Type LoRA path unless H199 admits exact bytes.
+
+    Historical source verification and preflight remain independently testable;
+    neither a frozen bundle nor a remote opt-in grants screenshot ML rights.
+    """
+    from training.preflight import require_admitted_gui_training_manifest
+
+    root = Path(bundle)
+    manifest_path = root / 'manifest.json'
+    if root.is_symlink() or manifest_path.is_symlink():
+        raise ValueError('H350_DEVELOPMENT_MANIFEST_SYMLINK')
+    raw = bounded_bytes(manifest_path, limit=4 * 1024 * 1024)
+    if hashlib.sha256(raw).hexdigest() != manifest_sha256:
+        raise ValueError('H350_DEVELOPMENT_MANIFEST_DIGEST_MISMATCH')
+    return require_admitted_gui_training_manifest(raw)
+
+
 def read_json(path, limit=16 * 1024 * 1024, expected_sha256=None):
     raw = bounded_bytes(path, limit)
     if expected_sha256 is not None and hashlib.sha256(raw).hexdigest() != expected_sha256:
@@ -137,6 +155,9 @@ def preflight(bundle, manifest_sha256, baseline, baseline_sha256, source_commit,
 
 def train(bundle, manifest_sha256, baseline, baseline_sha256, source_commit,
           probe, probe_sha256, probe_commit, repository, output):
+    # H350: the separate historical Mind/Type trainer must not bypass H199.
+    # Fail before remote setup, baseline/processor, model/GPU or output creation.
+    require_official_development_training_admission(bundle, manifest_sha256)
     remote_guard()
     if os.environ.get('HALA_REMOTE_TRAINING_ALLOWED') != '1':
         raise ValueError('Explicit remote training opt-in required')
