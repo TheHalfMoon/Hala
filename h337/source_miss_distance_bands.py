@@ -24,6 +24,7 @@ from h319.beaconboard_dynamic_research import (
 )
 from h263.native_browser_executor import execute_one
 from h335.original_first_click_error_attribution import classify_first_click
+from h370.browser_failure_stage import browser_failure_code
 
 ROLE = "H337_EXPOSED_SOURCE_ONLY_FIRST_CLICK_MISS_GEOMETRY"
 CATEGORIES = (
@@ -98,12 +99,14 @@ def source_first_click_distance(
          and isinstance(source, Path)
          and type(scene) is tuple and scene in SCENES
          and callable(predict))
+    stage = "initial_original_scene"
     try:
         source, url = checked_source(source)
         target = IDS[scene[4]]
         with original_scene(browser, source, url, scene) as page:
             need(inspect_all_stations(page)
                  == {id_: (False, "") for id_ in IDS})
+            stage = "first_render_and_policy"
             action = _observed_predict(page, predict, exact_task(scene), set())
             need(action["kind"] in ("click", "abstain"))
             if action["kind"] == "abstain":
@@ -112,10 +115,12 @@ def source_first_click_distance(
                 cat = "abstain"
                 clicks = 0
             else:
+                stage = "native_click"
                 outcome = execute_one(
                     page, json.dumps({"actions": [action]},
                                      separators=(",", ":")))
                 need(outcome == {"kind": "click", "executed": True})
+                stage = "post_click_state"
                 state = inspect_all_stations(page)
                 focus = page.evaluate("""() => {
                     const e = document.activeElement;
@@ -124,6 +129,7 @@ def source_first_click_distance(
                 }""")
                 state_cat = classify_first_click(state, focus, target)
                 if state_cat == "no_station_open":
+                    stage = "miss_distance_geometry"
                     boxes = {station: page.locator(
                         'button[data-station="' + station + '"]'
                     ).bounding_box() for station in IDS}
@@ -132,9 +138,10 @@ def source_first_click_distance(
                 else:
                     cat = state_cat
                 clicks = 1
+            stage = "final_url"
             need(page.url == url)
-    except Exception:
-        raise ValueError("H337 SOURCE_ONLY_MISS_GEOMETRY_REFUSED") from None
+    except Exception as exc:
+        raise ValueError(browser_failure_code("h337", stage, exc)) from None
     need(cat in CATEGORIES)
     return {
         "status": ROLE, "language": scene[1], "category": cat,

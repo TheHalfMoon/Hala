@@ -17,6 +17,7 @@ from typing import Any, Callable
 
 from h199.native_action_sft import WIDTH, HEIGHT, parse_actions, source_task_prompt
 from h263.native_browser_executor import execute_one, new_offline_context
+from h370.browser_failure_stage import browser_failure_code
 
 BLOB = "6e8467e123c7f0fbac77ea553622ab8e659f9c16"
 ROLE = "PUBLIC_AUTHOR_ORIGINAL_DYNAMIC_RESEARCH_NOT_ADMITTED_NOT_OOD"
@@ -165,21 +166,25 @@ def run_original_dynamic_sequence(
     success = False
     refusal = "none"
     seen_rgb: set[bytes] = set()
+    stage = "initial_original_scene"
     try:
         with original_scene(browser, source, url, scene) as page:
             need(inspect_all_stations(page) ==
                  {station: (False, "") for station in IDS})
+            stage = "first_render_and_policy"
             action = _observed_predict(page, predict, task, seen_rgb)
             seen_steps = 1
             need(action["kind"] in ("click", "abstain"))
             if action["kind"] == "abstain":
                 refusal = "abstain"
             else:
+                stage = "native_click"
                 outcome = execute_one(page, '{"actions":['
                     + json.dumps(action, separators=(",", ":"))
                     + ']}')
                 need(outcome == {"kind": "click", "executed": True})
                 dispatched += 1
+                stage = "post_click_state"
                 state = inspect_all_stations(page)
                 if (state != {station: (station == target, "") for station in IDS}
                     or page.evaluate("""() => {
@@ -189,6 +194,7 @@ def run_original_dynamic_sequence(
                     }""") != target):
                     refusal = "wrong_focus_or_state"
                 else:
+                    stage = "second_render_and_policy"
                     action = _observed_predict(page, predict, task, seen_rgb)
                     seen_steps = 2
                     need(action["kind"] in ("type_text", "abstain"))
@@ -203,19 +209,21 @@ def run_original_dynamic_sequence(
                               ? e.dataset.station : null;
                         }""")
                         need(focus == target)
+                        stage = "native_type"
                         outcome = execute_one(page, '{"actions":['
                             + __import__("json").dumps(action, separators=(",", ":"))
                             + ']}')
                         need(outcome == {"kind": "type_text", "executed": True})
                         dispatched += 1
+                        stage = "final_source_state"
                         success = inspect_all_stations(page) == {
                             station: (station == target, code if station == target else "")
                             for station in IDS
                         }
                         if not success:
                             refusal = "source_state_mismatch"
-    except Exception:
-        raise ValueError("H319 DYNAMIC_SOURCE_OR_POLICY_REFUSED") from None
+    except Exception as exc:
+        raise ValueError(browser_failure_code("h319", stage, exc)) from None
     return {
         "role": ROLE, "actions_observed": seen_steps,
         "native_dispatched_actions": dispatched,
