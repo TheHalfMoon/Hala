@@ -128,12 +128,40 @@ def parse_actions(value: object, *, training_target: bool = False) -> dict:
     return {"actions": [dict(action)]}
 
 
-def source_task_prompt(task: str) -> str:
-    """Only model-visible instruction, NEVER owner source gold/reference."""
+# Block only deceptive Unicode direction/isolation controls, not normal
+# right-to-left Arabic letters, vowel marks, ZWNJ, or paragraph newlines.
+UNSAFE_TASK_BIDI_CONTROLS = frozenset(chr(code) for code in (
+    *range(0x202A, 0x202F), *range(0x2066, 0x206A),
+))
+UNSAFE_TASK_INVISIBLE = frozenset(("\u200b", "\ufeff"))
+
+
+def validate_model_visible_task(task: object) -> str:
+    """Reject non-UTF8 and invisible/spoofed instructions before Qwen packing.
+
+    Preserve exact task bytes and normal Arabic shaping; do NOT normalize or
+    reinterpret any model-visible task or source identity.
+    """
     require(type(task) is str and 0 < len(task) <= 500,
             "single bounded user-visible original GUI task required")
-    require("\x00" not in task and "\r" not in task,
-            "unsafe instruction control characters")
+    require(all(
+        (unicodedata.category(char) != "Cs")
+        and (unicodedata.category(char) != "Cc" or char in ("\\n", "\\t"))
+        and char not in UNSAFE_TASK_BIDI_CONTROLS
+        and char not in UNSAFE_TASK_INVISIBLE
+        for char in task
+    ), "unsafe Unicode control or malformed task text")
+    try:
+        encoded = task.encode("utf-8", errors="strict")
+    except UnicodeError:
+        raise ValueError("H199 native action SFT contract: malformed task Unicode") from None
+    require(0 < len(encoded) <= 2000, "oversized UTF-8 task")
+    return task
+
+
+def source_task_prompt(task: str) -> str:
+    """Only model-visible instruction, NEVER owner source gold/reference."""
+    task = validate_model_visible_task(task)
     return (
         "You are Hala, a screenshot-only computer-use agent. "
         "Use only the 960x720 screenshot and the user's task, never DOM, "
