@@ -101,6 +101,15 @@ def score_dispatched_native(page, native, *, target):
     expected = {id_: (id_ == target, "") for id_ in IDS}
     return state == expected and focused == target
 
+def native_action_changed(original: str, revised: str) -> bool:
+    """Compare parsed native actions, not JSON whitespace or key ordering."""
+    from h199.native_action_sft import parse_actions
+    before = parse_actions(original)["actions"]
+    after = parse_actions(revised)["actions"]
+    need(len(before) == len(after) == 1)
+    return before != after
+
+
 def measure_one_paired(browser, source, scene, processor, model, snap):
     from h319.beaconboard_dynamic_research import (
         IDS, _observed_png, _model_visible_rgb_digest,
@@ -145,7 +154,8 @@ def measure_one_paired(browser, source, scene, processor, model, snap):
          and summary["generalizable_hala_gain_proven"] is False)
     return {
         "language": scene[1], "baseline": baseline,
-        "candidate": candidate, "changed": revised != native,
+        "candidate": candidate,
+        "changed": native_action_changed(native, revised),
     }
 
 def aggregate_pairs(rows):

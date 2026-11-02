@@ -8,6 +8,7 @@ from pathlib import Path
 
 from h352.private_qwen_paired_snap import (
     aggregate_pairs, safe_report, stage_only_report,
+    native_action_changed,
 )
 from h352.verify_private_receipt import (
     parse_unique, verify_success, verify_stage_only,
@@ -87,6 +88,14 @@ class H352InventedPairedProtocolTests(unittest.TestCase):
                 bad["claimed_wrapped_model_generations"] = 11
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 verify_success(bad)
+
+    def test_semantically_identical_native_click_is_not_a_snap_change(self):
+        original = '{"actions":[{"kind":"click","point":[200,280]}]}'
+        formatted = json.dumps({"actions": [{"kind": "click",
+                                              "point": [200, 280]}]}, indent=2)
+        moved = '{"actions":[{"kind":"click","point":[201,280]}]}'
+        self.assertFalse(native_action_changed(original, formatted))
+        self.assertTrue(native_action_changed(original, moved))
 
     def test_unchanged_native_action_cannot_claim_snap_gain_or_loss(self):
         # A no-op pixel transform must never earn a win or loss from

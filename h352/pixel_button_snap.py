@@ -134,6 +134,10 @@ def snap_native_first_click(png: bytes, native: str) -> str:
         (left + right) // 2,
         (top + bottom) // 2,
     ]
+    # A canonicalized JSON string is not a geometric intervention.
+    # Preserve the exact model action when its point already is the center.
+    if proposed == action["point"]:
+        return native
     revised = json.dumps(
         {"actions": [{"kind": "click", "point": proposed}]},
         separators=(",", ":"))

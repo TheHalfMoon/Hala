@@ -60,6 +60,14 @@ class H352InventedPixelOnlyTests(unittest.TestCase):
         self.assertTrue(200 <= result[0] <= 255)
         self.assertTrue(260 <= result[1] <= 305)
 
+    def test_already_center_click_is_true_noop_despite_json_formatting(self):
+        png = invented_image()
+        left, top, right, bottom = pixel_button_rectangles(png)[0]
+        center = [(left + right) // 2, (top + bottom) // 2]
+        raw = json.dumps({"actions": [{"kind": "click", "point": center}]},
+                         indent=2)
+        self.assertEqual(snap_native_first_click(png, raw), raw)
+
     def test_ambiguous_near_two_buttons_keeps_original_point(self):
         image = invented_image(ambiguous=True)
         raw = click(435, 280)
