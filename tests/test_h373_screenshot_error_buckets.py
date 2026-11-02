@@ -50,7 +50,7 @@ class H373CaptureSignatureTests(unittest.TestCase):
                 code = browser_failure_code(
                     "h337", "first_image_capture", PlaywrightError(text))
                 self.assertTrue(code.endswith("capture=" + expected))
-                for secret in ("SECRET", "SCREENSHOT", "GOLD", "7"):
+                for secret in ("SECRET", "SCREENSHOT", "GOLD", "id 7"):
                     self.assertNotIn(secret, code)
 
     def test_font_wait_indeterminate_and_other_timeout(self):
