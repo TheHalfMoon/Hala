@@ -8,7 +8,7 @@ from __future__ import annotations
 import unittest
 
 from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
-from h364.native_batch import padded_token_plan, SCHEMA, ROLE
+from h364.native_batch import padded_token_plan, verified_grid_patch_volume, SCHEMA, ROLE
 
 
 class H364NativeBatchPlanTests(unittest.TestCase):
@@ -64,6 +64,34 @@ class H364NativeBatchPlanTests(unittest.TestCase):
         self.assertEqual(p["labels"][0][:5], [-100]*5)
         self.assertEqual(p["labels"][1][:3], [-100]*3)
         self.assertEqual(p["labels"][1][-5:], [-100]*5)
+
+
+class H366VisualGridIntegrityTests(unittest.TestCase):
+    def test_exact_image_grid_volume_accepts_and_malformed_refuses(self):
+        self.assertEqual(verified_grid_patch_volume([2, 3, 5], 30), 30)
+        self.assertEqual(verified_grid_patch_volume([1, 24, 110], 2640), 2640)
+        invalid = [
+            ([2, 3, 5], 29), ([0, 3, 5], 30),
+            ([-1, 3, 5], 30), ([2, 3, True], 30),
+            ([2, 3, 5.0], 30), ([2, 3], 30),
+            ((2, 3, 5), 30), ([2, 3, 5], True),
+            ([2, 3, 5], 0), ([2, 3, 5], -1),
+        ]
+        for dims, rows in invalid:
+            with self.subTest(dims=dims, rows=rows):
+                with self.assertRaises(ValueError):
+                    verified_grid_patch_volume(dims, rows)
+
+    def test_signed_int64_tensor_product_wrap_can_false_accept(self):
+        # Concrete regression: the old torch int64 .prod() would wrap the
+        # malformed 7 x huge x 1 visual grid to a valid 2640 patch count.
+        rows = 2640
+        b = (rows * pow(7, -1, 1 << 64)) % (1 << 64)
+        self.assertTrue(rows < b < 1 << 63)
+        self.assertGreater(7 * b, 1 << 64)
+        self.assertEqual((7 * b) % (1 << 64), rows)
+        with self.assertRaises(ValueError):
+            verified_grid_patch_volume([7, b, 1], rows)
 
 
 if __name__ == "__main__":

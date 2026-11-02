@@ -82,6 +82,24 @@ def padded_token_plan(examples: list[dict], pad_id: int) -> dict:
     }
 
 
+def verified_grid_patch_volume(dimensions: list[int], patch_rows: int) -> int:
+    """Bounded Python-integer geometry, never wrapping int64 tensor.prod().
+
+    A malicious positive signed-int64 grid can multiply to patch_rows
+    modulo 2**64 while representing a vastly larger, invalid image.
+    Require each factor and every partial product to fit actual rows.
+    """
+    require(type(dimensions) is list and len(dimensions) == 3
+            and type(patch_rows) is int and patch_rows > 0)
+    volume = 1
+    for dimension in dimensions:
+        require(type(dimension) is int and 0 < dimension <= patch_rows)
+        volume *= dimension
+        require(volume <= patch_rows)
+    require(volume == patch_rows)
+    return volume
+
+
 def real_cpu_visual_batch(examples: list[dict], pad_id: int) -> dict:
     """Pure CPU zero-gradient research batch from verified processor outputs.
 
@@ -99,6 +117,8 @@ def real_cpu_visual_batch(examples: list[dict], pad_id: int) -> dict:
     plan = padded_token_plan(examples, pad_id)
     pixels, grids = [], []
     feature_width = None
+    pixel_dtype = None
+    grid_dtype = None
     for sample in examples:
         raw_pixels = sample["pixel_values"]
         grid = sample["image_grid_thw"]
@@ -115,12 +135,16 @@ def real_cpu_visual_batch(examples: list[dict], pad_id: int) -> dict:
                 and bool((grid > 0).all().item()))
         if feature_width is None:
             feature_width = raw_pixels.shape[1]
-        require(raw_pixels.shape[1] == feature_width)
+            pixel_dtype = raw_pixels.dtype
+            grid_dtype = grid.dtype
+        require(raw_pixels.shape[1] == feature_width
+                and raw_pixels.dtype == pixel_dtype
+                and grid.dtype == grid_dtype)
         # Qwen3-VL's public processor returns one flattened image patch
         # row per T*H*W grid position. Never silently admit a grid whose
         # geometry points at fewer/more patch rows or a reordered image.
-        require(grid.dtype in (torch.int32, torch.int64)
-                and int(grid[0].prod().item()) == int(raw_pixels.shape[0]))
+        require(grid.dtype in (torch.int32, torch.int64))
+        verified_grid_patch_volume(grid[0].tolist(), int(raw_pixels.shape[0]))
         pixels.append(raw_pixels)
         grids.append(grid)
     batch = {

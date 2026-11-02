@@ -124,6 +124,33 @@ def main() -> None:
         except ValueError:
             patch_count_mismatch_refused = True
         require(patch_count_mismatch_refused)
+        # H366 regression: a positive signed-int64 grid can overflow
+        # torch.prod() and falsely equal the actual pixel patch row count.
+        rows = int(first["pixel_values"].shape[0])
+        wrapped_dim = (rows * pow(7, -1, 1 << 64)) % (1 << 64)
+        require(first["image_grid_thw"].dtype == torch.int64
+                and rows < wrapped_dim < (1 << 63)
+                and 7 * wrapped_dim > (1 << 64))
+        wrapped_grid = torch.tensor([[7, wrapped_dim, 1]], dtype=torch.int64)
+        require(int(wrapped_grid[0].prod().item()) == rows)
+        wrapped_first = dict(first, image_grid_thw=wrapped_grid)
+        wrapped_grid_refused = False
+        try:
+            real_cpu_visual_batch([wrapped_first, second], pad)
+        except ValueError:
+            wrapped_grid_refused = True
+        require(wrapped_grid_refused)
+        # H366: never let torch.cat silently promote mixed visual dtypes.
+        alt_dtype = (torch.float64 if second["pixel_values"].dtype !=
+                     torch.float64 else torch.float32)
+        mixed_second = dict(second, pixel_values=
+                            second["pixel_values"].to(dtype=alt_dtype))
+        mixed_dtype_refused = False
+        try:
+            real_cpu_visual_batch([first, mixed_second], pad)
+        except ValueError:
+            mixed_dtype_refused = True
+        require(mixed_dtype_refused)
         supervised = int((batch["labels"] != -100).sum().item())
         padded = int((batch["attention_mask"] == 0).sum().item())
         require(supervised > 0 and padded >= 0 and
@@ -144,6 +171,8 @@ def main() -> None:
             "batch_tensor_dimensions_valid": True,
             "grid_patch_mismatch_refused": grid_mismatch_refused,
             "truncated_patch_mismatch_refused": patch_count_mismatch_refused,
+            "wrapped_int64_grid_refused": wrapped_grid_refused,
+            "mixed_patch_dtype_refused": mixed_dtype_refused,
             "model_weights_loaded": False,
             "model_forward_calls": 0,
             "optimizer_steps": 0,
