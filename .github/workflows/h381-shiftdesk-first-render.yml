@@ -1,0 +1,38 @@
+name: H381 ShiftDesk bounded initial frame (NO TRAIN)
+
+on:
+  pull_request:
+    paths:
+      - h285/train_only_browser_candidates.py
+      - tests/test_h381_shiftdesk_first_render.py
+      - h381/**
+      - .github/workflows/h381-shiftdesk-first-render.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  shiftdesk-source-first-render:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve exact source bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Check bounded original render and H285 source-only contracts
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -S -B -m unittest tests.test_h381_shiftdesk_first_render tests.test_h285_original_train_only_browser -q
+      - name: Confirm no generated media, labels or weights
+        run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
