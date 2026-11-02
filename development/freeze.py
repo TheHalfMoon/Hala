@@ -54,12 +54,16 @@ def freeze_bundle(output, settings, font_path=None):
 
 def verify_bundle(path, require_media=True, expected_manifest_sha256=None):
     path = Path(path)
-    actual_manifest_hash = hashlib.sha256((path / 'manifest.json').read_bytes()).hexdigest()
+    # H380: hash and parse the SAME manifest bytes. Re-reading manifest.json
+    # after its SHA validation would allow an attacker to replace that file
+    # between verification and parsing, changing the supposed freeze identity.
+    manifest_raw = (path / 'manifest.json').read_bytes()
+    actual_manifest_hash = hashlib.sha256(manifest_raw).hexdigest()
     if require_media and expected_manifest_sha256 is None:
         raise ValueError('independently archived manifest SHA256 required')
     if expected_manifest_sha256 is not None and actual_manifest_hash != expected_manifest_sha256:
         raise ValueError('external manifest hash mismatch')
-    manifest = json.loads((path / 'manifest.json').read_text(encoding='utf-8'))
+    manifest = json.loads(manifest_raw.decode('utf-8'))
     if set(manifest['files']) != {'dataset.json', 'settings.json', 'media.json', 'training-rows.jsonl'}:
         raise ValueError('unexpected freeze files')
     for name, expected in manifest['files'].items():
