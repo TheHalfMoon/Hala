@@ -135,16 +135,26 @@ def original_scene(browser: Any, source: Path, url: str, scene: tuple):
 
 
 def _observed_predict(page: Any, predict: Callable[[bytes, str], str],
-                      task: str, seen_rgb: set[bytes]) -> dict:
+                      task: str, seen_rgb: set[bytes], *,
+                      stage_sink: Callable[[str], None] | None = None,
+                      phase: str = "first") -> dict:
+    if stage_sink is not None:
+        stage_sink(phase + "_image_capture")
     png = _observed_png(page)
     need(type(png) is bytes and png.startswith(b"\x89PNG\r\n\x1a\n"))
+    if stage_sink is not None:
+        stage_sink(phase + "_image_digest")
     before = _model_visible_rgb_digest(png)
     # A second model turn must see a genuinely new rendered GUI state.
     # Check BEFORE invoking a potentially costly genuine VLM callback.
     need(before not in seen_rgb)
     url = page.url
+    if stage_sink is not None:
+        stage_sink(phase + "_policy_callback")
     answer = predict(png, source_task_prompt(task))
     parsed = parse_actions(answer)
+    if stage_sink is not None:
+        stage_sink(phase + "_post_policy_frame")
     need(page.url == url and compare_digest(
         before, _model_visible_rgb_digest(_observed_png(page))))
     seen_rgb.add(before)
@@ -167,12 +177,17 @@ def run_original_dynamic_sequence(
     refusal = "none"
     seen_rgb: set[bytes] = set()
     stage = "initial_original_scene"
+    def _record_stage(value: str) -> None:
+        nonlocal stage
+        stage = value
     try:
         with original_scene(browser, source, url, scene) as page:
             need(inspect_all_stations(page) ==
                  {station: (False, "") for station in IDS})
             stage = "first_render_and_policy"
-            action = _observed_predict(page, predict, task, seen_rgb)
+            action = _observed_predict(
+                page, predict, task, seen_rgb,
+                stage_sink=_record_stage, phase="first")
             seen_steps = 1
             need(action["kind"] in ("click", "abstain"))
             if action["kind"] == "abstain":
@@ -195,7 +210,9 @@ def run_original_dynamic_sequence(
                     refusal = "wrong_focus_or_state"
                 else:
                     stage = "second_render_and_policy"
-                    action = _observed_predict(page, predict, task, seen_rgb)
+                    action = _observed_predict(
+                        page, predict, task, seen_rgb,
+                        stage_sink=_record_stage, phase="second")
                     seen_steps = 2
                     need(action["kind"] in ("type_text", "abstain"))
                     if action["kind"] == "abstain":
