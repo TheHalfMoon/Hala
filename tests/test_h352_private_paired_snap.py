@@ -88,6 +88,25 @@ class H352InventedPairedProtocolTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 verify_success(bad)
 
+    def test_unchanged_native_action_cannot_claim_snap_gain_or_loss(self):
+        # A no-op pixel transform must never earn a win or loss from
+        # unrelated browser nondeterminism on nominally identical scenes.
+        for baseline, candidate in ((False, True), (True, False)):
+            rows = mock_pairs()
+            rows[10].update(baseline=baseline, candidate=candidate,
+                            changed=False)
+            with self.subTest(baseline=baseline), self.assertRaises(ValueError):
+                aggregate_pairs(rows)
+        # An unchanged tied outcome remains legitimate.
+        rows = mock_pairs()
+        rows[0]["changed"] = False
+        self.assertEqual(aggregate_pairs(rows)["en"]["paired_wins"], 0)
+        # Even a forged aggregate cannot claim more discordances than snaps.
+        receipt = safe_report(mock_pairs(), HW)
+        receipt["by_language"]["ar"]["pixel_snap_changes"] = 1
+        with self.assertRaises(ValueError):
+            verify_success(receipt)
+
     def test_json_strict_no_duplicates_nonfinite_or_raw_data(self):
         accepted = safe_report(mock_pairs(), HW)
         self.assertEqual(verify_success(parse_unique(
