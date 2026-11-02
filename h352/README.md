@@ -52,6 +52,19 @@ AFTER dispatch in each arm. Both arms share exactly the same
 model-generated action and exact decoded RGB image identity, so Qwen
 generation random drift cannot masquerade as calibration gain.
 
+**Order-bias correction (prospective, no H352 model run):** the original
+protocol always executed baseline in the first fresh browser context and
+pixel-snap in the second. That confounded the candidate arm with browser
+context/order effects even with identical RGB inputs. The fixed H319
+source-scene ordering now predeclares exactly three baseline-first and three
+candidate-first trials **within each language**. The same single Qwen
+generation and two fresh, RGB-identical original source contexts are retained.
+No per-scene order, predictions, points, task IDs or screenshots enter the
+public receipt. This removes deterministic order-arm confounding, but does
+**not** eliminate all browser nondeterminism, supply an independent OOD
+sample, prove a causal gain or justify a release. The paired outcome still
+requires a genuinely authenticated owner-private study before any claim.
+
 It reports only low-entropy bilingual aggregate baseline successes,
 candidate successes, snap-change counts and paired win/loss/tie totals,
 with strictly validated arithmetic and no per-case images, points,
