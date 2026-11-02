@@ -61,7 +61,28 @@ def source_selection() -> tuple[tuple[str, int, str, str], ...]:
     return SELECTION
 
 
-def verify_pack_order(batch: dict, examples: list[dict]) -> dict:
+def verify_token_row_integrity(
+        row_input: list[int], row_label: list[int],
+        row_attention: list[int], full: list[int],
+        prefix: list[int], pad_id: int) -> None:
+    """Independently reject non-PAD input IDs in masked right-padding slots.
+
+    Labels/attention alone cannot prove that an input token is padding:
+    a corrupted PAD slot can still have attention=0 and label=-100.
+    """
+    require(type(pad_id) is int and pad_id >= 0
+            and len(row_input) == len(row_label) == len(row_attention)
+            and 0 < len(prefix) < len(full) <= len(row_input)
+            and full[:len(prefix)] == prefix)
+    pad_count = len(row_input) - len(full)
+    require(row_input == full + [pad_id] * pad_count
+            and row_label == [-100] * len(prefix)
+            + full[len(prefix):] + [-100] * pad_count
+            and row_attention == [1] * len(full) + [0] * pad_count)
+
+
+def verify_pack_order(
+        batch: dict, examples: list[dict], pad_id: int) -> dict:
     """Reject accidental token/visual-grid/visual-patch reordering.
 
     Call on both normal and reversed original sample sequences. The
@@ -81,13 +102,9 @@ def verify_pack_order(batch: dict, examples: list[dict]) -> dict:
         row_input = batch["input_ids"][i].tolist()
         row_label = batch["labels"][i].tolist()
         row_attention = batch["attention_mask"][i].tolist()
-        require(row_input[:len(full)] == full
-                and row_label[:len(prefix)] == [-100] * len(prefix)
-                and row_label[len(prefix):len(full)] == full[len(prefix):]
-                and row_label[len(full):] == [-100] * (len(row_label) - len(full))
-                and row_attention == [1] * len(full) +
-                [0] * (len(row_attention) - len(full))
-                and torch.equal(batch["image_grid_thw"][i], item["image_grid_thw"][0])
+        verify_token_row_integrity(
+            row_input, row_label, row_attention, full, prefix, pad_id)
+        require(torch.equal(batch["image_grid_thw"][i], item["image_grid_thw"][0])
                 and torch.equal(
                     batch["pixel_values"][patch_offset:patch_offset + patch_rows],
                     item["pixel_values"]))
@@ -152,10 +169,10 @@ def main() -> None:
                 require(actual_kind == kind)
                 examples.append(example)
             batch = real_cpu_visual_batch(examples, pad_id)
-            normal = verify_pack_order(batch, examples)
+            normal = verify_pack_order(batch, examples, pad_id)
             reversed_samples = list(reversed(examples))
             swapped = real_cpu_visual_batch(reversed_samples, pad_id)
-            reverse = verify_pack_order(swapped, reversed_samples)
+            reverse = verify_pack_order(swapped, reversed_samples, pad_id)
             require(reverse == normal
                     and tuple(batch["image_grid_thw"].shape) == (4, 3)
                     and tuple(swapped["image_grid_thw"].shape) == (4, 3)
