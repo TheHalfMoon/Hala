@@ -151,6 +151,36 @@ class H355RightsSignatureTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     intake.verify_signed_review(envelope(item, key, key_id), ROOT)
 
+    def test_expiry_uses_utc_calendar_day(self):
+        # Invented-only time boundary: host local date must never decide
+        # whether a UTC-dated external decision is still valid.
+        payload, key, registry, key_id = material()
+        utc_day = date(2032, 4, 12)
+        payload["signed_date_utc"] = (utc_day - timedelta(days=1)).isoformat()
+        payload["expiry_date_utc"] = utc_day.isoformat()
+        signed = envelope(payload, key, key_id)
+
+        class FixedUTCClock:
+            current = utc_day
+
+            @classmethod
+            def now(cls, tz):
+                if tz is not intake.timezone.utc:
+                    raise AssertionError("rights decision requires UTC calendar date")
+                return cls
+
+            @classmethod
+            def date(cls):
+                return cls.current
+
+        with patch.object(intake, "TRUSTED_REVIEWERS", registry), \
+             patch.object(intake, "datetime", FixedUTCClock):
+            self.assertTrue(intake.verify_signed_review(
+                signed, ROOT)["external_signature_verified"])
+            FixedUTCClock.current = utc_day + timedelta(days=1)
+            with self.assertRaisesRegex(ValueError, "NOT_AUTHENTICATED"):
+                intake.verify_signed_review(signed, ROOT)
+
     def test_nonapproval_review_never_becomes_approved(self):
         payload, key, registry, key_id = material(permission=False)
         with patch.object(intake, "TRUSTED_REVIEWERS", registry):
