@@ -4,8 +4,10 @@ on:
   pull_request:
     paths:
       - training/development_data.py
+      - development/freeze.py
       - h380/**
       - tests/test_h380_frozen_projection_snapshot.py
+      - tests/test_h380_frozen_manifest_snapshot.py
       - .github/workflows/h380-freeze-projection-snapshot.yml
   workflow_dispatch:
 
@@ -33,6 +35,6 @@ jobs:
       - name: Reproduce and reject changed training projections after freeze verification
         env:
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python -S -B -m unittest tests.test_h380_frozen_projection_snapshot tests.test_h350_development_official_admission -q
+        run: python -S -B -m unittest tests.test_h380_frozen_manifest_snapshot tests.test_h380_frozen_projection_snapshot tests.test_h350_development_official_admission -q
       - name: No model, media, optimizer or output files allowed
         run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
