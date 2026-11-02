@@ -58,12 +58,19 @@ No real account or patient data is present.
   new independent blind DEV/TEST set.
 - H359 H199-native source audit, H361 processor-only contract and
   H199 source rights/data admission guards remain intact.
-  The **real Qwen3-VL CPU processor parity previously observed in
-  H361 pertains to the preceding generated scene configurations**.
-  This H362 revision changes raster/case contents, so a
-  separate real pinned-processor requalification on these new
-  contents is required before claiming actual real processor
-  parity for H362.
+  H361's *earlier* real Qwen3-VL CPU processor result was on the
+  preceding scene layouts. **H362's updated source layouts have now
+  been separately requalified** by rerunning the actual, pinned
+  Qwen3VLProcessor offline on the owner Windows CPU: 12/12
+  original source candidates PASS, EN6/6 AR6/6, click10/10
+  type_text2/2, with identical visual tensors, exact multimodal
+  token prefix, assistant-only supervised mask and strict native
+  completion roundtrip. Original-source browser PNG/labels were
+  ephemeral; no model weights, optimizer, GPU, training, blind OOD,
+  or data export. The exact CPU processor identity and H218 eight
+  public asset SHA256 checks remain as in the H361 qualified runner.
+  This evidence is **only** genuine processor parity, never
+  adapted model weights or release permission.
 - Existing original source HTML Git SHA identities are unchanged;
   only original source candidate factory parameters are updated.
   No data/image/gold/weight files are committed.
