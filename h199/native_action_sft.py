@@ -148,7 +148,7 @@ def validate_model_visible_task(task: object) -> str:
     require(type(task) is str and 0 < len(task) <= 500,
             "single bounded user-visible original GUI task required")
     require(all(
-        (unicodedata.category(char) not in {"Cs", "Zl", "Zp"})
+        (unicodedata.category(char) not in {"Cs", "Co", "Cn", "Zl", "Zp"})
         and (unicodedata.category(char) != "Cc" or char in ("\n", "\t"))
         and (unicodedata.category(char) != "Cf"
              or char in ALLOWED_TASK_JOIN_CONTROLS)
