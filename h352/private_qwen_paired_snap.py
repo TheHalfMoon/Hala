@@ -110,6 +110,19 @@ def native_action_changed(original: str, revised: str) -> bool:
     return before != after
 
 
+def paired_arm_order(scene):
+    """Predeclared 3/3 per-language order balance; no source oracle input.
+
+    Without counterbalancing, baseline always runs in the first browser
+    context and pixel-snap always in the second. Context/order effects
+    could then be misattributed to calibration on these exposed scenes.
+    """
+    from h319.beaconboard_dynamic_research import SCENES
+    need(type(scene) is tuple and scene in SCENES)
+    return (("candidate", "baseline") if SCENES.index(scene) % 2
+            else ("baseline", "candidate"))
+
+
 def measure_one_paired(browser, source, scene, processor, model, snap):
     from h319.beaconboard_dynamic_research import (
         IDS, _observed_png, _model_visible_rgb_digest,
@@ -132,14 +145,19 @@ def measure_one_paired(browser, source, scene, processor, model, snap):
         # Screenshot-ONLY transform receives NO task, ID, DOM, state, gold.
         revised = snap(png, native)
         need(rgb_digest == _model_visible_rgb_digest(_observed_png(page)))
-        baseline = score_dispatched_native(page, native, target=target)
+        first_arm, second_arm = paired_arm_order(scene)
+        results = {}
+        results[first_arm] = score_dispatched_native(
+            page, revised if first_arm == "candidate" else native,
+            target=target)
     with original_scene(browser, source, url, scene) as other_page:
         need(inspect_all_stations(other_page) ==
              {s: (False, "") for s in IDS})
         other_png = _observed_png(other_page)
         need(rgb_digest == _model_visible_rgb_digest(other_png))
-        candidate = score_dispatched_native(other_page, revised,
-                                            target=target)
+        results[second_arm] = score_dispatched_native(
+            other_page, revised if second_arm == "candidate" else native,
+            target=target)
     summary = policy.safe_contract_summary()
     need(type(summary) is dict
          and type(summary.get("model_generations_via_wrapped_generate")) is int
@@ -153,8 +171,8 @@ def measure_one_paired(browser, source, scene, processor, model, snap):
          and summary["real_owner_private_gpu_run_attested"] is False
          and summary["generalizable_hala_gain_proven"] is False)
     return {
-        "language": scene[1], "baseline": baseline,
-        "candidate": candidate,
+        "language": scene[1], "baseline": results["baseline"],
+        "candidate": results["candidate"],
         "changed": native_action_changed(native, revised),
     }
 
