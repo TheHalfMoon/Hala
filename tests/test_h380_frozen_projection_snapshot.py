@@ -95,6 +95,11 @@ class H380FrozenProjectionTests(unittest.TestCase):
             duplicate=b'{"model":"invented","model":"override"}'
             (root/"settings.json").write_bytes(duplicate)
             manifest["files"]["settings.json"]=sha(duplicate)
+            # This test isolates duplicate-key rejection AFTER the valid
+            # external manifest snapshot gate; keep both exact files in sync.
+            (root/"manifest.json").write_bytes(json.dumps(
+                manifest, sort_keys=True, separators=(",", ":")
+            ).encode("utf-8"))
             with (
                 patch("training.development_data.verify_bundle", return_value=manifest),
                 patch("training.development_data.check_settings") as settings,
