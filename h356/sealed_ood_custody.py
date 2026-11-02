@@ -9,7 +9,7 @@ scores, model predictions, raw filenames, IDs or screenshots via this API.
 from __future__ import annotations
 
 from base64 import b64decode
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from hashlib import sha256
 import json
 import re
@@ -37,6 +37,11 @@ PUBLIC_EXPOSED_OR_CONSUMED = frozenset({
 def require(condition: bool) -> None:
     if not condition:
         raise ValueError("H356_EXTERNAL_SEALED_OOD_CUSTODY_NOT_ATTESTED")
+
+
+def utc_calendar_today() -> date:
+    """Use UTC for both signed and expiry *_utc calendar dates."""
+    return datetime.now(timezone.utc).date()
 
 
 def dated(value: object) -> date:
@@ -87,7 +92,9 @@ def verify_sealed_ood_commitment(raw: bytes) -> dict:
     require(claim["schema"] == SCHEMA and
             type(claim["custodian_identity"]) is str and
             NAME.fullmatch(claim["custodian_identity"]))
-    today = date.today()
+    # These signed *_utc dates are anchored to the UTC calendar day,
+    # not the host's local timezone (which can be ahead or behind).
+    today = utc_calendar_today()
     signed = dated(claim["signature_date_utc"])
     expiry = dated(claim["expiry_date_utc"])
     require(signed <= today <= expiry and
