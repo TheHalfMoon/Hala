@@ -6,6 +6,8 @@ This diagnostic is for publicly exposed source-browser research ONLY.
 """
 from __future__ import annotations
 
+from h373.screenshot_error_buckets import safe_screenshot_bucket
+
 STAGES = {
     "h319": (
         "initial_original_scene",
@@ -69,4 +71,8 @@ def browser_failure_code(flow: str, stage: str, cause: BaseException) -> str:
             kind = "browser_timeout"
         elif typ.__name__ == "Error":
             kind = "browser_error"
-    return PREFIX[flow] + " stage=" + stage + " kind=" + kind
+    result = PREFIX[flow] + " stage=" + stage + " kind=" + kind
+    signature = safe_screenshot_bucket(stage, cause)
+    if signature is not None:
+        result += " capture=" + signature
+    return result
