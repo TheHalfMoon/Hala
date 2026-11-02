@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - training/development_data.py
-      - development/freeze.py
       - h380/**
       - tests/test_h380_frozen_projection_snapshot.py
       - tests/test_h380_frozen_manifest_snapshot.py
