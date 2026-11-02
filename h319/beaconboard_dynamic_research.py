@@ -108,6 +108,28 @@ def inspect_all_stations(page: Any) -> dict[str, tuple[bool, str]]:
     return found
 
 
+
+def await_initial_render(page: Any) -> None:
+    """Fail-closed two-frame source render barrier before the FIRST capture.
+
+    This is ONE bounded synchronization point, not a screenshot retry,
+    a sleep, a source mutation, a performance claim or model inference.
+    """
+    ready = page.evaluate("""() => new Promise(resolve => {
+        let settled = false;
+        const finish = value => {
+            if (!settled) { settled = true; resolve(value); }
+        };
+        const timer = setTimeout(() => finish(false), 3000);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            clearTimeout(timer);
+            finish(document.readyState === 'complete' &&
+                document.querySelectorAll('button[data-station]').length === 4);
+        }));
+    })""")
+    need(ready is True)
+
+
 @contextmanager
 def original_scene(browser: Any, source: Path, url: str, scene: tuple):
     context = new_offline_context(browser)
@@ -129,6 +151,8 @@ def original_scene(browser: Any, source: Path, url: str, scene: tuple):
         need(page.locator("html").get_attribute("dir") ==
              ("rtl" if language == "ar" else "ltr"))
         need(page.locator("button[data-station]").count() == 4)
+        await_initial_render(page)
+        need(page.url == url)
         yield page
     finally:
         context.close()
