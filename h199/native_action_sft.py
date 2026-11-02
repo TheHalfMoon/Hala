@@ -133,6 +133,9 @@ def parse_actions(value: object, *, training_target: bool = False) -> dict:
 UNSAFE_TASK_BIDI_CONTROLS = frozenset(chr(code) for code in (
     *range(0x202A, 0x202F), *range(0x2066, 0x206A),
 ))
+# Keep only intentional Arabic/Persian shaping controls; all other
+# Unicode Cf format characters can invisibly alter direction/display.
+ALLOWED_TASK_JOIN_CONTROLS = frozenset(("\u200c", "\u200d"))
 UNSAFE_TASK_INVISIBLE = frozenset(("\u200b", "\ufeff"))
 
 
@@ -145,8 +148,10 @@ def validate_model_visible_task(task: object) -> str:
     require(type(task) is str and 0 < len(task) <= 500,
             "single bounded user-visible original GUI task required")
     require(all(
-        (unicodedata.category(char) != "Cs")
+        (unicodedata.category(char) not in {"Cs", "Co", "Cn", "Zl", "Zp"})
         and (unicodedata.category(char) != "Cc" or char in ("\n", "\t"))
+        and (unicodedata.category(char) != "Cf"
+             or char in ALLOWED_TASK_JOIN_CONTROLS)
         and char not in UNSAFE_TASK_BIDI_CONTROLS
         and char not in UNSAFE_TASK_INVISIBLE
         for char in task
