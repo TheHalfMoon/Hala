@@ -35,6 +35,7 @@ def fixture(root: Path):
     (root/"settings.json").write_bytes(settings)
     (root/"training-rows.jsonl").write_bytes(raw_rows)
     manifest = {"files":{"settings.json":sha(settings), "training-rows.jsonl":sha(raw_rows)}}
+    (root/"manifest.json").write_bytes(json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
     return manifest, rows
 
 
@@ -47,12 +48,12 @@ class H380FrozenProjectionTests(unittest.TestCase):
                 patch("training.development_data.verify_bundle", return_value=manifest) as verify,
                 patch("training.development_data.check_settings") as settings,
             ):
-                actual, metadata=load_rows(root, "b"*64)
+                actual, metadata=load_rows(root, sha((root/"manifest.json").read_bytes()))
             self.assertEqual(actual[0]["prompt"], rows[0]["prompt"])
             self.assertEqual(actual[1]["prompt"], rows[1]["prompt"])
             self.assertEqual({row["language"] for row in actual},{"en","ar"})
             self.assertEqual(metadata, manifest)
-            verify.assert_called_once_with(root, require_media=True, expected_manifest_sha256="b"*64)
+            verify.assert_called_once_with(root, require_media=True, expected_manifest_sha256=sha((root/"manifest.json").read_bytes()))
             settings.assert_called_once_with({"model":"invented-cpu-only","flags":[]})
 
     def test_modified_training_rows_after_freeze_verification_denied(self):
@@ -69,7 +70,7 @@ class H380FrozenProjectionTests(unittest.TestCase):
                 patch("training.development_data.check_settings") as settings,
             ):
                 with self.assertRaisesRegex(ValueError,"Frozen projection bytes differ"):
-                    load_rows(root,"b"*64)
+                    load_rows(root, sha((root/"manifest.json").read_bytes()))
                 settings.assert_not_called()
 
     def test_modified_settings_after_verification_denied(self):
@@ -84,7 +85,7 @@ class H380FrozenProjectionTests(unittest.TestCase):
                 patch("training.development_data.check_settings") as settings,
             ):
                 with self.assertRaisesRegex(ValueError,"Frozen projection bytes differ"):
-                    load_rows(root,"b"*64)
+                    load_rows(root, sha((root/"manifest.json").read_bytes()))
                 settings.assert_not_called()
 
     def test_duplicate_json_keys_in_projection_refused(self):
@@ -99,7 +100,7 @@ class H380FrozenProjectionTests(unittest.TestCase):
                 patch("training.development_data.check_settings") as settings,
             ):
                 with self.assertRaisesRegex(ValueError,"Duplicate JSON key"):
-                    load_rows(root,"b"*64)
+                    load_rows(root, sha((root/"manifest.json").read_bytes()))
                 settings.assert_not_called()
 
     def test_oversize_projection_refused_without_processing(self):
