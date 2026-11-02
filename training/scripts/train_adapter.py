@@ -7,13 +7,14 @@ model fit and resume equivalence still require a pinned real remote experiment.
 import argparse
 import hashlib
 import json
+from io import BytesIO
 import os
 import platform
 import re
 import time
 from pathlib import Path
 
-from training.artifacts import (MAX_PIXELS, artifact_path, load_sft_artifact,
+from training.artifacts import (MAX_IMAGE_BYTES, MAX_PIXELS, artifact_path, load_sft_artifact,
                                 sha256_file, strict_json)
 from h48.factory import SCHEMA as H48_SOURCE_SCHEMA
 from h48.sft_bridge import load_export as load_h48_export
@@ -140,20 +141,27 @@ def media_format(row, native_drag_jpeg=False) -> str:
     return 'JPEG' if native_drag_jpeg else 'PNG'
 
 
-def check_media(row, root, native_drag_jpeg=False):
-    """Verify one training media file without allocating a processor.
+def verified_media_bytes(row, root):
+    """Read the exact image bytes that will be decoded, once, within a hard cap.
 
-    The media digest and the format are checked for EVERY record, and the
-    processor is only needed for the records that are actually audited. That
-    split is what makes a curriculum of a hundred thousand records affordable
-    without weakening the integrity of the corpus.
+    A separate path hash followed by Image.open(path) is a TOCTOU: the file
+    may be replaced after its digest passes but before its pixels are used.
     """
+    image_path = artifact_path(root, row['image_path'])
+    with image_path.open('rb') as handle:
+        raw = handle.read(MAX_IMAGE_BYTES + 1)
+    if (not raw or len(raw) > MAX_IMAGE_BYTES or
+            hashlib.sha256(raw).hexdigest() != row['image_sha256']):
+        raise ValueError('Training media digest/byte budget mismatch')
+    return raw
+
+
+def check_media(row, root, native_drag_jpeg=False):
+    """Check each source's exact verified-byte snapshot without GPU/processor."""
     from PIL import Image
 
-    image_path = artifact_path(root, row['image_path'])
-    if sha256_file(image_path) != row['image_sha256']:
-        raise ValueError('Training media digest changed after preflight')
-    with Image.open(image_path) as source:
+    raw = verified_media_bytes(row, root)
+    with Image.open(BytesIO(raw)) as source:
         if source.format != media_format(row, native_drag_jpeg):
             raise ValueError('Training image does not have its declared format')
         if source.width * source.height > MAX_PIXELS:
@@ -171,10 +179,8 @@ def prepare_inputs(row, processor, root, token_budget, *, native_drag_jpeg=False
     """
     import torch
     from PIL import Image
-    image_path = artifact_path(root, row['image_path'])
-    if sha256_file(image_path) != row['image_sha256']:
-        raise ValueError('Training media digest changed after preflight')
-    with Image.open(image_path) as source:
+    raw = verified_media_bytes(row, root)
+    with Image.open(BytesIO(raw)) as source:
         if source.format != media_format(row, native_drag_jpeg):
             raise ValueError('Training image does not have its declared format')
         if source.width * source.height > MAX_PIXELS:
