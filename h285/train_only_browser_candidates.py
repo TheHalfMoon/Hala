@@ -81,6 +81,28 @@ def inspect_all_eight(page: Any) -> dict[str, bool]:
     return result
 
 
+
+def await_shiftdesk_first_render(page: Any) -> None:
+    """One bounded original-source first-paint barrier, no screenshot retry.
+
+    The original eight cards must remain visible after two animation frames.
+    A false, timeout, or malformed response refuses this candidate scene.
+    """
+    ready = page.evaluate("""() => new Promise(resolve => {
+        let settled = false;
+        const finish = value => {
+            if (!settled) { settled = true; resolve(value); }
+        };
+        const timer = setTimeout(() => finish(false), 3000);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            clearTimeout(timer);
+            finish(document.readyState === 'complete' &&
+                document.querySelectorAll('article.card').length === 8);
+        }));
+    })""")
+    need(ready is True, "original first render not ready")
+
+
 @contextmanager
 def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
     context = new_offline_context(browser)
@@ -106,6 +128,8 @@ def _open_scene(browser: Any, source: Path, url: str, scene: tuple):
         need(page.locator("html").get_attribute("dir") ==
              ("rtl" if lang == "ar" else "ltr"),
              "bilingual original GUI rendering mismatch")
+        await_shiftdesk_first_render(page)
+        need(page.url == url, "original source URL changed after render")
         yield page
     finally:
         context.close()
