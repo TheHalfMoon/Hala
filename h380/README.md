@@ -28,17 +28,24 @@ to obtain the manifest fields. A substituted manifest between those reads
 could make the returned source/file claims differ from the externally
 pinned bytes, undermining even the downstream snapshot hashes.
 
-H380 therefore parses the **same in-memory manifest bytes already hashed**,
-without the second metadata read. A deterministic invented test uses a
-temporary public synthetic frozen bundle and patches the manifest read
-to replace the file immediately after providing the originally hashed
-bytes; the verifier must still return the original signed-identity
-snapshot, not the forged metadata. A wrong external digest is still refused.
-This is a local file-integrity defense, not an independent signing authority.
+The original development/freeze.py is independently byte-frozen:
+the inherited CPU source-identity tests correctly refused a direct edit to
+that verifier. H380 therefore leaves that original source **byte-for-byte
+unchanged** and instead adds a TRAIN-SIDE _verified_frozen_manifest guard:
+it reads a bounded snapshot of manifest.json, checks its external SHA-256,
+parses that exact snapshot with strict JSON, then invokes the historical
+verifier and rejects any returned metadata differing from the already
+pinned snapshot. No edited historical reference implementation is needed.
+
+An invented regression test simulates the old verifier returning forged
+metadata after a local file swap; the training-side guard must deny it.
+Wrong or absent external digests fail before invoking the verifier. This
+protects the historical training projection, not every other caller of
+the immutable freeze verifier or any legal signing authority.
 
 ## Minimal source-only change
 
-After the original full `verify_bundle` check, H380 obtains each
+After the new exact-manifest identity guard and original full `verify_bundle` check, H380 obtains each
 registered projection file as a **single bounded byte snapshot** (16 MiB
 maximum), refuses symlinked projection files and compares SHA-256 of
 those exact bytes with the hashes in the already independently qualified
