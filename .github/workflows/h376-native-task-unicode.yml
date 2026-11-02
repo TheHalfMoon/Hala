@@ -1,0 +1,38 @@
+name: H376 Unicode-safe bilingual native task admission (NO TRAIN)
+
+on:
+  pull_request:
+    paths:
+      - h199/native_action_sft.py
+      - h376/**
+      - tests/test_h376_native_task_unicode.py
+      - .github/workflows/h376-native-task-unicode.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-task-text-preflight-no-train:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve exact Git source identity
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Validate Arabic and English task Unicode and inherited native action parser
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -S -B -m unittest tests.test_h376_native_task_unicode tests.test_h199_native_action_sft -q
+      - name: Prove no training data or model files were created
+        run: python -c "import subprocess; assert not subprocess.check_output(['git','status','--porcelain'],text=True)"
