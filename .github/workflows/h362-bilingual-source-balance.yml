@@ -1,0 +1,51 @@
+name: H362 bilingual original-source confound balance (NO MODEL)
+
+on:
+  pull_request:
+    paths:
+      - h357/source_candidate.py
+      - h358/source_candidate.py
+      - h362/**
+      - tests/test_h357_original_controlgarden_candidate.py
+      - tests/test_h358_original_noterelay_multistep.py
+      - tests/test_h362_source_balance.py
+      - .github/workflows/h362-bilingual-source-balance.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-balanced-browser:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - name: Preserve exact authored source Git bytes
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install original source browser controller
+        run: python -m pip install playwright==1.64.1
+      - name: Install Chromium on Ubuntu
+        if: runner.os == 'Linux'
+        run: python -m playwright install --with-deps chromium
+      - name: Verify real browser controller
+        run: python -c "from playwright.sync_api import sync_playwright; assert callable(sync_playwright)"
+      - name: Require balanced English/Arabic native source cases and all original browser actions
+        env:
+          HALA_H357_BROWSER_QA: '1'
+          HALA_H358_BROWSER_QA: '1'
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python -m unittest tests.test_h362_source_balance tests.test_h357_original_controlgarden_candidate tests.test_h358_original_noterelay_multistep tests.test_h199_native_action_sft -q
+      - name: Refuse any persisted media, gold or model artifacts
+        run: python -c "import subprocess; assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True), 'unexpected generated files in Git checkout'"

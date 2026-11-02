@@ -35,7 +35,18 @@ class H358OriginalMultistepCandidateTests(unittest.TestCase):
                          {"light": 16, "dark": 16})
         self.assertEqual({row["family"] for row in roster}, {FAMILY})
         self.assertEqual({row["split"] for row in roster}, {ROLE})
-        self.assertEqual(len({row["code"] for row in roster}), CASES)
+        # H362: each bilingual pair shares identical nonlinguistic
+        # workspace, synthetic value and theme; language is the only
+        # changed task/UI dimension, preventing prefix/number leakage.
+        self.assertEqual(len({row["code"] for row in roster}), CASES // 2)
+        for index in range(0, CASES, 2):
+            english, arabic = roster[index], roster[index + 1]
+            self.assertEqual((english["code"], english["workspace"],
+                              english["theme"]),
+                             (arabic["code"], arabic["workspace"],
+                              arabic["theme"]))
+            self.assertEqual((english["language"], arabic["language"]),
+                             ("en", "ar"))
         self.assertEqual(roster, scenes())
         self.assertEqual(STEPS, ("open", "focus", "type", "save"))
         self.assertEqual(COUNT, CASES * 4)
