@@ -43,14 +43,42 @@ It refuses to fetch tokens or network assets; it requires
 Qwen3VLProcessor class must load locally. No model weights are
 requested, no `model.generate`, forward pass, optimizer or adapter.
 
-**Important evidence boundary:** the owner Windows PC presently lacks
-`torch` and `transformers`. H361 real pinned Qwen processor
-parity has **NOT BEEN EXECUTED OR QUALIFIED**. Its CPU-source tests
-run actual Edge/Chromium images but a deliberately named **FAKE
-processor** for interface-contract negative tests. Those tests
-must never be reported as a real tokenizer/processor PASS. An
-independent resource-qualified zero-cost environment and exact
-pinned processor snapshot are needed for subsequent real parity.
+**Real pinned processor qualification (2026-11-02, owner Windows CPU):**
+the eight original public Qwen3-VL processor/tokenizer assets were
+retrieved at the exact frozen revision and independently verified by
+H218 byte lengths and SHA-256 (8/8; 11,499,725 public bytes). A separate
+zero-cost Python 3.11.15 CPU-only environment used `torch==2.9.1+cpu`,
+`torchvision==0.24.1+cpu`, `transformers==4.57.1`,
+`Pillow==12.3.0`, and `playwright==1.64.1`. The first real processor
+attempt correctly failed closed because `AutoVideoProcessor` requires
+`torchvision` even for screenshot-only messages. After installing the
+matching CPU-only `torchvision`, **the actual pinned Qwen3VLProcessor
+passed all 12 authored, already-exposed H357/H358 source candidates**
+(6 EN / 6 AR; 10 click / 2 type_text), including exact multimodal
+token prefix, equal pixel/grid tensors, assistant-only mask and native
+action decode roundtrip. Real original Edge screenshots and H359
+192-row identity checks were used; ephemeral images/labels were removed
+after completion. **No model weights were loaded; no model inference,
+optimizer step, training admission or new blind OOD occurred.**
+
+For a reproducible opt-in local CPU run, install the above dependencies
+in an isolated environment, place **only** the eight H218-verified
+public processor assets under the pinned revision directory, and set
+`HF_HUB_OFFLINE=1`, `TRANSFORMERS_OFFLINE=1`, and
+`HF_HUB_DISABLE_IMPLICIT_TOKEN=1`. From the repository root run:
+
+```sh
+python -m h361.run_real_cpu_public_candidates --local-processor-snapshot <ABSOLUTE_PINNED_SNAPSHOT> --browser msedge
+```
+
+The runner explicitly rejects CUDA-enabled PyTorch, invalid processor
+bytes, non-offline mode and admitted TRAIN state. It generates only
+self-authored source candidates in a disposable directory, deletes
+them before printing a bounded aggregate receipt, and does not fetch
+model weights. The four-way GitHub workflow still exercises the
+deliberately named **FAKE** processor for dependency-light negative
+tests; its success alone is not evidence of real processor parity.
+The real CPU result above is separate owner-device evidence.
 
 ## Engineering qualification
 
