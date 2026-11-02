@@ -111,15 +111,19 @@ def native_action_changed(original: str, revised: str) -> bool:
 
 
 def paired_arm_order(scene):
-    """Predeclared 3/3 per-language order balance; no source oracle input.
+    """Predeclared order balance on public, exposed H319 source scenes.
 
-    Without counterbalancing, baseline always runs in the first browser
-    context and pixel-snap always in the second. Context/order effects
-    could then be misattributed to calibration on these exposed scenes.
+    Balance 3/3 within each language and 3/3 light/dark within each
+    arm across both languages. Three scenes per language-theme stratum
+    cannot be split equally, so residual interaction remains.
+    Source scene membership is used ONLY for experimental dispatch order,
+    never for the screenshot-only snap policy or model prediction.
     """
     from h319.beaconboard_dynamic_research import SCENES
     need(type(scene) is tuple and scene in SCENES)
-    return (("candidate", "baseline") if SCENES.index(scene) % 2
+    index = SCENES.index(scene)
+    candidate_first = bool((index % 2) ^ (scene[1] == "ar"))
+    return (("candidate", "baseline") if candidate_first
             else ("baseline", "candidate"))
 
 

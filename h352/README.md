@@ -57,8 +57,16 @@ protocol always executed baseline in the first fresh browser context and
 pixel-snap in the second. That confounded the candidate arm with browser
 context/order effects even with identical RGB inputs. The fixed H319
 source-scene ordering now predeclares exactly three baseline-first and three
-candidate-first trials **within each language**. The same single Qwen
-generation and two fresh, RGB-identical original source contexts are retained.
+candidate-first trials **within each language**. A subsequent source-backed
+audit found that the original parity schedule put four light scenes in the
+baseline-first arm but only two in the candidate-first arm. The corrected
+schedule reverses order assignment for Arabic scenes, yielding **three light
+and three dark scenes in each arm across both languages**, while keeping each
+layout permutation balanced within each language. Each language-theme stratum
+contains three scenes, so its order allocation cannot be perfectly 50/50:
+language-by-theme interaction remains a limitation, not a causal claim.
+The same single Qwen generation and two fresh, RGB-identical original source
+contexts are retained.
 No per-scene order, predictions, points, task IDs or screenshots enter the
 public receipt. This removes deterministic order-arm confounding, but does
 **not** eliminate all browser nondeterminism, supply an independent OOD

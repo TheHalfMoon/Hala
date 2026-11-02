@@ -100,6 +100,21 @@ class H352InventedPairedProtocolTests(unittest.TestCase):
             self.assertEqual(len(orders), 6)
             self.assertEqual(orders.count(("baseline", "candidate")), 3)
             self.assertEqual(orders.count(("candidate", "baseline")), 3)
+        # Original source themes and layout permutations are known
+        # experimental covariates, not Qwen predictions or blind OOD.
+        theme_arm = {}
+        for scene in SCENES:
+            first = paired_arm_order(scene)[0]
+            theme = "dark" if scene[3] else "light"
+            theme_arm[(first, theme)] = theme_arm.get((first, theme), 0) + 1
+        for arm in ("baseline", "candidate"):
+            self.assertEqual(theme_arm[(arm, "light")], 3)
+            self.assertEqual(theme_arm[(arm, "dark")], 3)
+        for language in ("en", "ar"):
+            for layout in range(3):
+                first_arms = [paired_arm_order(scene)[0] for scene in SCENES
+                              if scene[1] == language and scene[2] == layout]
+                self.assertCountEqual(first_arms, ("baseline", "candidate"))
         with self.assertRaises(ValueError):
             paired_arm_order(("not-a-source-scene",))
 
