@@ -93,7 +93,9 @@ def verify_success(data):
                  == group["paired_wins"] + group["ties_both_success"]
              and group["pixel_snap_success"]
                  == group["baseline_success"] + group["paired_wins"]
-                    - group["paired_losses"])
+                    - group["paired_losses"]
+             and group["paired_wins"] + group["paired_losses"]
+                 <= group["pixel_snap_changes"])
     return {
         "status": "H352_STRICT_EXPOSED_REAL_QWEN_PAIRED_RECEIPT_ACCEPTED",
         "by_language": groups,
