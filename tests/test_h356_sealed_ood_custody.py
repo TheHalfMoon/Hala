@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import copy
 from base64 import b64encode
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from hashlib import sha256
 import json
 import unittest
@@ -25,7 +25,7 @@ from h199.native_action_sft import ADMITTED_TRAIN_MANIFEST_SHAS
 
 
 def invented():
-    now = date.today()
+    now = datetime.now(timezone.utc).date()
     claim = {
         "schema": custody.SCHEMA,
         "custodian_identity": "INVENTED-ONLY-INDEPENDENT-CUSTODIAN",
@@ -135,11 +135,11 @@ class H356SealedCustodyTests(unittest.TestCase):
         claim, private, kid, registry = invented()
         changes = []
         altered = copy.deepcopy(claim)
-        altered["expiry_date_utc"] = (date.today()-timedelta(days=1)).isoformat()
-        altered["signature_date_utc"] = (date.today()-timedelta(days=32)).isoformat()
+        altered["expiry_date_utc"] = (datetime.now(timezone.utc).date()-timedelta(days=1)).isoformat()
+        altered["signature_date_utc"] = (datetime.now(timezone.utc).date()-timedelta(days=32)).isoformat()
         changes.append(altered)
         altered = copy.deepcopy(claim)
-        altered["signature_date_utc"] = (date.today()+timedelta(days=2)).isoformat()
+        altered["signature_date_utc"] = (datetime.now(timezone.utc).date()+timedelta(days=2)).isoformat()
         changes.append(altered)
         altered = copy.deepcopy(claim)
         altered["language_case_counts"] = {"en": 31, "ar": 9}
