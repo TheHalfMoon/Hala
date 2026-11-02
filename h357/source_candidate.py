@@ -46,8 +46,11 @@ def candidate_specs():
         bilingual_pair = index // 2
         chosen = bilingual_pair % 4
         shape = SHAPES[(bilingual_pair // 4) % 4]
+        # H363: the prior +2*repeat made every target (slot+shape+color)
+        # parity-even, a task-blind visual label shortcut. Alternate both
+        # parities across the two repeats without losing pairwise balance.
         color = COLORS[(chosen + (bilingual_pair // 4) % 4
-                        + 2 * (bilingual_pair // 16)) % 4]
+                        + (bilingual_pair // 16)) % 4]
         language = "ar" if index % 2 else "en"
         # A deterministic public permutation of the *non-target* tiles
         # prevents identical screenshot layouts without deriving the
