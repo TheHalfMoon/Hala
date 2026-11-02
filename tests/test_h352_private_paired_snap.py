@@ -8,7 +8,7 @@ from pathlib import Path
 
 from h352.private_qwen_paired_snap import (
     aggregate_pairs, safe_report, stage_only_report,
-    native_action_changed,
+    native_action_changed, paired_arm_order,
 )
 from h352.verify_private_receipt import (
     parse_unique, verify_success, verify_stage_only,
@@ -88,6 +88,20 @@ class H352InventedPairedProtocolTests(unittest.TestCase):
                 bad["claimed_wrapped_model_generations"] = 11
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 verify_success(bad)
+
+    def test_order_counterbalanced_within_each_bilingual_source_cohort(self):
+        # Prospective control for browser context order, not a model score.
+        # The 12 public H319 source scenes are fixed and never blind OOD.
+        from h319.beaconboard_dynamic_research import SCENES
+        self.assertEqual(len(SCENES), 12)
+        for language in ("en", "ar"):
+            orders = [paired_arm_order(scene) for scene in SCENES
+                      if scene[1] == language]
+            self.assertEqual(len(orders), 6)
+            self.assertEqual(orders.count(("baseline", "candidate")), 3)
+            self.assertEqual(orders.count(("candidate", "baseline")), 3)
+        with self.assertRaises(ValueError):
+            paired_arm_order(("not-a-source-scene",))
 
     def test_semantically_identical_native_click_is_not_a_snap_change(self):
         original = '{"actions":[{"kind":"click","point":[200,280]}]}'
