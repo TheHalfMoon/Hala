@@ -6,17 +6,79 @@ from pathlib import Path
 
 from development.freeze import verify_bundle
 from evaluation.development_runtime import check_settings
-from training.artifacts import artifact_path
+from training.artifacts import artifact_path, strict_json
 from training.masking import completion_labels
+
+# Independently bound after freeze verification; no unchecked second read
+# may be passed to the processor or historical development trainer.
+FROZEN_PROJECTION_BYTE_LIMIT = 16 * 1024 * 1024
+
+
+
+
+def _verified_frozen_manifest(root, manifest_sha256):
+    """Pin training projection to original external manifest bytes.
+
+    The historical freeze verifier is byte-immutable by contract and
+    cannot be edited. It reopens manifest.json internally; compare its
+    returned metadata to this independently hash-bound snapshot instead.
+    """
+    if (type(manifest_sha256) is not str or len(manifest_sha256) != 64
+            or any(c not in "0123456789abcdef" for c in manifest_sha256)):
+        raise ValueError("Frozen manifest needs an exact external SHA-256")
+    path = root / "manifest.json"
+    if path.is_symlink():
+        raise ValueError("Symlinked frozen manifest forbidden")
+    with path.open("rb") as handle:
+        raw = handle.read(4 * 1024 * 1024 + 1)
+    if (not raw or len(raw) > 4 * 1024 * 1024
+            or hashlib.sha256(raw).hexdigest() != manifest_sha256):
+        raise ValueError("Frozen manifest differs from independently pinned SHA")
+    snapshot = strict_json(raw.decode("utf-8"))
+    if type(snapshot) is not dict:
+        raise ValueError("Frozen manifest must be a JSON object")
+    checked = verify_bundle(root, require_media=True,
+                            expected_manifest_sha256=manifest_sha256)
+    if (json.dumps(checked, sort_keys=True, allow_nan=False)
+            != json.dumps(snapshot, sort_keys=True, allow_nan=False)):
+        raise ValueError("Frozen manifest changed after external SHA check")
+    return snapshot
+
+def _verified_projection_bytes(root, manifest, name):
+    """Single bounded snapshot whose exact bytes match the verified freeze.
+
+    verify_bundle checks the frozen source/rows before we get here. These
+    SAME bytes are then decoded and projected; mutations after verification
+    cannot substitute unverified Mind/Type prompts or targets.
+    """
+    if name not in ("settings.json", "training-rows.jsonl"):
+        raise ValueError("Unregistered freeze projection file")
+    expected = manifest["files"][name]
+    if (type(expected) is not str or len(expected) != 64
+            or any(c not in "0123456789abcdef" for c in expected)):
+        raise ValueError("Invalid freeze projection digest")
+    path = root / name
+    if path.is_symlink():
+        raise ValueError("Symlinked freeze projection forbidden")
+    with path.open("rb") as handle:
+        raw = handle.read(FROZEN_PROJECTION_BYTE_LIMIT + 1)
+    if (not raw or len(raw) > FROZEN_PROJECTION_BYTE_LIMIT
+            or hashlib.sha256(raw).hexdigest() != expected):
+        raise ValueError("Frozen projection bytes differ from verified manifest")
+    return raw
 
 
 def load_rows(bundle, manifest_sha256):
     root = Path(bundle).resolve()
-    manifest = verify_bundle(root, require_media=True, expected_manifest_sha256=manifest_sha256)
-    check_settings(json.loads((root / 'settings.json').read_text(encoding='utf-8')))
+    manifest = _verified_frozen_manifest(root, manifest_sha256)
+    settings_raw = _verified_projection_bytes(root, manifest, "settings.json")
+    rows_raw = _verified_projection_bytes(root, manifest, "training-rows.jsonl")
+    check_settings(strict_json(settings_raw.decode("utf-8")))
     # verify_bundle independently reconstructs ALL authored rows and deterministic
     # labels, including family allocation and media identities, before projection.
-    materialized = [json.loads(line) for line in (root / 'training-rows.jsonl').read_text(encoding='utf-8').splitlines()]
+    # Project from the exact hash-bound snapshot, never a later unverified read.
+    materialized = [strict_json(line.decode("utf-8"))
+                    for line in rows_raw.splitlines()]
     selected = []
     for row in materialized:
         if row['component'] == 'reliance':
