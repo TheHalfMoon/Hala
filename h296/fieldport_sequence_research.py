@@ -17,6 +17,7 @@ from typing import Any, Callable
 from h199.native_action_sft import WIDTH, HEIGHT, parse_actions, source_task_prompt
 from h263.native_browser_executor import execute_one, new_offline_context
 from h264.screenshot_locked_research import _observed_png
+from h322.source_capture import source_capture_png
 
 BLOB = "14bc9041fabf59d76adb0fc78b6a16d6d53c6e80"
 ROLE = "PUBLIC_EXPOSED_ORIGINAL_FORM_SEQUENCE_DEV_RESEARCH_NOT_ADMITTED_NOT_OOD"
@@ -118,7 +119,10 @@ def original_scene(browser: Any, source: Path, url: str, scene: tuple):
 
 def _screen_locked_predict(page: Any, callback: Callable[[bytes, str], str],
                            task: str) -> str:
-    png = _observed_png(page)
+    # H383: reuse the existing exact-signature, one-retry source screenshot
+    # recovery; it still calls H264's fully validated original PNG capture.
+    # Both tries are preaction; no stale frame or substitute is accepted.
+    png = source_capture_png(page, capture=_observed_png)
     need(type(png) is bytes and png.startswith(b"\x89PNG\r\n\x1a\n"),
          "genuine browser screenshot unavailable")
     digest = sha256(png).digest()
@@ -126,7 +130,7 @@ def _screen_locked_predict(page: Any, callback: Callable[[bytes, str], str],
     native = callback(png, source_task_prompt(task))
     parse_actions(native)  # no model-side forgery or multi-action result
     need(page.url == url and compare_digest(
-        digest, sha256(_observed_png(page)).digest()),
+        digest, sha256(source_capture_png(page, capture=_observed_png)).digest()),
         "screenshot changed during model policy computation")
     return native
 
