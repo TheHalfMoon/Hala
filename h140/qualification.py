@@ -149,6 +149,19 @@ def load_split(folder,split,*,decoded_pixels=None):
                 raise ValueError("H140 fixed-coordinate collapse at original data source: "+app+" "+role)
     return doc
 
+def require_h199_train_rights_admission(manifest_sha):
+    """H140 GPU experiments cannot bypass the centrally reviewed TRAIN gate.
+
+    The SHA pins source bytes only. It is NOT a legal ML-training grant;
+    H199 remains empty until a separately reviewed rights/admission change.
+    """
+    from h199 import native_action_sft as rights_contract
+    if (type(manifest_sha) is not str or len(manifest_sha)!=64 or
+            any(c not in "0123456789abcdef" for c in manifest_sha) or
+            manifest_sha not in rights_contract.ADMITTED_TRAIN_MANIFEST_SHAS):
+        raise ValueError("H140 TRAIN rights not independently admitted by H199")
+
+
 def validate_private_train_dev_pair(train_doc,dev_doc,decoded_by_split):
     """Require original training scripts to enforce pairwise source admission.
 
