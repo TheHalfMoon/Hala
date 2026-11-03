@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h408-first-party-ui-composition",
+  "title": "Hala H408 First Party UI Composition",
+  "code_file": "h408_private_gui_composition_eval.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h403-private-synthetic-safe-abstention-lora",
+    "abdulazizshehri/hala-h406-private-invented-ambiguity-lora"
+  ],
+  "model_sources": []
+}
