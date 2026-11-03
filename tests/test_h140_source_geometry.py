@@ -53,7 +53,8 @@ class H140PositionDiversityTests(unittest.TestCase):
                        struct.pack(">I",zlib.crc32(b"tEXt"+payload)))
                 pixels=base_png[:33]+chunk+base_png[33:]
                 (folder/filename).write_bytes(pixels)
-                cases.append({"image":filename,"image_sha256":digest(pixels),
+                cases.append({"id":f"{split}-{app}-{n:03d}",
+                    "image":filename,"image_sha256":digest(pixels),
                     "app":app,"app_git_sha":sha,"split":split,
                     "language":"en" if n%2==0 else "ar",
                     "instruction":f"Drag task card {app} {n} to the next column",
@@ -304,6 +305,56 @@ class H140PositionDiversityTests(unittest.TestCase):
                 if row["app"]=="training_a":
                     row["app_git_sha"]=sha
             (dev/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            self._gpu_split_preflight(root,train,dev)
+
+    def test_load_split_requires_unique_nonempty_original_case_ids(self):
+        from h140.qualification import load_split
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            manifest=train/"manifest.json"
+            original=json.loads(manifest.read_text("utf8"))
+            self.assertEqual(len(load_split(train,"train")["cases"]),256)
+            for variant in ("duplicate","empty","missing","wrong_type"):
+                with self.subTest(variant=variant):
+                    mutated=json.loads(json.dumps(original))
+                    if variant=="duplicate":
+                        mutated["cases"][1]["id"]=mutated["cases"][0]["id"]
+                    elif variant=="empty":
+                        mutated["cases"][1]["id"]="   "
+                    elif variant=="missing":
+                        del mutated["cases"][1]["id"]
+                    elif variant=="wrong_type":
+                        mutated["cases"][1]["id"]=7
+                    manifest.write_text(json.dumps(mutated),encoding="utf8")
+                    with self.assertRaisesRegex(ValueError,"H140 .*case ID"):
+                        load_split(train,"train")
+
+    def test_admit_rejects_case_id_alias_across_source_splits(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            blind=self._source(root,"blind_test",{"unseen_d":16,"unseen_e":16})
+            historic=root/"historic.json"
+            historic.write_text(json.dumps({"cases":[{"image_sha256":"f"*64}]}))
+            self.assertEqual(admit(train,dev,blind,[historic])["distinct_images"],352)
+            doc=json.loads((blind/"manifest.json").read_text("utf8"))
+            train_doc=json.loads((train/"manifest.json").read_text("utf8"))
+            doc["cases"][0]["id"]=train_doc["cases"][0]["id"]
+            (blind/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            with self.assertRaisesRegex(ValueError,"H140 .*case ID"):
+                admit(train,dev,blind,[historic])
+
+    def test_v1_v3_gpu_preflight_rejects_train_dev_case_id_alias(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            dev_doc=json.loads((dev/"manifest.json").read_text("utf8"))
+            train_doc=json.loads((train/"manifest.json").read_text("utf8"))
+            dev_doc["cases"][0]["id"]=train_doc["cases"][0]["id"]
+            (dev/"manifest.json").write_text(json.dumps(dev_doc),encoding="utf8")
             self._gpu_split_preflight(root,train,dev)
 
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
