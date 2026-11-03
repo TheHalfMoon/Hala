@@ -165,7 +165,7 @@ class H285OriginalTrainOnlyRealBrowserTests(unittest.TestCase):
             self.assertEqual(len(batch), 24)
             self.assertTrue(all(
                 type(item) is tuple and len(item) == 3
-                and type(item[0]) is bytes and item[0].startswith(b"\\x89PNG\\r\\n\\x1a\\n")
+                and type(item[0]) is bytes and item[0].startswith(b"\x89PNG\r\n\x1a\n")
                 and type(item[1]) is str and "Task: " in item[1]
                 and type(item[2]) is str
                 for item in batch
