@@ -103,8 +103,13 @@ def load_split(folder,split,*,decoded_pixels=None):
     revisions=[entry["upstream_sha"] for entry in sources.values()]
     if len(set(revisions))!=len(revisions):
         raise ValueError("H140 duplicate source revision under different application aliases")
-    seen=set(); seen_pixels=set(); by_app=defaultdict(list)
+    seen=set(); seen_pixels=set(); seen_ids=set(); by_app=defaultdict(list)
     for row in rows:
+        case_id=row.get("id")
+        if (type(case_id) is not str or not case_id.strip() or
+                case_id in seen_ids):
+            raise ValueError("H140 missing or duplicated original case ID")
+        seen_ids.add(case_id)
         app=row.get("app")
         if app not in sources or row.get("app_git_sha")!=sources[app]["upstream_sha"]:
             raise ValueError("H140 original immutable app Git revision mismatch")
@@ -157,6 +162,10 @@ def validate_private_train_dev_pair(train_doc,dev_doc,decoded_by_split):
                  in dev_doc["app_sources"].items()}
     if train_sources!=dev_sources:
         raise ValueError("H140 TRAIN/DEV pinned source revisions differ")
+    train_ids={row["id"] for row in train_doc["cases"]}
+    dev_ids={row["id"] for row in dev_doc["cases"]}
+    if train_ids&dev_ids:
+        raise ValueError("H140 TRAIN/DEV reused case ID")
     train_pixels=decoded_by_split.get("train")
     dev_pixels=decoded_by_split.get("dev")
     if (not isinstance(train_pixels,list) or not isinstance(dev_pixels,list)
@@ -195,9 +204,12 @@ def admit(train,dev,blind,old_manifests):
     if (set(blind_revisions)&training_apps or
         set(blind_revisions.values())&set(train_revisions.values())):
         raise ValueError("H140 unseen BLIND source revision aliases training or DEV")
-    seen=set()
+    seen=set(); all_case_ids=set()
     for split,doc in splits.items():
         for row in doc["cases"]:
+            if row["id"] in all_case_ids:
+                raise ValueError("H140 cross-split case ID reused")
+            all_case_ids.add(row["id"])
             h=row["image_sha256"]
             if h in seen or h in old:
                 raise ValueError("H140 cross-split or historic original image reused")
