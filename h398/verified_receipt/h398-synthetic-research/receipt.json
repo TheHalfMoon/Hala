@@ -1,0 +1,59 @@
+{
+  "baseline_dev": {
+    "all": 0.3111,
+    "ar": 0.2889,
+    "en": 0.3333,
+    "n": 180,
+    "unique_grid_positions": 9
+  },
+  "baseline_unseen": {
+    "all": 0.2722,
+    "ar": 0.2556,
+    "en": 0.2889,
+    "n": 180,
+    "unique_grid_positions": 9
+  },
+  "cuda_device_count": 2,
+  "dev_n": 180,
+  "device_name": "Tesla T4",
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "loss_checkpoints": [
+    2.182196,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "model": "original tiny CNN+instruction embeddings, not Hala/Qwen",
+  "no_external_gui_screenshots": true,
+  "no_flagship_weights": true,
+  "no_h199_rights_bypass": true,
+  "no_model_download": true,
+  "no_ood_custodian_claim": true,
+  "no_private_inputs": true,
+  "optimizer_steps": 160,
+  "research_unseen_n": 180,
+  "schema": "hala.h398.private-invented-grid-gpu-smoke.v1",
+  "scientific_limits": "not Qwen or Hala model; OOD is author-exposed, not independently sealed",
+  "source": "algorithmically generated new 48x48 color-grid tasks",
+  "status": "SYNTHETIC_GPU_TRAINED_NOT_HALA_MODEL",
+  "train_n": 960,
+  "train_seconds": 1.15,
+  "trained_dev": {
+    "all": 1.0,
+    "ar": 1.0,
+    "en": 1.0,
+    "n": 180,
+    "unique_grid_positions": 9
+  },
+  "trained_unseen": {
+    "all": 1.0,
+    "ar": 1.0,
+    "en": 1.0,
+    "n": 180,
+    "unique_grid_positions": 9
+  }
+}
