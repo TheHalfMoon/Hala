@@ -1,0 +1,16 @@
+{
+  "id": "abdulazizshehri/hala-h399-original-synthetic-qwen3vl-lora",
+  "title": "Hala H399 Original Synthetic Qwen3VL LoRA",
+  "code_file": "h399_original_qwen3vl_synthetic_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
