@@ -47,4 +47,16 @@ def source_capture_png(
                 raise SourceCaptureRefused(
                     "H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED"
                 ) from None
+            # Chromium can remain transiently unready after this EXACT CDP
+            # failure. Before the single allowed fresh screenshot retry,
+            # let the browser renderer settle for a bounded 150 ms. Never
+            # delay/retry other failures or bypass the validated PNG path.
+            try:
+                settle = getattr(page, "wait_for_timeout", None)
+                if callable(settle):
+                    settle(150)
+            except Exception:
+                raise SourceCaptureRefused(
+                    "H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED"
+                ) from None
     raise SourceCaptureRefused("H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED")

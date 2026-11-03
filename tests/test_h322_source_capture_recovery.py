@@ -16,6 +16,72 @@ TRANSIENT = (
 
 
 class H322CaptureTests(unittest.TestCase):
+    def test_exact_chromium_transient_waits_once_before_second_fresh_capture(self):
+        class FakePage:
+            def __init__(self):
+                self.waits = []
+            def wait_for_timeout(self, milliseconds):
+                self.waits.append(milliseconds)
+        page = FakePage()
+        captured = []
+        def capture(_page):
+            captured.append(True)
+            if len(captured) == 1:
+                raise Error(TRANSIENT)
+            return b"fresh-valid-source-frame"
+        self.assertEqual(source_capture_png(page, capture=capture),
+                         b"fresh-valid-source-frame")
+        self.assertEqual(page.waits, [150])
+        self.assertEqual(len(captured), 2)
+
+    def test_failed_chromium_settle_never_delivers_any_frame(self):
+        class FakePage:
+            def wait_for_timeout(self, milliseconds):
+                raise RuntimeError("PRIVATE_BROWSER_STATE_DO_NOT_LEAK")
+        seen = []
+        def capture(page):
+            seen.append(True)
+            if len(seen) == 1:
+                raise Error(TRANSIENT)
+            return b"MUST_NOT_BE_CONSUMED"
+        with self.assertRaises(SourceCaptureRefused) as caught:
+            source_capture_png(FakePage(), capture=capture)
+        self.assertEqual(str(caught.exception),
+                         "H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED")
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertEqual(len(seen), 1)
+
+    def test_second_exact_error_after_settle_still_refuses(self):
+        class FakePage:
+            def __init__(self):
+                self.waits = []
+            def wait_for_timeout(self, milliseconds):
+                self.waits.append(milliseconds)
+        page = FakePage()
+        calls = []
+        def capture(_page):
+            calls.append(True)
+            raise Error(TRANSIENT + " PRIVATE_URL_MUST_NOT_LEAK")
+        with self.assertRaises(SourceCaptureRefused) as caught:
+            source_capture_png(page, capture=capture)
+        self.assertEqual(page.waits, [150])
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(str(caught.exception),
+                         "H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED")
+        self.assertIsNone(caught.exception.__cause__)
+
+    def test_other_error_never_schedules_browser_wait(self):
+        class FakePage:
+            def wait_for_timeout(self, milliseconds):
+                raise AssertionError("Never wait for unexpected capture failure")
+        seen = []
+        def capture(page):
+            seen.append(True)
+            raise Error("Page.screenshot: error unrelated to known CDP symptom")
+        with self.assertRaises(SourceCaptureRefused):
+            source_capture_png(FakePage(), capture=capture)
+        self.assertEqual(len(seen), 1)
+
     def test_first_valid_capture_never_retried(self):
         calls = []
         def capture(page):
