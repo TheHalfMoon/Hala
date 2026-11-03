@@ -256,12 +256,18 @@ class H140PositionDiversityTests(unittest.TestCase):
         train_hash=digest((train/"manifest.json").read_bytes())
         dev_hash=digest((dev/"manifest.json").read_bytes())
         apps={"training_a","training_b","training_c"}
+        # Synthetic-only authorization: test the pairwise source guards
+        # without ever modifying production H199's empty rights registry.
+        from h199 import native_action_sft as rights_contract
         for module in (train_gpu,train_gpu_v3):
             with self.subTest(module=module.__name__):
                 with (patch.object(module,"DATA_ROOT",root),
                       patch.object(module,"TRAIN_MANIFEST_SHA",train_hash),
                       patch.object(module,"DEV_MANIFEST_SHA",dev_hash),
-                      patch.object(module,"EXPECTED_APP_SET",apps)):
+                      patch.object(module,"EXPECTED_APP_SET",apps),
+                      patch.object(rights_contract,
+                                   "ADMITTED_TRAIN_MANIFEST_SHAS",
+                                   frozenset({train_hash}))):
                     if should_reject:
                         with self.assertRaisesRegex(ValueError,"H140 TRAIN/DEV"):
                             module.private_splits()
@@ -270,6 +276,28 @@ class H140PositionDiversityTests(unittest.TestCase):
                         self.assertEqual(set(selected),{"train","dev"})
                         self.assertEqual(len(selected["train"][1]["cases"]),256)
                         self.assertEqual(len(selected["dev"][1]["cases"]),64)
+
+    def test_v1_v3_gpu_preflight_refuses_unapproved_train_rights_sha(self):
+        """No frozen SHA may bypass H199's actual EMPTY rights admission."""
+        from h199 import native_action_sft as rights_contract
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            train_hash=digest((train/"manifest.json").read_bytes())
+            dev_hash=digest((dev/"manifest.json").read_bytes())
+            self.assertNotIn(train_hash,rights_contract.ADMITTED_TRAIN_MANIFEST_SHAS)
+            for module in (train_gpu,train_gpu_v3):
+                with self.subTest(module=module.__name__):
+                    with (patch.object(module,"DATA_ROOT",root),
+                          patch.object(module,"TRAIN_MANIFEST_SHA",train_hash),
+                          patch.object(module,"DEV_MANIFEST_SHA",dev_hash),
+                          patch.object(module,"EXPECTED_APP_SET",
+                                       {"training_a","training_b","training_c"}),
+                          patch.object(rights_contract,
+                                       "ADMITTED_TRAIN_MANIFEST_SHAS",frozenset())):
+                        with self.assertRaisesRegex(ValueError,"H140 TRAIN rights"):
+                            module.private_splits()
 
     def test_v1_v3_private_training_valid_pair_remains_admissible(self):
         with tempfile.TemporaryDirectory() as temp:

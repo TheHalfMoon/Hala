@@ -193,7 +193,12 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
             blind.mkdir()
             (blind/"manifest.json").write_text(json.dumps({
                 "schema":SCHEMA,"split":"blind_test","cases":[]}))
-            with patch("h140.train_gpu.DATA_ROOT",root):
+            # Exercise the independent BLIND-mount rejection past the new
+            # H199 rights gate using a test-only synthetic registry patch.
+            from h199 import native_action_sft as rights_contract
+            with (patch("h140.train_gpu.DATA_ROOT",root),
+                  patch.object(rights_contract,"ADMITTED_TRAIN_MANIFEST_SHAS",
+                               frozenset({TRAIN_MANIFEST_SHA}))):
                 with self.assertRaisesRegex(ValueError,"refuse BLIND mount"):
                     private_splits()
 

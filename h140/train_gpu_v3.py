@@ -14,7 +14,7 @@ from pathlib import Path
 
 from h140.qualification import (load_split,digest,SCHEMA,
     summarize_neural_position_diversity,validate_native_score_record,
-    validate_private_train_dev_pair)
+    validate_private_train_dev_pair,require_h199_train_rights_admission)
 from h139.train_gpu import (
     assemble_example,make_prompt_and_gold,model_predict,find_lora_targets,
     BASE_MODEL,BASE_REV,
@@ -30,6 +30,8 @@ SEED=143
 EXPECTED_APP_SET={"vanilla-native-board","react-native-board","react-dndkit-board"}
 
 def private_splits():
+    # Fail closed before opening any frozen GUI screenshot or loading model weights.
+    require_h199_train_rights_admission(TRAIN_MANIFEST_SHA)
     manifests=[]
     for file in DATA_ROOT.rglob("manifest.json"):
         try:
