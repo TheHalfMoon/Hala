@@ -36,6 +36,37 @@ def need(ok: bool, why: str) -> None:
         raise ValueError("H289 original DEV-only source refused: " + why)
 
 
+def _initial_dev_screenshot(page: Any, source: Path, url: str) -> bytes:
+    """Retry one exact Chromium capture transport failure BEFORE model/policy use.
+
+    Never retry a stale screenshot, any post-policy capture, malformed pixels,
+    invalid source, browser drift or an arbitrary Playwright exception.
+    """
+    for attempt in range(2):
+        try:
+            png = _observed_png(page)
+        except Exception as exc:
+            if not (
+                attempt == 0
+                and type(exc).__name__ == "Error"
+                and type(exc).__module__ == "playwright._impl._errors"
+                and "Page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot" in str(exc)
+            ):
+                raise
+            # Before any policy invocation, check source bytes, page URL and viewport.
+            _, pinned_url = checked_source(source)
+            need(pinned_url == url and page.url == url and
+                 page.viewport_size == {"width": WIDTH, "height": HEIGHT},
+                 "initial screenshot capture changed pinned source/page")
+            continue
+        _, pinned_url = checked_source(source)
+        need(pinned_url == url and page.url == url and
+             page.viewport_size == {"width": WIDTH, "height": HEIGHT},
+             "initial screenshot capture changed pinned source/page")
+        return png
+    raise RuntimeError("H289 unreachable screenshot capture retry state")
+
+
 def checked_source(source: Path) -> tuple[Path, str]:
     need(isinstance(source, Path), "explicit original source Path")
     try:
@@ -127,7 +158,12 @@ def run_original_dev_probe(
         need(page.locator(
             'article.row[data-route-id="' + target + '"] button'
         ).count() == 1, "DEV target must be visible, unique")
-        png = _observed_png(page)
+        png = _initial_dev_screenshot(page, source, url)
+        need(inspect_all_six(page) == before_state and
+             page.locator(
+                 'article.row[data-route-id="' + target + '"] button'
+             ).count() == 1,
+             "DEV source state changed during initial screenshot capture")
         need(png.startswith(b"\x89PNG\r\n\x1a\n"),
              "DEV real browser screenshot unavailable")
         snapshot = sha256(png).digest()
