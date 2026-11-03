@@ -1,0 +1,17 @@
+# H404 — bounded Chromium renderer settle before ONE source screenshot retry
+
+## Repeated evidence, not speculative code churn
+
+The H402 and H403 EXACT PRIVATE PR heads had intermittent failure in the **same H296 Ubuntu Chromium source-only browser workflow**. H402 first attempt [run #41725911574](https://github.com/TheHalfMoon/Hala/actions/runs/41725911574) returned sanitized `H322 SOURCE_SCREENSHOT_CAPTURE_REFUSED` at H296's first screen-locked native prediction while the Windows Edge matrix passed; the **single targeted failed-only retry attempt 2 completed SUCCESS**. H403 first attempt [run #41728593911](https://github.com/TheHalfMoon/Hala/actions/runs/41728593911) again raised the same sanitized H322 source capture refusal in H296 Ubuntu chromium. This may be transient renderer capture readiness, but the raw exception is intentionally sanitized; its precise root cause is **not independently proven**.
+
+H322 already permitted only one retry for the **exact** known Playwright `Error` class and Chromium CDP `Page.captureScreenshot: Unable to capture screenshot` string, before any native action. The old retry happened immediately. A second transport error refused the task. We preserve that safety design, adding a **bounded 150ms Playwright page wait only after the first exact known transient** before the second and final fresh capture attempt. This is **not a third retry** and does not bypass the original full PNG decode, screenshot-lock, page URL, fixed viewport, source task, native action or any H199 data-admission gate.
+
+Only a real Playwright page with callable `wait_for_timeout` uses this small exceptional-path wait; existing CPU dummy pages without the API still get their strict original two tries. If the bounded wait itself fails, the request aborts with the same sanitized `SourceCaptureRefused` and **never** consumes another image. Any unexpected error, bogus PNG, wrong source, stale screenshot or second exact capture error still stops without model/native-action execution. Never log raw browser exceptions or screenshot bytes.
+
+## Test-first Windows evidence
+
+Two adversarial invented-only unit tests RED before repair: expected 150ms settle before the second fresh frame, and expected fail-closed sanitization when the settle operation itself fails. Both GREEN after implementing the minimal bounded wait. Third new test verifies unrelated screenshot failure does not invoke wait or retry. All original H322 and H383 source-lock refusal unit tests preserved.
+
+Owner Windows local pinned Python3.11 `python -B -m unittest tests.test_h322_source_capture_recovery tests.test_h383_fieldport_capture_recovery -v`: **17/17 PASS**. Site-disabled stdlib-only `python -B -S -m unittest ... -q`: **17/17 PASS**. Actual original browser source-only H296 test on owner Windows using installed Edge with `HALA_H296_BROWSER_QUALIFY=1` and `HALA_H296_BROWSER_CHANNEL=msedge` completed **11/11 PASS in 24.471s**. Nevertheless, this does not independently prove Ubuntu Chromium stability; **no claim of fixing the intermittent Ubuntu failure until H404 hosted CI validates the exact new head**.
+
+Private first-party source worktree only, Hala 2B synthetic research adapter H403 untouched, original owner worktree untouched, no protected main merge or weights published. H199 original screenshot TRAIN rights SHA allowlist remains EMPTY, issue #384 independent legal rights and #385 independently sealed bilingual OOD remain OPEN. Hala flagship release **NO-GO**.
