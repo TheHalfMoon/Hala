@@ -197,19 +197,29 @@ def _candidate_one(browser: Any, source: Path, url: str, scene: tuple):
 def produce_train_only_batch(
     browser: Any,
     source_path: Path,
-    sink: Callable[[bytes, str, str], None],
+    sink: Callable[[bytes, str, str], None] | None = None,
     *,
     role: str,
+    trusted_batch_sink: Callable[
+        [tuple[tuple[bytes, str, str], ...]], bool
+    ] | None = None,
 ) -> dict:
-    """Validate 24 real GUI actions, then feed fully validated TRAIN only.
+    """Validate ALL 24 original GUI scenes before any consumer handoff.
 
-    A trusted private training process supplies sink(image, prompt, label).
-    Do not pass a model/evaluator/OOD callback as the sink. Never persist
-    images, point labels, prompts or raw examples in public source output.
+    The original per-row sink remains for existing source tests, but can
+    partially deliver if its consumer fails. The optional one-shot consumer
+    instead receives ONE immutable tuple of 24 (PNG, task, label) tuples.
+    Only literal True acknowledges it. A callback invocation alone cannot
+    make external storage atomic: consumer must commit/rollback its effects.
+
+    Neither mode grants official TRAIN/DEV/OOD admission or model rights.
     """
     need(role == ROLE and type(role) is str,
          "not admitted for training/DEV/OOD evaluation")
-    need(callable(sink), "explicit trusted TRAIN-only sink required")
+    need((sink is None) != (trusted_batch_sink is None)
+         and callable(trusted_batch_sink if trusted_batch_sink is not None
+                      else sink),
+         "exactly one trusted TRAIN-only sink required")
     source, url = checked_source(source_path)
     rows = []
     png_hashes = set()
@@ -228,14 +238,27 @@ def produce_train_only_batch(
     need(len(rows) == len(SCENES) == 24
          and len(png_hashes) == 24 and len(rgba_hashes) == 24,
          "candidate TRAIN batch incomplete or visually duplicated")
-    # Only after ALL real browser state checks pass do TRAIN labels
-    # flow into a caller-owned sink. No DEV, OOD, old benchmarks or
-    # adapters were opened or scored.
-    for row in rows:
-        sink(row["png"], row["user_task"], row["completion"])
+    # All source validation is complete BEFORE any consumer call. Unlike
+    # legacy per-row delivery, a one-shot consumer receives one immutable
+    # complete bundle and can independently enforce a storage transaction.
+    if trusted_batch_sink is not None:
+        batch = tuple((row["png"], row["user_task"], row["completion"])
+                      for row in rows)
+        need(len(batch) == 24 and all(
+            type(png) is bytes and type(task) is str and type(label) is str
+            for png, task, label in batch),
+            "malformed source-owned complete TRAIN candidate batch")
+        need(trusted_batch_sink(batch) is True,
+             "one-shot TRAIN candidate consumer did not acknowledge batch")
+    else:
+        # Legacy source QA compatibility: may partially deliver on exception.
+        for row in rows:
+            sink(row["png"], row["user_task"], row["completion"])
     return {
         "status": "H285_ORIGINAL_SYNTHETIC_BROWSER_TRAIN_CANDIDATES",
         "role": ROLE,
+        "candidate_handoff_mode": ("one_shot" if trusted_batch_sink is not None
+                                   else "legacy_per_row"),
         "original_source_blob": SOURCE_BLOB,
         "actual_browser_source_actions_successful": 24,
         "distinct_png_screenshots": len(png_hashes),

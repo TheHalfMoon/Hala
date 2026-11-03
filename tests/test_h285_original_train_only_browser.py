@@ -157,8 +157,28 @@ class H285OriginalTrainOnlyRealBrowserTests(unittest.TestCase):
         self.assertNotIn("completion", report)
 
     def test_labeling_never_admits_source_as_blind_ood(self):
+        # The existing second full 24-scene real-browser run now also
+        # exercises H382 one-shot delivery, rather than repeating legacy.
+        received = []
+        def accept_complete(batch):
+            self.assertIs(type(batch), tuple)
+            self.assertEqual(len(batch), 24)
+            self.assertTrue(all(
+                type(item) is tuple and len(item) == 3
+                and type(item[0]) is bytes and item[0].startswith(b"\x89PNG\r\n\x1a\n")
+                and type(item[1]) is str and "Task: " in item[1]
+                and type(item[2]) is str
+                for item in batch
+            ))
+            received.append(len(batch))
+            return True
+
         report = produce_train_only_batch(
-            self.browser, ORIGINAL, lambda *_: None, role=ROLE)
+            self.browser, ORIGINAL, role=ROLE,
+            trusted_batch_sink=accept_complete,
+        )
+        self.assertEqual(received, [24])
+        self.assertEqual(report["candidate_handoff_mode"], "one_shot")
         self.assertTrue(report["role"].startswith("TRAIN_CANDIDATE"))
         self.assertFalse(report["independent_dev_ood_evaluated"])
         self.assertFalse(report["old_consumed_ood_opened"])
