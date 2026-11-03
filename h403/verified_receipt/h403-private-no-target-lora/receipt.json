@@ -1,0 +1,157 @@
+{
+  "adapted_audit_generated": {
+    "absent": {
+      "abstain": 5,
+      "correct": 5,
+      "false_clicks": 1,
+      "invalid": 0,
+      "n": 6
+    },
+    "all": {
+      "abstain": 5,
+      "correct": 11,
+      "false_clicks": 1,
+      "invalid": 0,
+      "n": 12
+    },
+    "ar": {
+      "abstain": 2,
+      "correct": 5,
+      "false_clicks": 1,
+      "invalid": 0,
+      "n": 6
+    },
+    "en": {
+      "abstain": 3,
+      "correct": 6,
+      "false_clicks": 0,
+      "invalid": 0,
+      "n": 6
+    },
+    "positive": {
+      "abstain": 0,
+      "correct": 6,
+      "false_clicks": 0,
+      "invalid": 0,
+      "n": 6
+    }
+  },
+  "adapted_dev_loss": 0.294818,
+  "adapter_sha256": "01f1c1846c76a5e1e785fcc431faed5ee2774638a0c46d84fedfbd2486ebcb4b",
+  "adapter_size": 3227648,
+  "audit_n": 24,
+  "authorized_original_gui_train": false,
+  "changed_trainable_tensors": 112,
+  "dev_n": 24,
+  "device": "Tesla T4",
+  "independent_external_ood": false,
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "official_hala_model_trained": false,
+  "optimizer_steps": 48,
+  "parent_adapter_sha256": "8b6d9bdf5df8fd4ecba939a5f454e3deffd5704df3ff41622697e63ef767a537",
+  "parent_audit_generated": {
+    "absent": {
+      "abstain": 2,
+      "correct": 2,
+      "false_clicks": 1,
+      "invalid": 3,
+      "n": 6
+    },
+    "all": {
+      "abstain": 2,
+      "correct": 5,
+      "false_clicks": 1,
+      "invalid": 6,
+      "n": 12
+    },
+    "ar": {
+      "abstain": 2,
+      "correct": 5,
+      "false_clicks": 1,
+      "invalid": 0,
+      "n": 6
+    },
+    "en": {
+      "abstain": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 6,
+      "n": 6
+    },
+    "positive": {
+      "abstain": 0,
+      "correct": 3,
+      "false_clicks": 0,
+      "invalid": 3,
+      "n": 6
+    }
+  },
+  "parent_dev_loss": 0.464156,
+  "peft_version": "0.18.0",
+  "public_base_license": "apache-2.0",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "schema": "hala.h403.private-invented-absent-target-lora.v1",
+  "split_fingerprints": {
+    "audit_author_visible": "b2c98fdbb182f578eeb630a6a8e51992fc50ca3eea237ccbc2a48fbcc25dd48d",
+    "dev": "70ec1627eea4e4e4759beade858a3849f6d6374150a56f1a255406a72cf8fb4b",
+    "train": "86f618aa26621cbb1398c0189f5394560add92a6089d889367f88364446f4c03"
+  },
+  "status": "COMPLETED_PRIVATE_SYNTHETIC_ABSTENTION_LORA",
+  "torch_version": "2.11.0+cu130",
+  "train_n": 48,
+  "train_seconds": 124.153,
+  "train_source": "originally authored algorithmic rectangles only",
+  "train_uses_prior_h402_eval": false,
+  "training_losses": [
+    0.756789,
+    0.050121,
+    0.975857,
+    0.091826,
+    0.918273,
+    1.280097,
+    0.025852,
+    0.710629,
+    0.002707,
+    0.474514,
+    0.568919,
+    0.00025,
+    0.000374,
+    2.2e-05,
+    0.617059,
+    0.004433,
+    0.002635,
+    5e-06,
+    0.143413,
+    0.437798,
+    0.625207,
+    0.586496,
+    0.000476,
+    6e-05,
+    0.569294,
+    1.5e-05,
+    0.579523,
+    0.534401,
+    0.55725,
+    0.59498,
+    0.530968,
+    2.3e-05,
+    0.55429,
+    2e-06,
+    0.468387,
+    0.506209,
+    0.007324,
+    0.465075,
+    0.000219,
+    8.8e-05,
+    0.00088,
+    2e-05,
+    0.585383,
+    4e-05,
+    0.650024,
+    0.000207,
+    0.948168,
+    0.531183
+  ],
+  "transformers_version": "4.57.3",
+  "weights_published": false
+}
