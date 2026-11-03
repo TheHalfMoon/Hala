@@ -35,7 +35,7 @@ def position_bin(box):
     x,y=center(box)
     return (int(x)//GRID_PIXELS,int(y)//GRID_PIXELS)
 
-def actual_png_bytes(folder,row):
+def actual_png_bytes(folder,row,*,pixel_digest_out=None):
     name=row.get("image")
     if (not isinstance(name,str) or not name.endswith(".png") or
             "/" in name or "\\" in name or ".." in name):
@@ -61,11 +61,16 @@ def actual_png_bytes(folder,row):
             frame.verify()
         with Image.open(BytesIO(binary)) as frame:
             frame.load()
+            if pixel_digest_out is not None:
+                # Metadata and lossless re-encoding cannot create a new
+                # independent visual example. Normalize RGB and RGBA.
+                pixels=frame.convert("RGBA").tobytes()
+                pixel_digest_out.append(digest(pixels))
     except (OSError,ValueError,SyntaxError) as exc:
         raise ValueError("H140 invalid PNG chunk integrity or pixel stream") from exc
     return binary
 
-def load_split(folder,split):
+def load_split(folder,split,*,decoded_pixels=None):
     folder=Path(folder)
     if split not in COUNTS:
         raise ValueError("H140 unknown research split")
@@ -90,7 +95,7 @@ def load_split(folder,split):
     revisions=[entry["upstream_sha"] for entry in sources.values()]
     if len(set(revisions))!=len(revisions):
         raise ValueError("H140 duplicate source revision under different application aliases")
-    seen=set(); by_app=defaultdict(list)
+    seen=set(); seen_pixels=set(); by_app=defaultdict(list)
     for row in rows:
         app=row.get("app")
         if app not in sources or row.get("app_git_sha")!=sources[app]["upstream_sha"]:
@@ -108,7 +113,13 @@ def load_split(folder,split):
         if (not isinstance(image_hash,str) or len(image_hash)!=64 or
             image_hash in seen):
             raise ValueError("H140 source image SHA missing or duplicated")
-        actual_png_bytes(folder,row)
+        pixel_digest=[]
+        actual_png_bytes(folder,row,pixel_digest_out=pixel_digest)
+        if len(pixel_digest)!=1 or pixel_digest[0] in seen_pixels:
+            raise ValueError("H140 duplicate decoded pixels inside source split")
+        seen_pixels.add(pixel_digest[0])
+        if decoded_pixels is not None:
+            decoded_pixels.append(pixel_digest[0])
         seen.add(image_hash)
         position_bin(row["start_bbox"])
         position_bin(row["end_bbox"])
@@ -137,8 +148,11 @@ def admit(train,dev,blind,old_manifests):
         for row in cases:
             if isinstance(row.get("image_sha256"),str):
                 old.add(row["image_sha256"])
-    splits={s:load_split(folder,s) for s,folder in
+    verified_pixels=[]
+    splits={s:load_split(folder,s,decoded_pixels=verified_pixels) for s,folder in
             (("train",train),("dev",dev),("blind_test",blind))}
+    if len(verified_pixels)!=len(set(verified_pixels)):
+        raise ValueError("H140 duplicate decoded pixels across research splits")
     train_revisions={app:entry["upstream_sha"] for app,entry
                      in splits["train"]["app_sources"].items()}
     dev_revisions={app:entry["upstream_sha"] for app,entry

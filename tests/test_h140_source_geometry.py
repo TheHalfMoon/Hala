@@ -10,6 +10,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from PIL import Image
+from PIL.PngImagePlugin import PngInfo
 
 from h140.qualification import (COUNTS,SCHEMA,admit,collapse_gate,digest,
                                  actual_png_bytes,summarize_neural_position_diversity)
@@ -17,11 +18,15 @@ from h140.qualification import (COUNTS,SCHEMA,admit,collapse_gate,digest,
 
 class H140PositionDiversityTests(unittest.TestCase):
     @staticmethod
-    @lru_cache(maxsize=1)
-    def _base_png():
-        """One valid, invented, native-size PNG; no original GUI data."""
+    @lru_cache(maxsize=512)
+    def _base_png(label="H393-synthetic-base"):
+        """One invented native-size PNG, unique *pixels* per source case."""
         stream=io.BytesIO()
-        Image.new("RGB",(960,720),(24,42,60)).save(stream,format="PNG")
+        image=Image.new("RGB",(960,720),(24,42,60))
+        fingerprint=hashlib.sha256(label.encode("utf8")).digest()
+        for idx in range(8):
+            image.putpixel((idx,0),tuple(fingerprint[idx*3:(idx+1)*3]))
+        image.save(stream,format="PNG")
         return stream.getvalue()
 
     def _source(self,root,split,app_counts):
@@ -29,7 +34,6 @@ class H140PositionDiversityTests(unittest.TestCase):
         folder.mkdir()
         sources={}
         cases=[]
-        base_png=self._base_png()
         index=0
         for app,amount in app_counts.items():
             sha=hashlib.sha1(("synthetic-H140-fixture/"+app).encode()).hexdigest()
@@ -38,6 +42,7 @@ class H140PositionDiversityTests(unittest.TestCase):
                 "application_is_complete":True}
             for n in range(amount):
                 filename=f"{app}-{n:03d}.png"
+                base_png=self._base_png(f"{split}/{app}/{n}")
                 # Add a unique, correctly checksummed PNG metadata chunk.
                 # Reusing this real PNG payload is a synthetic test fixture only.
                 label=f"H140 synthetic {split} {app} {n}".encode()
@@ -162,6 +167,53 @@ class H140PositionDiversityTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError,"H140 invalid PNG"):
                         actual_png_bytes(folder,{"image":name,
                                                  "image_sha256":digest(binary)})
+
+    @staticmethod
+    def _same_pixels_with_different_metadata(original_png,other_png):
+        """Re-encode exactly the same image pixels with distinct PNG metadata."""
+        info=PngInfo()
+        info.add_text("h393-original-capture",other_png.name)
+        with Image.open(original_png) as image:
+            with other_png.open("wb") as output:
+                image.save(output,format="PNG",pnginfo=info)
+        assert digest(original_png.read_bytes())!=digest(other_png.read_bytes())
+        with Image.open(original_png) as left, Image.open(other_png) as right:
+            assert left.convert("RGBA").tobytes()==right.convert("RGBA").tobytes()
+
+    def test_manifest_distinct_png_sha_must_not_hide_same_decoded_pixels(self):
+        from h140.qualification import load_split
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            first=train/"training_a-000.png"
+            second=train/"training_a-001.png"
+            self._same_pixels_with_different_metadata(first,second)
+            doc=json.loads((train/"manifest.json").read_text("utf8"))
+            for row in doc["cases"]:
+                if row["image"]==second.name:
+                    row["image_sha256"]=digest(second.read_bytes())
+            (train/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            with self.assertRaisesRegex(ValueError,"duplicate decoded pixels"):
+                load_split(train,"train")
+
+    def test_cross_split_metadata_alias_refused_by_decoded_pixels(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            blind=self._source(root,"blind_test",{"unseen_d":16,"unseen_e":16})
+            historic=root/"historic.json"
+            historic.write_text(json.dumps({"cases":[{"image_sha256":"f"*64}]}))
+            first=train/"training_a-000.png"
+            second=dev/"training_a-000.png"
+            self._same_pixels_with_different_metadata(first,second)
+            doc=json.loads((dev/"manifest.json").read_text("utf8"))
+            for row in doc["cases"]:
+                if row["image"]==second.name:
+                    row["image_sha256"]=digest(second.read_bytes())
+            (dev/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            with self.assertRaisesRegex(ValueError,"duplicate decoded pixels"):
+                admit(train,dev,blind,[historic])
 
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
         repeated=[[240,340] for _ in range(16)]
