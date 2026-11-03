@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h405-original-ambiguity-click-safety",
+  "title": "Hala H405 Original Ambiguity Click Safety",
+  "code_file": "h405_synthetic_ambiguity_eval.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h399-original-synthetic-qwen3vl-lora",
+    "abdulazizshehri/hala-h403-private-synthetic-safe-abstention-lora"
+  ],
+  "model_sources": []
+}
