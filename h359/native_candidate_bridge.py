@@ -58,6 +58,7 @@ PREFIX_SENTINEL = "H359-ORIGINAL-TASK-SENTINEL"
 PREFIX = source_task_prompt(PREFIX_SENTINEL).removesuffix(PREFIX_SENTINEL)
 REPORT_KEYS = ("schema", "role", "family", "records", "en", "ar",
                "action_counts", "distinct_images", "distinct_decoded_rgba_images",
+               "audited_rows_sha256",
                "legacy_schema_compatible",
                "h199_messages_checked", "official_train_admitted",
                "independent_rights_verified", "can_train",
@@ -121,7 +122,13 @@ def audit_review_bundle(root: Path, family: str) -> dict:
              and report.get("family") == family)
     examples = safe_regular(root, "candidate-rows.jsonl")
     need(examples.stat().st_size <= 500_000)
-    entries = examples.read_bytes().splitlines()
+    # H385: H361 must later consume EXACTLY these audited source-row
+    # bytes, not a re-opened file silently replaced after this audit.
+    # No private data or raw tasks leave the counts-only review report.
+    with examples.open("rb") as source:
+        verified_rows_raw = source.read(500_000 + 1)
+    need(0 < len(verified_rows_raw) <= 500_000)
+    entries = verified_rows_raw.splitlines()
     need(len(entries) == expected["records"])
     ids, digests, rgba_hashes = set(), set(), set()
     actions, langs = Counter(), Counter()
@@ -205,6 +212,7 @@ def audit_review_bundle(root: Path, family: str) -> dict:
         "action_counts": dict(sorted(actions.items())),
         "distinct_images": len(digests),
         "distinct_decoded_rgba_images": len(rgba_hashes),
+        "audited_rows_sha256": sha256(verified_rows_raw).hexdigest(),
         "legacy_schema_compatible": False,
         "h199_messages_checked": len(ids),
         "official_train_admitted": False,

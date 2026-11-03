@@ -51,9 +51,20 @@ def _candidate_rows(root: Path, family: str) -> list[dict]:
            report["official_train_admitted"] is False and
            report["can_train"] is False and
            report["blind_ood"] is False)
+    # H385: the complete H359 audit can be followed by a concurrent
+    # replacement of candidate-rows.jsonl. Consume only an exact bounded
+    # snapshot whose SHA-256 equals the bytes actually audited by H359.
+    # A digest is an integrity binding, NOT rights authority or TRAIN release.
+    digest = report.get("audited_rows_sha256")
+    refuse(type(digest) is str and len(digest) == 64
+           and all(ch in "0123456789abcdef" for ch in digest))
     source = safe_regular(root, "candidate-rows.jsonl")
+    with source.open("rb") as handle:
+        rows_raw = handle.read(500_000 + 1)
+    refuse(0 < len(rows_raw) <= 500_000
+           and sha256(rows_raw).hexdigest() == digest)
     rows = [strict_json(line.decode("utf-8"))
-            for line in source.read_bytes().splitlines()]
+            for line in rows_raw.splitlines()]
     refuse(len(rows) == SOURCES[family]["records"])
     return rows
 
