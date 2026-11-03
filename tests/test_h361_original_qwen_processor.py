@@ -4,6 +4,7 @@ from __future__ import annotations
 from collections import Counter
 import importlib.util
 import json
+import math
 import os
 from pathlib import Path
 import sys
@@ -89,7 +90,10 @@ class NativeQwenProcessorInterfaceTests(unittest.TestCase):
     def test_real_source_screens_with_fake_processor_interface_are_not_training(self):
         with TemporaryDirectory() as temp, patch.dict(sys.modules, {
             "torch": types.SimpleNamespace(
-                equal=lambda a, b: a.values == b.values)
+                equal=lambda a, b: a.values == b.values,
+                isfinite=lambda t: types.SimpleNamespace(
+                    all=lambda: types.SimpleNamespace(
+                        item=lambda: all(math.isfinite(v) for v in t.values))))
         }):
             a = Path(temp) / "controlgarden"
             b = Path(temp) / "noterelay"

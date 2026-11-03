@@ -5,6 +5,7 @@ processor parity is a SEPARATE opt-in Windows-only local experiment.
 """
 from __future__ import annotations
 
+import math
 import os
 from pathlib import Path
 import sys
@@ -76,6 +77,9 @@ class RealProcessorPolicyUnitTests(unittest.TestCase):
         # Host CI has no torch; fake only its deterministic equal()
         self.fake_torch=types.SimpleNamespace(
             equal=lambda a,b: a.values==b.values,
+            isfinite=lambda t: types.SimpleNamespace(
+                all=lambda: types.SimpleNamespace(
+                    item=lambda: all(math.isfinite(v) for v in t.values))),
         )
         self.patch=patch.dict(sys.modules,{"torch":self.fake_torch})
         self.patch.start()

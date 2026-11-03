@@ -57,10 +57,28 @@ def visual_tensor_receipt(prompt, full) -> int:
             and 0 < int(pi.numel()) == int(fi.numel())
             and torch.equal(pi,fi),
             "real image pixels changed during supervised tokenization")
+    # H386: equal image tensors can still contain identical +/-Infinity,
+    # which is not an acceptable model input and can destabilize training.
+    # Evaluate directly on tensors (not an enormous tolist() conversion).
+    require(torch.isfinite(pi).all().item() is True,
+            "real model-visible image pixels must be finite")
     for key in ("image_grid_thw",):
         require(key in prompt and key in full
                 and torch.equal(prompt[key],full[key]),
                 "visual image grid changed in SFT answer")
+        grid_tensor = prompt[key]
+        require(callable(getattr(grid_tensor, "tolist", None)),
+                "visual image grid must be an integer 1x3 tensor")
+        grid = grid_tensor.tolist()
+        # Source parity is one screenshot. Existing tiny fake policy tests
+        # model a 1x3 grid as [T,H,W]; real Qwen returns [[T,H,W]].
+        if (type(grid) is list and len(grid) == 1
+                and type(grid[0]) is list):
+            grid = grid[0]
+        require(type(grid) is list and len(grid) == 3
+                and all(type(dim) is int and 1 <= dim <= 4096
+                        for dim in grid),
+                "visual image grid must have three positive bounded integers")
     return int(pi.numel())
 
 

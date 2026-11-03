@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - h361/**
+      - h216/real_qwen_processor_alignment.py
+      - h386/**
+      - tests/test_h216_real_qwen_processor_alignment.py
+      - tests/test_h386_qwen_visual_finite_grid.py
       - h359/native_candidate_bridge.py
       - h385/**
       - tests/test_h361_original_qwen_processor.py
@@ -44,6 +48,6 @@ jobs:
         env:
           HALA_H361_BROWSER_QA: '1'
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python -m unittest tests.test_h385_audited_candidate_row_snapshot tests.test_h361_original_qwen_processor tests.test_h359_native_candidate_bridge tests.test_h199_native_action_sft -q
+        run: python -m unittest tests.test_h386_qwen_visual_finite_grid tests.test_h216_real_qwen_processor_alignment tests.test_h385_audited_candidate_row_snapshot tests.test_h361_original_qwen_processor tests.test_h359_native_candidate_bridge tests.test_h199_native_action_sft -q
       - name: Assert candidate PNGs and labels never persisted
         run: python -c "import subprocess; assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True), 'unexpected source labels/media in Git checkout'"
