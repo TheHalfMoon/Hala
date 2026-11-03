@@ -33,6 +33,14 @@ Test-first **RED** before implementation (missing H407 gated module), then **GRE
 
 Reproducible real-browser opt-in unittest: `HALA_H407_BROWSER_QUALIFY=1`, `HALA_H407_BROWSER_CHANNEL=msedge`, `python -B -m unittest discover -s tests -p 'test_h407_real_original_browser.py' -v`. Default general CI SKIPS this expensive/optional real browser integration; full fake-browser source guards stay always-on.
 
+## Hosted H289 Chromium screenshot follow-up
+
+The initial H407 private PR source commit `25f76d06159ae5ad348bae2f0766e9a26189b081` completed 21/22 primary PR workflows successfully, but **H289 Ubuntu Chromium** [run #41738421868](https://github.com/TheHalfMoon/Hala/actions/runs/41738421868) failed while taking its first original first-party screenshot with the exact known `Page.captureScreenshot: Unable to capture screenshot` CDP transport error. H289 already had a two-attempt fail-closed exact-error retry, but retried **immediately**, independently of H404's repaired H322 path used by H296.
+
+A separate **test-first** H289 update therefore mirrors H404's minimal bounded renderer settle: only after FIRST exact known CDP error AND revalidation of the original static source, URL and 960×720 viewport, invoke `page.wait_for_timeout(150)` if supplied, revalidate the source URL/viewport again and take only the SECOND and LAST **fresh** screenshot. If waiting fails, abort with a sanitized error and no retry; unrelated errors or two failures remain terminal; no cached frame, changed page, model inference or input event can bypass the source checks. The helper is still DEV-only/public-first-party research, not a model or product authority.
+
+Two new adversarial H289 tests **RED before** the change, **GREEN after**: 150 ms settlement on exact error, and fail-closed/redacted abort if settle itself fails. H289 source tests on owner Windows **14/14 OK with 4 real-browser opt-in SKIPs**, H407 new source tests **12/12 OK with 1 real-browser opt-in SKIP**. The original H407 actual Windows Edge two-HTML-fixture source-review smoke remains verified independently. The H289 Ubuntu Chromium runner must demonstrate the fix on the new pushed exact HEAD before claiming all hosted CI green. The existing H407 original source-only auto-click interface remains unchanged.
+
 ## Original Hala release remains NO-GO
 
 Actual H199 original rendered GUI screenshot rights-approved TRAIN SHA allowlist EMPTY; independent legal/ML derivative licensing reviewer #384 OPEN and genuinely independent never-exposed bilingual EN/AR OOD custodian #385 OPEN. H407 cannot qualify source rights, model weights, autonomous action safety or legitimate external OOD. It is a **new optional supervised safety interface only**, not proof that Hala is finished or ready. Private draft PR only, no protected `main` merge, no model weight publication or patient screenshots.

@@ -89,6 +89,29 @@ class H289InitialCaptureTransportTests(unittest.TestCase):
             self.assertEqual(_initial_dev_screenshot(page, HTML, url), b"valid-stub")
             self.assertEqual(cap.call_count, 2)
 
+    def test_one_exact_capture_error_waits_before_retrying_fresh_frame(self):
+        page,url=self.fixture()
+        waits=[]
+        page.wait_for_timeout=lambda ms:waits.append(ms)
+        with mock.patch("h289.routeboard_dev_research._observed_png",
+                        side_effect=[self.capture_error(),b"fresh-observed-frame"]) as cap:
+            self.assertEqual(_initial_dev_screenshot(page,HTML,url),
+                             b"fresh-observed-frame")
+            self.assertEqual(cap.call_count,2)
+        self.assertEqual(waits,[150])
+
+    def test_failed_bounded_settle_refuses_without_second_capture(self):
+        page,url=self.fixture()
+        def bad_settle(_ms):
+            raise RuntimeError("PRIVATE_BROWSER_SECRET_NOT_EXPOSED")
+        page.wait_for_timeout=bad_settle
+        with mock.patch("h289.routeboard_dev_research._observed_png",
+                        side_effect=[self.capture_error(),b"NEVER_USE_THIS"]) as cap:
+            with self.assertRaisesRegex(ValueError,"bounded screenshot settle refused") as caught:
+                _initial_dev_screenshot(page,HTML,url)
+            self.assertNotIn("PRIVATE_BROWSER_SECRET_NOT_EXPOSED",str(caught.exception))
+            self.assertEqual(cap.call_count,1)
+
     def test_two_exact_capture_failures_raise_without_third_attempt(self):
         page, url = self.fixture()
         with mock.patch("h289.routeboard_dev_research._observed_png",
