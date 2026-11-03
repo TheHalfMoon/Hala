@@ -215,6 +215,39 @@ class H140PositionDiversityTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"duplicate decoded pixels"):
                 admit(train,dev,blind,[historic])
 
+    def test_transparent_rgba_screen_cannot_claim_independent_visible_pixels(self):
+        # Browser screenshot provenance requires opaque visible pixels. A hidden
+        # RGB value under transparent alpha can vary without changing the scene.
+        with tempfile.TemporaryDirectory() as temp:
+            folder=Path(temp)
+            for alpha in (0,128):
+                with self.subTest(alpha=alpha):
+                    image=Image.new("RGBA",(960,720),(22,44,66,255))
+                    image.putpixel((0,0),(187,13,205,alpha))
+                    name=f"nonopaque-{alpha}.png"
+                    image.save(folder/name,format="PNG")
+                    binary=(folder/name).read_bytes()
+                    with self.assertRaisesRegex(ValueError,"H140 non-opaque PNG"):
+                        actual_png_bytes(folder,{"image":name,
+                                                "image_sha256":digest(binary)})
+
+    def test_opaque_rgb_and_rgba_have_identical_decoded_pixel_digest(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder=Path(temp)
+            fingerprints=[]
+            for mode in ("RGB","RGBA"):
+                image=Image.new(mode,(960,720),(22,44,66))
+                name=f"opaque-{mode}.png"
+                image.save(folder/name,format="PNG")
+                binary=(folder/name).read_bytes()
+                out=[]
+                self.assertEqual(actual_png_bytes(
+                    folder,{"image":name,"image_sha256":digest(binary)},
+                    pixel_digest_out=out),binary)
+                self.assertEqual(len(out),1)
+                fingerprints.append(out[0])
+            self.assertEqual(fingerprints[0],fingerprints[1])
+
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
         repeated=[[240,340] for _ in range(16)]
         collapse=collapse_gate(repeated)
