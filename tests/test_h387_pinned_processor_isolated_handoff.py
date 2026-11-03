@@ -128,7 +128,11 @@ class H387ProcessorStagingTests(unittest.TestCase):
             source, pinned = fabricated_cache(Path(tmp))
             seen = []
             class FakeQwenProcessor:
-                pass
+                # H216 validates the API before the separate fake audit.
+                def apply_chat_template(self, *args, **kwargs):
+                    raise AssertionError('no fake tokenization allowed')
+                def batch_decode(self, *args, **kwargs):
+                    raise AssertionError('no fake decoding allowed')
 
             def fake_load(path, **kwargs):
                 staged = Path(path)
