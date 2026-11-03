@@ -8,12 +8,14 @@ import unittest
 import zlib
 from functools import lru_cache
 from pathlib import Path
+from unittest.mock import patch
 
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
 
 from h140.qualification import (COUNTS,SCHEMA,admit,collapse_gate,digest,
                                  actual_png_bytes,summarize_neural_position_diversity)
+from h140 import train_gpu,train_gpu_v3
 
 
 class H140PositionDiversityTests(unittest.TestCase):
@@ -247,6 +249,62 @@ class H140PositionDiversityTests(unittest.TestCase):
                 self.assertEqual(len(out),1)
                 fingerprints.append(out[0])
             self.assertEqual(fingerprints[0],fingerprints[1])
+
+    def _gpu_split_preflight(self,root,train,dev,*,should_reject=True):
+        """Exercise BOTH real private-splits paths with pinned invented inputs."""
+        train_hash=digest((train/"manifest.json").read_bytes())
+        dev_hash=digest((dev/"manifest.json").read_bytes())
+        apps={"training_a","training_b","training_c"}
+        for module in (train_gpu,train_gpu_v3):
+            with self.subTest(module=module.__name__):
+                with (patch.object(module,"DATA_ROOT",root),
+                      patch.object(module,"TRAIN_MANIFEST_SHA",train_hash),
+                      patch.object(module,"DEV_MANIFEST_SHA",dev_hash),
+                      patch.object(module,"EXPECTED_APP_SET",apps)):
+                    if should_reject:
+                        with self.assertRaisesRegex(ValueError,"H140 TRAIN/DEV"):
+                            module.private_splits()
+                    else:
+                        selected=module.private_splits()
+                        self.assertEqual(set(selected),{"train","dev"})
+                        self.assertEqual(len(selected["train"][1]["cases"]),256)
+                        self.assertEqual(len(selected["dev"][1]["cases"]),64)
+
+    def test_v1_v3_private_training_valid_pair_remains_admissible(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            self._gpu_split_preflight(root,train,dev,should_reject=False)
+
+    def test_v1_v3_private_training_refuse_dev_pixel_alias_across_splits(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            first=train/"training_a-000.png"
+            second=dev/"training_a-000.png"
+            self._same_pixels_with_different_metadata(first,second)
+            doc=json.loads((dev/"manifest.json").read_text("utf8"))
+            for row in doc["cases"]:
+                if row["image"]==second.name:
+                    row["image_sha256"]=digest(second.read_bytes())
+            (dev/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            self._gpu_split_preflight(root,train,dev)
+
+    def test_v1_v3_private_training_refuse_dev_source_revision_drift(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            doc=json.loads((dev/"manifest.json").read_text("utf8"))
+            sha="a"*40
+            doc["app_sources"]["training_a"]["upstream_sha"]=sha
+            for row in doc["cases"]:
+                if row["app"]=="training_a":
+                    row["app_git_sha"]=sha
+            (dev/"manifest.json").write_text(json.dumps(doc),encoding="utf8")
+            self._gpu_split_preflight(root,train,dev)
 
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
         repeated=[[240,340] for _ in range(16)]

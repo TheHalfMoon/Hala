@@ -12,7 +12,8 @@ from collections import Counter,defaultdict
 from pathlib import Path
 
 from h140.qualification import (load_split,digest,SCHEMA,
-    summarize_neural_position_diversity,validate_native_score_record)
+    summarize_neural_position_diversity,validate_native_score_record,
+    validate_private_train_dev_pair)
 from h139.train_gpu import (
     assemble_example,make_prompt_and_gold,model_predict,find_lora_targets,
     BASE_MODEL,BASE_REV,
@@ -41,6 +42,7 @@ def private_splits():
     if roles!={"train":1,"dev":1}:
         raise ValueError("H140 EXACTLY one private TRAIN and one DEV; refuse BLIND mount")
     selected={d["split"]:(folder,d) for folder,d in manifests}
+    decoded_by_split={}
     for role,expected_hash,expected_count in (
         ("train",TRAIN_MANIFEST_SHA,256),("dev",DEV_MANIFEST_SHA,64)
     ):
@@ -48,7 +50,9 @@ def private_splits():
         actual=digest((folder/"manifest.json").read_bytes())
         if actual!=expected_hash:
             raise ValueError("H140 owner-frozen original source manifest SHA mismatch")
-        doc=load_split(folder,role)
+        decoded=[]
+        doc=load_split(folder,role,decoded_pixels=decoded)
+        decoded_by_split[role]=decoded
         if len(doc["cases"])!=expected_count or set(doc["app_sources"])!=EXPECTED_APP_SET:
             raise ValueError("H140 original three-app source size/provenance wrong")
         selected[role]=(folder,doc)
@@ -56,6 +60,8 @@ def private_splits():
             for role,(folder,doc) in selected.items()}
     if images["train"]&images["dev"] or len(images["train"])!=256 or len(images["dev"])!=64:
         raise ValueError("H140 frozen source train/dev image SHA leak")
+    validate_private_train_dev_pair(
+        selected["train"][1],selected["dev"][1],decoded_by_split)
     return selected
 
 def summarize_native(rows,manifest):

@@ -144,6 +144,28 @@ def load_split(folder,split,*,decoded_pixels=None):
                 raise ValueError("H140 fixed-coordinate collapse at original data source: "+app+" "+role)
     return doc
 
+def validate_private_train_dev_pair(train_doc,dev_doc,decoded_by_split):
+    """Require original training scripts to enforce pairwise source admission.
+
+    Split-local PNG validity alone does not preclude a DEV copy of TRAIN
+    pixels with different PNG metadata, or an app-source revision change.
+    This is NOT legal/rights authorization for any training operation.
+    """
+    train_sources={name:entry["upstream_sha"] for name,entry
+                   in train_doc["app_sources"].items()}
+    dev_sources={name:entry["upstream_sha"] for name,entry
+                 in dev_doc["app_sources"].items()}
+    if train_sources!=dev_sources:
+        raise ValueError("H140 TRAIN/DEV pinned source revisions differ")
+    train_pixels=decoded_by_split.get("train")
+    dev_pixels=decoded_by_split.get("dev")
+    if (not isinstance(train_pixels,list) or not isinstance(dev_pixels,list)
+            or len(train_pixels)!=len(train_doc["cases"])
+            or len(dev_pixels)!=len(dev_doc["cases"])
+            or set(train_pixels)&set(dev_pixels)):
+        raise ValueError("H140 TRAIN/DEV decoded pixel overlap or missing audit")
+    return True
+
 def admit(train,dev,blind,old_manifests):
     if not old_manifests:
         raise ValueError("H140 past experiments' image hashes must be excluded")
