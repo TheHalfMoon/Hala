@@ -159,14 +159,19 @@ def run_pinned_offline_candidate_processor(
         _candidate_rows(root, family)
     verify_cached_processor_root(snapshot)
     from transformers import AutoProcessor, Qwen3VLProcessor
-    processor = AutoProcessor.from_pretrained(
-        str(snapshot), local_files_only=True, trust_remote_code=False)
-    refuse(type(processor) is Qwen3VLProcessor)
-    findings = [
-        receipt
-        for family, root in datasets.items()
-        for receipt in real_processor_messages(processor, root, family)
-    ]
+    from h387.verified_processor_handoff import verified_processor_handoff
+    # H387: the original owner cache can change after byte verification.
+    # The actual HF load AND all subsequent processor uses must read only
+    # the separately SHA-verified ephemeral public-assets-only snapshot.
+    with verified_processor_handoff(snapshot) as pinned_copy:
+        processor = AutoProcessor.from_pretrained(
+            str(pinned_copy), local_files_only=True, trust_remote_code=False)
+        refuse(type(processor) is Qwen3VLProcessor)
+        findings = [
+            receipt
+            for family, root in datasets.items()
+            for receipt in real_processor_messages(processor, root, family)
+        ]
     refuse(len(findings) == 12
            and sum(r["language"] == "ar" for r in findings) == 6
            and sum(r["language"] == "en" for r in findings) == 6
