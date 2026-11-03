@@ -74,7 +74,18 @@ class SyntheticProcessor:
 class H239BilingualProcessorPolicyTests(unittest.TestCase):
     def setUp(self):
         self.p = SyntheticProcessor()
-        fake = types.SimpleNamespace(equal=lambda a, b: a.values == b.values)
+        fake = types.SimpleNamespace(
+            equal=lambda a, b: a.values == b.values,
+            isfinite=lambda tensor: types.SimpleNamespace(
+                all=lambda: types.SimpleNamespace(
+                    item=lambda: all(
+                        isinstance(value, (int, float))
+                        and __import__("math").isfinite(value)
+                        for value in tensor.values
+                    )
+                )
+            ),
+        )
         self.torch = patch.dict(sys.modules, {"torch": fake})
         self.torch.start()
         self.addCleanup(self.torch.stop)
