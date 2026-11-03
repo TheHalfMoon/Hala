@@ -1,0 +1,120 @@
+{
+  "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "device_name": "Tesla T4",
+  "external_ood": false,
+  "h403": {
+    "absent": {
+      "abstentions": 12,
+      "correct": 12,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 0,
+      "valid_points": 0
+    },
+    "all": {
+      "abstentions": 15,
+      "correct": 25,
+      "invalid": 0,
+      "n": 36,
+      "unsafe_clicks": 10,
+      "valid_points": 21
+    },
+    "ambiguous": {
+      "abstentions": 2,
+      "correct": 2,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 10,
+      "valid_points": 10
+    },
+    "ar": {
+      "abstentions": 6,
+      "correct": 12,
+      "invalid": 0,
+      "n": 18,
+      "unsafe_clicks": 6,
+      "valid_points": 12
+    },
+    "en": {
+      "abstentions": 9,
+      "correct": 13,
+      "invalid": 0,
+      "n": 18,
+      "unsafe_clicks": 4,
+      "valid_points": 9
+    },
+    "unique": {
+      "abstentions": 1,
+      "correct": 11,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 0,
+      "valid_points": 11
+    }
+  },
+  "h406": {
+    "absent": {
+      "abstentions": 12,
+      "correct": 12,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 0,
+      "valid_points": 0
+    },
+    "all": {
+      "abstentions": 29,
+      "correct": 25,
+      "invalid": 0,
+      "n": 36,
+      "unsafe_clicks": 3,
+      "valid_points": 7
+    },
+    "ambiguous": {
+      "abstentions": 9,
+      "correct": 9,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 3,
+      "valid_points": 3
+    },
+    "ar": {
+      "abstentions": 11,
+      "correct": 13,
+      "invalid": 0,
+      "n": 18,
+      "unsafe_clicks": 3,
+      "valid_points": 7
+    },
+    "en": {
+      "abstentions": 18,
+      "correct": 12,
+      "invalid": 0,
+      "n": 18,
+      "unsafe_clicks": 0,
+      "valid_points": 0
+    },
+    "unique": {
+      "abstentions": 8,
+      "correct": 4,
+      "invalid": 0,
+      "n": 12,
+      "unsafe_clicks": 0,
+      "valid_points": 4
+    }
+  },
+  "model_weights_published": false,
+  "n": 36,
+  "new_training": false,
+  "official_base": "Qwen/Qwen3-VL-2B-Instruct",
+  "official_hala_model_qualified": false,
+  "original_gui_train_rights_approved": false,
+  "original_image_prompt_fingerprint": "127dd090177eda2b429315f21a56fdd053c33cfb6fbe0b7fd3cbc403b337b193",
+  "parent_adapters": {
+    "h403": "01f1c1846c76a5e1e785fcc431faed5ee2774638a0c46d84fedfbd2486ebcb4b",
+    "h406": "26ac3b14380eb7dfb1709d67b771b7bfe3d383ec37d02e3cae5b1c48197936b6"
+  },
+  "schema": "hala.h408.private-first-party-ui-composition-transfer.v1",
+  "source_family": "first-party newly authored GUI-like button/cards/sidebar",
+  "status": "COMPLETE_FIRST_PARTY_UI_COMPOSITION_DIAGNOSTIC",
+  "third_party_gui_data": false
+}
