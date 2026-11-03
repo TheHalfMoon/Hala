@@ -165,7 +165,8 @@ class H387ProcessorStagingTests(unittest.TestCase):
                           "official_train_admitted": False,
                       }),
                 patch("h216.real_qwen_processor_alignment.audit_sample",
-                      return_value={"synthetic": True}),
+                      return_value={"prompt_tokens": 6, "supervised_tokens": 7,
+                                    "vision_tensor_elements": 4}),
             ):
                 receipts = run_real_processor_audit(source)
             self.assertEqual(len(receipts), 4)
