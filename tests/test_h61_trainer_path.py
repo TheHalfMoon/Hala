@@ -174,7 +174,8 @@ class TrainerH61PathTests(unittest.TestCase):
         image.parent.mkdir(parents=True, exist_ok=True)
         from PIL import Image
 
-        Image.new("RGB", (1024, 640), (10, 20, 30)).save(image, format="PNG")
+        # H61 curriculum marks .jpg source rows as JPEG; keep the fixture truthful.
+        Image.new("RGB", (1024, 640), (10, 20, 30)).save(image, format="JPEG")
         row["image_sha256"] = hashlib_sha256(image.read_bytes())
         inputs, labels, weights = prepare_inputs(
             row, MockProcessor(), self.root, 4096, native_drag_jpeg=False,
@@ -188,6 +189,23 @@ class TrainerH61PathTests(unittest.TestCase):
         self.assertTrue(all(float(weights[0][index]) == 8.0 for index in heavy))
         self.assertTrue(all(float(weights[0][index]) == 1.0
                             for index in supervised if index not in set(heavy)))
+
+    @unittest.skipUnless(torch is not None, "torch is required for the tensor path")
+    def test_prepare_inputs_refuses_png_bytes_declared_jpeg(self):
+        # Exercise the fail-closed format guard, not just the corrected JPEG fixture.
+        make_shard(self.root)
+        export_curriculum(self.root, target_rows=2, max_rows_per_image=1)
+        row = json.loads((self.root / "h61_drag_curriculum.jsonl")
+                         .read_text("utf8").splitlines()[0])
+        self.assertEqual(row["image_format"], "JPEG")
+        image = self.root / row["image_path"]
+        image.parent.mkdir(parents=True, exist_ok=True)
+        from PIL import Image
+
+        Image.new("RGB", (16, 16), (10, 20, 30)).save(image, format="PNG")
+        row["image_sha256"] = hashlib_sha256(image.read_bytes())
+        with self.assertRaisesRegex(ValueError, "declared format"):
+            prepare_inputs(row, MockProcessor(), self.root, 4096)
 
     @unittest.skipUnless(torch is not None, "torch is required for the tensor path")
     def test_the_weighted_loss_equals_the_hand_computed_weighted_cross_entropy(self):

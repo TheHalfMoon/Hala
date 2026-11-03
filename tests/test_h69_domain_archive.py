@@ -135,7 +135,14 @@ class SourceShardTests(unittest.TestCase):
             self.assertFalse((self.work / "outside").exists())
 
     def test_forbid_symlinks(self):
-        (self.original / "alias").symlink_to(self.original / "receipt.json")
+        try:
+            (self.original / "alias").symlink_to(self.original / "receipt.json")
+        except OSError as exc:
+            # Ordinary Windows users may lack symlink privilege (WinError 1314).
+            # Skip only when fixture creation is denied; never weaken archive checks.
+            if getattr(exc, "winerror", None) == 1314:
+                self.skipTest("Windows symlink creation privilege unavailable")
+            raise
         with mock.patch.dict(archive.EXPECTED_IMAGES, {"slider": 2}):
             with self.assertRaisesRegex(ValueError, "symbolic links"):
                 self.build()
