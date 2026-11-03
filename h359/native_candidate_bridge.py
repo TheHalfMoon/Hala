@@ -57,7 +57,8 @@ SOURCE_ROW358 = SOURCE_ROW_COMMON | {"phase"}
 PREFIX_SENTINEL = "H359-ORIGINAL-TASK-SENTINEL"
 PREFIX = source_task_prompt(PREFIX_SENTINEL).removesuffix(PREFIX_SENTINEL)
 REPORT_KEYS = ("schema", "role", "family", "records", "en", "ar",
-               "action_counts", "distinct_images", "legacy_schema_compatible",
+               "action_counts", "distinct_images", "distinct_decoded_rgba_images",
+               "legacy_schema_compatible",
                "h199_messages_checked", "official_train_admitted",
                "independent_rights_verified", "can_train",
                "blind_ood", "can_release")
@@ -122,7 +123,7 @@ def audit_review_bundle(root: Path, family: str) -> dict:
     need(examples.stat().st_size <= 500_000)
     entries = examples.read_bytes().splitlines()
     need(len(entries) == expected["records"])
-    ids, digests = set(), set()
+    ids, digests, rgba_hashes = set(), set(), set()
     actions, langs = Counter(), Counter()
     # Import Pillow lazily only after metadata, family/source and rights flags
     # have been validated, and never initialize a HF/torch model.
@@ -175,16 +176,27 @@ def audit_review_bundle(root: Path, family: str) -> dict:
              and image_file.stat().st_size <= 4_000_000)
         raw_image = image_file.read_bytes()
         need(sha256(raw_image).hexdigest() == row["image_sha256"])
+        # H384: distinct PNG hashes alone do NOT imply distinct visible
+        # screenshots. Metadata-only PNG changes can preserve the exact
+        # decoded 960x720 RGBA raster, inflating review-source diversity.
+        # Keep the existing PNG CRC/structure verification, then decode
+        # the SAME in-memory SHA-matched file bytes for pixel identity.
         with Image.open(BytesIO(raw_image)) as img:
             need(img.format == "PNG" and img.size == (960, 720))
             img.verify()
+        with Image.open(BytesIO(raw_image)) as img:
+            need(img.format == "PNG" and img.size == (960, 720))
+            img.load()
+            rgba_digest = sha256(img.convert("RGBA").tobytes()).digest()
+        need(rgba_digest not in rgba_hashes)
         ids.add(row["id"])
         digests.add(row["image_sha256"])
+        rgba_hashes.add(rgba_digest)
         actions[kind] += 1
         langs[row["language"]] += 1
     need(dict(actions) == expected["action_counts"]
          and dict(langs) == expected["languages"])
-    need(len(ids) == len(digests) == expected["records"])
+    need(len(ids) == len(digests) == len(rgba_hashes) == expected["records"])
     return {
         "schema": SCHEMA,
         "role": "SOURCE_ONLY_NATIVE_MESSAGES_AUDIT_NO_TRAIN",
@@ -192,6 +204,7 @@ def audit_review_bundle(root: Path, family: str) -> dict:
         "records": len(ids), "en": langs["en"], "ar": langs["ar"],
         "action_counts": dict(sorted(actions.items())),
         "distinct_images": len(digests),
+        "distinct_decoded_rgba_images": len(rgba_hashes),
         "legacy_schema_compatible": False,
         "h199_messages_checked": len(ids),
         "official_train_admitted": False,

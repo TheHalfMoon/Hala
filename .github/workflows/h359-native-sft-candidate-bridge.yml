@@ -5,6 +5,8 @@ on:
     paths:
       - h359/**
       - tests/test_h359_native_candidate_bridge.py
+      - tests/test_h384_native_review_decoded_pixel_distinctness.py
+      - h384/**
       - .github/workflows/h359-native-sft-candidate-bridge.yml
   workflow_dispatch:
 
@@ -41,6 +43,6 @@ jobs:
         env:
           HALA_H359_BROWSER_QA: '1'
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python -m unittest tests.test_h359_native_candidate_bridge tests.test_h199_native_action_sft -q
+        run: python -m unittest tests.test_h384_native_review_decoded_pixel_distinctness tests.test_h359_native_candidate_bridge tests.test_h199_native_action_sft -q
       - name: Ensure no candidate media or labels persisted in repository
         run: python -c "import subprocess; assert not subprocess.check_output(['git', 'status', '--porcelain'], text=True), 'generated candidate output leaked to repository'"
