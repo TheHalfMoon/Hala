@@ -12,7 +12,7 @@ import time
 from collections import Counter,defaultdict
 from pathlib import Path
 
-from h140.qualification import load_split,digest,SCHEMA
+from h140.qualification import load_split,digest,SCHEMA,summarize_neural_position_diversity
 from h139.train_gpu import (
     assemble_example,make_prompt_and_gold,model_predict,find_lora_targets,
     BASE_MODEL,BASE_REV,
@@ -99,13 +99,8 @@ def summarize_native(rows,manifest):
         per_role={}
         for role in ("start","end"):
             positions=[pred[(r["id"],role)] for r in sixteen]
-            frequencies=Counter(positions)
-            valid=sum(point is not None for point in positions)
-            uniques=len({point for point in positions if point is not None})
-            mode=max(frequencies.values())
-            per_role[role]={"valid_points":valid,"unique_points":uniques,
-                            "largest_point_count":mode,
-                            "passed":valid==16 and uniques>=8 and mode<=4}
+            per_role[role]=summarize_neural_position_diversity(
+                positions,allow_abstain=True)
         diversity[app]=per_role
     return {"point_hits":dict(hits),"point_diversity_by_app":diversity,
             "all_apps_and_roles_diverse":all(

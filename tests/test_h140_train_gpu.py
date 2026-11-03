@@ -10,6 +10,7 @@ from h140.train_gpu import (
     EXPECTED_APP_SET,summarize_native,private_splits,
 )
 from h140.qualification import SCHEMA
+from h140.train_gpu_v3 import summarize_native as summarize_native_v3
 
 
 class H140NativeGUIResearchGrounderContract(unittest.TestCase):
@@ -69,6 +70,27 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
             self.assertFalse(roles["end"]["passed"])
         with self.assertRaises(ValueError):
             summarize_native(self.predictions(doc)[:-1],doc)
+
+    def test_v1_v3_native_summaries_refuse_subpixel_jitter(self):
+        doc=self.cases()
+        base_rows=self.predictions(doc)
+        truth={row["id"]:row for row in doc["cases"]}
+        for item in base_rows:
+            case_index=int(item["case_id"].rsplit("-",1)[1])
+            point=[101+case_index/100,201+case_index/100]
+            rect=truth[item["case_id"]][item["role"]+"_bbox"]
+            item["point"]=point
+            item["hit"]=(rect["x"]<=point[0]<=rect["x"]+rect["width"] and
+                         rect["y"]<=point[1]<=rect["y"]+rect["height"])
+        for summarize in (summarize_native,summarize_native_v3):
+            with self.subTest(summarizer=summarize.__module__):
+                result=summarize(base_rows,doc)
+                self.assertFalse(result["all_apps_and_roles_diverse"])
+                for roles in result["point_diversity_by_app"].values():
+                    for role in ("start","end"):
+                        self.assertGreaterEqual(roles[role]["unique_points"],8)
+                        self.assertEqual(roles[role]["unique_position_bins"],1)
+                        self.assertFalse(roles[role]["passed"])
 
     def test_training_mount_refuses_even_single_blind_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:

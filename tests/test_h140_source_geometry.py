@@ -5,7 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from h140.qualification import COUNTS,SCHEMA,admit,collapse_gate,digest
+from h140.qualification import (COUNTS,SCHEMA,admit,collapse_gate,digest,
+                                 summarize_neural_position_diversity)
 
 
 class H140PositionDiversityTests(unittest.TestCase):
@@ -77,6 +78,43 @@ class H140PositionDiversityTests(unittest.TestCase):
             collapse_gate([[None,None]]*16)
         with self.assertRaises(ValueError):
             collapse_gate([[960,720]]*16)
+
+    def test_quantized_diversity_refuses_subpixel_jitter_and_five_in_one_bin(self):
+        # All 16 predictions are numerically unique but sit in ONE 24px cell.
+        jitter=[[101+i/100,201+i/100] for i in range(16)]
+        report=collapse_gate(jitter)
+        self.assertEqual(report["unique_points"],16)
+        self.assertEqual(report["unique_position_bins"],1)
+        self.assertFalse(report["passed"])
+        # Eight spatial bins alone are insufficient if >25% are one location.
+        five=[[101+i/100,201+i/100] for i in range(5)]
+        dispersed=[[12+25*i,400] for i in range(11)]
+        report=collapse_gate(five+dispersed)
+        self.assertGreaterEqual(report["unique_position_bins"],8)
+        self.assertGreater(report["largest_position_bin_count"],4)
+        self.assertFalse(report["passed"])
+
+    def test_eight_position_bins_with_two_per_bin_still_pass(self):
+        points=[[24+27*cell+0.1*j,120] for cell in range(8) for j in range(2)]
+        report=collapse_gate(points)
+        self.assertEqual(report["unique_points"],16)
+        self.assertEqual(report["unique_position_bins"],8)
+        self.assertEqual(report["largest_position_bin_count"],2)
+        self.assertTrue(report["passed"])
+
+    def test_abstention_and_malformed_coordinates_fail_closed(self):
+        diverse=[[30+i*25,100+i*16] for i in range(16)]
+        with_abstention=[None]+diverse[1:]
+        summary=summarize_neural_position_diversity(
+            with_abstention,allow_abstain=True)
+        self.assertEqual(summary["valid_points"],15)
+        self.assertFalse(summary["passed"])
+        with self.assertRaises(ValueError):
+            summarize_neural_position_diversity(with_abstention)
+        for bad in ([float("nan"),100],[float("inf"),100],
+                    [True,100],[-1,100],[960,100]):
+            with self.subTest(bad=bad),self.assertRaises(ValueError):
+                summarize_neural_position_diversity([bad]+diverse[1:])
 
 
 if __name__=="__main__":
