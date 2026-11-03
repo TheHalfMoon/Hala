@@ -166,28 +166,33 @@ def run_real_processor_audit(root: Path, *, all_research: bool = False) -> list[
             and not verified["official_train_admitted"],
             "H212 frozen source fingerprints not safely qualified")
     from transformers import AutoProcessor, Qwen3VLProcessor
-    proc = AutoProcessor.from_pretrained(
-        str(root), local_files_only=True, trust_remote_code=False,
-    )
-    require(type(proc) is Qwen3VLProcessor,
-            "loaded processor is not the exact Qwen3VLProcessor class")
-    require(getattr(proc,"apply_chat_template",None) is not None
-            and getattr(proc,"batch_decode",None) is not None,
-            "real Qwen3-VL processor not available")
-    print("H216_PINNED_QWEN3VL_REAL_PROCESSOR_LOADED_NO_WEIGHTS",flush=True)
-    result=[]
-    selected = range(COUNT) if all_research else CASES
-    for index in selected:
-        receipt=audit_sample(proc,index)
-        result.append(receipt)
-        if not all_research or (index+1) % 16 == 0:
-            print("H216_REAL_PROCESSOR_CHECKPOINT",
-                  "cases_passed="+str(len(result)),
-                  "prompt_tokens="+str(receipt["prompt_tokens"]),
-                  "assistant_tokens="+str(receipt["supervised_tokens"]),
-                  "vision_elements="+str(receipt["vision_tensor_elements"]),
-                  "prefix_exact=true click_roundtrip=true",
-                  flush=True)
+    from h387.verified_processor_handoff import verified_processor_handoff
+    # H387: HF must NEVER reopen the owner-supplied mutable original cache
+    # after H218 preflight. Keep isolated, SHA-checked public asset copies
+    # alive for the entire real processor audit; remove them even on error.
+    with verified_processor_handoff(root) as pinned_copy:
+        proc = AutoProcessor.from_pretrained(
+            str(pinned_copy), local_files_only=True, trust_remote_code=False,
+        )
+        require(type(proc) is Qwen3VLProcessor,
+                "loaded processor is not the exact Qwen3VLProcessor class")
+        require(getattr(proc,"apply_chat_template",None) is not None
+                and getattr(proc,"batch_decode",None) is not None,
+                "real Qwen3-VL processor not available")
+        print("H216_PINNED_QWEN3VL_REAL_PROCESSOR_LOADED_NO_WEIGHTS",flush=True)
+        result=[]
+        selected = range(COUNT) if all_research else CASES
+        for index in selected:
+            receipt=audit_sample(proc,index)
+            result.append(receipt)
+            if not all_research or (index+1) % 16 == 0:
+                print("H216_REAL_PROCESSOR_CHECKPOINT",
+                      "cases_passed="+str(len(result)),
+                      "prompt_tokens="+str(receipt["prompt_tokens"]),
+                      "assistant_tokens="+str(receipt["supervised_tokens"]),
+                      "vision_elements="+str(receipt["vision_tensor_elements"]),
+                      "prefix_exact=true click_roundtrip=true",
+                      flush=True)
     return result
 
 
