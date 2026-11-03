@@ -68,8 +68,12 @@ def load_split(folder,split):
             entry.get("tracked_source_modified") is not False or
             not isinstance(entry.get("upstream_sha"),str) or
             len(entry["upstream_sha"])!=40 or
+            any(c not in "0123456789abcdef" for c in entry["upstream_sha"]) or
             entry.get("application_is_complete") is not True):
             raise ValueError("H140 exact original MIT application provenance missing")
+    revisions=[entry["upstream_sha"] for entry in sources.values()]
+    if len(set(revisions))!=len(revisions):
+        raise ValueError("H140 duplicate source revision under different application aliases")
     seen=set(); by_app=defaultdict(list)
     for row in rows:
         app=row.get("app")
@@ -119,10 +123,18 @@ def admit(train,dev,blind,old_manifests):
                 old.add(row["image_sha256"])
     splits={s:load_split(folder,s) for s,folder in
             (("train",train),("dev",dev),("blind_test",blind))}
-    training_apps=set(splits["train"]["app_sources"])
-    if (set(splits["dev"]["app_sources"])!=training_apps or
-        set(splits["blind_test"]["app_sources"])&training_apps):
-        raise ValueError("H140 unseen BLIND app implementations must be wholly independent")
+    train_revisions={app:entry["upstream_sha"] for app,entry
+                     in splits["train"]["app_sources"].items()}
+    dev_revisions={app:entry["upstream_sha"] for app,entry
+                   in splits["dev"]["app_sources"].items()}
+    blind_revisions={app:entry["upstream_sha"] for app,entry
+                     in splits["blind_test"]["app_sources"].items()}
+    training_apps=set(train_revisions)
+    if train_revisions!=dev_revisions:
+        raise ValueError("H140 TRAIN and DEV must pin identical app source revisions")
+    if (set(blind_revisions)&training_apps or
+        set(blind_revisions.values())&set(train_revisions.values())):
+        raise ValueError("H140 unseen BLIND source revision aliases training or DEV")
     seen=set()
     for split,doc in splits.items():
         for row in doc["cases"]:

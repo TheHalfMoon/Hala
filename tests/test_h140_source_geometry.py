@@ -1,4 +1,5 @@
 """CPU-only H140 original source and model geometry-collapse guards."""
+import hashlib
 import json
 import struct
 import tempfile
@@ -17,7 +18,7 @@ class H140PositionDiversityTests(unittest.TestCase):
         cases=[]
         index=0
         for app,amount in app_counts.items():
-            sha=f"{len(sources)+17:040x}"
+            sha=hashlib.sha1(("synthetic-H140-fixture/"+app).encode()).hexdigest()
             sources[app]={"license":"MIT","license_file_verified":True,
                 "tracked_source_modified":False,"upstream_sha":sha,
                 "application_is_complete":True}
@@ -62,6 +63,60 @@ class H140PositionDiversityTests(unittest.TestCase):
             (train/"manifest.json").write_text(json.dumps(document))
             with self.assertRaisesRegex(ValueError,"fixed-coordinate collapse"):
                 admit(train,dev,blind,[historic])
+
+    def test_blind_source_sha_alias_refused_even_if_app_name_disjoint(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            blind=self._source(root,"blind_test",{"unseen_d":16,"unseen_e":16})
+            historic=root/"historic.json"
+            historic.write_text(json.dumps({"cases":[{"image_sha256":"f"*64}]}))
+            self.assertEqual(admit(train,dev,blind,[historic])["distinct_images"],352)
+            train_doc=json.loads((train/"manifest.json").read_text("utf8"))
+            blind_doc=json.loads((blind/"manifest.json").read_text("utf8"))
+            borrowed_sha=train_doc["app_sources"]["training_a"]["upstream_sha"]
+            blind_doc["app_sources"]["unseen_d"]["upstream_sha"]=borrowed_sha
+            for row in blind_doc["cases"]:
+                if row["app"]=="unseen_d":
+                    row["app_git_sha"]=borrowed_sha
+            (blind/"manifest.json").write_text(json.dumps(blind_doc))
+            with self.assertRaisesRegex(ValueError,"source revision"):
+                admit(train,dev,blind,[historic])
+
+    def test_dev_same_name_source_revision_drift_refused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            dev=self._source(root,"dev",{"training_a":22,"training_b":22,"training_c":20})
+            blind=self._source(root,"blind_test",{"unseen_d":16,"unseen_e":16})
+            historic=root/"historic.json"
+            historic.write_text(json.dumps({"cases":[{"image_sha256":"f"*64}]}))
+            self.assertEqual(admit(train,dev,blind,[historic])["distinct_images"],352)
+            dev_doc=json.loads((dev/"manifest.json").read_text("utf8"))
+            altered_sha="a"*40
+            dev_doc["app_sources"]["training_a"]["upstream_sha"]=altered_sha
+            for row in dev_doc["cases"]:
+                if row["app"]=="training_a":
+                    row["app_git_sha"]=altered_sha
+            (dev/"manifest.json").write_text(json.dumps(dev_doc))
+            with self.assertRaisesRegex(ValueError,"source revision"):
+                admit(train,dev,blind,[historic])
+
+    def test_same_split_renamed_source_revision_refused(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            train=self._source(root,"train",{"training_a":86,"training_b":86,"training_c":84})
+            doc=json.loads((train/"manifest.json").read_text("utf8"))
+            aliased_sha=doc["app_sources"]["training_a"]["upstream_sha"]
+            doc["app_sources"]["training_b"]["upstream_sha"]=aliased_sha
+            for row in doc["cases"]:
+                if row["app"]=="training_b":
+                    row["app_git_sha"]=aliased_sha
+            (train/"manifest.json").write_text(json.dumps(doc))
+            with self.assertRaisesRegex(ValueError,"source revision"):
+                from h140.qualification import load_split
+                load_split(train,"train")
 
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
         repeated=[[240,340] for _ in range(16)]
