@@ -12,7 +12,8 @@ import time
 from collections import Counter,defaultdict
 from pathlib import Path
 
-from h140.qualification import load_split,digest,SCHEMA,summarize_neural_position_diversity
+from h140.qualification import (load_split,digest,SCHEMA,
+    summarize_neural_position_diversity,validate_native_score_record)
 from h139.train_gpu import (
     assemble_example,make_prompt_and_gold,model_predict,find_lora_targets,
     BASE_MODEL,BASE_REV,
@@ -65,19 +66,15 @@ def summarize_native(rows,manifest):
     pred={}
     seen=set()
     for item in rows:
+        if (type(item) is not dict or
+            type(item.get("case_id")) is not str or
+            item.get("role") not in ("start","end")):
+            raise ValueError("H140 native DEV score item missing case/role")
         key=(item["case_id"],item["role"])
-        if key in seen or item["case_id"] not in truth or item["role"] not in ("start","end"):
+        if key in seen or item["case_id"] not in truth:
             raise ValueError("H140 wrong or duplicated frozen DEV model response")
         seen.add(key)
-        original=truth[item["case_id"]]
-        raw_point=item["point"]
-        rect=original[item["role"]+"_bbox"]
-        hit=(raw_point is not None
-             and rect["x"]<=raw_point[0]<=rect["x"]+rect["width"]
-             and rect["y"]<=raw_point[1]<=rect["y"]+rect["height"])
-        if bool(hit)!=item["hit"]:
-            raise ValueError("H140 source native point scoring drift")
-        pred[key]=tuple(raw_point) if raw_point is not None else None
+        pred[key]=validate_native_score_record(item,truth[item["case_id"]])
     if len(seen)!=128:
         raise ValueError("H140 full original DEV64 x START/END = 128 calls")
     for original in manifest["cases"]:
