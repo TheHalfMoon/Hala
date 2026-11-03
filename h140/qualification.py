@@ -142,15 +142,17 @@ def admit(train,dev,blind,old_manifests):
         "main_Hala_35B_updated":False,
     }
 
-def summarize_neural_position_diversity(points, *, allow_abstain=False):
-    """Measure 16 neural outputs by both exact point and 24px spatial bins.
+def summarize_neural_position_diversity(points, *, allow_abstain=False,
+                                      expected_count=16):
+    """Measure preregistered 16-case or language-specific 8-case spatial bins.
 
     Quantized bins prevent tiny prediction jitter from masquerading as
     generalization across genuinely different GUI target positions.
     An abstention is observable but never counts as a diverse output.
     """
-    if not isinstance(points,list) or len(points)!=16:
-        raise ValueError("H140 exactly 16 original model outputs required")
+    if (type(expected_count) is not int or expected_count not in (8,16) or
+            not isinstance(points,list) or len(points)!=expected_count):
+        raise ValueError("H140 exactly 8 or 16 preregistered model outputs required")
     rounded=[]; spatial=[]
     for point in points:
         if point is None and allow_abstain:
@@ -173,8 +175,10 @@ def summarize_neural_position_diversity(points, *, allow_abstain=False):
         "largest_point_count":exact_mode,
         "unique_position_bins":unique_bins,
         "largest_position_bin_count":spatial_mode,
-        "passed":len(rounded)==16 and unique>=8 and exact_mode<=4
-                 and unique_bins>=8 and spatial_mode<=4,
+        "passed":len(rounded)==expected_count and unique>=expected_count//2
+                 and exact_mode<=expected_count//4
+                 and unique_bins>=expected_count//2
+                 and spatial_mode<=expected_count//4,
     }
 
 
