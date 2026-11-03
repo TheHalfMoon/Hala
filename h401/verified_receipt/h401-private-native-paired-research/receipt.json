@@ -1,0 +1,56 @@
+{
+  "adapted": {
+    "all": {
+      "hits": 18,
+      "n": 18,
+      "unique_cells": 8,
+      "valid_json": 18
+    },
+    "ar": {
+      "hits": 9,
+      "n": 9,
+      "unique_cells": 6,
+      "valid_json": 9
+    },
+    "en": {
+      "hits": 9,
+      "n": 9,
+      "unique_cells": 6,
+      "valid_json": 9
+    }
+  },
+  "adapter_sha256": "8b6d9bdf5df8fd4ecba939a5f454e3deffd5704df3ff41622697e63ef767a537",
+  "all_images_are_first_party_generated": true,
+  "base": {
+    "all": {
+      "hits": 3,
+      "n": 18,
+      "unique_cells": 2,
+      "valid_json": 4
+    },
+    "ar": {
+      "hits": 3,
+      "n": 9,
+      "unique_cells": 2,
+      "valid_json": 4
+    },
+    "en": {
+      "hits": 0,
+      "n": 9,
+      "unique_cells": 0,
+      "valid_json": 0
+    }
+  },
+  "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+  "device": "Tesla T4",
+  "evaluation_is_independent": false,
+  "external_ood": false,
+  "input_kernel_source": "abdulazizshehri/hala-h399-original-synthetic-qwen3vl-lora",
+  "model_weights_published": false,
+  "official_hala_model_qualified": false,
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "sample_count": 18,
+  "schema": "hala.h401.private-paired-native-invented-qwen3vl.v1",
+  "source_rights_original_screenshots_approved": false,
+  "status": "COMPLETE_AUTHOR_SYNTHETIC_NATIVE_PAIRED_DIAGNOSTIC"
+}

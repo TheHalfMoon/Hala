@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h401-invented-native-click-paired",
+  "title": "Hala H401 Invented Native Click Paired",
+  "code_file": "h401_native_paired.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h399-original-synthetic-qwen3vl-lora"
+  ],
+  "model_sources": []
+}
