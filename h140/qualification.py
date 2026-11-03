@@ -52,6 +52,7 @@ def actual_png_bytes(folder,row,*,pixel_digest_out=None):
     # treating this source image as an actual screenshot candidate.
     from io import BytesIO
     from PIL import Image
+    nonopaque=False
     try:
         with Image.open(BytesIO(binary)) as frame:
             if (frame.format!="PNG" or frame.size!=(WIDTH,HEIGHT) or
@@ -61,6 +62,11 @@ def actual_png_bytes(folder,row,*,pixel_digest_out=None):
             frame.verify()
         with Image.open(BytesIO(binary)) as frame:
             frame.load()
+            # Screenshot pixels must be fully visible. Hidden RGB colors
+            # beneath alpha=0 or partially translucent pixels can masquerade
+            # as new data despite unchanged observed scene content.
+            if frame.mode=="RGBA" and frame.getchannel("A").getextrema()!=(255,255):
+                nonopaque=True
             if pixel_digest_out is not None:
                 # Metadata and lossless re-encoding cannot create a new
                 # independent visual example. Normalize RGB and RGBA.
@@ -68,6 +74,8 @@ def actual_png_bytes(folder,row,*,pixel_digest_out=None):
                 pixel_digest_out.append(digest(pixels))
     except (OSError,ValueError,SyntaxError) as exc:
         raise ValueError("H140 invalid PNG chunk integrity or pixel stream") from exc
+    if nonopaque:
+        raise ValueError("H140 non-opaque PNG screenshot pixels are not admitted")
     return binary
 
 def load_split(folder,split,*,decoded_pixels=None):
