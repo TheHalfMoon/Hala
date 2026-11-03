@@ -9,7 +9,8 @@ from h140.train_gpu import (
     STEPS,GRAD_ACCUM,TRAIN_MANIFEST_SHA,DEV_MANIFEST_SHA,
     EXPECTED_APP_SET,summarize_native,private_splits,
 )
-from h140.qualification import SCHEMA
+from h140.qualification import SCHEMA,WIDTH,HEIGHT
+from h132.grounder_contract import native_point
 from h140.train_gpu_v3 import summarize_native as summarize_native_v3
 
 
@@ -30,17 +31,27 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
         return {"cases":rows}
 
     @staticmethod
-    def predictions(doc,collapsed=False):
+    def raw_for_point(point):
+        grid=[round(point[0]*1000/WIDTH),round(point[1]*1000/HEIGHT)]
+        raw=json.dumps({"point_2d":grid},separators=(",",":"))
+        if native_point(raw,WIDTH,HEIGHT)!=point:
+            raise AssertionError("H390 test point must roundtrip native parser")
+        return raw
+
+    @classmethod
+    def predictions(cls,doc,collapsed=False):
         out=[]
         for row in doc["cases"]:
             for role in ("start","end"):
                 rect=row[role+"_bbox"]
                 point=[42,44] if collapsed else [
-                    rect["x"]+rect["width"]/2,rect["y"]+rect["height"]/2]
+                    int(rect["x"]+rect["width"]/2),
+                    int(rect["y"]+rect["height"]/2)]
                 hit=(rect["x"]<=point[0]<=rect["x"]+rect["width"] and
                      rect["y"]<=point[1]<=rect["y"]+rect["height"])
                 out.append({"case_id":row["id"],"role":role,
-                            "raw":"CPU-only fixture never model output",
+                            "app":row["app"],"language":row["language"],
+                            "raw":cls.raw_for_point(point),
                             "point":point,"hit":bool(hit)})
         return out
 
@@ -77,9 +88,10 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
         truth={row["id"]:row for row in doc["cases"]}
         for item in base_rows:
             case_index=int(item["case_id"].rsplit("-",1)[1])
-            point=[101+case_index/100,201+case_index/100]
+            point=[96+case_index%16,201]
             rect=truth[item["case_id"]][item["role"]+"_bbox"]
             item["point"]=point
+            item["raw"]=self.raw_for_point(point)
             item["hit"]=(rect["x"]<=point[0]<=rect["x"]+rect["width"] and
                          rect["y"]<=point[1]<=rect["y"]+rect["height"])
         for summarize in (summarize_native,summarize_native_v3):
@@ -117,8 +129,9 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
             if row["language"]=="ar":
                 index=int(item["case_id"].rsplit("-",1)[1])
                 group=(index//2)%2
-                point=[600+50*group+index/100,500+index/100]
+                point=[600+50*group+index%8,500]
                 item["point"]=point
+                item["raw"]=self.raw_for_point(point)
                 item["hit"]=False
         for summarize in (summarize_native,summarize_native_v3):
             with self.subTest(summarizer=summarize.__module__):
@@ -132,6 +145,46 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
                         self.assertTrue(summary["bilingual_spatial"]["en"]["passed"])
                         self.assertFalse(summary["bilingual_spatial"]["ar"]["passed"])
                         self.assertEqual(summary["bilingual_spatial"]["ar"]["unique_position_bins"],2)
+
+    def test_v1_v3_refuse_unattested_native_receipt_fields(self):
+        """Even a correct 16-case diversity slice cannot excuse forged last-row data."""
+        doc=self.cases()
+        for corruption in ("unparseable_raw","point_raw_mismatch","wrong_app",
+                           "wrong_language","nonboolean_hit","missing_raw",
+                           "nan_point_outside_slice"):
+            for summarize in (summarize_native,summarize_native_v3):
+                with self.subTest(kind=corruption,summarizer=summarize.__module__):
+                    records=self.predictions(doc)
+                    item=records[-1]  # Last row is NOT in the first 16 per app.
+                    if corruption=="unparseable_raw":
+                        item["raw"]="synthetic prose is not model-native JSON"
+                    elif corruption=="point_raw_mismatch":
+                        item["point"][0]+=1  # still inside ground truth bbox
+                    elif corruption=="wrong_app":
+                        item["app"]="vanilla-native-board"
+                    elif corruption=="wrong_language":
+                        item["language"]="en"
+                    elif corruption=="nonboolean_hit":
+                        item["hit"]=1
+                    elif corruption=="missing_raw":
+                        del item["raw"]
+                    elif corruption=="nan_point_outside_slice":
+                        item["point"]=[float("nan"),100]
+                        item["hit"]=False
+                    with self.assertRaisesRegex(ValueError,"H140"):
+                        summarize(records,doc)
+
+    def test_native_receipt_invalid_raw_can_only_abstain(self):
+        doc=self.cases()
+        for summarize in (summarize_native,summarize_native_v3):
+            with self.subTest(summarizer=summarize.__module__):
+                records=self.predictions(doc)
+                records[-1]["raw"]="NOT_JSON_ABORT"
+                records[-1]["point"]=None
+                records[-1]["hit"]=False
+                result=summarize(records,doc)
+                self.assertEqual(result["point_hits"]["__all__"]["end"],63)
+                self.assertEqual(result["point_hits"]["__all__"]["cases"],64)
 
     def test_training_mount_refuses_even_single_blind_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:

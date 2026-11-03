@@ -142,6 +142,43 @@ def admit(train,dev,blind,old_manifests):
         "main_Hala_35B_updated":False,
     }
 
+def validate_native_score_record(item, source):
+    """Check raw model text, decoded point, hit and source identity agree.
+
+    This validates scoring consistency, not provenance of a neural model,
+    adapter, signed receipt, or lawful training admission.
+    """
+    from h132.grounder_contract import native_point
+
+    fields={"case_id","app","language","role","raw","point","hit"}
+    if type(item) is not dict or set(item)!=fields:
+        raise ValueError("H140 native model score record requires exact fields")
+    if (item["case_id"]!=source["id"] or
+        item["app"]!=source["app"] or
+        item["language"]!=source["language"] or
+        item["role"] not in ("start","end")):
+        raise ValueError("H140 native response case/app/language/role source drift")
+    if type(item["raw"]) is not str or type(item["hit"]) is not bool:
+        raise ValueError("H140 model raw text and boolean scored hit required")
+
+    decoded=native_point(item["raw"],WIDTH,HEIGHT)
+    claimed=item["point"]
+    if decoded is None:
+        if claimed is not None:
+            raise ValueError("H140 invalid model raw cannot claim a native point")
+    elif (type(claimed) is not list or len(claimed)!=2 or
+          any(type(v) is not int for v in claimed) or claimed!=decoded):
+        raise ValueError("H140 model raw native point/declared point mismatch")
+
+    rect=source[item["role"]+"_bbox"]
+    actual_hit=(decoded is not None and
+                rect["x"]<=decoded[0]<=rect["x"]+rect["width"] and
+                rect["y"]<=decoded[1]<=rect["y"]+rect["height"])
+    if actual_hit is not item["hit"]:
+        raise ValueError("H140 claimed native hit differs from decoded point")
+    return tuple(decoded) if decoded is not None else None
+
+
 def summarize_neural_position_diversity(points, *, allow_abstain=False,
                                       expected_count=16):
     """Measure preregistered 16-case or language-specific 8-case spatial bins.
