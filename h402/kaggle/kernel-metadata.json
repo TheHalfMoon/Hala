@@ -1,0 +1,18 @@
+{
+  "id": "abdulazizshehri/hala-h402-negative-native-generalization",
+  "title": "Hala H402 Negative Native Generalization",
+  "code_file": "h402_synthetic_negative_native.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h399-original-synthetic-qwen3vl-lora"
+  ],
+  "model_sources": []
+}

@@ -1,0 +1,90 @@
+{
+  "adapted": {
+    "absent": {
+      "abstentions": 10,
+      "correct": 10,
+      "false_clicks": 1,
+      "invalid": 1,
+      "n": 12
+    },
+    "all": {
+      "abstentions": 10,
+      "correct": 22,
+      "false_clicks": 1,
+      "invalid": 1,
+      "n": 24
+    },
+    "ar": {
+      "abstentions": 4,
+      "correct": 10,
+      "false_clicks": 1,
+      "invalid": 1,
+      "n": 12
+    },
+    "en": {
+      "abstentions": 6,
+      "correct": 12,
+      "false_clicks": 0,
+      "invalid": 0,
+      "n": 12
+    },
+    "positive": {
+      "abstentions": 0,
+      "correct": 12,
+      "false_clicks": 0,
+      "invalid": 0,
+      "n": 12
+    }
+  },
+  "adapter_sha256": "8b6d9bdf5df8fd4ecba939a5f454e3deffd5704df3ff41622697e63ef767a537",
+  "base": {
+    "absent": {
+      "abstentions": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 12,
+      "n": 12
+    },
+    "all": {
+      "abstentions": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 24,
+      "n": 24
+    },
+    "ar": {
+      "abstentions": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 12,
+      "n": 12
+    },
+    "en": {
+      "abstentions": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 12,
+      "n": 12
+    },
+    "positive": {
+      "abstentions": 0,
+      "correct": 0,
+      "false_clicks": 0,
+      "invalid": 12,
+      "n": 12
+    }
+  },
+  "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+  "base_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "dataset": "first-party-only invented rectangles and paraphrases",
+  "device": "Tesla T4",
+  "evaluator_is_independent": false,
+  "externally_sealed_ood": false,
+  "model_weights_published": false,
+  "n": 24,
+  "real_app_gui": false,
+  "schema": "hala.h402.private-author-negative-native-v1",
+  "source_rights_approved": false,
+  "status": "COMPLETE_AUTHOR_SYNTHETIC_STRESS_ONLY",
+  "training_performed_in_this_run": false
+}
