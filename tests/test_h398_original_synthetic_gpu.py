@@ -1,7 +1,12 @@
 """CPU-only sanity tests for invented H398 GPU pilot, never real Hala weights."""
+import importlib.util
+import json
 import unittest
+from pathlib import Path
 from h398.kaggle.h398_synthetic_gpu import SCHEMA,samples,net,evaluate
 
+@unittest.skipUnless(importlib.util.find_spec("torch") is not None,
+                     "Optional PyTorch unavailable in stdlib-only CI")
 class H398SyntheticTests(unittest.TestCase):
     def test_source_is_deterministically_invented_and_bilingual(self):
         import torch
@@ -29,5 +34,22 @@ class H398SyntheticTests(unittest.TestCase):
         self.assertEqual(metrics["n"],12)
         self.assertEqual(set(metrics),{"n","all","en","ar","unique_grid_positions"})
         self.assertTrue(SCHEMA.startswith("hala.h398."))
+class H398StdlibReceiptTests(unittest.TestCase):
+    """Always run source/receipt/privacy checks even without GPU packages."""
+    def test_real_kaggle_receipt_sha256_and_synthetic_scope(self):
+        from h398.validate_receipt import verify
+        result=verify()
+        self.assertEqual(result["status"],"SYNTHETIC_GPU_TRAINED_NOT_HALA_MODEL")
+        self.assertEqual(result["dev"]["n"],180)
+
+    def test_owner_kernel_has_no_external_data_or_public_access(self):
+        metadata=Path(__file__).resolve().parents[1]/"h398"/"kaggle"/"kernel-metadata.json"
+        doc=json.loads(metadata.read_text(encoding="utf8"))
+        self.assertIs(doc.get("is_private"),True)
+        self.assertIs(doc.get("enable_internet"),False)
+        self.assertEqual(doc.get("dataset_sources"),[])
+        self.assertEqual(doc.get("model_sources"),[])
+        self.assertEqual(doc.get("kernel_sources"),[])
+
 if __name__=="__main__":
     unittest.main()

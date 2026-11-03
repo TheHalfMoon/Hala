@@ -1,10 +1,13 @@
 """Original H399 synthetic-only input and bilingual prompt safety tests."""
 import hashlib
+import importlib.util
 import json
 import unittest
 from h399.kaggle.h399_original_qwen3vl_synthetic_lora import (
     MODEL,MODEL_REV,sample)
 
+@unittest.skipUnless(importlib.util.find_spec("PIL") is not None,
+                     "Optional Pillow unavailable in stdlib-only CI")
 class H399InventedSourceTests(unittest.TestCase):
     def test_original_self_generated_balanced_source_and_splits(self):
         self.assertEqual(MODEL,"Qwen/Qwen3-VL-2B-Instruct")
