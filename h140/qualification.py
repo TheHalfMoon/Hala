@@ -47,6 +47,22 @@ def actual_png_bytes(folder,row):
     width,height=struct.unpack(">II",binary[16:24])
     if (width,height)!=(WIDTH,HEIGHT):
         raise ValueError("H140 original 960x720 frame required; no synthetic resizing")
+    # SHA and an IHDR-looking prefix alone cannot establish a decodable PNG.
+    # Validate PNG chunk CRCs and a complete native-size pixel stream before
+    # treating this source image as an actual screenshot candidate.
+    from io import BytesIO
+    from PIL import Image
+    try:
+        with Image.open(BytesIO(binary)) as frame:
+            if (frame.format!="PNG" or frame.size!=(WIDTH,HEIGHT) or
+                    frame.mode not in ("RGB","RGBA") or
+                    getattr(frame,"n_frames",1)!=1):
+                raise ValueError("H140 PNG format/size/mode contract violated")
+            frame.verify()
+        with Image.open(BytesIO(binary)) as frame:
+            frame.load()
+    except (OSError,ValueError,SyntaxError) as exc:
+        raise ValueError("H140 invalid PNG chunk integrity or pixel stream") from exc
     return binary
 
 def load_split(folder,split):

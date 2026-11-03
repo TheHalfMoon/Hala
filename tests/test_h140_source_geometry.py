@@ -1,21 +1,35 @@
 """CPU-only H140 original source and model geometry-collapse guards."""
 import hashlib
+import io
 import json
 import struct
 import tempfile
 import unittest
+import zlib
+from functools import lru_cache
 from pathlib import Path
 
+from PIL import Image
+
 from h140.qualification import (COUNTS,SCHEMA,admit,collapse_gate,digest,
-                                 summarize_neural_position_diversity)
+                                 actual_png_bytes,summarize_neural_position_diversity)
 
 
 class H140PositionDiversityTests(unittest.TestCase):
+    @staticmethod
+    @lru_cache(maxsize=1)
+    def _base_png():
+        """One valid, invented, native-size PNG; no original GUI data."""
+        stream=io.BytesIO()
+        Image.new("RGB",(960,720),(24,42,60)).save(stream,format="PNG")
+        return stream.getvalue()
+
     def _source(self,root,split,app_counts):
         folder=root/split
         folder.mkdir()
         sources={}
         cases=[]
+        base_png=self._base_png()
         index=0
         for app,amount in app_counts.items():
             sha=hashlib.sha1(("synthetic-H140-fixture/"+app).encode()).hexdigest()
@@ -24,8 +38,13 @@ class H140PositionDiversityTests(unittest.TestCase):
                 "application_is_complete":True}
             for n in range(amount):
                 filename=f"{app}-{n:03d}.png"
-                pixels=(b"\x89PNG\r\n\x1a\n"+b"\x00\x00\x00\x0dIHDR"+
-                    struct.pack(">II",960,720)+f"H140 {split} {app} {n}".encode())
+                # Add a unique, correctly checksummed PNG metadata chunk.
+                # Reusing this real PNG payload is a synthetic test fixture only.
+                label=f"H140 synthetic {split} {app} {n}".encode()
+                payload=b"fixture-id"+bytes([0])+label
+                chunk=(struct.pack(">I",len(payload))+b"tEXt"+payload+
+                       struct.pack(">I",zlib.crc32(b"tEXt"+payload)))
+                pixels=base_png[:33]+chunk+base_png[33:]
                 (folder/filename).write_bytes(pixels)
                 cases.append({"image":filename,"image_sha256":digest(pixels),
                     "app":app,"app_git_sha":sha,"split":split,
@@ -117,6 +136,32 @@ class H140PositionDiversityTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"source revision"):
                 from h140.qualification import load_split
                 load_split(train,"train")
+
+    def test_header_only_png_with_claimed_sha_must_not_be_accepted(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder=Path(temp)
+            fake=(bytes.fromhex("89504e470d0a1a0a0000000d")+b"IHDR"+
+                  struct.pack(">II",960,720)+b"not-a-real-PNG-image")
+            (folder/"claim.png").write_bytes(fake)
+            with self.assertRaisesRegex(ValueError,"H140 invalid PNG"):
+                actual_png_bytes(folder,{"image":"claim.png","image_sha256":digest(fake)})
+
+    def test_valid_png_digest_cannot_excuse_corrupted_idat_or_truncation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder=Path(temp)
+            source=self._base_png()
+            damaged=bytearray(source)
+            pos=damaged.index(b"IDAT")+5
+            damaged[pos]^=1
+            for name,binary in (
+                ("bad-crc.png",bytes(damaged)),
+                ("missing-iend.png",source[:-12]),
+            ):
+                with self.subTest(name=name):
+                    (folder/name).write_bytes(binary)
+                    with self.assertRaisesRegex(ValueError,"H140 invalid PNG"):
+                        actual_png_bytes(folder,{"image":name,
+                                                 "image_sha256":digest(binary)})
 
     def test_neural_collapse_gate_does_not_accept_fixed_points(self):
         repeated=[[240,340] for _ in range(16)]
