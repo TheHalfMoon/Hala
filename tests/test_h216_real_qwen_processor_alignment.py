@@ -5,6 +5,7 @@ processor parity is a SEPARATE opt-in Windows-only local experiment.
 """
 from __future__ import annotations
 
+from contextlib import nullcontext
 import math
 import os
 from pathlib import Path
@@ -189,7 +190,9 @@ class RealProcessorPolicyUnitTests(unittest.TestCase):
         with patch.dict(sys.modules, {"transformers": fake_transformers}), \
              patch("h216.real_qwen_processor_alignment.verify_cached_processor_root"), \
              patch("h216.real_qwen_processor_alignment.verify_checked_in_source",
-                   return_value=safe_source):
+                   return_value=safe_source), \
+             patch("h387.verified_processor_handoff.verified_processor_handoff",
+                   return_value=nullcontext(Path("/synthetic-no-cache"))):
             for wrong in (ImpostorProcessor, DerivedQwenProcessor):
                 with self.subTest(processor=wrong.__name__):
                     fake_transformers.AutoProcessor.from_pretrained = (
