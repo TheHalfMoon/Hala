@@ -1,6 +1,7 @@
 """Hard-gate original H23 CUDA notebook builder without executing any GPU code."""
 from __future__ import annotations
 import json
+import subprocess
 from pathlib import Path
 import tempfile
 import unittest
@@ -11,6 +12,17 @@ from tools.build_h41_h23_kaggle import (
 
 
 class H41SourceFreezeTests(unittest.TestCase):
+    def setUp(self):
+        # H41 is an exact historical H23-lineage artifact, not a new-branch gate.
+        ancestry = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", H23_SHA, "HEAD"],
+            cwd=Path("."), capture_output=True, check=False,
+        )
+        if ancestry.returncode == 1:
+            self.skipTest("Historical H41 notebook requires the original H23 ancestry")
+        if ancestry.returncode != 0:
+            self.fail(f"Cannot verify historical H23 ancestry: {ancestry.returncode}")
+
     def test_original_reviewed_h23_sha_and_53_frozen_files(self):
         identity=source_check(Path("."))
         self.assertEqual(identity["historic_source_sha"],H23_SHA)
@@ -56,6 +68,19 @@ class H41SourceFreezeTests(unittest.TestCase):
             self.assertNotIn("Explicit zero-cost research opt-in required",cells[0])
             self.assertNotIn("trust_remote_code=True",cells[0]+cells[1])
             self.assertNotIn("execution_authorized=True",cells[0]+cells[1])
+
+
+class H41AncestryDenialTests(unittest.TestCase):
+    def test_unrelated_branch_cannot_generate_historical_notebook(self):
+        ancestry = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", H23_SHA, "HEAD"],
+            cwd=Path("."), capture_output=True, check=False,
+        )
+        if ancestry.returncode == 0:
+            self.skipTest("Current branch already contains reviewed H23 ancestor")
+        self.assertEqual(ancestry.returncode, 1, ancestry.stderr.decode(errors="replace"))
+        with self.assertRaises(subprocess.CalledProcessError):
+            source_check(Path("."))
 
 
 if __name__=="__main__":
