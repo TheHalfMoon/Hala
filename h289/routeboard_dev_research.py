@@ -58,6 +58,22 @@ def _initial_dev_screenshot(page: Any, source: Path, url: str) -> bytes:
             need(pinned_url == url and page.url == url and
                  page.viewport_size == {"width": WIDTH, "height": HEIGHT},
                  "initial screenshot capture changed pinned source/page")
+            # H407: the same first-only bounded renderer settle that H404
+            # established for H296. Source revalidation still precedes both
+            # captures, and there remains NO third attempt/cached image.
+            try:
+                wait = getattr(page, "wait_for_timeout", None)
+                if callable(wait):
+                    wait(150)
+            except Exception:
+                raise ValueError(
+                    "H289 original DEV-only source refused: "
+                    "bounded screenshot settle refused"
+                ) from None
+            _, pinned_url = checked_source(source)
+            need(pinned_url == url and page.url == url and
+                 page.viewport_size == {"width": WIDTH, "height": HEIGHT},
+                 "initial screenshot capture changed pinned source/page")
             continue
         _, pinned_url = checked_source(source)
         need(pinned_url == url and page.url == url and
