@@ -10,6 +10,7 @@ from h140.train_gpu import (
     EXPECTED_APP_SET,summarize_native,private_splits,
 )
 from h140.qualification import SCHEMA
+from h140.train_gpu_v3 import summarize_native as summarize_native_v3
 
 
 class H140NativeGUIResearchGrounderContract(unittest.TestCase):
@@ -69,6 +70,68 @@ class H140NativeGUIResearchGrounderContract(unittest.TestCase):
             self.assertFalse(roles["end"]["passed"])
         with self.assertRaises(ValueError):
             summarize_native(self.predictions(doc)[:-1],doc)
+
+    def test_v1_v3_native_summaries_refuse_subpixel_jitter(self):
+        doc=self.cases()
+        base_rows=self.predictions(doc)
+        truth={row["id"]:row for row in doc["cases"]}
+        for item in base_rows:
+            case_index=int(item["case_id"].rsplit("-",1)[1])
+            point=[101+case_index/100,201+case_index/100]
+            rect=truth[item["case_id"]][item["role"]+"_bbox"]
+            item["point"]=point
+            item["hit"]=(rect["x"]<=point[0]<=rect["x"]+rect["width"] and
+                         rect["y"]<=point[1]<=rect["y"]+rect["height"])
+        for summarize in (summarize_native,summarize_native_v3):
+            with self.subTest(summarizer=summarize.__module__):
+                result=summarize(base_rows,doc)
+                self.assertFalse(result["all_apps_and_roles_diverse"])
+                for roles in result["point_diversity_by_app"].values():
+                    for role in ("start","end"):
+                        self.assertGreaterEqual(roles[role]["unique_points"],8)
+                        self.assertEqual(roles[role]["unique_position_bins"],1)
+                        self.assertFalse(roles[role]["passed"])
+
+    def test_v1_v3_reject_unbalanced_language_in_selected_geometry_slice(self):
+        doc=self.cases()
+        groups={}
+        for row in doc["cases"]:
+            groups.setdefault(row["app"],[]).append(row)
+        # Whole DEV remains EN/AR balanced; its first 16 per app are not.
+        doc["cases"]=[
+            row for app in sorted(groups)
+            for row in sorted(groups[app],
+                              key=lambda r: (r["language"]!="en",r["id"]))
+        ]
+        for summarize in (summarize_native,summarize_native_v3):
+            with self.subTest(summarizer=summarize.__module__):
+                with self.assertRaisesRegex(ValueError,"balanced EN/AR"):
+                    summarize(self.predictions(doc),doc)
+
+    def test_v1_v3_reject_arabic_only_position_collapse(self):
+        doc=self.cases()
+        by_id={row["id"]:row for row in doc["cases"]}
+        responses=self.predictions(doc)
+        for item in responses:
+            row=by_id[item["case_id"]]
+            if row["language"]=="ar":
+                index=int(item["case_id"].rsplit("-",1)[1])
+                group=(index//2)%2
+                point=[600+50*group+index/100,500+index/100]
+                item["point"]=point
+                item["hit"]=False
+        for summarize in (summarize_native,summarize_native_v3):
+            with self.subTest(summarizer=summarize.__module__):
+                result=summarize(responses,doc)
+                self.assertFalse(result["all_apps_and_roles_diverse"])
+                for roles in result["point_diversity_by_app"].values():
+                    for role in ("start","end"):
+                        summary=roles[role]
+                        self.assertGreaterEqual(summary["unique_position_bins"],8)
+                        self.assertLessEqual(summary["largest_position_bin_count"],4)
+                        self.assertTrue(summary["bilingual_spatial"]["en"]["passed"])
+                        self.assertFalse(summary["bilingual_spatial"]["ar"]["passed"])
+                        self.assertEqual(summary["bilingual_spatial"]["ar"]["unique_position_bins"],2)
 
     def test_training_mount_refuses_even_single_blind_manifest(self):
         with tempfile.TemporaryDirectory() as tmp:

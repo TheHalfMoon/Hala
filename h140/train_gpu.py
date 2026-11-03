@@ -11,7 +11,7 @@ import time
 from collections import Counter,defaultdict
 from pathlib import Path
 
-from h140.qualification import load_split,digest,SCHEMA
+from h140.qualification import load_split,digest,SCHEMA,summarize_neural_position_diversity
 from h139.train_gpu import (
     assemble_example,make_prompt_and_gold,model_predict,find_lora_targets,
     BASE_MODEL,BASE_REV,
@@ -95,16 +95,23 @@ def summarize_native(rows,manifest):
         sixteen=[r for r in manifest["cases"] if r["app"]==app][:16]
         if len(sixteen)!=16:
             raise ValueError("H140 per-app 16-case dynamic geometry slice absent")
+        if Counter(r.get("language") for r in sixteen)!={"en":8,"ar":8}:
+            raise ValueError("H140 per-app 16-case geometry slice must be balanced EN/AR")
         per_role={}
         for role in ("start","end"):
             positions=[pred[(r["id"],role)] for r in sixteen]
-            frequencies=Counter(positions)
-            valid=sum(point is not None for point in positions)
-            uniques=len({point for point in positions if point is not None})
-            mode=max(frequencies.values())
-            per_role[role]={"valid_points":valid,"unique_points":uniques,
-                            "largest_point_count":mode,
-                            "passed":valid==16 and uniques>=8 and mode<=4}
+            summary=summarize_neural_position_diversity(
+                positions,allow_abstain=True)
+            bilingual={}
+            for language in ("en","ar"):
+                language_points=[pred[(r["id"],role)] for r in sixteen
+                                 if r["language"]==language]
+                bilingual[language]=summarize_neural_position_diversity(
+                    language_points,allow_abstain=True,expected_count=8)
+            summary["bilingual_spatial"]=bilingual
+            summary["passed"]=summary["passed"] and all(
+                language_summary["passed"] for language_summary in bilingual.values())
+            per_role[role]=summary
         diversity[app]=per_role
     return {"point_hits":dict(hits),"point_diversity_by_app":diversity,
             "all_apps_and_roles_diverse":all(

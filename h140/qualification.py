@@ -142,20 +142,53 @@ def admit(train,dev,blind,old_manifests):
         "main_Hala_35B_updated":False,
     }
 
-def collapse_gate(points):
-    """Guard a dynamic 16-case native-point slice against coordinate copying."""
-    if not isinstance(points,list) or len(points)!=16:
-        raise ValueError("H140 exactly 16 original model outputs required")
-    valid=[]
+def summarize_neural_position_diversity(points, *, allow_abstain=False,
+                                      expected_count=16):
+    """Measure preregistered 16-case or language-specific 8-case spatial bins.
+
+    Quantized bins prevent tiny prediction jitter from masquerading as
+    generalization across genuinely different GUI target positions.
+    An abstention is observable but never counts as a diverse output.
+    """
+    if (type(expected_count) is not int or expected_count not in (8,16) or
+            not isinstance(points,list) or len(points)!=expected_count):
+        raise ValueError("H140 exactly 8 or 16 preregistered model outputs required")
+    rounded=[]; spatial=[]
     for point in points:
+        if point is None and allow_abstain:
+            continue
         if (not isinstance(point,(list,tuple)) or len(point)!=2 or
             any(type(v) not in (int,float) or not math.isfinite(v) for v in point) or
             point[0]<0 or point[0]>=WIDTH or point[1]<0 or point[1]>=HEIGHT):
             raise ValueError("H140 invalid neural point cannot become an oracle fallback")
-        valid.append((round(point[0],2),round(point[1],2)))
-    counts=Counter(valid)
-    unique=len(counts)
-    mode=max(counts.values())
-    return {"valid":16,"unique_points":unique,
-            "modal_share":mode/16,
-            "passed":unique>=8 and mode<=4}
+        rounded.append((round(point[0],2),round(point[1],2)))
+        spatial.append((int(point[0])//GRID_PIXELS,int(point[1])//GRID_PIXELS))
+    exact_counts=Counter(rounded)
+    spatial_counts=Counter(spatial)
+    exact_mode=max(exact_counts.values(),default=0)
+    spatial_mode=max(spatial_counts.values(),default=0)
+    unique=len(exact_counts)
+    unique_bins=len(spatial_counts)
+    return {
+        "valid_points":len(rounded),
+        "unique_points":unique,
+        "largest_point_count":exact_mode,
+        "unique_position_bins":unique_bins,
+        "largest_position_bin_count":spatial_mode,
+        "passed":len(rounded)==expected_count and unique>=expected_count//2
+                 and exact_mode<=expected_count//4
+                 and unique_bins>=expected_count//2
+                 and spatial_mode<=expected_count//4,
+    }
+
+
+def collapse_gate(points):
+    """Fail closed on repeated 24px regions even with distinct point jitter."""
+    s=summarize_neural_position_diversity(points)
+    return {"valid":s["valid_points"],
+            "unique_points":s["unique_points"],
+            "modal_share":s["largest_point_count"]/16,
+            "unique_position_bins":s["unique_position_bins"],
+            "largest_position_bin_count":s["largest_position_bin_count"],
+            "modal_position_bin_share":s["largest_position_bin_count"]/16,
+            "passed":s["passed"]}
