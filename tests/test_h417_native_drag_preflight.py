@@ -118,10 +118,10 @@ class H417NativeDragPreflight(unittest.TestCase):
                 self.assertTrue(all(r["domain"]=="slider" for r in repairs))
                 # The only original source sheet shard has no unseen image:
                 # reserve 24 from that curated source before repairing TRAIN.
-                sheet_dev=[r for r in dev if r["domain"]=="sheet"]
+                sheet_dev=[r for r in dev if r["domain"]=="sheet" and r["kind"]=="original"]
                 self.assertEqual(len(sheet_dev),24)
                 self.assertEqual(len({r["image_sha256"] for r in sheet_dev}),24)
-                self.assertEqual(sum(r["domain"]=="sheet" for r in train),2337)
+                self.assertEqual(sum(r["domain"]=="sheet" and r["kind"]=="original" for r in train),2337)
                 self.assertEqual(len({r["image_sha256"] for r in repairs}),28)
                 for case in repairs+[next(r for r in train if r["kind"]=="firstparty")]:
                     image,width,height=m.source_image(case,zips)
