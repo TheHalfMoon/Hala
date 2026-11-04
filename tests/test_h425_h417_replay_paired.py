@@ -151,3 +151,23 @@ class H425CurriculumEvidence(unittest.TestCase):
                 for f in extra:f.close()
                 for z in zips.values():
                     if isinstance(z,zipfile.ZipFile):z.close()
+
+    def test_private_gpu_metadata_excludes_disqualified_h419_final_and_future_dev(self):
+        import json
+        meta=json.loads((ROOT/"h425/kaggle/kernel-metadata.json").read_text("utf8"))
+        self.assertTrue(meta["is_private"])
+        self.assertTrue(meta["enable_gpu"])
+        self.assertFalse(meta["enable_tpu"])
+        self.assertEqual(meta["machine_shape"],"NvidiaTeslaT4")
+        self.assertEqual(meta["id"].split("/",1)[1],
+                         meta["title"].lower().replace(" ","-"))
+        self.assertEqual(len(meta["dataset_sources"]),8)
+        self.assertEqual(len(set(meta["dataset_sources"])),8)
+        self.assertIn("abdulazizshehri/hala-h419-h417-native-parent-private",
+                      meta["dataset_sources"])
+        self.assertIn("abdulazizshehri/hala-h421-original-counterfactual-dev-private",
+                      meta["dataset_sources"])
+        self.assertTrue(all("h419-checkpoints" not in name
+                            and "h419-qualified-parent" not in name
+                            for name in meta["dataset_sources"]))
+        self.assertEqual(meta["code_file"],"h425_h417_replay_paired.py")
