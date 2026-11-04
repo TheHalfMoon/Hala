@@ -22,7 +22,9 @@ def _no_dupes(items):
     return out
 
 
-def verify(path=ROOT):
+def verify(path=ROOT, *, require_pixel_replay=True):
+    if type(require_pixel_replay) is not bool:
+        raise ValueError("H413 source replay mode must be explicit")
     root=Path(path)
     original=(root/"receipt.json").read_bytes()
     digest=hashlib.sha256(original).hexdigest()
@@ -56,8 +58,36 @@ def verify(path=ROOT):
     # Exact RGB pixels and gold boxes are independently recreated from the
     # source by this owner-local Python/Pillow verifier, never from model claims.
     rows=[compose(i) for i in range(N)]
-    if state.get("image_split_sha256")!=source_contract(rows):
-        raise ValueError("H413 source visual fingerprints mismatch")
+    # On the original owner Kaggle/Windows rendering runtime the precise
+    # glyph rasterization is reproducible and strict RGB comparison is
+    # required. Linux CI uses an OS-provided DejaVuSans file with different
+    # pixel glyphs, even when Pillow's version equals the training runtime.
+    # The explicit fallback below NEVER CLAIMS TO REPLAY RGB: it anchors
+    # both models' source IDs, native actions, geometry and recorded image
+    # SHA set to the byte-verified ORIGINAL owner-private Kaggle receipt.
+    # Full strict image verification remains the default and fail-closed.
+    source_contract(rows)  # reject altered family/regime/source geometry
+    if require_pixel_replay:
+        if state.get("image_split_sha256")!=source_contract(rows):
+            raise ValueError("H413 source visual fingerprints mismatch")
+        pinned_hashes=[r["image_sha256"] for r in rows]
+    else:
+        original=state.get("h409_details")
+        if type(original) is not list or len(original)!=N:
+            raise ValueError("H413 no original source hashes for geometry-only audit")
+        pinned_hashes=[]
+        for rec in original:
+            if type(rec) is not dict:
+                raise ValueError("H413 source record missing")
+            value=rec.get("image_sha256")
+            if (type(value) is not str or len(value)!=64
+                or any(c not in "0123456789abcdef" for c in value)):
+                raise ValueError("H413 non-hex original source image hash")
+            pinned_hashes.append(value)
+        if (len(set(pinned_hashes))!=N or
+            hashlib.sha256("".join(sorted(pinned_hashes)).encode()).hexdigest()!=
+            state.get("image_split_sha256")):
+            raise ValueError("H413 recorded original source hash set modified")
     out={}
     for name in ("h409","h412"):
         details=state.get(name+"_details")
@@ -68,9 +98,12 @@ def verify(path=ROOT):
                 "id","family","kind","language","image_sha256",
                 "raw_prediction","action","correct","unsafe_click","invalid"}):
                 raise ValueError("H413 changed per-case schema")
-            for field in ("id","family","kind","language","image_sha256"):
+            for field in ("id","family","kind","language"):
                 if type(record[field]) is not str or record[field]!=row[field]:
                     raise ValueError("H413 case provenance or ordering mismatch")
+            if (type(record["image_sha256"]) is not str or
+                record["image_sha256"]!=pinned_hashes[i]):
+                raise ValueError("H413 recorded RGB hash or model pair source mismatch")
             if type(record["raw_prediction"]) is not str:
                 raise ValueError("H413 missing exact native generated output")
             proof=score(row,record["raw_prediction"])
@@ -83,6 +116,7 @@ def verify(path=ROOT):
         out[name]=summary
     return {"receipt_sha256":digest,"status":STATUS,"qualified":False,
             "source":"author-visible first-party different families; NOT external OOD",
+            "source_rgb_replayed":require_pixel_replay,
             "h409":out["h409"],"h412":out["h412"]}
 
 
