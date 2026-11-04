@@ -233,10 +233,36 @@ def case_from_firstparty(r):
 
 
 def partition(originals,cur,firstparty):
-    training = [case_from_dragon(r) for r in cur]
-    if len({r["image_sha256"] for r in training})!=10000:
-        raise ValueError("H417 original screenshot duplicates in 10k source")
-    source_ids = {r["image_sha256"] for r in training}
+    # H61's frozen 10,000 rows are image-ID-disjoint but four pairs of
+    # different DragOn IDs are byte-identical JPEGs. Never count those as
+    # distinct images or allow either copy into the DEV holdout.
+    rows = [case_from_dragon(r) for r in cur]
+    distinct = {}
+    for row in rows:
+        distinct.setdefault(row["image_sha256"], row)
+    if len(rows) != N_SOURCE_DRAGON or len(rows) - len(distinct) != 4:
+        raise ValueError("H417 pinned four DragOn same-pixel collisions changed")
+    training = list(distinct.values())
+    repairs = []
+    # Choose replacement *original TRAIN images* only from the same slider
+    # domain as the four dropped duplicates. Names/source images remain in
+    # the same already-attached owner-private H60 slider shard.
+    candidates = sorted(originals["slider"],
+                        key=lambda r: sha_bytes(r["id"].encode("utf8")))
+    for original in candidates:
+        if len(training) == N_SOURCE_DRAGON:
+            break
+        source_hash = original["image_sha256"]
+        if source_hash in distinct:
+            continue
+        replacement = case_from_dragon(original)
+        replacement["source_repair"] = True
+        training.append(replacement)
+        distinct[source_hash] = replacement
+        repairs.append(replacement["id"])
+    if len(training) != N_SOURCE_DRAGON or len(repairs) != 4:
+        raise ValueError("H417 four distinct original TRAIN replacements unavailable")
+    source_ids = set(distinct)
     development = []
     from collections import Counter
     for dom in DOMAINS:
@@ -456,6 +482,8 @@ def run():
         zips,originals,curriculum,firstparty=get_research_sources()
         train,dev,order=partition(originals,curriculum,firstparty)
         st.update(train_unique_images=len(train),train_example_passes=len(order),
+                  original_image_collision_repairs=[r["id"] for r in train
+                          if r.get("source_repair") is True],
                   dev_source_disjoint_images=len(dev),
                   dev_languages={lang:sum(c["language"]==lang for c in dev)
                                  for lang in ("en","ar")},
