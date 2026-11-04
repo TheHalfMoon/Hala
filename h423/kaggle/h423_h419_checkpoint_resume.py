@@ -779,6 +779,7 @@ def native_summary(stats):
 
 import re
 import struct
+from hashlib import sha256
 
 H419_KERNEL="abdulazizshehri/hala-h419-private-30k-native-drag-continuation"
 H419_TOTAL=9452
