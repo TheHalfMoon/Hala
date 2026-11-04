@@ -128,8 +128,17 @@ class H418OriginalSourceTests(unittest.TestCase):
                 fake=row("images/sheet/one.jpg",original,1)
                 fake["image_sha256"]="a"*64
                 heldout={sha256(f"dev-{i}".encode()).hexdigest() for i in range(144)}
-                with self.assertRaisesRegex(ValueError,"derived H61 TRAIN JPEG bytes"):
-                    c.select([fake],source,heldout,expected_available=1,min_selected=1)
+                result,available,excluded=c.select([fake],source,heldout,
+                                     expected_available=1,min_selected=0)
+                self.assertEqual(result,[])
+                self.assertEqual(available,{"sheet":1})
+                self.assertEqual(excluded["h61_derived_sha_not_reproducible"],1)
+                # Quarantine never means accepting systemic SHA failures.
+                from unittest.mock import patch
+                with patch.object(c,"MAX_UNREPRODUCIBLE_DERIVED",0):
+                    with self.assertRaisesRegex(ValueError,"systemic historical"):
+                        c.select([fake],source,heldout,
+                                 expected_available=1,min_selected=0)
 
     def test_original_zip_unlabelled_jpegs_are_quarantined(self):
         from unittest.mock import patch
