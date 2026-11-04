@@ -1,0 +1,25 @@
+{
+  "id": "abdulazizshehri/hala-h425-private-h417-replay-paired-training",
+  "title": "Hala H425 Private H417 Replay and Paired Training",
+  "code_file": "h425_h417_replay_paired.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h415-dragon-original-4domain-private",
+    "abdulazizshehri/hala-h415-frozen-10k-native-drag-private",
+    "abdulazizshehri/hala-h415-original-bilingual-drag-2k-private",
+    "abdulazizshehri/hala-h418-original-30k-extension-private",
+    "abdulazizshehri/hala-h418-verified-new-30k-original-drag-private",
+    "abdulazizshehri/hala-h419-h417-native-parent-private",
+    "abdulazizshehri/hala-h422-verified-paired-native-drag-private",
+    "abdulazizshehri/hala-h421-original-counterfactual-dev-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
