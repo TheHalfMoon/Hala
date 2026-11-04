@@ -31,3 +31,11 @@ The existing h61.curriculum tool was run twice on the four original local H60 tr
 - Private source material and exported labels are on owner D: drive, not committed to public GitHub.
 
 This is verified PREPARATION, not 10000 gradient optimizer examples consumed. No H415 native-drag weights or external blind evaluator result yet. H414 existing click/refusal Kaggle training was RUNNING at last check. Privacy and release gates still apply.
+
+## Original bilingual first-party drag TRAIN completed (real browser evidence)
+
+Owner Windows genuine installed headless Microsoft Edge generated and actually captured 2000 fictional original project drag TRAIN screenshots through h61.firstparty_drag. Exact source receipt: scenes_authored=2000, scenes_accepted=2000, scenes_rejected=0; language AR=1000 and EN=1000; capabilities sheet=500, slider=500, slide_resize=500, text_highlight=500; ordered_true=1500 and ordered_false=500; public_dev_families_used=false, benchmark_answer_leakage=false. Actual original labels.jsonl SHA256: 94c9b943f79264ceccf5d04a2daf8278e7cb02589ce5edbddee8a3e557daa4e6. Real owner Windows generator duration was 780.88 sec; no model optimizer step was involved.
+
+Private source bundle contains ONLY original html/, png/, labels.jsonl, receipt.json; excludes local capture-manifest.txt. ZIP integrity passed, renamed opaque .hala.bin (24,944,430 bytes) original SHA256 6c17d2f312709ec693666027b103b35a628811db8fb433f5f32a35e068faedba. Kaggle owner private source dataset abdulazizshehri/hala-h415-original-bilingual-drag-2k-private successfully created. Authenticated provider listing returned the one opaque file with exactly 24,944,430 bytes; unauthenticated Kaggle API returned HTTP 403. Full remote byte-for-byte SHA remains an outstanding independent check.
+
+Combined TRAIN image inventory now **12000 distinct original source images** from H61 original DragOn 10000 EN cases and project first-party genuine Edge 2000 EN/AR cases. Overall unique source language labels EN=11000, AR=1000: do not misreport as bilingual-balanced; a trainer should upweight original Arabic scenes without making unearned claims of more unique images. None of these H415 12000 images/labels has yet undergone GPU model finetuning in this H415 work.
