@@ -19,6 +19,9 @@ class H412CurriculumTests(unittest.TestCase):
         self.assertEqual(state["status"], "COMPLETE_PRIVATE_TWO_FAMILY_128_STEP_LORA")
         self.assertEqual(state["optimizer_steps"], 128)
         self.assertIs(state["weights_public"], False)
+        self.assertIs(state["official_hala_model_trained"], False)
+        import inspect
+        self.assertIn('r.get("official_hala_model_trained")', inspect.getsource(candidate.private_parent))
 
     def test_private_free_gpu_input_config(self):
         metadata = json.loads((Path(__file__).resolve().parents[1] / "h412" / "kaggle" / "kernel-metadata.json").read_text())
