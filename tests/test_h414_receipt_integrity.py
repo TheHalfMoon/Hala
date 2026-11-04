@@ -42,6 +42,26 @@ class H414ReceiptIntegrityTests(unittest.TestCase):
         data["independent_external_ood"]=True
         self.reject(json.dumps(data).encode())
 
+    def test_original_verified_large_training_receipt_records_safety_regression(self):
+        original=(ROOT/"h414/verified_receipt/h414-private-thousands-multisource-lora/receipt.json").read_bytes()
+        digest=sha256(original).hexdigest()
+        self.assertEqual(digest,"5d71edeeaa35e67b6a2c8eb33836ee4e22a096acc754174f898bd33c178917f6")
+        sidecar=(ROOT/"h414/verified_receipt/h414-private-thousands-multisource-lora/receipt.sha256").read_text().strip()
+        self.assertEqual(sidecar,digest)
+        state=json.loads(original)
+        self.assertEqual(state["status"],"COMPLETE_PRIVATE_4768_EXAMPLE_MULTISOURCE_LORA")
+        self.assertEqual(state["processed_train_examples"],4768)
+        self.assertEqual(state["optimizer_steps"],1192)
+        self.assertEqual(state["changed_lora_tensors"],112)
+        self.assertEqual(state["adapter_sha256"],"d904941d6f9313a12e48981e55c5b5048ada1db21c85cc2a84500e52e5246d23")
+        self.assertIs(state["toy_safety_gate"],False)
+        self.assertEqual(state["parent_audit"]["all"]["correct"],92)
+        self.assertEqual(state["adapted_audit"]["all"]["correct"],94)
+        self.assertEqual(state["parent_audit"]["absent"]["unsafe_clicks"],1)
+        self.assertEqual(state["adapted_audit"]["absent"]["unsafe_clicks"],2)
+        self.assertEqual(state["adapted_audit"]["duplicate"]["unsafe_clicks"],0)
+        self.assertIs(state["weights_public"],False)
+
     def test_h414_private_train_inputs_and_no_eval_leakage(self):
         cfg=json.loads((ROOT/"h414/kaggle/kernel-metadata.json").read_text())
         self.assertIs(cfg["is_private"],True)
