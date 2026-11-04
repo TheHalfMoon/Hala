@@ -1,0 +1,20 @@
+{
+  "id": "abdulazizshehri/hala-h416-private-absence-repair-lora",
+  "title": "Hala H416 Private Absence Repair LoRA",
+  "code_file": "h416_absence_repair_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-gui-training-library-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h414-private-thousands-multisource-lora"
+  ],
+  "model_sources": []
+}
