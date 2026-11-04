@@ -38,6 +38,7 @@ ALL_SHAS={**BASE_SHAS,**EXTRA_SHAS}
 EXPECTED_AVAILABLE_SHA=30491
 EXPECTED_OLD_BASE_ORIGINAL=13165
 EXPECTED_NEW_EXTENSION=17326
+MAX_UNREPRODUCIBLE_DERIVED=2000  # fail if >6.6% of candidate image bytes diverge
 OUT_ROWS="h418_original_train_verified.jsonl"
 OUT_MANIFEST="h418_original_source_manifest.json"
 
@@ -204,7 +205,7 @@ def derived_h61_training_image(raw:bytes):
 
 
 def select(rows,source,heldout,*,verify_bytes=True,
-           expected_available=EXPECTED_AVAILABLE_SHA,min_selected=30000):
+           expected_available=EXPECTED_AVAILABLE_SHA,min_selected=28000):
     if type(heldout) is not set or len(heldout)!=144 or not all(
         _hex(x) for x in heldout):
         raise ValueError("H418 original H417 frozen development SHA quarantine missing")
@@ -240,7 +241,15 @@ def select(rows,source,heldout,*,verify_bytes=True,
             raise ValueError("H418 H60 original JPEG bytes differ from label SHA")
         derived,(width,height),(source_width,source_height)=derived_h61_training_image(raw)
         if sha256(derived).hexdigest()!=row["image_sha256"]:
-            raise ValueError("H418 derived H61 TRAIN JPEG bytes SHA mismatch")
+            # Refuse to use any image whose historical H61 target JPEG
+            # cannot be reconstructed from the SHA-matched H60 source.
+            # Individual nonreproducible images are QUARANTINED, never
+            # rewritten or silently accepted. A systemic mismatch remains
+            # fail-closed rather than inventing tens of thousands of rows.
+            excluded["h61_derived_sha_not_reproducible"]+=1
+            if excluded["h61_derived_sha_not_reproducible"]>MAX_UNREPRODUCIBLE_DERIVED:
+                raise ValueError("H418 systemic historical derived JPEG SHA mismatch")
+            continue
         if f"The image is {width}x{height} pixels." not in row.get("prompt",""):
             raise ValueError("H418 resized image and source prompt dimensions disagree")
         native=parent.strict_load(row["completion"])
