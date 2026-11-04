@@ -120,13 +120,32 @@ def open_archives(base_root,extension_root):
             annotations=z.read("labels.jsonl")
             if sha256(annotations).hexdigest()!=m.get("labels_sha256"):
                 raise ValueError("H418 owner-original H60 annotations modified")
+            original_hashes={}
+            for entry in annotations.decode("utf8").splitlines():
+                if not entry.strip():
+                    continue
+                item=parent.strict_load(entry)
+                member=item.get("image_path")
+                digest=item.get("image_sha256")
+                if (item.get("split")!="train" or
+                    item.get("domain")!=domain or
+                    type(member) is not str or
+                    not member.startswith("images/"+domain+"/") or
+                    not _hex(digest)):
+                    raise ValueError("H418 original H60 TRAIN source labels changed")
+                old_hash=original_hashes.setdefault(member,digest)
+                if old_hash!=digest:
+                    raise ValueError("H418 conflicting H60 original-image SHA")
             for member in z.namelist():
                 if not member.startswith("images/") or not member.endswith(".jpg"):
                     continue
                 key=(domain,member)
                 if key in source:
                     raise ValueError("H418 duplicate JPEG path across private shards")
-                source[key]=(z,name)
+                raw_sha=original_hashes.get(member)
+                if not _hex(raw_sha):
+                    raise ValueError("H418 unlabelled original H60 JPEG cannot qualify")
+                source[key]=(z,name,raw_sha)
         return source,opened
     except BaseException:
         for z in opened:z.close()
@@ -150,6 +169,34 @@ def h417_dev_source_sha(h417_root):
         parent.only_input_file=originals
         if archives:
             for z in archives.values():z.close()
+
+
+def derived_h61_training_image(raw:bytes):
+    """Rebuild the exact historical H61 1024x640 training-frame JPEG.
+
+    H60 stores original image bytes. H61 indexed a resized/re-encoded image
+    (h61.source_export.frame_target, LANCZOS, JPEG quality95 subsampling0).
+    Never compare the two formats' SHA256 directly.
+    """
+    from io import BytesIO
+    from PIL import Image
+    from h61.source_export import frame_target
+    if not raw.startswith(b"\xff\xd8\xff"):
+        raise ValueError("H418 original image not JPEG source")
+    with Image.open(BytesIO(raw)) as original:
+        if original.format!="JPEG":
+            raise ValueError("H418 original archive image not JPEG")
+        source_w,source_h=original.size
+        width,height,_=frame_target(source_w,source_h)
+        if (width,height)==(source_w,source_h):
+            stored=raw
+        else:
+            buffer=BytesIO()
+            original.convert("RGB").resize(
+                (width,height),Image.Resampling.LANCZOS
+            ).save(buffer,format="JPEG",quality=95,subsampling=0)
+            stored=buffer.getvalue()
+    return stored,(width,height),(source_w,source_h)
 
 
 def select(rows,source,heldout,*,verify_bytes=True,
