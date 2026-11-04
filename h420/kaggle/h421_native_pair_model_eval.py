@@ -785,7 +785,7 @@ rather than separately counting single-task accuracy. All examples remain
 owner-author-visible original source TRAIN-withheld research DEV, not
 independent third-party OOD or production authorization.
 """
-from __future__ import annotations
+# Shared H421 scorer is embedded below for Kaggle standalone provenance
 from collections import Counter
 import hashlib
 import json
