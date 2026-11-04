@@ -13,6 +13,26 @@ H424_OUT=Path("/kaggle/working/h424-owner-private-checkpoint-diagnostic")
 H424_TMP=Path("/tmp/h424-original-private-weights")
 H424_INPUT=Path("/kaggle/input")
 
+def only_input_file(name):
+    """Exclude H424's seven adapters when resolving original H417/H419 sources.
+
+    The original H419 source used a global basename search before multiple
+    same-named checkpoint adapters were mounted as a new Kaggle dataset.
+    """
+    mounts=list(H424_INPUT.rglob(H424_MANIFEST))
+    if len(mounts)!=1 or not mounts[0].is_file():
+        raise ValueError("H424 authentic private checkpoint manifest not uniquely mounted")
+    own_mount=mounts[0].parent.resolve()
+    candidates=[p for p in H424_INPUT.rglob(name) if p.is_file()]
+    if name==H424_MANIFEST:
+        candidates=[p for p in candidates if p.resolve()==mounts[0].resolve()]
+    else:
+        candidates=[p for p in candidates
+                    if not p.resolve().is_relative_to(own_mount)]
+    if len(candidates)!=1:
+        raise ValueError("H424 original source input missing or ambiguous: "+name)
+    return candidates[0]
+
 class H424ExtractedArchive:
     """Read Kaggle's automatic ZIP-extraction result as immutable members."""
 

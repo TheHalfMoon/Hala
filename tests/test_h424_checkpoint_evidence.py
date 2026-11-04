@@ -120,3 +120,31 @@ class H424GateTests(unittest.TestCase):
                 self.h.h424_validate_private_bundle()
         finally:
             shutil.rmtree(temporary)
+
+    def test_scoped_original_parent_ignores_seven_same_named_checkpoint_adapters(self):
+        scoped=load(ROOT/"h424"/"kaggle"/"h424_checkpoint_eval.py",
+                    "h424_scoped_parent_test")
+        temporary=Path(tempfile.mkdtemp(prefix="hala_h424_scoped_"))
+        try:
+            own=temporary/"h424-dataset"
+            own.mkdir()
+            (own/scoped.H424_MANIFEST).write_text("{}")
+            for name in ("1500","3000","final"):
+                sub=own/Path(scoped.H424_ZIP).stem/"models"/name
+                sub.mkdir(parents=True)
+                (sub/"adapter_model.safetensors").write_bytes(b"checkpoint")
+            original=temporary/"original-h417"/"adapter_model.safetensors"
+            original.parent.mkdir()
+            original.write_bytes(b"original H417 parent")
+            scoped.H424_INPUT=temporary
+            self.assertEqual(scoped.only_input_file("adapter_model.safetensors"),original)
+            self.assertEqual(scoped.only_input_file(scoped.H424_MANIFEST),
+                             own/scoped.H424_MANIFEST)
+            # A second genuine original parent also fails closed.
+            other=temporary/"other-parent"/"adapter_model.safetensors"
+            other.parent.mkdir()
+            other.write_bytes(b"other")
+            with self.assertRaises(ValueError):
+                scoped.only_input_file("adapter_model.safetensors")
+        finally:
+            shutil.rmtree(temporary)
