@@ -142,7 +142,7 @@ class H418OriginalSourceTests(unittest.TestCase):
             labels=(json.dumps({"split":"train","domain":"sheet",
                      "image_path":"images/sheet/qualified.jpg",
                      "image_sha256":sha256(media["images/sheet/qualified.jpg"]).hexdigest()
-                    },sort_keys=True)+"\\n").encode()
+                    },sort_keys=True)+"\n").encode()
             manifest={"schema":"hala.h60.dragon-train-shard.v1",
                     "source_commit_sha":c.SOURCE_REV,"source_domain":"sheet",
                     "split":"train","official_eval_or_test_used":False,
