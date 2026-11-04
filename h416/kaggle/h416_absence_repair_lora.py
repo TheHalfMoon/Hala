@@ -3,7 +3,7 @@
 Train on 8192 new first-party fictional screens plus exact original
 H50 384 and H52 288 TRAIN records from private Kaggle, with their
 original PNG SHA-256 checked. Never H49/H55/H413 DEV, benchmarks, PHI, or
-third-party uninspected screenshots. Continue exact private H412 adapter.
+third-party uninspected screenshots. Continue exact private H414 adapter.
 No paid compute/public weights. Author-built DEV and AUDIT are NOT sealed OOD. Freeze H414 as failed safety predecessor, not a release.
 """
 from __future__ import annotations
@@ -357,18 +357,18 @@ def model_input(processor,case):
 def private_parent():
     targets=list(Path("/kaggle/input").rglob("adapter_model.safetensors"))
     if len(targets)!=1 or digest(targets[0].read_bytes())!=PARENT_SHA:
-        raise ValueError("H416 exact PRIVATE H412 parent only")
+        raise ValueError("H416 exact PRIVATE H414 parent only")
     parent=targets[0].parent.parent
     receipt=(parent/"receipt.json").read_bytes()
     if (digest(receipt)!=PARENT_RECEIPT_SHA or
         (parent/"receipt.sha256").read_text().strip()!=PARENT_RECEIPT_SHA):
-        raise ValueError("H416 original H412 parent receipt mismatch")
+        raise ValueError("H416 original H414 parent receipt mismatch")
     r=json.loads(receipt)
     if (r.get("status")!="COMPLETE_PRIVATE_4768_EXAMPLE_MULTISOURCE_LORA"
         or r.get("optimizer_steps")!=1192
         or r.get("official_hala_model_trained") is not False
         or r.get("toy_safety_gate") is not False):
-        raise ValueError("H416 unqualified H412 parent")
+        raise ValueError("H416 unqualified H414 parent")
     return targets[0].parent
 
 
@@ -423,10 +423,10 @@ def run():
         model=PeftModel.from_pretrained(base,private_root,is_trainable=True)
         active=[(n,p) for n,p in model.named_parameters() if p.requires_grad]
         if not active or any("lora_" not in n for n,p in active):
-            raise ValueError("H416 only private H412 LoRA trainable")
+            raise ValueError("H416 only private H414 LoRA trainable")
         before={n:p.detach().float().cpu().clone() for n,p in active}
         state["parent_audit"],state["parent_audit_exact"]=score(
-            model,processor,audit,"H412_BEFORE")
+            model,processor,audit,"H414_BEFORE")
         if hasattr(model,"enable_input_require_grads"):
             model.enable_input_require_grads()
         if hasattr(model,"gradient_checkpointing_enable"):
