@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 class H417ReceiptTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.old=(ROOT/"h414/verified_receipt/h414-private-thousands-multisource-lora/receipt.json").read_bytes()
+        cls.old=(ROOT/"h412/verified_receipt/h412-owner-private-duplicate-curriculum-lora/receipt.json").read_bytes()
 
     def reject(self,raw,sidecar=None):
         with tempfile.TemporaryDirectory() as temp:
