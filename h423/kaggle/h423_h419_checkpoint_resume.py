@@ -777,6 +777,9 @@ def native_summary(stats):
 
 
 
+import re
+import struct
+
 H419_KERNEL="abdulazizshehri/hala-h419-private-30k-native-drag-continuation"
 H419_TOTAL=9452
 H419_MICRO=4
@@ -968,8 +971,6 @@ def store(receipt_root,doc):
 # There is intentionally no optimizer state in the original H419 saved
 # LoRA-only checkpoint. Resume uses FRESH AdamW and MUST say so.
 import shutil
-import re
-import struct
 
 OUT=Path("/kaggle/working/h423-owner-private-interrupted-native-drag")
 PARTIAL_ADAPTER_FILE="h419_private_partial_adapter.safetensors"
