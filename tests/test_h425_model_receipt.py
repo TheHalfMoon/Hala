@@ -56,6 +56,12 @@ def false_fixture():
         "model_weights_bytes":13000,
         "elapsed_seconds":2.5,
         "weighted_loss_history":[0.9]*12696,
+        "private_training_checkpoints_sha256":{
+          str(step):{"optimizer_step":step,"model_weights_bytes":13000,
+                     "model_weights_sha256":hashlib.sha256(
+                         f"SYNTHETIC_NOT_REAL_CHECKPOINT_{step}".encode()).hexdigest()}
+          for step in range(1500,12697,1500)},
+        "last_private_checkpoint_step":12000,
         "original_dev_old_parent_correct":76,
         "original_dev_old_after_correct":71,
         "original_dev_fresh_parent_correct":18,
@@ -167,3 +173,26 @@ class H425FailClosedReceiptContract(unittest.TestCase):
             write_receipt(directory,d)
             with self.assertRaisesRegex(ValueError,"requires private"):
                 v.verify(directory,source_root=directory)
+
+    def test_original_intermediate_checkpoint_sha_and_optimizer_step_rejected(self):
+        d=false_fixture()
+        del d["private_training_checkpoints_sha256"]["3000"]
+        with self.assertRaisesRegex(ValueError,"all eight"):
+            v._eval_contract(d)
+        d=false_fixture()
+        d["private_training_checkpoints_sha256"]["3000"]["optimizer_step"]=3001
+        with self.assertRaisesRegex(ValueError,"checkpoint SHA/step"):
+            v._eval_contract(d)
+        d=false_fixture()
+        d["private_training_checkpoints_sha256"]["3000"]["model_weights_sha256"]="bad"
+        with self.assertRaisesRegex(ValueError,"checkpoint SHA/step"):
+            v._eval_contract(d)
+
+    def test_checkpoint_archive_actual_bytes_absent_not_verified(self):
+        d=false_fixture()
+        with tempfile.TemporaryDirectory() as directory:
+            write_receipt(directory,d)
+            state=v.verify(directory)
+            self.assertFalse(state["all_eight_intermediate_checkpoint_shas_verified"])
+            with self.assertRaisesRegex(ValueError,"safetensors SHA or size"):
+                v.verify(directory,checkpoints_root=directory)

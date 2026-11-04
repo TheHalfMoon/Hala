@@ -110,6 +110,18 @@ def _eval_contract(data):
         or type(data.get("elapsed_seconds")) not in (int,float)
         or not math.isfinite(data["elapsed_seconds"]) or data["elapsed_seconds"]<=0):
         raise ValueError("H425 trained LoRA weight/optimizer/T4 evidence incomplete")
+    snapshots=data.get("private_training_checkpoints_sha256")
+    required_steps={str(step) for step in range(1500,MODEL.H425_STEPS+1,1500)}
+    if (type(snapshots) is not dict or set(snapshots)!=required_steps
+        or data.get("last_private_checkpoint_step")!=12000):
+        raise ValueError("H425 all eight actually saved intermediate LoRA checkpoint receipts missing")
+    for step,rec in snapshots.items():
+        if (type(rec) is not dict or set(rec)!={
+               "model_weights_sha256","model_weights_bytes","optimizer_step"}
+            or not _digest(rec["model_weights_sha256"])
+            or not _int(rec["model_weights_bytes"]) or rec["model_weights_bytes"]<=1000
+            or type(rec["optimizer_step"]) is not int or rec["optimizer_step"]!=int(step)):
+            raise ValueError("H425 genuine original intermediate LoRA checkpoint SHA/step invalid")
     losses=data.get("weighted_loss_history")
     if (type(losses) is not list or len(losses)!=MODEL.H425_STEPS
         or any(type(x) not in (int,float) or not math.isfinite(x) or x<0 for x in losses)):
@@ -159,7 +171,8 @@ def _safetensors_sha(path:Path,receipt):
             raise ValueError("H425 genuine LoRA trainable tensors missing from private weights")
     return True
 
-def verify(receipt_root,adapter_file=None,source_root=None,paired_root=None,h421_root=None):
+def verify(receipt_root,adapter_file=None,source_root=None,paired_root=None,
+           h421_root=None,checkpoints_root=None):
     root=Path(receipt_root)
     raw=(root/"receipt.json").read_bytes()
     digest=sha(raw)
@@ -174,6 +187,15 @@ def verify(receipt_root,adapter_file=None,source_root=None,paired_root=None,h421
     oldp,newp,old,fr,gate,stronger=_eval_contract(data)
     has_weights=adapter_file is not None
     if has_weights:_safetensors_sha(Path(adapter_file),data)
+    snapshots_verified=False
+    if checkpoints_root is not None:
+        # Check EACH true owner LoRA safetensors from the provider output,
+        # not just unverifiable checkpoint hashes transcribed in a receipt.
+        folder=Path(checkpoints_root)
+        for step,model_receipt in data["private_training_checkpoints_sha256"].items():
+            _safetensors_sha(folder/("step-"+step)/"adapter_model.safetensors",
+                             model_receipt)
+        snapshots_verified=True
     source_verified=False
     if source_root is not None:
         if not paired_root or not h421_root:
@@ -217,6 +239,7 @@ def verify(receipt_root,adapter_file=None,source_root=None,paired_root=None,h421
         "original_source_only_gate":gate,
         "stronger_source_only_gate":stronger,
         "trained_adapter_sha_verified":has_weights,
+        "all_eight_intermediate_checkpoint_shas_verified":snapshots_verified,
         "original_source_media_replayed":source_verified,
         "independent_external_ood":False,
         "model_release_qualified":False}
@@ -228,7 +251,9 @@ if __name__=="__main__":
     parser.add_argument("--sources",type=Path)
     parser.add_argument("--paired",type=Path)
     parser.add_argument("--h421",type=Path)
+    parser.add_argument("--checkpoints-root",type=Path)
     p=parser.parse_args()
     print(json.dumps(verify(
         p.receipt_root,adapter_file=p.adapter,source_root=p.sources,
-        paired_root=p.paired,h421_root=p.h421),sort_keys=True))
+        paired_root=p.paired,h421_root=p.h421,
+        checkpoints_root=p.checkpoints_root),sort_keys=True))

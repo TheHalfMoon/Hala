@@ -1248,6 +1248,7 @@ def run_h425():
         if hasattr(model.config,"use_cache"):model.config.use_cache=False
         opt=torch.optim.AdamW([p for _,p in active],lr=0.000006)
         losses=[]
+        st["private_training_checkpoints_sha256"]={}
         for step in range(H425_STEPS):
             model.train()
             opt.zero_grad(set_to_none=True)
@@ -1276,6 +1277,13 @@ def run_h425():
             if (step+1)%1500==0:
                 folder=H425_OUT/"private-checkpoints"/("step-"+str(step+1))
                 model.save_pretrained(folder,safe_serialization=True)
+                snapshot=folder/"adapter_model.safetensors"
+                if not snapshot.is_file() or snapshot.stat().st_size<1000:
+                    raise ValueError("H425 genuine intermediate LoRA checkpoint bytes absent")
+                st["private_training_checkpoints_sha256"][str(step+1)]={
+                    "model_weights_sha256":sha_file(snapshot),
+                    "model_weights_bytes":snapshot.stat().st_size,
+                    "optimizer_step":step+1}
                 st["last_private_checkpoint_step"]=step+1
         st["changed_lora_tensors"]=sum(int(bool(
             (p.detach().float().cpu()!=before[n]).any())) for n,p in active)
