@@ -797,7 +797,7 @@ SOURCE_JSONL_SHA="42d93219ec4083920462d4194b175154f1f12d9b3e7b36ffd1068d8f8a4d96
 SOURCE_RECEIPT_SHA="02a4d17ead71fc06019a83669a04c9779430de5a7a48f800429ad2241d2ebaf4"
 SAMPLE_N=384
 IMAGE_PAIRS=192
-DOMAINS={"slider":64,"slide_resize":64,"text_highlight":64}
+H421_PAIR_DOMAINS={"slider":64,"slide_resize":64,"text_highlight":64}
 SCHEMA="hala.h421.same-original-image-two-instructions.v1"
 
 
@@ -819,7 +819,7 @@ def load_sources(rows_path,receipt_path,sidecar_path):
         doc.get("frozen_original_dev_rows_sha256")!=SOURCE_JSONL_SHA or
         doc.get("owner_heldout_source_image_pairs")!=IMAGE_PAIRS or
         doc.get("native_two_instruction_eval_cases")!=SAMPLE_N or
-        doc.get("native_pairs_by_source_family")!=DOMAINS or
+        doc.get("native_pairs_by_source_family")!=H421_PAIR_DOMAINS or
         doc.get("source_target_different_instructions_and_coordinates") is not True or
         doc.get("excluded_h417_and_h419_train_and_dev_source_images") is not True or
         doc.get("excluded_source_task_sha_of_h417_h419_models_and_dev") is not True or
@@ -839,7 +839,7 @@ def load_sources(rows_path,receipt_path,sidecar_path):
             not 0<=row["pair_id"]<IMAGE_PAIRS or
             type(row.get("alternative_index")) is not int or
             row["alternative_index"] not in (0,1) or
-            row.get("source_domain") not in DOMAINS or
+            row.get("source_domain") not in H421_PAIR_DOMAINS or
             row.get("source_original_jpeg_bytes_sha_verified") is not True or
             row.get("external_independent_ood") is not False):
             raise ValueError("H421 original source paired DEV row changed")
@@ -882,7 +882,7 @@ def validate_pairs(rows):
             raise ValueError("H421 repeated original screenshot across different pairs")
         screen_sha.add(a["image_sha256"])
         counts[a["source_domain"]]+=1
-    if counts!=DOMAINS:
+    if counts!=H421_PAIR_DOMAINS:
         raise ValueError("H421 frozen 64 per original action source family changed")
     return pairs
 
