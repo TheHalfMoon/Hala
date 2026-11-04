@@ -1,0 +1,166 @@
+{
+  "H419_trained_model_evaluated_by_this_report": false,
+  "H421_unseen_source_counterfactual_dev_evaluated": false,
+  "base": {
+    "all": {
+      "correct": 0,
+      "n": 144,
+      "valid": 0
+    },
+    "by_language": {
+      "ar": {
+        "correct": 0,
+        "n": 24,
+        "valid": 0
+      },
+      "en": {
+        "correct": 0,
+        "n": 120,
+        "valid": 0
+      }
+    },
+    "by_source_domain": {
+      "sheet": {
+        "correct": 0,
+        "n": 34,
+        "valid": 0
+      },
+      "slide_resize": {
+        "correct": 0,
+        "n": 34,
+        "valid": 0
+      },
+      "slider": {
+        "correct": 0,
+        "n": 36,
+        "valid": 0
+      },
+      "text_highlight": {
+        "correct": 0,
+        "n": 40,
+        "valid": 0
+      }
+    },
+    "by_source_family": {
+      "firstparty": {
+        "correct": 0,
+        "n": 48,
+        "valid": 0
+      },
+      "original": {
+        "correct": 0,
+        "n": 96,
+        "valid": 0
+      }
+    },
+    "errors": {
+      "schema": 144
+    }
+  },
+  "evidence_only_priority_for_future_curriculum": [
+    "slide_resize",
+    "text_highlight",
+    "sheet",
+    "slider"
+  ],
+  "external_independent_ood": false,
+  "genuinely_finetuned_H417": {
+    "all": {
+      "correct": 76,
+      "n": 144,
+      "valid": 144
+    },
+    "by_language": {
+      "ar": {
+        "correct": 24,
+        "n": 24,
+        "valid": 24
+      },
+      "en": {
+        "correct": 52,
+        "n": 120,
+        "valid": 120
+      }
+    },
+    "by_source_domain": {
+      "sheet": {
+        "correct": 17,
+        "n": 34,
+        "valid": 34
+      },
+      "slide_resize": {
+        "correct": 11,
+        "n": 34,
+        "valid": 34
+      },
+      "slider": {
+        "correct": 27,
+        "n": 36,
+        "valid": 36
+      },
+      "text_highlight": {
+        "correct": 21,
+        "n": 40,
+        "valid": 40
+      }
+    },
+    "by_source_family": {
+      "firstparty": {
+        "correct": 47,
+        "n": 48,
+        "valid": 48
+      },
+      "original": {
+        "correct": 29,
+        "n": 96,
+        "valid": 96
+      }
+    },
+    "errors": {
+      "coordinates": 66,
+      "correct": 76,
+      "ordered_mismatch": 2
+    }
+  },
+  "model_release_qualified": false,
+  "original_H417_completed_optimizer_steps": 3720,
+  "original_H417_trained_native_model": true,
+  "original_H417_true_image_gradient_passes": 14880,
+  "original_drag_only_domain_errors": {
+    "sheet": {
+      "coordinate_errors": 15,
+      "correct": 8,
+      "incorrect": 16,
+      "n": 24,
+      "ordered_errors": 1,
+      "valid": 24
+    },
+    "slide_resize": {
+      "coordinate_errors": 23,
+      "correct": 1,
+      "incorrect": 23,
+      "n": 24,
+      "valid": 24
+    },
+    "slider": {
+      "coordinate_errors": 9,
+      "correct": 15,
+      "incorrect": 9,
+      "n": 24,
+      "valid": 24
+    },
+    "text_highlight": {
+      "coordinate_errors": 19,
+      "correct": 5,
+      "incorrect": 19,
+      "n": 24,
+      "valid": 24
+    }
+  },
+  "schema": "hala.h422.real-h417-original-native-drag-errors.v1",
+  "source_h417_genuine_gpu_original_receipt_sha256": "227967230362eea759553ae5af892865bae4a3625947c45f30c0d9cb36f9f76a",
+  "source_holdout_scope": "author-visible original source family + firstparty synthetic",
+  "source_total_firstparty_dev_images": 48,
+  "source_total_original_drag_dev_images": 96,
+  "status": "REAL_T4_H417_ORIGINAL_SOURCE_DEV_ERRORS_NOT_NEW_MODEL_TRAINING"
+}
