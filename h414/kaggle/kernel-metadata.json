@@ -1,0 +1,20 @@
+{
+  "id": "abdulazizshehri/hala-h414-private-thousands-multisource-lora",
+  "title": "Hala H414 Private Thousands Multisource LoRA",
+  "code_file": "h414_multisource_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-gui-training-library-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h412-private-duplicate-curriculum-lora"
+  ],
+  "model_sources": []
+}
