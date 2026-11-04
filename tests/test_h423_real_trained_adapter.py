@@ -30,6 +30,23 @@ class H423ActualTrainedPEFTAdapter(unittest.TestCase):
         self.assertEqual(meta["real_lora_bytes"],H417_REAL_T4_SAFETENSORS_BYTES)
         self.assertTrue(meta["exact_safetensors_tensors_cover_all_bytes"])
 
+    def test_actual_trained_H417_PEFT_config_uses_pinned_native_Qwen_base(self):
+        path=os.environ.get("H423_OWNER_REAL_H417_ADAPTER")
+        if not path:
+            self.skipTest("Original private trained adapter not mounted on CI")
+        config=Path(path).with_name("adapter_config.json")
+        self.assertTrue(config.is_file())
+        import json
+        values=json.loads(config.read_text(encoding="utf8"))
+        self.assertEqual(values.get("base_model_name_or_path"),
+                         "Qwen/Qwen3-VL-2B-Instruct")
+        self.assertEqual(values.get("peft_type"),"LORA")
+        self.assertEqual(values.get("r"),8)
+        self.assertEqual(values.get("lora_alpha"),16)
+        self.assertEqual(set(values.get("target_modules",[])),
+                         {"q_proj","o_proj","k_proj","v_proj"})
+        self.assertEqual(values.get("task_type"),"CAUSAL_LM")
+
     def test_trained_parent_expected_sha_is_pinned_not_fabricated(self):
         self.assertEqual(len(H417_REAL_T4_ADAPTER_SHA),64)
         self.assertEqual(H417_REAL_T4_ADAPTER_SHA,
