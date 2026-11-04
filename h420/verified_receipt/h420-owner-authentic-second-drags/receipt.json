@@ -1,0 +1,45 @@
+{
+  "all_30000_h419_original_screens_included_in_training": false,
+  "all_actions_derived_from_original_train_only": true,
+  "all_selected_original_JPEG_bytes_SHA_verified": true,
+  "alternative_source_candidates_by_domain": {
+    "slide_resize": 94937,
+    "slider": 77375,
+    "text_highlight": 89761
+  },
+  "external_independent_ood": false,
+  "model_release_qualified": false,
+  "model_training_executed": false,
+  "new_actions_geometric_ratio_at_least_0_08": 27769,
+  "new_actions_with_different_instruction_text": 29827,
+  "new_original_distinct_complementary_native_actions": 29827,
+  "old_h417_and_new_h419_original_dev_tasks_quarantined": true,
+  "original_first_30000_source_receipt_sha256": "b7b75d6aa2587c3eba83a3934fe4cdf3cacd48a5b970b5a60a640c89ee3054cf",
+  "original_first_30000_source_sha256": "e7fce082d6ccd931515beacbc6cfc2455a6683c7c92566a245fda9f2182a1605",
+  "original_screens_in_baseline_h419_train": 30000,
+  "original_source_second_actions_by_domain": {
+    "slide_resize": 9913,
+    "slider": 9914,
+    "text_highlight": 10000
+  },
+  "original_source_second_actions_jsonl_sha256": "58c88bf09c047973675ca6dd906eae8d6832005f5da338d492a67c8dd35b91ed",
+  "original_task_heldout_isolation_receipt_sha256": "fff2cc485424f5263780cd234dcb93d302b2f5cb421206875f49d8df7dd6be3b",
+  "schema": "hala.h420.private-authentic-second-native-drags.v1",
+  "source_images_with_genuine_new_action": 29827,
+  "source_images_without_native_alternative": 173,
+  "source_only_firstparty_or_original_h60": true,
+  "source_original_nine_zip_SHA": {
+    "h60-dragon-train-sheet-0000.hala.bin": "09635ac0410418ef19b6dd64d878469500d56d94cb362047b6019d2e4b811924",
+    "h60-dragon-train-slide_resize-0000.hala.bin": "3e66f34b9a1228b99c7c8866885f63eaba3848b7973b187089cf055e8d2cbf7a",
+    "h60-dragon-train-slide_resize-0001.hala.bin": "6e5ad052a460fe23eb865a15fbf83694d248970c3eb158118bb83feff4c696db",
+    "h60-dragon-train-slider-0005.hala.bin": "cbd55b0a003d0c6aafef2460ce5bc8b0321e8a4237032053a53a077901483c96",
+    "h60-dragon-train-text_highlight-0000.hala.bin": "848c0db0f4ec02036f0e5290ec3da862e3e937e301ffdd9c1e06baa8956a8117",
+    "h60-dragon-train-text_highlight-0001.hala.bin": "c07191900e1a4f17f65795381a57b12d91071d4dc580b87a6e4875293f5160af",
+    "h60-dragon-train-text_highlight-0002.hala.bin": "ae07e67f085d1749f19747af25fc3571768cc28bfda1e4ebf980ec0f207a3005",
+    "h60-dragon-train-text_highlight-0003.hala.bin": "4170b4687e462c045ecbfb7198324110a3db54d5b2b774b3fdb6bdbce3586b74",
+    "h60-dragon-train-text_highlight-0004.hala.bin": "c4824f510cb9d27bec60bed536aba81fd3fdfb50ee827c9e2a121f730a16d782"
+  },
+  "status": "ORIGINAL_COMPLEMENTARY_SOURCE_BYTES_VERIFIED_MODEL_NOT_TRAINED",
+  "total_original_actions_scanned": 500554,
+  "weights_public": false
+}
