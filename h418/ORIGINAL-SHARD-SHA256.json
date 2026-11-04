@@ -1,0 +1,46 @@
+{
+  "schema": "hala.h418.original-train-extension-local-sha256.v1",
+  "source_upstream": "Hcompany/DragOn",
+  "source_commit_sha": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+  "source_split": "train",
+  "owner_rights_attested": true,
+  "full_upstream_tar_sha_verified": false,
+  "original_model_training_executed": false,
+  "kaggle_remote_byte_hash_verified": false,
+  "source_coverage_kind": "owner-original ZIP directory and frozen H61 manifest membership; each media member bytes must be verified on training admission",
+  "frozen_h61_64300_rows_sha256": "038baec02070a48a941f320d336f009eaa640967906ca64031b52aa768c8ac2d",
+  "original_64300_rows_with_media_available_after_upload": 30491,
+  "new_original_image_rows_available": 17326,
+  "files": [
+    {
+      "name": "h60-dragon-train-slide_resize-0001.hala.bin",
+      "bytes": 901444366,
+      "sha256": "6e5ad052a460fe23eb865a15fbf83694d248970c3eb158118bb83feff4c696db",
+      "h61_original_rows": 6291
+    },
+    {
+      "name": "h60-dragon-train-text_highlight-0001.hala.bin",
+      "bytes": 874527653,
+      "sha256": "c07191900e1a4f17f65795381a57b12d91071d4dc580b87a6e4875293f5160af",
+      "h61_original_rows": 2939
+    },
+    {
+      "name": "h60-dragon-train-text_highlight-0002.hala.bin",
+      "bytes": 874233678,
+      "sha256": "ae07e67f085d1749f19747af25fc3571768cc28bfda1e4ebf980ec0f207a3005",
+      "h61_original_rows": 2931
+    },
+    {
+      "name": "h60-dragon-train-text_highlight-0003.hala.bin",
+      "bytes": 874412743,
+      "sha256": "4170b4687e462c045ecbfb7198324110a3db54d5b2b774b3fdb6bdbce3586b74",
+      "h61_original_rows": 2978
+    },
+    {
+      "name": "h60-dragon-train-text_highlight-0004.hala.bin",
+      "bytes": 874481497,
+      "sha256": "c4824f510cb9d27bec60bed536aba81fd3fdfb50ee827c9e2a121f730a16d782",
+      "h61_original_rows": 2187
+    }
+  ]
+}
