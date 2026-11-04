@@ -59,8 +59,7 @@ class H422TwoPromptModelSource(unittest.TestCase):
 
     def test_trained_source_contract_never_loads_untouched_eval_as_gradient(self):
         source=(ROOT/"h422/kaggle/h422_two_prompt_native_lora.py").read_text(encoding="utf8")
-        self.assertIn("H421_unseen_dev_used_in_gradient",source)
-        self.assertIn("H422_REAL",source) if False else None
+        self.assertIn("h421_unseen_dev_used_in_gradient",source)
         self.assertIn("coordinate_weighted_loss",source)
         self.assertIn("model.enable_input_require_grads()",source)
         self.assertIn("gradient_checkpointing_enable",source)
