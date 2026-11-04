@@ -152,7 +152,8 @@ def h417_dev_source_sha(h417_root):
             for z in archives.values():z.close()
 
 
-def select(rows,source,heldout,*,verify_bytes=True):
+def select(rows,source,heldout,*,verify_bytes=True,
+           expected_available=EXPECTED_AVAILABLE_SHA,min_selected=30000):
     if type(heldout) is not set or len(heldout)!=144 or not all(
         _hex(x) for x in heldout):
         raise ValueError("H418 original H417 frozen development SHA quarantine missing")
@@ -194,12 +195,12 @@ def select(rows,source,heldout,*,verify_bytes=True):
         converted["source_zip_sha256"]=ALL_SHAS[name]
         selected.append(converted)
         found[row["image_sha256"]]=True
-    if sum(eligible.values())!=EXPECTED_AVAILABLE_SHA:
+    if sum(eligible.values())!=expected_available:
         raise ValueError("H418 source coverage drift from owner archive inventory")
     if (sum(eligible[d] for d in ("sheet","slide_resize","text_highlight"))
-        !=EXPECTED_AVAILABLE_SHA or eligible.get("slider",0)!=0):
+        !=expected_available or eligible.get("slider",0)!=0):
         raise ValueError("H418 unexpected original H61 source domains")
-    if len(selected)<30000 or len(selected)>EXPECTED_AVAILABLE_SHA:
+    if len(selected)<min_selected or len(selected)>expected_available:
         raise ValueError("H418 insufficient original source pixel-distinct training")
     if len(found)!=len(selected):
         raise ValueError("H418 duplicate first-party/source image SHA")
