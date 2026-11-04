@@ -66,7 +66,7 @@ def native_signature(row):
     a,b=row.get("start_point"),row.get("end_point")
     if (type(a) is not list or type(b) is not list or
         len(a)!=2 or len(b)!=2 or
-        any(type(v) is not int for v in a+b)):
+        any(type(v) is not int or v<0 for v in a+b)):
         raise ValueError("H422 corrupt original native source coordinates")
     return tuple(a),tuple(b),row["ordered"]
 
@@ -132,6 +132,10 @@ def prove_inputs(first_rows,first_receipt,second_rows,second_receipt,
             raise ValueError("H422 paired source first/second instruction contamination")
         primary=native_signature(old["native_drag_completion"])
         alternative=native_signature(second["native_drag_completion"])
+        for native in (primary,alternative):
+            for x,y in native[:2]:
+                if x>old["image_width"] or y>old["image_height"]:
+                    raise ValueError("H422 original pixel point outside authentic JPEG dimensions")
         if primary[:2]==alternative[:2]:
             raise ValueError("H422 second native target is just a duplicate first action")
         shift=sum(abs(x-y) for before,after in zip(primary[:2],alternative[:2])
