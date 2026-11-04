@@ -37,7 +37,7 @@ def original_case():
 
 class H421NativeRunnerTests(unittest.TestCase):
     def test_actual_model_eval_is_standalone_private_eval_only(self):
-        src=(ROOT/"h420/kaggle/h421_native_pair_model_eval.py").read_text()
+        src=(ROOT/"h420/kaggle/h421_native_pair_model_eval.py").read_text(encoding="utf8")
         self.assertEqual(src.count("from __future__ import annotations"),1)
         self.assertEqual(src.count('if __name__=="__main__":'),1)
         self.assertIn("run_h421_eval()",src)
