@@ -159,6 +159,29 @@ def h424_replay_match(records,reference):
         if type(got.get("correct")) is not bool or type(got.get("valid")) is not bool:
             raise ValueError("H424 real model output correctness not boolean")
 
+def h424_select_from_original_dev(observed, final_reproduced):
+    """No trained checkpoint qualifies if original H419 replay is not exact."""
+    if type(observed) is not dict or type(final_reproduced) is not bool:
+        raise ValueError("H424 checkpoint selection requires exact provenance boolean")
+    required={"final",*(str(step) for step in H424_CHECKPOINTS)}
+    if set(observed)!=required:
+        raise ValueError("H424 all seven genuine checkpoint scores required")
+    candidates=[]
+    for key, row in observed.items():
+        if (type(row) is not dict
+            or row.get("source_only_research_gate") not in (True,False)
+            or type(row.get("source_only_research_gate")) is not bool
+            or type(row.get("step")) is not int
+            or type(row.get("total_240_correct")) is not int
+            or type(row.get("old_144_correct")) is not int):
+            raise ValueError("H424 checkpoint quality evidence malformed")
+        if row["source_only_research_gate"]:
+            candidates.append((key,row))
+    candidates.sort(key=lambda z:(-z[1]["total_240_correct"],
+        -z[1]["old_144_correct"],z[1]["step"]))
+    tentative=candidates[0][0] if candidates else None
+    return tentative,(tentative if final_reproduced else None)
+
 def run_h424():
     import torch
     import gc
@@ -220,8 +243,26 @@ def run_h424():
             old=sum(int(x["correct"]) for x in exact[:144])
             fresh=sum(int(x["correct"]) for x in exact[144:])
             valid=sum(int(x["valid"]) for x in exact)
-            if label=="final" and (scores!=orig["adapted_dev"] or old!=71 or fresh!=30):
-                raise ValueError("H424 final H419 actual adapter failed exact owner model score replay")
+            if label=="final":
+                original_exact=orig["adapted_dev_exact"]
+                mismatched=[i for i,(p,q) in enumerate(zip(exact,original_exact))
+                    if (p["raw_prediction"],p["valid"],p["correct"])!=
+                       (q["raw_prediction"],q["valid"],q["correct"])]
+                exact_metrics=(scores==orig["adapted_dev"] and old==71 and fresh==30)
+                status["final_H419_replay_diagnostic"]={
+                    "score_reproduced":exact_metrics,
+                    "raw_case_predictions_reproduced":not mismatched,
+                    "case_prediction_mismatch_count":len(mismatched),
+                    "original_owner_final_all_correct":101,
+                    "reloaded_final_all_correct":old+fresh,
+                    "original_owner_final_old144_correct":71,
+                    "reloaded_final_old144_correct":old,
+                    "original_owner_final_fresh96_correct":30,
+                    "reloaded_final_fresh96_correct":fresh,
+                    "reloaded_final_valid_count":valid,
+                    "independently_reproduced":bool(exact_metrics and not mismatched)}
+                print("H424_FINAL_OWNER_REPLAY_DIAGNOSTIC",
+                      json.dumps(status["final_H419_replay_diagnostic"],sort_keys=True),flush=True)
             allowed=h424_gate(76,old,18,fresh,valid)
             observed[label]={"step":manifest["models"][label]["step"],
                 "adapter_sha256":manifest["models"][label]["adapter_sha256"],
@@ -232,17 +273,16 @@ def run_h424():
             status["all_checkpoints_actual_optimizer_steps"].append(manifest["models"][label]["step"])
             print("H424_REAL_CHECKPOINT",label,"old",old,"fresh",fresh,"valid",valid,
                   "research_gate",allowed,flush=True)
-        passing=[(name,case) for name,case in observed.items()
-                 if case["source_only_research_gate"]]
-        passing.sort(key=lambda z:(-z[1]["total_240_correct"],
-                  -z[1]["old_144_correct"],z[1]["step"]))
-        winner=passing[0][0] if passing else None
+        # No candidate can qualify without exact original H419 final replay.
+        reproduced=status["final_H419_replay_diagnostic"]["independently_reproduced"]
+        tentative,winner=h424_select_from_original_dev(observed,reproduced)
         status.update(status="COMPLETE_PRIVATE_ORIGINAL_CHECKPOINT_SCAN",
                       all_7_actual_checkpoint_scores=observed,
-                      original_final_gate_reproduced=False,
+                      original_final_gate_reproduced=reproduced,
+                      source_only_exploratory_best_checkpoint=tentative,
                       source_only_selected_checkpoint=winner,
                       selected_checkpoint_sha256=observed[winner]["adapter_sha256"] if winner else None,
-                      note="DEV-based source-only selection, NOT independently held-out OOD and NOT release",
+                      note="DEV-based source-only selection; withheld if final parent scores differ; never independent OOD or release",
                       elapsed_seconds=round(time.monotonic()-started,2))
     except Exception as exc:
         status.update(status="FAILED_PRIVATE_CHECKPOINT_SCAN_NO_RELEASE",

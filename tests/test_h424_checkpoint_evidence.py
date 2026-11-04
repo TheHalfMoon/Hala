@@ -148,3 +148,22 @@ class H424GateTests(unittest.TestCase):
                 scoped.only_input_file("adapter_model.safetensors")
         finally:
             shutil.rmtree(temporary)
+
+    def test_replay_nonreproduction_withholds_all_candidates(self):
+        scores={}
+        for step in ("1500","3000","4500","6000","7500","9000","final"):
+            passing=step=="4500"
+            scores[step]={"step":9452 if step=="final" else int(step),
+                "old_144_correct":74 if passing else 71,
+                "fresh_96_correct":26 if passing else 30,
+                "total_240_correct":100 if passing else 101,
+                "source_only_research_gate":passing}
+        tentative,actual=self.h.h424_select_from_original_dev(scores,False)
+        self.assertEqual(tentative,"4500")
+        self.assertIsNone(actual)
+        _,positive=self.h.h424_select_from_original_dev(scores,True)
+        self.assertEqual(positive,"4500")
+        for mutant in ({k:v for k,v in scores.items() if k!="3000"},
+                       {**scores,"9000":{**scores["9000"],"source_only_research_gate":"true"}}):
+            with self.assertRaises(ValueError):
+                self.h.h424_select_from_original_dev(mutant,True)
