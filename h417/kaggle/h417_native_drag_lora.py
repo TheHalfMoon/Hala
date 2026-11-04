@@ -167,24 +167,26 @@ def get_research_sources():
 
 def case_from_dragon(r):
     if (r.get("split") != "train" or r.get("language") != "en" or
-        r.get("image_format") != "JPEG" or
+        r.get("image_format", "JPEG") != "JPEG" or
         type(r.get("image_path")) is not str or
         type(r.get("image_sha256")) is not str):
         raise ValueError("H417 one original DragOn TRAIN row is not qualified")
     parts = r["image_path"].split("/")
     if len(parts) != 3 or parts[0] != "images" or parts[1] not in DOMAINS:
         raise ValueError("H417 original image path must be bounded by domain")
-    data = strict_load(r["completion"])
-    if (data.get("type") != "drag" or
+    data = r["completion"] if type(r.get("completion")) is dict else strict_load(r["completion"])
+    if (type(data) is not dict or data.get("type") != "drag" or
         data.get("coordinate_space") != "source_image_pixels" or
-        type(data.get("ordered")) is not bool):
+        type(data.get("ordered")) is not bool or
+        data["ordered"] is not r.get("ordered")):
         raise ValueError("H417 missing original native drag completion")
     for field in ("start_point","end_point"):
         pair = data.get(field)
         if (type(pair) is not list or len(pair) != 2 or
             any(type(v) is not int or v < 0 for v in pair)):
             raise ValueError("H417 native drag source coordinates changed")
-    body = r["prompt"].split("\nReturn only ONE ",1)[0].strip()
+    body = (r.get("intent") if type(r.get("intent")) is str else
+            r["prompt"].split("\nReturn only ONE ",1)[0]).strip()
     if len(body) < 4 or len(body) > 1400:
         raise ValueError("H417 task body bounds")
     return {
