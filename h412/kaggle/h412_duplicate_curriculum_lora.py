@@ -174,7 +174,7 @@ def private_parent():
     r=json.loads(doc)
     if (r.get("status")!="COMPLETE_PRIVATE_TWO_FAMILY_128_STEP_LORA"
         or r.get("optimizer_steps")!=128
-        or r.get("official_hala_trained") is not False):
+        or r.get("official_hala_model_trained") is not False):
         raise ValueError("H412 predecessor trained only lawful synthetic data")
     return file.parent
 
