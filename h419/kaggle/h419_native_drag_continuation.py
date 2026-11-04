@@ -895,7 +895,7 @@ def run_h419():
             raise ValueError("H419 genuine native model trained weights missing")
         # Source-image-heldout research criterion only; not independent OOD
         # or authorization for production action on a real GUI.
-        parent_old=st["parent_dev"]["all"]["correct"]
+        parent_old=sum(r["correct"] for r in st["parent_dev_exact"][:H419_OLD_DEV_N])
         adapted_old=sum(r["correct"] for r in st["adapted_dev_exact"][:H419_OLD_DEV_N])
         parent_fresh=sum(r["correct"] for r in st["parent_dev_exact"][H419_OLD_DEV_N:])
         adapted_fresh=sum(r["correct"] for r in st["adapted_dev_exact"][H419_OLD_DEV_N:])
