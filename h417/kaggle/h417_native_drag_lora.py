@@ -233,81 +233,108 @@ def case_from_firstparty(r):
 
 
 def partition(originals,cur,firstparty):
-    # H61's frozen 10,000 rows are image-ID-disjoint but four pairs of
-    # different DragOn IDs are byte-identical JPEGs. Never count those as
-    # distinct images or allow either copy into the DEV holdout.
-    rows = [case_from_dragon(r) for r in cur]
-    distinct = {}
-    for row in rows:
-        distinct.setdefault(row["image_sha256"], row)
-    if len(rows) != N_SOURCE_DRAGON or len(rows) - len(distinct) != 4:
-        raise ValueError("H417 pinned four DragOn same-pixel collisions changed")
-    training = list(distinct.values())
-    repairs = []
-    # Choose replacement *original TRAIN images* only from the same slider
-    # domain as the four dropped duplicates. Names/source images remain in
-    # the same already-attached owner-private H60 slider shard.
-    candidates = sorted(originals["slider"],
-                        key=lambda r: sha_bytes(r["id"].encode("utf8")))
-    for original in candidates:
-        if len(training) == N_SOURCE_DRAGON:
-            break
-        source_hash = original["image_sha256"]
-        if source_hash in distinct:
-            continue
-        replacement = case_from_dragon(original)
-        replacement["source_repair"] = True
-        training.append(replacement)
-        distinct[source_hash] = replacement
-        repairs.append(replacement["id"])
-    if len(training) != N_SOURCE_DRAGON or len(repairs) != 4:
-        raise ValueError("H417 four distinct original TRAIN replacements unavailable")
-    source_ids = set(distinct)
-    development = []
-    from collections import Counter
+    # H61 frozen selection has 10k original *identifiers* but four pairs of
+    # pixel-identical slider images. Only 9996 unique JPEG source bytes.
+    original = [case_from_dragon(r) for r in cur]
+    chosen = {}
+    for row in original:
+        chosen.setdefault(row["image_sha256"], row)
+    if len(original) != 10000 or len(original)-len(chosen) != 4:
+        raise ValueError("H417 frozen four same-pixel collisions changed")
+
+    development=[]
+    dev_hashes=set()
+    # The selected sheet shard has EXACTLY 2361 distinct images and the
+    # original H61 curriculum selected ALL 2361. To obtain a truly
+    # disjoint sheet DEV set, deliberately withhold 24 source images from
+    # this selected pool rather than inventing an unseen sheet holdout.
+    # For other domains, prefer unused original source images.
     for dom in DOMAINS:
-        seen = set()
-        pool = sorted(originals[dom],
-            key=lambda row: sha_bytes(row["id"].encode()))
-        for row in pool:
-            if row["image_sha256"] in source_ids or row["image_sha256"] in seen:
+        candidates = sorted(originals[dom],
+                 key=lambda row: sha_bytes(row["id"].encode("utf8")))
+        count=0
+        for raw in candidates:
+            digest=raw["image_sha256"]
+            if digest in chosen or digest in dev_hashes:
                 continue
-            r = case_from_dragon(row)
-            development.append(r)
-            seen.add(r["image_sha256"])
-            if len(seen)==DEV_DRAGON_PER_DOMAIN:
+            dev=case_from_dragon(raw)
+            development.append(dev)
+            dev_hashes.add(digest)
+            count+=1
+            if count==DEV_DRAGON_PER_DOMAIN:
                 break
-        if len(seen) != DEV_DRAGON_PER_DOMAIN:
-            raise ValueError("H417 insufficient source-disjoint original DEV")
-    source_ids.update(r["image_sha256"] for r in development)
+        if count < DEV_DRAGON_PER_DOMAIN:
+            # Non-independent, but image-disjoint source holdout from
+            # existing curated TRAIN. Remove it BEFORE selecting new TRAIN.
+            candidates_in_train=sorted(
+                (v for v in chosen.values() if v["domain"]==dom),
+                key=lambda v: sha_bytes(v["id"].encode("utf8")))
+            for dev in candidates_in_train:
+                digest=dev["image_sha256"]
+                if digest in dev_hashes:
+                    continue
+                development.append(dev)
+                dev_hashes.add(digest)
+                del chosen[digest]
+                count+=1
+                if count==DEV_DRAGON_PER_DOMAIN:
+                    break
+        if count!=DEV_DRAGON_PER_DOMAIN:
+            raise ValueError("H417 insufficient original source disjoint DEV")
+
+    # We dropped four duplicate original pixels and reserved 24 source
+    # sheet images, so refill exactly 28 unique originals from the same
+    # already-authenticated owner-private slider TRAIN shard. No DEV
+    # fingerprint can be admitted as TRAIN.
+    repairs=[]
+    for raw in sorted(originals["slider"],
+                      key=lambda row: sha_bytes(row["id"].encode("utf8"))):
+        if len(chosen)==N_SOURCE_DRAGON:
+            break
+        digest=raw["image_sha256"]
+        if digest in chosen or digest in dev_hashes:
+            continue
+        replacement=case_from_dragon(raw)
+        replacement["source_repair"]=True
+        chosen[digest]=replacement
+        repairs.append(replacement["id"])
+    if len(chosen)!=N_SOURCE_DRAGON or len(repairs)!=28:
+        raise ValueError("H417 28 original source holdout/collision repairs unavailable")
+    training=list(chosen.values())
+    source_ids=set(chosen)
+    if dev_hashes & source_ids:
+        raise ValueError("H417 original TRAIN/DEV pixel overlap")
+
     from_fp = [case_from_firstparty(row) for row in firstparty]
-    if len({r["image_sha256"] for r in from_fp}) != 2000:
+    if len({r["image_sha256"] for r in from_fp})!=N_SOURCE_FIRSTPARTY:
         raise ValueError("H417 repeated original Edge screenshot")
-    withheld = set()
-    for language in ("en","ar"):
-        vals = sorted((r for r in from_fp if r["language"]==language),
-              key=lambda row: sha_bytes(row["id"].encode()))
-        chosen = vals[:DEV_FIRSTPARTY_PER_LANG]
-        if len(chosen) != DEV_FIRSTPARTY_PER_LANG:
-            raise ValueError("H417 insufficient first-party bilingual DEV")
-        development.extend(chosen)
-        withheld.update(r["image_sha256"] for r in chosen)
+    withheld=set()
+    for lang in ("en","ar"):
+        candidates=sorted((r for r in from_fp if r["language"]==lang),
+                          key=lambda row: sha_bytes(row["id"].encode("utf8")))
+        holdout=candidates[:DEV_FIRSTPARTY_PER_LANG]
+        if len(holdout)!=DEV_FIRSTPARTY_PER_LANG:
+            raise ValueError("H417 insufficient original first-party bilingual DEV")
+        development.extend(holdout)
+        withheld.update(r["image_sha256"] for r in holdout)
     training.extend(r for r in from_fp if r["image_sha256"] not in withheld)
-    if len(training) != TRAIN_UNIQUE or len(development) != 144:
-        raise ValueError("H417 source image-level holdout count changed")
+    if len(training)!=TRAIN_UNIQUE or len(development)!=144:
+        raise ValueError("H417 exact original source train/development size drift")
     if source_ids & {r["image_sha256"] for r in from_fp}:
-        raise ValueError("H417 unrelated source family image collision")
-    if {r["image_sha256"] for r in training} & {
+        raise ValueError("H417 source family fingerprint collision")
+    if len({r["image_sha256"] for r in training})!=TRAIN_UNIQUE:
+        raise ValueError("H417 source TRAIN image-level uniqueness violated")
+    if {r["image_sha256"] for r in training}&{
              r["image_sha256"] for r in development}:
         raise ValueError("H417 original TRAIN/DEV source pixels overlap")
-    n_ar = sum(r["language"]=="ar" for r in training)
-    n_en = sum(r["language"]=="en" for r in training)
-    if (n_ar,n_en) != (976,10976):
-        raise ValueError("H417 original Arabic/English training balance drift")
-    order = list(range(len(training)))
+    n_ar=sum(r["language"]=="ar" for r in training)
+    n_en=sum(r["language"]=="en" for r in training)
+    if (n_ar,n_en)!=(976,10976):
+        raise ValueError("H417 original bilingual TRAIN source composition drift")
+    order=list(range(len(training)))
     order += [i for i,r in enumerate(training) if r["language"]=="ar"]*AR_REPEAT
-    if len(order) != EXPECTED_PASSES or len(order)%GRAD_ACCUM:
-        raise ValueError("H417 full gradient-bearing data schedule mismatch")
+    if len(order)!=EXPECTED_PASSES or len(order)%GRAD_ACCUM:
+        raise ValueError("H417 actual gradient-bearing 14,880 passes unavailable")
     random.Random(SEED).shuffle(order)
     return training,development,order
 
