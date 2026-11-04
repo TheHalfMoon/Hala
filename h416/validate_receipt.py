@@ -18,7 +18,7 @@ from h416.kaggle.h416_absence_repair_lora import (
 ROOT=Path(__file__).resolve().parent/"verified_receipt"/"h416-private-absence-repair-lora"
 PASS_STATUS="COMPLETE_PRIVATE_8864_EXAMPLE_ABSENCE_REPAIR_LORA"
 FAIL_STATUS="FAILED_PRIVATE_ABSENCE_REPAIR_NO_RELEASE"
-SCHEMA="hala.h416.private-absence-repair-lora.v1"
+SCHEMA="hala.h416.private-absence-repair-8864-lora.v1"
 
 
 def _no_duplicates(items):
