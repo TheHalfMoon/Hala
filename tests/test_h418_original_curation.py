@@ -131,6 +131,36 @@ class H418OriginalSourceTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,"derived H61 TRAIN JPEG bytes"):
                     c.select([fake],source,heldout,expected_available=1,min_selected=1)
 
+    def test_original_zip_unlabelled_jpegs_are_quarantined(self):
+        from unittest.mock import patch
+        # Source may retain raw JPEGs lacking a TRAIN annotation. This is not
+        # an excuse to train on them, nor to reject qualified labelled images.
+        with tempfile.TemporaryDirectory() as tmp:
+            file=Path(tmp)/ZIP_NAME
+            media={"images/sheet/qualified.jpg":b"\\xff\\xd8\\xffqualified",
+                   "images/sheet/unlabelled.jpg":b"\\xff\\xd8\\xfforphan"}
+            labels=(json.dumps({"split":"train","domain":"sheet",
+                     "image_path":"images/sheet/qualified.jpg",
+                     "image_sha256":sha256(media["images/sheet/qualified.jpg"]).hexdigest()
+                    },sort_keys=True)+"\\n").encode()
+            manifest={"schema":"hala.h60.dragon-train-shard.v1",
+                    "source_commit_sha":c.SOURCE_REV,"source_domain":"sheet",
+                    "split":"train","official_eval_or_test_used":False,
+                    "benchmark_answer_leakage":False,"source_license":"Apache-2.0",
+                    "labels_sha256":sha256(labels).hexdigest()}
+            with zipfile.ZipFile(file,"w") as z:
+                z.writestr("manifest.json",json.dumps(manifest))
+                z.writestr("labels.jsonl",labels)
+                for path,blob in media.items():
+                    z.writestr(path,blob)
+            with patch.object(c,"ALL_SHAS",{ZIP_NAME:sha256(file.read_bytes()).hexdigest()}):
+                source,opened=c.open_archives(tmp,tmp)
+                try:
+                    self.assertIn(("sheet","images/sheet/qualified.jpg"),source)
+                    self.assertNotIn(("sheet","images/sheet/unlabelled.jpg"),source)
+                finally:
+                    for z in opened:z.close()
+
     def test_source_only_export_no_weights_and_create_only(self):
         case={"image_sha256":"b"*64,"source_raw_image_sha256":"a"*64}
         with tempfile.TemporaryDirectory() as tmp:
