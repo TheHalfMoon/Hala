@@ -84,11 +84,39 @@ class H424GateTests(unittest.TestCase):
         root=Path(stage)
         temporary=Path(tempfile.mkdtemp(prefix="hala_h424_local_"))
         self.h.only_input_file=lambda name:root/name
+        self.h.H424_INPUT=root
         self.h.H424_TMP=temporary/"private"
         try:
             manifest,receipt=self.h.h424_validate_private_bundle()
             self.assertEqual(len(manifest["models"]),7)
             self.assertEqual(receipt["actual_optimizer_steps"],9452)
             self.assertFalse(receipt["source_only_research_gate"])
+        finally:
+            shutil.rmtree(temporary)
+
+    def test_actual_kaggle_auto_extracted_zip_optional(self):
+        stage=os.environ.get("HALA_H424_PRIVATE_STAGE")
+        if not stage:
+            self.skipTest("Authentic H419 weights only on owner PC")
+        import zipfile
+        root=Path(stage)
+        temporary=Path(tempfile.mkdtemp(prefix="hala_h424_extract_"))
+        try:
+            extraction=temporary/self.h.H424_ZIP.removesuffix(".zip")
+            with zipfile.ZipFile(root/self.h.H424_ZIP) as z:
+                z.extractall(extraction)
+            shutil.copy2(root/self.h.H424_MANIFEST,temporary/self.h.H424_MANIFEST)
+            self.h.only_input_file=lambda name:temporary/name
+            self.h.H424_INPUT=temporary
+            self.h.H424_TMP=temporary/"verified"
+            manifest,receipt=self.h.h424_validate_private_bundle()
+            self.assertEqual(len(manifest["models"]),7)
+            self.assertEqual(receipt["adapter_sha256"],self.h.H424_FINAL_SHA)
+            self.assertFalse(receipt["source_only_research_gate"])
+            shutil.rmtree(temporary/"verified")
+            # Kaggle extraction must reject even one unlisted source member.
+            (extraction/"unlisted.txt").write_text("tamper")
+            with self.assertRaises(ValueError):
+                self.h.h424_validate_private_bundle()
         finally:
             shutil.rmtree(temporary)

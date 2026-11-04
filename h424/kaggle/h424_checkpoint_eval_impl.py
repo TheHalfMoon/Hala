@@ -11,6 +11,46 @@ H424_FINAL_SHA="96d07b07cca54d15e9ce11da4d26fa3748564f09a2974d9a0b48e419ab03eb8c
 H424_CHECKPOINTS=(1500,3000,4500,6000,7500,9000)
 H424_OUT=Path("/kaggle/working/h424-owner-private-checkpoint-diagnostic")
 H424_TMP=Path("/tmp/h424-original-private-weights")
+H424_INPUT=Path("/kaggle/input")
+
+class H424ExtractedArchive:
+    """Read Kaggle's automatic ZIP-extraction result as immutable members."""
+
+    def __init__(self, root):
+        self.root=Path(root)
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc, tb):
+        return False
+    def namelist(self):
+        # No alternate/extra source members and no symlink-backed model bytes.
+        if any(p.is_symlink() for p in self.root.rglob("*")):
+            raise ValueError("H424 private extracted dataset contains symlinks")
+        return [p.relative_to(self.root).as_posix()
+                for p in self.root.rglob("*") if p.is_file()]
+    def read(self, name):
+        path=self.root/name
+        if (not path.is_file() or path.is_symlink()
+            or ".." in Path(name).parts
+            or not path.resolve().is_relative_to(self.root.resolve())):
+            raise ValueError("H424 original extracted source member path invalid")
+        return path.read_bytes()
+
+def h424_open_private_archive():
+    import zipfile
+    zip_files=list(H424_INPUT.rglob(H424_ZIP))
+    unpacked=list(H424_INPUT.rglob(Path(H424_ZIP).stem))
+    sources=[p for p in zip_files if p.is_file()]+[p for p in unpacked if p.is_dir()]
+    if len(sources)!=1:
+        raise ValueError("H424 private checkpoint archive absent or ambiguous")
+    archive=sources[0]
+    if archive.is_file():
+        if sha_file(archive)!=H424_ZIP_SHA:
+            raise ValueError("H424 original full ZIP archive SHA drift")
+        return zipfile.ZipFile(archive)
+    # Kaggle auto-expands uploaded ZIPs. Every extracted file must still pass
+    # the original per-model SHA and 240-result receipt verification below.
+    return H424ExtractedArchive(archive)
 
 def h424_gate(parent_old,old,parent_fresh,fresh,valid,expected=240):
     """Research gate from H419, unchanged. Not external qualification."""
@@ -38,10 +78,7 @@ def h424_validate_private_bundle():
         or data.get("independent_external_ood") is not False
         or set(data.get("models",{}))!={"final",*(str(x) for x in H424_CHECKPOINTS)}):
         raise ValueError("H424 owner original H419 checkpoint provenance changed")
-    archive=only_input_file(H424_ZIP)
-    if sha_file(archive)!=H424_ZIP_SHA:
-        raise ValueError("H424 authenticated owner original checkpoint archive SHA drift")
-    with zipfile.ZipFile(archive) as z:
+    with h424_open_private_archive() as z:
         names=set(z.namelist())
         expected={"receipt.json","receipt.sha256"}
         for item in data["models"]:
