@@ -144,7 +144,11 @@ def open_archives(base_root,extension_root):
                     raise ValueError("H418 duplicate JPEG path across private shards")
                 raw_sha=original_hashes.get(member)
                 if not _hex(raw_sha):
-                    raise ValueError("H418 unlabelled original H60 JPEG cannot qualify")
+                    # H60 ZIPs may contain source JPEGs with NO selected
+                    # original TRAIN annotation. Never admit these orphan
+                    # images as supervised examples, but do not reject an
+                    # otherwise valid TRAIN-only archive for their presence.
+                    continue
                 source[key]=(z,name,raw_sha)
         return source,opened
     except BaseException:
