@@ -171,3 +171,43 @@ class H425CurriculumEvidence(unittest.TestCase):
                             and "h419-qualified-parent" not in name
                             for name in meta["dataset_sources"]))
         self.assertEqual(meta["code_file"],"h425_h417_replay_paired.py")
+
+    def test_owner_original_h419_source_error_attribution_optional(self):
+        """Audits only source-derived aggregates; raw case receipts stay private."""
+        path=os.environ.get("H425_OWNER_H419_RECEIPT")
+        if not path:
+            self.skipTest("Original 240-case private model receipt is never in hosted CI")
+        import json
+        raw=Path(path).read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+            "f8c491d8522a8349974d05318fded7cbe0349478be27efcbb118a8efdcfa37ac")
+        r=json.loads(raw)
+        before=r["parent_dev_exact"]
+        after=r["adapted_dev_exact"]
+        self.assertEqual((len(before),len(after)),(240,240))
+        sums=collections.defaultdict(lambda:[0,0,0,0,0])
+        for idx,(a,b) in enumerate(zip(before,after)):
+            self.assertEqual((a["id"],a["image_sha256"]),
+                             (b["id"],b["image_sha256"]))
+            cohort="old" if idx<144 else "fresh"
+            old=bool(a["correct"])
+            new=bool(b["correct"])
+            for k in (cohort,cohort+"/"+a["domain"]):
+                row=sums[k]
+                row[0]+=1
+                row[1]+=int(old)
+                row[2]+=int(new)
+                row[3]+=int(not old and new)
+                row[4]+=int(old and not new)
+        expected={
+          "old":(144,76,71,7,12),
+          "fresh":(96,18,30,17,5),
+          "old/sheet":(34,17,14,1,4),
+          "old/slide_resize":(34,11,11,0,0),
+          "old/slider":(36,27,26,3,4),
+          "old/text_highlight":(40,21,20,3,4),
+          "fresh/slide_resize":(32,0,3,3,0),
+          "fresh/slider":(32,11,16,8,3),
+          "fresh/text_highlight":(32,7,11,6,2)}
+        self.assertEqual({k:tuple(v) for k,v in sums.items()},expected)
+        self.assertFalse(r["source_only_research_gate"])
