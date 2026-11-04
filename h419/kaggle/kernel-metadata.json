@@ -1,0 +1,23 @@
+{
+  "id": "abdulazizshehri/hala-h419-private-30k-native-drag-continuation",
+  "title": "Hala H419 Private 30K Native Drag Continuation",
+  "code_file": "h419_native_drag_continuation.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h415-dragon-original-4domain-private",
+    "abdulazizshehri/hala-h415-frozen-10k-native-drag-private",
+    "abdulazizshehri/hala-h415-original-bilingual-drag-2k-private",
+    "abdulazizshehri/hala-h418-original-30k-extension-private",
+    "abdulazizshehri/hala-h418-verified-new-30k-original-drag-private",
+    "abdulazizshehri/hala-h419-h417-native-parent-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
