@@ -22,6 +22,21 @@ class AuditEvidenceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 verify(root)
 
+    def test_original_verified_new_family_receipt(self):
+        try:
+            import PIL
+        except ImportError:
+            self.skipTest("Pillow required for visual-source replay")
+        proof=verify()
+        self.assertEqual(proof["receipt_sha256"],
+            "1280b842e5b7b6729992f77bf44f20990363c4a90e7475cb935f0205f926b53b")
+        self.assertFalse(proof["qualified"])
+        self.assertEqual(proof["h409"]["all"]["correct"],85)
+        self.assertEqual(proof["h412"]["all"]["correct"],92)
+        self.assertEqual(proof["h412"]["duplicate"]["unsafe_clicks"],0)
+        self.assertEqual(proof["h412"]["unique"]["correct"],28)
+        self.assertIn("NOT external OOD",proof["source"])
+
     def test_h412_training_receipt_is_not_new_crossfamily_eval(self):
         self.reject(self.h412)
 
