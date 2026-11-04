@@ -138,7 +138,9 @@ class H425CurriculumEvidence(unittest.TestCase):
                     digest=row["image_sha256"]
                     if digest in seen:continue
                     seen.add(digest)
-                    media=zips["firstparty" if row["kind"]=="firstparty" else row["domain"]]
+                    media=(zips["_by_file"][row["source_zip"]]
+                           if "source_zip" in row else
+                           zips["firstparty" if row["kind"]=="firstparty" else row["domain"]])
                     payload=media.read(row["image_path"])
                     self.assertEqual(hashlib.sha256(payload).hexdigest(),digest)
                     count[row["kind"]]+=1
