@@ -1,0 +1,20 @@
+{
+  "id": "abdulazizshehri/hala-h417-private-native-drag-12k-lora",
+  "title": "Hala H417 Private Native Drag 12K LoRA",
+  "code_file": "h417_native_drag_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "abdulazizshehri/hala-h415-dragon-original-4domain-private",
+    "abdulazizshehri/hala-h415-frozen-10k-native-drag-private",
+    "abdulazizshehri/hala-h415-original-bilingual-drag-2k-private"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
