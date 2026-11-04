@@ -220,26 +220,46 @@ def select(rows,source,heldout,*,verify_bytes=True,
             excluded["original_image_archive_unavailable"]+=1
             continue
         eligible[domain]+=1
-        if row["image_sha256"] in heldout:
+        z,name,original_sha=actual
+        # H417 DEV uses original H60 bytes, but frozen H61 SHA is for
+        # resized/re-encoded JPEG. Quarantine BOTH identities.
+        if original_sha in heldout or row["image_sha256"] in heldout:
             excluded["h417_dev_sha_quarantined"]+=1
             continue
         if row["image_sha256"] in found:
             excluded["duplicate_source_pixel_sha"]+=1
             continue
-        z,name=actual
-        if verify_bytes:
-            raw=z.read(member)
-            if sha256(raw).hexdigest()!=row["image_sha256"]:
-                raise ValueError("H418 original JPEG bytes differ from frozen H61 SHA")
-            if not raw.startswith(b"\xff\xd8\xff"):
-                raise ValueError("H418 original image not JPEG source")
-        # Store canonical member path for existing native drag converter.
+        if not verify_bytes:
+            raise ValueError("H418 cannot admit media without real JPEG byte verification")
+        raw=z.read(member)
+        if sha256(raw).hexdigest()!=original_sha:
+            raise ValueError("H418 H60 original JPEG bytes differ from label SHA")
+        derived,(width,height),(source_width,source_height)=derived_h61_training_image(raw)
+        if sha256(derived).hexdigest()!=row["image_sha256"]:
+            raise ValueError("H418 derived H61 TRAIN JPEG bytes SHA mismatch")
+        if f"The image is {width}x{height} pixels." not in row.get("prompt",""):
+            raise ValueError("H418 resized image and source prompt dimensions disagree")
+        native=parent.strict_load(row["completion"])
+        if (type(native) is not dict or native.get("type")!="drag" or
+            native.get("coordinate_space")!="source_image_pixels" or
+            type(native.get("ordered")) is not bool):
+            raise ValueError("H418 original H61 native drag completion invalid")
+        for key in ("start_point","end_point"):
+            xy=native.get(key)
+            if (type(xy) is not list or len(xy)!=2 or
+                any(type(v) is not int for v in xy) or
+                not 0<=xy[0]<=width or not 0<=xy[1]<=height):
+                raise ValueError("H418 original H61 drag point outside training image")
         converted=dict(row)
         converted["original_h61_image_path"]=path
         converted["image_path"]=member
         converted["source_domain"]=domain
         converted["source_zip"]=name
         converted["source_zip_sha256"]=ALL_SHAS[name]
+        converted["source_raw_image_sha256"]=original_sha
+        converted["source_raw_image_dimensions"]=[source_width,source_height]
+        converted["derived_training_image_dimensions"]=[width,height]
+        converted["original_h61_resize"]="h61.source_export.frame_target JPEG95 subsampling0 LANCZOS"
         selected.append(converted)
         found[row["image_sha256"]]=True
     if sum(eligible.values())!=expected_available:
@@ -251,8 +271,9 @@ def select(rows,source,heldout,*,verify_bytes=True,
         raise ValueError("H418 insufficient original source pixel-distinct training")
     if len(found)!=len(selected):
         raise ValueError("H418 duplicate first-party/source image SHA")
-    if {r["image_sha256"] for r in selected}&heldout:
-        raise ValueError("H418 leaked H417 source-dev image into TRAIN")
+    if ({r["image_sha256"] for r in selected}&heldout or
+        {r["source_raw_image_sha256"] for r in selected}&heldout):
+        raise ValueError("H418 leaked H417 original/derived source-dev image into TRAIN")
     return selected,dict(eligible),dict(excluded)
 
 
