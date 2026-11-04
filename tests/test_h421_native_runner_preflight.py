@@ -45,6 +45,9 @@ class H421NativeRunnerTests(unittest.TestCase):
         self.assertIn("H421_REAL_MODEL_SAME_IMAGE_TWO_PROMPT",src)
         self.assertNotIn("optimizer.step()",src)
         self.assertNotIn(".backward()",src)
+        # Embedded scorer must NEVER replace the parent H419 four-domain parser.
+        self.assertEqual(m.DOMAINS,("sheet","slider","slide_resize","text_highlight"))
+        self.assertEqual(m.H421_PAIR_DOMAINS,{"slider":64,"slide_resize":64,"text_highlight":64})
         self.assertEqual(m.OUT.name,"h421-private-two-instruction-native-eval")
         self.assertEqual(m.H421_H419_WEIGHTS,"h419_native_adapter.safetensors")
         self.assertNotEqual(m.H421_H419_WEIGHTS,m.PARENT_ADAPTER_FILE)
