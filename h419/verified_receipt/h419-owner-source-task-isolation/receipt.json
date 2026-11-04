@@ -1,0 +1,39 @@
+{
+  "fresh_dev_original_screen_sha": 96,
+  "h417_heldout_used_for_training": false,
+  "independent_external_ood": false,
+  "model_release_qualified": false,
+  "model_training_performed_by_this_audit": false,
+  "old_dev_original_screen_sha": 96,
+  "original_h60_source_actions_scanned": 500554,
+  "original_source_images_with_train_annotations": 47037,
+  "original_task_sha_counts": {
+    "h417_old_dev_original": 96,
+    "h419_new_dev_original": 96,
+    "h419_train_original": 30057
+  },
+  "overlaps": {
+    "h417_old_dev_original vs h419_new_dev_original": {
+      "image_sha_overlap": 0,
+      "original_source_task_sha_overlap": 0
+    },
+    "h419_train_original vs h417_old_dev_original": {
+      "image_sha_overlap": 0,
+      "original_source_task_sha_overlap": 0
+    },
+    "h419_train_original vs h419_new_dev_original": {
+      "image_sha_overlap": 0,
+      "original_source_task_sha_overlap": 0
+    }
+  },
+  "raw_source_action_records_for_selected_images": {
+    "h417_old_dev_original": 1336,
+    "h419_new_dev_original": 995,
+    "h419_train_original": 294177
+  },
+  "schema": "hala.h419.private-original-source-task-isolation.v1",
+  "source": "Hcompany/DragOn original TRAIN-only H60 private nine SHA-pinned ZIPs",
+  "source_only_author_visible_holdout": true,
+  "source_revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+  "train_new_original_screen_sha": 30000
+}
