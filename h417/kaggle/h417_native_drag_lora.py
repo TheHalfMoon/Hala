@@ -177,9 +177,19 @@ def case_from_dragon(r):
     data = r["completion"] if type(r.get("completion")) is dict else strict_load(r["completion"])
     if (type(data) is not dict or data.get("type") != "drag" or
         data.get("coordinate_space") != "source_image_pixels" or
-        type(data.get("ordered")) is not bool or
-        data["ordered"] is not r.get("ordered")):
+        type(data.get("ordered")) is not bool):
         raise ValueError("H417 missing original native drag completion")
+    # Raw H60 rows carry `ordered`; H61 curated rows store the same
+    # trusted original boolean inside completion and capability. Require
+    # agreement with each available independent source field.
+    if "ordered" in r and (type(r["ordered"]) is not bool or
+                           r["ordered"] is not data["ordered"]):
+        raise ValueError("H417 original native drag ordered flag drift")
+    if "capability" in r:
+        cap = r["capability"]
+        if (type(cap) is not str or len(cap.split("/")) < 2 or
+            cap.split("/")[1] != ("ordered" if data["ordered"] else "unordered")):
+            raise ValueError("H417 curated original drag capability flag drift")
     for field in ("start_point","end_point"):
         pair = data.get(field)
         if (type(pair) is not list or len(pair) != 2 or
