@@ -78,6 +78,24 @@ def summarize(original,rows):
     return expected
 
 
+
+class _SourceRows:
+    """Lazy source replay: preserve original pixels without materializing
+    ~8,192 RGB screens (>3 GiB) in owner RAM at once. Each case is
+    generated exactly once by the canonical original source composer.
+    """
+    def __init__(self, split, n):
+        self.split=split
+        self.n=n
+
+    def __len__(self):
+        return self.n
+
+    def __iter__(self):
+        for i in range(self.n):
+            yield compose(i,self.split)
+
+
 def verify(root=ROOT):
     root=Path(root)
     source=(root/"receipt.json").read_bytes()
@@ -139,7 +157,7 @@ def verify(root=ROOT):
             raise ValueError("H416 owner-private H50/H52 annotations not proved")
     # Recreate exact TRAIN/DEV/AUDIT RGB once; neither original 96 audit images nor
     # their answers are read from Kaggle or contaminated into training.
-    train=[compose(i,"train") for i in range(TRAIN_NEW)]
+    train=_SourceRows("train",TRAIN_NEW)
     dev=[compose(i,"dev") for i in range(DEV_N)]
     audit=[compose(i,"audit") for i in range(AUDIT_N)]
     if r.get("synthetic_split_sha256")!=qualify_synthetic(train,dev,audit):
