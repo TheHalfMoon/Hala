@@ -119,11 +119,22 @@ def source_manifest(rows_path,receipt_path,source_task_receipt):
 
 def alternative(base,original_raw,zip_name):
     """A genuinely different pixel-target, not a differently named duplicate."""
+    original_path=original_raw.get("image_path")
     if (original_raw.get("image_sha256")!=base["image_sha256"] or
-        original_raw.get("image_path")!=base["image_path"] or
+        type(original_path) is not str or
+        not original_path.startswith("images/"+base["source_domain"]+"/") or
+        not original_path.endswith(".jpg") or
+        ".." in original_path or
         original_raw.get("domain")!=base["source_domain"] or
         zip_name!=base["source_zip"]):
         raise ValueError("H420 different source image or ZIP falsely paired")
+    # H60 original TRAIN annotation ZIPs contain pixel-identical JPEG
+    # aliases under distinct immutable member paths (510 labelled cases
+    # in the 30K source index). The SHA-pinned raw JPEG is the identity;
+    # preserve EACH action's actual original member path, not the H419
+    # first-action path. In the full run, BOTH paths must appear in the
+    # original ZIP+labels index with the same source byte SHA, and the
+    # chosen second path is re-opened and SHA-checked before admission.
     candidate=raw.original_record(original_raw,base["source_domain"],
                                   zip_name,base["image_sha256"])
     if (candidate["image_width"]!=base["image_width"] or
@@ -151,7 +162,7 @@ def alternative(base,original_raw,zip_name):
        "source_zip_sha256":source.ALL_SHAS[zip_name],
        "split":"train",
        "language":"en",
-       "image_path":base["image_path"],
+       "image_path":candidate["image_path"],
        "image_sha256":base["image_sha256"],
        "image_width":width,"image_height":height,
        "intent":candidate["intent"],
