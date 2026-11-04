@@ -1,0 +1,19 @@
+{
+  "id": "abdulazizshehri/hala-h413-private-new-family-transfer-evaluation",
+  "title": "Hala H413 Private New Family Transfer Evaluation",
+  "code_file": "h413_new_family_transfer_eval.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abdulazizshehri/hala-h409-private-balanced-original-ui-lora",
+    "abdulazizshehri/hala-h412-private-duplicate-curriculum-lora"
+  ],
+  "model_sources": []
+}
