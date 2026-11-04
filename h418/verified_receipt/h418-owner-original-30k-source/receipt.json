@@ -1,0 +1,46 @@
+{
+  "actual_all_30000_original_jpeg_bytes_sha_verified": true,
+  "external_independent_ood": false,
+  "full_upstream_tar_sha_verified": false,
+  "h417_dev144_image_sha_disjoint": true,
+  "h417_exclusion_counts": {
+    "h417_dev_original_sha": 1336,
+    "h417_prior_train_source_sha": 135990
+  },
+  "h417_train_image_sha_disjoint": true,
+  "model_release_qualified": false,
+  "model_training_executed": false,
+  "new_images_by_domain": {
+    "slide_resize": 10000,
+    "slider": 10000,
+    "text_highlight": 10000
+  },
+  "original_9_archive_sha256": {
+    "h60-dragon-train-sheet-0000.hala.bin": "09635ac0410418ef19b6dd64d878469500d56d94cb362047b6019d2e4b811924",
+    "h60-dragon-train-slide_resize-0000.hala.bin": "3e66f34b9a1228b99c7c8866885f63eaba3848b7973b187089cf055e8d2cbf7a",
+    "h60-dragon-train-slide_resize-0001.hala.bin": "6e5ad052a460fe23eb865a15fbf83694d248970c3eb158118bb83feff4c696db",
+    "h60-dragon-train-slider-0005.hala.bin": "cbd55b0a003d0c6aafef2460ce5bc8b0321e8a4237032053a53a077901483c96",
+    "h60-dragon-train-text_highlight-0000.hala.bin": "848c0db0f4ec02036f0e5290ec3da862e3e937e301ffdd9c1e06baa8956a8117",
+    "h60-dragon-train-text_highlight-0001.hala.bin": "c07191900e1a4f17f65795381a57b12d91071d4dc580b87a6e4875293f5160af",
+    "h60-dragon-train-text_highlight-0002.hala.bin": "ae07e67f085d1749f19747af25fc3571768cc28bfda1e4ebf980ec0f207a3005",
+    "h60-dragon-train-text_highlight-0003.hala.bin": "4170b4687e462c045ecbfb7198324110a3db54d5b2b774b3fdb6bdbce3586b74",
+    "h60-dragon-train-text_highlight-0004.hala.bin": "c4824f510cb9d27bec60bed536aba81fd3fdfb50ee827c9e2a121f730a16d782"
+  },
+  "original_gui_source_rights_independently_approved": false,
+  "original_labelled_domain_action_counts": {
+    "sheet": 61381,
+    "slide_resize": 164696,
+    "slider": 126671,
+    "text_highlight": 147806
+  },
+  "original_native_action_rows_available": 500554,
+  "original_source_labelled_unique_sha": 47037,
+  "schema": "hala.h418.owner-private-30k-fresh-original-drags.v1",
+  "selected_bytes_sha256": "e7fce082d6ccd931515beacbc6cfc2455a6683c7c92566a245fda9f2182a1605",
+  "selected_training_rows": 30000,
+  "selected_unique_original_train_images": 30000,
+  "source_revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+  "source_split": "train",
+  "status": "ORIGINAL_SOURCE_BYTES_VERIFIED_MODEL_NOT_TRAINED",
+  "weights_public": false
+}
