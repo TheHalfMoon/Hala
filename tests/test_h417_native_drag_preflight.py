@@ -114,11 +114,15 @@ class H417NativeDragPreflight(unittest.TestCase):
                 self.assertFalse({x["image_sha256"] for x in train}&
                                  {x["image_sha256"] for x in dev})
                 repairs=[row for row in train if row.get("source_repair") is True]
-                self.assertEqual(len(repairs),4)
+                self.assertEqual(len(repairs),28)
                 self.assertTrue(all(r["domain"]=="slider" for r in repairs))
-                # This checks that actual JPEG bytes for every repair exist
-                # in the attached original source, not just in label JSON.
-                self.assertEqual(len({r["image_sha256"] for r in repairs}),4)
+                # The only original source sheet shard has no unseen image:
+                # reserve 24 from that curated source before repairing TRAIN.
+                sheet_dev=[r for r in dev if r["domain"]=="sheet"]
+                self.assertEqual(len(sheet_dev),24)
+                self.assertEqual(len({r["image_sha256"] for r in sheet_dev}),24)
+                self.assertEqual(sum(r["domain"]=="sheet" for r in train),2337)
+                self.assertEqual(len({r["image_sha256"] for r in repairs}),28)
                 for case in repairs+[next(r for r in train if r["kind"]=="firstparty")]:
                     image,width,height=m.source_image(case,zips)
                     self.assertGreater(width,0)
