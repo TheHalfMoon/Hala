@@ -61,9 +61,9 @@ def native_tuple(target):
 
 def source_manifest(rows_path,receipt_path,source_task_receipt):
     rows_path=Path(rows_path);receipt_path=Path(receipt_path)
-    if source.sha_file(rows_path)!=H418_ROWS_SHA:
+    if source.parent.sha_file(rows_path)!=H418_ROWS_SHA:
         raise ValueError("H420 original H418 30K TRUE source selection SHA mismatch")
-    if source.sha_file(receipt_path)!=H418_RECEIPT_SHA:
+    if source.parent.sha_file(receipt_path)!=H418_RECEIPT_SHA:
         raise ValueError("H420 prior original H418 byte-proven receipt SHA mismatch")
     prior=source.parent.strict_load(receipt_path.read_text("utf8"))
     if (prior.get("schema")!="hala.h418.owner-private-30k-fresh-original-drags.v1"
@@ -76,7 +76,7 @@ def source_manifest(rows_path,receipt_path,source_task_receipt):
         or prior.get("external_independent_ood") is not False):
         raise ValueError("H420 cannot reuse unverified source originals")
     proof_path=Path(source_task_receipt)
-    if source.sha_file(proof_path)!=H419_SOURCE_TASK_AUDIT_SHA:
+    if source.parent.sha_file(proof_path)!=H419_SOURCE_TASK_AUDIT_SHA:
         raise ValueError("H420 original 500K source-task isolation receipt changed")
     proof=source.parent.strict_load(proof_path.read_text("utf8"))
     if (proof.get("schema")!="hala.h419.private-original-source-task-isolation.v1" or
