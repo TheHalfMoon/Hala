@@ -47,7 +47,7 @@ def _parse_action(value: Any) -> tuple[str, tuple[float, float] | None]:
             return "invalid", None
     if type(value) is not dict:
         return "invalid", None
-    if value == {"abstain": True}:
+    if set(value) == {"abstain"} and type(value["abstain"]) is bool and value["abstain"] is True:
         return "abstain", None
     if set(value) != {"point_2d"}:
         return "invalid", None
