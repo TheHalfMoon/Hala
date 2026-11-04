@@ -110,6 +110,29 @@ class H422TwoPromptModelSource(unittest.TestCase):
                 from collections import Counter
                 self.assertEqual(Counter(r["domain"] for r in originals),
                     {name:quota*2 for name,quota in model.H422_SOURCE_DOMAINS.items()})
+                # Every REAL source JPEG's two distinct native drag instructions
+                # contribute to SAME optimizer update, not 2 distant steps.
+                # Arabic screens remain distinct within each four-micro step.
+                genuine_paired_steps=0
+                genuine_arabic_steps=0
+                for offset in range(0,len(order),model.GRAD_ACCUM):
+                    block=[train[i] for i in order[offset:offset+model.GRAD_ACCUM]]
+                    languages={row["language"] for row in block}
+                    if languages=={"en"}:
+                        genuine_paired_steps+=1
+                        imgs=Counter(row["image_sha256"] for row in block)
+                        self.assertEqual(sorted(imgs.values()),[2,2])
+                        for sha in imgs:
+                            a,b=[row for row in block if row["image_sha256"]==sha]
+                            self.assertNotEqual(a["body"],b["body"])
+                            self.assertNotEqual((a["start"],a["end"]),
+                                                (b["start"],b["end"]))
+                    else:
+                        genuine_arabic_steps+=1
+                        self.assertEqual(languages,{"ar"})
+                        self.assertEqual(len({x["image_sha256"] for x in block}),4)
+                self.assertEqual((genuine_paired_steps,genuine_arabic_steps),
+                                 (8000,976))
                 # Real original ZIP/Pillow JPEG bytes, not invented fixtures.
                 for item in (train[0],train[16000],train[32000],dev[-1]):
                     im,w,h=model.source_image(item,zips)
