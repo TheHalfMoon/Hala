@@ -1,0 +1,35 @@
+{
+  "excluded_h417_and_h419_train_and_dev_source_images": true,
+  "excluded_source_task_sha_of_h417_h419_models_and_dev": true,
+  "frozen_original_dev_rows_sha256": "42d93219ec4083920462d4194b175154f1f12d9b3e7b36ffd1068d8f8a4d96b9",
+  "independent_external_ood": false,
+  "min_source_coord_target_ratio": 0.153846,
+  "model_evaluation_executed": false,
+  "model_release_qualified": false,
+  "model_training_executed": false,
+  "native_pairs_by_source_family": {
+    "slide_resize": 64,
+    "slider": 64,
+    "text_highlight": 64
+  },
+  "native_two_instruction_eval_cases": 384,
+  "nine_original_source_zip_sha256": {
+    "h60-dragon-train-sheet-0000.hala.bin": "09635ac0410418ef19b6dd64d878469500d56d94cb362047b6019d2e4b811924",
+    "h60-dragon-train-slide_resize-0000.hala.bin": "3e66f34b9a1228b99c7c8866885f63eaba3848b7973b187089cf055e8d2cbf7a",
+    "h60-dragon-train-slide_resize-0001.hala.bin": "6e5ad052a460fe23eb865a15fbf83694d248970c3eb158118bb83feff4c696db",
+    "h60-dragon-train-slider-0005.hala.bin": "cbd55b0a003d0c6aafef2460ce5bc8b0321e8a4237032053a53a077901483c96",
+    "h60-dragon-train-text_highlight-0000.hala.bin": "848c0db0f4ec02036f0e5290ec3da862e3e937e301ffdd9c1e06baa8956a8117",
+    "h60-dragon-train-text_highlight-0001.hala.bin": "c07191900e1a4f17f65795381a57b12d91071d4dc580b87a6e4875293f5160af",
+    "h60-dragon-train-text_highlight-0002.hala.bin": "ae07e67f085d1749f19747af25fc3571768cc28bfda1e4ebf980ec0f207a3005",
+    "h60-dragon-train-text_highlight-0003.hala.bin": "4170b4687e462c045ecbfb7198324110a3db54d5b2b774b3fdb6bdbce3586b74",
+    "h60-dragon-train-text_highlight-0004.hala.bin": "c4824f510cb9d27bec60bed536aba81fd3fdfb50ee827c9e2a121f730a16d782"
+  },
+  "original_jpeg_media_sha_replayed": true,
+  "owner_heldout_source_image_pairs": 192,
+  "schema": "hala.h421.source-original-counterfactual-dev.v1",
+  "source": "Hcompany/DragOn original H60 TRAIN not benchmark eval",
+  "source_original_action_counts": 500554,
+  "source_revision": "3451c1fc3543c18fc3361a32bfe1f12cc69b64b5",
+  "source_target_different_instructions_and_coordinates": true,
+  "status": "SOURCE_ORIGINAL_192_PAIR_384_NATIVE_ACTION_DEV_NOT_MODEL_EVALUATED"
+}
