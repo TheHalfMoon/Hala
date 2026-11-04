@@ -114,6 +114,7 @@ def inventory(source,archives,already_train,heldout):
         raise ValueError("H418 source index or H417 exact train/DEV holdout missing")
     chosen={}
     represented=Counter()
+    original_source_hashes=set()
     total_actions=0
     excluded=Counter()
     for z in archives:
@@ -133,6 +134,8 @@ def inventory(source,archives,already_train,heldout):
             if (pair is None or len(pair)!=3 or
                 pair[1]!=filename or pair[2]!=image_sha):
                 raise ValueError("H418 original H60 labelled TRAIN JPEG not pinned to source ZIP")
+            original_source_hashes.add(image_sha)
+            represented[domain]+=1
             if image_sha in already_train:
                 excluded["h417_prior_train_source_sha"]+=1
                 continue
@@ -144,9 +147,8 @@ def inventory(source,archives,already_train,heldout):
             existing=chosen.get(image_sha)
             if existing is None or key<existing[0]:
                 chosen[image_sha]=(key,rep)
-            represented[domain]+=1
-    if total_actions!=SOURCE_ACTIONS:
-        raise ValueError("H418 real 500554 original TRAIN native actions incomplete")
+    if total_actions!=SOURCE_ACTIONS or len(original_source_hashes)!=SOURCE_IMAGE_UNIQUE:
+        raise ValueError("H418 full original 500554 actions / 47037 source images census drift")
     # Globally unique original SHA count includes H417 already-trained images.
     new_image_sha={sha for sha in chosen}
     if (len(new_image_sha)<MIN_AVAILABLE_NEW or
