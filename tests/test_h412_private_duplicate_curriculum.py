@@ -25,7 +25,7 @@ class H412CurriculumTests(unittest.TestCase):
         self.assertIs(metadata["is_private"], True)
         self.assertIs(metadata["enable_gpu"], True)
         self.assertEqual(metadata["machine_shape"], "NvidiaTeslaT4")
-        self.assertEqual(metadata["kernel_sources"], ["abdulazizshehri/hala-h409-private-balanced-ui-lora"])
+        self.assertEqual(metadata["kernel_sources"], ["abdulazizshehri/hala-h409-private-balanced-original-ui-lora"])
         self.assertEqual(metadata["dataset_sources"], [])
         self.assertEqual(metadata["model_sources"], [])
 
