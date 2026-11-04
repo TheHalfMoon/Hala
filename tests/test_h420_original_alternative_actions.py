@@ -59,6 +59,20 @@ class H420AlternativeTargets(unittest.TestCase):
         self.assertTrue(case["no_original_h417_or_h419_dev_image_or_task"])
         self.assertEqual(case["image_sha256"],IMAGE)
 
+    def test_pixel_identical_original_jpeg_alias_uses_actual_action_path(self):
+        # H60 original source contains same SHA under two distinct member
+        # names; never assume the first task and second task share filename.
+        # The actual archive member for the new action must be preserved.
+        raw=raw_second()
+        raw["image_path"]="images/slider/another-original-path.jpg"
+        rank,case=h.alternative(baseline(),raw,ZIP)
+        self.assertEqual(case["image_path"],raw["image_path"])
+        self.assertEqual(case["image_sha256"],baseline()["image_sha256"])
+        self.assertGreater(rank[0],0)
+        traversal=dict(raw,image_path="images/slider/../bad.jpg")
+        with self.assertRaises(ValueError):
+            h.alternative(baseline(),traversal,ZIP)
+
     def test_same_native_endpoint_with_different_words_is_not_new_training(self):
         self.assertIsNone(h.alternative(baseline(),raw_second(
             endpoint=500,intent="Same target with a different sentence"),ZIP))
