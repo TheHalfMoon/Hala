@@ -231,6 +231,37 @@ def output_selection(selected):
 
 
 def export(rows,root,verified_count):
+    if (type(rows) is not list or len(rows)!=ORIGINAL_TRAIN_ACTIONS
+        or verified_count!=ORIGINAL_TRAIN_ACTIONS
+        or len({r["id"] for r in rows})!=ORIGINAL_TRAIN_ACTIONS
+        or len({r["image_sha256"] for r in rows})!=ORIGINAL_PAIR_IMAGES):
+        raise ValueError("H422 genuine 16K original JPEG /32K native action proof incomplete")
+    role_counts=Counter(r["alternative_index"] for r in rows)
+    if role_counts!={0:ORIGINAL_PAIR_IMAGES,1:ORIGINAL_PAIR_IMAGES}:
+        raise ValueError("H422 all 16K original TRAIN screens need two real instructions")
+    observed={}
+    for r in rows:
+        if (r.get("schema")!=SCHEMA or r.get("split")!="train" or
+            r.get("original_source_JPEG_bytes_SHA_verified") is not True or
+            r.get("H421_unseen_source_image_excluded") is not True or
+            r.get("H417_H419_dev_source_image_task_excluded") is not True):
+            raise ValueError("H422 output image provenance / reserved DEV not qualified")
+        pair=observed.setdefault(r["image_sha256"],{})
+        if r["alternative_index"] in pair:
+            raise ValueError("H422 repeated native action for one same-JPEG source")
+        pair[r["alternative_index"]]=r
+    for image,entries in observed.items():
+        if set(entries)!={0,1}:
+            raise ValueError("H422 original same image has incomplete two-prompt pair")
+        one,two=entries[0],entries[1]
+        if (one["instruction"]==two["instruction"] or
+            native_signature(one["native_drag_completion"])[:2]==
+            native_signature(two["native_drag_completion"])[:2] or
+            one["source_zip"]!=two["source_zip"] or
+            one["source_domain"]!=two["source_domain"] or
+            one["image_width"]!=two["image_width"] or
+            one["image_height"]!=two["image_height"]):
+            raise ValueError("H422 original two tasks not instruction/target paired")
     folder=Path(root);folder.mkdir(parents=True,exist_ok=True)
     target=folder/ROWS_FILE
     receipt_file=folder/RECEIPT_FILE
