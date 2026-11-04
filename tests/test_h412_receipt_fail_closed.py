@@ -24,6 +24,17 @@ class H412ReceiptTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 verify(path)
 
+    def test_real_verified_h412_receipt_is_valid_and_source_only(self):
+        proof=verify()
+        self.assertEqual(proof["sha256"], "fa0f8b3350513d3744fa6bed882fc4907b375a28c0c67a847c3d8ae62c424574")
+        self.assertEqual(proof["status"], "COMPLETE_PRIVATE_DUPLICATE_CURRICULUM_192_STEP_LORA")
+        self.assertTrue(proof["toy_safety_gate"])
+        self.assertEqual(proof["changed_lora_tensors"], 112)
+        self.assertEqual(proof["adapter_sha256"], "fa47ff52f67dd39b7aef205351e71551716b66da55cda3b4370c981189c13066")
+        self.assertEqual(proof["h412"]["all"]["correct"], 48)
+        self.assertEqual(proof["h412"]["ambiguous"]["unsafe_clicks"], 0)
+        self.assertIn("no independent OOD", proof["source"])
+
     def test_previous_h409_is_not_h412_training(self):
         self._expect_refused(self.parent)
 
