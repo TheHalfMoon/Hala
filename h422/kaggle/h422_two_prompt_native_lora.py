@@ -937,6 +937,95 @@ def paired_source_rows(prior_train,prior_dev):
     return cases,unseen
 
 
+
+def paired_step_curriculum(train):
+    """Every genuine H60 screenshot's TWO different native drags are trained
+    in the SAME four-microbatch optimizer step.
+
+    8000 steps each contain 2 original screenshots x 2 source-authentic
+    contrasting instructions, plus 976 interleaved original Arabic-browser
+    four-example steps. Each AR source JPEG contributes 4 gradient examples,
+    with NO duplicate AR screenshot within a single step. True 35,904
+    image-conditioned passes and 8,976 optimizer steps remain unchanged.
+
+    This uses only ORIGINAL source-qualified TRAIN examples; old H417/H419
+    source DEV and H421 192 entirely unseen counterfactual DEV are excluded
+    by prepare_h422()/paired_source_rows before we ever form the curriculum.
+    """
+    if type(train) is not list or len(train)!=(
+            H422_NATIVE_ORIGINAL_ACTION_N+H422_AR_TRAIN_N):
+        raise ValueError("H422 paired-source curriculum requires actual 32976 original action rows")
+    groups={}
+    arabic=[]
+    all_images=set()
+    for i,c in enumerate(train):
+        image_sha=c.get("image_sha256")
+        if (type(image_sha) is not str or len(image_sha)!=64
+            or c.get("language") not in ("en","ar")):
+            raise ValueError("H422 original source pair SHA or language malformed")
+        if c["language"]=="ar":
+            if c.get("kind")!="firstparty":
+                raise ValueError("H422 Arabic research repeats require original browser source")
+            if image_sha in all_images:
+                raise ValueError("H422 Arabic TRAIN source repeated, unsafe same-step oversampling")
+            all_images.add(image_sha)
+            arabic.append(i)
+        else:
+            if c.get("kind")!="original":
+                raise ValueError("H422 source paired native actions must use original H60 JPEG")
+            groups.setdefault(image_sha,[]).append(i)
+    if (len(groups)!=H422_ORIGINAL_SCREEN_N
+        or len(arabic)!=H422_AR_TRAIN_N
+        or len(all_images)!=H422_AR_TRAIN_N
+        or all_images & set(groups)):
+        raise ValueError("H422 original H60 16K pair images or real AR source count drift")
+    pairs=[]
+    for image_sha in sorted(groups):
+        indices=groups[image_sha]
+        if len(indices)!=2:
+            raise ValueError("H422 original source same image missing contrasting native instruction")
+        first,second=(train[i] for i in indices)
+        if (first.get("body")==second.get("body")
+            or first.get("start")==second.get("start") and
+               first.get("end")==second.get("end")
+            or first.get("domain")!=second.get("domain")
+            or first.get("id")==second.get("id")):
+            raise ValueError("H422 same-original JPEG requires two REAL different tasks and endpoints")
+        pairs.append(tuple(indices))
+    rng=random.Random(H422_SEED)
+    rng.shuffle(pairs)
+    if len(pairs)%2:
+        raise ValueError("H422 source-paired training needs two images per optimizer step")
+    steps=[tuple(pairs[j]+pairs[j+1]) for j in range(0,len(pairs),2)]
+    if len(steps)!=H422_ORIGINAL_SCREEN_N//2:
+        raise ValueError("H422 8000 source two-image paired optimizer steps absent")
+    # One image contributes once to each of four AR cycles; rotations
+    # guarantee four distinct Arabic screenshots within EVERY optimizer step.
+    rng.shuffle(arabic)
+    stride=H422_AR_TRAIN_N//(H422_AR_REPEAT+1)
+    if stride*(H422_AR_REPEAT+1)!=H422_AR_TRAIN_N:
+        raise ValueError("H422 original Arabic source count cannot form distinct quartets")
+    for i in range(H422_AR_TRAIN_N):
+        row=tuple(arabic[(i+k*stride)%len(arabic)]
+                  for k in range(H422_AR_REPEAT+1))
+        if len(set(row))!=GRAD_ACCUM:
+            raise ValueError("H422 duplicated genuine Arabic screenshot within one optimizer step")
+        steps.append(row)
+    if len(steps)!=H422_OPT_STEPS:
+        raise ValueError("H422 genuine source original+Arabic optimizer steps changed")
+    rng.shuffle(steps)
+    order=[i for step in steps for i in step]
+    counts={}
+    for index in order:
+        counts[index]=counts.get(index,0)+1
+    if (len(order)!=H422_GRAD_EXAMPLES
+        or any(counts.get(i)!=1 for i in range(H422_NATIVE_ORIGINAL_ACTION_N))
+        or any(counts.get(i)!=H422_AR_REPEAT+1
+               for i in range(H422_NATIVE_ORIGINAL_ACTION_N,len(train)))):
+        raise ValueError("H422 exact original native paired and AR gradient samples drift")
+    return order
+
+
 def prepare_h422():
     zips,extra,old_train,old_dev,_,_,_=h419_prepare_sources()
     try:
@@ -954,11 +1043,9 @@ def prepare_h422():
             or unique_imgs&{c["image_sha256"] for c in old_dev}
             or unique_imgs&heldout):
             raise ValueError("H422 true 16K paired original+Arabic train DEV disjoint violated")
-        order=list(range(len(train)))
-        order += [i for i,c in enumerate(train) if c["language"]=="ar"]*H422_AR_REPEAT
+        order=paired_step_curriculum(train)
         if len(order)!=H422_GRAD_EXAMPLES or len(order)%GRAD_ACCUM:
-            raise ValueError("H422 proposed real 35904 image-conditioned gradient passes drift")
-        random.Random(H422_SEED).shuffle(order)
+            raise ValueError("H422 source-paired genuine 35904 gradient passes drift")
         return zips,extra,train,old_dev,order
     except BaseException:
         for z in extra:z.close()
@@ -1007,6 +1094,9 @@ def run_h422():
           h419_parent_research_gate_passed=True,
           h422_native_paired_original_action_samples=H422_NATIVE_ORIGINAL_ACTION_N,
           h422_native_paired_distinct_source_jpegs=H422_ORIGINAL_SCREEN_N,
+          h422_same_jpeg_two_prompt_optimizer_steps=H422_ORIGINAL_SCREEN_N//2,
+          h422_distinct_arabic_optimizer_steps=H422_AR_TRAIN_N,
+          h422_original_pair_microbatch_adjacency_verified=True,
           h422_owner_original_arabic_browser_train_images=H422_AR_TRAIN_N,
           h422_native_train_source_unique_images=H422_UNIQUE_ORIGINAL_AND_AR_IMAGE_N,
           h422_real_gradient_example_budget=H422_GRAD_EXAMPLES,
