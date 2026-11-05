@@ -104,3 +104,27 @@ python -m h426.full_processor_contract --tokenizer-snapshot 'D:\Public-Qwen-Veri
 ```
 
 The supplied example path is illustrative, **not a claim that this directory exists**. Passing source-level tests, the prior original 32K tokenizer-only preflight or GitHub CI alone does NOT qualify the real full image processor, newly trained H426 model, independent blinded bilingual OOD, rights permissions or production release.
+
+
+## H426/H425 paired source-level loss bridge (2026-11-06; NOT trained)
+
+`h426/h425_loss_bridge.py` now imports the **unchanged H425 generated training implementation** and its `coordinate_weighted_loss`, then calculates the new H426 `proposed_h426_weighted_ce` on the exact **same** model output, assistant-only label tensor and original `case["domain"]`. It returns two differentiable loss tensors for research inspection but has **no optimizer, backward(), checkpoint, dataset fetch, GPU job or model release code**. It rejects incorrectly shaped single-screenshot identities, nonlowercase screenshot SHA, non-EN/AR cases, fragmented supervision suffix, unmasked prompt/image tokens, illegal negative/out-of-range target IDs, mismatched output-vs-label length and nonfinite *supervised* logits. It avoids scanning huge unsupervised Qwen vocabulary logits to stay bounded on a Tesla T4.
+
+It also exposes `original_vs_target_weight_diagnostic(pieces, domain)` for **Torch-free CI**. On a public synthetic native drag JSON target with character-level tokens, the original H425 numeric-token weighting incorrectly also includes the four numeric characters of `normalized_1000`, whereas H426 weights only the real coordinate numeric spans: slider start/end=8; slide_resize end=16; text_highlight both=12. This is a source-level weight-distribution proof only, not a measured improvement on the model.
+
+**Research call site** (only after independently verified real image source, authentic trained H425 adapter/receipt, rights-qualified source, and a controlled GPU setup; this snippet is NOT an executed run):
+
+```python
+from h426.h425_loss_bridge import compare_original_h425_to_h426
+# H425's original source_image/to_inputs have already verified image bytes and
+# constructed real Qwen pixel-conditioned assistant-only labels.
+batch, labels = h425.to_inputs(processor, row, source_zips)
+output = model(**batch)  # H425 authenticated trained model, read-only comparison
+proof = compare_original_h425_to_h426(output, labels, processor, row)
+# Optional research logging: aggregate loss values only, NEVER private row.
+# Do not call backward(), optimizer.step(), publish weights or leak source rows.
+```
+
+**Owner-independent CPU mathematical cross-check**, using hand-constructed synthetic Torch logits with an intentionally difficult drag endpoint (not a model forward, original screenshot, true source label or clinical score), gave original H425 weighted CE 2.608814 and H426 weighted CE **2.837483 for slider, 3.954996 for slide_resize, 3.216238 for text_highlight**. In the synthetic H426 slide_resize objective, the actual Torch gradient was finite and nonzero. These are *toy-example mathematical objective numbers only*, do **not** indicate any observed Qwen accuracy improvement, and are not a run of the complete `h426/h425_loss_bridge.py` on a real source/model batch.
+
+`tests/test_h426_h425_loss_bridge.py` includes Torch-free original/H426 coordinate weight-contrast and source-provenance negative tests (runnable under existing GitHub CI), plus optional actual differentiable Torch comparisons and strict label/finiteness negatives. Existing GitHub CI has no Torch and transparently skips actual Torch tests; this must **never be reported as real H426 trained-model qualification**. The sealed external bilingual OOD custodian (#385) and independent rendered-screenshot/derivative-weight TRAIN rights review (#384) remain unresolved, H199 admitted manifest allowlist is empty, and H426 has not trained a model.
