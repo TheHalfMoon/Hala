@@ -63,6 +63,22 @@ def check(processor, image, request: str, answer: str, domain: str):
     for batch in (original, completed):
         if "pixel_values" not in batch or "image_grid_thw" not in batch:
             raise ValueError("H426 REAL image patch/grid absent from processor")
+        pixels, grid = batch["pixel_values"], batch["image_grid_thw"]
+        if pixels is None or grid is None:
+            raise ValueError("H426 REAL image patch/grid empty")
+        if hasattr(pixels, "numel") and pixels.numel() == 0:
+            raise ValueError("H426 REAL image patch/grid empty")
+        if hasattr(grid, "tolist"):
+            grid = grid.tolist()
+        if (not isinstance(grid, list) or len(grid) != 1
+            or not isinstance(grid[0], list) or len(grid[0]) != 3
+            or any(type(v) is not int or v <= 0 for v in grid[0])):
+            raise ValueError("H426 REAL image patch/grid malformed")
+    def grid_values(batch):
+        grid = batch["image_grid_thw"]
+        return grid.tolist() if hasattr(grid, "tolist") else grid
+    if grid_values(original) != grid_values(completed):
+        raise ValueError("H426 REAL image grid drift between head and full")
     tokenizer = processor.tokenizer
     image_token = tokenizer.convert_tokens_to_ids("<|image_pad|>")
     if (type(image_token) is not int or image_token < 0
