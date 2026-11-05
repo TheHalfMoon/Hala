@@ -56,6 +56,37 @@ class H426IdentityAndBoundary(unittest.TestCase):
             with self.subTest(row=str(row)[:80]), self.assertRaises(ValueError):
                 bridge.source_case_identity(row)
 
+    def test_cpu_only_original_numeric_vs_target_weights_are_distinct(self):
+        original=json.dumps({
+            "type":"drag","start_point":[100,250],
+            "end_point":[850,520],"ordered":True,
+            "coordinate_space":"normalized_1000"
+        },separators=(",",":"))
+        pieces=list(original)+["<|im_end|>"]
+        expected={
+            "slide_resize":(6,6,0),
+            "text_highlight":(0,0,12),
+            "slider":(12,0,0),
+        }
+        for domain,(eights,sixteens,twelves) in expected.items():
+            with self.subTest(domain=domain):
+                out=bridge.original_vs_target_weight_diagnostic(pieces,domain)
+                self.assertEqual(out["tokens"],len(pieces))
+                self.assertEqual(out["h425_numeric_weight_8_tokens"],16)
+                self.assertEqual(out["h426_weight_8_tokens"],eights)
+                self.assertEqual(out["h426_weight_12_tokens"],twelves)
+                self.assertEqual(out["h426_weight_16_tokens"],sixteens)
+                self.assertNotEqual(out["h426_weight_sum"],out["h425_weight_sum"])
+                self.assertFalse(out["model_inference_or_training"])
+                self.assertFalse(out["original_private_data_included"])
+
+    def test_cpu_weight_diagnostic_refuses_an_unparseable_source_target(self):
+        for pieces,dom in ((["garbage"],"slider"),
+                           ([], "slider"),
+                           (["valid"],"unknown")):
+            with self.subTest(domain=dom), self.assertRaises(ValueError):
+                bridge.original_vs_target_weight_diagnostic(pieces,dom)
+
     def test_no_backend_launch_or_model_publication(self):
         text=(ROOT/"h426/h425_loss_bridge.py").read_text("utf8")
         self.assertIn("h425_h417_replay_paired.py",text)
