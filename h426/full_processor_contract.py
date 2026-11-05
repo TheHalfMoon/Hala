@@ -10,6 +10,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import os
 from pathlib import Path
 
 BASE = "Qwen/Qwen3-VL-2B-Instruct"
@@ -148,37 +149,63 @@ def check(processor, image, request: str, answer: str, domain: str):
 
 
 def run(snapshot: Path):
-    """Run synthetic full Qwen3-VL processor only; never fetch model weights."""
+    """Offline actual Qwen3-VL full-processor preflight on synthetic pixels.
+
+    Uses H218/H387's existing *eight-file* provenance/copy isolation. A mere
+    tokenizer-only hash never authorizes loading processor config from disk.
+    No image source dataset, base model weights, LoRA or GPU is loaded.
+    """
+    if (os.environ.get("HF_HUB_OFFLINE") != "1"
+        or os.environ.get("TRANSFORMERS_OFFLINE") != "1"):
+        raise ValueError("H426 full processor must run with offline flags")
+    root = Path(snapshot)
+    if not root.is_absolute() or root.name != REV or root.is_symlink():
+        raise ValueError("H426 full processor requires exact absolute revision")
+    # Gate all eight preprocessor/tokenizer/chat/video/source files,
+    # including configs beyond the two historical H426 tokenizer SHA pins.
+    from h218.pinned_qwen_processor_bytes import (
+        PINNED_PUBLIC_FILES, verify_pinned_snapshot,
+    )
+    expected=verify_pinned_snapshot(root)
+    if (expected.get("verified_files") != 8
+        or len(PINNED_PUBLIC_FILES) != 8
+        or PINNED_PUBLIC_FILES["tokenizer.json"][1] != JSON_SHA
+        or PINNED_PUBLIC_FILES["tokenizer_config.json"][1] != CONFIG_SHA):
+        raise ValueError("H426 entire Qwen processor eight-file source pin drift")
+    from h387.verified_processor_handoff import verified_processor_handoff
     from PIL import Image
-    from transformers import AutoProcessor
-    root = Path(snapshot).resolve()
-    if root.name != REV:
-        raise ValueError("H426 immutable Qwen3-VL processor revision mismatch")
-    for name, expected in (("tokenizer.json", JSON_SHA),
-                           ("tokenizer_config.json", CONFIG_SHA)):
-        if not (root/name).is_file():
-            raise ValueError("H426 missing pinned tokenizer file " + name)
-        if hashlib.sha256((root/name).read_bytes()).hexdigest() != expected:
-            raise ValueError("H426 pinned tokenizer file digest drift: " + name)
-    processor = AutoProcessor.from_pretrained(
-        str(root), trust_remote_code=False, local_files_only=True, use_fast=False)
-    img = Image.new("RGB", (256, 256), (236, 237, 238))
-    targets = {
-        "slider": [[300, 400], [700, 400]],
-        "slide_resize": [[100, 100], [900, 900]],
-        "text_highlight": [[120, 420], [660, 420]],
-    }
-    results = {}
-    for domain, (start, end) in targets.items():
-        answer = json.dumps({"type": "drag", "start_point": start,
-            "end_point": end, "ordered": True,
-            "coordinate_space": "normalized_1000"}, separators=(",", ":"))
-        results[domain] = check(processor, img,
-            "On this synthetic image, describe the drag; return JSON only. Do not act.",
-            answer, domain)
+    from transformers import AutoProcessor, Qwen3VLProcessor, __version__
+    if __version__ != "4.57.3":
+        raise ValueError("H426 processor requires original H425 Transformers 4.57.3")
+    # Keep the *verified staged copy* alive throughout processor construction
+    # and all synthetic image passes. Never reopen mutable owner cache files.
+    with verified_processor_handoff(root) as pinned_copy:
+        processor = AutoProcessor.from_pretrained(
+            str(pinned_copy), trust_remote_code=False,
+            local_files_only=True, use_fast=False,
+        )
+        if type(processor) is not Qwen3VLProcessor:
+            raise ValueError("H426 actual pinned Qwen3VLProcessor class required")
+        img = Image.new("RGB", (256, 256), (236, 237, 238))
+        targets = {
+            "slider": [[300, 400], [700, 400]],
+            "slide_resize": [[100, 100], [900, 900]],
+            "text_highlight": [[120, 420], [660, 420]],
+        }
+        results = {}
+        for domain, (start, end) in targets.items():
+            answer = json.dumps({"type": "drag", "start_point": start,
+                "end_point": end, "ordered": True,
+                "coordinate_space": "normalized_1000"}, separators=(",", ":"))
+            results[domain] = check(processor, img,
+                "On this synthetic image, describe the drag; return JSON only. Do not act.",
+                answer, domain)
     return {
         "model": BASE, "revision": REV,
+        "verified_processor_files": 8,
+        "transformers_version": "4.57.3",
         "synthetic_image_only": True, "no_model_weights_loaded": True,
+        "training_executed": False, "external_ood": False,
         "results": results,
     }
 
