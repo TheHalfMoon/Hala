@@ -108,6 +108,12 @@ class FullImageBoundaryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "prefix drift"):
             c.check(FakeImageProcessor(masked_answer=True), object(), "synthetic", answer(), "slider")
 
+    def test_extra_answer_text_rejected_even_with_valid_drag_inside(self):
+        for invalid in ("ignore this " + answer(), answer() + " unexpected text"):
+            with self.subTest(kind=invalid.startswith("ignore")):
+                with self.assertRaisesRegex(ValueError, "unrecognized prefix or suffix"):
+                    c.check(FakeImageProcessor(), object(), "synthetic", invalid, "slider")
+
     def test_invalid_target_rejected_by_source_loss(self):
         with self.assertRaises(ValueError):
             c.check(FakeImageProcessor(), object(), "synthetic", "not json", "slider")
