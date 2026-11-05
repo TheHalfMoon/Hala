@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
 
 BASE = "Qwen/Qwen3-VL-2B-Instruct"
@@ -74,6 +75,34 @@ def check(processor, image, request: str, answer: str, domain: str):
             or not isinstance(grid[0], list) or len(grid[0]) != 3
             or any(type(v) is not int or v <= 0 for v in grid[0])):
             raise ValueError("H426 REAL image patch/grid malformed")
+    # H216 already established that identical visual grid metadata is NOT
+    # sufficient: the real pixel tensors can differ, or contain NaN/Infinity.
+    # Refuse supervision unless model-visible pixel payloads are identical
+    # and finite in both the H425 header and completed-answer passes.
+    before_pixels = original["pixel_values"]
+    after_pixels = completed["pixel_values"]
+    if callable(getattr(before_pixels, "numel", None)):
+        if not callable(getattr(after_pixels, "numel", None)):
+            raise ValueError("H426 visual tensor representation drift")
+        import torch
+        if (before_pixels.numel() <= 0
+            or before_pixels.numel() != after_pixels.numel()
+            or not torch.equal(before_pixels, after_pixels)
+            or not bool(torch.isfinite(before_pixels).all().item())):
+            raise ValueError("H426 image processor pixels unequal or nonfinite")
+    elif type(before_pixels) is list and type(after_pixels) is list:
+        # Explicit synthetic fake-processor pathway for source-only CI.
+        # Real AutoProcessor(..., return_tensors='pt') supplies tensors.
+        def finite_nested(values):
+            if type(values) is list:
+                return bool(values) and all(finite_nested(v) for v in values)
+            return type(values) in (int, float) and math.isfinite(values)
+        if (before_pixels != after_pixels
+            or not finite_nested(before_pixels)
+            or not finite_nested(after_pixels)):
+            raise ValueError("H426 image processor pixels unequal or nonfinite")
+    else:
+        raise ValueError("H426 image processor unexpected pixel representation")
     def grid_values(batch):
         grid = batch["image_grid_thw"]
         return grid.tolist() if hasattr(grid, "tolist") else grid
