@@ -168,6 +168,20 @@ class TorchRealH425BridgeEvidence(unittest.TestCase):
             bridge.compare_original_h425_to_h426(
                 model,labels,SyntheticProcessor(),case())
 
+    def test_refuse_unmasked_source_prompt_even_if_assistant_is_valid(self):
+        model,labels=make_batch()
+        labels[0,0]=77
+        with self.assertRaisesRegex(ValueError,"leaked prompt"):
+            bridge.compare_original_h425_to_h426(
+                model,labels,SyntheticProcessor(),case())
+
+    def test_refuse_negative_token_id_outside_ignore_mask(self):
+        model,labels=make_batch()
+        labels[0,-1]=-1
+        with self.assertRaisesRegex(ValueError,"malformed labels"):
+            bridge.compare_original_h425_to_h426(
+                model,labels,SyntheticProcessor(),case())
+
     def test_refuse_bad_logit_alignment(self):
         model,labels=make_batch()
         model.logits=model.logits[:,:-1,:]
