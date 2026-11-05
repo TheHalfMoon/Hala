@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
-import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,8 +89,12 @@ def compare_original_h425_to_h426(output, labels, processor, case):
     original_indices = torch.nonzero(keep[0], as_tuple=False).flatten().tolist()
     if original_indices != list(range(original_indices[0], keep.shape[1])):
         raise ValueError("H426 H425 assistant supervision suffix fragmented")
-    if (not bool(torch.isfinite(logits).all().item())
-        or int(torch.min(labels[keep.new_ones(labels.shape, dtype=torch.bool)]).item()) < -100):
+    # Only inspect the supervised logits, not the full multi-million-token
+    # visual sequence's gigantic vocabulary tensor (T4 memory matters).
+    targets = labels[:, 1:][keep]
+    if (bool((labels < -100).any().item())
+        or bool((targets >= logits.shape[2]).any().item())
+        or not bool(torch.isfinite(logits[:, :-1, :][keep]).all().item())):
         raise ValueError("H426 H425 source tensors nonfinite or malformed labels")
     h425 = _load_source_module("h426_actual_h425_source", H425_SOURCE)
     h426 = _load_source_module("h426_target_loss_source", H426_SOURCE)
