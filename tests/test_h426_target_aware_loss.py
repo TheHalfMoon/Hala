@@ -76,6 +76,18 @@ class H426OriginalCoordinateWeights(unittest.TestCase):
             with self.subTest(v=a),self.assertRaises(ValueError):
                 m.source_coordinate_token_weights(a,"slider")
 
+    def test_duplicate_native_coordinate_or_metadata_keys_rejected(self):
+        original="".join(parts()[:-1])
+        duplicates=(
+            original.replace(',"end_point"', ',"start_point":[999,999],"end_point"'),
+            original.replace(',"coordinate_space"', ',"ordered":false,"coordinate_space"'),
+            original.replace(',"end_point"', ',"end_point":[100,100],"end_point"'),
+        )
+        for answer in duplicates:
+            with self.subTest(duplicated=answer), self.assertRaisesRegex(
+                    ValueError, "duplicate supervised native JSON field"):
+                m.source_coordinate_token_weights([answer,"<|im_end|>"],"slide_resize")
+
     def test_unseen_domain_or_token_missing_rejected(self):
         with self.assertRaises(ValueError):
             m.source_coordinate_token_weights(parts(),"unknown")
