@@ -60,6 +60,37 @@ def _load_source_module(name, path):
     return module
 
 
+def original_vs_target_weight_diagnostic(token_pieces, domain):
+    """Deterministic H425/H426 per-token weight contrast; NO Torch/weights.
+
+    Pure source experiment for CI environments without PyTorch. Repeats the
+    literal original H425 8-if-any-digit baseline, not a new model score.
+    Input token text remains in caller memory; output only aggregates.
+    """
+    if type(domain) is not str or domain not in DOMAINS:
+        raise ValueError("H426 H425 diagnostic domain invalid")
+    if type(token_pieces) is not list:
+        raise ValueError("H426 H425 diagnostic token parts missing")
+    h426 = _load_source_module("h426_weight_diagnostic", H426_SOURCE)
+    new = h426.source_coordinate_token_weights(token_pieces, domain)
+    old = [8.0 if any(ch.isdigit() for ch in segment) else 1.0
+           for segment in token_pieces]
+    if len(old) != len(new) or not old:
+        raise ValueError("H426 H425 diagnostic token count invalid")
+    return {
+        "domain": domain,
+        "tokens": len(old),
+        "h425_numeric_weight_8_tokens": sum(v == 8.0 for v in old),
+        "h426_weight_8_tokens": sum(v == 8.0 for v in new),
+        "h426_weight_12_tokens": sum(v == 12.0 for v in new),
+        "h426_weight_16_tokens": sum(v == 16.0 for v in new),
+        "h425_weight_sum": sum(old),
+        "h426_weight_sum": sum(new),
+        "model_inference_or_training": False,
+        "original_private_data_included": False,
+    }
+
+
 def compare_original_h425_to_h426(output, labels, processor, case):
     """Return two live differentiable Torch loss scalars for one native drag.
 
