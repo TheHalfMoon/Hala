@@ -25,12 +25,14 @@ class FakeImageProcessor:
     tokenizer = FakeTokenizer()
 
     def __init__(self, *, shift=False, omit_patch=False, leak_image=False,
-                 hide_grid=False, masked_answer=False):
+                 hide_grid=False, masked_answer=False, malformed_grid=False, drift_grid=False):
         self.shift = shift
         self.omit_patch = omit_patch
         self.leak_image = leak_image
         self.hide_grid = hide_grid
         self.masked_answer = masked_answer
+        self.malformed_grid = malformed_grid
+        self.drift_grid = drift_grid
 
     def apply_chat_template(self, msgs, *, tokenize, add_generation_prompt):
         if tokenize:
@@ -59,7 +61,7 @@ class FakeImageProcessor:
         out = {"input_ids": [tokens], "attention_mask": [attention],
                "pixel_values": [[0.5]]}
         if not self.hide_grid:
-            out["image_grid_thw"] = [[1, 2, 2]]
+            out["image_grid_thw"] = [[1, 0, 2]] if self.malformed_grid else ([[1, 3, 2]] if self.drift_grid and is_full else [[1, 2, 2]])
         return out
 
 
@@ -93,6 +95,14 @@ class FullImageBoundaryTests(unittest.TestCase):
     def test_missing_image_grid_rejected(self):
         with self.assertRaisesRegex(ValueError, "patch/grid"):
             c.check(FakeImageProcessor(hide_grid=True), object(), "synthetic", answer(), "slider")
+
+    def test_malformed_grid_rejected(self):
+        with self.assertRaisesRegex(ValueError, "grid malformed"):
+            c.check(FakeImageProcessor(malformed_grid=True), object(), "synthetic", answer(), "slider")
+
+    def test_grid_drift_rejected(self):
+        with self.assertRaisesRegex(ValueError, "grid drift"):
+            c.check(FakeImageProcessor(drift_grid=True), object(), "synthetic", answer(), "slider")
 
     def test_masked_final_answer_rejected(self):
         with self.assertRaisesRegex(ValueError, "prefix drift"):
