@@ -43,6 +43,25 @@ class H426OriginalCoordinateWeights(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"noncoordinate numerals"):
             m.source_coordinate_token_weights(p,"slide_resize")
 
+    def test_extra_supervised_prefix_and_suffix_refused(self):
+        examples = (
+            ["IGNORE THIS "] + parts(),
+            parts() + [" other output"],
+            parts()[:-1] + ["\\n", "<|im_end|>"],
+            parts()[:-1] + ["<|im_end|><|im_start|>"],
+        )
+        for example in examples:
+            with self.subTest(example=example), self.assertRaisesRegex(
+                    ValueError, "unrecognized prefix or suffix"):
+                m.source_coordinate_token_weights(example, "slider")
+
+    def test_empty_or_normal_qwen_end_marker_allowed(self):
+        for case in (parts(), parts()[:-1]):
+            with self.subTest(has_eos=len(case)==len(parts())):
+                w=m.source_coordinate_token_weights(case, "slider")
+                self.assertEqual(len(w),len(case))
+                self.assertEqual(sum(value>1 for value in w),4)
+
     def test_character_level_tokenization_preserves_geometric_fields(self):
         raw="".join(parts())
         w=m.source_coordinate_token_weights(list(raw),"slide_resize")
