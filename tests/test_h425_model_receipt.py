@@ -240,3 +240,14 @@ class H425FailClosedReceiptContract(unittest.TestCase):
                 for obj in extra:obj.close()
                 for obj in zips.values():
                     if isinstance(obj,zipfile.ZipFile):obj.close()
+
+    def test_owner_postgpu_download_requires_full_page_and_complete_status(self):
+        """Kaggle defaults to 20 output files, but eight checkpoints alone
+        account for 16 safetensors/config files; require all private bytes.
+        """
+        script=(ROOT/"h425/owner_verify_private_gpu.ps1").read_text("utf8")
+        self.assertIn("KernelWorkerStatus\\.COMPLETE",script)
+        self.assertIn("kaggle kernels output $Slug --path $OutputRoot --page-size 200",script)
+        self.assertIn("Get-FileHash -LiteralPath $ReceiptPath -Algorithm SHA256",script)
+        self.assertIn("--checkpoints-root $Checkpoints",script)
+        self.assertIn("--sources $SourceRoot",script)

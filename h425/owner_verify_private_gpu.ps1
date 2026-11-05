@@ -19,7 +19,10 @@ if ($StatusText -notmatch 'KernelWorkerStatus\.COMPLETE') {
     throw "H425 Kaggle provider is not COMPLETE; refusing download/qualification"
 }
 New-Item -ItemType Directory -Force -Path $OutputRoot | Out-Null
-& kaggle kernels output $Slug --path $OutputRoot
+# Download the entire private adapter+eight-checkpoint tree in a single API page.
+# Kaggle CLI defaults to page-size 20: 8 checkpoints (16 files), final
+# adapter (2) and receipt+SHA (2), plus notebook output/logs can exceed 20.
+& kaggle kernels output $Slug --path $OutputRoot --page-size 200
 if ($LASTEXITCODE -ne 0) { throw "H425 Kaggle provider output download failed" }
 $Output = Join-Path $OutputRoot "h425-owner-private-h417-replay-paired-native"
 $ReceiptPath = Join-Path $Output "receipt.json"
