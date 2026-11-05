@@ -27,7 +27,8 @@ class FakeImageProcessor:
 
     def __init__(self, *, shift=False, omit_patch=False, leak_image=False,
                  hide_grid=False, masked_answer=False, malformed_grid=False,
-                 drift_grid=False, oversized_grid=False, missing_merge=False):
+                 drift_grid=False, oversized_grid=False, missing_merge=False,
+                 changed_pixels=False, nonfinite_pixels=False):
         self.shift = shift
         self.omit_patch = omit_patch
         self.leak_image = leak_image
@@ -36,6 +37,8 @@ class FakeImageProcessor:
         self.malformed_grid = malformed_grid
         self.drift_grid = drift_grid
         self.oversized_grid = oversized_grid
+        self.changed_pixels = changed_pixels
+        self.nonfinite_pixels = nonfinite_pixels
         if missing_merge:
             self.image_processor = None
 
@@ -63,8 +66,10 @@ class FakeImageProcessor:
         attention = [1] * len(tokens)
         if is_full and self.masked_answer:
             attention[-1] = 0
+        pixel = float("inf") if self.nonfinite_pixels else (
+            0.75 if self.changed_pixels and is_full else 0.5)
         out = {"input_ids": [tokens], "attention_mask": [attention],
-               "pixel_values": [[0.5]]}
+               "pixel_values": [[pixel]]}
         if not self.hide_grid:
             out["image_grid_thw"] = ([[1, 0, 2]] if self.malformed_grid else
                 ([[1, 3, 2]] if self.drift_grid and is_full else
@@ -98,6 +103,16 @@ class FullImageBoundaryTests(unittest.TestCase):
     def test_image_token_leaking_into_supervision_rejected(self):
         with self.assertRaisesRegex(ValueError, "supervised"):
             c.check(FakeImageProcessor(leak_image=True), object(), "synthetic", answer(), "slider")
+
+    def test_equal_grid_but_changed_visual_pixel_values_rejected(self):
+        with self.assertRaisesRegex(ValueError, "pixels unequal or nonfinite"):
+            c.check(FakeImageProcessor(changed_pixels=True), object(),
+                    "synthetic", answer(), "slider")
+
+    def test_nonfinite_visual_pixels_rejected_even_if_equal(self):
+        with self.assertRaisesRegex(ValueError, "pixels unequal or nonfinite"):
+            c.check(FakeImageProcessor(nonfinite_pixels=True), object(),
+                    "synthetic", answer(), "slider")
 
     def test_missing_image_grid_rejected(self):
         with self.assertRaisesRegex(ValueError, "patch/grid"):
