@@ -36,7 +36,8 @@ class H426IdentityAndBoundary(unittest.TestCase):
     def test_real_h425_shape_and_provenance_are_required(self):
         x=bridge.source_case_identity(case())
         self.assertEqual(x["domain"],"slide_resize")
-        self.assertEqual(len(x["source_identity_sha"]),64)
+        self.assertEqual(len(x["id_sha256"]),64)
+        self.assertEqual(x["image_sha256"],case()["image_sha256"])
         self.assertNotIn("id",x)
         self.assertNotIn("body",x)
 
