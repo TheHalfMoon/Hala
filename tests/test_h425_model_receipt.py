@@ -196,3 +196,47 @@ class H425FailClosedReceiptContract(unittest.TestCase):
             self.assertFalse(state["all_eight_intermediate_checkpoint_shas_verified"])
             with self.assertRaisesRegex(ValueError,"safetensors SHA or size"):
                 v.verify(directory,checkpoints_root=directory)
+
+    def test_owner_real_original_h417_parent_240_jpeg_score_replay_optional(self):
+        """Critical H425 validator path: recompute true H417 source original model
+        predictions with original old144/fresh96 JPEG bytes, no GPU/training.
+        """
+        import os
+        import zipfile
+        from unittest.mock import patch
+        src=os.environ.get("H425_OWNER_SOURCE_ROOT")
+        rec=os.environ.get("H425_OWNER_H419_RECEIPT")
+        if not src or not rec:
+            self.skipTest("Requires original privately held 240-case H419 receipt and nine source ZIPs")
+        raw=Path(rec).read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+          "f8c491d8522a8349974d05318fded7cbe0349478be27efcbb118a8efdcfa37ac")
+        original=json.loads(raw)
+        h=v.MODEL
+        root=Path(src)
+        paired=Path(os.environ["H425_OWNER_PAIRED_ROOT"])
+        h421=Path(os.environ["H425_OWNER_H421_ROOT"])
+        files={
+          **{name:root/"h415"/name for name,_ in h.SOURCE_SHAS.values()},
+          **{name:root/"h418"/name for name in h.H419_EXTRA_SHAS},
+          h.BIL_FILE:root/"h415"/h.BIL_FILE,
+          h.CURRIC_FILE:root/"h415"/h.CURRIC_FILE,
+          h.H418_ROWS:root/"new-30k"/h.H418_ROWS,
+          h.H418_RECEIPT_FILE:root/"new-30k"/h.H418_RECEIPT_FILE,
+          h.H422_ROWS_FILE:paired/h.H422_ROWS_FILE,
+          h.H422_RECEIPT_FILE:paired/h.H422_RECEIPT_FILE,
+          h.H421_DEV_FILE:h421/h.H421_DEV_FILE}
+        self.assertFalse([key for key,p in files.items() if not p.is_file()])
+        with patch.object(h,"only_input_file",side_effect=lambda name:files[name]):
+            zips,extra,train,dev,order=h.h425_prepare_source()
+            try:
+                self.assertEqual(len(dev),240)
+                self.assertEqual(len(order),50784)
+                scored=v._metrics(original["parent_dev_exact"],reference=dev,zips=zips)
+                self.assertEqual(scored,original["parent_dev"])
+                self.assertEqual(scored["all"],{"n":240,"correct":94,"valid":240})
+                self.assertEqual(scored["ar"],{"n":24,"correct":24,"valid":24})
+            finally:
+                for obj in extra:obj.close()
+                for obj in zips.values():
+                    if isinstance(obj,zipfile.ZipFile):obj.close()
