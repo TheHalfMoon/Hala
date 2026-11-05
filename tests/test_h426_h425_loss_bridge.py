@@ -115,7 +115,9 @@ class TorchRealH425BridgeEvidence(unittest.TestCase):
         self.assertGreater(model.logits.grad.abs().sum().item(),0)
 
     def test_actual_h425_and_h426_losses_differ_on_same_slider(self):
-        model,labels=make_batch()
+        # Force unequal token-wise CE; on an all-equal CE tensor, every
+        # normalized positive weighting must have the same mean.
+        model,labels=make_batch(hard_endpoint=True)
         out=bridge.compare_original_h425_to_h426(
             model,labels,SyntheticProcessor(),case("slider"))
         self.assertNotEqual(out["h425_original_loss"].item(),
