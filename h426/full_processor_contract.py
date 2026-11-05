@@ -192,14 +192,20 @@ def run(snapshot: Path):
             "slide_resize": [[100, 100], [900, 900]],
             "text_highlight": [[120, 420], [660, 420]],
         }
+        prompts = {
+            "en": "On this synthetic image, describe the drag; return JSON only. Do not act.",
+            "ar": ("في هذه الصورة الاصطناعية، صف حركة السحب بإحداثيات البداية "
+                   "والنهاية بصيغة JSON فقط. لا تنفذ السحب."),
+        }
         results = {}
         for domain, (start, end) in targets.items():
             answer = json.dumps({"type": "drag", "start_point": start,
                 "end_point": end, "ordered": True,
                 "coordinate_space": "normalized_1000"}, separators=(",", ":"))
-            results[domain] = check(processor, img,
-                "On this synthetic image, describe the drag; return JSON only. Do not act.",
-                answer, domain)
+            for language, request in prompts.items():
+                # No real UI screenshot, hidden benchmark or executable action.
+                results[language + ":" + domain] = check(
+                    processor, img, request, answer, domain)
     return {
         "model": BASE, "revision": REV,
         "verified_processor_files": 8,
