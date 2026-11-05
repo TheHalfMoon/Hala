@@ -70,6 +70,13 @@ def source_coordinate_token_weights(pieces: list[str], domain: str) -> list[floa
         if not detected:
             result.append(BASE_WEIGHT)
             continue
+        # A merged BPE token may contain coordinate AND noncoordinate digits.
+        # Such a token cannot receive an unambiguous source-coordinate weight.
+        # Fail closed instead of overweighting numeric template metadata.
+        allowed=[(a,b) for f in detected for a,b in numeric[f]]
+        if any(text[j].isdigit() and not any(a<=j<b for a,b in allowed)
+               for j in range(begin,end_pos)):
+            raise ValueError("H426 token merges target coordinates with noncoordinate numerals")
         field=next(iter(detected))
         if field=="end_point":
             end_hits+=1

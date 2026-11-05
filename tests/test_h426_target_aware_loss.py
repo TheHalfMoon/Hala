@@ -37,6 +37,12 @@ class H426OriginalCoordinateWeights(unittest.TestCase):
         self.assertEqual(w[0],1)
         self.assertEqual(w[-1],1)
 
+    def test_bpe_token_merging_coordinate_and_numeric_metadata_rejected(self):
+        p=parts()
+        p[7:9]=[p[7]+p[8]]
+        with self.assertRaisesRegex(ValueError,"noncoordinate numerals"):
+            m.source_coordinate_token_weights(p,"slide_resize")
+
     def test_character_level_tokenization_preserves_geometric_fields(self):
         raw="".join(parts())
         w=m.source_coordinate_token_weights(list(raw),"slide_resize")
