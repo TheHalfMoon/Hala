@@ -84,6 +84,19 @@ def check(processor, image, request: str, answer: str, domain: str):
     if (type(image_token) is not int or image_token < 0
         or image_token not in a or image_token in b[len(a):]):
         raise ValueError("H426 image patch tokens absent or supervised as answer")
+    # Official Qwen3-VL processor expands each image into precisely
+    # prod(image_grid_thw) // (image_processor.merge_size ** 2) image_pad IDs.
+    # A merely present image marker is insufficient evidence of patch alignment.
+    merge_size=getattr(getattr(processor, "image_processor", None), "merge_size", None)
+    if type(merge_size) is not int or merge_size<=0:
+        raise ValueError("H426 actual Qwen image processor merge size missing")
+    grid=grid_values(completed)[0]
+    patches=grid[0]*grid[1]*grid[2]
+    merged=merge_size*merge_size
+    if (patches<merged or patches%merged or
+        a.count(image_token)!=patches//merged or
+        b.count(image_token)!=patches//merged):
+        raise ValueError("H426 expanded image patch count mismatches Qwen merge grid")
     supervised = b[len(a):]
     pieces = [tokenizer.decode([i], skip_special_tokens=False)
               for i in supervised]
