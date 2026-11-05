@@ -29,6 +29,11 @@ def source_coordinate_token_weights(pieces: list[str], domain: str) -> list[floa
     if start<0 or end<=start or text.find('{"type":"drag"',start+1)>=0:
         raise ValueError("H426 expected exactly one native drag supervised JSON")
     raw=text[start:end]
+    # The H425 assistant target is exactly ONE native-drag JSON object, optionally
+    # followed by Qwen's end-of-message token. Extra prefixes/suffixes must not
+    # be silently optimized as supervised answer content.
+    if start!=0 or text[end:] not in ("", "<|im_end|>"):
+        raise ValueError("H426 supervised target contains unrecognized prefix or suffix")
     try:
         data=json.loads(raw)
     except (json.JSONDecodeError,TypeError) as e:
