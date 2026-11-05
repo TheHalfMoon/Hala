@@ -116,14 +116,18 @@ def compare_original_h425_to_h426(output, labels, processor, case):
     keep = labels[:, 1:] != -100
     if not bool(keep.any().item()):
         raise ValueError("H426 H425 original assistant labels absent")
-    # Assistant-only labels must be an EXACT continuous final suffix.
+    # Assistant-only labels must be an EXACT continuous final suffix
+    # after a *masked* multimodal/image-containing original H425 prompt.
     original_indices = torch.nonzero(keep[0], as_tuple=False).flatten().tolist()
-    if original_indices != list(range(original_indices[0], keep.shape[1])):
-        raise ValueError("H426 H425 assistant supervision suffix fragmented")
-    # Only inspect the supervised logits, not the full multi-million-token
-    # visual sequence's gigantic vocabulary tensor (T4 memory matters).
+    if (labels[0,0].item() != -100
+        or original_indices[0] < 1
+        or original_indices != list(range(original_indices[0], keep.shape[1]))):
+        raise ValueError("H426 H425 assistant supervision suffix fragmented or leaked prompt")
+    # Only inspect supervised logits, not the full multimodal sequence's
+    # gigantic vocabulary tensor (T4 memory matters).
     targets = labels[:, 1:][keep]
     if (bool((labels < -100).any().item())
+        or bool((targets < 0).any().item())
         or bool((targets >= logits.shape[2]).any().item())
         or not bool(torch.isfinite(logits[:, :-1, :][keep]).all().item())):
         raise ValueError("H426 H425 source tensors nonfinite or malformed labels")
