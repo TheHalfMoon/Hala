@@ -192,10 +192,17 @@ def run(snapshot: Path):
             "slide_resize": [[100, 100], [900, 900]],
             "text_highlight": [[120, 420], [660, 420]],
         }
+        # Match H425's actual two-language task suffixes rather than
+        # testing only short generic translations of the original prompts.
         prompts = {
-            "en": "On this synthetic image, describe the drag; return JSON only. Do not act.",
-            "ar": ("في هذه الصورة الاصطناعية، صف حركة السحب بإحداثيات البداية "
-                   "والنهاية بصيغة JSON فقط. لا تنفذ السحب."),
+            "en": ("On this synthetic image, describe the drag.\n"
+                   " Return ONLY JSON {type:drag,start_point:[x,y],end_point:[x,y],"
+                   "ordered:boolean,coordinate_space:normalized_1000};"
+                   " coordinates are 0-1000. Do not act."),
+            "ar": ("في هذه الصورة الاصطناعية، صف حركة السحب.\n"
+                   " أجب فقط بكائن JSON type=drag مع start_point وend_point "
+                   "وordered وcoordinate_space=normalized_1000."
+                   " الإحداثيات 0 إلى 1000. لا تنفذ السحب."),
         }
         results = {}
         for domain, (start, end) in targets.items():
