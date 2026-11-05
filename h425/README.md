@@ -54,3 +54,20 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\h425\owner_verify_priv
 ```
 
 Owner **negative test while Kaggle RUNNING** verified exit code 1, refusal before any output download and NO output directory created. An owner-original 240-case JPEG-score replay in `tests/test_h425_model_receipt.py` is an optional evidence test; it requires the four private H425_OWNER_* environment paths and Pillow visible in the executing Python environment. Do not confuse passing negative CLI checks with actual completed GPU model evidence.
+
+### Genuine H425 -> H421 private trained-model dataset staging (NOT executed yet)
+
+ONLY after owner H425 FREE Kaggle genuine GPU completion and a FULL original receipt/source/weight/checkpoint replay, and ONLY if the stronger H425 old144/fresh96/Arabic source-only gate passes, use h425/stage_qualified_h421.py. It independently repeats the complete actual 240 original JPEG source validation, all 8 original checkpoint SHA and final LoRA bytes. It refuses a false gate, public/release/rights/OOD claims, missing original files, wrong Qwen3-VL r8/alpha16 config, output collisions and staging anywhere inside the GitHub repo.
+
+The staged files are the four exact H421 inference dataset inputs (true receipt, SHA sidecar, LoRA safetensors, adapter_config.json), plus PRIVATE dataset-metadata.json with isPrivate=true and a non-assertive other license. No upload or H421 GPU launch occurs in this staging command:
+
+```powershell
+python h425/stage_qualified_h421.py `
+  --receipt-root D:\Hala-H425-Completed-Private\h425-owner-private-h417-replay-paired-native `
+  --sources D:\Hala-H419-Source-Preflight `
+  --paired D:\Hala-H422-Paired-Private `
+  --h421 D:\Hala-H421-Counterfactual-Private `
+  --output-root D:\Hala-H425-H421-Qualified-Dataset-Private
+```
+
+After TRUE private stage validation only, the separate authenticated owner Kaggle command kaggle datasets create -p D:\Hala-H425-H421-Qualified-Dataset-Private creates a dataset PRIVATE by default (NEVER use -u). Stage the H421 generated model eval script and h421-eval-kernel-metadata.json separately, only when this actual H425 private dataset exists and no conflicting GPU run remains. Original H421 384 source JPEG/dual-prompt actions are author-heldout research DEV, NOT independent external bilingual OOD or model release approval. The four original model files and raw receipts must NEVER be committed into GitHub.
