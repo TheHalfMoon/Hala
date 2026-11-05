@@ -48,3 +48,19 @@ Original per-image correct action transition (H417 count→H425 count, out of 19
 5. All original screenshots, private model weights and per-prompt predictions stay on owner-private storage. The GitHub repository contains source code and aggregate counts only.
 
 Evidence from this document can prioritize further engineering but cannot satisfy external rights, independent evaluator, clinical safety, or production release gates.
+
+## Real Qwen3-VL tokenizer original-source preflight (owner CPU proof)
+
+The H426 proposed field-specific numeric loss now has a **real tokenizer** preflight script `h426/real_tokenizer_preflight.py`. It was executed on the authorized Windows machine using an isolated **Python3.11 + Transformers 4.57.3 + Qwen2TokenizerFast**, with Qwen official immutable revision `89644892e4d85e24eaac8bacfd4f463576704203`. It verified original H422 **32,000 original distinct source-native drag action rows**, 10,666 slider, 10,666 slide_resize, 10,668 text_highlight. Exact training row SHA-256 `b31efe107033d62c2fd2b6ced656f69596df2674c22266c4684928f1b09fbcaa`. All 32,000 original source supervision action strings were reconstructed from pixel-native source coordinates to H425's normalized-1000 JSON, then tokenized in the real Qwen image-containing chat template using actual source instructions and H425's exact English task suffix. The field-target mask reported **32,000/32,000 successes, 0 rejected**. No GPU, image loading, model weights, PHI, screenshot disclosure or training performed. This is a **tokenizer-span and target-field compatibility result**, not full multimodal-image processor proof, a trained-model quality gain, external OOD, or legal rights admission.
+
+Tokenizer source bytes are pinned locally by SHA-256: `tokenizer.json=a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7`; `tokenizer_config.json=c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399`. Read the trusted Qwen tokenizer from its D: private cache snapshot matching the pinned revision; do not let the source verifier silently fetch a mutable tokenizer version. Local snapshot mode avoids a Transformers upstream `_patch_mistral_regex` helper's otherwise unnecessary Hugging Face online model-info call, and avoids needing a paid GPU.
+
+Owner-only reproduction (no GitHub model/data commit, no running model or GPU):
+
+```powershell
+$env:HF_HOME='D:\\Hala-H426-Tokenizer-Private\\hf-cache'
+$env:HF_HUB_OFFLINE='1'
+& D:\\Hala-H426-Tokenizer-Private\\venv\\Scripts\\python.exe h426\\real_tokenizer_preflight.py --rows D:\\Hala-H422-Paired-Private\\h422_genuine_original_paired_32k_actions.jsonl --tokenizer-snapshot D:\\Hala-H426-Tokenizer-Private\\hf-cache\\hub\\models--Qwen--Qwen3-VL-2B-Instruct\\snapshots\\89644892e4d85e24eaac8bacfd4f463576704203
+```
+
+The script refuses changed source row SHA, changed local tokenizer bytes, wrong model release/version, invalid original pixel geometry, incomplete full 32K source rows, or any single rejected coordinate target mask. It outputs *aggregate counts only*. New standalone CPU test suite `tests/test_h426_real_tokenizer_preflight.py` provides synthetic drift/falsification coverage. **Current H426 loss remains an untrained research proposal and cannot supersede independently validated H425 until actual rights and GPU evidence gates pass.**
