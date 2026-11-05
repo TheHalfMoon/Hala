@@ -1,8 +1,11 @@
 """Synthetic falsifications for the image-expanded original H425 token boundary."""
 import importlib.util
 import json
+import os
 from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
@@ -149,6 +152,38 @@ class FullImageBoundaryTests(unittest.TestCase):
     def test_invalid_target_rejected_by_source_loss(self):
         with self.assertRaises(ValueError):
             c.check(FakeImageProcessor(), object(), "synthetic", "not json", "slider")
+
+    def test_full_processor_requires_offline_flags_before_loading(self):
+        with patch.dict(os.environ, {"HF_HUB_OFFLINE": "0",
+                                      "TRANSFORMERS_OFFLINE": "0"}):
+            with self.assertRaisesRegex(ValueError, "offline flags"):
+                c.run(Path("/tmp/unverified-cache"))
+
+    def test_full_processor_rejects_wrong_revision_before_loading(self):
+        with patch.dict(os.environ, {"HF_HUB_OFFLINE": "1",
+                                      "TRANSFORMERS_OFFLINE": "1"}):
+            with self.assertRaisesRegex(ValueError, "absolute revision"):
+                c.run(Path("relative-cache/unknown"))
+
+    def test_missing_seven_processor_files_rejected_before_hf_import(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)/c.REV
+            root.mkdir()
+            (root/"tokenizer.json").write_text("synthetic fake", encoding="utf8")
+            with patch.dict(os.environ, {"HF_HUB_OFFLINE": "1",
+                                          "TRANSFORMERS_OFFLINE": "1"}):
+                with self.assertRaises(ValueError):
+                    c.run(root)
+        # This is an H218 eight-file source custody failure, not a real
+        # AutoProcessor result or a credential-bearing model download.
+
+    def test_processor_cannot_be_loaded_from_mutable_cache_shortcut(self):
+        source=(ROOT/"h426/full_processor_contract.py").read_text("utf8")
+        self.assertIn("verified_processor_handoff(root)",source)
+        self.assertIn("verify_pinned_snapshot(root)",source)
+        self.assertIn("PINNED_PUBLIC_FILES",source)
+        self.assertIn("type(processor) is not Qwen3VLProcessor",source)
+        self.assertIn("local_files_only=True",source)
 
     def test_no_runtime_cuda_or_dataset_egress(self):
         code = (ROOT/"h426/full_processor_contract.py").read_text("utf8")
