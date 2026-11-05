@@ -83,3 +83,24 @@ for a nonzero grid with exact divisibility. The original complete-head and compl
 ### Independent H426 source target uniqueness
 
 The proposed target-coordinate mask also rejects duplicate drag JSON keys even when they parse without an error under default `json.loads`. Otherwise a repeated `start_point` or `end_point` could lead the JSON parser to interpret the last occurrence while field-specific token weighting selected the first. Synthetic regression tests exercise duplicated coordinates and metadata fields. Real 32K original H422 tokenizer supervision needs to be independently rerun on the latest exact H426 branch to count as newly qualified.
+
+## H426 full image-processor exact-byte custody: reuse H218/H387 (research only)
+
+Previously, `h426/full_processor_contract.py::run` checked only `tokenizer.json` and `tokenizer_config.json` before calling `AutoProcessor` directly on a mutable cache. That was insufficient to bind the **actual image/video preprocessor configuration, chat template and vocabulary**: changing an unverified processor config could change image patch expansion without changing the two tokenization hashes.
+
+This source implementation now **reuses**:
+- `h218.pinned_qwen_processor_bytes.verify_pinned_snapshot` to check all **eight** original official Qwen3-VL-2B processor file sizes, SHA256 digests, no symlinks/extra files and exact immutable revision `89644892e4d85e24eaac8bacfd4f463576704203`.
+- `h387.verified_processor_handoff` to hash the owner snapshot again **while copying** those eight verified public files to an isolated temporary directory, keep that directory alive throughout `AutoProcessor` initialization and all 3 synthetic image task checks, then remove it.
+- Strict `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` preconditions, `local_files_only=True`, `trust_remote_code=False`, expected exact `Qwen3VLProcessor` class and H425's `transformers==4.57.3`.
+
+**Actual multimodal preflight has not yet been run** against this new source: CPU-only synthetic provenance/negative tests verify reject paths; an actual offline environment with the eight-file snapshot, `torch`, `torchvision`, `Pillow` and `transformers==4.57.3` must still execute the command below before any claims about real visual patch alignment. This source does NOT load model weights, train, use Kaggle GPU, execute GUI actions or evaluate private/hidden source data.
+
+From the repository root, against an **explicit eight-file verified public processor directory** on a private/free local CPU, rather than a mutable model-cache shortcut:
+
+```powershell
+$env:HF_HUB_OFFLINE = '1'
+$env:TRANSFORMERS_OFFLINE = '1'
+python -m h426.full_processor_contract --tokenizer-snapshot 'D:\Public-Qwen-Verified\89644892e4d85e24eaac8bacfd4f463576704203'
+```
+
+The supplied example path is illustrative, **not a claim that this directory exists**. Passing source-level tests, the prior original 32K tokenizer-only preflight or GitHub CI alone does NOT qualify the real full image processor, newly trained H426 model, independent blinded bilingual OOD, rights permissions or production release.
