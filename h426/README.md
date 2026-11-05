@@ -69,3 +69,17 @@ The script refuses changed source row SHA, changed local tokenizer bytes, wrong 
 ## H426 strict native answer-only supervision (code-only research)
 
 On 2026-11-05, after independent source error evidence, `h426/target_aware_loss.py` began **rejecting unexpected prefix/suffix text** around the native drag JSON target instead of silently weighting the valid JSON embedded in garbage assistant text. It accepts an exact native drag JSON action and the standard Qwen `<|im_end|>` end marker, and rejects any other extra output. Corresponding strict native-target tests are in `tests/test_h426_target_aware_loss.py` and `tests/test_h426_full_processor_contract.py`. These are synthetic research-contract changes only; full original 32,000-case **real-tokenizer preflight must be rerun against this exact new code head** before claiming its new strict gate is qualified. The successful 32K owner run described above was on an earlier H426 commit, before this particular strictness fix. H425 model evidence and H421 results remain unchanged. No paid GPU, H426 training, public weights, actual full image-processor success, independent rights permission, or blind external bilingual OOD is claimed.
+
+## Official Qwen3-VL image-patch cardinality preflight (CPU-only proposed guard)
+
+The optional full-processor contract in `h426/full_processor_contract.py` now verifies more than token existence. Qwen's image processor expands one visual sample to exactly
+
+```text
+required_image_pad_tokens = product(image_grid_thw[0]) // (image_processor.merge_size ** 2)
+```
+
+for a nonzero grid with exact divisibility. The original complete-head and complete-answer processor output must each contain **exactly** that count of `<|image_pad|>` tokens, and none can occur in supervised target-only tokens. The grid and processor merge size must match across both encoder invocations. The source of this convention is [Qwen3-VL's official Hugging Face processor `replace_image_token`](https://github.com/huggingface/transformers/blob/main/src/transformers/models/qwen3_vl/processing_qwen3_vl.py); the actual H426 experiment should remain pinned to its specified Transformers 4.57.3 revision, not a mutable latest library. The synthetic `FakeImageProcessor` unit tests now reject a plausible but mismatched enlarged visual grid and refuse a missing image merge size. This strengthens the *planned* full image-processor compatibility check; **do not claim the actual processor and real pixel patch expansion were verified** before a pinned CPU run with PyTorch/Torchvision and a synthetic source image.
+
+### Independent H426 source target uniqueness
+
+The proposed target-coordinate mask also rejects duplicate drag JSON keys even when they parse without an error under default `json.loads`. Otherwise a repeated `start_point` or `end_point` could lead the JSON parser to interpret the last occurrence while field-specific token weighting selected the first. Synthetic regression tests exercise duplicated coordinates and metadata fields. Real 32K original H422 tokenizer supervision needs to be independently rerun on the latest exact H426 branch to count as newly qualified.
