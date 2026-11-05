@@ -34,8 +34,18 @@ def source_coordinate_token_weights(pieces: list[str], domain: str) -> list[floa
     # be silently optimized as supervised answer content.
     if start!=0 or text[end:] not in ("", "<|im_end|>"):
         raise ValueError("H426 supervised target contains unrecognized prefix or suffix")
+    def reject_duplicate_keys(pairs):
+        obj={}
+        for key,value in pairs:
+            if key in obj:
+                raise ValueError("H426 duplicate supervised native JSON field")
+            obj[key]=value
+        return obj
     try:
-        data=json.loads(raw)
+        # Normal json.loads silently accepts duplicate coordinate fields and
+        # uses the LAST occurrence, while regex below selects the FIRST.
+        # Reject ambiguous labels instead of assigning weight to wrong gold.
+        data=json.loads(raw,object_pairs_hook=reject_duplicate_keys)
     except (json.JSONDecodeError,TypeError) as e:
         raise ValueError("H426 original supervised JSON action not parseable") from e
     if (type(data) is not dict or set(data)!={
