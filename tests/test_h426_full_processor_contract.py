@@ -95,6 +95,14 @@ class FullImageBoundaryTests(unittest.TestCase):
         self.assertFalse(r["new_model_trained"])
         self.assertFalse(r["model_release_qualified"])
 
+    def test_arabic_synthetic_prompt_has_unaltered_answer_mask(self):
+        summary = c.check(FakeImageProcessor(), object(),
+                          "حدد بداية السحب ونهايته على الصورة الاصطناعية فقط",
+                          answer(), "text_highlight")
+        self.assertGreater(summary["weighted_coordinate_tokens"], 0)
+        self.assertFalse(summary["new_model_trained"])
+        self.assertFalse(summary["independent_external_ood"])
+
     def test_shifted_image_expanded_prefix_rejected(self):
         with self.assertRaisesRegex(ValueError, "prefix drift"):
             c.check(FakeImageProcessor(shift=True), object(), "synthetic", answer(), "slider")
