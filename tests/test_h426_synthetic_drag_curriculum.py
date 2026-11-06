@@ -1,0 +1,119 @@
+"""Offline first-party synthetic H426 bilingual geometry source proof.
+
+No third-party visual assets, real UIs, training data, Qwen model or GPU.
+"""
+from __future__ import annotations
+
+import hashlib
+import importlib.util
+import io
+import json
+from pathlib import Path
+import unittest
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[1]
+
+def load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+g = load("h426_synthetic", ROOT/"h426/synthetic_drag_curriculum.py")
+loss = load("h426_synthetic_target_loss", ROOT/"h426/target_aware_loss.py")
+
+
+class H426InventedBilingualGUI(unittest.TestCase):
+    def test_valid_rgb_png_and_original_pixel_sha(self):
+        sample = g.generate("train", 17, "slide_resize")
+        with Image.open(io.BytesIO(sample["original_png_bytes"])) as opened:
+            self.assertEqual(opened.format, "PNG")
+            self.assertEqual(opened.size, (960, 640))
+            self.assertEqual(opened.mode, "RGB")
+        self.assertEqual(hashlib.sha256(sample["original_png_bytes"]).hexdigest(),
+                         sample["image_sha256"])
+        self.assertEqual(sample["schema"],g.SCHEMA)
+
+    def test_repeatability_and_different_actions_one_original_image(self):
+        for domain in g.DOMAINS:
+            with self.subTest(domain=domain):
+                a = g.generate("train", 27, domain)
+                b = g.generate("train", 27, domain)
+                self.assertEqual(a["image_sha256"],b["image_sha256"])
+                self.assertEqual(a["actions"],b["actions"])
+                self.assertEqual([x["language"] for x in a["actions"]],["en","ar"])
+                self.assertNotEqual(a["actions"][0]["target"],a["actions"][1]["target"])
+                self.assertEqual({x["image_sha256"] for x in a["actions"]},
+                                 {a["image_sha256"]})
+
+    def test_original_to_normalized_coordinate_geometry(self):
+        for domain in g.DOMAINS:
+            sample=g.generate("train",31,domain)
+            for row in sample["actions"]:
+                with self.subTest(domain=domain,lang=row["language"]):
+                    expected_start=[round(row["start"][0]*1000/g.WIDTH),
+                                    round(row["start"][1]*1000/g.HEIGHT)]
+                    expected_end=[round(row["end"][0]*1000/g.WIDTH),
+                                  round(row["end"][1]*1000/g.HEIGHT)]
+                    self.assertEqual(row["target"]["start_point"],expected_start)
+                    self.assertEqual(row["target"]["end_point"],expected_end)
+                    self.assertNotEqual(expected_start,expected_end)
+                    self.assertTrue(all(0<=v<=1000 for v in expected_start+expected_end))
+
+    def test_h426_source_coordinate_token_mask_accepts_every_pair(self):
+        for domain in g.DOMAINS:
+            sample=g.generate("dev",36,domain)
+            for row in sample["actions"]:
+                with self.subTest(domain=domain,lang=row["language"]):
+                    text=json.dumps(row["target"],separators=(",",":"),ensure_ascii=False)
+                    parts=list(text)+["<|im_end|>"]
+                    weights=loss.source_coordinate_token_weights(parts,domain)
+                    self.assertEqual(len(weights),len(parts))
+                    self.assertGreater(sum(x>1 for x in weights),0)
+                    self.assertEqual(weights[-1],1.)
+
+    def test_source_disjoint_families_and_unique_large_sample(self):
+        report=g.audit_balanced(8)
+        self.assertEqual(report["generated_images"],48)
+        self.assertEqual(report["generated_action_rows"],96)
+        self.assertFalse(report["train_dev_source_family_overlap"])
+        self.assertFalse(report["independent_external_ood"])
+        self.assertFalse(report["trained_model"])
+        self.assertEqual(len(report["counts"]),12)
+        self.assertTrue(all(v==8 for v in report["counts"].values()))
+
+    def test_split_image_sha_cannot_overlap_for_same_index(self):
+        for domain in g.DOMAINS:
+            for index in (0,1,42,79,80):
+                a=g.generate("train",index,domain)
+                b=g.generate("dev",index,domain)
+                self.assertNotEqual(a["image_sha256"],b["image_sha256"])
+                self.assertNotEqual(a["family"],b["family"])
+
+    def test_invalid_inputs_rejected(self):
+        invalid=(("release",0,"slider"),("train",-1,"slider"),
+                 ("train",True,"slider"),("train",10**6,"slider"),
+                 ("train",0,"other"),("dev","1","slider"))
+        for split,index,domain in invalid:
+            with self.subTest(index=index),self.assertRaises(ValueError):
+                g.generate(split,index,domain)
+        for n in (0,-1,False,513):
+            with self.subTest(n=n),self.assertRaises(ValueError):
+                g.audit_balanced(n)
+
+    def test_no_external_asset_or_training_admission(self):
+        source=(ROOT/"h426/synthetic_drag_curriculum.py").read_text("utf8")
+        self.assertNotIn("requests.get(",source)
+        self.assertNotIn("http://",source)
+        self.assertNotIn("https://",source)
+        self.assertNotIn("model.generate(",source)
+        self.assertNotIn("optimizer.step(",source)
+        self.assertNotIn("kaggle kernels push",source)
+        sample=g.generate("train",3,"slider")
+        self.assertTrue(all("not_admitted" in a["source_role"]
+                            for a in sample["actions"]))
+
+
+if __name__=="__main__":
+    unittest.main()
