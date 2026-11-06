@@ -125,6 +125,16 @@ class SyntheticH425InputParityTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"differs from H425"):
                 bridge.pack_generated("dev",1,"slider","ar")
 
+    def test_real_qwen_cpu_preflight_registers_native_generated_guis(self):
+        # The actual Qwen process is only executed in the owner's pinned
+        # offline CPU environment, never by lightweight GitHub/source CI.
+        source=(ROOT/"h426/full_processor_contract.py").read_text("utf8")
+        self.assertIn("check_generated_with_real_processor(",source)
+        self.assertIn("actual_h425_synthetic_gui_test_count",source)
+        self.assertIn('for split in ("train", "dev")',source)
+        self.assertIn('for language in ("en", "ar")',source)
+        self.assertIn("verified_processor_handoff(root)",source)
+
     def test_this_bridge_cannot_run_training_or_publish_weights(self):
         source=(ROOT/"h426/synthetic_h425_processor_bridge.py").read_text("utf8")
         for phrase in ("optimizer.step(", "model.generate(",
