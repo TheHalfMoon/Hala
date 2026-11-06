@@ -167,3 +167,20 @@ python -m unittest discover -s tests -p 'test_h426_synthetic_drag_curriculum.py'
 ```
 
 The initial local Pillow 12.3.0 audit produced **384 distinct generated PNGs and 768 EN/AR native drag action rows** (64 images per split×domain), no source-image SHA collisions and disjoint invented family IDs. An earlier prototype collided on visually identical screenshots due a repeating workspace index; it was fixed **before publication** by visibly encoding a unique bounded image index, then the 384-image audit passed. GitHub CI now has source-only tests of repeatability, SHA, normalized geometry, both-prompt target masks, family-disjoint subsets and the non-admitted training role. This is a **data generator and source-contract test only**; no real H426 LoRA model was trained, no model-weight inference or actual learned accuracy was measured, and original rights issue #384 and independent real bilingual OOD issue #385 remain open.
+ 
+
+## H426 actual H425 visual-input/target bridge (2026-11-06)
+
+New `h426/synthetic_h425_processor_bridge.py` uses the existing **first-party invented UI generator** without exporting its images to GitHub. It reopens and SHA-256 checks the actual in-memory source PNG, requires 960×640 RGB PNG media and an explicit **not-admitted** source role, resizes the processor-bound image to **600×400** using the **exact H425 LANCZOS thumbnail algorithm** (H425 keeps original 960×640 dimensions for target normalization), imports the frozen original H425 `target` and `prompt` functions verbatim, and verifies that their canonical native-drag JSON gold equals the generated coordinates. English and Arabic versions of each synthetic PNG must have distinct instructions and source targets, and share identical source image bytes.
+
+`pack_generated(split,index,domain,language)` returns in-memory processor-ready image, prompt, exact canonical JSON and aggregate provenance. It has **no model weights, GPU, optimizer or download code**, and sets `source_is_admitted_to_train=false`. `check_generated_with_real_processor` calls the H426 image-patch/assistant-only token-supervision `check()` on these actual generated UI images. The pinned eight-file offline Qwen `h426.full_processor_contract.run` now includes **12 additional synthetic GUI cases** (train/dev × 3 geometry domains × EN/AR), alongside its original **6 gray-image cases**, all within its H218/H387 isolated immutable processor snapshot and with **no base-model weights**. The actual on-device pinned full Qwen3VLProcessor run **has not been executed on the latest H426 source**, so do not claim 18/18 real processor success until a genuine provider receipt exists.
+
+`tests/test_h426_synthetic_h425_processor_bridge.py` provides CPU-only deterministic SHA/PNG/resize, frozen H425 prompt/coordinate parity and image identity, plus fake Qwen vision-boundary integration and adversarial source-role/PNG/target mutation refusals. **Fake processor tests are not actual Qwen pixel-patch tests**. Source-only GitHub CI will qualify the Python contract; actual full-processor qualification needs original eight pinned PUBLIC processor files, offline flags and Torch/Torchvision on an authorized free CPU device.
+
+```powershell
+$env:HF_HUB_OFFLINE='1'
+$env:TRANSFORMERS_OFFLINE='1'
+python -m h426.full_processor_contract --tokenizer-snapshot 'D:\Public-Qwen-Verified\89644892e4d85e24eaac8bacfd4f463576704203'
+```
+
+The path is illustrative only. Independent original source TRAIN copyright review #384 and genuinely unseen EN/AR external OOD #385 remain open. This research bridge does not authorize using old H425 copyrighted source assets for new TRAIN, and does not prove a H426 fine-tuning gain or production release.
