@@ -118,7 +118,13 @@ def generate(split: str, index: int, domain: str):
     source_bytes = stream.getvalue()
     digest = hashlib.sha256(source_bytes).hexdigest()
     actions = []
-    for n, (language, (start, end)) in enumerate(zip(("en", "ar"), rows)):
+    # Counterbalance instruction language vs visual target index.
+    # Without this, EN always means object 1, AR always means object 2,
+    # creating a spurious language->position shortcut instead of grounding.
+    assignment_offset = (index + DOMAINS.index(domain)) % 2
+    for n, language in enumerate(("en", "ar")):
+        visual_index = (n + assignment_offset) % 2
+        start, end = rows[visual_index]
         action = {
             "type": "drag", "start_point": _norm(start),
             "end_point": _norm(end), "ordered": True,
@@ -127,13 +133,13 @@ def generate(split: str, index: int, domain: str):
         if start == end or _norm(start) == _norm(end):
             raise ValueError("H426 synthetic action cannot have zero-distance drag")
         if domain == "slider":
-            body = (f"Move LEVEL {n+1} slider knob to its outlined green target." if n == 0
-                    else f"حرّك مقبض المستوى {n+1} إلى الدائرة الخضراء المحددة.")
+            body = (f"Move LEVEL {visual_index+1} slider knob to its outlined green target." if n == 0
+                    else f"حرّك مقبض المستوى {visual_index+1} إلى الدائرة الخضراء المحددة.")
         elif domain == "slide_resize":
-            body = (f"Enlarge CARD {n+1} to its outlined target corner." if n == 0
-                    else f"كبّر البطاقة رقم {n+1} حتى تصل الزاوية إلى العلامة الخضراء.")
+            body = (f"Enlarge CARD {visual_index+1} to its outlined target corner." if n == 0
+                    else f"كبّر البطاقة رقم {visual_index+1} حتى تصل الزاوية إلى العلامة الخضراء.")
         else:
-            word = "ORBIT" if n == 0 else "WILLOW"
+            word = "ORBIT" if visual_index == 0 else "WILLOW"
             body = (f"Highlight only the word {word} in the document." if n == 0
                     else f"ظلّل كلمة {word} فقط في المستند.")
         actions.append({
