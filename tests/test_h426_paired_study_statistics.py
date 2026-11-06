@@ -64,7 +64,7 @@ class MatchedImageStudyTests(unittest.TestCase):
         first=rows(19)
         for i in (3,4,7,11):
             first[i]["candidate_correct"]=[False,False]
-        for i in (9,14):
+        for i in (3,4,9,14):
             first[i]["baseline_correct"]=[True,True]
         a=summarize_matched_images(first)
         b=summarize_matched_images(list(reversed(first)))
