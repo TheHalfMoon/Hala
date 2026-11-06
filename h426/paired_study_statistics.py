@@ -146,3 +146,49 @@ def summarize_matched_images(records):
         "copyright_train_rights_verified_here": False,
         "model_or_release_qualified": False,
     }
+
+
+
+def summarize_synthetic_dev_pairs(pairs):
+    """Re-score matched invented DEV predictions using frozen H425 evaluator.
+
+    Each input is one screenshot: {index, domain, baseline, candidate}.
+    Predictions contain IDs and raw text, but only aggregate output escapes.
+    This cannot qualify an independent external benchmark or original rights.
+    """
+    if type(pairs) is not list or not 2 <= len(pairs) <= MAX_IMAGES:
+        raise ValueError("H426 DEV comparison requires 2..4096 matched image pairs")
+    from h426.synthetic_pair_eval import compare_synthetic_dev
+    counted = []
+    for entry in pairs:
+        if (type(entry) is not dict
+            or set(entry) != {"index", "domain", "baseline", "candidate"}
+            or type(entry["index"]) is not int
+            or entry["index"] < 0
+            or type(entry["domain"]) is not str
+            or entry["domain"] not in DOMAINS):
+            raise ValueError("H426 source DEV evaluation entry schema mismatch")
+        score = compare_synthetic_dev(
+            entry["index"], entry["domain"],
+            entry["baseline"], entry["candidate"],
+        )
+        counted.append({
+            "image_sha256": score["source_image_sha256"],
+            "domain": entry["domain"],
+            "source_family": score["source_family"],
+            "languages": ["en", "ar"],
+            "baseline_correct": [
+                score["per_language"][lang]["old_correct"]
+                for lang in ("en", "ar")
+            ],
+            "candidate_correct": [
+                score["per_language"][lang]["new_correct"]
+                for lang in ("en", "ar")
+            ],
+        })
+    out = summarize_matched_images(counted)
+    # The source is author-generated, evaluated on original H425 metric,
+    # and may be seen by the developer. It is NOT independent blind OOD.
+    out["source_evaluation_split"] = "firstparty_invented_dev"
+    out["external_ood_status"] = "not_independent"
+    return out
