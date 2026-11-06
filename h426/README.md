@@ -128,3 +128,26 @@ proof = compare_original_h425_to_h426(output, labels, processor, row)
 **Owner-independent CPU mathematical cross-check**, using hand-constructed synthetic Torch logits with an intentionally difficult drag endpoint (not a model forward, original screenshot, true source label or clinical score), gave original H425 weighted CE 2.608814 and H426 weighted CE **2.837483 for slider, 3.954996 for slide_resize, 3.216238 for text_highlight**. In the synthetic H426 slide_resize objective, the actual Torch gradient was finite and nonzero. These are *toy-example mathematical objective numbers only*, do **not** indicate any observed Qwen accuracy improvement, and are not a run of the complete `h426/h425_loss_bridge.py` on a real source/model batch.
 
 `tests/test_h426_h425_loss_bridge.py` includes Torch-free original/H426 coordinate weight-contrast and source-provenance negative tests (runnable under existing GitHub CI), plus optional actual differentiable Torch comparisons and strict label/finiteness negatives. Existing GitHub CI has no Torch and transparently skips actual Torch tests; this must **never be reported as real H426 trained-model qualification**. The sealed external bilingual OOD custodian (#385) and independent rendered-screenshot/derivative-weight TRAIN rights review (#384) remain unresolved, H199 admitted manifest allowlist is empty, and H426 has not trained a model.
+
+
+## Reproducible H425-versus-H426 CPU loss proof (no GPU or private data)
+
+The owner-private H426 research branch includes \`h426/probe_cpu.py\`. On a CPU environment with PyTorch installed, from the repository root run:
+
+\`\`\`bash
+python -m h426.probe_cpu
+\`\`\`
+
+The script imports H425's actual frozen objective from \`h425/kaggle/h425_h417_replay_paired.py\` and H426's proposed objective through \`h426/h425_loss_bridge.py\`, applies both to exactly the same **invented character-tokenized drag action and synthetic logits**, and tests that all resulting CPU gradients are finite and nonzero. There is no network access, no dataset read, no Qwen model weights, no optimizer, no update, no Kaggle kernel and no GPU. The program fails closed if the source-loss comparison or gradient evidence drifts. Its JSON result reports explicit \`train_steps=0\`, \`source_images_or_model_weights_read=false\`, and \`independent_ood_accuracy_measured=false\`.
+
+On a separate assistant CPU environment (\`torch 2.10.0+cpu\`), a source-equivalent local replay of the exact H425/H426 loss functions yielded:
+
+| Invented task | Frozen H425 CE | H426 CE | H426 gradient abs sum |
+| --- | ---: | ---: | ---: |
+| slider | 2.608814 | 2.837483 | 1.443396 |
+| slide_resize | 2.608814 | 3.954996 | 1.552368 |
+| text_highlight | 2.608814 | 3.216238 | 1.480329 |
+
+The \`h426/probe_cpu.py\` script also passed its initial source-equivalent local CPU execution. **This is a toy mathematical objective and gradient test, not a real owner Qwen3-VL model forward, not trained H426, not new original source-label evidence and not an accuracy measurement.** The optional \`test_reproducible_cpu_probe_three_domains_no_model_or_gpu\` in \`tests/test_h426_h425_loss_bridge.py\` runs this probe only when Torch is available; source-only GitHub jobs without Torch transparently skip it. A passing standard 22-workflow CI therefore cannot be used to claim that Torch CPU gradients ran on that exact GH Actions head.
+
+The actual 32K original H422 real tokenizer replay must still be repeated on the final strict H426 loss version. Only then consider a new H426 experiment from the genuine owner-private H425 trained adapter in an authorized free GPU environment, with independently approved rendered-screenshot TRAIN rights and an independently custodied, pre-registered bilingual source-disjoint blind evaluation. Neither rights issue #384 nor OOD issue #385 is satisfied by this source-only probe.
