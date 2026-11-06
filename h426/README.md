@@ -151,3 +151,19 @@ On a separate assistant CPU environment (\`torch 2.10.0+cpu\`), a source-equival
 The \`h426/probe_cpu.py\` script also passed its initial source-equivalent local CPU execution. **This is a toy mathematical objective and gradient test, not a real owner Qwen3-VL model forward, not trained H426, not new original source-label evidence and not an accuracy measurement.** The optional \`test_reproducible_cpu_probe_three_domains_no_model_or_gpu\` in \`tests/test_h426_h425_loss_bridge.py\` runs this probe only when Torch is available; source-only GitHub jobs without Torch transparently skip it. A passing standard 22-workflow CI therefore cannot be used to claim that Torch CPU gradients ran on that exact GH Actions head.
 
 The actual 32K original H422 real tokenizer replay must still be repeated on the final strict H426 loss version. Only then consider a new H426 experiment from the genuine owner-private H425 trained adapter in an authorized free GPU environment, with independently approved rendered-screenshot TRAIN rights and an independently custodied, pre-registered bilingual source-disjoint blind evaluation. Neither rights issue #384 nor OOD issue #385 is satisfied by this source-only probe.
+
+ 
+## First-party invented bilingual GUI geometry generator (2026-11-06)
+
+`h426/synthetic_drag_curriculum.py` adds a reproducible **offline Pillow-only** image and action generator for the H426 geometry research domains `slider`, `slide_resize`, and `text_highlight`. It does not download external GUI screenshots, reference patient data, or read private original H60/DragOn labels. All on-screen visual elements (generic cards, rails and words) are drawn from scratch and every generated screenshot has exactly **two different source-native drag actions**, with English and Arabic user instructions, preserving original 960×640 pixel coordinates as well as normalized `0..1000` JSON targets. Different invented visual template families are reserved for train and dev; this is NOT independent, sealed real-world OOD.
+
+The generator is lazy and does not store 24,000 screenshots in the repository: callers explicitly request `generate(split, index, domain)`, receiving in-memory `PIL.Image`, PNG bytes, SHA256 digest and paired labels. All rows use `source_role=firstparty_generated_synthetic_research_not_admitted`, intentionally **not compatible with implicit promotion to official H199 TRAIN admission**. It does not bypass Hala's rights review or its original source provenance; any future source-authorized training runner must separately validate media/labels and approve the role before using generated source bytes.
+
+Reproducible lightweight CPU audit from repository root:
+
+```bash
+python -m h426.synthetic_drag_curriculum
+python -m unittest discover -s tests -p 'test_h426_synthetic_drag_curriculum.py' -v
+```
+
+The initial local Pillow 12.3.0 audit produced **384 distinct generated PNGs and 768 EN/AR native drag action rows** (64 images per split×domain), no source-image SHA collisions and disjoint invented family IDs. An earlier prototype collided on visually identical screenshots due a repeating workspace index; it was fixed **before publication** by visibly encoding a unique bounded image index, then the 384-image audit passed. GitHub CI now has source-only tests of repeatability, SHA, normalized geometry, both-prompt target masks, family-disjoint subsets and the non-admitted training role. This is a **data generator and source-contract test only**; no real H426 LoRA model was trained, no model-weight inference or actual learned accuracy was measured, and original rights issue #384 and independent real bilingual OOD issue #385 remain open.
