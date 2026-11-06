@@ -17,7 +17,7 @@ WIDTH = 960
 HEIGHT = 640
 DOMAINS = ("slider", "slide_resize", "text_highlight")
 SPLITS = {"train": (0, 1, 2), "dev": (3, 4)}
-SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v1"
+SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v2"
 TARGET_COLOR = (50, 160, 110)
 MAX_INDEX = 1000000
 
