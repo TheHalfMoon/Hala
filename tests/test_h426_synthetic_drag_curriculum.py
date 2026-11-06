@@ -47,6 +47,19 @@ class H426InventedBilingualGUI(unittest.TestCase):
                 self.assertEqual({x["image_sha256"] for x in a["actions"]},
                                  {a["image_sha256"]})
 
+    def test_all_endpoints_have_visible_rendered_target_marker(self):
+        for domain in g.DOMAINS:
+            for split in ("train", "dev"):
+                for index in (0, 1, 7, 42):
+                    sample=g.generate(split,index,domain)
+                    for row in sample["actions"]:
+                        with self.subTest(domain=domain,split=split,
+                                          index=index,language=row["language"]):
+                            # The label must come from a visible target,
+                            # not an invented unseen random end position.
+                            pixel=sample["image"].getpixel(tuple(row["end"]))
+                            self.assertEqual(pixel,g.TARGET_COLOR)
+
     def test_original_to_normalized_coordinate_geometry(self):
         for domain in g.DOMAINS:
             sample=g.generate("train",31,domain)
