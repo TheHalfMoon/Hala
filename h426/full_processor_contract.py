@@ -213,13 +213,31 @@ def run(snapshot: Path):
                 # No real UI screenshot, hidden benchmark or executable action.
                 results[language + ":" + domain] = check(
                     processor, img, request, answer, domain)
+        # This second suite uses actually rendered, fully supervised 960x640
+        # synthetic GUIs, thumbnail-resized EXACTLY as original H425 (600x400).
+        # Frozen H425 prompt/target functions build the two different EN/AR
+        # task completions per PNG; H426 check proves image-patch supervision.
+        from h426.synthetic_h425_processor_bridge import (
+            check_generated_with_real_processor,
+        )
+        generated_results = {}
+        for split in ("train", "dev"):
+            for domain in ("slider", "slide_resize", "text_highlight"):
+                for language in ("en", "ar"):
+                    key = split + ":" + language + ":" + domain
+                    generated_results[key] = check_generated_with_real_processor(
+                        processor, split, 11, domain, language,
+                    )
     return {
         "model": BASE, "revision": REV,
         "verified_processor_files": 8,
         "transformers_version": "4.57.3",
         "synthetic_image_only": True, "no_model_weights_loaded": True,
         "training_executed": False, "external_ood": False,
+        "generic_gray_test_count": len(results),
+        "actual_h425_synthetic_gui_test_count": len(generated_results),
         "results": results,
+        "generated_results": generated_results,
     }
 
 
