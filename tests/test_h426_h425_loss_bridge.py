@@ -155,6 +155,20 @@ class TorchRealH425BridgeEvidence(unittest.TestCase):
         self.assertNotEqual(out["h425_original_loss"].item(),
                             out["h426_target_loss"].item())
 
+    def test_reproducible_cpu_probe_three_domains_no_model_or_gpu(self):
+        from h426.probe_cpu import run
+        proof = run()
+        self.assertEqual(proof["train_steps"], 0)
+        self.assertFalse(proof["rights_review_completed"])
+        self.assertFalse(proof["source_images_or_model_weights_read"])
+        self.assertFalse(proof["independent_ood_accuracy_measured"])
+        self.assertEqual(set(proof["results"]),
+                         {"slider", "slide_resize", "text_highlight"})
+        self.assertGreater(proof["results"]["slide_resize"]["h426_domain_target_loss"],
+                           proof["results"]["slider"]["h426_domain_target_loss"])
+        for row in proof["results"].values():
+            self.assertGreater(row["gradient_abs_sum"], 0)
+
     def test_refuse_fragmented_assistant_target(self):
         model,labels=make_batch()
         labels[0,-4]=-100
