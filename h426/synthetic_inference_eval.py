@@ -48,6 +48,7 @@ def evaluate_already_loaded_model(model, processor, count_per_domain: int = 4):
     if not any(p.device.type == "cuda" for p in model.parameters()):
         raise ValueError("H426 supplied model is not resident on GPU")
     model.eval()
+    source_binary_outcomes = []
     stats = {d: {"images": 0, "actions": 0, "correct": 0,
                  "both_correct": 0, "en_correct": 0, "ar_correct": 0,
                  "en_end_only_error": 0, "ar_end_only_error": 0}
@@ -88,6 +89,17 @@ def evaluate_already_loaded_model(model, processor, count_per_domain: int = 4):
                     })
                     del batch, generated
                 score=score_dev_pair(index,domain,predictions)
+                # The only per-image information retained is matched synthetic
+                # SHA and two BOOLEAN outcomes. Never preserve decoded text.
+                source_binary_outcomes.append({
+                    "image_sha256": source["image_sha256"],
+                    "domain": domain,
+                    "source_family": source["family"],
+                    "languages": list(LANGUAGES),
+                    "correct": [bool(score["per_language"][lang]["correct"])
+                                for lang in LANGUAGES],
+                })
+                del predictions
                 metrics=stats[domain]
                 metrics["images"]+=1
                 metrics["actions"]+=2
@@ -114,4 +126,69 @@ def evaluate_already_loaded_model(model, processor, count_per_domain: int = 4):
         "rights_review_qualified":False,
         "release_qualified":False,
         "domains":stats,
+        "synthetic_per_image_binary_outcomes": source_binary_outcomes,
     }
+
+
+
+def compare_readonly_synthetic_reports(baseline, candidate):
+    """Compare sequential owner-model runs on SAME invented DEV screenshots.
+
+    Runs may load one model at a time on a single free T4, avoiding simultaneous
+    two-model VRAM use. Results MUST include only boolean outcomes (no raw text).
+    No real inference, attestation, training or source admission occurs here.
+    """
+    from h426.paired_study_statistics import summarize_matched_images
+    for report in (baseline, candidate):
+        if (type(report) is not dict
+            or report.get("schema") != "hala.h426.invented-dev-readonly-model-eval.v1"
+            or report.get("synthetic_dev_author_visible") is not True
+            or report.get("trained_or_modified_model_here") is not False
+            or report.get("model_weights_saved_or_published") is not False
+            or report.get("independent_external_ood") is not False
+            or report.get("release_qualified") is not False
+            or type(report.get("synthetic_per_image_binary_outcomes")) is not list):
+            raise ValueError("H426 only source-authenticated invented DEV reports can be paired")
+    old = baseline["synthetic_per_image_binary_outcomes"]
+    new = candidate["synthetic_per_image_binary_outcomes"]
+    if len(old) != len(new) or not old:
+        raise ValueError("H426 original and candidate source DEV sizes differ")
+    def keyed(items):
+        registry = {}
+        for r in items:
+            if (type(r) is not dict or set(r) != {
+                "image_sha256", "domain", "source_family",
+                "languages", "correct",
+            } or type(r.get("image_sha256")) is not str
+                or type(r.get("domain")) is not str
+                or type(r.get("source_family")) is not str
+                or r.get("languages") != ["en", "ar"]
+                or type(r.get("correct")) is not list
+                or len(r["correct"]) != 2
+                or any(type(x) is not bool for x in r["correct"])):
+                raise ValueError("H426 synthetic DEV source identity/outcome drift")
+            k = (r["domain"], r["image_sha256"])
+            if k in registry:
+                raise ValueError("H426 duplicated invented DEV source screenshot")
+            registry[k] = r
+        return registry
+    left, right = keyed(old), keyed(new)
+    if left.keys() != right.keys():
+        raise ValueError("H426 baseline and candidate did not see same screenshots")
+    paired=[]
+    for k in sorted(left):
+        before,after=left[k],right[k]
+        if (before["source_family"] != after["source_family"]
+            or before["languages"] != after["languages"]):
+            raise ValueError("H426 baseline/candidate synthetic family or language drift")
+        paired.append({
+            "image_sha256":k[1], "domain":k[0],
+            "source_family":before["source_family"],
+            "languages":before["languages"],
+            "baseline_correct":before["correct"],
+            "candidate_correct":after["correct"],
+        })
+    comparison=summarize_matched_images(paired)
+    comparison["evaluation_source"] = "invented_author_visible_not_external_ood"
+    comparison["model_predictions_verified_here"] = False
+    return comparison
