@@ -10,7 +10,9 @@ import unittest
 
 from h426.paired_study_statistics import (
     _mcnemar_two_sided, summarize_matched_images,
+    summarize_synthetic_dev_pairs,
 )
+from h426.synthetic_drag_curriculum import generate
 
 
 def rows(n=12):
@@ -107,6 +109,44 @@ class MatchedImageStudyTests(unittest.TestCase):
         for candidate in bad:
             with self.subTest(case=str(candidate)[:64]),self.assertRaises(ValueError):
                 summarize_matched_images(candidate)
+
+    def test_real_h425_scorer_integrates_with_image_cluster_statistics(self):
+        matching = []
+        for i in range(6):
+            domain = ("slider", "slide_resize", "text_highlight")[i % 3]
+            case = generate("dev", i, domain)
+            old, new = [], []
+            for row in case["actions"]:
+                target = copy.deepcopy(row["target"])
+                good = json.dumps(target, separators=(",", ":"))
+                target["end_point"] = [0, 0]
+                wrong_end = json.dumps(target, separators=(",", ":"))
+                provenance = {
+                    "id": row["id"],
+                    "image_sha256": case["image_sha256"],
+                }
+                old.append({**provenance, "raw_prediction": (
+                    wrong_end if row["language"] == "en" else good
+                )})
+                new.append({**provenance, "raw_prediction": good})
+            matching.append({
+                "index": i, "domain": domain,
+                "baseline": old, "candidate": new,
+            })
+        report = summarize_synthetic_dev_pairs(matching)
+        self.assertEqual(report["image_units"], 6)
+        self.assertEqual(report["paired_action_units"], 12)
+        self.assertEqual(report["baseline_correct_actions"], 6)
+        self.assertEqual(report["candidate_correct_actions"], 12)
+        self.assertEqual(report["baseline_both_correct_images"], 0)
+        self.assertEqual(report["candidate_both_correct_images"], 6)
+        self.assertEqual(report["paired_image_improved"], 6)
+        self.assertEqual(report["source_evaluation_split"], "firstparty_invented_dev")
+        self.assertEqual(report["external_ood_status"], "not_independent")
+        self.assertFalse(report["model_or_release_qualified"])
+        self.assertNotIn("raw_prediction", json.dumps(report))
+        with self.assertRaisesRegex(ValueError, "distinct source images"):
+            summarize_synthetic_dev_pairs([matching[0],matching[0]])
 
     def test_aggregate_never_contains_source_ids_raw_answers_or_prompt(self):
         report=summarize_matched_images(rows(6))
