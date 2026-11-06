@@ -18,6 +18,7 @@ HEIGHT = 640
 DOMAINS = ("slider", "slide_resize", "text_highlight")
 SPLITS = {"train": (0, 1, 2), "dev": (3, 4)}
 SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v1"
+TARGET_COLOR = (50, 160, 110)
 MAX_INDEX = 1000000
 
 
@@ -66,6 +67,10 @@ def _draw_scene(split, index, domain):
             draw.ellipse((start[0] - 18, y - 18, start[0] + 18, y + 18),
                          fill=(255, 255, 255), outline=ink, width=4)
             draw.text((100, y - 12), f"LEVEL {item+1}", fill=ink)
+            draw.ellipse((target[0] - 12, y - 12, target[0] + 12, y + 12),
+                         outline=TARGET_COLOR, width=3)
+            draw.ellipse((target[0] - 3, y - 3, target[0] + 3, y + 3),
+                         fill=TARGET_COLOR)
             rows.append((start, target))
         return canvas, family, rows
     if domain == "slide_resize":
@@ -81,6 +86,9 @@ def _draw_scene(split, index, domain):
             end = (start[0] + 55 + rng.randint(0, 25),
                    start[1] + 55 + rng.randint(0, 25))
             draw.rectangle((start[0]-7,start[1]-7,start[0]+7,start[1]+7),fill=ink)
+            # A visible ghost boundary makes the intended end point inferable.
+            draw.rectangle((x0, y0, end[0], end[1]), outline=TARGET_COLOR, width=2)
+            draw.ellipse((end[0]-4,end[1]-4,end[0]+4,end[1]+4),fill=TARGET_COLOR)
             rows.append((start,end))
         return canvas, family, rows
     rows = []
@@ -88,8 +96,12 @@ def _draw_scene(split, index, domain):
         draw.rounded_rectangle((x0-20,y0-27,x0+160,y0+30),radius=8,
                                fill=(246,248,250),outline=(181,199,208))
         draw.text((x0,y0-4),word,fill=ink)
-        start=(x0,y0+8)
-        end=(x0+8*len(word)+rng.randint(5,13),y0+8)
+        bbox=draw.textbbox((x0, y0-4), word)
+        start=(bbox[0],y0+8)
+        end=(bbox[2],y0+8)
+        draw.line((start[0],y0+14,end[0],y0+14),fill=accent,width=2)
+        draw.ellipse((start[0]-3,start[1]-3,start[0]+3,start[1]+3),fill=accent)
+        draw.ellipse((end[0]-3,end[1]-3,end[0]+3,end[1]+3),fill=TARGET_COLOR)
         rows.append((start,end))
     return canvas,family,rows
 
@@ -115,11 +127,11 @@ def generate(split: str, index: int, domain: str):
         if start == end or _norm(start) == _norm(end):
             raise ValueError("H426 synthetic action cannot have zero-distance drag")
         if domain == "slider":
-            body = (f"Move LEVEL {n+1} slider knob to its right-side setting." if n == 0
-                    else f"حرّك مقبض المستوى {n+1} إلى الموضع الأيمن.")
+            body = (f"Move LEVEL {n+1} slider knob to its outlined green target." if n == 0
+                    else f"حرّك مقبض المستوى {n+1} إلى الدائرة الخضراء المحددة.")
         elif domain == "slide_resize":
-            body = (f"Enlarge CARD {n+1} by dragging its bottom-right handle." if n == 0
-                    else f"كبّر البطاقة رقم {n+1} بسحب مقبض الزاوية السفلى اليمنى.")
+            body = (f"Enlarge CARD {n+1} to its outlined target corner." if n == 0
+                    else f"كبّر البطاقة رقم {n+1} حتى تصل الزاوية إلى العلامة الخضراء.")
         else:
             word = "ORBIT" if n == 0 else "WILLOW"
             body = (f"Highlight only the word {word} in the document." if n == 0
