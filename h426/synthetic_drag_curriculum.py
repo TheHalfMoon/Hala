@@ -17,7 +17,7 @@ WIDTH = 960
 HEIGHT = 640
 DOMAINS = ("slider", "slide_resize", "text_highlight")
 SPLITS = {"train": (0, 1, 2), "dev": (3, 4)}
-SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v3"
+SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v4"
 TARGET_COLOR = (50, 160, 110)
 MAX_INDEX = 1000000
 
@@ -130,7 +130,9 @@ def generate(split: str, index: int, domain: str):
     # Counterbalance instruction language vs visual target index.
     # Without this, EN always means object 1, AR always means object 2,
     # creating a spurious language->position shortcut instead of grounding.
-    assignment_offset = (index + DOMAINS.index(domain)) % 2
+    assignment_offset = hashlib.sha256(
+        f"H426-BILINGUAL-TARGET-v3:{split}:{index}:{domain}".encode("ascii")
+    ).digest()[0] & 1
     for n, language in enumerate(("en", "ar")):
         visual_index = (n + assignment_offset) % 2
         start, end, word = rows[visual_index]
