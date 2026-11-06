@@ -17,7 +17,7 @@ WIDTH = 960
 HEIGHT = 640
 DOMAINS = ("slider", "slide_resize", "text_highlight")
 SPLITS = {"train": (0, 1, 2), "dev": (3, 4)}
-SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v2"
+SCHEMA = "hala.h426.firstparty-invented-bilingual-paired-drag.v3"
 TARGET_COLOR = (50, 160, 110)
 MAX_INDEX = 1000000
 
@@ -58,8 +58,9 @@ def _draw_scene(split, index, domain):
     # Every screenshot exposes TWO independent GUI targets and source actions.
     if domain == "slider":
         rows = []
-        for item, y in enumerate((260, 430)):
-            x0, x1 = 225, 755
+        for item in range(2):
+            y = rng.randint(225, 295) if item == 0 else rng.randint(385, 470)
+            x0, x1 = 205 + rng.randint(0, 35), 735 + rng.randint(0, 35)
             start = (x0 + 65 + rng.randint(0, 100), y)
             target = (x1 - 75 - rng.randint(0, 95), y)
             draw.line((x0, y, x1, y), fill=(199, 207, 214), width=14)
@@ -71,11 +72,13 @@ def _draw_scene(split, index, domain):
                          outline=TARGET_COLOR, width=3)
             draw.ellipse((target[0] - 3, y - 3, target[0] + 3, y + 3),
                          fill=TARGET_COLOR)
-            rows.append((start, target))
+            rows.append((start, target, None))
         return canvas, family, rows
     if domain == "slide_resize":
         rows = []
-        for item, (x0, y0) in enumerate(((180, 190), (520, 350))):
+        for item in range(2):
+            x0 = 140 + rng.randint(0, 80) if item == 0 else 470 + rng.randint(0, 80)
+            y0 = 170 + rng.randint(0, 65) if item == 0 else 330 + rng.randint(0, 45)
             width = 145 + rng.randint(0, 35)
             height = 90 + rng.randint(0, 25)
             rect = (x0, y0, x0 + width, y0 + height)
@@ -89,10 +92,16 @@ def _draw_scene(split, index, domain):
             # A visible ghost boundary makes the intended end point inferable.
             draw.rectangle((x0, y0, end[0], end[1]), outline=TARGET_COLOR, width=2)
             draw.ellipse((end[0]-4,end[1]-4,end[0]+4,end[1]+4),fill=TARGET_COLOR)
-            rows.append((start,end))
+            rows.append((start,end,None))
         return canvas, family, rows
     rows = []
-    for item,(x0,y0,word) in enumerate(((200,250,"ORBIT"),(510,420,"WILLOW"))):
+    words = ("ORBIT", "WILLOW", "ATLAS", "RIVER", "STONE", "DELTA",
+             "BLOOM", "NEXUS", "EMBER", "MEADOW", "SILVER", "COMET",
+             "SPARK", "MARBLE", "PIXEL", "HORIZON")
+    chosen = rng.sample(words, 2)
+    for item, word in enumerate(chosen):
+        x0 = 150 + rng.randint(0, 120) if item == 0 else 480 + rng.randint(0, 80)
+        y0 = 210 + rng.randint(0, 80) if item == 0 else 385 + rng.randint(0, 70)
         draw.rounded_rectangle((x0-20,y0-27,x0+160,y0+30),radius=8,
                                fill=(246,248,250),outline=(181,199,208))
         draw.text((x0,y0-4),word,fill=ink)
@@ -102,7 +111,7 @@ def _draw_scene(split, index, domain):
         draw.line((start[0],y0+14,end[0],y0+14),fill=accent,width=2)
         draw.ellipse((start[0]-3,start[1]-3,start[0]+3,start[1]+3),fill=accent)
         draw.ellipse((end[0]-3,end[1]-3,end[0]+3,end[1]+3),fill=TARGET_COLOR)
-        rows.append((start,end))
+        rows.append((start,end,word))
     return canvas,family,rows
 
 
@@ -124,7 +133,7 @@ def generate(split: str, index: int, domain: str):
     assignment_offset = (index + DOMAINS.index(domain)) % 2
     for n, language in enumerate(("en", "ar")):
         visual_index = (n + assignment_offset) % 2
-        start, end = rows[visual_index]
+        start, end, word = rows[visual_index]
         action = {
             "type": "drag", "start_point": _norm(start),
             "end_point": _norm(end), "ordered": True,
@@ -139,7 +148,6 @@ def generate(split: str, index: int, domain: str):
             body = (f"Enlarge CARD {visual_index+1} to its outlined target corner." if n == 0
                     else f"كبّر البطاقة رقم {visual_index+1} حتى تصل الزاوية إلى العلامة الخضراء.")
         else:
-            word = "ORBIT" if visual_index == 0 else "WILLOW"
             body = (f"Highlight only the word {word} in the document." if n == 0
                     else f"ظلّل كلمة {word} فقط في المستند.")
         actions.append({
