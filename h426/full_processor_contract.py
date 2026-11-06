@@ -148,13 +148,15 @@ def check(processor, image, request: str, answer: str, domain: str):
     }
 
 
-def run(snapshot: Path):
+def run(snapshot: Path, *, sweep_per_domain: int = 0):
     """Offline actual Qwen3-VL full-processor preflight on synthetic pixels.
 
     Uses H218/H387's existing *eight-file* provenance/copy isolation. A mere
     tokenizer-only hash never authorizes loading processor config from disk.
     No image source dataset, base model weights, LoRA or GPU is loaded.
     """
+    if type(sweep_per_domain) is not int or not 0 <= sweep_per_domain <= 64:
+        raise ValueError("H426 full processor sweep count must be 0..64")
     if (os.environ.get("HF_HUB_OFFLINE") != "1"
         or os.environ.get("TRANSFORMERS_OFFLINE") != "1"):
         raise ValueError("H426 full processor must run with offline flags")
@@ -228,6 +230,15 @@ def run(snapshot: Path):
                     generated_results[key] = check_generated_with_real_processor(
                         processor, split, 11, domain, language,
                     )
+        generated_sweep = None
+        if sweep_per_domain:
+            from h426.synthetic_full_processor_sweep import sweep_paired_processor
+            generated_sweep = sweep_paired_processor(
+                lambda split, index, domain, language: check_generated_with_real_processor(
+                    processor, split, index, domain, language,
+                ),
+                sweep_per_domain,
+            )
     return {
         "model": BASE, "revision": REV,
         "verified_processor_files": 8,
@@ -238,10 +249,14 @@ def run(snapshot: Path):
         "actual_h425_synthetic_gui_test_count": len(generated_results),
         "results": results,
         "generated_results": generated_results,
+        "generated_sweep": generated_sweep,
     }
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--tokenizer-snapshot", type=Path, required=True)
-    print(json.dumps(run(parser.parse_args().tokenizer_snapshot), sort_keys=True))
+    parser.add_argument("--sweep-per-domain", type=int, default=0)
+    args = parser.parse_args()
+    print(json.dumps(run(args.tokenizer_snapshot,
+                         sweep_per_domain=args.sweep_per_domain), sort_keys=True))

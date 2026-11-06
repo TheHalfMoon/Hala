@@ -161,6 +161,12 @@ class FullImageBoundaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.check(FakeImageProcessor(), object(), "synthetic", "not json", "slider")
 
+    def test_sweep_count_cannot_bypass_bounded_cpu_contract(self):
+        for count in (-1, 65, True, False, 1.5):
+            with self.subTest(count=count), self.assertRaisesRegex(
+                    ValueError, "sweep count"):
+                c.run(Path("/tmp/unverified-cache"), sweep_per_domain=count)
+
     def test_full_processor_requires_offline_flags_before_loading(self):
         with patch.dict(os.environ, {"HF_HUB_OFFLINE": "0",
                                       "TRANSFORMERS_OFFLINE": "0"}):

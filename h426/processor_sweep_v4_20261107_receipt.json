@@ -1,0 +1,38 @@
+{
+  "schema": "hala.h426.owner-cpu-full-processor-v4-aggregate.v1",
+  "local_date": "2026-11-07",
+  "provenance": "Owner-controlled Windows CPU, unsupervised local research reproducibility receipt; not an independent evaluation",
+  "base_model": "Qwen/Qwen3-VL-2B-Instruct",
+  "pinned_revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "transformers_version": "4.57.3",
+  "torch_version": "2.9.1+cpu",
+  "verified_public_processor_files": 8,
+  "actual_processor_class": "Qwen3VLProcessor",
+  "generic_gray_cases_passed": 6,
+  "fixed_generated_gui_cases_passed": 12,
+  "v4_generated_source_images_passed": 384,
+  "v4_generated_image_conditioned_actions_passed": 768,
+  "v4_per_split_domain_language_group": 64,
+  "v4_groups": 12,
+  "source_train_dev_family_overlap": false,
+  "duplicate_synthetic_image_sha": false,
+  "source_is_admitted_to_train": false,
+  "image_patch_and_answer_boundary_checked": true,
+  "real_model_weights_loaded": false,
+  "gpu_used": false,
+  "optimizer_steps": 0,
+  "independent_external_ood": false,
+  "model_release_qualified": false,
+  "process_exit_code": 0,
+  "sha256_source_files": {
+    "h426/full_processor_contract.py": "a4b62e9f2eba8e6c056f81a84cd0bc50cf8f5ac1263c7c4faeadcfd8a8d1cbc7",
+    "h426/synthetic_full_processor_sweep.py": "dbc0718c4efa7254d6f71373f9cf193e8bced790643d1fd708783e5d24201503",
+    "h426/synthetic_drag_curriculum.py": "93d949ba6cfe7c1a316d37f36a57c7482f682eaea82d224e3bae338d169e27ea",
+    "h426/synthetic_h425_processor_bridge.py": "6b4667deb7a8c7bdb1989fed2bd21ff292f419ba748f3c2f215ee667ce08bd88"
+  },
+  "pending_external_gates": [
+    "independent screenshot ML training rights issue #384",
+    "independent sealed bilingual OOD issue #385",
+    "trained H426 vs H425 GPU comparison"
+  ]
+}
