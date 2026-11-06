@@ -108,10 +108,29 @@ class H426InventedBilingualGUI(unittest.TestCase):
                             elif domain=="slide_resize":
                                 self.assertIn(str(idx+1),row["body"])
                             else:
-                                word=("ORBIT","WILLOW")[idx]
+                                word=visual_rows[idx][2]
                                 self.assertIn(word,row["body"])
                 # EN and AR each point at both visual indices equally.
                 self.assertEqual(first_target_en,10)
+
+    def test_geometry_and_visible_text_cannot_be_memorized_as_fixed_pixels(self):
+        for domain in g.DOMAINS:
+            starts, ends, words = set(), set(), set()
+            for index in range(40):
+                sample = g.generate("train", index, domain)
+                for row in sample["actions"]:
+                    starts.add(tuple(row["start"]))
+                    ends.add(tuple(row["end"]))
+                if domain == "text_highlight":
+                    _,_,records=g._draw_scene("train",index,domain)
+                    words.update(v[2] for v in records)
+            with self.subTest(domain=domain):
+                self.assertGreater(len(starts), 20)
+                self.assertGreater(len(ends), 20)
+                if domain == "text_highlight":
+                    self.assertGreaterEqual(len(words), 10)
+        self.assertEqual(g.SCHEMA,
+            "hala.h426.firstparty-invented-bilingual-paired-drag.v3")
 
     def test_source_disjoint_families_and_unique_large_sample(self):
         report=g.audit_balanced(8)
