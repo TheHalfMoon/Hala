@@ -86,6 +86,33 @@ class H426InventedBilingualGUI(unittest.TestCase):
                     self.assertGreater(sum(x>1 for x in weights),0)
                     self.assertEqual(weights[-1],1.)
 
+    def test_en_ar_visual_target_mapping_is_balanced_not_language_shortcut(self):
+        for split in ("train", "dev"):
+            for domain in g.DOMAINS:
+                first_target_en=0
+                for index in range(20):
+                    with self.subTest(split=split,domain=domain,index=index):
+                        _,_,visual_rows=g._draw_scene(split,index,domain)
+                        sample=g.generate(split,index,domain)
+                        self.assertEqual(
+                            [r["language"] for r in sample["actions"]],
+                            ["en","ar"])
+                        expected_offset=(index+g.DOMAINS.index(domain))%2
+                        first_target_en+=int(expected_offset==0)
+                        for n,row in enumerate(sample["actions"]):
+                            idx=(n+expected_offset)%2
+                            self.assertEqual(tuple(row["start"]),visual_rows[idx][0])
+                            self.assertEqual(tuple(row["end"]),visual_rows[idx][1])
+                            if domain=="slider":
+                                self.assertIn(str(idx+1),row["body"])
+                            elif domain=="slide_resize":
+                                self.assertIn(str(idx+1),row["body"])
+                            else:
+                                word=("ORBIT","WILLOW")[idx]
+                                self.assertIn(word,row["body"])
+                # EN and AR each point at both visual indices equally.
+                self.assertEqual(first_target_en,10)
+
     def test_source_disjoint_families_and_unique_large_sample(self):
         report=g.audit_balanced(8)
         self.assertEqual(report["generated_images"],48)
