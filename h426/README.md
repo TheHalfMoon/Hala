@@ -132,15 +132,15 @@ proof = compare_original_h425_to_h426(output, labels, processor, row)
 
 ## Reproducible H425-versus-H426 CPU loss proof (no GPU or private data)
 
-The owner-private H426 research branch includes \`h426/probe_cpu.py\`. On a CPU environment with PyTorch installed, from the repository root run:
+The owner-private H426 research branch includes `h426/probe_cpu.py`. On a CPU environment with PyTorch installed, from the repository root run:
 
-\`\`\`bash
+```bash
 python -m h426.probe_cpu
-\`\`\`
+```
 
-The script imports H425's actual frozen objective from \`h425/kaggle/h425_h417_replay_paired.py\` and H426's proposed objective through \`h426/h425_loss_bridge.py\`, applies both to exactly the same **invented character-tokenized drag action and synthetic logits**, and tests that all resulting CPU gradients are finite and nonzero. There is no network access, no dataset read, no Qwen model weights, no optimizer, no update, no Kaggle kernel and no GPU. The program fails closed if the source-loss comparison or gradient evidence drifts. Its JSON result reports explicit \`train_steps=0\`, \`source_images_or_model_weights_read=false\`, and \`independent_ood_accuracy_measured=false\`.
+The script imports H425's actual frozen objective from `h425/kaggle/h425_h417_replay_paired.py` and H426's proposed objective through `h426/h425_loss_bridge.py`, applies both to exactly the same **invented character-tokenized drag action and synthetic logits**, and tests that all resulting CPU gradients are finite and nonzero. There is no network access, no dataset read, no Qwen model weights, no optimizer, no update, no Kaggle kernel and no GPU. The program fails closed if the source-loss comparison or gradient evidence drifts. Its JSON result reports explicit `train_steps=0`, `source_images_or_model_weights_read=false`, and `independent_ood_accuracy_measured=false`.
 
-On a separate assistant CPU environment (\`torch 2.10.0+cpu\`), a source-equivalent local replay of the exact H425/H426 loss functions yielded:
+On a separate assistant CPU environment (`torch 2.10.0+cpu`), a source-equivalent local replay of the exact H425/H426 loss functions yielded:
 
 | Invented task | Frozen H425 CE | H426 CE | H426 gradient abs sum |
 | --- | ---: | ---: | ---: |
@@ -148,7 +148,7 @@ On a separate assistant CPU environment (\`torch 2.10.0+cpu\`), a source-equival
 | slide_resize | 2.608814 | 3.954996 | 1.552368 |
 | text_highlight | 2.608814 | 3.216238 | 1.480329 |
 
-The \`h426/probe_cpu.py\` script also passed its initial source-equivalent local CPU execution. **This is a toy mathematical objective and gradient test, not a real owner Qwen3-VL model forward, not trained H426, not new original source-label evidence and not an accuracy measurement.** The optional \`test_reproducible_cpu_probe_three_domains_no_model_or_gpu\` in \`tests/test_h426_h425_loss_bridge.py\` runs this probe only when Torch is available; source-only GitHub jobs without Torch transparently skip it. A passing standard 22-workflow CI therefore cannot be used to claim that Torch CPU gradients ran on that exact GH Actions head.
+The `h426/probe_cpu.py` script also passed its initial source-equivalent local CPU execution. **This is a toy mathematical objective and gradient test, not a real owner Qwen3-VL model forward, not trained H426, not new original source-label evidence and not an accuracy measurement.** The optional `test_reproducible_cpu_probe_three_domains_no_model_or_gpu` in `tests/test_h426_h425_loss_bridge.py` runs this probe only when Torch is available; source-only GitHub jobs without Torch transparently skip it. A passing standard 22-workflow CI therefore cannot be used to claim that Torch CPU gradients ran on that exact GH Actions head.
 
 The actual 32K original H422 real tokenizer replay must still be repeated on the final strict H426 loss version. Only then consider a new H426 experiment from the genuine owner-private H425 trained adapter in an authorized free GPU environment, with independently approved rendered-screenshot TRAIN rights and an independently custodied, pre-registered bilingual source-disjoint blind evaluation. Neither rights issue #384 nor OOD issue #385 is satisfied by this source-only probe.
 
@@ -184,3 +184,26 @@ python -m h426.full_processor_contract --tokenizer-snapshot 'D:\Public-Qwen-Veri
 ```
 
 The path is illustrative only. Independent original source TRAIN copyright review #384 and genuinely unseen EN/AR external OOD #385 remain open. This research bridge does not authorize using old H425 copyrighted source assets for new TRAIN, and does not prove a H426 fine-tuning gain or production release.
+
+
+## Invented DEV paired metric and optional read-only T4 inference
+
+`h426/synthetic_pair_eval.py` scores **only first-party generated DEV cases** using the original frozen H425 `parse_drag`, `score_predicted` and `TOL_NORM` rather than inventing a more favorable H426 success metric. A synthetic image has two different paired instructions (EN and AR), each with a verified screenshot SHA. The scorer rejects missing, duplicated, swapped and malformed predictions, reports correctness for **both actions on the same image**, and separates start-only, end-only and both-point errors. It accepts caller-supplied predictions and **does not run or load any model**. A baseline/candidate comparison always uses the exact same synthetic image and targets. These DEV families are *author-visible synthetic research samples*, not independent blind source-family-disjoint OOD.
+
+`h426/synthetic_inference_eval.py` is an **optional read-only research-only** bridge for a model and a verified Qwen3VLProcessor already loaded in a separate owner-controlled FREE Kaggle T4 process. It does not download/transfer model weights, instantiate a model, train, change parameters or persist raw predictions. It can run 1–32 distinct invented DEV images *per domain*, for 6–192 EN/AR actions, and returns only per-domain and per-language aggregate metrics. It requires `HALA_H426_SYNTHETIC_READONLY_EVAL=1`, `HF_HUB_OFFLINE=1`, `TRANSFORMERS_OFFLINE=1`, a live owner Kaggle kernel on a Tesla T4, and a preloaded CUDA model plus official Qwen3VLProcessor; it fails closed outside those preconditions. **The module does NOT verify model/processor byte SHA itself; the caller must use H425's independently verified private adapter and H218/H387's pinned public processor loader for credible provenance.**
+
+Usage inside an **already-authorized private owner GPU environment**, with those objects prepared and verified separately:
+
+```python
+import os
+from h426.synthetic_inference_eval import evaluate_already_loaded_model
+os.environ["HALA_H426_SYNTHETIC_READONLY_EVAL"] = "1"
+os.environ["HF_HUB_OFFLINE"] = "1"
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+# model and processor must ALREADY exist as authenticated local objects.
+# This is an API example, not a command to fetch or upload private weights.
+research_report = evaluate_already_loaded_model(model, processor, count_per_domain=4)
+# Only aggregated scores; no original screenshot bytes or raw predictions.
+```
+
+Source-only GitHub tests `test_h426_synthetic_pair_eval.py` and `test_h426_synthetic_inference_eval.py` prove scorer equivalence, paired identity, endpoint-only error categories and zero-leakage/zero-GPU preconditions. **No T4 model inference was executed on H426 here**, and no observed improvement over H425 has yet been measured. The only genuine trained model remains H425 on original author-visible source DEV, with unresolved separate screenshot rights #384 and externally custodied sealed EN/AR OOD #385. Do not promote invented DEV into independent OOD and do not report any baseline/candidate synthetic metric until actual authenticated model-generated predictions exist.
