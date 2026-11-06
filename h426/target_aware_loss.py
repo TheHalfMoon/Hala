@@ -32,7 +32,7 @@ def source_coordinate_token_weights(pieces: list[str], domain: str) -> list[floa
     # The H425 assistant target is exactly ONE native-drag JSON object, optionally
     # followed by Qwen's end-of-message token. Extra prefixes/suffixes must not
     # be silently optimized as supervised answer content.
-    if start!=0 or text[end:] not in ("", "<|im_end|>"):
+    if start!=0 or text[end:] not in ("", "<|im_end|>", "<|im_end|>\n"):
         raise ValueError("H426 supervised target contains unrecognized prefix or suffix")
     def reject_duplicate_keys(pairs):
         obj={}

@@ -56,7 +56,7 @@ class H426OriginalCoordinateWeights(unittest.TestCase):
                 m.source_coordinate_token_weights(example, "slider")
 
     def test_empty_or_normal_qwen_end_marker_allowed(self):
-        for case in (parts(), parts()[:-1]):
+        for case in (parts(), parts()[:-1], parts()[:-1] + ["<|im_end|>\n"]):
             with self.subTest(has_eos=len(case)==len(parts())):
                 w=m.source_coordinate_token_weights(case, "slider")
                 self.assertEqual(len(w),len(case))
