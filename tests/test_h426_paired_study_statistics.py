@@ -145,7 +145,7 @@ class MatchedImageStudyTests(unittest.TestCase):
         self.assertEqual(report["external_ood_status"], "not_independent")
         self.assertFalse(report["model_or_release_qualified"])
         self.assertNotIn("raw_prediction", json.dumps(report))
-        with self.assertRaisesRegex(ValueError, "distinct source images"):
+        with self.assertRaisesRegex(ValueError, "duplicate source image"):
             summarize_synthetic_dev_pairs([matching[0],matching[0]])
 
     def test_aggregate_never_contains_source_ids_raw_answers_or_prompt(self):
