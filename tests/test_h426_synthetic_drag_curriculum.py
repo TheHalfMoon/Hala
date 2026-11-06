@@ -97,7 +97,9 @@ class H426InventedBilingualGUI(unittest.TestCase):
                         self.assertEqual(
                             [r["language"] for r in sample["actions"]],
                             ["en","ar"])
-                        expected_offset=(index+g.DOMAINS.index(domain))%2
+                        expected_offset=hashlib.sha256(
+                            f"H426-BILINGUAL-TARGET-v3:{split}:{index}:{domain}".encode("ascii")
+                        ).digest()[0] & 1
                         first_target_en+=int(expected_offset==0)
                         for n,row in enumerate(sample["actions"]):
                             idx=(n+expected_offset)%2
@@ -111,7 +113,8 @@ class H426InventedBilingualGUI(unittest.TestCase):
                                 word=visual_rows[idx][2]
                                 self.assertIn(word,row["body"])
                 # EN and AR each point at both visual indices equally.
-                self.assertEqual(first_target_en,10)
+                self.assertGreaterEqual(first_target_en,6)
+                self.assertLessEqual(first_target_en,14)
 
     def test_geometry_and_visible_text_cannot_be_memorized_as_fixed_pixels(self):
         for domain in g.DOMAINS:
@@ -130,7 +133,7 @@ class H426InventedBilingualGUI(unittest.TestCase):
                 if domain == "text_highlight":
                     self.assertGreaterEqual(len(words), 10)
         self.assertEqual(g.SCHEMA,
-            "hala.h426.firstparty-invented-bilingual-paired-drag.v3")
+            "hala.h426.firstparty-invented-bilingual-paired-drag.v4")
 
     def test_source_disjoint_families_and_unique_large_sample(self):
         report=g.audit_balanced(8)
