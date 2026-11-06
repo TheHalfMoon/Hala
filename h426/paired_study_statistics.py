@@ -28,12 +28,13 @@ def _checked(records):
         }:
             raise ValueError("H426 paired study record shape changed")
         sha = row["image_sha256"]
+        if type(sha) is str and sha in seen:
+            raise ValueError("H426 duplicate source image in matched study")
         domain = row["domain"]
         family = row["source_family"]
         langs = row["languages"]
         if (type(sha) is not str or len(sha) != 64
             or any(c not in "0123456789abcdef" for c in sha)
-            or sha in seen
             or type(domain) is not str or domain not in DOMAINS
             or type(family) is not str or not 1 <= len(family) <= 160
             or type(langs) is not list or len(langs) != 2
