@@ -10,14 +10,15 @@ Read-only pilot of the **authentic private H425 trained LoRA** against newly inv
 
 - `h426/kaggle_h425_readonly_synthetic.py` verifies the existing H425 source-qualified training receipt and the known original H425 adapter SHA **before** staging a read-only LoRA; loads the official Qwen3-VL-2B immutable revision; and checks all eight public processor files byte-for-byte with H218/H387.
 - Reuses the frozen H425 original parsing and scoring code, and the existing H426 synthetic DEV paired scorer. No optimizer, training step, model-save, original training JPEG, raw prediction, or private adapter bytes are published.
-- `h426/build_private_readonly_kaggle.py` packages only 11 source-code files into a deterministic, hash-verified private Kaggle script. The generated script and kernel metadata are **outside** the repository on the owner's D: drive. Metadata forces `is_private=true`, free Tesla T4, and exactly the existing private H425-trained-parent dataset. Public Qwen base weights can download while model evaluation runs offline.
+- `h426/build_private_readonly_kaggle.py` packages only 12 source-code files into a deterministic, hash-verified private Kaggle script. The generated script and kernel metadata are **outside** the repository on the owner's D: drive. Metadata forces `is_private=true`, free Tesla T4, and exactly the existing private H425-trained-parent dataset. Public Qwen base weights can download while model evaluation runs offline.
+- The runtime validates the exact aggregate schema, H425 model hashes, per-domain counts and nonrelease flags with `h426/verify_private_h425_baseline.py` before any create-only output. Source-only regression coverage is in `tests/test_h426_verify_private_h425_baseline.py`.
 - Runtime result is create-only and aggregate-only: per-domain English/Arabic and both-correct counts, number of images, authenticated weight/receipt hashes, no individual responses. An incomplete or failed GPU kernel must **not** be represented as a successful evaluation.
 
 Owner source-only builder:
 
 ```powershell
 Set-Location D:\Hala-H425-Worktree
-& D:\Hala-H426-Tokenizer-Private\venv\Scripts\python.exe h426\build_private_readonly_kaggle.py --output-directory D:\Hala-H426-Private-H425-Synthetic-ReadOnly-20261107
+& D:\Hala-H426-Tokenizer-Private\venv\Scripts\python.exe h426\build_private_readonly_kaggle.py --output-directory D:\Hala-H426-Private-H425-Synthetic-ReadOnly-20261107-v2
 ```
 
 The destination uses **create-only** output to prevent accidental replacement. To retry later, first inspect the existing owner-private folder and use a **new**, explicitly reviewed private destination if a regenerated source is needed. Do not silently remove existing Kaggle results or overwrite private receipts. A real provider run still requires available free GPU quota. Retry from the designated private folder with `kaggle kernels push -p <owner-private-folder>` only when the quota is available and after verifying the source/metadata exact hashes.

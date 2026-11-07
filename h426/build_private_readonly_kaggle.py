@@ -26,6 +26,7 @@ PARTS = (
     "h426/synthetic_pair_eval.py",
     "h426/synthetic_inference_eval.py",
     "h426/paired_study_statistics.py",
+    "h426/verify_private_h425_baseline.py",
     "h426/kaggle_h425_readonly_synthetic.py",
 )
 KERNEL_ID = "abdulazizshehri/hala-h426-private-h425-synthetic-readonly"

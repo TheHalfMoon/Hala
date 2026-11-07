@@ -163,6 +163,8 @@ def run():
             "source_rights_review_qualified": False,
             "release_qualified": False,
         }
+        from h426.verify_private_h425_baseline import verify_aggregate
+        verify_aggregate(safe, count_per_domain=COUNT)
         raw = json.dumps(safe, sort_keys=True, indent=2,
                          ensure_ascii=False, allow_nan=False).encode("utf8")
         with RESULT.open("xb") as output:
